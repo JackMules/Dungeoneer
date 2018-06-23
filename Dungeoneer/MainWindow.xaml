@@ -8,7 +8,7 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        
+        <ResourceDictionary Source="MyDictionary.xaml"/>
     </Window.Resources>
 	<Grid>
 		<TabControl>
@@ -57,7 +57,8 @@
                     <Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
                     <Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <ListBox Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ListBox Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
+                                     ItemTemplate="{StaticResource ActorDisplayTemplate}" SelectionMode="Multiple"/>
                         </ScrollViewer>
                     </Border>
                 </StackPanel>
