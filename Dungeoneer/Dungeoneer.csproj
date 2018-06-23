@@ -54,10 +54,48 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actor.cs" />
+    <Compile Include="ActorTypeCard.xaml.cs">
+      <DependentUpon>ActorTypeCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreatureCardViewModel.cs" />
+    <Compile Include="AddAttackWindow.xaml.cs">
+      <DependentUpon>AddAttackWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Attack.cs" />
+    <Compile Include="AttackViewModel.cs" />
+    <Compile Include="CreateCreatureWindow.xaml.cs">
+      <DependentUpon>CreateCreatureWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creature.cs" />
+    <Compile Include="InitiativeItem.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="NamedValue.cs" />
+    <Compile Include="NonPlayerActor.cs" />
+    <Compile Include="Utility.cs" />
+    <Page Include="ActorTypeCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CreatureCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddAttackWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CreateCreatureWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="CreatureCard.xaml.cs">
+      <DependentUpon>CreatureCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -66,6 +104,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MyDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

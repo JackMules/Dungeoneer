@@ -1,0 +1,39 @@
+﻿<Window x:Class="Dungeoneer.AddAttackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Attack" Height="173.545" Width="257.143">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto" MinWidth="36"/>
+			<ColumnDefinition Width="Auto" MinWidth="37"/>
+			<ColumnDefinition Width="20"/>
+			<ColumnDefinition Width="19"/>
+			<ColumnDefinition Width="Auto" MinWidth="28"/>
+			<ColumnDefinition Width="Auto" MinWidth="75"/>
+		</Grid.ColumnDefinitions>
+		<Label Content="Name" Grid.Row="0" Grid.Column="0"/>
+		<TextBox Name="AttackNameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+		<Label Content="Type" Grid.Row="1" Grid.Column="0"/>
+		<ComboBox Name="AttackTypeComboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+		<Label Content="To Hit" Grid.Row="2" Grid.Column="0"/>
+		<TextBox Name="AttackRollModifierTextBox" Grid.Row="2" Grid.Column="1"/>
+		<Label Content="Crit" Grid.Row="2" Grid.Column="2"/>
+		<ComboBox Name="ThreatRangeComboBox" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"/>
+		<ComboBox Name="CritMultiplierComboBox" Grid.Row="2" Grid.Column="5"/>
+		<Label Content="Damage" Grid.Row="3" Grid.Column="0"/>
+		<TextBox Name="AttackNumDiceTextBox" Grid.Row="3" Grid.Column="1"/>
+		<ComboBox Name="AttackDiceTypeComboBox" Grid.Row="3" Grid.Column="2"/>
+		<Label Content="+" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2"/>
+		<TextBox Name="AttackDamageConstantTextBox" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"/>
+		<Button Name="AddButton" Content="Add" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+		<Button Name="CancelButton" Content="Cancel" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Margin="5"/>
+	</Grid>
+</Window>
