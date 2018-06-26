@@ -73,6 +73,9 @@
     <Compile Include="NamedValue.cs" />
     <Compile Include="NonPlayerActor.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="NamedValueDisplayControl.xaml.cs">
+      <DependentUpon>NamedValueDisplayControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="ActorTypeCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +110,10 @@
     <Page Include="MyDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NamedValueDisplayControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

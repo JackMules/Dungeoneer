@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Dungeoneer
 {
 	/// <summary>
-	/// Interaction logic for ValueDisplay.xaml
+	/// Interaction logic for NamedValueDisplayControl.xaml
 	/// </summary>
-	public partial class ValueDisplay : UserControl
+	public partial class NamedValueDisplayControl : UserControl
 	{
-		public ValueDisplay()
+		public NamedValueDisplayControl()
 		{
 		}
 	}
