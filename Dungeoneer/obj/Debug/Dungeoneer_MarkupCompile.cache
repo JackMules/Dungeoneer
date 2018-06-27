@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Jim\source\repos\Dungeoneer\Dungeoneer\App.xaml
-6566772130
+71671201328
 
-191488961040
+20948599163
 131569487696
-ActorTypeCard.xaml;CreatureCard.xaml;AddAttackWindow.xaml;CreateCreatureWindow.xaml;MainWindow.xaml;MyDictionary.xaml;
+ActorTypeCard.xaml;CreatureCard.xaml;AddAttackWindow.xaml;CreateCreatureWindow.xaml;MainWindow.xaml;MyDictionary.xaml;NamedValueDisplayControl.xaml;
 
-False
+True
 
