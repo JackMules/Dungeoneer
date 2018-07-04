@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="Dungeoneer.CreatureCard"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="600">
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+						 mc:Ignorable="d" 
+						 d:DesignHeight="80" d:DesignWidth="600">
 	<UserControl.Resources>
 		
 	</UserControl.Resources>
@@ -14,8 +14,8 @@
 				<DockPanel>
 					<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
 						<Label Name="NameLabel" Margin="10" Content="Creature name" FontSize="24" FontWeight="Bold"/>
-					    <ListBox ItemsSource="{Binding NamedValues}"/>
-				    </StackPanel>
+							<ListBox ItemsSource="{Binding NamedValues}"/>
+						</StackPanel>
 					<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
 						<Button Content="End Turn" Width="60"/>
 						<Button Content="Delay" Width="60"/>
