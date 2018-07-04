@@ -24,13 +24,21 @@ namespace Dungeoneer
 		{
 			ObservableCollection<Actor> characters = new ObservableCollection<Actor>
 			{
-				new Actor { Name = "Kolnik", InitiativeMod = -1 },
-				new Actor { Name = "Atrion", InitiativeMod = 7  },
-				new Actor { Name = "Thrasin", InitiativeMod = 5  },
-				new Actor { Name = "Joshua", InitiativeMod = 10  }
+				new Actor { Name = "Kolnik", InitiativeMod = new NamedValue { Name = "Init", Value = -1 }, },
+				new Actor { Name = "Atrion", InitiativeMod = new NamedValue { Name = "Init", Value = 5 }, },
+				new Actor { Name = "Thrasin", InitiativeMod = new NamedValue { Name = "Init", Value = 7 }, },
+				new Actor { Name = "Joshua", InitiativeMod = new NamedValue { Name = "Init", Value = 10 }, }
 			};
 
 			Characters = characters;
 		}
+
+		public ObservableCollection<InitiativeItem> InitiativeTrack
+		{
+			get;
+			set;
+		}
+
+		
 	}
 }

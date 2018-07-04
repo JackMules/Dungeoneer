@@ -14,7 +14,7 @@ namespace Dungeoneer
 		public NonPlayerActor(
 			string name,
 			string type,
-			int initiativeMod,
+			NamedValue initiativeMod,
 			List<Attack> attacks)
 			: base(name, initiativeMod)
 		{

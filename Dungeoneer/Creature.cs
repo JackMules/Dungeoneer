@@ -38,7 +38,7 @@ namespace Dungeoneer
 		public Creature(
 			string name, 
 			string type, 
-			int initiativeMod,
+			NamedValue initiativeMod,
 			List<Attack> attacks,
 			uint strength,
 			uint dexterity,

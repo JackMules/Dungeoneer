@@ -2,14 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Dungeoneer">
     <DataTemplate x:Key="ActorDisplayTemplate" DataType="{x:Type local:Actor}">
-        <Grid>
-            <Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
-            <Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-                <StackPanel Orientation="Horizontal">
-                    <Label Name="ActorNameLabel" Margin="10" Content="{Binding Name}" FontSize="24" FontWeight="Bold"/>
-                    <local:NamedValueDisplayControl />
-                </StackPanel>
-            </Border>
-        </Grid>
+        <local:CharacterCard/>
+    </DataTemplate>
+    <DataTemplate x:Key="CreatureInitiativeTemplate" DataType="{x:Type local:Creature}">
+        <local:CreatureCard/>
     </DataTemplate>
 </ResourceDictionary>

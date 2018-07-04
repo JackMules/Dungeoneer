@@ -58,6 +58,9 @@
     <Compile Include="ActorTypeCard.xaml.cs">
       <DependentUpon>ActorTypeCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CharacterCard.xaml.cs">
+      <DependentUpon>CharacterCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreatureCardViewModel.cs" />
     <Compile Include="AddAttackWindow.xaml.cs">
       <DependentUpon>AddAttackWindow.xaml</DependentUpon>
@@ -73,12 +76,16 @@
     <Compile Include="NamedValue.cs" />
     <Compile Include="NonPlayerActor.cs" />
     <Compile Include="Utility.cs" />
-    <Compile Include="NamedValueDisplayControl.xaml.cs">
-      <DependentUpon>NamedValueDisplayControl.xaml</DependentUpon>
+    <Compile Include="NamedValueDisplay.xaml.cs">
+      <DependentUpon>NamedValueDisplay.xaml</DependentUpon>
     </Compile>
     <Page Include="ActorTypeCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CharacterCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreatureCard.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -111,7 +118,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NamedValueDisplayControl.xaml">
+    <Page Include="NamedValueDisplay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

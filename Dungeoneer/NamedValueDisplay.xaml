@@ -1,16 +1,16 @@
-﻿<UserControl x:Class="NamedValueDisplayControl"
+﻿<UserControl x:Class="Dungeoneer.NamedValueDisplay"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:Dungeoneer"
              mc:Ignorable="d">
-    <Grid Background="LightGray">
+    <Grid DataContext="{Binding ElementName=parent}" Background="LightGray">
         <Rectangle Margin="10,10,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
         <Border Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4">
             <StackPanel Orientation="Vertical">
-                <Label x:Name="NameLabel" Content="{Binding Name}" FontSize="14" HorizontalAlignment="Center" ToolTip="Extra information"/>
-                <Label x:Name="ValueLabel" Content="{Binding Value}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" ToolTip="Extra information"/>
+                <Label Content="{Binding Label}" FontSize="14" HorizontalAlignment="Center" ToolTip="Extra information"/>
+                <Label Content="{Binding Value}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" ToolTip="Extra information"/>
             </StackPanel>
         </Border>
     </Grid>

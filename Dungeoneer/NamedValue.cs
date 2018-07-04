@@ -3,18 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Dungeoneer
 {
-	public class NamedValue
+	public class NamedValue : INotifyPropertyChanged
 	{
 		public NamedValue()
 		{
 			Name = "No Name";
-			Value = "No Value";
+			Value = 0;
 		}
 
-		public string Name { get; set; }
-		public string Value { get; set; }
+		private string _name;
+		private int _value;
+
+		public string Name
+		{
+			get
+			{
+				return _name;
+			}
+			set
+			{
+				_name = value;
+				OnPropertyChanged("Name");
+			}
+		}
+		public int Value
+		{
+			get
+			{
+				return _value;
+			}
+			set
+			{
+				_value = value;
+				OnPropertyChanged("Value");
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }

@@ -25,7 +25,7 @@
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<StackPanel Name="InitiativeStack"/>
+							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding InitiativeTrack}"/>
 						</ScrollViewer>
 					</Border>
 				</DockPanel>
@@ -52,12 +52,13 @@
                 <StackPanel Orientation="Vertical">
                     <DockPanel FlowDirection="RightToLeft">
                         <Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
+                        <Button x:Name="SetPartyButton" HorizontalAlignment="Right" Content="Set Party" Margin="5,0"/>
                     </DockPanel>
                     <Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
                         <ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
-                            <ListBox Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
+                            <ListBox x:Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
                                      ItemTemplate="{StaticResource ActorDisplayTemplate}" SelectionMode="Multiple"
-                                     Background="Transparent"/>
+                                     Background="Transparent" SelectedItem="{Binding Party}"/>
                         </ScrollViewer>
                     </Border>
                 </StackPanel>
