@@ -1,18 +1,18 @@
 ﻿<UserControl x:Class="Dungeoneer.CharacterCard"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Dungeoneer"
-             mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="600">
-    <Grid DataContext="{Binding ElementName=parent}">
-        <Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
-        <Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-            <StackPanel Orientation="Horizontal">
-                <Label Margin="10" Content="{Binding CharacterName}" FontSize="24" FontWeight="Bold"/>
-                <local:NamedValueDisplay Content="{Binding InitiativeMod}"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+						 xmlns:local="clr-namespace:Dungeoneer"
+						 mc:Ignorable="d"
+						 d:DesignHeight="80" d:DesignWidth="600">
+	<Grid DataContext="{Binding ElementName=Parent}">
+		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
+		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="10" Content="{Binding CharacterName}" FontSize="24" FontWeight="Bold"/>
+				<local:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeMod}"/>
+			</StackPanel>
+		</Border>
+	</Grid>
 </UserControl>

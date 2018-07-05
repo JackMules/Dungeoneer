@@ -16,23 +16,25 @@ using System.Windows.Shapes;
 namespace Dungeoneer
 {
 	/// <summary>
-	/// Interaction logic for NamedValueDisplay.xaml
+	/// Interaction logic for ValueDisplay.xaml
 	/// </summary>
-	public partial class NamedValueDisplay : UserControl
+	public partial class ValueDisplay : UserControl
 	{
-		public NamedValueDisplay()
+		public Binding ValueBinding { get; set; }
+
+		public ValueDisplay()
 		{
 			InitializeComponent();
 		}
 
-		public string Label
+		public string Title
 		{
-			get { return (string)GetValue(LabelProperty); }
-			set { SetValue(LabelProperty, value); }
+			get { return (string)GetValue(TitleProperty); }
+			set { SetValue(TitleProperty, value); }
 		}
 
-		public static readonly DependencyProperty LabelProperty =
-			DependencyProperty.Register("Label", typeof(string),
+		public static readonly DependencyProperty TitleProperty =
+			DependencyProperty.Register("Title", typeof(string),
 			typeof(CharacterCard), new PropertyMetadata(""));
 
 		public string Value
@@ -44,5 +46,10 @@ namespace Dungeoneer
 		public static readonly DependencyProperty ValueProperty =
 				DependencyProperty.Register("Value", typeof(object),
 					typeof(CharacterCard), new PropertyMetadata(""));
+
+		private void GridLoaded(object sender, RoutedEventArgs e)
+		{
+			valueLabel.SetBinding(Label.ContentProperty, ValueBinding);
+		}
 	}
 }
