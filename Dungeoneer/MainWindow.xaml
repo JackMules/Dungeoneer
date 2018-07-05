@@ -57,7 +57,7 @@
 					<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
 						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
 							<ListBox x:Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
-												ItemTemplate="{StaticResource ActorDisplayTemplate}" SelectionMode="Multiple"
+												ItemTemplate="{DynamicResource ActorDisplayTemplate}" SelectionMode="Multiple"
 												Background="Transparent" SelectedItem="{Binding Party}"/>
 						</ScrollViewer>
 					</Border>
