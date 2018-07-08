@@ -66,19 +66,22 @@
       <DependentUpon>AddAttackWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Attack.cs" />
-    <Compile Include="AttackViewModel.cs" />
+    <Compile Include="ViewModel\AttackViewModel.cs" />
     <Compile Include="CreateCreatureWindow.xaml.cs">
       <DependentUpon>CreateCreatureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Creature.cs" />
     <Compile Include="InitiativeItem.cs" />
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="NamedValue.cs" />
     <Compile Include="NonPlayerActor.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\NotifyingProperty.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Page Include="ActorTypeCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

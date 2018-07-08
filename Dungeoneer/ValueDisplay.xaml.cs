@@ -30,25 +30,26 @@ namespace Dungeoneer
 		public string Title
 		{
 			get { return (string)GetValue(TitleProperty); }
-			set { SetValue(TitleProperty, value); }
+			set => SetValue(TitleProperty, value);
 		}
 
 		public static readonly DependencyProperty TitleProperty =
 			DependencyProperty.Register("Title", typeof(string),
-			typeof(CharacterCard), new PropertyMetadata(""));
+			typeof(ValueDisplay), new PropertyMetadata(""));
 
 		public string Value
 		{
 			get { return (string)GetValue(ValueProperty); }
-			set { SetValue(ValueProperty, value); }
+			set => SetValue(ValueProperty, value);
 		}
 
 		public static readonly DependencyProperty ValueProperty =
 				DependencyProperty.Register("Value", typeof(object),
-					typeof(CharacterCard), new PropertyMetadata(""));
+					typeof(ValueDisplay), new PropertyMetadata(""));
 
 		private void GridLoaded(object sender, RoutedEventArgs e)
 		{
+			titleLabel.SetValue(Label.ContentProperty, Title);
 			valueLabel.SetBinding(Label.ContentProperty, ValueBinding);
 		}
 	}

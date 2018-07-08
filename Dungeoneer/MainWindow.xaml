@@ -2,9 +2,10 @@
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="MainWindow" Height="455" Width="662"
-				xmlns:local="clr-namespace:Dungeoneer">
+				xmlns:local="clr-namespace:Dungeoneer"
+				xmlns:vm="clr-namespace:Dungeoneer.ViewModel">
 	<Window.DataContext>
-		<local:MainWindowViewModel/>
+		<vm:MainViewModel/>
 	</Window.DataContext>
 	<Window.Resources>
 		<ResourceDictionary Source="MyDictionary.xaml"/>
@@ -52,13 +53,13 @@
 				<StackPanel Orientation="Vertical">
 					<DockPanel FlowDirection="RightToLeft">
 						<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
-						<Button x:Name="SetPartyButton" HorizontalAlignment="Right" Content="Set Party" Margin="5,0"/>
+						<Button x:Name="SetPartyButton" Command="{Binding SetPartyCommand}" CommandParameter="{Binding ElementName=CharactersListBox, Path=SelectedItems}" HorizontalAlignment="Right" Content="Set Party" Margin="5,0"/>
 					</DockPanel>
 					<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
 						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
 							<ListBox x:Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
-												ItemTemplate="{DynamicResource ActorDisplayTemplate}" SelectionMode="Multiple"
-												Background="Transparent" SelectedItem="{Binding Party}"/>
+											 SelectionMode="Multiple" ItemTemplate="{DynamicResource ActorDisplayTemplate}"
+											 Background="Transparent"/>
 						</ScrollViewer>
 					</Border>
 				</StackPanel>

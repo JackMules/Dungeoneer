@@ -11,19 +11,19 @@ namespace Dungeoneer
 	{
 		public Actor()
 		{
-			Name = "No Name";
+			ActorName = "No Name";
 			InitiativeMod = 0;
 		}
 
-		private string _name { get; set; }
+		private string _actorName { get; set; }
 		private int _initiativeMod { get; set; }
 
-		public string Name
+		public string ActorName
 		{
-			get { return _name; }
+			get { return _actorName; }
 			set
 			{
-				_name = value;
+				_actorName = value;
 				OnPropertyChanged("Name");
 			}
 		}
@@ -39,10 +39,10 @@ namespace Dungeoneer
 		}
 
 		public Actor(
-			string name,
+			string actorName,
 			int initiativeMod)
 		{
-			Name = name;
+			ActorName = actorName;
 			InitiativeMod = initiativeMod;
 		}
 
@@ -55,7 +55,7 @@ namespace Dungeoneer
 
 		public override string ToString()
 		{
-			return string.Format("{0} Init: {1}", Name, Utility.GetSignedNumberString(InitiativeMod));
+			return string.Format("{0} Init: {1}", ActorName, Utility.GetSignedNumberString(InitiativeMod));
 		}
 	}
 }
