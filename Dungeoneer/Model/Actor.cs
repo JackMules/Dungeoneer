@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Dungeoneer
+namespace Dungeoneer.Model
 {
 	public class Actor : INotifyPropertyChanged
 	{

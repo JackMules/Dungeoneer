@@ -2,10 +2,9 @@
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="MainWindow" Height="455" Width="662"
-				xmlns:local="clr-namespace:Dungeoneer"
-				xmlns:vm="clr-namespace:Dungeoneer.ViewModel">
+				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel">
 	<Window.DataContext>
-		<vm:MainViewModel/>
+		<viewmodel:MainViewModel/>
 	</Window.DataContext>
 	<Window.Resources>
 		<ResourceDictionary Source="MyDictionary.xaml"/>
@@ -31,17 +30,18 @@
 					</Border>
 				</DockPanel>
 			</TabItem>
-			<TabItem x:Name="ActorsTab" Header="Actors">
+			<TabItem x:Name="EnemiesTab" Header="Enemies">
 				<StackPanel Orientation="Vertical">
 					<DockPanel FlowDirection="RightToLeft">
-						<Button x:Name="CreateActorButton" HorizontalAlignment="Right" Content="New Actor" Margin="5,0"/>
+						<Button x:Name="CreateNonPlayerActorButton" HorizontalAlignment="Right" Content="New Non-Player Actor" Margin="5,0"/>
 						<Button x:Name="CreateCreatureButton" HorizontalAlignment="Right" Content="New Creature" Margin="0,0,5,0"/>
 						<TextBox x:Name="FilterActorsBox" ToolTip="Type to filter Actors" />
 					</DockPanel>
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<StackPanel Name="ActorStack" Orientation="Vertical"/>
+							<ItemsControl ItemsSource="{Binding Enemies, UpdateSourceTrigger=PropertyChanged}"
+														ItemTemplate="{DynamicResource NonPlayerActorDisplayTemplate}"/>
 						</ScrollViewer>
 					</Border>
 				</StackPanel>
@@ -53,12 +53,11 @@
 				<StackPanel Orientation="Vertical">
 					<DockPanel FlowDirection="RightToLeft">
 						<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
-						<Button x:Name="SetPartyButton" Command="{Binding SetPartyCommand}" CommandParameter="{Binding ElementName=CharactersListBox, Path=SelectedItems}" HorizontalAlignment="Right" Content="Set Party" Margin="5,0"/>
 					</DockPanel>
 					<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
 						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
-							<ListBox x:Name="CharactersListBox" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
-											 SelectionMode="Multiple" ItemTemplate="{DynamicResource ActorDisplayTemplate}"
+							<ItemsControl x:Name="CharactersControl" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
+											 ItemTemplate="{DynamicResource PlayerActorDisplayTemplate}"
 											 Background="Transparent"/>
 						</ScrollViewer>
 					</Border>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dungeoneer
+namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for ActorTypeCard.xaml
+	/// Interaction logic for NonPlayerActorCard.xaml
 	/// </summary>
-	public partial class ActorTypeCard : UserControl
+	public partial class NonPlayerActorCard : UserControl
 	{
-		public ActorTypeCard()
+		public NonPlayerActorCard()
 		{
 			InitializeComponent();
 		}

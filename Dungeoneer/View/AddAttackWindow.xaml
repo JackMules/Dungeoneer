@@ -1,4 +1,4 @@
-﻿<Window x:Class="Dungeoneer.AddAttackWindow"
+﻿<Window x:Class="Dungeoneer.View.AddAttackWindow"
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="Add Attack" Height="173.545" Width="257.143">

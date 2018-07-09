@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeoneer
+namespace Dungeoneer.Model
 {
 	public class Creature : NonPlayerActor
 	{
@@ -27,7 +27,6 @@ namespace Dungeoneer
 		public string DamageReductionType { get; set; }
 		public uint Speed { get; set; }
 
-		public uint ChallengeRating { get; set; }
 		public uint FortitudeSave { get; set; }
 		public uint ReflexSave { get; set; }
 		public uint WillSave { get; set; }
@@ -35,10 +34,37 @@ namespace Dungeoneer
 
 		public Utility.Size Size { get; set; }
 
+		public Creature()
+			: base()
+		{
+			Strength = 10;
+			Dexterity = 10;
+			Constitution = 10;
+			Intelligence = 10;
+			Wisdom = 10;
+			Charisma = 10;
+			BaseAttackBonus = 0;
+			HitPoints = 3;
+			HitDice = 1;
+			HitDiceType = Utility.DieType.d3;
+			ArmourClass = 10;
+			TouchArmourClass = 10;
+			FlatFootedArmourClass = 10;
+			DamageReduction = 0;
+			DamageReductionType = "";
+			Speed = 30;
+			FortitudeSave = 0;
+			ReflexSave = 0;
+			WillSave = 0;
+			PowerAttack = false;
+			Size = Utility.Size.Medium;
+		}
+
 		public Creature(
 			string name, 
 			string type, 
 			int initiativeMod,
+			float challengeRating,
 			List<Attack> attacks,
 			uint strength,
 			uint dexterity,
@@ -56,13 +82,12 @@ namespace Dungeoneer
 			uint damageReduction,
 			string damageReductionType,
 			uint speed,
-			uint challengeRating,
 			uint fortitudeSave,
 			uint reflexSave,
 			uint willSave,
 			bool powerAttack,
 			Utility.Size size)
-			: base(name, type, initiativeMod, attacks)
+			: base(name, type, initiativeMod, challengeRating, attacks)
 		{
 			Strength = strength;
 			Dexterity = dexterity;
@@ -80,7 +105,6 @@ namespace Dungeoneer
 			DamageReduction = damageReduction; 
 			DamageReductionType = damageReductionType; 
 			Speed = speed; 
-			ChallengeRating = challengeRating; 
 			FortitudeSave = fortitudeSave; 
 			ReflexSave = reflexSave; 
 			WillSave = willSave;

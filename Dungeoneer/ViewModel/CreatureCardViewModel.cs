@@ -14,15 +14,15 @@ namespace Dungeoneer
 			LoadValues();
 		}
 
-		public ObservableCollection<NamedValue> NamedValues	{ get; set;	}
+		public ObservableCollection<Model.NamedValue> NamedValues	{ get; set;	}
 
 		public void LoadValues()
 		{
-			ObservableCollection<NamedValue> namedValues = new ObservableCollection<NamedValue>
+			ObservableCollection<Model.NamedValue> namedValues = new ObservableCollection<Model.NamedValue>
 			{
-				new NamedValue { Name = "Init", Value = 1 },
-				new NamedValue { Name = "AC", Value = 20 },
-				new NamedValue { Name = "To Hit", Value = 10 }
+				new Model.NamedValue { Name = "Init", Value = 1 },
+				new Model.NamedValue { Name = "AC", Value = 20 },
+				new Model.NamedValue { Name = "To Hit", Value = 10 }
 			};
 
 			NamedValues = namedValues;

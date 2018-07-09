@@ -11,48 +11,49 @@ namespace Dungeoneer.ViewModel
 	{
 		public MainViewModel()
 		{
-			//  Create the simple command - calls DoSimpleCommand.
-			_setPartyCommand = new Command(DoSetPartyCommand);
-
 			LoadValues();
 		}
 
-		public ObservableCollection<Actor> Characters
+		public ObservableCollection<Model.PlayerActor> Characters
 		{
 			get;
 			set;
 		}
 
+		public ObservableCollection<Model.NonPlayerActor> Enemies
+		{
+			get;
+			set;
+		}
+		
 		public void LoadValues()
 		{
-			ObservableCollection<Actor> characters = new ObservableCollection<Actor>
+			ObservableCollection<Model.PlayerActor> characters = new ObservableCollection<Model.PlayerActor>
 			{
-				new Actor { ActorName = "Kolnik", InitiativeMod = -1 },
-				new Actor { ActorName = "Atrion", InitiativeMod = 5 },
-				new Actor { ActorName = "Thrasin", InitiativeMod = 7 },
-				new Actor { ActorName = "Joshua", InitiativeMod = 10 }
+				new Model.PlayerActor { ActorName = "Kolnik", InitiativeMod = -1, Selected = false },
+				new Model.PlayerActor { ActorName = "Atrion", InitiativeMod = 5, Selected = false },
+				new Model.PlayerActor { ActorName = "Thrasin", InitiativeMod = 7, Selected = false },
+				new Model.PlayerActor { ActorName = "Joshua", InitiativeMod = 10, Selected = false }
 			};
 
 			Characters = characters;
+
+			ObservableCollection<Model.NonPlayerActor> enemies = new ObservableCollection<Model.NonPlayerActor>
+			{
+				new Model.Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 1/2 },
+				new Model.Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 1/2 },
+				new Model.Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 1/4 },
+				new Model.NonPlayerActor { ActorName = "Poison Dart Trap", InitiativeMod = 6, ChallengeRating = 4 }
+			};
+
+			Enemies = enemies;
 		}
 
-		public ObservableCollection<InitiativeItem> InitiativeTrack
+		public ObservableCollection<Model.InitiativeItem> InitiativeTrack
 		{
 			get;
 			set;
 		}
 
-		private void DoSetPartyCommand(object selectedCharacters)
-		{
-			IList<Actor> selectedCharactersList = (IList<Actor>)selectedCharacters;
-			
-		}
-
-		private Command _setPartyCommand;
-
-		public Command SetPartyCommand
-		{
-			get { return _setPartyCommand; }
-		}
 	}
 }

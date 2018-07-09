@@ -8,7 +8,7 @@ namespace Dungeoneer.ViewModel
 {
 	public class AttackViewModel
 	{
-		private Attack obj = new Attack();
+		private Model.Attack obj = new Model.Attack();
 
 		public string TxtAttackMod
 		{

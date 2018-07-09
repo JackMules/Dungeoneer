@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Dungeoneer
+namespace Dungeoneer.View
 {
 	/// <summary>
 	/// Interaction logic for CreateNewActorWindow.xaml
 	/// </summary>
 	public partial class CreateCreatureWindow : Window
 	{
-		public Creature Creature
+		public Model.Creature Creature
 		{
 			get
 			{

@@ -10,28 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dungeoneer
+namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for AddAttackWindow.xaml
+	/// Interaction logic for CreatureInitiativeCard.xaml
 	/// </summary>
-	public partial class AddAttackWindow : Window
+	public partial class CreatureInitiativeCard : UserControl
 	{
-		public Attack Attack
-		{
-			get
-			{
-				return Attack;
-			}
-			set
-			{
-				Attack = value;
-			}
-		}
-
-		public AddAttackWindow()
+		public CreatureInitiativeCard()
 		{
 			InitializeComponent();
 		}

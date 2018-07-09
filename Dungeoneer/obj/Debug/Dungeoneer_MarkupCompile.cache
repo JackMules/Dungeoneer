@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\james.luck\Source\Repos\Dungeoneer\Dungeoneer\obj\Debug\
+C:\Users\Jim\source\repos\Dungeoneer\Dungeoneer\obj\Debug\
 Dungeoneer
 none
 false
 DEBUG;TRACE
-C:\Users\james.luck\Source\Repos\Dungeoneer\Dungeoneer\App.xaml
-8256685468
+C:\Users\Jim\source\repos\Dungeoneer\Dungeoneer\App.xaml
+8890084448
 
-24284043383
+251733762144
 131569487696
-ActorTypeCard.xaml;CharacterCard.xaml;CreatureCard.xaml;AddAttackWindow.xaml;CreateCreatureWindow.xaml;MainWindow.xaml;MyDictionary.xaml;ValueDisplay.xaml;
+View\NonPlayerActorCard.xaml;View\PlayerActorCard.xaml;View\CreatureInitiativeCard.xaml;View\AddAttackWindow.xaml;View\CreateCreatureWindow.xaml;MainWindow.xaml;MyDictionary.xaml;View\ValueDisplay.xaml;
 
 False
 

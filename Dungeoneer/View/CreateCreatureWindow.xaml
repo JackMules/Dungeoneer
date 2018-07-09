@@ -1,4 +1,5 @@
-﻿<Window x:Name="CreateCreature" x:Class="Dungeoneer.CreateCreatureWindow"
+﻿<Window x:Class="Dungeoneer.View.CreateCreatureWindow"
+				x:Name="CreateCreature" 
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="Create a new creature type" Height="403.926" Width="300.529">

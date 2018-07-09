@@ -54,51 +54,52 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Actor.cs" />
-    <Compile Include="ActorTypeCard.xaml.cs">
-      <DependentUpon>ActorTypeCard.xaml</DependentUpon>
+    <Compile Include="Model\Actor.cs" />
+    <Compile Include="Model\PlayerActor.cs" />
+    <Compile Include="View\NonPlayerActorCard.xaml.cs">
+      <DependentUpon>NonPlayerActorCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CharacterCard.xaml.cs">
-      <DependentUpon>CharacterCard.xaml</DependentUpon>
+    <Compile Include="View\PlayerActorCard.xaml.cs">
+      <DependentUpon>PlayerActorCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreatureCardViewModel.cs" />
-    <Compile Include="AddAttackWindow.xaml.cs">
+    <Compile Include="ViewModel\CreatureCardViewModel.cs" />
+    <Compile Include="View\AddAttackWindow.xaml.cs">
       <DependentUpon>AddAttackWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Attack.cs" />
+    <Compile Include="Model\Attack.cs" />
     <Compile Include="ViewModel\AttackViewModel.cs" />
-    <Compile Include="CreateCreatureWindow.xaml.cs">
+    <Compile Include="View\CreateCreatureWindow.xaml.cs">
       <DependentUpon>CreateCreatureWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Creature.cs" />
-    <Compile Include="InitiativeItem.cs" />
+    <Compile Include="Model\Creature.cs" />
+    <Compile Include="Model\InitiativeItem.cs" />
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="NamedValue.cs" />
-    <Compile Include="NonPlayerActor.cs" />
+    <Compile Include="Model\NamedValue.cs" />
+    <Compile Include="Model\NonPlayerActor.cs" />
     <Compile Include="Utility.cs" />
-    <Compile Include="ValueDisplay.xaml.cs">
+    <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\NotifyingProperty.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
-    <Page Include="ActorTypeCard.xaml">
+    <Page Include="View\NonPlayerActorCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CharacterCard.xaml">
+    <Page Include="View\PlayerActorCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreatureCard.xaml">
+    <Page Include="View\CreatureInitiativeCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AddAttackWindow.xaml">
+    <Page Include="View\AddAttackWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CreateCreatureWindow.xaml">
+    <Page Include="View\CreateCreatureWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,8 +107,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="CreatureCard.xaml.cs">
-      <DependentUpon>CreatureCard.xaml</DependentUpon>
+    <Compile Include="View\CreatureInitiativeCard.xaml.cs">
+      <DependentUpon>CreatureInitiativeCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -121,7 +122,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ValueDisplay.xaml">
+    <Page Include="View\ValueDisplay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
