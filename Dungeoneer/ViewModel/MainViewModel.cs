@@ -36,21 +36,15 @@ namespace Dungeoneer.ViewModel
 			Characters = characters;
 		}
 
-		public ObservableCollection<Actor> Party
-		{
-			get;
-			set;
-		}
-
-
 		public ObservableCollection<InitiativeItem> InitiativeTrack
 		{
 			get;
 			set;
 		}
 
-		private void DoSetPartyCommand()
+		private void DoSetPartyCommand(object selectedCharacters)
 		{
+			IList<Actor> selectedCharactersList = (IList<Actor>)selectedCharacters;
 			
 		}
 
