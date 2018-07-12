@@ -2,12 +2,20 @@
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="MainWindow" Height="455" Width="662"
-				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel">
+				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
+				xmlns:view="clr-namespace:Dungeoneer.View">
+				xmlns:model="clr-namespace:Dungeoneer.Model">
 	<Window.DataContext>
 		<viewmodel:MainViewModel/>
 	</Window.DataContext>
 	<Window.Resources>
 		<ResourceDictionary Source="MyDictionary.xaml"/>
+		<CollectionViewSource x:Key="EnemiesViewSource" Source="{Binding Enemies}"/>
+		<CollectionViewSource x:Key="CharactersViewSource" Source="{Binding Characters}"/>
+		<CompositeCollection x:Key="InitiativeTrackCollection">
+			<CollectionContainer Collection="{Binding Source={DynamicResource EnemiesViewSource}}"/>
+			<CollectionContainer Collection="{Binding Source={DynamicResource CharactersViewSource}}"/>
+		</CompositeCollection>
 	</Window.Resources>
 	<Grid>
 		<TabControl>
@@ -25,7 +33,16 @@
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding InitiativeTrack}"/>
+							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding InitiativeTrack}">
+								<ItemsControl.Resources>
+									<DataTemplate DataType="{x:Type model:Creature}">
+										<view:CreatureInitiativeCard/>
+									</DataTemplate>
+									<DataTemplate DataType="{x:Type model:PlayerActor}">
+										<view:PlayerInitiativeCard/>
+									</DataTemplate>
+								</ItemsControl.Resources>
+							</ItemsControl>
 						</ScrollViewer>
 					</Border>
 				</DockPanel>
