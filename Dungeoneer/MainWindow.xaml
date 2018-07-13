@@ -28,12 +28,13 @@
 							<TextBox Name="CurrentInitTextBox" MinWidth="30" Margin="0,0,10,0"/>
 							<Label Content="XP Earned"/>
 							<TextBox Name="XPTextBox" MinWidth="60"/>
+							<Button Content="Clear"/>
 						</StackPanel>
 					</Border>
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding InitiativeTrack}">
+							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding InitiativeTrackCollection}">
 								<ItemsControl.Resources>
 									<DataTemplate DataType="{x:Type model:Creature}">
 										<view:CreatureInitiativeCard/>
