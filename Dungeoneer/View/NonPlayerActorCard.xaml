@@ -13,6 +13,12 @@
 					<Label Name="ActorNameLabel" Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="CR" ValueBinding="{Binding ChallengeRating}"/>
 				</StackPanel>
+				<Border DockPanel.Dock="Right" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+					<Button Content="Add" Height="20" Margin="5"/>
+				</Border>
+				<StackPanel>
+					<Label/>
+				</StackPanel>
 			</DockPanel>
 		</Border>
 	</Grid>
