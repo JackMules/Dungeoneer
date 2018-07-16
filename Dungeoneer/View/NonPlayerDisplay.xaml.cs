@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace Dungeoneer.View
 {
-	/// <summary>
-	/// Interaction logic for CreatureInitiativeCard.xaml
-	/// </summary>
-	public partial class CreatureInitiativeCard : UserControl
-	{
-		public CreatureInitiativeCard()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Interaction logic for NonPlayerDisplay.xaml
+    /// </summary>
+    public partial class NonPlayerDisplay : UserControl
+    {
+        public NonPlayerDisplay()
+        {
+            InitializeComponent();
+        }
+    }
 }

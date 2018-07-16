@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +58,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\PlayerActor.cs" />
+    <Compile Include="View\NonPlayerDisplay.xaml.cs">
+      <DependentUpon>NonPlayerDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NonPlayerActorCard.xaml.cs">
       <DependentUpon>NonPlayerActorCard.xaml</DependentUpon>
     </Compile>
@@ -78,11 +83,18 @@
     <Compile Include="Model\NamedValue.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="View\PlayerDisplay.xaml.cs">
+      <DependentUpon>PlayerDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\NotifyingProperty.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Page Include="View\NonPlayerDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NonPlayerActorCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,7 +103,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CreatureInitiativeCard.xaml">
+    <Page Include="View\InitiativeCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -107,8 +119,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="View\CreatureInitiativeCard.xaml.cs">
-      <DependentUpon>CreatureInitiativeCard.xaml</DependentUpon>
+    <Compile Include="View\InitiativeCard.xaml.cs">
+      <DependentUpon>InitiativeCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -119,6 +131,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MyDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PlayerDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

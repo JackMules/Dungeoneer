@@ -8,7 +8,24 @@
 	<DataTemplate x:Key="NonPlayerActorDisplayTemplate" DataType="{x:Type model:NonPlayerActor}">
 		<view:NonPlayerActorCard/>
 	</DataTemplate>
-	<DataTemplate x:Key="CreatureInitiativeTemplate" DataType="{x:Type model:Creature}">
-		<view:CreatureInitiativeCard/>
+	<DataTemplate x:Key="PlayerInitiativeTemplate" DataType="{x:Type model:PlayerActor}">
+		<view:InitiativeCard>
+			<view:InitiativeCard.ActorPlaceHolder>
+				<view:PlayerDisplay/>
+			</view:InitiativeCard.ActorPlaceHolder>
+		</view:InitiativeCard>
 	</DataTemplate>
+	<DataTemplate x:Key="NonPlayerInitiativeTemplate" DataType="{x:Type model:NonPlayerActor}">
+		<view:InitiativeCard>
+			<view:InitiativeCard.ActorPlaceHolder>
+				<view:NonPlayerDisplay/>
+			</view:InitiativeCard.ActorPlaceHolder>
+		</view:InitiativeCard>
+	</DataTemplate>
+	<CollectionViewSource x:Key="EnemiesViewSource" Source="{Binding Enemies}"/>
+	<CollectionViewSource x:Key="CharactersViewSource" Source="{Binding Characters}"/>
+	<CompositeCollection x:Key="InitiativeTrackCollection">
+		<CollectionContainer Collection="{Binding Source={DynamicResource EnemiesViewSource}}"/>
+		<CollectionContainer Collection="{Binding Source={DynamicResource CharactersViewSource}}"/>
+	</CompositeCollection>
 </ResourceDictionary>

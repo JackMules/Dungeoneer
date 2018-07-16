@@ -3,19 +3,13 @@
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="MainWindow" Height="455" Width="662"
 				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
-				xmlns:view="clr-namespace:Dungeoneer.View">
+				xmlns:view="clr-namespace:Dungeoneer.View"
 				xmlns:model="clr-namespace:Dungeoneer.Model">
 	<Window.DataContext>
 		<viewmodel:MainViewModel/>
 	</Window.DataContext>
 	<Window.Resources>
 		<ResourceDictionary Source="MyDictionary.xaml"/>
-		<CollectionViewSource x:Key="EnemiesViewSource" Source="{Binding Enemies}"/>
-		<CollectionViewSource x:Key="CharactersViewSource" Source="{Binding Characters}"/>
-		<CompositeCollection x:Key="InitiativeTrackCollection">
-			<CollectionContainer Collection="{Binding Source={DynamicResource EnemiesViewSource}}"/>
-			<CollectionContainer Collection="{Binding Source={DynamicResource CharactersViewSource}}"/>
-		</CompositeCollection>
 	</Window.Resources>
 	<Grid>
 		<TabControl>
@@ -37,10 +31,10 @@
 							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding InitiativeTrackCollection}">
 								<ItemsControl.Resources>
 									<DataTemplate DataType="{x:Type model:Creature}">
-										<view:CreatureInitiativeCard/>
+										<view:InitiativeCard/>
 									</DataTemplate>
 									<DataTemplate DataType="{x:Type model:PlayerActor}">
-										<view:PlayerInitiativeCard/>
+										<view:InitiativeCard/>
 									</DataTemplate>
 								</ItemsControl.Resources>
 							</ItemsControl>
