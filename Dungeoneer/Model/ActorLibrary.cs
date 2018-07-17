@@ -5,24 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeoneer.Data
+namespace Dungeoneer.Model
 {
-	public static class ActorLibrary
+	public class ActorLibrary
 	{
+		public ActorLibrary()
+		{
+			LoadValues();
+		}
 
-		public static ObservableCollection<Model.PlayerActor> Characters
+		public ObservableCollection<Model.PlayerActor> Characters
 		{
 			get;
 			set;
 		}
 
-		public static ObservableCollection<Model.NonPlayerActor> Enemies
+		public ObservableCollection<Model.NonPlayerActor> Enemies
 		{
 			get;
 			set;
 		}
 
-		public static void LoadValues()
+		public void LoadValues()
 		{
 			ObservableCollection<Model.PlayerActor> characters = new ObservableCollection<Model.PlayerActor>
 			{

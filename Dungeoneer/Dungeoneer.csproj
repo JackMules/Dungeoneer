@@ -57,7 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Actor.cs" />
-    <Compile Include="Data\ActorLibrary.cs" />
+    <Compile Include="Model\ActorLibrary.cs" />
     <Compile Include="Model\Encounter.cs" />
     <Compile Include="Model\PlayerActor.cs" />
     <Compile Include="View\NonPlayerDisplay.xaml.cs">
@@ -170,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

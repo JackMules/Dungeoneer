@@ -45,7 +45,7 @@
 					
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
-							<ItemsControl ItemsSource="{Binding Enemies, UpdateSourceTrigger=PropertyChanged}"
+							<ItemsControl ItemsSource="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource NonPlayerActorDisplayTemplate}"
 														Background="Transparent"/>
 						</ScrollViewer>
@@ -62,7 +62,7 @@
 					</DockPanel>
 					<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
 						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
-							<ItemsControl x:Name="CharactersControl" ItemsSource="{Binding Characters, UpdateSourceTrigger=PropertyChanged}"
+							<ItemsControl x:Name="CharactersControl" ItemsSource="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
 											 ItemTemplate="{DynamicResource PlayerActorDisplayTemplate}"
 											 Background="Transparent"/>
 						</ScrollViewer>

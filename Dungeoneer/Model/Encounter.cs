@@ -25,6 +25,7 @@ namespace Dungeoneer.Model
 			InitiativeTrack.Add( new InitiativeItem() { Actor = actor } );
 		}
 
+		/*
 		public void UpdateInitiativeTrack() // What's the point of this function? Is this the right way to do this?
 		{
 			// for each character in Characters, if selected, add 
@@ -48,5 +49,6 @@ namespace Dungeoneer.Model
 				}
 			}
 		}
+		*/
 	}
 }

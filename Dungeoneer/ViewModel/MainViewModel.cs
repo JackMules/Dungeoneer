@@ -11,29 +11,27 @@ namespace Dungeoneer.ViewModel
 	{
 		public MainViewModel()
 		{
-			Encounter = new Model.Encounter();
+			_encounter = new Model.Encounter();
 
-			LoadActorLibrary();
+			_actorLibrary = new Model.ActorLibrary();
 
 			_addActorCommand = new Command(AddActorToEncounter);
-
-
 		}
 
-		public Model.Encounter Encounter;
+		private Model.Encounter _encounter;
 
-		// If one of the PC checkboxes changes, send all currently checked PCs to Encounter. 
-
-		// Each time an enemy add button is clicked, pass that enemy object to Encounter
-
-		public void LoadActorLibrary()
+		public Model.Encounter Encounter
 		{
-			Data.ActorLibrary.LoadValues();
+			get { return _encounter; }
+			set { _encounter = value; }
 		}
 
-		private void AddActorToEncounter(object actor)
+		private Model.ActorLibrary _actorLibrary;
+
+		public Model.ActorLibrary ActorLibrary
 		{
-			Encounter.AddActor((Model.Actor)actor);
+			get { return _actorLibrary; }
+			set { _actorLibrary = value; }
 		}
 
 		private Command _addActorCommand;
@@ -42,5 +40,15 @@ namespace Dungeoneer.ViewModel
 		{
 			get { return _addActorCommand; }
 		}
+
+		// If one of the PC checkboxes changes, send all currently checked PCs to Encounter. 
+
+		// Each time an enemy add button is clicked, pass that enemy object to Encounter
+
+		private void AddActorToEncounter(object actor)
+		{
+			Encounter.AddActor((Model.Actor)actor);
+		}
+		
 	}
 }
