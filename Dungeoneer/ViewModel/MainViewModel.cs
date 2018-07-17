@@ -14,6 +14,10 @@ namespace Dungeoneer.ViewModel
 			Encounter = new Model.Encounter();
 
 			LoadActorLibrary();
+
+			_addActorCommand = new Command(AddActorToEncounter);
+
+
 		}
 
 		public Model.Encounter Encounter;
@@ -25,6 +29,18 @@ namespace Dungeoneer.ViewModel
 		public void LoadActorLibrary()
 		{
 			Data.ActorLibrary.LoadValues();
+		}
+
+		private void AddActorToEncounter(object actor)
+		{
+			Encounter.AddActor((Model.Actor)actor);
+		}
+
+		private Command _addActorCommand;
+
+		public Command AddActorCommand
+		{
+			get { return _addActorCommand; }
 		}
 	}
 }

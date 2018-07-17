@@ -3,8 +3,9 @@
 						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+						 xmlns:main="clr-namespace:Dungeoneer"
 						 xmlns:view="clr-namespace:Dungeoneer.View"
-						 mc:Ignorable="d" Height="80" Width="600">
+						 mc:Ignorable="d" d:DesignHeight="80" d:DesignWidth="600">
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
@@ -13,12 +14,10 @@
 					<Label Name="ActorNameLabel" Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="CR" ValueBinding="{Binding ChallengeRating}"/>
 				</StackPanel>
-				<Border DockPanel.Dock="Right" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-					<Button Content="Add" Height="20" Margin="5"/>
-				</Border>
-				<StackPanel>
-					<Label/>
-				</StackPanel>
+				<Button DockPanel.Dock="Right" Content="Add" Height="30" Width="40" FontSize="16" Margin="10"
+								Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type main:MainWindow}}, 
+								Path=DataContext.AddActorCommand}" CommandParameter="{Binding DataContext}"/>
+				<Label/>
 			</DockPanel>
 		</Border>
 	</Grid>

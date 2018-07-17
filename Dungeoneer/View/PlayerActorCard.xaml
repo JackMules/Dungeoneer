@@ -4,8 +4,7 @@
 						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 						 xmlns:view="clr-namespace:Dungeoneer.View"
-						 mc:Ignorable="d"
-						 d:DesignHeight="80" d:DesignWidth="600">
+						 mc:Ignorable="d" d:DesignHeight="80" d:DesignWidth="600">
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
@@ -14,8 +13,8 @@
 					<Label Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeMod}"/>
 				</StackPanel>
-				<ToggleButton DockPanel.Dock="Right" IsChecked="{Binding Selected}" Height="30" Width="60" FontSize="16" Margin="10"/>
-				<Label Content=""/>
+				<ToggleButton Content="Select" DockPanel.Dock="Right" IsChecked="{Binding Selected}" Height="30" Width="60" FontSize="16" Margin="10"/>
+				<Label/>
 			</DockPanel>
 		</Border>
 	</Grid>
