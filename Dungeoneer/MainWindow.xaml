@@ -32,20 +32,7 @@
 							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
 														Background="Transparent">
 								<ItemsControl.Resources>
-									<DataTemplate x:Key="PlayerInitiativeTemplate" DataType="{x:Type model:PlayerActor}">
-										<view:InitiativeCard>
-											<view:InitiativeCard.ActorPlaceHolder>
-												<view:PlayerControl/>
-											</view:InitiativeCard.ActorPlaceHolder>
-										</view:InitiativeCard>
-									</DataTemplate>
-									<DataTemplate x:Key="NonPlayerInitiativeTemplate" DataType="{x:Type model:NonPlayerActor}">
-										<view:InitiativeCard>
-											<view:InitiativeCard.ActorPlaceHolder>
-												<view:NonPlayerControl/>
-											</view:InitiativeCard.ActorPlaceHolder>
-										</view:InitiativeCard>
-									</DataTemplate>
+									
 								</ItemsControl.Resources>
 							</ItemsControl>
 						</ScrollViewer>

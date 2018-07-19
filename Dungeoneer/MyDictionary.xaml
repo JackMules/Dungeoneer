@@ -8,5 +8,18 @@
 	<DataTemplate x:Key="NonPlayerActorDisplayTemplate" DataType="{x:Type model:NonPlayerActor}">
 		<view:NonPlayerActorCard/>
 	</DataTemplate>
-	
+	<DataTemplate x:Key="PlayerInitiativeTemplate" DataType="{x:Type model:InitiativeItem}">
+		<view:InitiativeCard>
+			<view:InitiativeCard.ActorPlaceHolder>
+				<view:PlayerControl/>
+			</view:InitiativeCard.ActorPlaceHolder>
+		</view:InitiativeCard>
+	</DataTemplate>
+	<DataTemplate x:Key="NonPlayerInitiativeTemplate" DataType="{x:Type model:NonPlayerActor}">
+		<view:InitiativeCard>
+			<view:InitiativeCard.ActorPlaceHolder>
+				<view:NonPlayerControl/>
+			</view:InitiativeCard.ActorPlaceHolder>
+		</view:InitiativeCard>
+	</DataTemplate>
 </ResourceDictionary>
