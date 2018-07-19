@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
     /// <summary>
-    /// Interaction logic for PlayerDisplay.xaml
+    /// Interaction logic for NonPlayerControl.xaml
     /// </summary>
-    public partial class PlayerDisplay : UserControl
+    public partial class NonPlayerControl : UserControl
     {
-        public PlayerDisplay()
+        public NonPlayerControl()
         {
             InitializeComponent();
         }

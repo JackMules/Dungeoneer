@@ -10,8 +10,27 @@ namespace Dungeoneer.Model
 	{
 		public InitiativeItem() {}
 
-		public Actor Actor { get; set; }
-		public int InitiativeScore { get; set; }
-		public int InitiativeSubscore { get; set; }
+		private Actor _actor;
+		public Actor Actor
+		{
+			get { return _actor; }
+			set { _actor = value; }
+		}
+
+		private int _initiativeScore;
+
+		public int InitiativeScore
+		{
+			get { return _initiativeScore; }
+			set { _initiativeScore = value; }
+		}
+
+		private int _initiativeSubScore;
+
+		public int InitiativeSubScore
+		{
+			get { return _initiativeSubScore; }
+			set { _initiativeSubScore = value; }
+		}
 	}
 }
