@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for PlayerControl.xaml
+	/// Interaction logic for PlayerActorControl.xaml
 	/// </summary>
-	public partial class PlayerControl : UserControl
+	public partial class PlayerActorControl : UserControl
 	{
-		public PlayerControl()
+		public PlayerActorControl()
 		{
 			InitializeComponent();
 		}
-
-		// Set a Binding?
 	}
 }

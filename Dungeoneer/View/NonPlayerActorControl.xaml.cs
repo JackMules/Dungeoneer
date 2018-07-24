@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace Dungeoneer.View
 {
-    /// <summary>
-    /// Interaction logic for NonPlayerControl.xaml
-    /// </summary>
-    public partial class NonPlayerControl : UserControl
-    {
-        public NonPlayerControl()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for NonPlayerActorControl.xaml
+	/// </summary>
+	public partial class NonPlayerActorControl : UserControl
+	{
+		public NonPlayerActorControl()
+		{
+			InitializeComponent();
+		}
+	}
 }

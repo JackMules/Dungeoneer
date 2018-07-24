@@ -11,14 +11,14 @@
 	<DataTemplate x:Key="PlayerInitiativeTemplate" DataType="{x:Type model:InitiativeItem}">
 		<view:InitiativeCard>
 			<view:InitiativeCard.ActorPlaceHolder>
-				<view:PlayerControl/>
+				<view:PlayerActorControl/>
 			</view:InitiativeCard.ActorPlaceHolder>
 		</view:InitiativeCard>
 	</DataTemplate>
 	<DataTemplate x:Key="NonPlayerInitiativeTemplate" DataType="{x:Type model:NonPlayerActor}">
 		<view:InitiativeCard>
 			<view:InitiativeCard.ActorPlaceHolder>
-				<view:NonPlayerControl/>
+				<view:NonPlayerActorControl/>
 			</view:InitiativeCard.ActorPlaceHolder>
 		</view:InitiativeCard>
 	</DataTemplate>

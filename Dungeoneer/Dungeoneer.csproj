@@ -60,8 +60,10 @@
     <Compile Include="Model\ActorLibrary.cs" />
     <Compile Include="Model\Encounter.cs" />
     <Compile Include="Model\PlayerActor.cs" />
-    <Compile Include="View\NonPlayerControl.xaml.cs">
-      <DependentUpon>NonPlayerControl.xaml</DependentUpon>
+    <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
+    <Compile Include="View\IActorControl.cs" />
+    <Compile Include="View\NonPlayerActorControl.xaml.cs">
+      <DependentUpon>NonPlayerActorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NonPlayerActorCard.xaml.cs">
       <DependentUpon>NonPlayerActorCard.xaml</DependentUpon>
@@ -69,7 +71,6 @@
     <Compile Include="View\PlayerActorCard.xaml.cs">
       <DependentUpon>PlayerActorCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\CreatureCardViewModel.cs" />
     <Compile Include="View\AddAttackWindow.xaml.cs">
       <DependentUpon>AddAttackWindow.xaml</DependentUpon>
     </Compile>
@@ -85,15 +86,15 @@
     <Compile Include="Model\NamedValue.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
     <Compile Include="Utility.cs" />
-    <Compile Include="View\PlayerControl.xaml.cs">
-      <DependentUpon>PlayerControl.xaml</DependentUpon>
+    <Compile Include="View\PlayerActorControl.xaml.cs">
+      <DependentUpon>PlayerActorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\NotifyingProperty.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
-    <Page Include="View\NonPlayerControl.xaml">
+    <Page Include="View\NonPlayerActorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PlayerControl.xaml">
+    <Page Include="View\PlayerActorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
