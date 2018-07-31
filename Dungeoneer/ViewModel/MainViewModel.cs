@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dungeoneer.ViewModel
 {
-	class MainViewModel : ViewModel
+	class MainViewModel : BaseViewModel
 	{
 		public MainViewModel()
 		{
@@ -23,7 +24,11 @@ namespace Dungeoneer.ViewModel
 		public Model.Encounter Encounter
 		{
 			get { return _encounter; }
-			set { _encounter = value; }
+			set
+			{
+				_encounter = value;
+				NotifyPropertyChanged("Encounter");
+			}
 		}
 
 		private Model.ActorLibrary _actorLibrary;
@@ -31,7 +36,11 @@ namespace Dungeoneer.ViewModel
 		public Model.ActorLibrary ActorLibrary
 		{
 			get { return _actorLibrary; }
-			set { _actorLibrary = value; }
+			set
+			{
+				_actorLibrary = value;
+				NotifyPropertyChanged("ActorLibrary");
+			}
 		}
 
 		private Command _addActorCommand;

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.Model
 {
-	public class InitiativeItem
+	public class InitiativeCard
 	{
-		public InitiativeItem() {}
+		public InitiativeCard() {}
 
 		private Actor _actor;
 		public Actor Actor

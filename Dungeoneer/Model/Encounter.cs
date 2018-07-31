@@ -11,12 +11,12 @@ namespace Dungeoneer.Model
 	{
 		public Encounter()
 		{
-			_initiativeTrack = new ObservableCollection<Model.InitiativeItem>();
+			_initiativeTrack = new ObservableCollection<ViewModel.InitiativeCardViewModel>();
 		}
 
-		private ObservableCollection<Model.InitiativeItem> _initiativeTrack;
+		private ObservableCollection<ViewModel.InitiativeCardViewModel> _initiativeTrack;
 
-		public ObservableCollection<Model.InitiativeItem> InitiativeTrack
+		public ObservableCollection<ViewModel.InitiativeCardViewModel> InitiativeTrack
 		{
 			get { return _initiativeTrack; }
 			set { _initiativeTrack = value; }
@@ -24,7 +24,8 @@ namespace Dungeoneer.Model
 
 		public void AddActor(Model.Actor actor)
 		{
-			InitiativeTrack.Add( new InitiativeItem() { Actor = actor } );
+			ViewModel.ActorViewModel actorViewModel = new ViewModel.ActorViewModel { Actor = actor };
+			InitiativeTrack.Add( new ViewModel.InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
 		}
 
 		/*

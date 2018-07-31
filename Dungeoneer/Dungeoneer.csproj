@@ -60,6 +60,9 @@
     <Compile Include="Model\ActorLibrary.cs" />
     <Compile Include="Model\Encounter.cs" />
     <Compile Include="Model\PlayerActor.cs" />
+    <Compile Include="ViewModel\ActorViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
     <Compile Include="View\IActorControl.cs" />
     <Compile Include="View\NonPlayerActorControl.xaml.cs">
@@ -80,8 +83,7 @@
       <DependentUpon>CreateCreatureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Creature.cs" />
-    <Compile Include="Model\InitiativeItem.cs" />
-    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="Model\InitiativeCard.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Model\NamedValue.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
@@ -92,8 +94,6 @@
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\NotifyingProperty.cs" />
-    <Compile Include="ViewModel\ViewModel.cs" />
     <Page Include="View\NonPlayerActorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

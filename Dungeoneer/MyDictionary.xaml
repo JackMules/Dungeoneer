@@ -1,14 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 										xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 										xmlns:view="clr-namespace:Dungeoneer.View"
-										xmlns:model="clr-namespace:Dungeoneer.Model">
+										xmlns:model="clr-namespace:Dungeoneer.Model"
+										xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel">
 	<DataTemplate x:Key="PlayerActorDisplayTemplate" DataType="{x:Type model:PlayerActor}">
 		<view:PlayerActorCard/>
 	</DataTemplate>
 	<DataTemplate x:Key="NonPlayerActorDisplayTemplate" DataType="{x:Type model:NonPlayerActor}">
 		<view:NonPlayerActorCard/>
 	</DataTemplate>
-	<DataTemplate x:Key="InitiativeTemplate" DataType="{x:Type model:InitiativeItem}">
+	<DataTemplate x:Key="InitiativeTemplate" DataType="{x:Type viewmodel:InitiativeCardViewModel}">
 		<view:InitiativeCard/>
 	</DataTemplate>
 </ResourceDictionary>
