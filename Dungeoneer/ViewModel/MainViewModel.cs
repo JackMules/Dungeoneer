@@ -12,14 +12,10 @@ namespace Dungeoneer.ViewModel
 	{
 		public MainViewModel()
 		{
-			_encounter = new Model.Encounter();
-
-			_actorLibrary = new Model.ActorLibrary();
-
 			_addActorCommand = new Command(AddActorToEncounter);
 		}
 
-		private Model.Encounter _encounter;
+		private Model.Encounter _encounter = new Model.Encounter();
 
 		public Model.Encounter Encounter
 		{
@@ -31,7 +27,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		private Model.ActorLibrary _actorLibrary;
+		private Model.ActorLibrary _actorLibrary = new Model.ActorLibrary();
 
 		public Model.ActorLibrary ActorLibrary
 		{
