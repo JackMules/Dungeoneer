@@ -9,24 +9,20 @@
 						 mc:Ignorable="d"
 						 d:DesignHeight="80" d:DesignWidth="600">
 	<UserControl.Resources>
-
+		<DataTemplate DataType="{x:Type viewmodel:PlayerActorViewModel}">
+			<view:PlayerActorControl/>
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewmodel:NonPlayerActorViewModel}">
+			<StackPanel>
+				<view:NonPlayerActorControl/>
+			</StackPanel>
+		</DataTemplate>
 	</UserControl.Resources>
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 			<DockPanel>
-				<ContentControl DockPanel.Dock="Left" DataContext="{Binding ActorViewModel}">
-					<ContentControl.Resources>
-						<DataTemplate DataType="x:Type viewmodel:PlayerActorViewModel">
-							<view:PlayerActorControl/>
-						</DataTemplate>
-						<DataTemplate DataType="x:Type viewmodel:NonPlayerActorViewModel">
-							<StackPanel>
-								<view:NonPlayerActorControl/>
-							</StackPanel>
-						</DataTemplate>
-					</ContentControl.Resources>
-				</ContentControl>
+				<ContentControl DockPanel.Dock="Left" Content="{Binding ActorViewModel}"/>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
 					<Button Content="End Turn" Width="60"/>
 					<Button Content="Delay" Width="60"/>

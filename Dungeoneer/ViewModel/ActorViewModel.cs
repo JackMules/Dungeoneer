@@ -20,7 +20,6 @@ namespace Dungeoneer.ViewModel
 			set { _actor = value; }
 		}
 
-
 		public string ActorName
 		{
 			get { return Actor.ActorName; }
