@@ -22,11 +22,6 @@ namespace Dungeoneer.View
 	{
 		public InitiativeCard() => InitializeComponent();
 
-		private void InitializeComponent()
-		{
-			throw new NotImplementedException();
-		}
-
 		public static readonly DependencyProperty ActorPlaceHolderProperty =
 		DependencyProperty.Register("ActorPlaceHolder", typeof(object), typeof(InitiativeCard), new PropertyMetadata(null));
 

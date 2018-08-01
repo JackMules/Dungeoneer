@@ -24,7 +24,7 @@ namespace Dungeoneer.Model
 
 		public void AddActor(Model.Actor actor)
 		{
-			ViewModel.ActorViewModel actorViewModel = new ViewModel.ActorViewModel { Actor = actor };
+			ViewModel.ActorViewModel actorViewModel = ViewModel.ActorViewModelFactory.GetActorViewModel(actor);
 			InitiativeTrack.Add( new ViewModel.InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
 		}
 	}

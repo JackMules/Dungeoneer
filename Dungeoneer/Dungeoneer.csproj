@@ -61,9 +61,12 @@
     <Compile Include="Model\Encounter.cs" />
     <Compile Include="Model\PlayerActor.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
+    <Compile Include="ViewModel\ActorViewModelFactory.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
+    <Compile Include="ViewModel\NonPlayerActorViewModel.cs" />
+    <Compile Include="ViewModel\PlayerActorViewModel.cs" />
     <Compile Include="View\IActorControl.cs" />
     <Compile Include="View\NonPlayerActorControl.xaml.cs">
       <DependentUpon>NonPlayerActorControl.xaml</DependentUpon>
