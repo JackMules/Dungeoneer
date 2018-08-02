@@ -12,12 +12,16 @@ namespace Dungeoneer.ViewModel
 		public ActorViewModel()
 		{ }
 
-		private Model.Actor _actor;
+		protected Model.Actor _actor;
 
 		public Model.Actor Actor
 		{
 			get { return _actor; }
-			set { _actor = value; }
+			set
+			{
+				_actor = value;
+				NotifyPropertyChanged("Actor");
+			}
 		}
 
 		public string ActorName

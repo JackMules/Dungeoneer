@@ -13,9 +13,10 @@
 			<view:PlayerActorControl/>
 		</DataTemplate>
 		<DataTemplate DataType="{x:Type viewmodel:NonPlayerActorViewModel}">
-			<StackPanel>
-				<view:NonPlayerActorControl/>
-			</StackPanel>
+			<view:NonPlayerActorControl/>
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewmodel:CreatureViewModel}">
+			<view:CreatureControl/>
 		</DataTemplate>
 	</UserControl.Resources>
 	<Grid>
@@ -27,7 +28,18 @@
 					<Button Content="End Turn" Width="60"/>
 					<Button Content="Delay" Width="60"/>
 					<Button Content="Ready" Width="60"/>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Hidden"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding InitiativeSet}" Value="true">
+									<Setter Property="Visibility" Value="Visible"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
 				</StackPanel>
+				
 			</DockPanel>
 		</Border>
 	</Grid>

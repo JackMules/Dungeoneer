@@ -13,6 +13,7 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private Model.InitiativeCard _initiativeCard;
+		private ViewModel.ActorViewModel _actorViewModel;
 
 		public Model.InitiativeCard InitiativeCard
 		{
@@ -24,8 +25,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		private ViewModel.ActorViewModel _actorViewModel;
-
 		public ViewModel.ActorViewModel ActorViewModel
 		{
 			get { return _actorViewModel; }
@@ -34,6 +33,11 @@ namespace Dungeoneer.ViewModel
 				_actorViewModel = value;
 				NotifyPropertyChanged("ActorViewModel");
 			}
+		}
+
+		public bool InitiativeSet
+		{
+			get { return InitiativeCard.InitiativeScore.HasValue; }
 		}
 	}
 }
