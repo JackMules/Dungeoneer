@@ -6,23 +6,15 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.Model
 {
-	public class InitiativeCard
+	public class InitiativeValue
 	{
-		private Actor _actor;
 		private int? _initiativeScore;
 		private int? _initiativeSubScore;
 
-		public InitiativeCard(Actor actor)
+		public InitiativeValue()
 		{
-			_actor = actor;
 			_initiativeScore = null;
 			_initiativeSubScore = null;
-		}
-
-		public Actor Actor
-		{
-			get { return _actor; }
-			set { _actor = value; }
 		}
 
 		public int? InitiativeScore

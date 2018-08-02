@@ -30,7 +30,7 @@
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
 							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
-														ItemTemplate="{DynamicResource InitiativeTemplate}"
+														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
 														Background="Transparent">
 							</ItemsControl>
 						</ScrollViewer>

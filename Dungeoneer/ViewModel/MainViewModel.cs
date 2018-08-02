@@ -46,10 +46,6 @@ namespace Dungeoneer.ViewModel
 			get { return _addActorCommand; }
 		}
 
-		// If one of the PC checkboxes changes, send all currently checked PCs to Encounter. 
-
-		// Each time an enemy add button is clicked, pass that enemy object to Encounter
-
 		private void AddActorToEncounter(object actor)
 		{
 			Encounter.AddActor((Model.Actor)actor);

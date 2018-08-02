@@ -9,7 +9,7 @@
 	<DataTemplate x:Key="NonPlayerActorDisplayTemplate" DataType="{x:Type model:NonPlayerActor}">
 		<view:NonPlayerActorCard/>
 	</DataTemplate>
-	<DataTemplate x:Key="InitiativeTemplate" DataType="{x:Type viewmodel:InitiativeCardViewModel}">
+	<DataTemplate x:Key="InitiativeCardTemplate" DataType="{x:Type viewmodel:InitiativeCardViewModel}">
 		<view:InitiativeCard/>
 	</DataTemplate>
 </ResourceDictionary>

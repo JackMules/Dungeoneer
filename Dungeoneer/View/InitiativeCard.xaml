@@ -23,23 +23,23 @@
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 			<DockPanel>
-				<ContentControl DockPanel.Dock="Left" Content="{Binding ActorViewModel}"/>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
 					<Button Content="End Turn" Width="60"/>
 					<Button Content="Delay" Width="60"/>
 					<Button Content="Ready" Width="60"/>
 					<StackPanel.Style>
 						<Style TargetType="StackPanel">
-							<Setter Property="Visibility" Value="Hidden"/>
+							<Setter Property="IsEnabled" Value="False"/>
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding InitiativeSet}" Value="true">
-									<Setter Property="Visibility" Value="Visible"/>
+								<DataTrigger Binding="{Binding InitiativeSet}" Value="True">
+									<Setter Property="IsEnabled" Value="True"/>
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
 					</StackPanel.Style>
 				</StackPanel>
-				
+				<view:EditableValueDisplay DockPanel.Dock="Right" Title="Init" ValueBinding="{Binding InitiativeCard.InitiativeScore}"/>
+				<ContentControl Content="{Binding ActorViewModel}"/>
 			</DockPanel>
 		</Border>
 	</Grid>

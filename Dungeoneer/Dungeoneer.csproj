@@ -71,6 +71,9 @@
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditableValueDisplay.xaml.cs">
+      <DependentUpon>EditableValueDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\IActorControl.cs" />
     <Compile Include="View\NonPlayerActorControl.xaml.cs">
       <DependentUpon>NonPlayerActorControl.xaml</DependentUpon>
@@ -90,7 +93,7 @@
       <DependentUpon>CreateCreatureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Creature.cs" />
-    <Compile Include="Model\InitiativeCard.cs" />
+    <Compile Include="Model\InitiativeValue.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Model\NamedValue.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
@@ -102,6 +105,10 @@
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
     <Page Include="View\CreatureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditableValueDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

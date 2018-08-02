@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for ValueDisplay.xaml
+	/// Interaction logic for EditableValueDisplay.xaml
 	/// </summary>
-	public partial class ValueDisplay : UserControl
+	public partial class EditableValueDisplay : UserControl
 	{
 		public Binding ValueBinding { get; set; }
 
-		public ValueDisplay()
+		public EditableValueDisplay()
 		{
 			InitializeComponent();
 		}
@@ -34,7 +34,7 @@ namespace Dungeoneer.View
 		}
 
 		public static readonly DependencyProperty TitleProperty =
-			DependencyProperty.Register("ValueDisplayTitle", typeof(string),
+			DependencyProperty.Register("EditableValueDisplayTitle", typeof(string),
 			typeof(ValueDisplay), new PropertyMetadata(""));
 
 		public string Value
@@ -44,13 +44,13 @@ namespace Dungeoneer.View
 		}
 
 		public static readonly DependencyProperty ValueProperty =
-				DependencyProperty.Register("ValueDisplayValue", typeof(object),
+				DependencyProperty.Register("EditableValueDisplayValue", typeof(object),
 					typeof(ValueDisplay), new PropertyMetadata(""));
 
 		private void GridLoaded(object sender, RoutedEventArgs e)
 		{
 			titleLabel.SetValue(Label.ContentProperty, Title);
-			valueLabel.SetBinding(Label.ContentProperty, ValueBinding);
+			valueText.SetBinding(Label.ContentProperty, ValueBinding);
 		}
 	}
 }

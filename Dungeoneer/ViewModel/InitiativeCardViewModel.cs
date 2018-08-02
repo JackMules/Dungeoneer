@@ -10,12 +10,13 @@ namespace Dungeoneer.ViewModel
 	{
 		public InitiativeCardViewModel()
 		{
+			_initiativeCard = new Model.InitiativeValue();
 		}
 
-		private Model.InitiativeCard _initiativeCard;
+		private Model.InitiativeValue _initiativeCard;
 		private ViewModel.ActorViewModel _actorViewModel;
 
-		public Model.InitiativeCard InitiativeCard
+		public Model.InitiativeValue InitiativeCard
 		{
 			get { return _initiativeCard; }
 			set
