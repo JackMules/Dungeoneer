@@ -7,16 +7,13 @@ using System.ComponentModel;
 
 namespace Dungeoneer.Model
 {
-	public class NamedValue : INotifyPropertyChanged
+	public class NamedValue<T> : INotifyPropertyChanged
 	{
 		public NamedValue()
-		{
-			Name = "No Name";
-			Value = 0;
-		}
+		{ }
 
 		private string _name;
-		private int _value;
+		private T _value;
 
 		public string Name
 		{
@@ -30,7 +27,7 @@ namespace Dungeoneer.Model
 				OnPropertyChanged("Name");
 			}
 		}
-		public int Value
+		public T Value
 		{
 			get
 			{

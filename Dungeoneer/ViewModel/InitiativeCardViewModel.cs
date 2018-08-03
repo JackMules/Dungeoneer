@@ -10,23 +10,25 @@ namespace Dungeoneer.ViewModel
 	{
 		public InitiativeCardViewModel()
 		{
-			_initiativeCard = new Model.InitiativeValue();
+			_initiativeValue = new Model.InitiativeValue();
+			_openEditInitiativeDialog = new Command(ExecuteOpenEditInitiativeDialog);
 		}
 
-		private Model.InitiativeValue _initiativeCard;
-		private ViewModel.ActorViewModel _actorViewModel;
+		private Command _openEditInitiativeDialog;
+		private Model.InitiativeValue _initiativeValue;
+		private ActorViewModel _actorViewModel;
 
-		public Model.InitiativeValue InitiativeCard
+		public Model.InitiativeValue InitiativeValue
 		{
-			get { return _initiativeCard; }
+			get { return _initiativeValue; }
 			set
 			{
-				_initiativeCard = value;
-				NotifyPropertyChanged("InitiativeCard");
+				_initiativeValue = value;
+				NotifyPropertyChanged("InitiativeValue");
 			}
 		}
 
-		public ViewModel.ActorViewModel ActorViewModel
+		public ActorViewModel ActorViewModel
 		{
 			get { return _actorViewModel; }
 			set
@@ -36,9 +38,79 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string InitiativeScore
+		{
+			get
+			{
+				if (InitiativeSet)
+				{
+					return InitiativeValue.InitiativeScore.ToString();
+				}
+				else
+				{
+					return "Not set";
+				}
+			}
+			set
+			{
+				InitiativeValue.InitiativeScore = Convert.ToInt32(value);
+				NotifyPropertyChanged("InitiativeScore");
+			}
+		}
+
+		public string InitiativeMod
+		{
+			get
+			{
+				if (InitiativeSet)
+				{
+					return InitiativeValue.InitiativeMod.ToString();
+				}
+				else
+				{
+					return "Not set";
+				}
+			}
+			set
+			{
+				InitiativeValue.InitiativeMod = Convert.ToInt32(value);
+				NotifyPropertyChanged("InitiativeMod");
+			}
+		}
+
+		public string InitiativeRoll
+		{
+			get
+			{
+				if (InitiativeSet)
+				{
+					return InitiativeValue.InitiativeRoll.ToString();
+				}
+				else
+				{
+					return "Not set";
+				}
+			}
+			set
+			{
+				InitiativeValue.InitiativeRoll = Convert.ToInt32(value);
+				NotifyPropertyChanged("InitiativeRoll");
+			}
+		}
+
 		public bool InitiativeSet
 		{
-			get { return InitiativeCard.InitiativeScore.HasValue; }
+			get { return InitiativeValue.InitiativeScore.HasValue; }
+		}
+
+		public Command OpenEditInitiativeDialog
+		{
+			get { return _openEditInitiativeDialog; }
+		}
+
+		private void ExecuteOpenEditInitiativeDialog()
+		{
+
 		}
 	}
 }

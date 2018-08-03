@@ -9,7 +9,7 @@
 		<Border Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4">
 			<StackPanel Orientation="Vertical">
 				<Label x:Name="titleLabel" FontSize="14" HorizontalAlignment="Center"/>
-				<Label x:Name="valueLabel" FontSize="16" HorizontalAlignment="Center" ContentStringFormat="{}{0:0.##}"/>
+				<Label x:Name="valueLabel" FontSize="16" HorizontalAlignment="Center"/>
 			</StackPanel>
 		</Border>
 	</Grid>

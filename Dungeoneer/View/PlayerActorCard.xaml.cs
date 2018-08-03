@@ -35,14 +35,14 @@ namespace Dungeoneer.View
 			DependencyProperty.Register("ActorName", typeof(string),
 			typeof(PlayerActorCard), new PropertyMetadata(""));
 
-		public Model.NamedValue InitiativeMod
+		public Model.NamedValue<int> InitiativeMod
 		{
-			get { return (Model.NamedValue)GetValue(InitiativeModProperty); }
+			get { return (Model.NamedValue<int>)GetValue(InitiativeModProperty); }
 			set { SetValue(InitiativeModProperty, value); }
 		}
 
 		public static readonly DependencyProperty InitiativeModProperty =
-				DependencyProperty.Register("InitiativeMod", typeof(Model.NamedValue),
+				DependencyProperty.Register("InitiativeMod", typeof(Model.NamedValue<int>),
 					typeof(PlayerActorCard), new PropertyMetadata(null));
 
 	}

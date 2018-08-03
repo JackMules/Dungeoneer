@@ -38,7 +38,9 @@
 						</Style>
 					</StackPanel.Style>
 				</StackPanel>
-				<view:EditableValueDisplay DockPanel.Dock="Right" Title="Init" ValueBinding="{Binding InitiativeCard.InitiativeScore}"/>
+				<Button DockPanel.Dock="Right" Command="{Binding OpenEditInitiativeDialog}">
+					<view:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeValue.InitiativeScore}"/>
+				</Button>
 				<ContentControl Content="{Binding ActorViewModel}"/>
 			</DockPanel>
 		</Border>

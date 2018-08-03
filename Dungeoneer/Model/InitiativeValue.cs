@@ -9,12 +9,13 @@ namespace Dungeoneer.Model
 	public class InitiativeValue
 	{
 		private int? _initiativeScore;
-		private int? _initiativeSubScore;
+		private int? _initiativeMod;
+		private int? _initiativeRoll;
 
 		public InitiativeValue()
 		{
 			_initiativeScore = null;
-			_initiativeSubScore = null;
+			_initiativeMod = null;
 		}
 
 		public int? InitiativeScore
@@ -23,10 +24,16 @@ namespace Dungeoneer.Model
 			set { _initiativeScore = value; }
 		}
 
-		public int? InitiativeSubScore
+		public int? InitiativeMod
 		{
-			get { return _initiativeSubScore; }
-			set { _initiativeSubScore = value; }
+			get { return _initiativeMod; }
+			set { _initiativeMod = value; }
+		}
+
+		public int? InitiativeRoll
+		{
+			get { return _initiativeRoll; }
+			set { _initiativeRoll = value; }
 		}
 	}
 }
