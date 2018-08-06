@@ -27,20 +27,10 @@
 					<Button Content="End Turn" Width="60"/>
 					<Button Content="Delay" Width="60"/>
 					<Button Content="Ready" Width="60"/>
-					<StackPanel.Style>
-						<Style TargetType="StackPanel">
-							<Setter Property="IsEnabled" Value="False"/>
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding InitiativeSet}" Value="True">
-									<Setter Property="IsEnabled" Value="True"/>
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
-					</StackPanel.Style>
 				</StackPanel>
-				<Button DockPanel.Dock="Right" Command="{Binding OpenEditInitiativeDialog}">
-					<view:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeValue.InitiativeScore}"/>
-				</Button>
+				<view:ValueButton DockPanel.Dock="Right" Title="Init"
+													ValueBinding="{Binding InitiativeValueViewModel.InitiativeScore}"
+													CommandBinding="{Binding OpenInitiativeDialog}"/>
 				<ContentControl Content="{Binding ActorViewModel}"/>
 			</DockPanel>
 		</Border>

@@ -27,5 +27,18 @@ namespace Dungeoneer.Model
 			ViewModel.ActorViewModel actorViewModel = ViewModel.ActorViewModelFactory.GetActorViewModel(actor);
 			InitiativeTrack.Add( new ViewModel.InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
 		}
+
+		public uint GetNumberOfActorsWithName(string actorName)
+		{
+			uint count = 0;
+			foreach (ViewModel.InitiativeCardViewModel initCard in InitiativeTrack)
+			{
+				if (initCard.ActorViewModel.ActorName == actorName)
+				{
+					++count;
+				}
+			}
+			return count;
+		}
 	}
 }

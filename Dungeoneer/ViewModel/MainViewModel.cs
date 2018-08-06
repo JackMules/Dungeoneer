@@ -13,9 +13,14 @@ namespace Dungeoneer.ViewModel
 		public MainViewModel()
 		{
 			_addActorCommand = new Command(AddActorToEncounter);
+			_actorLibrary = new Model.ActorLibrary();
+			_encounter = new Model.Encounter();
+
+			CreateTestData();
 		}
 
-		private Model.Encounter _encounter = new Model.Encounter();
+		private Model.ActorLibrary _actorLibrary;
+		private Model.Encounter _encounter;
 
 		public Model.Encounter Encounter
 		{
@@ -26,8 +31,6 @@ namespace Dungeoneer.ViewModel
 				NotifyPropertyChanged("Encounter");
 			}
 		}
-
-		private Model.ActorLibrary _actorLibrary = new Model.ActorLibrary();
 
 		public Model.ActorLibrary ActorLibrary
 		{
@@ -46,10 +49,32 @@ namespace Dungeoneer.ViewModel
 			get { return _addActorCommand; }
 		}
 
-		private void AddActorToEncounter(object actor)
+		private void AddActorToEncounter(object actorObj)
 		{
-			Encounter.AddActor((Model.Actor)actor);
+			if (actorObj is Model.Actor)
+			{
+				Model.Actor actor = (Model.Actor)actorObj;
+				string defaultActorName = actor.ActorName + " " + (Encounter.GetNumberOfActorsWithName(actor.ActorName) + 1);
+
+				View.InputDialog inputDialog = new View.InputDialog("Enter name", defaultActorName);
+				if (inputDialog.ShowDialog() == true)
+				{
+					actor.DisplayName = inputDialog.Answer;
+					Encounter.AddActor(actor);
+				}
+			}
 		}
 		
+		private void CreateTestData()
+		{
+			Model.PlayerActor osprey = new Model.PlayerActor { ActorName = "Osprey" };
+			Encounter.AddActor(osprey);
+
+			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmourClass = 14 };
+			Encounter.AddActor(grell);
+
+			Model.Creature troll = new Model.Creature { ActorName = "Troll", ArmourClass = 16 };
+			Encounter.AddActor(troll);
+		}
 	}
 }

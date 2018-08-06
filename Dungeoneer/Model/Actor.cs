@@ -11,12 +11,24 @@ namespace Dungeoneer.Model
 	{
 		public Actor()
 		{
-			ActorName = "No Name";
+			DisplayName = "no display name";
+			ActorName = "No name";
 			InitiativeMod = 0;
 		}
 
+		private string _displayName { get; set; }
 		private string _actorName { get; set; }
 		private int _initiativeMod { get; set; }
+
+		public string DisplayName
+		{
+			get { return _displayName; }
+			set
+			{
+				_displayName = value;
+				OnPropertyChanged("DisplayName");
+			}
+		}
 
 		public string ActorName
 		{
@@ -24,7 +36,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_actorName = value;
-				OnPropertyChanged("Name");
+				OnPropertyChanged("ActorName");
 			}
 		}
 
@@ -39,9 +51,11 @@ namespace Dungeoneer.Model
 		}
 
 		public Actor(
+			string displayName,
 			string actorName,
 			int initiativeMod)
 		{
+			DisplayName = displayName;
 			ActorName = actorName;
 			InitiativeMod = initiativeMod;
 		}
@@ -51,11 +65,6 @@ namespace Dungeoneer.Model
 		protected void OnPropertyChanged(string propertyName)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
-		public override string ToString()
-		{
-			return string.Format("{0} Init: {1}", ActorName, Utility.GetSignedNumberString(InitiativeMod));
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Dungeoneer.ViewModel
 {
@@ -10,21 +11,21 @@ namespace Dungeoneer.ViewModel
 	{
 		public InitiativeCardViewModel()
 		{
-			_initiativeValue = new Model.InitiativeValue();
-			_openEditInitiativeDialog = new Command(ExecuteOpenEditInitiativeDialog);
+			_initiativeValueViewModel = new InitiativeValueViewModel();
+			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
 		}
 
-		private Command _openEditInitiativeDialog;
-		private Model.InitiativeValue _initiativeValue;
+		private Command _openInitiativeDialog;
+		private InitiativeValueViewModel _initiativeValueViewModel;
 		private ActorViewModel _actorViewModel;
 
-		public Model.InitiativeValue InitiativeValue
+		public InitiativeValueViewModel InitiativeValueViewModel
 		{
-			get { return _initiativeValue; }
+			get { return _initiativeValueViewModel; }
 			set
 			{
-				_initiativeValue = value;
-				NotifyPropertyChanged("InitiativeValue");
+				_initiativeValueViewModel = value;
+				NotifyPropertyChanged("InitiativeValueViewModel");
 			}
 		}
 
@@ -38,79 +39,36 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string InitiativeScore
+		public Command OpenInitiativeDialog
 		{
-			get
+			get { return _openInitiativeDialog; }
+		}
+
+		private void ExecuteOpenInitiativeDialog()
+		{
+			bool askForInput = true;
+			string feedback = "";
+			while (askForInput)
 			{
-				if (InitiativeSet)
+				View.InputDialog inputDialog = new View.InputDialog("Enter Initiative", "", feedback);
+				if (inputDialog.ShowDialog() == true)
 				{
-					return InitiativeValue.InitiativeScore.ToString();
+					try
+					{
+						InitiativeValueViewModel.InitiativeScore = inputDialog.Answer;
+						askForInput = false;
+					}
+					catch (FormatException)
+					{
+						// Failed to parse input
+						feedback = "\"" + inputDialog.Answer + "\" - Invalid format";
+					}
 				}
 				else
 				{
-					return "Not set";
+					askForInput = false;
 				}
 			}
-			set
-			{
-				InitiativeValue.InitiativeScore = Convert.ToInt32(value);
-				NotifyPropertyChanged("InitiativeScore");
-			}
-		}
-
-		public string InitiativeMod
-		{
-			get
-			{
-				if (InitiativeSet)
-				{
-					return InitiativeValue.InitiativeMod.ToString();
-				}
-				else
-				{
-					return "Not set";
-				}
-			}
-			set
-			{
-				InitiativeValue.InitiativeMod = Convert.ToInt32(value);
-				NotifyPropertyChanged("InitiativeMod");
-			}
-		}
-
-		public string InitiativeRoll
-		{
-			get
-			{
-				if (InitiativeSet)
-				{
-					return InitiativeValue.InitiativeRoll.ToString();
-				}
-				else
-				{
-					return "Not set";
-				}
-			}
-			set
-			{
-				InitiativeValue.InitiativeRoll = Convert.ToInt32(value);
-				NotifyPropertyChanged("InitiativeRoll");
-			}
-		}
-
-		public bool InitiativeSet
-		{
-			get { return InitiativeValue.InitiativeScore.HasValue; }
-		}
-
-		public Command OpenEditInitiativeDialog
-		{
-			get { return _openEditInitiativeDialog; }
-		}
-
-		private void ExecuteOpenEditInitiativeDialog()
-		{
-
 		}
 	}
 }

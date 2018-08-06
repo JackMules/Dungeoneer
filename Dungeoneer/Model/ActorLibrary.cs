@@ -40,9 +40,8 @@ namespace Dungeoneer.Model
 
 			ObservableCollection<Model.NonPlayerActor> enemies = new ObservableCollection<Model.NonPlayerActor>
 			{
-				new Model.Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 0.5f },
-				new Model.Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 0.5f },
-				new Model.Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 0.25f },
+				new Model.Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 0.5f, ArmourClass = 13 },
+				new Model.Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 0.25f, ArmourClass = 11 },
 				new Model.NonPlayerActor { ActorName = "Poison Dart Trap", InitiativeMod = 6, ChallengeRating = 4 }
 			};
 

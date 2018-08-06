@@ -21,12 +21,13 @@ namespace Dungeoneer.Model
 		}
 
 		public NonPlayerActor(
-			string name,
+			string displayName,
+			string actorName,
 			string type,
 			int initiativeMod,
 			float challengeRating,
 			List<Attack> attacks)
-			: base(name, initiativeMod)
+			: base(displayName, actorName, initiativeMod)
 		{
 			Type = type;
 			ChallengeRating = challengeRating;

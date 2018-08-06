@@ -61,7 +61,8 @@ namespace Dungeoneer.Model
 		}
 
 		public Creature(
-			string name, 
+			string displayName,
+			string actorName, 
 			string type, 
 			int initiativeMod,
 			float challengeRating,
@@ -87,7 +88,8 @@ namespace Dungeoneer.Model
 			uint willSave,
 			bool powerAttack,
 			Utility.Size size)
-			: base(name, type, initiativeMod, challengeRating, attacks)
+			: base(displayName, actorName, type, 
+					initiativeMod, challengeRating, attacks)
 		{
 			Strength = strength;
 			Dexterity = dexterity;

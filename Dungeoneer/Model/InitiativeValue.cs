@@ -16,6 +16,7 @@ namespace Dungeoneer.Model
 		{
 			_initiativeScore = null;
 			_initiativeMod = null;
+			_initiativeRoll = null;
 		}
 
 		public int? InitiativeScore

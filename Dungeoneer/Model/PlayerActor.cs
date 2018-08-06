@@ -15,11 +15,11 @@ namespace Dungeoneer.Model
 		}
 
 		public PlayerActor(
+			string displayName,
 			string actorName,
 			int initiativeMod)
-			: base(actorName, initiativeMod)
+			: base(displayName, actorName, initiativeMod)
 		{
-
 		}
 	}
 }

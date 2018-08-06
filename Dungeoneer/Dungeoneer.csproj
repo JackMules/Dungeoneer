@@ -66,10 +66,14 @@
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\CreatureViewModel.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
+    <Compile Include="ViewModel\InitiativeValueViewModel.cs" />
     <Compile Include="ViewModel\NonPlayerActorViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorViewModel.cs" />
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IActorControl.cs" />
     <Compile Include="View\NonPlayerActorControl.xaml.cs">
@@ -98,10 +102,17 @@
     <Compile Include="View\PlayerActorControl.xaml.cs">
       <DependentUpon>PlayerActorControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ValueButton.xaml.cs">
+      <DependentUpon>ValueButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
     <Page Include="View\CreatureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PlayerActorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ValueButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
