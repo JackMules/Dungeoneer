@@ -24,13 +24,23 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string DisplayName
+		{
+			get { return Actor.DisplayName; }
+			set
+			{
+				Actor.DisplayName = value;
+				NotifyPropertyChanged("DisplayName");
+			}
+		}
+
 		public string ActorName
 		{
 			get { return Actor.ActorName; }
 			set
 			{
 				Actor.ActorName = value;
-				NotifyPropertyChanged("Name");
+				NotifyPropertyChanged("ActorName");
 			}
 		}
 

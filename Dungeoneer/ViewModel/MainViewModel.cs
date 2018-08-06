@@ -67,13 +67,13 @@ namespace Dungeoneer.ViewModel
 		
 		private void CreateTestData()
 		{
-			Model.PlayerActor osprey = new Model.PlayerActor { ActorName = "Osprey" };
+			Model.PlayerActor osprey = new Model.PlayerActor { DisplayName = "Osprey", ActorName = "Osprey" };
 			Encounter.AddActor(osprey);
 
-			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmourClass = 14 };
+			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14 };
 			Encounter.AddActor(grell);
 
-			Model.Creature troll = new Model.Creature { ActorName = "Troll", ArmourClass = 16 };
+			Model.Creature troll = new Model.Creature { DisplayName = "Troll 1", ActorName = "Troll", ArmourClass = 16 };
 			Encounter.AddActor(troll);
 		}
 	}

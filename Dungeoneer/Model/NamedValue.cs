@@ -17,10 +17,7 @@ namespace Dungeoneer.Model
 
 		public string Name
 		{
-			get
-			{
-				return _name;
-			}
+			get { return _name; }
 			set
 			{
 				_name = value;
@@ -29,10 +26,7 @@ namespace Dungeoneer.Model
 		}
 		public T Value
 		{
-			get
-			{
-				return _value;
-			}
+			get { return _value; }
 			set
 			{
 				_value = value;

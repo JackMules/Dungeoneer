@@ -5,12 +5,31 @@
 				xmlns:main="clr-namespace:Dungeoneer"
 				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
 				xmlns:view="clr-namespace:Dungeoneer.View"
-				xmlns:model="clr-namespace:Dungeoneer.Model">
+				xmlns:model="clr-namespace:Dungeoneer.Model"
+				xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+				xmlns:clr="clr-namespace:System;assembly=mscorlib">
 	<Window.DataContext>
 		<viewmodel:MainViewModel/>
 	</Window.DataContext>
 	<Window.Resources>
-		<ResourceDictionary Source="MyDictionary.xaml"/>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="MyDictionary.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<CollectionViewSource x:Key="initiativeTrack" Source="{Binding Encounter.InitiativeTrack}"
+														IsLiveSortingRequested="True">
+				<CollectionViewSource.LiveSortingProperties>
+					<clr:String>InitiativeScore</clr:String>
+					<clr:String>InitiativeMod</clr:String>
+					<clr:String>InitiativeRoll</clr:String>
+				</CollectionViewSource.LiveSortingProperties>
+				<CollectionViewSource.SortDescriptions>
+					<scm:SortDescription PropertyName="InitiativeScore" Direction="Descending"/>
+					<scm:SortDescription PropertyName="InitiativeMod" Direction="Descending"/>
+					<scm:SortDescription PropertyName="InitiativeRoll" Direction="Descending"/>
+				</CollectionViewSource.SortDescriptions>
+			</CollectionViewSource>
+		</ResourceDictionary> 
 	</Window.Resources>
 	<Grid>
 		<TabControl>
@@ -29,7 +48,7 @@
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
+							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Source={StaticResource initiativeTrack}, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
 														Background="Transparent">
 							</ItemsControl>
