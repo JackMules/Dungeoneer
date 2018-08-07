@@ -18,7 +18,7 @@ namespace Dungeoneer.Model
 		public uint BaseAttackBonus { get; set; }
 		public uint HitPoints { get; set; }
 		public uint HitDice { get; set; }
-		public Utility.DieType HitDiceType { get; set; }
+		public Utility.Types.DieType HitDiceType { get; set; }
 
 		public uint ArmourClass { get; set; }
 		public uint TouchArmourClass { get; set; }
@@ -32,7 +32,7 @@ namespace Dungeoneer.Model
 		public uint WillSave { get; set; }
 		public bool PowerAttack { get; set; }
 
-		public Utility.Size Size { get; set; }
+		public Utility.Types.Size Size { get; set; }
 
 		public Creature()
 			: base()
@@ -46,7 +46,7 @@ namespace Dungeoneer.Model
 			BaseAttackBonus = 0;
 			HitPoints = 3;
 			HitDice = 1;
-			HitDiceType = Utility.DieType.d3;
+			HitDiceType = Utility.Types.DieType.d3;
 			ArmourClass = 10;
 			TouchArmourClass = 10;
 			FlatFootedArmourClass = 10;
@@ -57,7 +57,7 @@ namespace Dungeoneer.Model
 			ReflexSave = 0;
 			WillSave = 0;
 			PowerAttack = false;
-			Size = Utility.Size.Medium;
+			Size = Utility.Types.Size.Medium;
 		}
 
 		public Creature(
@@ -76,7 +76,7 @@ namespace Dungeoneer.Model
 			uint baseAttackBonus,
 			uint hitPoints,
 			uint hitDice,
-			Utility.DieType hitDiceType,
+			Utility.Types.DieType hitDiceType,
 			uint armourClass,
 			uint touchArmourClass,
 			uint flatFootedArmourClass,
@@ -87,7 +87,7 @@ namespace Dungeoneer.Model
 			uint reflexSave,
 			uint willSave,
 			bool powerAttack,
-			Utility.Size size)
+			Utility.Types.Size size)
 			: base(displayName, actorName, type, 
 					initiativeMod, challengeRating, attacks)
 		{

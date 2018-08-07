@@ -14,21 +14,21 @@ namespace Dungeoneer.ViewModel
 		{
 			_addActorCommand = new Command(AddActorToEncounter);
 			_actorLibrary = new Model.ActorLibrary();
-			_encounter = new Model.Encounter();
+			_encounter = new EncounterViewModel();
 
 			CreateTestData();
 		}
 
 		private Model.ActorLibrary _actorLibrary;
-		private Model.Encounter _encounter;
+		private EncounterViewModel _encounter;
 
-		public Model.Encounter Encounter
+		public EncounterViewModel Encounter
 		{
 			get { return _encounter; }
 			set
 			{
 				_encounter = value;
-				NotifyPropertyChanged("Encounter");
+				NotifyPropertyChanged("EncounterViewModel");
 			}
 		}
 
@@ -53,14 +53,21 @@ namespace Dungeoneer.ViewModel
 		{
 			if (actorObj is Model.Actor)
 			{
-				Model.Actor actor = (Model.Actor)actorObj;
-				string defaultActorName = actor.ActorName + " " + (Encounter.GetNumberOfActorsWithName(actor.ActorName) + 1);
-
-				View.InputDialog inputDialog = new View.InputDialog("Enter name", defaultActorName);
-				if (inputDialog.ShowDialog() == true)
+				if (actorObj is Model.PlayerActor)
 				{
-					actor.DisplayName = inputDialog.Answer;
-					Encounter.AddActor(actor);
+					Encounter.AddActor(actorObj as Model.PlayerActor);
+				}
+				else
+				{
+					Model.Actor actor = (Model.Actor)actorObj;
+					string defaultActorName = actor.ActorName + " " + (Encounter.GetNumberOfActorsWithName(actor.ActorName) + 1);
+
+					View.InputDialog inputDialog = new View.InputDialog("Enter name", defaultActorName);
+					if (inputDialog.ShowDialog() == true)
+					{
+						actor.DisplayName = inputDialog.Answer;
+						Encounter.AddActor(actor);
+					}
 				}
 			}
 		}
@@ -68,13 +75,28 @@ namespace Dungeoneer.ViewModel
 		private void CreateTestData()
 		{
 			Model.PlayerActor osprey = new Model.PlayerActor { DisplayName = "Osprey", ActorName = "Osprey" };
-			Encounter.AddActor(osprey);
+			ActorViewModel ospreyViewModel = ActorViewModelFactory.GetActorViewModel(osprey);
+			InitiativeValueViewModel ospreyInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeMod = "12", InitiativeRoll = "19" };
+			InitiativeCardViewModel ospreyCard = new InitiativeCardViewModel { ActorViewModel = ospreyViewModel, InitiativeValueViewModel = ospreyInit };
+			Encounter.AddInitiativeCard(ospreyCard);
 
 			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14 };
-			Encounter.AddActor(grell);
+			ActorViewModel grellViewModel = ActorViewModelFactory.GetActorViewModel(grell);
+			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeMod = "6", InitiativeRoll = "5" };
+			InitiativeCardViewModel grellCard = new InitiativeCardViewModel { ActorViewModel = grellViewModel, InitiativeValueViewModel = grellInit };
+			Encounter.AddInitiativeCard(grellCard);
 
 			Model.Creature troll = new Model.Creature { DisplayName = "Troll 1", ActorName = "Troll", ArmourClass = 16 };
-			Encounter.AddActor(troll);
+			ActorViewModel trollViewModel = ActorViewModelFactory.GetActorViewModel(troll);
+			InitiativeValueViewModel trollInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeMod = "3", InitiativeRoll = "9" };
+			InitiativeCardViewModel trollCard = new InitiativeCardViewModel { ActorViewModel = trollViewModel, InitiativeValueViewModel = trollInit };
+			Encounter.AddInitiativeCard(trollCard);
+
+			Model.Creature troll2 = new Model.Creature { DisplayName = "Troll 2", ActorName = "Troll", ArmourClass = 16 };
+			ActorViewModel troll2ViewModel = ActorViewModelFactory.GetActorViewModel(troll2);
+			InitiativeValueViewModel troll2Init = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeMod = "3", InitiativeRoll = "3" };
+			InitiativeCardViewModel troll2Card = new InitiativeCardViewModel { ActorViewModel = troll2ViewModel, InitiativeValueViewModel = troll2Init };
+			Encounter.AddInitiativeCard(troll2Card);
 		}
 	}
 }

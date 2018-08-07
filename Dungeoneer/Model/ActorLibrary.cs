@@ -30,10 +30,10 @@ namespace Dungeoneer.Model
 		{
 			ObservableCollection<Model.PlayerActor> characters = new ObservableCollection<Model.PlayerActor>
 			{
-				new Model.PlayerActor { ActorName = "Kolnik", InitiativeMod = -1 },
-				new Model.PlayerActor { ActorName = "Atrion", InitiativeMod = 5 },
-				new Model.PlayerActor { ActorName = "Thrasin", InitiativeMod = 7 },
-				new Model.PlayerActor { ActorName = "Joshua", InitiativeMod = 10 }
+				new Model.PlayerActor { DisplayName = "Kolnik", ActorName = "Kolnik", InitiativeMod = -1 },
+				new Model.PlayerActor { DisplayName = "Atrion", ActorName = "Atrion", InitiativeMod = 5 },
+				new Model.PlayerActor { DisplayName = "Thrasin", ActorName = "Thrasin", InitiativeMod = 7 },
+				new Model.PlayerActor { DisplayName = "Joshua", ActorName = "Joshua", InitiativeMod = 10 }
 			};
 
 			Characters = characters;

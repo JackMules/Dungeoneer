@@ -28,11 +28,11 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				return Utility.GetAttackTypeString(obj.AttackType);
+				return Utility.Methods.GetAttackTypeString(obj.AttackType);
 			}
 			set
 			{
-				obj.AttackType = Utility.GetAttackTypeFromString(value);
+				obj.AttackType = Utility.Methods.GetAttackTypeFromString(value);
 			}
 		}
 
@@ -52,11 +52,11 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				return Utility.GetDieTypeString(obj.DamageDie);
+				return Utility.Methods.GetDieTypeString(obj.DamageDie);
 			}
 			set
 			{
-				obj.DamageDie = Utility.GetDieTypeFromString(value);
+				obj.DamageDie = Utility.Methods.GetDieTypeFromString(value);
 			}
 		}
 

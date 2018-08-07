@@ -15,7 +15,7 @@ namespace Dungeoneer.ViewModel
 
 		private Model.InitiativeValue _initiativeValue;
 
-		private Model.InitiativeValue InitiativeValue
+		public Model.InitiativeValue InitiativeValue
 		{
 			get { return _initiativeValue; }
 			set

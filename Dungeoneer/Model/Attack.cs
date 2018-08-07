@@ -9,9 +9,9 @@ namespace Dungeoneer.Model
 	public class Attack
 	{
 		public int AttackMod { get; set; }
-		public Utility.AttackType AttackType { get; set; }
+		public Utility.Types.AttackType AttackType { get; set; }
 		public uint NumDamageDice { get; set; }
-		public Utility.DieType DamageDie { get; set; }
+		public Utility.Types.DieType DamageDie { get; set; }
 		public int DamageMod { get; set; }
 		public uint ThreatRangeMin { get; set; }
 		public uint CritMultiplier { get; set; }
@@ -20,9 +20,9 @@ namespace Dungeoneer.Model
 
 		public Attack(
 			int attackMod,
-			Utility.AttackType attackType,
+			Utility.Types.AttackType attackType,
 			uint numDamageDice,
-			Utility.DieType damageDie,
+			Utility.Types.DieType damageDie,
 			int damageMod,
 			uint threatRangeMin,
 			uint critMultiplier)

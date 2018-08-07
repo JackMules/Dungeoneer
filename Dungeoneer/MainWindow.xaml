@@ -16,7 +16,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="MyDictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
-			<CollectionViewSource x:Key="initiativeTrack" Source="{Binding Encounter.InitiativeTrack}"
+			<CollectionViewSource x:Key="initiativeTrackCVS" Source="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
 														IsLiveSortingRequested="True">
 				<CollectionViewSource.LiveSortingProperties>
 					<clr:String>InitiativeScore</clr:String>
@@ -48,7 +48,7 @@
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Source={StaticResource initiativeTrack}, UpdateSourceTrigger=PropertyChanged}"
+							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
 														Background="Transparent">
 							</ItemsControl>

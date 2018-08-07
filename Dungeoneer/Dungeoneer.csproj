@@ -58,8 +58,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\ActorLibrary.cs" />
-    <Compile Include="Model\Encounter.cs" />
+    <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
+    <Compile Include="Utility\FullyObservableCollection.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
     <Compile Include="ViewModel\ActorViewModelFactory.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Model\NamedValue.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="Utility\Utility.cs" />
     <Compile Include="View\PlayerActorControl.xaml.cs">
       <DependentUpon>PlayerActorControl.xaml</DependentUpon>
     </Compile>
