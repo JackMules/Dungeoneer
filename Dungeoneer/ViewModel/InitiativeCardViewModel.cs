@@ -29,26 +29,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public uint Turn
-		{
-			get { return InitiativeValueViewModel.InitiativeValue.Turn; }
-		}
-
-		public int? InitiativeScore
-		{
-			get { return InitiativeValueViewModel.InitiativeValue.InitiativeScore; }
-		}
-
-		public int? InitiativeMod
-		{
-			get { return InitiativeValueViewModel.InitiativeValue.InitiativeMod; }
-		}
-
-		public int? InitiativeRoll
-		{
-			get { return InitiativeValueViewModel.InitiativeValue.InitiativeRoll; }
-		}
-
 		public ActorViewModel ActorViewModel
 		{
 			get { return _actorViewModel; }

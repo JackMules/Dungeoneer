@@ -42,6 +42,7 @@ namespace Dungeoneer.ViewModel
 			{
 				InitiativeValue.InitiativeScore = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeScore");
+				NotifyPropertyChanged("InitiativeValue");
 			}
 		}
 
@@ -62,6 +63,7 @@ namespace Dungeoneer.ViewModel
 			{
 				InitiativeValue.InitiativeMod = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeMod");
+				NotifyPropertyChanged("InitiativeValue");
 			}
 		}
 
@@ -82,6 +84,7 @@ namespace Dungeoneer.ViewModel
 			{
 				InitiativeValue.InitiativeRoll = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeRoll");
+				NotifyPropertyChanged("InitiativeValue");
 			}
 		}
 
