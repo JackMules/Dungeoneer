@@ -11,9 +11,11 @@ namespace Dungeoneer.ViewModel
 		public InitiativeValueViewModel()
 		{
 			_initiativeValue = new Model.InitiativeValue();
+			_initiativeSet = false;
 		}
 
 		private Model.InitiativeValue _initiativeValue;
+		private bool _initiativeSet;
 
 		public Model.InitiativeValue InitiativeValue
 		{
@@ -29,7 +31,7 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				if (InitiativeSet)
+				if (InitiativeValue.InitiativeScore.HasValue)
 				{
 					return InitiativeValue.InitiativeScore.ToString();
 				}
@@ -43,6 +45,7 @@ namespace Dungeoneer.ViewModel
 				InitiativeValue.InitiativeScore = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeScore");
 				NotifyPropertyChanged("InitiativeValue");
+				InitiativeSet = InitiativeValue.InitiativeScore.HasValue;
 			}
 		}
 
@@ -90,7 +93,12 @@ namespace Dungeoneer.ViewModel
 
 		public bool InitiativeSet
 		{
-			get { return InitiativeValue.InitiativeScore.HasValue; }
+			get { return _initiativeSet; }
+			set
+			{
+				_initiativeSet = value;
+				NotifyPropertyChanged("InitiativeSet");
+			}
 		}
 
 		public bool Delayed

@@ -24,7 +24,7 @@
 		<Border x:Name="theBorder" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
-					<ToggleButton Width="60" IsChecked="{Binding TurnEnded}">
+					<ToggleButton Width="60" IsChecked="{Binding TurnEnded}" IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
 						<ToggleButton.Style>
 							<Style TargetType="{x:Type ToggleButton}">
 								<Setter Property="Content" Value="End Turn"/>
@@ -37,7 +37,7 @@
 							</Style>
 						</ToggleButton.Style>
 					</ToggleButton>
-					<ToggleButton Width="60">
+					<ToggleButton Width="60" IsChecked="{Binding Delayed}" IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
 						<ToggleButton.Style>
 							<Style TargetType="{x:Type ToggleButton}">
 								<Setter Property="Content" Value="Delay"/>
@@ -50,7 +50,7 @@
 							</Style>
 						</ToggleButton.Style>
 					</ToggleButton>
-					<ToggleButton Width="60">
+					<ToggleButton Width="60" IsChecked="{Binding Readied}" IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
 						<ToggleButton.Style>
 							<Style TargetType="{x:Type ToggleButton}">
 								<Setter Property="Content" Value="Ready"/>
