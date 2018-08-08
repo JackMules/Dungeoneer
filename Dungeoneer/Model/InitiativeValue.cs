@@ -12,14 +12,18 @@ namespace Dungeoneer.Model
 		private int? _initiativeScore;
 		private int? _initiativeMod;
 		private int? _initiativeRoll;
-		private uint _turn;
+		private bool _delayed;
+		private bool _turnEnded;
+		private bool _readied;
 
 		public InitiativeValue()
 		{
 			_initiativeScore = null;
 			_initiativeMod = null;
 			_initiativeRoll = null;
-			_turn = 0;
+			_delayed = false;
+			_turnEnded = false;
+			_readied = false;
 		}
 
 		public int? InitiativeScore
@@ -52,13 +56,33 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public uint Turn
+		public bool Delayed
 		{
-			get { return _turn; }
+			get { return _delayed; }
 			set
 			{
-				_turn = value;
-				OnPropertyChanged("Turn");
+				_delayed = value;
+				OnPropertyChanged("Delayed");
+			}
+		}
+
+		public bool TurnEnded
+		{
+			get { return _turnEnded; }
+			set
+			{
+				_turnEnded = value;
+				OnPropertyChanged("TurnEnded");
+			}
+		}
+
+		public bool Readied
+		{
+			get { return _readied; }
+			set
+			{
+				_readied = value;
+				OnPropertyChanged("Readied");
 			}
 		}
 

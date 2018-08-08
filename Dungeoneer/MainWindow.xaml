@@ -19,17 +19,19 @@
 			<CollectionViewSource x:Key="initiativeTrackCVS" Source="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
 														IsLiveSortingRequested="True">
 				<CollectionViewSource.LiveSortingProperties>
+					<clr:String>TurnEnded</clr:String>
 					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeScore</clr:String>
 					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeMod</clr:String>
 					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeRoll</clr:String>
 				</CollectionViewSource.LiveSortingProperties>
 				<CollectionViewSource.SortDescriptions>
+					<scm:SortDescription PropertyName="TurnEnded" Direction="Ascending"/>
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeScore" Direction="Descending"/>
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeMod" Direction="Descending"/>
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeRoll" Direction="Descending"/>
 				</CollectionViewSource.SortDescriptions>
 			</CollectionViewSource>
-		</ResourceDictionary> 
+		</ResourceDictionary>
 	</Window.Resources>
 	<Grid>
 		<TabControl>
@@ -37,13 +39,19 @@
 				<DockPanel>
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-						<StackPanel Orientation="Horizontal" >
-							<Label Content="Current Initiative"/>
-							<TextBox Name="CurrentInitTextBox" MinWidth="30" Margin="0,0,10,0"/>
-							<Label Content="XP Earned"/>
-							<TextBox Name="XPTextBox" MinWidth="60"/>
-							<Button Content="Clear"/>
-						</StackPanel>
+						<DockPanel>
+							<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+								<Label Content="Round" FontWeight="Bold"/>
+								<Label Content="{Binding Encounter.Round}" Margin="10,0" Background="White" FontWeight="Bold"/>
+								<Button Content="Next Round" Command="{Binding Encounter.NextRound}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal"  DockPanel.Dock="Right">
+								<Label Content="XP Earned"/>
+								<TextBox Name="XPTextBox" MinWidth="60"/>
+								<Button Content="Clear"/>
+							</StackPanel>
+							<Label/>
+						</DockPanel>
 					</Border>
 					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
 					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">

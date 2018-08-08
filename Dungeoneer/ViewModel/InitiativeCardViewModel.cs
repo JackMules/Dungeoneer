@@ -13,11 +13,12 @@ namespace Dungeoneer.ViewModel
 		{
 			_initiativeValueViewModel = new InitiativeValueViewModel();
 			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
+			
 		}
 
-		private Command _openInitiativeDialog;
 		private InitiativeValueViewModel _initiativeValueViewModel;
 		private ActorViewModel _actorViewModel;
+		private Command _openInitiativeDialog;
 
 		public InitiativeValueViewModel InitiativeValueViewModel
 		{
@@ -36,6 +37,36 @@ namespace Dungeoneer.ViewModel
 			{
 				_actorViewModel = value;
 				NotifyPropertyChanged("ActorViewModel");
+			}
+		}
+
+		public bool Delayed
+		{
+			get { return InitiativeValueViewModel.Delayed; }
+			set
+			{
+				InitiativeValueViewModel.Delayed = value;
+				NotifyPropertyChanged("Delayed");
+			}
+		}
+
+		public bool TurnEnded
+		{
+			get { return InitiativeValueViewModel.TurnEnded; }
+			set
+			{
+				InitiativeValueViewModel.TurnEnded = value;
+				NotifyPropertyChanged("TurnEnded");
+			}
+		}
+
+		public bool Readied
+		{
+			get { return InitiativeValueViewModel.Readied; }
+			set
+			{
+				InitiativeValueViewModel.Readied = value;
+				NotifyPropertyChanged("Readied");
 			}
 		}
 

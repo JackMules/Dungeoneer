@@ -21,12 +21,48 @@
 	</UserControl.Resources>
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
-		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+		<Border x:Name="theBorder" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
-					<Button Content="End Turn" Width="60"/>
-					<Button Content="Delay" Width="60"/>
-					<Button Content="Ready" Width="60"/>
+					<ToggleButton Width="60" IsChecked="{Binding TurnEnded}">
+						<ToggleButton.Style>
+							<Style TargetType="{x:Type ToggleButton}">
+								<Setter Property="Content" Value="End Turn"/>
+								<Style.Triggers>
+									<Trigger Property="IsChecked" Value="True">
+										<Setter Property="Content" Value="Finished"/>
+										<Setter Property="FontWeight" Value="Bold"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</ToggleButton.Style>
+					</ToggleButton>
+					<ToggleButton Width="60">
+						<ToggleButton.Style>
+							<Style TargetType="{x:Type ToggleButton}">
+								<Setter Property="Content" Value="Delay"/>
+								<Style.Triggers>
+									<Trigger Property="IsChecked" Value="True">
+										<Setter Property="Content" Value="Delayed"/>
+										<Setter Property="FontWeight" Value="Bold"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</ToggleButton.Style>
+					</ToggleButton>
+					<ToggleButton Width="60">
+						<ToggleButton.Style>
+							<Style TargetType="{x:Type ToggleButton}">
+								<Setter Property="Content" Value="Ready"/>
+								<Style.Triggers>
+									<Trigger Property="IsChecked" Value="True">
+										<Setter Property="Content" Value="Readied"/>
+										<Setter Property="FontWeight" Value="Bold"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</ToggleButton.Style>
+					</ToggleButton>
 				</StackPanel>
 				<view:ValueButton DockPanel.Dock="Right" Title="Init"
 													ValueBinding="{Binding InitiativeValueViewModel.InitiativeScore}"

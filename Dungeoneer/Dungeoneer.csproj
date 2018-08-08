@@ -70,6 +70,7 @@
     <Compile Include="ViewModel\InitiativeValueViewModel.cs" />
     <Compile Include="ViewModel\NonPlayerActorViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorViewModel.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
     </Compile>

@@ -92,5 +92,35 @@ namespace Dungeoneer.ViewModel
 		{
 			get { return InitiativeValue.InitiativeScore.HasValue; }
 		}
+
+		public bool Delayed
+		{
+			get { return InitiativeValue.Delayed; }
+			set
+			{
+				InitiativeValue.Delayed = value;
+				NotifyPropertyChanged("Delayed");
+			}
+		}
+
+		public bool TurnEnded
+		{
+			get { return InitiativeValue.TurnEnded; }
+			set
+			{
+				InitiativeValue.TurnEnded = value;
+				NotifyPropertyChanged("TurnEnded");
+			}
+		}
+
+		public bool Readied
+		{
+			get { return InitiativeValue.Readied; }
+			set
+			{
+				InitiativeValue.Readied = value;
+				NotifyPropertyChanged("Readied");
+			}
+		}
 	}
 }

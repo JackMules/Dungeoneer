@@ -9,46 +9,79 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.ViewModel
 {
-	public class EncounterViewModel : INotifyPropertyChanged
+	public class EncounterViewModel : BaseViewModel
 	{
 		public EncounterViewModel()
 		{
-			_initiativeTrack = new Utility.FullyObservableCollection<ViewModel.InitiativeCardViewModel>();
+			_initiativeTrack = new Utility.FullyObservableCollection<InitiativeCardViewModel>();
 
-			CollectionEventList = new List<NotifyCollectionChangedEventArgs>();
-			ItemEventList = new List<Utility.ItemPropertyChangedEventArgs>();
-			_initiativeTrack.CollectionChanged += (o, e) => CollectionEventList.Add(e);
-			_initiativeTrack.ItemPropertyChanged += (o, e) => ItemEventList.Add(e);
+			_round = 1;
+
+			_nextRound = new RelayCommand(ExecuteNextRound, CheckRound);
 		}
 
-		private List<NotifyCollectionChangedEventArgs> CollectionEventList;
-		private List<Utility.ItemPropertyChangedEventArgs> ItemEventList;
-		public event PropertyChangedEventHandler PropertyChanged;
+		private RelayCommand _nextRound;
 
-		protected void OnPropertyChanged(string propertyName)
+		public RelayCommand NextRound
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			get { return _nextRound; }
 		}
 
-		private Utility.FullyObservableCollection<ViewModel.InitiativeCardViewModel> _initiativeTrack;
+		private void ExecuteNextRound()
+		{
+			++Round;
 
-		public Utility.FullyObservableCollection<ViewModel.InitiativeCardViewModel> InitiativeTrack
+			foreach (InitiativeCardViewModel initCard in _initiativeTrack)
+			{
+				initCard.TurnEnded = false;
+			}
+		}
+
+		private bool CheckRound()
+		{
+			bool roundComplete = true;
+			foreach (InitiativeCardViewModel initCard in _initiativeTrack)
+			{
+				if (!initCard.TurnEnded)
+				{
+					roundComplete = false;
+				}
+			}
+
+			return roundComplete;
+		}
+
+		private uint _round;
+
+		public uint Round
+		{
+			get { return _round; }
+			set
+			{
+				_round = value;
+				NotifyPropertyChanged("Round");
+			}
+		}
+
+		private Utility.FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
+
+		public Utility.FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{
 			get { return _initiativeTrack; }
 			set
 			{
 				_initiativeTrack = value;
-				OnPropertyChanged("InitiativeTrack");
+				NotifyPropertyChanged("InitiativeTrack");
 			}
 		}
 
 		public void AddActor(Model.Actor actor)
 		{
-			ViewModel.ActorViewModel actorViewModel = ViewModel.ActorViewModelFactory.GetActorViewModel(actor);
-			InitiativeTrack.Add( new ViewModel.InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
+			ActorViewModel actorViewModel = ActorViewModelFactory.GetActorViewModel(actor);
+			InitiativeTrack.Add( new InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
 		}
 
-		public void AddInitiativeCard(ViewModel.InitiativeCardViewModel initCard)
+		public void AddInitiativeCard(InitiativeCardViewModel initCard)
 		{
 			InitiativeTrack.Add(initCard);
 		}
@@ -56,7 +89,7 @@ namespace Dungeoneer.ViewModel
 		public uint GetNumberOfActorsWithName(string actorName)
 		{
 			uint count = 0;
-			foreach (ViewModel.InitiativeCardViewModel initCard in InitiativeTrack)
+			foreach (InitiativeCardViewModel initCard in InitiativeTrack)
 			{
 				if (initCard.ActorViewModel.ActorName == actorName)
 				{
