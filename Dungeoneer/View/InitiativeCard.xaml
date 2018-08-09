@@ -6,6 +6,7 @@
 						 xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
 						 xmlns:view="clr-namespace:Dungeoneer.View"
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
+						 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 						 mc:Ignorable="d"
 						 d:DesignHeight="80" d:DesignWidth="600">
 	<UserControl.Resources>

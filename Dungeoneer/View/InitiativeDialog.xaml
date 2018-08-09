@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="Initiative" SizeToContent="WidthAndHeight"
-				WindowStartupLocation="CenterOwner">
+				WindowStartupLocation="CenterOwner"
+				WindowStyle="ToolWindow">
 	<Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=txtScore}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>

@@ -78,7 +78,7 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteOpenInitiativeDialog()
 		{
 			bool askForInput = true;
-			string feedback = "";
+			string feedback = null;
 			while (askForInput)
 			{
 				View.InitiativeDialog initDialog = new View.InitiativeDialog(InitiativeValueViewModel.InitiativeScore, 
