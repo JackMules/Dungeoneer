@@ -81,18 +81,21 @@ namespace Dungeoneer.ViewModel
 			string feedback = "";
 			while (askForInput)
 			{
-				View.InputDialog inputDialog = new View.InputDialog("Enter Initiative", "", feedback);
-				if (inputDialog.ShowDialog() == true)
+				View.InitiativeDialog initDialog = new View.InitiativeDialog(InitiativeValueViewModel.InitiativeScore, 
+					InitiativeValueViewModel.InitiativeMod, InitiativeValueViewModel.InitiativeRoll, feedback);
+				if (initDialog.ShowDialog() == true)
 				{
 					try
 					{
-						InitiativeValueViewModel.InitiativeScore = inputDialog.Answer;
+						InitiativeValueViewModel.InitiativeScore = initDialog.InitScore;
+						InitiativeValueViewModel.InitiativeMod = initDialog.InitMod;
+						InitiativeValueViewModel.InitiativeRoll = initDialog.InitRoll;
 						askForInput = false;
 					}
 					catch (FormatException)
 					{
 						// Failed to parse input
-						feedback = "\"" + inputDialog.Answer + "\" - Invalid format";
+						feedback = "Invalid format";
 					}
 				}
 				else

@@ -74,6 +74,9 @@
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\InitiativeDialog.xaml.cs">
+      <DependentUpon>InitiativeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
     <Page Include="View\CreatureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InitiativeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

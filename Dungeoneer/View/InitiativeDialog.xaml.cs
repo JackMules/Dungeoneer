@@ -15,15 +15,16 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for InputDialog.xaml
+	/// Interaction logic for InitiativeDialog.xaml
 	/// </summary>
-	public partial class InputDialog : Window
+	public partial class InitiativeDialog : Window
 	{
-		public InputDialog(string question, string defaultAnswer = "", string feedback = "")
+		public InitiativeDialog(string initScore, string initMod, string initRoll, string feedback = "")
 		{
 			InitializeComponent();
-			lblQuestion.Content = question;
-			txtAnswer.Text = defaultAnswer;
+			txtScore.Text = initScore;
+			txtMod.Text = initMod;
+			txtRoll.Text = initRoll;
 			lblFeedback.Content = feedback;
 		}
 
@@ -32,9 +33,19 @@ namespace Dungeoneer.View
 			this.DialogResult = true;
 		}
 
-		public string Answer
+		public string InitScore
 		{
-			get { return txtAnswer.Text; }
+			get { return txtScore.Text; }
+		}
+
+		public string InitMod
+		{
+			get { return txtMod.Text; }
+		}
+
+		public string InitRoll
+		{
+			get { return txtRoll.Text; }
 		}
 	}
 }
