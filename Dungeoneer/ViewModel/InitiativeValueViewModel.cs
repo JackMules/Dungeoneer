@@ -49,6 +49,28 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string InitiativeAdjust
+		{
+			get
+			{
+				if (InitiativeValue.InitiativeAdjust.HasValue)
+				{
+					return InitiativeValue.InitiativeAdjust.ToString();
+				}
+				else
+				{
+					return "Not set";
+				}
+			}
+			set
+			{
+				InitiativeValue.InitiativeAdjust = Convert.ToInt32(value);
+				NotifyPropertyChanged("InitiativeAdjust");
+				NotifyPropertyChanged("InitiativeValue");
+				InitiativeSet = InitiativeValue.InitiativeAdjust.HasValue;
+			}
+		}
+
 		public string InitiativeMod
 		{
 			get

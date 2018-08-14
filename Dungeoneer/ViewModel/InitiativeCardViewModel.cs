@@ -81,13 +81,14 @@ namespace Dungeoneer.ViewModel
 			string feedback = null;
 			while (askForInput)
 			{
-				View.InitiativeDialog initDialog = new View.InitiativeDialog(InitiativeValueViewModel.InitiativeScore, 
-					InitiativeValueViewModel.InitiativeMod, InitiativeValueViewModel.InitiativeRoll, feedback);
+				View.InitiativeDialog initDialog = new View.InitiativeDialog(InitiativeValueViewModel.InitiativeScore,
+					InitiativeValueViewModel.InitiativeAdjust, InitiativeValueViewModel.InitiativeMod, InitiativeValueViewModel.InitiativeRoll, feedback);
 				if (initDialog.ShowDialog() == true)
 				{
 					try
 					{
 						InitiativeValueViewModel.InitiativeScore = initDialog.InitScore;
+						InitiativeValueViewModel.InitiativeAdjust = initDialog.InitAdjust;
 						InitiativeValueViewModel.InitiativeMod = initDialog.InitMod;
 						InitiativeValueViewModel.InitiativeRoll = initDialog.InitRoll;
 						askForInput = false;

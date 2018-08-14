@@ -10,22 +10,22 @@ namespace Dungeoneer.Model
 	{
 		public int AttackMod { get; set; }
 		public Utility.Types.AttackType AttackType { get; set; }
-		public uint NumDamageDice { get; set; }
+		public int NumDamageDice { get; set; }
 		public Utility.Types.DieType DamageDie { get; set; }
 		public int DamageMod { get; set; }
-		public uint ThreatRangeMin { get; set; }
-		public uint CritMultiplier { get; set; }
+		public int ThreatRangeMin { get; set; }
+		public int CritMultiplier { get; set; }
 
 		public Attack(){}
 
 		public Attack(
 			int attackMod,
 			Utility.Types.AttackType attackType,
-			uint numDamageDice,
+			int numDamageDice,
 			Utility.Types.DieType damageDie,
 			int damageMod,
-			uint threatRangeMin,
-			uint critMultiplier)
+			int threatRangeMin,
+			int critMultiplier)
 		{
 			AttackMod = attackMod;
 			AttackType = attackType;

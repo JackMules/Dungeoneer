@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Dungeoneer.View"
              mc:Ignorable="d">
 	<Grid Background="LightGray" Loaded="GridLoaded">
 		<Rectangle Margin="5,5,0,0" Fill="DarkGray" RadiusX="4" RadiusY="4"/>
 		<Border Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4">
-			<Button x:Name="button">
+			<Button x:Name="button" BorderBrush="{x:Null}" Background="{x:Null}">
 				<StackPanel Orientation="Vertical">
 					<Label x:Name="titleLabel" FontSize="14" HorizontalAlignment="Center"/>
 					<Label x:Name="valueLabel" FontSize="16" HorizontalAlignment="Center"/>

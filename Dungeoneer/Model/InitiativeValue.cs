@@ -10,6 +10,7 @@ namespace Dungeoneer.Model
 	public class InitiativeValue : INotifyPropertyChanged
 	{
 		private int? _initiativeScore;
+		private int? _initiativeAdjust;
 		private int? _initiativeMod;
 		private int? _initiativeRoll;
 		private bool _delayed;
@@ -19,6 +20,7 @@ namespace Dungeoneer.Model
 		public InitiativeValue()
 		{
 			_initiativeScore = null;
+			_initiativeAdjust = null;
 			_initiativeMod = null;
 			_initiativeRoll = null;
 			_delayed = false;
@@ -33,6 +35,16 @@ namespace Dungeoneer.Model
 			{
 				_initiativeScore = value;
 				OnPropertyChanged("InitiativeScore");
+			}
+		}
+
+		public int? InitiativeAdjust
+		{
+			get { return _initiativeAdjust; }
+			set
+			{
+				_initiativeAdjust = value;
+				OnPropertyChanged("InitiativeAdjust");
 			}
 		}
 

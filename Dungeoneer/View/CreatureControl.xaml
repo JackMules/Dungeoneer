@@ -15,10 +15,12 @@
 						<Button Content="Show Attacks" Margin="5" Height="25"/>
 					</StackPanel>
 					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmourClass}"/>
+					<view:ValueButton Title="HP"
+														ValueBinding="{Binding HitPoints}"
+														CommandBinding="{Binding OpenDamageDialog}"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="90" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
 					<Button Content="Add Effect" Margin="5"/>
-					<Button Content="Add Damage" Margin="5"/>
 				</StackPanel>
 			</DockPanel>
 		</Border>

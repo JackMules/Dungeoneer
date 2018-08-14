@@ -51,9 +51,9 @@ namespace Dungeoneer.ViewModel
 			return roundComplete;
 		}
 
-		private uint _round;
+		private int _round;
 
-		public uint Round
+		public int Round
 		{
 			get { return _round; }
 			set
@@ -86,9 +86,9 @@ namespace Dungeoneer.ViewModel
 			InitiativeTrack.Add(initCard);
 		}
 
-		public uint GetNumberOfActorsWithName(string actorName)
+		public int GetNumberOfActorsWithName(string actorName)
 		{
-			uint count = 0;
+			int count = 0;
 			foreach (InitiativeCardViewModel initCard in InitiativeTrack)
 			{
 				if (initCard.ActorViewModel.ActorName == actorName)

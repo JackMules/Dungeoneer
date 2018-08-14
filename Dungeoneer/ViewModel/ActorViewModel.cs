@@ -10,7 +10,9 @@ namespace Dungeoneer.ViewModel
 	public class ActorViewModel : BaseViewModel
 	{
 		public ActorViewModel()
-		{ }
+		{
+			
+		}
 
 		protected Model.Actor _actor;
 
@@ -53,6 +55,5 @@ namespace Dungeoneer.ViewModel
 				NotifyPropertyChanged("InitiativeMod");
 			}
 		}
-
 	}
 }

@@ -12,13 +12,14 @@ namespace Dungeoneer.Model
 		public Actor()
 		{
 			DisplayName = "no display name";
-			ActorName = "No name";
+			ActorName = "no name";
 			InitiativeMod = 0;
 		}
 
 		private string _displayName { get; set; }
 		private string _actorName { get; set; }
 		private int _initiativeMod { get; set; }
+		private Utility.FullyObservableCollection<Condition> _conditions;
 
 		public string DisplayName
 		{
@@ -47,6 +48,16 @@ namespace Dungeoneer.Model
 			{
 				_initiativeMod = value;
 				OnPropertyChanged("InitiativeMod");
+			}
+		}
+
+		public Utility.FullyObservableCollection<Condition> Conditions
+		{
+			get { return _conditions; }
+			set
+			{
+				_conditions = value;
+				OnPropertyChanged("Conditions");
 			}
 		}
 

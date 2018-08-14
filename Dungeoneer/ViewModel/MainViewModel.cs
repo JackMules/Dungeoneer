@@ -74,27 +74,34 @@ namespace Dungeoneer.ViewModel
 		
 		private void CreateTestData()
 		{
-			Model.PlayerActor osprey = new Model.PlayerActor { DisplayName = "Osprey", ActorName = "Osprey" };
-			ActorViewModel ospreyViewModel = ActorViewModelFactory.GetActorViewModel(osprey);
-			InitiativeValueViewModel ospreyInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeMod = "12", InitiativeRoll = "19" };
-			InitiativeCardViewModel ospreyCard = new InitiativeCardViewModel { ActorViewModel = ospreyViewModel, InitiativeValueViewModel = ospreyInit };
-			Encounter.AddInitiativeCard(ospreyCard);
+			try
+			{
+				Model.PlayerActor osprey = ActorLibrary.Characters.Single(i => i.ActorName == "Osprey");
+				ActorViewModel ospreyViewModel = ActorViewModelFactory.GetActorViewModel(osprey);
+				InitiativeValueViewModel ospreyInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "12", InitiativeRoll = "19" };
+				InitiativeCardViewModel ospreyCard = new InitiativeCardViewModel { ActorViewModel = ospreyViewModel, InitiativeValueViewModel = ospreyInit };
+				Encounter.AddInitiativeCard(ospreyCard);
+			}
+			catch
+			{
 
-			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14 };
+			}
+
+			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14, HitPoints = 24 };
 			ActorViewModel grellViewModel = ActorViewModelFactory.GetActorViewModel(grell);
-			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeMod = "6", InitiativeRoll = "5" };
+			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeAdjust = "0", InitiativeMod = "6", InitiativeRoll = "5" };
 			InitiativeCardViewModel grellCard = new InitiativeCardViewModel { ActorViewModel = grellViewModel, InitiativeValueViewModel = grellInit };
 			Encounter.AddInitiativeCard(grellCard);
 
-			Model.Creature troll = new Model.Creature { DisplayName = "Troll 1", ActorName = "Troll", ArmourClass = 16 };
+			Model.Creature troll = new Model.Creature { DisplayName = "Troll 1", ActorName = "Troll", ArmourClass = 16, HitPoints = 52 };
 			ActorViewModel trollViewModel = ActorViewModelFactory.GetActorViewModel(troll);
-			InitiativeValueViewModel trollInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeMod = "3", InitiativeRoll = "9" };
+			InitiativeValueViewModel trollInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "3", InitiativeRoll = "9" };
 			InitiativeCardViewModel trollCard = new InitiativeCardViewModel { ActorViewModel = trollViewModel, InitiativeValueViewModel = trollInit };
 			Encounter.AddInitiativeCard(trollCard);
 
-			Model.Creature troll2 = new Model.Creature { DisplayName = "Troll 2", ActorName = "Troll", ArmourClass = 16 };
+			Model.Creature troll2 = new Model.Creature { DisplayName = "Troll 2", ActorName = "Troll", ArmourClass = 16, HitPoints = 52 };
 			ActorViewModel troll2ViewModel = ActorViewModelFactory.GetActorViewModel(troll2);
-			InitiativeValueViewModel troll2Init = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeMod = "3", InitiativeRoll = "3" };
+			InitiativeValueViewModel troll2Init = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "3", InitiativeRoll = "3" };
 			InitiativeCardViewModel troll2Card = new InitiativeCardViewModel { ActorViewModel = troll2ViewModel, InitiativeValueViewModel = troll2Init };
 			Encounter.AddInitiativeCard(troll2Card);
 		}

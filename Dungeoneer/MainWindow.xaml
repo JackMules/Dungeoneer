@@ -21,12 +21,14 @@
 				<CollectionViewSource.LiveSortingProperties>
 					<clr:String>TurnEnded</clr:String>
 					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeScore</clr:String>
+					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeAdjust</clr:String>
 					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeMod</clr:String>
 					<clr:String>InitiativeValueViewModel.InitiativeValue.InitiativeRoll</clr:String>
 				</CollectionViewSource.LiveSortingProperties>
 				<CollectionViewSource.SortDescriptions>
 					<scm:SortDescription PropertyName="TurnEnded" Direction="Ascending"/>
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeScore" Direction="Descending"/>
+					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeAdjust" Direction="Descending"/>
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeMod" Direction="Descending"/>
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.InitiativeRoll" Direction="Descending"/>
 				</CollectionViewSource.SortDescriptions>

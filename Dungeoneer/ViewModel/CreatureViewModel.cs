@@ -8,7 +8,12 @@ namespace Dungeoneer.ViewModel
 {
 	public class CreatureViewModel : NonPlayerActorViewModel
 	{
-		public CreatureViewModel() { }
+		public CreatureViewModel()
+		{
+			_openDamageDialog = new Command(ExecuteOpenDamageDialog);
+		}
+
+		private Command _openDamageDialog;
 
 		public new Model.Creature Actor
 		{
@@ -20,13 +25,57 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public uint ArmourClass
+		public string ArmourClass
 		{
-			get { return Actor.ArmourClass; }
+			get { return Actor.ArmourClass.ToString(); }
 			set
 			{
-				Actor.ArmourClass = value;
+				Actor.ArmourClass = Convert.ToInt32(value);
 				NotifyPropertyChanged("ArmourClass");
+			}
+		}
+
+		public string HitPoints
+		{
+			get { return Actor.HitPoints.ToString(); }
+			set
+			{
+				Actor.HitPoints = Convert.ToInt32(value);
+				NotifyPropertyChanged("HitPoints");
+			}
+		}
+
+		public Command OpenDamageDialog
+		{
+			get { return _openDamageDialog; }
+		}
+
+		private void ExecuteOpenDamageDialog()
+		{
+			bool askForInput = true;
+			string feedback = null;
+			while (askForInput)
+			{
+				View.DamageDialog damageDialog = new View.DamageDialog(feedback);
+				if (damageDialog.ShowDialog() == true)
+				{
+					try
+					{
+						int damage = Convert.ToInt32(damageDialog.Damage);
+						Utility.Types.DamageType damageType = Utility.Methods.GetDamageTypeFromString(damageDialog.DamageType);
+						Actor.DoDamage(damage, damageType);
+						askForInput = false;
+					}
+					catch (FormatException)
+					{
+						// Failed to parse input
+						feedback = "Invalid format";
+					}
+				}
+				else
+				{
+					askForInput = false;
+				}
 			}
 		}
 	}

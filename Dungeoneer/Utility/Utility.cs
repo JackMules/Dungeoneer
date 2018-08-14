@@ -36,6 +36,20 @@ namespace Dungeoneer.Utility
 			attackTypeRanged,
 		};
 
+		public static readonly string damageTypeFire = "Fire";
+		public static readonly string damageTypeCold = "Cold";
+		public static readonly string damageTypeElectricity = "Electricity";
+		public static readonly string damageTypeAcid = "Acid";
+		public static readonly string damageTypePositiveEnergy = "Positive Energy";
+		public static readonly string damageTypeNegativeEnergy = "Negative Energy";
+		public static readonly string damageTypePiercing = "Piercing";
+		public static readonly string damageTypeBludgeoning = "Bludgeoning";
+		public static readonly string damageTypeSlashing = "Slashing";
+		public static readonly string damageTypeForce = "Force";
+		public static readonly string damageTypeSonic = "Sonic";
+		public static readonly string damageTypeDivine = "Divine";
+		public static readonly string damageTypeSubdual = "Subdual";
+		public static readonly string damageTypeUntyped = "Untyped";
 	}
 
 	public class Types
@@ -69,6 +83,24 @@ namespace Dungeoneer.Utility
 			Primary,
 			Secondary,
 			Ranged,
+		}
+
+		public enum DamageType
+		{
+			Fire,
+			Cold,
+			Electricity,
+			Acid,
+			PositiveEnergy,
+			NegativeEnergy,
+			Piercing,
+			Bludgeoning,
+			Slashing,
+			Force,
+			Sonic,
+			Divine,
+			Untyped,
+			Subdual
 		}
 	}
 
@@ -106,25 +138,29 @@ namespace Dungeoneer.Utility
 			{
 				return Types.DieType.d3;
 			}
-			if (str == Constants.dieTypeD4)
+			else if (str == Constants.dieTypeD4)
 			{
 				return Types.DieType.d4;
 			}
-			if (str == Constants.dieTypeD6)
+			else if (str == Constants.dieTypeD6)
 			{
 				return Types.DieType.d6;
 			}
-			if (str == Constants.dieTypeD8)
+			else if (str == Constants.dieTypeD8)
 			{
 				return Types.DieType.d8;
 			}
-			if (str == Constants.dieTypeD10)
+			else if (str == Constants.dieTypeD10)
 			{
 				return Types.DieType.d10;
 			}
-			else
+			else if (str == Constants.dieTypeD12)
 			{
 				return Types.DieType.d12;
+			}
+			else
+			{
+				throw new FormatException("Die type \'" + str + "\' not recognised.");
 			}
 		}
 
@@ -184,9 +220,13 @@ namespace Dungeoneer.Utility
 			{
 				return Types.Size.Colossal;
 			}
-			else
+			else if (str == Constants.sizeColossalPlus)
 			{
 				return Types.Size.ColossalPlus;
+			}
+			else
+			{
+				throw new FormatException("Size type \'" + str + "\' not recognised.");
 			}
 		}
 
@@ -203,7 +243,11 @@ namespace Dungeoneer.Utility
 
 		public static Types.AttackType GetAttackTypeFromString(string str)
 		{
-			if (str == Constants.attackTypeSecondary)
+			if (str == Constants.attackTypePrimary)
+			{
+				return Types.AttackType.Primary;
+			}
+			else if (str == Constants.attackTypeSecondary)
 			{
 				return Types.AttackType.Secondary;
 			}
@@ -213,11 +257,102 @@ namespace Dungeoneer.Utility
 			}
 			else
 			{
-				return Types.AttackType.Primary;
+				throw new FormatException("Attack type \'" + str + "\' not recognised.");
 			}
 		}
 
-		public static uint CalculateXP(uint challengeRating)
+		public static string GetDamageTypeString(Types.DamageType damageType)
+		{
+			switch (damageType)
+			{
+				case Types.DamageType.Fire:						return Constants.damageTypeFire;
+				case Types.DamageType.Cold:						return Constants.damageTypeCold;
+				case Types.DamageType.Electricity:		return Constants.damageTypeElectricity;
+				case Types.DamageType.Acid:						return Constants.damageTypeAcid;
+				case Types.DamageType.PositiveEnergy:	return Constants.damageTypePositiveEnergy;
+				case Types.DamageType.NegativeEnergy:	return Constants.damageTypeNegativeEnergy;
+				case Types.DamageType.Piercing:				return Constants.damageTypePiercing;
+				case Types.DamageType.Bludgeoning:		return Constants.damageTypeBludgeoning;
+				case Types.DamageType.Slashing:				return Constants.damageTypeSlashing;
+				case Types.DamageType.Force:					return Constants.damageTypeForce;
+				case Types.DamageType.Sonic:					return Constants.damageTypeSonic;
+				case Types.DamageType.Divine:					return Constants.damageTypeDivine;
+				case Types.DamageType.Subdual:				return Constants.damageTypeSubdual;
+				case Types.DamageType.Untyped:				return Constants.damageTypeUntyped;
+				default:															return "Unrecognised damage type";
+			}
+		}
+
+		public static Types.DamageType GetDamageTypeFromString(string str)
+		{
+			if (str == Constants.damageTypeFire)
+			{
+				return Types.DamageType.Fire;
+			}
+			else if (str == Constants.damageTypeCold)
+			{
+				return Types.DamageType.Cold;
+			}
+			else if (str == Constants.damageTypeElectricity)
+			{
+				return Types.DamageType.Electricity;
+			}
+			else if (str == Constants.damageTypeAcid)
+			{
+				return Types.DamageType.Acid;
+			}
+			else if (str == Constants.damageTypePositiveEnergy)
+			{
+				return Types.DamageType.PositiveEnergy;
+			}
+			else if (str == Constants.damageTypeNegativeEnergy)
+			{
+				return Types.DamageType.NegativeEnergy;
+			}
+			else if (str == Constants.damageTypePiercing)
+			{
+				return Types.DamageType.Piercing;
+			}
+			else if (str == Constants.damageTypeBludgeoning)
+			{
+				return Types.DamageType.Bludgeoning;
+			}
+			else if (str == Constants.damageTypeSlashing)
+			{
+				return Types.DamageType.Slashing;
+			}
+			else if (str == Constants.damageTypeForce)
+			{
+				return Types.DamageType.Force;
+			}
+			else if (str == Constants.damageTypeSonic)
+			{
+				return Types.DamageType.Sonic;
+			}
+			else if (str == Constants.damageTypeDivine)
+			{
+				return Types.DamageType.Divine;
+			}
+			else if (str == Constants.damageTypeSubdual)
+			{
+				return Types.DamageType.Subdual;
+			}
+			else if (str == Constants.damageTypeUntyped)
+			{
+				return Types.DamageType.Untyped;
+			}
+			else
+			{
+				throw new FormatException("Damage type \'" + str + "\' not recognised.");
+			}
+		}
+
+		public static readonly List<string> GetDamageTypeStrings()
+		{
+
+		}
+
+		public static int CalculateXP(int challengeRating)
 		{
 			if (challengeRating == 1)
 			{

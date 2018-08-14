@@ -19,10 +19,11 @@ namespace Dungeoneer.View
 	/// </summary>
 	public partial class InitiativeDialog : Window
 	{
-		public InitiativeDialog(string initScore, string initMod, string initRoll, string feedback = null)
+		public InitiativeDialog(string initScore, string initAdjust, string initMod, string initRoll, string feedback = null)
 		{
 			InitializeComponent();
 			txtScore.Text = initScore;
+			txtAdjust.Text = initAdjust;
 			txtMod.Text = initMod;
 			txtRoll.Text = initRoll;
 			lblFeedback.Content = feedback;
@@ -36,6 +37,11 @@ namespace Dungeoneer.View
 		public string InitScore
 		{
 			get { return txtScore.Text; }
+		}
+
+		public string InitAdjust
+		{
+			get { return txtAdjust.Text; }
 		}
 
 		public string InitMod
