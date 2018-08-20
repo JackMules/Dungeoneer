@@ -63,7 +63,7 @@ namespace Dungeoneer.ViewModel
 					{
 						int damage = Convert.ToInt32(damageDialog.Damage);
 						Utility.Types.DamageType damageType = Utility.Methods.GetDamageTypeFromString(damageDialog.DamageType);
-						Actor.DoDamage(damage, damageType);
+						Actor.DoDamage(damage, damageType); // The model shouldn't be modifying its own state, do this in another method somewhere else
 						askForInput = false;
 					}
 					catch (FormatException)

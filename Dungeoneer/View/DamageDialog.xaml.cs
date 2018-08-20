@@ -22,7 +22,8 @@ namespace Dungeoneer.View
 		public DamageDialog(string feedback = null)
 		{
 			InitializeComponent();
-			comboDamageType.ItemsSource = Utility.Constants.damageTypes
+			comboDamageType.ItemsSource = Utility.Methods.GetDamageTypeStringList();
+			comboDamageType.SelectedIndex = 0;
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
@@ -39,6 +40,5 @@ namespace Dungeoneer.View
 		{
 			get { return comboDamageType.SelectedItem.ToString(); }
 		}
-
 	}
 }

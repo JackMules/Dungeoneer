@@ -316,15 +316,7 @@ namespace Dungeoneer.Model
 
 		public void DoDamage(int damage, Utility.Types.DamageType damageType)
 		{
-			DamageReduction dr = null;
-//			try
-	//		{
-				dr = DamageReductions.SingleOrDefault(i => i.DamageType == damageType);
-//			}
-//			catch
-//			{
-
-//			}
+			DamageReduction dr = DamageReductions?.SingleOrDefault(i => i.DamageType == damageType);
 
 			if (dr != null)
 			{

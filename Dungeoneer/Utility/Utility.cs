@@ -347,9 +347,24 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static readonly List<string> GetDamageTypeStrings()
+		public static List<string> GetDamageTypeStringList()
 		{
-
+			return new List<string> {
+				Constants.damageTypeFire,
+				Constants.damageTypeCold,
+				Constants.damageTypeElectricity,
+				Constants.damageTypeAcid,
+				Constants.damageTypePositiveEnergy,
+				Constants.damageTypeNegativeEnergy,
+				Constants.damageTypePiercing,
+				Constants.damageTypeBludgeoning,
+				Constants.damageTypeSlashing,
+				Constants.damageTypeForce,
+				Constants.damageTypeSonic,
+				Constants.damageTypeDivine,
+				Constants.damageTypeSubdual,
+				Constants.damageTypeUntyped
+			};
 		}
 
 		public static int CalculateXP(int challengeRating)
@@ -371,5 +386,7 @@ namespace Dungeoneer.Utility
 				return 2 * CalculateXP(challengeRating - 2);
 			}
 		}
+
+		public static int CalculateDamage()
 	}
 }
