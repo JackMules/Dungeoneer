@@ -387,6 +387,21 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static int CalculateDamage()
+		public static int CalculateNewHitPoints(Model.Creature creature, int damage, Utility.Types.DamageType damageType)
+		{
+			Model.DamageReduction dr = creature.DamageReductions?.SingleOrDefault(i => i.DamageType == damageType);
+
+			if (dr != null)
+			{
+				damage -= dr.Value;
+
+				if (damage < 0)
+				{
+					damage = 0;
+				}
+			}
+
+			return creature.HitPoints - damage;
+		}
 	}
 }

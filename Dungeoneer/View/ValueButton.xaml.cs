@@ -20,14 +20,14 @@ namespace Dungeoneer.View
 	/// </summary>
 	public partial class ValueButton : UserControl
 	{
-		public Binding ValueBinding { get; set; }
-		public Binding CommandBinding { get; set; }
-
 		public ValueButton()
 		{
 			InitializeComponent();
 		}
 
+		public Binding ValueBinding { get; set; }
+		public Binding CommandBinding { get; set; }
+		
 		public string Title
 		{
 			get { return (string)GetValue(TitleProperty); }
@@ -36,7 +36,7 @@ namespace Dungeoneer.View
 
 		public static readonly DependencyProperty TitleProperty =
 			DependencyProperty.Register("ValueButtonTitle", typeof(string),
-			typeof(ValueDisplay), new PropertyMetadata(""));
+			typeof(ValueButton), new PropertyMetadata(""));
 
 		public string Value
 		{
@@ -46,7 +46,7 @@ namespace Dungeoneer.View
 
 		public static readonly DependencyProperty ValueProperty =
 				DependencyProperty.Register("ValueButtonValue", typeof(object),
-					typeof(ValueDisplay), new PropertyMetadata(""));
+					typeof(ValueButton), new PropertyMetadata(""));
 
 		private void GridLoaded(object sender, RoutedEventArgs e)
 		{

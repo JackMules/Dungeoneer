@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Dungeoneer.ViewModel
 {
@@ -11,10 +12,11 @@ namespace Dungeoneer.ViewModel
 	{
 		public ActorViewModel()
 		{
-			
+			_backgroundColor = Colors.LightGray;
 		}
 
 		protected Model.Actor _actor;
+		private Color _backgroundColor;
 
 		public Model.Actor Actor
 		{
@@ -53,6 +55,26 @@ namespace Dungeoneer.ViewModel
 			{
 				Actor.InitiativeMod = value;
 				NotifyPropertyChanged("InitiativeMod");
+			}
+		}
+
+		public bool Active
+		{
+			get { return Actor.Active; }
+			set
+			{
+				Actor.Active = value;
+				NotifyPropertyChanged("Active");
+			}
+		}
+
+		public Color BackgroundColor
+		{
+			get { return _backgroundColor; }
+			set
+			{
+				_backgroundColor = value;
+				NotifyPropertyChanged("BackgroundColor");
 			}
 		}
 	}

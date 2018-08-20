@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="76" d:DesignWidth="596">
 	<Grid>
-		<Border Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4">
+		<Border Margin="2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="4">
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
 					<Label Name="NameLabel" Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
@@ -23,6 +23,16 @@
 					<Button Content="Add Effect" Margin="5"/>
 				</StackPanel>
 			</DockPanel>
+			<Border.Style>
+				<Style TargetType="{x:Type Border}">
+					<Setter Property="Background" Value="LightGray"/>
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding Active}" Value="False">
+							<Setter Property="Background" Value="Gray"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Border.Style>
 		</Border>
 	</Grid>
 </UserControl>

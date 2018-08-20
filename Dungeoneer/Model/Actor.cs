@@ -14,11 +14,13 @@ namespace Dungeoneer.Model
 			DisplayName = "no display name";
 			ActorName = "no name";
 			InitiativeMod = 0;
+			Active = true;
 		}
 
-		private string _displayName { get; set; }
-		private string _actorName { get; set; }
-		private int _initiativeMod { get; set; }
+		private string _displayName;
+		private string _actorName;
+		private int _initiativeMod;
+		private bool _active;
 		private Utility.FullyObservableCollection<Condition> _conditions;
 
 		public string DisplayName
@@ -51,6 +53,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool Active
+		{
+			get { return _active; }
+			set
+			{
+				_active = value;
+				OnPropertyChanged("Active");
+			}
+		}
+
 		public Utility.FullyObservableCollection<Condition> Conditions
 		{
 			get { return _conditions; }
@@ -69,6 +81,7 @@ namespace Dungeoneer.Model
 			DisplayName = displayName;
 			ActorName = actorName;
 			InitiativeMod = initiativeMod;
+			Active = true;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

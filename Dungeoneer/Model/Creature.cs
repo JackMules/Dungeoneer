@@ -313,22 +313,5 @@ namespace Dungeoneer.Model
 			Size = size;
 			DamageReductions = damageReductions;
 		}
-
-		public void DoDamage(int damage, Utility.Types.DamageType damageType)
-		{
-			DamageReduction dr = DamageReductions?.SingleOrDefault(i => i.DamageType == damageType);
-
-			if (dr != null)
-			{
-				damage -= dr.Value;
-
-				if (damage < 0)
-				{
-					damage = 0;
-				}
-			}
-			
-			HitPoints -= damage;
-		}
 	}
 }

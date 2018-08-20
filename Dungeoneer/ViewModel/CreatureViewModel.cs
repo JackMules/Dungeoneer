@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Dungeoneer.ViewModel
 {
@@ -42,6 +43,8 @@ namespace Dungeoneer.ViewModel
 			{
 				Actor.HitPoints = Convert.ToInt32(value);
 				NotifyPropertyChanged("HitPoints");
+				Active = (Actor.HitPoints > 0);
+				BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
 			}
 		}
 
@@ -63,7 +66,7 @@ namespace Dungeoneer.ViewModel
 					{
 						int damage = Convert.ToInt32(damageDialog.Damage);
 						Utility.Types.DamageType damageType = Utility.Methods.GetDamageTypeFromString(damageDialog.DamageType);
-						Actor.DoDamage(damage, damageType); // The model shouldn't be modifying its own state, do this in another method somewhere else
+						HitPoints = Utility.Methods.CalculateNewHitPoints(Actor, damage, damageType).ToString();
 						askForInput = false;
 					}
 					catch (FormatException)
