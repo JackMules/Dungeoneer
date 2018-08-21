@@ -17,6 +17,8 @@ namespace Dungeoneer.ViewModel
 			_encounter = new EncounterViewModel();
 
 			CreateTestData();
+
+			_actorLibrary.WriteXML();
 		}
 
 		private Model.ActorLibrary _actorLibrary;

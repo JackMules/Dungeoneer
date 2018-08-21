@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
@@ -33,7 +34,7 @@ namespace Dungeoneer.Model
 		private bool _powerAttack;
 
 		private Utility.Types.Size _size;
-		private List<DamageReduction> _damageReductions;
+		private Utility.FullyObservableCollection<DamageReduction> _damageReductions;
 
 		public int Strength
 		{
@@ -225,7 +226,7 @@ namespace Dungeoneer.Model
 			}
 		}
 		
-		public List<DamageReduction> DamageReductions
+		public Utility.FullyObservableCollection<DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
 			set
@@ -288,9 +289,10 @@ namespace Dungeoneer.Model
 			int willSave,
 			bool powerAttack,
 			Utility.Types.Size size,
-			List<DamageReduction> damageReductions)
+			Utility.FullyObservableCollection<DamageReduction> damageReductions,
+			Utility.FullyObservableCollection<Condition> conditions)
 			: base(displayName, actorName, type, 
-					initiativeMod, challengeRating, attacks)
+					initiativeMod, challengeRating, attacks, conditions)
 		{
 			Strength = strength;
 			Dexterity = dexterity;
@@ -312,6 +314,103 @@ namespace Dungeoneer.Model
 			PowerAttack = powerAttack;
 			Size = size;
 			DamageReductions = damageReductions;
+		}
+
+		public new void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("Creature");
+		}
+
+		public new void WritePropertyXML(XmlWriter xmlWriter)
+		{
+			base.WritePropertyXML(xmlWriter);
+
+			xmlWriter.WriteStartElement("Strength");
+			xmlWriter.WriteString(Strength.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Dexterity");
+			xmlWriter.WriteString(Dexterity.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Constitution");
+			xmlWriter.WriteString(Constitution.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Intelligence");
+			xmlWriter.WriteString(Intelligence.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Wisdom");
+			xmlWriter.WriteString(Wisdom.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Charisma");
+			xmlWriter.WriteString(Charisma.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("BaseAttackBonus");
+			xmlWriter.WriteString(BaseAttackBonus.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HitPoints");
+			xmlWriter.WriteString(HitPoints.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HitDice");
+			xmlWriter.WriteString(HitDice.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HitDiceType");
+			xmlWriter.WriteString(Utility.Methods.GetDieTypeString(HitDiceType));
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ArmourClass");
+			xmlWriter.WriteString(ArmourClass.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("TouchArmourClass");
+			xmlWriter.WriteString(TouchArmourClass.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("FlatFootedArmourClass");
+			xmlWriter.WriteString(FlatFootedArmourClass.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Speed");
+			xmlWriter.WriteString(Speed.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("FortitudeSave");
+			xmlWriter.WriteString(FortitudeSave.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ReflexSave");
+			xmlWriter.WriteString(ReflexSave.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("WillSave");
+			xmlWriter.WriteString(WillSave.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("PowerAttack");
+			xmlWriter.WriteString(PowerAttack.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Size");
+			xmlWriter.WriteString(Utility.Methods.GetSizeString(Size));
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("PowerAttack");
+			xmlWriter.WriteString(PowerAttack.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("DamageReductions");
+			foreach (DamageReduction dr in DamageReductions)
+			{
+				dr.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
 		}
 	}
 }

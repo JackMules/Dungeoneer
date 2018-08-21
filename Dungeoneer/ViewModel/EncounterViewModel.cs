@@ -11,16 +11,28 @@ namespace Dungeoneer.ViewModel
 {
 	public class EncounterViewModel : BaseViewModel
 	{
+		private Utility.FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
+		private int _round;
+		private RelayCommand _nextRound;
+		private Command _save;
+
 		public EncounterViewModel()
 		{
 			_initiativeTrack = new Utility.FullyObservableCollection<InitiativeCardViewModel>();
-
 			_round = 1;
-
 			_nextRound = new RelayCommand(ExecuteNextRound, CheckRound);
+			_save = new Command(ExecuteSave);
 		}
 
-		private RelayCommand _nextRound;
+		public int Round
+		{
+			get { return _round; }
+			set
+			{
+				_round = value;
+				NotifyPropertyChanged("Round");
+			}
+		}
 
 		public RelayCommand NextRound
 		{
@@ -50,21 +62,7 @@ namespace Dungeoneer.ViewModel
 
 			return roundComplete;
 		}
-
-		private int _round;
-
-		public int Round
-		{
-			get { return _round; }
-			set
-			{
-				_round = value;
-				NotifyPropertyChanged("Round");
-			}
-		}
-
-		private Utility.FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
-
+		
 		public Utility.FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{
 			get { return _initiativeTrack; }
@@ -97,6 +95,11 @@ namespace Dungeoneer.ViewModel
 				}
 			}
 			return count;
+		}
+
+		public void ExecuteSave()
+		{
+
 		}
 	}
 }

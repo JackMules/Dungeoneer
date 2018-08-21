@@ -350,18 +350,18 @@ namespace Dungeoneer.Utility
 		public static List<string> GetDamageTypeStringList()
 		{
 			return new List<string> {
-				Constants.damageTypeFire,
-				Constants.damageTypeCold,
-				Constants.damageTypeElectricity,
 				Constants.damageTypeAcid,
-				Constants.damageTypePositiveEnergy,
+				Constants.damageTypeBludgeoning,
+				Constants.damageTypeCold,
+				Constants.damageTypeDivine,
+				Constants.damageTypeElectricity,
+				Constants.damageTypeFire,
+				Constants.damageTypeForce,
 				Constants.damageTypeNegativeEnergy,
 				Constants.damageTypePiercing,
-				Constants.damageTypeBludgeoning,
+				Constants.damageTypePositiveEnergy,
 				Constants.damageTypeSlashing,
-				Constants.damageTypeForce,
 				Constants.damageTypeSonic,
-				Constants.damageTypeDivine,
 				Constants.damageTypeSubdual,
 				Constants.damageTypeUntyped
 			};

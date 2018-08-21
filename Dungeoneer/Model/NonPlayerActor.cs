@@ -3,14 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
 	public class NonPlayerActor : Actor
 	{
-		public string Type { get; set; }
-		public float ChallengeRating { get; set; }
-		public List<Attack> Attacks;
+		private string _type;
+		private float _challengeRating;
+		private List<Attack> _attacks;
+
+		public string Type
+		{
+			get { return _type; }
+			set
+			{
+				_type = value;
+				OnPropertyChanged("Type");
+			}
+		}
+
+		public float ChallengeRating
+		{
+			get { return _challengeRating; }
+			set
+			{
+				_challengeRating = value;
+				OnPropertyChanged("ChallengeRating");
+			}
+		}
+
+		public List<Attack> Attacks
+		{
+			get { return _attacks; }
+			set
+			{
+				_attacks = value;
+				OnPropertyChanged("Attacks");
+			}
+		}
 
 		public NonPlayerActor()
 			: base()
@@ -26,12 +57,38 @@ namespace Dungeoneer.Model
 			string type,
 			int initiativeMod,
 			float challengeRating,
-			List<Attack> attacks)
-			: base(displayName, actorName, initiativeMod)
+			List<Attack> attacks,
+			Utility.FullyObservableCollection<Condition> conditions)
+			: base(displayName, actorName, initiativeMod, conditions)
 		{
 			Type = type;
 			ChallengeRating = challengeRating;
 			Attacks = attacks;
+		}
+
+		public new void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("NonPlayerActor");
+		}
+
+		public new void WritePropertyXML(XmlWriter xmlWriter)
+		{
+			base.WritePropertyXML(xmlWriter);
+
+			xmlWriter.WriteStartElement("Type");
+			xmlWriter.WriteString(Type);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ChallengeRating");
+			xmlWriter.WriteString(ChallengeRating.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Attacks");
+			foreach (Attack attack in Attacks)
+			{
+				attack.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
 		}
 	}
 }

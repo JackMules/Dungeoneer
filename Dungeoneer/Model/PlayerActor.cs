@@ -17,8 +17,9 @@ namespace Dungeoneer.Model
 		public PlayerActor(
 			string displayName,
 			string actorName,
-			int initiativeMod)
-			: base(displayName, actorName, initiativeMod)
+			int initiativeMod,
+			Utility.FullyObservableCollection<Condition> conditions)
+			: base(displayName, actorName, initiativeMod, conditions)
 		{
 		}
 	}

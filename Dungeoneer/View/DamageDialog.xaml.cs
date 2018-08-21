@@ -23,10 +23,10 @@ namespace Dungeoneer.View
 		{
 			InitializeComponent();
 			comboDamageType.ItemsSource = Utility.Methods.GetDamageTypeStringList();
-			comboDamageType.SelectedIndex = 0;
+			comboDamageType.SelectedIndex = 10;
 		}
 
-		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+		private void BtnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
 			this.DialogResult = true;
 		}

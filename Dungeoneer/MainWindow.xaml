@@ -48,6 +48,7 @@
 								<Label Content="Round" FontWeight="Bold"/>
 								<Label Content="{Binding Encounter.Round}" Margin="10,0" Background="White" FontWeight="Bold"/>
 								<Button Content="Next Round" Command="{Binding Encounter.NextRound}"/>
+								<Button Content="Save Encounter" Command="{Binding Encounter.Save}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal"  DockPanel.Dock="Right">
 								<Label Content="XP Earned"/>

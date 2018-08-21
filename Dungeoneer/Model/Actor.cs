@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
@@ -15,6 +16,7 @@ namespace Dungeoneer.Model
 			ActorName = "no name";
 			InitiativeMod = 0;
 			Active = true;
+			Conditions = new Utility.FullyObservableCollection<Condition>();
 		}
 
 		private string _displayName;
@@ -76,12 +78,48 @@ namespace Dungeoneer.Model
 		public Actor(
 			string displayName,
 			string actorName,
-			int initiativeMod)
+			int initiativeMod,
+			Utility.FullyObservableCollection<Condition> conditions)
 		{
 			DisplayName = displayName;
 			ActorName = actorName;
 			InitiativeMod = initiativeMod;
 			Active = true;
+			Conditions = conditions;
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			WriteXMLStartElement(xmlWriter);
+			WritePropertyXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		public void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("Actor");
+		}
+
+		public void WritePropertyXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("ActorName");
+			xmlWriter.WriteString(ActorName);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("DisplayName");
+			xmlWriter.WriteString(DisplayName);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("InitiativeMod");
+			xmlWriter.WriteString(InitiativeMod.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Conditions");
+			foreach (Condition condition in Conditions)
+			{
+				condition.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
