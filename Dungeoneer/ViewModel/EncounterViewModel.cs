@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Microsoft.Win32;
 
 namespace Dungeoneer.ViewModel
 {
@@ -15,6 +17,8 @@ namespace Dungeoneer.ViewModel
 		private int _round;
 		private RelayCommand _nextRound;
 		private Command _save;
+		private Command _clear;
+		private Command _load;
 
 		public EncounterViewModel()
 		{
@@ -22,6 +26,8 @@ namespace Dungeoneer.ViewModel
 			_round = 1;
 			_nextRound = new RelayCommand(ExecuteNextRound, CheckRound);
 			_save = new Command(ExecuteSave);
+			_clear = new Command(ExecuteClear);
+			_load = new Command(ExecuteLoad);
 		}
 
 		public int Round
@@ -97,9 +103,69 @@ namespace Dungeoneer.ViewModel
 			return count;
 		}
 
+		public Command Save
+		{
+			get { return _save; }
+		}
+
 		public void ExecuteSave()
 		{
+			SaveFileDialog dlg = new SaveFileDialog
+			{
+				FileName = "Encounter",
+				DefaultExt = ".xml",
+				Filter = "XML documents (.xml)|*.xml"
+			};
+			
+			if (dlg.ShowDialog() == true)
+			{
+				XmlWriter xmlWriter = XmlWriter.Create(dlg.FileName);
 
+				xmlWriter.WriteStartDocument();
+				xmlWriter.WriteStartElement("Encounter");
+				xmlWriter.WriteAttributeString("Round", Round.ToString());
+
+				foreach (InitiativeCardViewModel initCard in InitiativeTrack)
+				{
+					initCard.WriteXML(xmlWriter);
+				}
+
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndDocument();
+				xmlWriter.Close();
+			}
+		}
+
+		public Command Clear
+		{
+			get { return _clear; }
+		}
+
+		public void ExecuteClear()
+		{
+			InitiativeTrack.Clear();
+		}
+
+		public Command Load
+		{
+			get { return _load; }
+		}
+
+		public void ExecuteLoad()
+		{
+			OpenFileDialog dlg = new OpenFileDialog
+			{
+				FileName = "Encounter",
+				DefaultExt = ".xml",
+				Filter = "XML documents (.xml)|*.xml"
+			};
+
+			if (dlg.ShowDialog() == true)
+			{
+				XmlReader xmlReader = XmlReader.Create(dlg.FileName);
+
+				
+			}
 		}
 	}
 }

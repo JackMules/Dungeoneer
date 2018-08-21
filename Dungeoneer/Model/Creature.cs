@@ -258,7 +258,7 @@ namespace Dungeoneer.Model
 			WillSave = 0;
 			PowerAttack = false;
 			Size = Utility.Types.Size.Medium;
-			DamageReductions = null;
+			DamageReductions = new Utility.FullyObservableCollection<DamageReduction>();
 		}
 
 		public Creature(
@@ -316,12 +316,12 @@ namespace Dungeoneer.Model
 			DamageReductions = damageReductions;
 		}
 
-		public new void WriteXMLStartElement(XmlWriter xmlWriter)
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Creature");
 		}
 
-		public new void WritePropertyXML(XmlWriter xmlWriter)
+		public override void WritePropertyXML(XmlWriter xmlWriter)
 		{
 			base.WritePropertyXML(xmlWriter);
 

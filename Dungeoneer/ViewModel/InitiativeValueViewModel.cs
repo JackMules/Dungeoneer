@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
@@ -151,6 +152,11 @@ namespace Dungeoneer.ViewModel
 				InitiativeValue.Readied = value;
 				NotifyPropertyChanged("Readied");
 			}
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			InitiativeValue.WriteXML(xmlWriter);
 		}
 	}
 }

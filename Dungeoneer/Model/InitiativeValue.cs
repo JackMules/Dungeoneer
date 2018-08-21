@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
@@ -96,6 +97,41 @@ namespace Dungeoneer.Model
 				_readied = value;
 				OnPropertyChanged("Readied");
 			}
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("InitiativeValue");
+
+			xmlWriter.WriteStartElement("InitiativeScore");
+			xmlWriter.WriteString(InitiativeScore.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("InitiativeAdjust");
+			xmlWriter.WriteString(InitiativeAdjust.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("InitiativeMod");
+			xmlWriter.WriteString(InitiativeMod.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("InitiativeRoll");
+			xmlWriter.WriteString(InitiativeRoll.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Delayed");
+			xmlWriter.WriteString(Delayed.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("TurnEnded");
+			xmlWriter.WriteString(TurnEnded.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Readied");
+			xmlWriter.WriteString(Readied.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteEndElement();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

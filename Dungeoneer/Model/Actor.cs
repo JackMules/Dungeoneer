@@ -95,12 +95,12 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 		}
 
-		public void WriteXMLStartElement(XmlWriter xmlWriter)
+		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Actor");
 		}
 
-		public void WritePropertyXML(XmlWriter xmlWriter)
+		public virtual void WritePropertyXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("ActorName");
 			xmlWriter.WriteString(ActorName);

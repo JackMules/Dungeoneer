@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
@@ -76,6 +77,11 @@ namespace Dungeoneer.ViewModel
 				_backgroundColor = value;
 				NotifyPropertyChanged("BackgroundColor");
 			}
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			Actor.WriteXML(xmlWriter);
 		}
 	}
 }

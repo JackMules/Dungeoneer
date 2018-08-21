@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
@@ -13,7 +14,6 @@ namespace Dungeoneer.ViewModel
 		{
 			_initiativeValueViewModel = new InitiativeValueViewModel();
 			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
-			
 		}
 
 		private InitiativeValueViewModel _initiativeValueViewModel;
@@ -104,6 +104,14 @@ namespace Dungeoneer.ViewModel
 					askForInput = false;
 				}
 			}
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("InitiativeCard");
+			ActorViewModel.WriteXML(xmlWriter);
+			InitiativeValueViewModel.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
 		}
 	}
 }

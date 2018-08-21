@@ -48,7 +48,7 @@ namespace Dungeoneer.Model
 		{
 			Type = "No Type";
 			ChallengeRating = 1;
-			Attacks = null;
+			Attacks = new List<Attack>();
 		}
 
 		public NonPlayerActor(
@@ -66,12 +66,12 @@ namespace Dungeoneer.Model
 			Attacks = attacks;
 		}
 
-		public new void WriteXMLStartElement(XmlWriter xmlWriter)
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("NonPlayerActor");
 		}
 
-		public new void WritePropertyXML(XmlWriter xmlWriter)
+		public override void WritePropertyXML(XmlWriter xmlWriter)
 		{
 			base.WritePropertyXML(xmlWriter);
 
