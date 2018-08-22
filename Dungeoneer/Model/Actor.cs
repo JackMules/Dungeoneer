@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
@@ -120,6 +121,44 @@ namespace Dungeoneer.Model
 				condition.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
+		}
+
+		public virtual void ReadXML(XmlNode xmlNode)
+		{
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "ActorName")
+					{
+						ActorName = childNode.Value;
+					}
+					else if (childNode.Name == "DisplayName")
+					{
+						DisplayName = childNode.Value;
+					}
+					else if (childNode.Name == "InitiativeMod")
+					{
+						InitiativeMod = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Conditions")
+					{
+						foreach (XmlNode conditionNode in childNode.ChildNodes)
+						{
+							if (conditionNode.Name == "Condition")
+							{
+								Condition condition = new Condition();
+								condition.ReadXML(conditionNode);
+								Conditions.Add(condition);
+							}
+						}
+					}
+				}
+			}
+			catch (System.Xml.XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

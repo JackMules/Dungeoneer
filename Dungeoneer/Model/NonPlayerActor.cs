@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
@@ -89,6 +90,42 @@ namespace Dungeoneer.Model
 				attack.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
+		}
+
+		public override void ReadXML(XmlNode xmlNode)
+		{
+			base.ReadXML(xmlNode);
+
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "Type")
+					{
+						Type = childNode.Value;
+					}
+					else if (childNode.Name == "ChallengeRating")
+					{
+						ChallengeRating = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Attacks")
+					{
+						foreach (XmlNode attackNode in childNode.ChildNodes)
+						{
+							if (attackNode.Name == "Attack")
+							{
+								Attack attack = new Attack();
+								attack.ReadXML(attackNode);
+								Attacks.Add(attack);
+							}
+						}
+					}
+				}
+			}
+			catch (System.Xml.XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 	}
 }

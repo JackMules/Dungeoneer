@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace Dungeoneer.ViewModel
 {
@@ -16,8 +16,8 @@ namespace Dungeoneer.ViewModel
 		private Utility.FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
 		private int _round;
 		private RelayCommand _nextRound;
-		private Command _save;
 		private Command _clear;
+		private Command _save;
 		private Command _load;
 
 		public EncounterViewModel()
@@ -25,8 +25,8 @@ namespace Dungeoneer.ViewModel
 			_initiativeTrack = new Utility.FullyObservableCollection<InitiativeCardViewModel>();
 			_round = 1;
 			_nextRound = new RelayCommand(ExecuteNextRound, CheckRound);
-			_save = new Command(ExecuteSave);
 			_clear = new Command(ExecuteClear);
+			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
 		}
 
@@ -117,7 +117,7 @@ namespace Dungeoneer.ViewModel
 				Filter = "XML documents (.xml)|*.xml"
 			};
 			
-			if (dlg.ShowDialog() == true)
+			if (dlg.ShowDialog() == DialogResult.OK)
 			{
 				XmlWriter xmlWriter = XmlWriter.Create(dlg.FileName);
 
@@ -153,6 +153,8 @@ namespace Dungeoneer.ViewModel
 
 		public void ExecuteLoad()
 		{
+			ExecuteClear();
+
 			OpenFileDialog dlg = new OpenFileDialog
 			{
 				FileName = "Encounter",
@@ -160,11 +162,32 @@ namespace Dungeoneer.ViewModel
 				Filter = "XML documents (.xml)|*.xml"
 			};
 
-			if (dlg.ShowDialog() == true)
+			if (dlg.ShowDialog() == DialogResult.OK)
 			{
-				XmlReader xmlReader = XmlReader.Create(dlg.FileName);
+				try
+				{
+					XmlDocument xmlDoc = new XmlDocument();
+					xmlDoc.Load(dlg.FileName);
 
-				
+					XmlAttributeCollection attrColl = xmlDoc.DocumentElement.Attributes;
+					XmlAttribute round = (XmlAttribute)attrColl.GetNamedItem("Round");
+
+					Round = Convert.ToInt32(round.Value);
+
+					foreach (XmlNode xmlNode in xmlDoc.DocumentElement)
+					{
+						if (xmlNode.Name == "InitiativeCard")
+						{
+							InitiativeCardViewModel initCard = new InitiativeCardViewModel();
+							initCard.ReadXML(xmlNode);
+							InitiativeTrack.Add(initCard);
+						}
+					}
+				}
+				catch (System.Xml.XmlException e)
+				{
+					MessageBox.Show(e.ToString());
+				}
 			}
 		}
 	}

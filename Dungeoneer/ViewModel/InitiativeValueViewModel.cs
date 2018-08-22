@@ -158,5 +158,10 @@ namespace Dungeoneer.ViewModel
 		{
 			InitiativeValue.WriteXML(xmlWriter);
 		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			InitiativeValue.ReadXML(xmlNode);
+		}
 	}
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
@@ -132,6 +133,48 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteEndElement();
+		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "InitiativeScore")
+					{
+						InitiativeScore = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "InitiativeAdjust")
+					{
+						InitiativeAdjust = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "InitiativeMod")
+					{
+						InitiativeMod = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "InitiativeRoll")
+					{
+						InitiativeRoll = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Delayed")
+					{
+						Delayed = Convert.ToBoolean(childNode.Value);
+					}
+					else if (childNode.Name == "TurnEnded")
+					{
+						TurnEnded = Convert.ToBoolean(childNode.Value);
+					}
+					else if (childNode.Name == "Readied")
+					{
+						Readied = Convert.ToBoolean(childNode.Value);
+					}
+				}
+			}
+			catch (System.Xml.XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

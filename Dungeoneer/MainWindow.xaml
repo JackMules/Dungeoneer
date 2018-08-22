@@ -8,9 +8,6 @@
 				xmlns:model="clr-namespace:Dungeoneer.Model"
 				xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
 				xmlns:clr="clr-namespace:System;assembly=mscorlib">
-	<Window.DataContext>
-		<viewmodel:MainViewModel/>
-	</Window.DataContext>
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -38,70 +35,80 @@
 		</ResourceDictionary>
 	</Window.Resources>
 	<Grid>
-		<TabControl>
-			<TabItem x:Name="InitiativeTab" Header="Initiative">
-				<DockPanel>
-					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
-					<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-						<DockPanel>
-							<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-								<Label Content="Round" FontWeight="Bold" Margin="5,0,0,0"/>
-								<Label Content="{Binding Encounter.Round}" Margin="0,0,5,0" Background="White" FontWeight="Bold" MinWidth="25"/>
-								<Button Content="Next Round" Command="{Binding Encounter.NextRound}" Margin="5,0"/>
-								<Button Content="Save Encounter" Command="{Binding Encounter.Save}" Margin="5,0"/>
-								<Button Content="Clear Encounter" Command="{Binding Encounter.Clear}" Margin="5,0"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal"  DockPanel.Dock="Right">
-								<Label Content="XP Earned"/>
-								<TextBox Name="XPTextBox" MinWidth="60" Margin="0,0,5,0"/>
-							</StackPanel>
-							<Label/>
-						</DockPanel>
-					</Border>
-					<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
-					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-						<ScrollViewer VerticalScrollBarVisibility="Auto">
-							<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
+		<DockPanel>
+			<Menu DockPanel.Dock="Top">
+				<MenuItem Header="_File">
+					<MenuItem Header="_New Encounter" Command="{Binding Encounter.Clear}"/>
+					<MenuItem Header="_Load Encounter" Command="{Binding Encounter.Load}"/>
+					<MenuItem Header="_Save Encounter" Command="{Binding Encounter.Save}"/>
+					<Separator />
+					<MenuItem Header="_Save Actor Data" Command="{Binding SaveActorLibrary}"/>
+					<MenuItem Header="_Exit" Command="{Binding Exit}"/>
+				</MenuItem>
+			</Menu>
+			<TabControl>
+				<TabItem x:Name="InitiativeTab" Header="Initiative">
+					<DockPanel>
+						<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
+						<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+							<DockPanel>
+								<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+									<Label Content="Round" FontWeight="Bold" Margin="5,0,0,0"/>
+									<Label Content="{Binding Encounter.Round}" Margin="0,0,5,0" Background="White" FontWeight="Bold" MinWidth="25"/>
+									<Button Content="Next Round" Command="{Binding Encounter.NextRound}" Margin="5,0"/>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal"  DockPanel.Dock="Right">
+									<Label Content="XP Earned"/>
+									<TextBox Name="XPTextBox" MinWidth="60" Margin="0,0,5,0"/>
+								</StackPanel>
+								<Label/>
+							</DockPanel>
+						</Border>
+						<Rectangle Margin="0,0,0,0" Fill="DarkGray" RadiusX="8" RadiusY="8"/>
+						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+							<ScrollViewer VerticalScrollBarVisibility="Auto">
+								<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
 														Background="Transparent">
-							</ItemsControl>
-						</ScrollViewer>
-					</Border>
-				</DockPanel>
-			</TabItem>
-			<TabItem x:Name="EnemiesTab" Header="Enemies">
-				<StackPanel Orientation="Vertical">
-					<DockPanel FlowDirection="RightToLeft">
-						<Button x:Name="CreateNonPlayerActorButton" HorizontalAlignment="Right" Content="New Non-Player Actor" Margin="5,0"/>
-						<Button x:Name="CreateCreatureButton" HorizontalAlignment="Right" Content="New Creature" Margin="0,0,5,0"/>
-						<TextBox x:Name="FilterActorsBox" ToolTip="Type to filter Actors" />
+								</ItemsControl>
+							</ScrollViewer>
+						</Border>
 					</DockPanel>
-					<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
-						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
-							<ItemsControl ItemsSource="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
+				</TabItem>
+				<TabItem x:Name="EnemiesTab" Header="Enemies">
+					<StackPanel Orientation="Vertical">
+						<DockPanel FlowDirection="RightToLeft">
+							<Button x:Name="CreateNonPlayerActorButton" HorizontalAlignment="Right" Content="New Non-Player Actor" Margin="5,0"/>
+							<Button x:Name="CreateCreatureButton" HorizontalAlignment="Right" Content="New Creature" Margin="0,0,5,0"/>
+							<TextBox x:Name="FilterActorsBox" ToolTip="Type to filter Actors" />
+						</DockPanel>
+						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+							<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
+								<ItemsControl ItemsSource="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource NonPlayerActorDisplayTemplate}"
 														Background="Transparent"/>
-						</ScrollViewer>
-					</Border>
-				</StackPanel>
-			</TabItem>
-			<TabItem x:Name="EnvironmentTab" Header="Environment">
+							</ScrollViewer>
+						</Border>
+					</StackPanel>
+				</TabItem>
+				<TabItem x:Name="EnvironmentTab" Header="Environment">
 
-			</TabItem>
-			<TabItem x:Name="PartyTab" Header="Party">
-				<StackPanel Orientation="Vertical">
-					<DockPanel FlowDirection="RightToLeft">
-						<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
-					</DockPanel>
-					<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
-						<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
-							<ItemsControl x:Name="CharactersControl" ItemsSource="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
+				</TabItem>
+				<TabItem x:Name="PartyTab" Header="Party">
+					<StackPanel Orientation="Vertical">
+						<DockPanel FlowDirection="RightToLeft">
+							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
+						</DockPanel>
+						<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
+							<ScrollViewer Margin="8,8,8,8" VerticalScrollBarVisibility="Auto">
+								<ItemsControl x:Name="CharactersControl" ItemsSource="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource PlayerActorDisplayTemplate}"
 														Background="Transparent"/>
-						</ScrollViewer>
-					</Border>
-				</StackPanel>
-			</TabItem>
-		</TabControl>
+							</ScrollViewer>
+						</Border>
+					</StackPanel>
+				</TabItem>
+			</TabControl>
+		</DockPanel>
 	</Grid>
 </Window>

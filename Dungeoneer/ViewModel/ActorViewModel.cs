@@ -83,5 +83,10 @@ namespace Dungeoneer.ViewModel
 		{
 			Actor.WriteXML(xmlWriter);
 		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			Actor.ReadXML(xmlNode);
+		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
@@ -400,17 +401,115 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("Size");
 			xmlWriter.WriteString(Utility.Methods.GetSizeString(Size));
 			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("PowerAttack");
-			xmlWriter.WriteString(PowerAttack.ToString());
-			xmlWriter.WriteEndElement();
-
+			
 			xmlWriter.WriteStartElement("DamageReductions");
 			foreach (DamageReduction dr in DamageReductions)
 			{
 				dr.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
+		}
+
+		public override void ReadXML(XmlNode xmlNode)
+		{
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "Strength")
+					{
+						Strength = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Dexterity")
+					{
+						Dexterity = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Constitution")
+					{
+						Constitution = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Intelligence")
+					{
+						Intelligence = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Wisdom")
+					{
+						Wisdom = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Charisma")
+					{
+						Charisma = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "BaseAttackBonus")
+					{
+						BaseAttackBonus = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "HitPoints")
+					{
+						HitPoints = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "HitDice")
+					{
+						HitDice = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "HitDiceType")
+					{
+						HitDiceType = Utility.Methods.GetDieTypeFromString(childNode.Value);
+					}
+					else if (childNode.Name == "ArmourClass")
+					{
+						ArmourClass = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "TouchArmourClass")
+					{
+						TouchArmourClass = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "FlatFootedArmourClass")
+					{
+						FlatFootedArmourClass = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "Speed")
+					{
+						Speed = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "FortitudeSave")
+					{
+						FortitudeSave = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "ReflexSave")
+					{
+						ReflexSave = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "WillSave")
+					{
+						WillSave = Convert.ToInt32(childNode.Value);
+					}
+					else if (childNode.Name == "PowerAttack")
+					{
+						PowerAttack = Convert.ToBoolean(childNode.Value);
+					}
+					else if (childNode.Name == "Size")
+					{
+						Size = Utility.Methods.GetSizeFromString(childNode.Value);
+					}
+					else if (childNode.Name == "DamageReductions")
+					{
+						foreach (XmlNode drNode in childNode.ChildNodes)
+						{
+							if (drNode.Name == "DamageReduction")
+							{
+								DamageReduction dr = new DamageReduction();
+								dr.ReadXML(drNode);
+								DamageReductions.Add(dr);
+							}
+						}
+					}
+				}
+			}
+			catch (System.Xml.XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 	}
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
@@ -56,19 +57,68 @@ namespace Dungeoneer.Model
 
 			xmlWriter.WriteStartDocument();
 			xmlWriter.WriteStartElement("Characters");
-
 			foreach (PlayerActor character in Characters)
 			{
 				character.WriteXML(xmlWriter);
 			}
+			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("Enemies");
 			foreach (NonPlayerActor enemy in Enemies)
 			{
 				enemy.WriteXML(xmlWriter);
 			}
+			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
+		}
+
+		public void ReadXML()
+		{
+			try
+			{
+				XmlDocument xmlDoc = new XmlDocument();
+				xmlDoc.Load("ActorLibrary.xml");
+
+				foreach (XmlNode xmlNode in xmlDoc.DocumentElement)
+				{
+					if (xmlNode.Name == "Characters")
+					{
+						foreach (XmlNode characterNode in xmlNode.ChildNodes)
+						{
+							if (xmlNode.Name == "PlayerActor")
+							{
+								PlayerActor playerActor = new PlayerActor();
+								playerActor.ReadXML(xmlNode);
+								Characters.Add(playerActor);
+							}
+						}
+					}
+					else if (xmlNode.Name == "Enemies")
+					{
+						foreach (XmlNode characterNode in xmlNode.ChildNodes)
+						{
+							if (xmlNode.Name == "NonPlayerActor")
+							{
+								NonPlayerActor nonPlayerActor = new NonPlayerActor();
+								nonPlayerActor.ReadXML(xmlNode);
+								Enemies.Add(nonPlayerActor);
+							}
+							else if (xmlNode.Name == "Creature")
+							{
+								Creature creature = new Creature();
+								creature.ReadXML(xmlNode);
+								Enemies.Add(creature);
+							}
+						}
+					}
+				}
+			}
+			catch (System.Xml.XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 	}
 }

@@ -12,17 +12,19 @@ namespace Dungeoneer.ViewModel
 	{
 		public MainViewModel()
 		{
-			_addActorCommand = new Command(AddActorToEncounter);
+			_addActor = new Command(AddActorToEncounter);
+			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_actorLibrary = new Model.ActorLibrary();
 			_encounter = new EncounterViewModel();
 
+			ActorLibrary.LoadValues();
 			CreateTestData();
-
-			_actorLibrary.WriteXML();
 		}
 
 		private Model.ActorLibrary _actorLibrary;
 		private EncounterViewModel _encounter;
+		private Command _addActor;
+		private Command _saveActorLibrary;
 
 		public EncounterViewModel Encounter
 		{
@@ -44,11 +46,9 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		private Command _addActorCommand;
-
-		public Command AddActorCommand
+		public Command AddActor
 		{
-			get { return _addActorCommand; }
+			get { return _addActor; }
 		}
 
 		private void AddActorToEncounter(object actorObj)
@@ -73,7 +73,17 @@ namespace Dungeoneer.ViewModel
 				}
 			}
 		}
-		
+
+		public Command SaveActorLibrary
+		{
+			get { return _saveActorLibrary; }
+		}
+
+		private void ExecuteSaveActorLibrary()
+		{
+			ActorLibrary.WriteXML();
+		}
+
 		private void CreateTestData()
 		{
 			try

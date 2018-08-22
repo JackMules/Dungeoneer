@@ -113,5 +113,34 @@ namespace Dungeoneer.ViewModel
 			InitiativeValueViewModel.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "Actor" ||
+						childNode.Name == "NonPlayerActor" ||
+						childNode.Name == "PlayerActor" ||
+						childNode.Name == "Creature")
+					{
+						ActorViewModel actorViewModel = new ActorViewModel();
+						actorViewModel.ReadXML(childNode);
+						ActorViewModel = actorViewModel;
+					}
+					else if (childNode.Name == "InitiativeValue")
+					{
+						InitiativeValueViewModel initValueViewModel = new InitiativeValueViewModel();
+						initValueViewModel.ReadXML(childNode);
+						InitiativeValueViewModel = initValueViewModel;
+					}
+				}
+			}
+			catch (System.Xml.XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
+		}
 	}
 }
