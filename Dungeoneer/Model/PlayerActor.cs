@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
@@ -21,6 +22,11 @@ namespace Dungeoneer.Model
 			Utility.FullyObservableCollection<Condition> conditions)
 			: base(displayName, actorName, initiativeMod, conditions)
 		{
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("PlayerActor");
 		}
 	}
 }

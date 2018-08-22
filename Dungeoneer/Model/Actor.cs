@@ -131,15 +131,15 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "ActorName")
 					{
-						ActorName = childNode.Value;
+						ActorName = childNode.InnerText;
 					}
 					else if (childNode.Name == "DisplayName")
 					{
-						DisplayName = childNode.Value;
+						DisplayName = childNode.InnerText;
 					}
 					else if (childNode.Name == "InitiativeMod")
 					{
-						InitiativeMod = Convert.ToInt32(childNode.Value);
+						InitiativeMod = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Conditions")
 					{

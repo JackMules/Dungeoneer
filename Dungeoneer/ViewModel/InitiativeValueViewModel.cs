@@ -161,7 +161,9 @@ namespace Dungeoneer.ViewModel
 
 		public void ReadXML(XmlNode xmlNode)
 		{
-			InitiativeValue.ReadXML(xmlNode);
+			Model.InitiativeValue initiativeValue = new Model.InitiativeValue();
+			initiativeValue.ReadXML(xmlNode);
+			InitiativeValue = initiativeValue;
 		}
 	}
 }

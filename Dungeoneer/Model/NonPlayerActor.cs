@@ -102,11 +102,11 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Type")
 					{
-						Type = childNode.Value;
+						Type = childNode.InnerText;
 					}
 					else if (childNode.Name == "ChallengeRating")
 					{
-						ChallengeRating = Convert.ToInt32(childNode.Value);
+						ChallengeRating = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Attacks")
 					{

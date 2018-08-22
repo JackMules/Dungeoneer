@@ -418,79 +418,79 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Strength")
 					{
-						Strength = Convert.ToInt32(childNode.Value);
+						Strength = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Dexterity")
 					{
-						Dexterity = Convert.ToInt32(childNode.Value);
+						Dexterity = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Constitution")
 					{
-						Constitution = Convert.ToInt32(childNode.Value);
+						Constitution = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Intelligence")
 					{
-						Intelligence = Convert.ToInt32(childNode.Value);
+						Intelligence = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Wisdom")
 					{
-						Wisdom = Convert.ToInt32(childNode.Value);
+						Wisdom = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Charisma")
 					{
-						Charisma = Convert.ToInt32(childNode.Value);
+						Charisma = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "BaseAttackBonus")
 					{
-						BaseAttackBonus = Convert.ToInt32(childNode.Value);
+						BaseAttackBonus = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "HitPoints")
 					{
-						HitPoints = Convert.ToInt32(childNode.Value);
+						HitPoints = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "HitDice")
 					{
-						HitDice = Convert.ToInt32(childNode.Value);
+						HitDice = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "HitDiceType")
 					{
-						HitDiceType = Utility.Methods.GetDieTypeFromString(childNode.Value);
+						HitDiceType = Utility.Methods.GetDieTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "ArmourClass")
 					{
-						ArmourClass = Convert.ToInt32(childNode.Value);
+						ArmourClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "TouchArmourClass")
 					{
-						TouchArmourClass = Convert.ToInt32(childNode.Value);
+						TouchArmourClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "FlatFootedArmourClass")
 					{
-						FlatFootedArmourClass = Convert.ToInt32(childNode.Value);
+						FlatFootedArmourClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Speed")
 					{
-						Speed = Convert.ToInt32(childNode.Value);
+						Speed = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "FortitudeSave")
 					{
-						FortitudeSave = Convert.ToInt32(childNode.Value);
+						FortitudeSave = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "ReflexSave")
 					{
-						ReflexSave = Convert.ToInt32(childNode.Value);
+						ReflexSave = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "WillSave")
 					{
-						WillSave = Convert.ToInt32(childNode.Value);
+						WillSave = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "PowerAttack")
 					{
-						PowerAttack = Convert.ToBoolean(childNode.Value);
+						PowerAttack = Convert.ToBoolean(childNode.InnerText);
 					}
 					else if (childNode.Name == "Size")
 					{
-						Size = Utility.Methods.GetSizeFromString(childNode.Value);
+						Size = Utility.Methods.GetSizeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "DamageReductions")
 					{

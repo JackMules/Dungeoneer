@@ -57,11 +57,11 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Value")
 					{
-						Value = Convert.ToInt32(childNode.Value);
+						Value = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "DamageType")
 					{
-						DamageType = Utility.Methods.GetDamageTypeFromString(childNode.Value);
+						DamageType = Utility.Methods.GetDamageTypeFromString(childNode.InnerText);
 					}
 				}
 			}

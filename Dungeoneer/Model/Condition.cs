@@ -87,19 +87,19 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Name")
 					{
-						Name = childNode.Value;
+						Name = childNode.InnerText;
 					}
 					else if (childNode.Name == "Value")
 					{
-						Value = Convert.ToInt32(childNode.Value);
+						Value = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "OriginalDuration")
 					{
-						OriginalDuration = Convert.ToInt32(childNode.Value);
+						OriginalDuration = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "ElapsedDuration")
 					{
-						ElapsedDuration = Convert.ToInt32(childNode.Value);
+						ElapsedDuration = Convert.ToInt32(childNode.InnerText);
 					}
 				}
 			}

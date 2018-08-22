@@ -143,31 +143,31 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "InitiativeScore")
 					{
-						InitiativeScore = Convert.ToInt32(childNode.Value);
+						InitiativeScore = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "InitiativeAdjust")
 					{
-						InitiativeAdjust = Convert.ToInt32(childNode.Value);
+						InitiativeAdjust = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "InitiativeMod")
 					{
-						InitiativeMod = Convert.ToInt32(childNode.Value);
+						InitiativeMod = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "InitiativeRoll")
 					{
-						InitiativeRoll = Convert.ToInt32(childNode.Value);
+						InitiativeRoll = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Delayed")
 					{
-						Delayed = Convert.ToBoolean(childNode.Value);
+						Delayed = Convert.ToBoolean(childNode.InnerText);
 					}
 					else if (childNode.Name == "TurnEnded")
 					{
-						TurnEnded = Convert.ToBoolean(childNode.Value);
+						TurnEnded = Convert.ToBoolean(childNode.InnerText);
 					}
 					else if (childNode.Name == "Readied")
 					{
-						Readied = Convert.ToBoolean(childNode.Value);
+						Readied = Convert.ToBoolean(childNode.InnerText);
 					}
 				}
 			}

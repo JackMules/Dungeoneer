@@ -153,31 +153,31 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "AttackMod")
 					{
-						AttackMod = Convert.ToInt32(childNode.Value);
+						AttackMod = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "AttackType")
 					{
-						AttackType = Utility.Methods.GetAttackTypeFromString(childNode.Value);
+						AttackType = Utility.Methods.GetAttackTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "NumDamageDice")
 					{
-						NumDamageDice = Convert.ToInt32(childNode.Value);
+						NumDamageDice = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "DamageDie")
 					{
-						DamageDie = Utility.Methods.GetDieTypeFromString(childNode.Value);
+						DamageDie = Utility.Methods.GetDieTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "DamageMod")
 					{
-						DamageMod = Convert.ToInt32(childNode.Value);
+						DamageMod = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "ThreatRangeMin")
 					{
-						ThreatRangeMin = Convert.ToInt32(childNode.Value);
+						ThreatRangeMin = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "CritMultiplier")
 					{
-						CritMultiplier = Convert.ToInt32(childNode.Value);
+						CritMultiplier = Convert.ToInt32(childNode.InnerText);
 					}
 				}
 			}

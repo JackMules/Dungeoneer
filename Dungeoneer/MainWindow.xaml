@@ -8,6 +8,9 @@
 				xmlns:model="clr-namespace:Dungeoneer.Model"
 				xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
 				xmlns:clr="clr-namespace:System;assembly=mscorlib">
+	<Window.DataContext>
+		<viewmodel:MainViewModel/>
+	</Window.DataContext>
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>

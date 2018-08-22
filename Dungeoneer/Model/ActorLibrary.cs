@@ -56,6 +56,8 @@ namespace Dungeoneer.Model
 			XmlWriter xmlWriter = XmlWriter.Create("ActorLibrary.xml");
 
 			xmlWriter.WriteStartDocument();
+			xmlWriter.WriteStartElement("ActorLibrary");
+
 			xmlWriter.WriteStartElement("Characters");
 			foreach (PlayerActor character in Characters)
 			{
@@ -70,6 +72,7 @@ namespace Dungeoneer.Model
 			}
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
 		}

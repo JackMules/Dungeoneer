@@ -16,6 +16,7 @@ namespace Dungeoneer.ViewModel
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_actorLibrary = new Model.ActorLibrary();
 			_encounter = new EncounterViewModel();
+			_exit = new Command(ExecuteExit);
 
 			ActorLibrary.LoadValues();
 			CreateTestData();
@@ -25,6 +26,17 @@ namespace Dungeoneer.ViewModel
 		private EncounterViewModel _encounter;
 		private Command _addActor;
 		private Command _saveActorLibrary;
+		private Command _exit;
+
+		public Command Exit
+		{
+			get { return _exit; }
+		}
+
+		private void ExecuteExit()
+		{
+			App.Current.Shutdown();
+		}
 
 		public EncounterViewModel Encounter
 		{
