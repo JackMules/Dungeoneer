@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
@@ -12,6 +13,7 @@ namespace Dungeoneer.ViewModel
 		public CreatureViewModel()
 		{
 			_openDamageDialog = new Command(ExecuteOpenDamageDialog);
+			_actor = new Model.Creature();
 		}
 
 		private Command _openDamageDialog;
@@ -80,6 +82,13 @@ namespace Dungeoneer.ViewModel
 					askForInput = false;
 				}
 			}
+		}
+
+		public override void ReadXML(XmlNode xmlNode)
+		{
+			Model.Creature creature = new Model.Creature();
+			creature.ReadXML(xmlNode);
+			Actor = creature;
 		}
 	}
 }

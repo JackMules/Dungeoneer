@@ -121,11 +121,23 @@ namespace Dungeoneer.ViewModel
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
 					if (childNode.Name == "Actor" ||
-						childNode.Name == "NonPlayerActor" ||
-						childNode.Name == "PlayerActor" ||
-						childNode.Name == "Creature")
+							childNode.Name == "NonPlayerActor" ||
+							childNode.Name == "PlayerActor" ||
+							childNode.Name == "Creature")
 					{
-						ActorViewModel actorViewModel = new ActorViewModel();
+						ActorViewModel actorViewModel = null;
+						if (childNode.Name == "NonPlayerActor")
+						{
+							actorViewModel = new NonPlayerActorViewModel();
+						}
+						else if (childNode.Name == "PlayerActor")
+						{
+							actorViewModel = new PlayerActorViewModel();
+						}
+						else if (childNode.Name == "Creature")
+						{
+							actorViewModel = new CreatureViewModel();
+						}
 						actorViewModel.ReadXML(childNode);
 						ActorViewModel = actorViewModel;
 					}

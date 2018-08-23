@@ -25,6 +25,7 @@ namespace Dungeoneer.ViewModel
 			{
 				_initiativeValue = value;
 				NotifyPropertyChanged("InitiativeValue");
+				InitiativeSet = _initiativeValue.InitiativeScore.HasValue;
 			}
 		}
 

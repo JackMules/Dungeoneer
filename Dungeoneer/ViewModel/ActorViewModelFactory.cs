@@ -24,7 +24,7 @@ namespace Dungeoneer.ViewModel
 			}
 			else
 			{
-				return new ActorViewModel { Actor = actor };
+				throw new ArgumentException("Unknown type: " + actor.GetType().ToString());
 			}
 		}
 	}

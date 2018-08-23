@@ -24,26 +24,5 @@ namespace Dungeoneer.View
 		{
 			InitializeComponent();
 		}
-
-		public string ActorName
-		{
-			get { return (string)GetValue(ActorNameProperty);	}
-			set { SetValue(ActorNameProperty, value); }
-		}
-
-		public static readonly DependencyProperty ActorNameProperty = 
-			DependencyProperty.Register("ActorName", typeof(string),
-			typeof(PlayerActorCard), new PropertyMetadata(""));
-
-		public Model.NamedValue<int> InitiativeMod
-		{
-			get { return (Model.NamedValue<int>)GetValue(InitiativeModProperty); }
-			set { SetValue(InitiativeModProperty, value); }
-		}
-
-		public static readonly DependencyProperty InitiativeModProperty =
-				DependencyProperty.Register("InitiativeMod", typeof(Model.NamedValue<int>),
-					typeof(PlayerActorCard), new PropertyMetadata(null));
-
 	}
 }

@@ -9,12 +9,11 @@ using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
-	public class ActorViewModel : BaseViewModel
+	public abstract class ActorViewModel : BaseViewModel
 	{
 		public ActorViewModel()
 		{
 			_backgroundColor = Colors.LightGray;
-			_actor = new Model.Actor();
 		}
 
 		protected Model.Actor _actor;
@@ -85,25 +84,9 @@ namespace Dungeoneer.ViewModel
 			Actor.WriteXML(xmlWriter);
 		}
 
-		public void ReadXML(XmlNode xmlNode)
+		public virtual void ReadXML(XmlNode xmlNode)
 		{
-			Model.Actor actor = null;
-			if (xmlNode.Name == "NonPlayerActor")
-			{
-				actor = new Model.NonPlayerActor();
-			}
-			else if (xmlNode.Name == "PlayerActor")
-			{
-				actor = new Model.PlayerActor();
-			}
-			else if (xmlNode.Name == "Creature")
-			{
-				actor = new Model.Creature();
-			}
-			else
-			{
-				actor = new Model.Actor();
-			}
+			Model.Actor actor = new Model.Actor();
 			actor.ReadXML(xmlNode);
 			Actor = actor;
 		}

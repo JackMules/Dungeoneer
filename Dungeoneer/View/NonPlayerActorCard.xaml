@@ -16,7 +16,7 @@
 				</StackPanel>
 				<Button DockPanel.Dock="Right" Content="Add" Height="30" Width="40" FontSize="16" Margin="10"
 								Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type main:MainWindow}}, 
-								Path=DataContext.AddActorCommand}" CommandParameter="{Binding}"/>
+								Path=DataContext.AddActor}" CommandParameter="{Binding}"/>
 				<Label/>
 			</DockPanel>
 		</Border>

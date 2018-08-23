@@ -105,7 +105,6 @@
     <Compile Include="Model\Creature.cs" />
     <Compile Include="Model\InitiativeValue.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Model\NamedValue.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="View\PlayerActorControl.xaml.cs">

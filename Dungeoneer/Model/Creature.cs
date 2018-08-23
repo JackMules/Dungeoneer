@@ -412,6 +412,8 @@ namespace Dungeoneer.Model
 
 		public override void ReadXML(XmlNode xmlNode)
 		{
+			base.ReadXML(xmlNode);
+
 			try
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
