@@ -65,7 +65,7 @@
 						</Border>
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl Name="InitiativeItems" ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
+								<ItemsControl ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
 														Background="Transparent">
 								</ItemsControl>
@@ -93,8 +93,8 @@
 
 				</TabItem>
 				<TabItem x:Name="PartyTab" Header="Party">
-					<StackPanel Orientation="Vertical">
-						<DockPanel FlowDirection="RightToLeft">
+					<DockPanel>
+						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
 							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
 						</DockPanel>
 						<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
@@ -104,7 +104,7 @@
 														Background="Transparent"/>
 							</ScrollViewer>
 						</Border>
-					</StackPanel>
+					</DockPanel>
 				</TabItem>
 			</TabControl>
 		</DockPanel>

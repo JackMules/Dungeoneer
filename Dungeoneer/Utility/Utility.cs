@@ -106,6 +106,11 @@ namespace Dungeoneer.Utility
 
 	public class Methods
 	{
+		public static string GetDamageString(int numDamageDice, Types.DieType damageDie, int damageMod)
+		{
+			return numDamageDice.ToString() + GetDieTypeString(damageDie) + GetSignedNumberString(damageMod);
+		}
+
 		public static string GetSignedNumberString(int num)
 		{
 			if (num < 0)
@@ -116,6 +121,16 @@ namespace Dungeoneer.Utility
 			{
 				return "+" + num.ToString();
 			}
+		}
+
+		public static string GetThreatRangeString(int minValue)
+		{
+			string threatRange = "20";
+			if (minValue != 20)
+			{
+				threatRange = Convert.ToString(minValue) + "-" + threatRange;
+			}
+			return threatRange;
 		}
 
 		public static string GetDieTypeString(Types.DieType dieType)

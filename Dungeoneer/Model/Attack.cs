@@ -11,6 +11,7 @@ namespace Dungeoneer.Model
 {
 	public class Attack : INotifyPropertyChanged
 	{
+		private string _name;
 		private int _attackMod;
 		private Utility.Types.AttackType _attackType;
 		private int _numDamageDice;
@@ -18,6 +19,16 @@ namespace Dungeoneer.Model
 		private int _damageMod;
 		private int _threatRangeMin;
 		private int _critMultiplier;
+
+		public string Name
+		{
+			get { return _name; }
+			set
+			{
+				_name = value;
+				OnPropertyChanged("Name");
+			}
+		}
 
 		public int AttackMod
 		{
@@ -93,6 +104,7 @@ namespace Dungeoneer.Model
 		public Attack(){}
 
 		public Attack(
+			string name,
 			int attackMod,
 			Utility.Types.AttackType attackType,
 			int numDamageDice,
@@ -101,6 +113,7 @@ namespace Dungeoneer.Model
 			int threatRangeMin,
 			int critMultiplier)
 		{
+			Name = name;
 			AttackMod = attackMod;
 			AttackType = attackType;
 			NumDamageDice = numDamageDice;
@@ -113,6 +126,10 @@ namespace Dungeoneer.Model
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Attack");
+
+			xmlWriter.WriteStartElement("Name");
+			xmlWriter.WriteString(Name);
+			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("AttackMod");
 			xmlWriter.WriteString(AttackMod.ToString());
@@ -151,7 +168,11 @@ namespace Dungeoneer.Model
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "AttackMod")
+					if (childNode.Name == "Name")
+					{
+						Name = childNode.InnerText;
+					}
+					else if (childNode.Name == "AttackMod")
 					{
 						AttackMod = Convert.ToInt32(childNode.InnerText);
 					}

@@ -3,106 +3,150 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
-	public class AttackViewModel
+	public class AttackViewModel : BaseViewModel
 	{
-		private Model.Attack obj = new Model.Attack();
-
-		public string TxtAttackMod
+		public AttackViewModel()
 		{
-			get
-			{
-				string number = Convert.ToString(obj.AttackMod);
-				string sign = obj.AttackMod >= 0 ? "+" : "-";
-				return sign + number;
-			}
+			_attack = new Model.Attack();
+		}
+
+		private Model.Attack _attack;
+
+		public Model.Attack Attack
+		{
+			get { return _attack; }
 			set
 			{
-				obj.AttackMod = Convert.ToInt16(value);
+				_attack = value;
+				NotifyPropertyChanged("Attack");
 			}
 		}
 
-		public string TxtAttackType
+		public string Name
 		{
-			get
-			{
-				return Utility.Methods.GetAttackTypeString(obj.AttackType);
-			}
+			get { return Attack.Name; }
 			set
 			{
-				obj.AttackType = Utility.Methods.GetAttackTypeFromString(value);
+				Attack.Name = value;
+				NotifyPropertyChanged("Name");
 			}
 		}
 
-		public string TxtNumDamageDice
+		public string AttackMod
 		{
 			get
 			{
-				return Convert.ToString(obj.NumDamageDice);
+				return Utility.Methods.GetSignedNumberString(Attack.AttackMod);
 			}
 			set
 			{
-				obj.NumDamageDice = Convert.ToUInt16(value);
+				Attack.AttackMod = Convert.ToInt32(value);
+				NotifyPropertyChanged("AttackMod");
 			}
 		}
 
-		public string TxtDamageDie
+		public string AttackType
 		{
 			get
 			{
-				return Utility.Methods.GetDieTypeString(obj.DamageDie);
+				return Utility.Methods.GetAttackTypeString(Attack.AttackType);
 			}
 			set
 			{
-				obj.DamageDie = Utility.Methods.GetDieTypeFromString(value);
+				Attack.AttackType = Utility.Methods.GetAttackTypeFromString(value);
+				NotifyPropertyChanged("AttackType");
 			}
 		}
 
-		public string TxtDamageMod
+		public string NumDamageDice
 		{
 			get
 			{
-				string number = Convert.ToString(obj.DamageMod);
-				string sign = obj.DamageMod >= 0 ? "+" : "-";
-				return sign + number;
+				return Convert.ToString(Attack.NumDamageDice);
 			}
 			set
 			{
-				obj.DamageMod = Convert.ToInt16(value);
+				Attack.NumDamageDice = Convert.ToInt32(value);
+				NotifyPropertyChanged("NumDamageDice");
 			}
 		}
 
-		public string TxtThreatRange
+		public string DamageDie
 		{
 			get
 			{
-				string threatRange = "20";
-				if (obj.ThreatRangeMin != 20)
-				{
-					threatRange = Convert.ToString(obj.ThreatRangeMin) + "-" + threatRange;
-				}
-				return threatRange;
+				return Utility.Methods.GetDieTypeString(Attack.DamageDie);
+			}
+			set
+			{
+				Attack.DamageDie = Utility.Methods.GetDieTypeFromString(value);
+				NotifyPropertyChanged("DamageDie");
+			}
+		}
+
+		public string DamageMod
+		{
+			get
+			{
+				return Utility.Methods.GetSignedNumberString(Attack.DamageMod);
+			}
+			set
+			{
+				Attack.DamageMod = Convert.ToInt32(value);
+				NotifyPropertyChanged("DamageMod");
+			}
+		}
+
+		public string ThreatRange
+		{
+			get
+			{
+				return Utility.Methods.GetThreatRangeString(Attack.ThreatRangeMin);
 			}
 			set
 			{
 				string min = value.Substring(0, 2);
-				obj.ThreatRangeMin = Convert.ToUInt16(min);
+				Attack.ThreatRangeMin = Convert.ToInt32(min);
+				NotifyPropertyChanged("ThreatRange");
 			}
 		}
 
-		public string TxtCritMultiplier
+		public string CritMultiplier
 		{
 			get
 			{
-				return "x" + Convert.ToString(obj.CritMultiplier);
+				return "x" + Convert.ToString(Attack.CritMultiplier);
 			}
 			set
 			{
 				string multiplier = value.Substring(1, 1);
-				obj.CritMultiplier = Convert.ToUInt16(multiplier);
+				Attack.CritMultiplier = Convert.ToInt32(multiplier);
+				NotifyPropertyChanged("CritMultiplier");
 			}
+		}
+
+		public string Damage
+		{
+			get
+			{
+				return Utility.Methods.GetDamageString(Attack.NumDamageDice, Attack.DamageDie, Attack.DamageMod);
+			}
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			Attack.WriteXML(xmlWriter);
+		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			Model.Attack attack = new Model.Attack();
+			attack.ReadXML(xmlNode);
+			Attack = attack;
 		}
 	}
 }

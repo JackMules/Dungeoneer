@@ -268,7 +268,7 @@ namespace Dungeoneer.Model
 			string type, 
 			int initiativeMod,
 			float challengeRating,
-			List<Attack> attacks,
+			Utility.FullyObservableCollection<ViewModel.AttackViewModel> attacks,
 			int strength,
 			int dexterity,
 			int constitution,

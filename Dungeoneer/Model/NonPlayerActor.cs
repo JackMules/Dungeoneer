@@ -12,7 +12,7 @@ namespace Dungeoneer.Model
 	{
 		private string _type;
 		private float _challengeRating;
-		private List<Attack> _attacks;
+		private Utility.FullyObservableCollection<ViewModel.AttackViewModel> _attacks;
 
 		public string Type
 		{
@@ -34,7 +34,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public List<Attack> Attacks
+		public Utility.FullyObservableCollection<ViewModel.AttackViewModel> Attacks
 		{
 			get { return _attacks; }
 			set
@@ -49,7 +49,7 @@ namespace Dungeoneer.Model
 		{
 			Type = "No Type";
 			ChallengeRating = 1;
-			Attacks = new List<Attack>();
+			Attacks = new Utility.FullyObservableCollection<ViewModel.AttackViewModel>();
 		}
 
 		public NonPlayerActor(
@@ -58,7 +58,7 @@ namespace Dungeoneer.Model
 			string type,
 			int initiativeMod,
 			float challengeRating,
-			List<Attack> attacks,
+			Utility.FullyObservableCollection<ViewModel.AttackViewModel> attacks,
 			Utility.FullyObservableCollection<Condition> conditions)
 			: base(displayName, actorName, initiativeMod, conditions)
 		{
@@ -85,7 +85,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Attacks");
-			foreach (Attack attack in Attacks)
+			foreach (ViewModel.AttackViewModel attack in Attacks)
 			{
 				attack.WriteXML(xmlWriter);
 			}
@@ -114,7 +114,7 @@ namespace Dungeoneer.Model
 						{
 							if (attackNode.Name == "Attack")
 							{
-								Attack attack = new Attack();
+								ViewModel.AttackViewModel attack = new ViewModel.AttackViewModel();
 								attack.ReadXML(attackNode);
 								Attacks.Add(attack);
 							}

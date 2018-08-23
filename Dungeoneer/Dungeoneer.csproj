@@ -73,6 +73,12 @@
     <Compile Include="ViewModel\NonPlayerActorViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="View\AttackCard.xaml.cs">
+      <DependentUpon>AttackCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AttacksWindow.xaml.cs">
+      <DependentUpon>AttacksWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
     </Compile>
@@ -116,6 +122,14 @@
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AttackCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AttacksWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreatureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

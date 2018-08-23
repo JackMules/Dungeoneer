@@ -111,7 +111,22 @@ namespace Dungeoneer.ViewModel
 
 			}
 
-			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14, HitPoints = 24 };
+			Model.Attack grellAttack = new Model.Attack
+			{
+				Name = "Slam",
+				AttackMod = 5,
+				AttackType = Utility.Types.AttackType.Primary,
+				NumDamageDice = 1,
+				DamageDie = Utility.Types.DieType.d6,
+				DamageMod = 5,
+				CritMultiplier = 2,
+				ThreatRangeMin = 19
+			};
+
+			AttackViewModel grellAttackViewModel = new AttackViewModel { Attack = grellAttack };
+			Utility.FullyObservableCollection<AttackViewModel> grellAttacks = new Utility.FullyObservableCollection<AttackViewModel>();
+			grellAttacks.Add(grellAttackViewModel);
+			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14, HitPoints = 24, Attacks = grellAttacks };
 			ActorViewModel grellViewModel = ActorViewModelFactory.GetActorViewModel(grell);
 			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeAdjust = "0", InitiativeMod = "6", InitiativeRoll = "5" };
 			InitiativeCardViewModel grellCard = new InitiativeCardViewModel { ActorViewModel = grellViewModel, InitiativeValueViewModel = grellInit };
