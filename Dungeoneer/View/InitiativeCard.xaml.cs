@@ -27,7 +27,7 @@ namespace Dungeoneer.View
 
 		public object ActorPlaceHolder
 		{
-			get { return (object)GetValue(ActorPlaceHolderProperty); }
+			get { return GetValue(ActorPlaceHolderProperty); }
 			set { SetValue(ActorPlaceHolderProperty, value); }
 		}
 	}

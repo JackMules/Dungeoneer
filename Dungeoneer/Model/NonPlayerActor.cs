@@ -20,7 +20,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_type = value;
-				OnPropertyChanged("Type");
+				NotifyPropertyChanged("Type");
 			}
 		}
 
@@ -30,7 +30,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_challengeRating = value;
-				OnPropertyChanged("ChallengeRating");
+				NotifyPropertyChanged("ChallengeRating");
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_attacks = value;
-				OnPropertyChanged("Attacks");
+				NotifyPropertyChanged("Attacks");
 			}
 		}
 

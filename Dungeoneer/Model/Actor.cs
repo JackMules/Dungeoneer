@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
 using System.Xml;
 using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class Actor : INotifyPropertyChanged
+	public class Actor : BaseModel
 	{
 		public Actor()
 		{
@@ -32,7 +31,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_displayName = value;
-				OnPropertyChanged("DisplayName");
+				NotifyPropertyChanged("DisplayName");
 			}
 		}
 
@@ -42,7 +41,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_actorName = value;
-				OnPropertyChanged("ActorName");
+				NotifyPropertyChanged("ActorName");
 			}
 		}
 
@@ -52,7 +51,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_initiativeMod = value;
-				OnPropertyChanged("InitiativeMod");
+				NotifyPropertyChanged("InitiativeMod");
 			}
 		}
 
@@ -62,7 +61,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_active = value;
-				OnPropertyChanged("Active");
+				NotifyPropertyChanged("Active");
 			}
 		}
 
@@ -72,7 +71,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_conditions = value;
-				OnPropertyChanged("Conditions");
+				NotifyPropertyChanged("Conditions");
 			}
 		}
 
@@ -159,13 +158,6 @@ namespace Dungeoneer.Model
 			{
 				MessageBox.Show(e.ToString());
 			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

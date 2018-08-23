@@ -43,7 +43,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_strength = value;
-				OnPropertyChanged("Strength");
+				NotifyPropertyChanged("Strength");
 			}
 		}
 
@@ -53,7 +53,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_dexterity = value;
-				OnPropertyChanged("Dexterity");
+				NotifyPropertyChanged("Dexterity");
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_constitution = value;
-				OnPropertyChanged("Constitution");
+				NotifyPropertyChanged("Constitution");
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_intelligence = value;
-				OnPropertyChanged("Intelligence");
+				NotifyPropertyChanged("Intelligence");
 			}
 		}
 
@@ -83,7 +83,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_wisdom = value;
-				OnPropertyChanged("Wisdom");
+				NotifyPropertyChanged("Wisdom");
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_charisma = value;
-				OnPropertyChanged("Charisma");
+				NotifyPropertyChanged("Charisma");
 			}
 		}
 
@@ -103,7 +103,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_baseAttackBonus = value;
-				OnPropertyChanged("BaseAttackBonus");
+				NotifyPropertyChanged("BaseAttackBonus");
 			}
 		}
 
@@ -113,7 +113,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_hitPoints = value;
-				OnPropertyChanged("HitPoints");
+				NotifyPropertyChanged("HitPoints");
 			}
 		}
 
@@ -123,7 +123,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_hitDice = value;
-				OnPropertyChanged("HitDice");
+				NotifyPropertyChanged("HitDice");
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_hitDiceType = value;
-				OnPropertyChanged("HitDiceType");
+				NotifyPropertyChanged("HitDiceType");
 			}
 		}
 
@@ -143,7 +143,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_armourClass = value;
-				OnPropertyChanged("ArmourClass");
+				NotifyPropertyChanged("ArmourClass");
 			}
 		}
 
@@ -153,7 +153,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_touchArmourClass = value;
-				OnPropertyChanged("TouchArmourClass");
+				NotifyPropertyChanged("TouchArmourClass");
 			}
 		}
 
@@ -163,7 +163,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_flatFootedArmourClass = value;
-				OnPropertyChanged("FlatFootedArmourClass");
+				NotifyPropertyChanged("FlatFootedArmourClass");
 			}
 		}
 
@@ -173,7 +173,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_speed = value;
-				OnPropertyChanged("Speed");
+				NotifyPropertyChanged("Speed");
 			}
 		}
 
@@ -183,7 +183,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_fortitudeSave = value;
-				OnPropertyChanged("FortitudeSave");
+				NotifyPropertyChanged("FortitudeSave");
 			}
 		}
 
@@ -193,7 +193,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_reflexSave = value;
-				OnPropertyChanged("ReflexSave");
+				NotifyPropertyChanged("ReflexSave");
 			}
 		}
 
@@ -203,7 +203,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_willSave = value;
-				OnPropertyChanged("WillSave");
+				NotifyPropertyChanged("WillSave");
 			}
 		}
 
@@ -213,7 +213,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_powerAttack = value;
-				OnPropertyChanged("PowerAttack");
+				NotifyPropertyChanged("PowerAttack");
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_size = value;
-				OnPropertyChanged("Size");
+				NotifyPropertyChanged("Size");
 			}
 		}
 		
@@ -233,7 +233,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_damageReductions = value;
-				OnPropertyChanged("DamageReductions");
+				NotifyPropertyChanged("DamageReductions");
 			}
 		}
 

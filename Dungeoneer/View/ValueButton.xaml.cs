@@ -38,21 +38,33 @@ namespace Dungeoneer.View
 			DependencyProperty.Register("ValueButtonTitle", typeof(string),
 			typeof(ValueButton), new PropertyMetadata(""));
 
-		public string Value
+		public Orientation PanelOrientation
 		{
-			get { return (string)GetValue(ValueProperty); }
-			set => SetValue(ValueProperty, value);
+			get
+			{
+				Orientation? o = GetValue(PanelOrientationProperty) as Orientation?;
+				if (o.HasValue)
+				{
+					return o.Value;
+				}
+				else
+				{
+					return Orientation.Vertical;
+				}
+			}
+			set => SetValue(PanelOrientationProperty, value);
 		}
 
-		public static readonly DependencyProperty ValueProperty =
-				DependencyProperty.Register("ValueButtonValue", typeof(object),
-					typeof(ValueButton), new PropertyMetadata(""));
+		public static readonly DependencyProperty PanelOrientationProperty =
+				DependencyProperty.Register("ValueButtonOrientation", typeof(Orientation),
+					typeof(ValueButton), new PropertyMetadata(null));
 
 		private void GridLoaded(object sender, RoutedEventArgs e)
 		{
 			titleLabel.SetValue(Label.ContentProperty, Title);
 			valueLabel.SetBinding(Label.ContentProperty, ValueBinding);
 			button.SetBinding(Button.CommandProperty, CommandBinding);
+			stackPanel.SetValue(StackPanel.OrientationProperty, PanelOrientation);
 		}
 	}
 }

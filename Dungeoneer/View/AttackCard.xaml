@@ -13,7 +13,7 @@
 				<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
 					<Label Margin="10" Content="{Binding Name}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="To Hit" ValueBinding="{Binding AttackMod}"/>
-					<view:ValueDisplay Title="Damage" ValueBinding="{Binding Damage}"/>
+					<view:ValueDisplay Title="Damage" ValueBinding="{Binding Damages}"/>
 				</StackPanel>
 				<Label/>
 			</DockPanel>

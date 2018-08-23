@@ -58,7 +58,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\ActorLibrary.cs" />
+    <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Condition.cs" />
+    <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />

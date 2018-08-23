@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class Condition : INotifyPropertyChanged
+	public class Condition : BaseModel
 	{
 		private string _name;
 		private int _value;
@@ -22,7 +22,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_name = value;
-				OnPropertyChanged("Name");
+				NotifyPropertyChanged("Name");
 			}
 		}
 
@@ -32,7 +32,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_value = value;
-				OnPropertyChanged("Value");
+				NotifyPropertyChanged("Value");
 			}
 		}
 
@@ -42,7 +42,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_originalDuration = value;
-				OnPropertyChanged("OriginalDuration");
+				NotifyPropertyChanged("OriginalDuration");
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_elapsedDuration = value;
-				OnPropertyChanged("ElapsedDuration");
+				NotifyPropertyChanged("ElapsedDuration");
 			}
 		}
 
@@ -108,13 +108,5 @@ namespace Dungeoneer.Model
 				MessageBox.Show(e.ToString());
 			}
 		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
 	}
 }

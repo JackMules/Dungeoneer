@@ -12,11 +12,15 @@ namespace Dungeoneer.ViewModel
 		public NonPlayerActorViewModel()
 		{
 			_actor = new Model.NonPlayerActor();
-			_openAttacksWindow = new Command(ExecuteOpenAttacksWindow);
+			_attacksWindow = new View.AttacksWindow();
+			_attacksWindow.DataContext = Attacks;
+			_showAttacksWindow = new Command(ExecuteShowAttacksWindow);
+			_hideAttacksWindow = new Command(ExecuteHideAttacksWindow);
 		}
 
 		private View.AttacksWindow _attacksWindow;
-		private Command _openAttacksWindow;
+		private Command _showAttacksWindow;
+		private Command _hideAttacksWindow;
 
 		public new Model.NonPlayerActor Actor
 		{
@@ -48,19 +52,24 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Command OpenAttacksWindow
+		public Command ShowAttacksWindow
 		{
-			get { return _openAttacksWindow; }
+			get { return _showAttacksWindow; }
 		}
 
-		private void ExecuteOpenAttacksWindow()
+		private void ExecuteShowAttacksWindow()
 		{
-			if (_attacksWindow == null)
-			{
-				_attacksWindow = new View.AttacksWindow();
-			}
-			_attacksWindow.DataContext = Attacks;
 			_attacksWindow.Show();
+		}
+
+		public Command HideAttacksWindow
+		{
+			get { return _hideAttacksWindow; }
+		}
+
+		private void ExecuteHideAttacksWindow()
+		{
+			_attacksWindow.Hide();
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

@@ -8,7 +8,7 @@
 		<Rectangle Margin="5,5,0,0" Fill="DarkGray" RadiusX="4" RadiusY="4"/>
 		<Border x:Name="border" Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4">
 			<Button x:Name="button" BorderBrush="{x:Null}" Background="{x:Null}">
-				<StackPanel Orientation="Vertical">
+				<StackPanel x:Name="stackPanel">
 					<Label x:Name="titleLabel" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"
 								 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 					<Label x:Name="valueLabel" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"

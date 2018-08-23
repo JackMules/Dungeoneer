@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeoneer.ViewModel
+namespace Dungeoneer.Model
 {
-	public class BaseViewModel : INotifyPropertyChanged
+	public class BaseModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 

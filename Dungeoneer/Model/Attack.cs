@@ -9,14 +9,12 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class Attack : INotifyPropertyChanged
+	public class Attack : BaseModel
 	{
 		private string _name;
 		private int _attackMod;
 		private Utility.Types.AttackType _attackType;
-		private int _numDamageDice;
-		private Utility.Types.DieType _damageDie;
-		private int _damageMod;
+		private Utility.FullyObservableCollection<Damage> _damages;
 		private int _threatRangeMin;
 		private int _critMultiplier;
 
@@ -26,7 +24,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_name = value;
-				OnPropertyChanged("Name");
+				NotifyPropertyChanged("Name");
 			}
 		}
 
@@ -36,7 +34,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_attackMod = value;
-				OnPropertyChanged("AttackMod");
+				NotifyPropertyChanged("AttackMod");
 			}
 		}
 
@@ -46,37 +44,17 @@ namespace Dungeoneer.Model
 			set
 			{
 				_attackType = value;
-				OnPropertyChanged("AttackType");
+				NotifyPropertyChanged("AttackType");
 			}
 		}
 
-		public int NumDamageDice
+		public Utility.FullyObservableCollection<Damage> Damages
 		{
-			get { return _numDamageDice; }
+			get { return _damages; }
 			set
 			{
-				_numDamageDice = value;
-				OnPropertyChanged("NumDamageDice");
-			}
-		}
-
-		public Utility.Types.DieType DamageDie
-		{
-			get { return _damageDie; }
-			set
-			{
-				_damageDie = value;
-				OnPropertyChanged("DamageDie");
-			}
-		}
-
-		public int DamageMod
-		{
-			get { return _damageMod; }
-			set
-			{
-				_damageMod = value;
-				OnPropertyChanged("DamageMod");
+				_damages = value;
+				NotifyPropertyChanged("Damages");
 			}
 		}
 
@@ -86,7 +64,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_threatRangeMin = value;
-				OnPropertyChanged("ThreatRangeMin");
+				NotifyPropertyChanged("ThreatRangeMin");
 			}
 		}
 
@@ -96,7 +74,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_critMultiplier = value;
-				OnPropertyChanged("CritMultiplier");
+				NotifyPropertyChanged("CritMultiplier");
 			}
 		}
 
@@ -107,18 +85,14 @@ namespace Dungeoneer.Model
 			string name,
 			int attackMod,
 			Utility.Types.AttackType attackType,
-			int numDamageDice,
-			Utility.Types.DieType damageDie,
-			int damageMod,
+			Utility.FullyObservableCollection<Damage> damages,
 			int threatRangeMin,
 			int critMultiplier)
 		{
 			Name = name;
 			AttackMod = attackMod;
 			AttackType = attackType;
-			NumDamageDice = numDamageDice;
-			DamageDie = damageDie;
-			DamageMod = damageMod;
+			Damages = damages;
 			ThreatRangeMin = threatRangeMin;
 			CritMultiplier = critMultiplier;
 		}
@@ -139,16 +113,11 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Utility.Methods.GetAttackTypeString(AttackType));
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("NumDamageDice");
-			xmlWriter.WriteString(NumDamageDice.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("DamageDie");
-			xmlWriter.WriteString(Utility.Methods.GetDieTypeString(DamageDie));
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("DamageMod");
-			xmlWriter.WriteString(DamageMod.ToString());
+			xmlWriter.WriteStartElement("Damages");
+			foreach (Damage damage in Damages)
+			{
+				damage.WriteXML(xmlWriter);
+			}
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("ThreatRangeMin");
@@ -180,17 +149,17 @@ namespace Dungeoneer.Model
 					{
 						AttackType = Utility.Methods.GetAttackTypeFromString(childNode.InnerText);
 					}
-					else if (childNode.Name == "NumDamageDice")
+					else if (childNode.Name == "Damages")
 					{
-						NumDamageDice = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "DamageDie")
-					{
-						DamageDie = Utility.Methods.GetDieTypeFromString(childNode.InnerText);
-					}
-					else if (childNode.Name == "DamageMod")
-					{
-						DamageMod = Convert.ToInt32(childNode.InnerText);
+						foreach (XmlNode damageNode in childNode.ChildNodes)
+						{
+							if (damageNode.Name == "Damage")
+							{
+								Damage damage = new Damage();
+								damage.ReadXML(damageNode);
+								Damages.Add(damage);
+							}
+						}
 					}
 					else if (childNode.Name == "ThreatRangeMin")
 					{
@@ -206,13 +175,6 @@ namespace Dungeoneer.Model
 			{
 				MessageBox.Show(e.ToString());
 			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

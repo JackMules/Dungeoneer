@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class InitiativeValue : INotifyPropertyChanged
+	public class InitiativeValue : BaseModel
 	{
 		private int? _initiativeScore;
 		private int? _initiativeAdjust;
@@ -36,7 +36,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_initiativeScore = value;
-				OnPropertyChanged("InitiativeScore");
+				NotifyPropertyChanged("InitiativeScore");
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_initiativeAdjust = value;
-				OnPropertyChanged("InitiativeAdjust");
+				NotifyPropertyChanged("InitiativeAdjust");
 			}
 		}
 
@@ -56,7 +56,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_initiativeMod = value;
-				OnPropertyChanged("InitiativeMod");
+				NotifyPropertyChanged("InitiativeMod");
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_initiativeRoll = value;
-				OnPropertyChanged("InitiativeRoll");
+				NotifyPropertyChanged("InitiativeRoll");
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_delayed = value;
-				OnPropertyChanged("Delayed");
+				NotifyPropertyChanged("Delayed");
 			}
 		}
 
@@ -86,7 +86,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_turnEnded = value;
-				OnPropertyChanged("TurnEnded");
+				NotifyPropertyChanged("TurnEnded");
 			}
 		}
 
@@ -96,7 +96,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_readied = value;
-				OnPropertyChanged("Readied");
+				NotifyPropertyChanged("Readied");
 			}
 		}
 
@@ -175,13 +175,6 @@ namespace Dungeoneer.Model
 			{
 				MessageBox.Show(e.ToString());
 			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

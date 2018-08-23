@@ -65,7 +65,8 @@
 				</StackPanel>
 				<view:ValueButton DockPanel.Dock="Right" Title="Init"
 													ValueBinding="{Binding InitiativeValueViewModel.InitiativeScore}"
-													CommandBinding="{Binding OpenInitiativeDialog}"/>
+													CommandBinding="{Binding OpenInitiativeDialog}"
+													PanelOrientation="Vertical"/>
 				<ContentControl Content="{Binding ActorViewModel}"/>
 			</DockPanel>
 		</Border>

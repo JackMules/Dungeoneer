@@ -106,9 +106,16 @@ namespace Dungeoneer.Utility
 
 	public class Methods
 	{
-		public static string GetDamageString(int numDamageDice, Types.DieType damageDie, int damageMod)
+		public static string GetDamageString(FullyObservableCollection<Model.Damage> damages)
 		{
-			return numDamageDice.ToString() + GetDieTypeString(damageDie) + GetSignedNumberString(damageMod);
+			List<string> damageStrings = new List<string>();
+
+			foreach (Model.Damage damage in damages)
+			{
+				damageStrings.Add(damage.NumDice.ToString() + GetDieTypeString(damage.Die) + GetSignedNumberString(damage.Modifier) + " " + GetDamageTypeString(damage.Type));
+			}
+
+			return String.Join(" + ", damageStrings);
 		}
 
 		public static string GetSignedNumberString(int num)

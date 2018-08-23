@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class DamageReduction : INotifyPropertyChanged
+	public class DamageReduction : BaseModel
 	{
 		private int _value;
 		private Utility.Types.DamageType _type;
@@ -20,7 +20,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_value = value;
-				OnPropertyChanged("Value");
+				NotifyPropertyChanged("Value");
 			}
 		}
 
@@ -30,7 +30,7 @@ namespace Dungeoneer.Model
 			set
 			{
 				_type = value;
-				OnPropertyChanged("Type");
+				NotifyPropertyChanged("Type");
 			}
 		}
 
@@ -69,13 +69,6 @@ namespace Dungeoneer.Model
 			{
 				MessageBox.Show(e.ToString());
 			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

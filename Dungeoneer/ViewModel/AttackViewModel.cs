@@ -62,45 +62,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string NumDamageDice
-		{
-			get
-			{
-				return Convert.ToString(Attack.NumDamageDice);
-			}
-			set
-			{
-				Attack.NumDamageDice = Convert.ToInt32(value);
-				NotifyPropertyChanged("NumDamageDice");
-			}
-		}
-
-		public string DamageDie
-		{
-			get
-			{
-				return Utility.Methods.GetDieTypeString(Attack.DamageDie);
-			}
-			set
-			{
-				Attack.DamageDie = Utility.Methods.GetDieTypeFromString(value);
-				NotifyPropertyChanged("DamageDie");
-			}
-		}
-
-		public string DamageMod
-		{
-			get
-			{
-				return Utility.Methods.GetSignedNumberString(Attack.DamageMod);
-			}
-			set
-			{
-				Attack.DamageMod = Convert.ToInt32(value);
-				NotifyPropertyChanged("DamageMod");
-			}
-		}
-
 		public string ThreatRange
 		{
 			get
@@ -129,11 +90,19 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string Damage
+		public string Damages
 		{
 			get
 			{
-				return Utility.Methods.GetDamageString(Attack.NumDamageDice, Attack.DamageDie, Attack.DamageMod);
+				return Utility.Methods.GetDamageString(Attack.Damages);
+			}
+		}
+
+		public string AttackAndDamage
+		{
+			get
+			{
+				return AttackMod + " " + Damages;
 			}
 		}
 
