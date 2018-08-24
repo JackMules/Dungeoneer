@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.ViewModel
 {
-	public static class ActorViewModelFactory
+	public static class ActorInitiativeViewModelFactory
 	{
-		public static ActorViewModel GetActorViewModel(Model.Actor actor)
+		public static ActorInitiativeViewModel GetActorViewModel(Model.Actor actor)
 		{
 			if (actor is Model.PlayerActor)
 			{
-				return new PlayerActorViewModel { Actor = actor as Model.PlayerActor };
+				return new PlayerActorInitiativeViewModel { Actor = actor as Model.PlayerActor };
 			}
 			else if (actor is Model.Creature)
 			{
-				return new CreatureViewModel { Actor = actor as Model.Creature };
+				return new CreatureInitiativeViewModel { Actor = actor as Model.Creature };
 			}
 			else if (actor is Model.NonPlayerActor)
 			{
-				return new NonPlayerActorViewModel { Actor = actor as Model.NonPlayerActor };
+				return new NonPlayerActorInitiativeViewModel { Actor = actor as Model.NonPlayerActor };
 			}
 			else
 			{

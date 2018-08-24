@@ -9,9 +9,9 @@ using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
-	public abstract class ActorViewModel : BaseViewModel
+	public abstract class ActorInitiativeViewModel : BaseViewModel
 	{
-		public ActorViewModel()
+		public ActorInitiativeViewModel()
 		{
 			_backgroundColor = Colors.LightGray;
 		}

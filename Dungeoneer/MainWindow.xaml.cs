@@ -23,6 +23,13 @@ namespace Dungeoneer
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			Closing += MainWindow_Closing;
+    }
+
+		void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			App.Current.Shutdown();
 		}
 	}
 }

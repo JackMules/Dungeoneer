@@ -12,8 +12,8 @@ namespace Dungeoneer.Model
 	{
 		public Actor()
 		{
-			DisplayName = "no display name";
-			ActorName = "no name";
+			DisplayName = "";
+			ActorName = "";
 			InitiativeMod = 0;
 			Active = true;
 			Conditions = new Utility.FullyObservableCollection<Condition>();

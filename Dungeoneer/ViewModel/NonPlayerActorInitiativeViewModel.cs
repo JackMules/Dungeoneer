@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Windows;
 
 namespace Dungeoneer.ViewModel
 {
-	public class NonPlayerActorViewModel : ActorViewModel
+	public class NonPlayerActorInitiativeViewModel : ActorInitiativeViewModel
 	{
-		public NonPlayerActorViewModel()
+		public NonPlayerActorInitiativeViewModel()
 		{
 			_actor = new Model.NonPlayerActor();
 			_attacksWindow = new View.AttacksWindow();
@@ -59,7 +60,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteShowAttacksWindow()
 		{
-			_attacksWindow.Show();
+			_attacksWindow.Visibility = Visibility.Visible;
 		}
 
 		public Command HideAttacksWindow
@@ -69,7 +70,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteHideAttacksWindow()
 		{
-			_attacksWindow.Hide();
+			_attacksWindow.Visibility = Visibility.Collapsed;
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

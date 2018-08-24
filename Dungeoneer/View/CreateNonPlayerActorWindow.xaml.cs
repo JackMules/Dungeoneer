@@ -15,28 +15,14 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for CreateNewActorWindow.xaml
+	/// Interaction logic for CreateNonPlayerActorWindow.xaml
 	/// </summary>
-	public partial class CreateCreatureWindow : Window
+	public partial class CreateNonPlayerActorWindow : Window
 	{
-		public CreateCreatureWindow(string feedback = null)
+		public CreateNonPlayerActorWindow(string feedback = null)
 		{
 			InitializeComponent();
 			lblFeedback.Content = feedback;
-		}
-
-		private void Window_Loaded(object sender, RoutedEventArgs e)
-		{
-			// Add hit die values to combobox
-			for (int hd = 1; hd <= 40; ++hd)
-			{
-				HDComboBox.Items.Add(hd);
-			}
-
-//			foreach (string dieStr in Constants.dieTypes)
-//			{
-//				HDTypeComboBox.Items.Add(dieStr);
-//			}
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)

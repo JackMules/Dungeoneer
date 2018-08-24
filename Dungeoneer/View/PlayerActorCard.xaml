@@ -11,7 +11,7 @@
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 			<DockPanel>
 				<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-					<Label Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
+					<Label Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeMod}"/>
 				</StackPanel>
 				<Button DockPanel.Dock="Right" Content="Add" Height="30" Width="40" FontSize="16" Margin="10"

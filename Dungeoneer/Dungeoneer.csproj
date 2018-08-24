@@ -62,24 +62,31 @@
     <Compile Include="Model\Condition.cs" />
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
+    <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
     <Compile Include="Utility\FullyObservableCollection.cs" />
-    <Compile Include="ViewModel\ActorViewModel.cs" />
-    <Compile Include="ViewModel\ActorViewModelFactory.cs" />
+    <Compile Include="ViewModel\ActorInitiativeViewModel.cs" />
+    <Compile Include="ViewModel\ActorInitiativeViewModelFactory.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
-    <Compile Include="ViewModel\CreatureViewModel.cs" />
+    <Compile Include="ViewModel\CreatureInitiativeViewModel.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\InitiativeValueViewModel.cs" />
-    <Compile Include="ViewModel\NonPlayerActorViewModel.cs" />
-    <Compile Include="ViewModel\PlayerActorViewModel.cs" />
+    <Compile Include="ViewModel\NonPlayerActorInitiativeViewModel.cs" />
+    <Compile Include="ViewModel\PlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="View\AttackCard.xaml.cs">
       <DependentUpon>AttackCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AttacksWindow.xaml.cs">
       <DependentUpon>AttacksWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateNonPlayerActorWindow.xaml.cs">
+      <DependentUpon>CreateNonPlayerActorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreatePlayerActorWindow.xaml.cs">
+      <DependentUpon>CreatePlayerActorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
@@ -129,6 +136,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AttacksWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateNonPlayerActorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CreatePlayerActorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

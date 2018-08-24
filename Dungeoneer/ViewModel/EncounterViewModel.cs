@@ -81,7 +81,12 @@ namespace Dungeoneer.ViewModel
 
 		public void AddActor(Model.Actor actor)
 		{
-			ActorViewModel actorViewModel = ActorViewModelFactory.GetActorViewModel(actor);
+			if (actor.DisplayName == "")
+			{
+				actor.DisplayName = actor.ActorName;
+			}
+
+			ActorInitiativeViewModel actorViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(actor);
 			InitiativeTrack.Add( new InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
 		}
 

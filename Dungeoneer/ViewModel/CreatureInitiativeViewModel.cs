@@ -8,9 +8,9 @@ using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
-	public class CreatureViewModel : NonPlayerActorViewModel
+	public class CreatureInitiativeViewModel : NonPlayerActorInitiativeViewModel
 	{
-		public CreatureViewModel()
+		public CreatureInitiativeViewModel()
 		{
 			_openDamageDialog = new Command(ExecuteOpenDamageDialog);
 			_actor = new Model.Creature();

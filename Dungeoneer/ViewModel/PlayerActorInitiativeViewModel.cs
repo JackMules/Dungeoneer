@@ -7,9 +7,9 @@ using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
-	public class PlayerActorViewModel : ActorViewModel
+	public class PlayerActorInitiativeViewModel : ActorInitiativeViewModel
 	{
-		public PlayerActorViewModel()
+		public PlayerActorInitiativeViewModel()
 		{
 			_actor = new Model.PlayerActor();
 		}

@@ -7,17 +7,14 @@
 						 xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="76" d:DesignWidth="596">
-	<UserControl.Resources>
-		<DataTemplate x:Name="AttackButtonTemplate" DataType="{x:Type viewmodel:AttackViewModel}">
-			<view:ValueButton Title="Attack" ValueBinding="{Binding AttackAndDamage}" CommandBinding="{Binding ShowAttacksWindow}" PanelOrientation="Horizontal"/>
-		</DataTemplate>
-	</UserControl.Resources>
 	<Grid>
 		<Border Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4">
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-					<Label Name="NameLabel" Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
-					<ItemsControl ItemsSource="{Binding Attacks}" ItemTemplate="{StaticResource AttackButtonTemplate}"/>
+					<Label Name="NameLabel" Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
+					<StackPanel Orientation="Vertical">
+						<Button Content="Show Attacks" Margin="5" Height="25" Command="{Binding ShowAttacksWindow}"/>
+					</StackPanel>
 				</StackPanel>
 			</DockPanel>
 		</Border>

@@ -17,7 +17,7 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private InitiativeValueViewModel _initiativeValueViewModel;
-		private ActorViewModel _actorViewModel;
+		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
 
 		public InitiativeValueViewModel InitiativeValueViewModel
@@ -30,13 +30,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public ActorViewModel ActorViewModel
+		public ActorInitiativeViewModel ActorViewModel
 		{
 			get { return _actorViewModel; }
 			set
 			{
 				_actorViewModel = value;
-				NotifyPropertyChanged("ActorViewModel");
+				NotifyPropertyChanged("ActorInitiativeViewModel");
 			}
 		}
 
@@ -125,18 +125,18 @@ namespace Dungeoneer.ViewModel
 							childNode.Name == "PlayerActor" ||
 							childNode.Name == "Creature")
 					{
-						ActorViewModel actorViewModel = null;
+						ActorInitiativeViewModel actorViewModel = null;
 						if (childNode.Name == "NonPlayerActor")
 						{
-							actorViewModel = new NonPlayerActorViewModel();
+							actorViewModel = new NonPlayerActorInitiativeViewModel();
 						}
 						else if (childNode.Name == "PlayerActor")
 						{
-							actorViewModel = new PlayerActorViewModel();
+							actorViewModel = new PlayerActorInitiativeViewModel();
 						}
 						else if (childNode.Name == "Creature")
 						{
-							actorViewModel = new CreatureViewModel();
+							actorViewModel = new CreatureInitiativeViewModel();
 						}
 						actorViewModel.ReadXML(childNode);
 						ActorViewModel = actorViewModel;

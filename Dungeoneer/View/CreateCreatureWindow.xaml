@@ -1,10 +1,15 @@
 ﻿<Window x:Class="Dungeoneer.View.CreateCreatureWindow"
-				x:Name="CreateCreature" 
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-				Title="Create a new creature type" Height="403.926" Width="255.065">
-	<Grid>
+				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
+				Title="Create a new creature type" SizeToContent="WidthAndHeight"
+				WindowStartupLocation="CenterOwner"
+				WindowStyle="ToolWindow">
+
+	<Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
@@ -28,7 +33,7 @@
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
-		<TextBox Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6"/>
+		<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="Abilities"/>
 		<Label Grid.Row="1" Grid.Column="1" Content="Str"/>
 		<TextBox Name="StrTextBox" Grid.Row="2" Grid.Column="1"/>
@@ -76,7 +81,25 @@
 		<Label Grid.Row="8" Grid.Column="0" Content="Feats"/>
 		<CheckBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Content="Power Attack" Margin="0,5,0,0"/>
 		<Button x:Name="AddAttackButton" Content="Add Attack" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3"/>
-		<Label Content="Attacks" Grid.Row="10" Grid.Column="0"/>
-		<StackPanel Name="AttacksPanel" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="6"/>
+		<Label Content="Attacks" Grid.Row="10" Grid.Column="0" Margin="0,0,0,5"/>
+		<ScrollViewer VerticalScrollBarVisibility="Auto">
+			<ItemsControl ItemsSource="{Binding Attacks}"/>
+		</ScrollViewer>
+		<Label Grid.ColumnSpan="7" Grid.Row="11" x:Name="lblFeedback">
+			<Label.Style>
+				<Style TargetType="{x:Type Label}">
+					<Setter Property="Visibility" Value="Collapsed"/>
+					<Style.Triggers>
+						<Trigger Property="HasContent" Value="True">
+							<Setter Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</Label.Style>
+		</Label>
+		<WrapPanel Grid.ColumnSpan="7" Grid.Row="12" HorizontalAlignment="Right" Margin="5">
+			<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
+			<Button IsCancel="True" MinWidth="60">_Cancel</Button>
+		</WrapPanel>
 	</Grid>
 </Window>

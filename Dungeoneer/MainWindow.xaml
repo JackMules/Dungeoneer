@@ -76,8 +76,8 @@
 				<TabItem x:Name="EnemiesTab" Header="Enemies">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button x:Name="CreateNonPlayerActorButton" HorizontalAlignment="Right" Content="New Non-Player Actor" Margin="5,0"/>
-							<Button x:Name="CreateCreatureButton" HorizontalAlignment="Right" Content="New Creature" Margin="0,0,5,0"/>
+							<Button x:Name="CreateNonPlayerActorButton" HorizontalAlignment="Right" Content="Create Non-Player Actor" Margin="5,0" Command="{Binding CreateNonPlayerActor}"/>
+							<Button x:Name="CreateCreatureButton" HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" Command="{Binding CreateCreature}"/>
 							<TextBox x:Name="FilterActorsBox" ToolTip="Type to filter Actors" />
 						</DockPanel>
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
@@ -95,7 +95,7 @@
 				<TabItem x:Name="PartyTab" Header="Party">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0"/>
+							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0" Command="{Binding CreateCharacter}"/>
 						</DockPanel>
 						<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
