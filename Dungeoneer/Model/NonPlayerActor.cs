@@ -11,9 +11,32 @@ namespace Dungeoneer.Model
 {
 	public class NonPlayerActor : Actor
 	{
+		public NonPlayerActor()
+			: base()
+		{
+			Type = "No Type";
+			ChallengeRating = 1;
+			Attacks = new FullyObservableCollection<ViewModel.AttackViewModel>();
+		}
+
+		public NonPlayerActor(
+			string displayName,
+			string actorName,
+			string type,
+			int initiativeMod,
+			float challengeRating,
+			FullyObservableCollection<ViewModel.AttackViewModel> attacks,
+			FullyObservableCollection<Condition> conditions)
+			: base(displayName, actorName, initiativeMod, conditions)
+		{
+			Type = type;
+			ChallengeRating = challengeRating;
+			Attacks = attacks;
+		}
+
 		private string _type;
 		private float _challengeRating;
-		private Utility.FullyObservableCollection<ViewModel.AttackViewModel> _attacks;
+		private FullyObservableCollection<ViewModel.AttackViewModel> _attacks;
 
 		public string Type
 		{
@@ -35,7 +58,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.FullyObservableCollection<ViewModel.AttackViewModel> Attacks
+		public FullyObservableCollection<ViewModel.AttackViewModel> Attacks
 		{
 			get { return _attacks; }
 			set
@@ -43,29 +66,6 @@ namespace Dungeoneer.Model
 				_attacks = value;
 				NotifyPropertyChanged("Attacks");
 			}
-		}
-
-		public NonPlayerActor()
-			: base()
-		{
-			Type = "No Type";
-			ChallengeRating = 1;
-			Attacks = new Utility.FullyObservableCollection<ViewModel.AttackViewModel>();
-		}
-
-		public NonPlayerActor(
-			string displayName,
-			string actorName,
-			string type,
-			int initiativeMod,
-			float challengeRating,
-			Utility.FullyObservableCollection<ViewModel.AttackViewModel> attacks,
-			Utility.FullyObservableCollection<Condition> conditions)
-			: base(displayName, actorName, initiativeMod, conditions)
-		{
-			Type = type;
-			ChallengeRating = challengeRating;
-			Attacks = attacks;
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -107,7 +107,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "ChallengeRating")
 					{
-						ChallengeRating = Convert.ToInt32(childNode.InnerText);
+						ChallengeRating = Convert.ToSingle(childNode.InnerText);
 					}
 					else if (childNode.Name == "Attacks")
 					{
@@ -123,7 +123,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

@@ -16,9 +16,9 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private string _numDice;
-		private Types.DieType _die;
+		private int _die;
 		private string _modifier;
-		private Types.DamageType _type;
+		private int _type;
 
 		public string NumDice
 		{
@@ -30,7 +30,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Types.DieType Die
+		public int Die
 		{
 			get
 			{
@@ -56,7 +56,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Types.DamageType Type
+		public int Type
 		{
 			get
 			{
@@ -69,19 +69,19 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public ObservableCollection<Types.DieType> DieTypes
+		public List<string> DieTypes
 		{
 			get
 			{
-				return Constants.DieTypes;
+				return Constants.DieTypeStrings;
 			}
 		}
 
-		public ObservableCollection<Types.DamageType> DamageTypes
+		public List<string> DamageTypes
 		{
 			get
 			{
-				return Constants.DamageTypes;
+				return Constants.DamageTypeStrings;
 			}
 		}
 
@@ -94,8 +94,6 @@ namespace Dungeoneer.ViewModel
 			{
 				View.AddDamageWindow addDamageWindow = new View.AddDamageWindow(feedback);
 				addDamageWindow.DataContext = this;
-//				addDamageWindow.DieTypeComboBox.ItemsSource = Constants.DieTypes;
-//				addDamageWindow.DamageTypeComboBox.ItemsSource = Constants.DamageTypes;
 
 				if (addDamageWindow.ShowDialog() == true)
 				{
@@ -104,9 +102,9 @@ namespace Dungeoneer.ViewModel
 						damage = new Model.Damage
 						{
 							NumDice = Convert.ToInt32(NumDice),
-							Die = Die,
+							Die = Methods.GetDieTypeFromString(DieTypes.ElementAt(Die)),
 							Modifier = Convert.ToInt32(Modifier),
-							Type = Type,
+							Type = Methods.GetDamageTypeFromString(DamageTypes.ElementAt(Type)),
 						};
 						askForInput = false;
 					}

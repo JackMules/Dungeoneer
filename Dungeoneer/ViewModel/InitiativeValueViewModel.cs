@@ -25,7 +25,7 @@ namespace Dungeoneer.ViewModel
 			{
 				_initiativeValue = value;
 				NotifyPropertyChanged("InitiativeValue");
-				InitiativeSet = _initiativeValue.InitiativeScore.HasValue;
+				InitiativeSet = _initiativeValue.Score.HasValue;
 			}
 		}
 
@@ -33,21 +33,21 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				if (InitiativeValue.InitiativeScore.HasValue)
+				if (InitiativeValue.Score.HasValue)
 				{
-					return InitiativeValue.InitiativeScore.ToString();
+					return InitiativeValue.Score.ToString();
 				}
 				else
 				{
-					return "Not set";
+					return "0";
 				}
 			}
 			set
 			{
-				InitiativeValue.InitiativeScore = Convert.ToInt32(value);
+				InitiativeValue.Score = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeScore");
 				NotifyPropertyChanged("InitiativeValue");
-				InitiativeSet = InitiativeValue.InitiativeScore.HasValue;
+				InitiativeSet = InitiativeValue.Score.HasValue;
 			}
 		}
 
@@ -55,21 +55,21 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				if (InitiativeValue.InitiativeAdjust.HasValue)
+				if (InitiativeValue.Adjust.HasValue)
 				{
-					return InitiativeValue.InitiativeAdjust.ToString();
+					return InitiativeValue.Adjust.ToString();
 				}
 				else
 				{
-					return "Not set";
+					return "0";
 				}
 			}
 			set
 			{
-				InitiativeValue.InitiativeAdjust = Convert.ToInt32(value);
+				InitiativeValue.Adjust = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeAdjust");
 				NotifyPropertyChanged("InitiativeValue");
-				InitiativeSet = InitiativeValue.InitiativeAdjust.HasValue;
+				InitiativeSet = InitiativeValue.Adjust.HasValue;
 			}
 		}
 
@@ -79,16 +79,16 @@ namespace Dungeoneer.ViewModel
 			{
 				if (InitiativeSet)
 				{
-					return InitiativeValue.InitiativeMod.ToString();
+					return InitiativeValue.Modifier.ToString();
 				}
 				else
 				{
-					return "Not set";
+					return "0";
 				}
 			}
 			set
 			{
-				InitiativeValue.InitiativeMod = Convert.ToInt32(value);
+				InitiativeValue.Modifier = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeMod");
 				NotifyPropertyChanged("InitiativeValue");
 			}
@@ -100,16 +100,16 @@ namespace Dungeoneer.ViewModel
 			{
 				if (InitiativeSet)
 				{
-					return InitiativeValue.InitiativeRoll.ToString();
+					return InitiativeValue.Roll.ToString();
 				}
 				else
 				{
-					return "Not set";
+					return "0";
 				}
 			}
 			set
 			{
-				InitiativeValue.InitiativeRoll = Convert.ToInt32(value);
+				InitiativeValue.Roll = Convert.ToInt32(value);
 				NotifyPropertyChanged("InitiativeRoll");
 				NotifyPropertyChanged("InitiativeValue");
 			}

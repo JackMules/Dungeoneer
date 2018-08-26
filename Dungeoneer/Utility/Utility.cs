@@ -30,6 +30,9 @@ namespace Dungeoneer.Utility
 		public static readonly string AttackTypePrimary = "Melee Primary";
 		public static readonly string AttackTypeSecondary = "Melee Secondary";
 		public static readonly string AttackTypeRanged = "Ranged";
+		public static readonly string AttackTypeTouch = "Touch";
+		public static readonly string AttackTypeRangedTouch = "Ranged Touch";
+		public static readonly string AttackTypeIncorporealTouch = "Incorporeal Touch";
 
 		public static readonly string DamageTypeFire = "Fire";
 		public static readonly string DamageTypeCold = "Cold";
@@ -46,59 +49,59 @@ namespace Dungeoneer.Utility
 		public static readonly string DamageTypeSubdual = "Subdual";
 		public static readonly string DamageTypeUntyped = "Untyped";
 
-		public static readonly ObservableCollection<Types.Size> Sizes = new ObservableCollection<Types.Size>
+		public static readonly List<string> SizeStrings = new List<string>
 		{
-			Types.Size.Fine,
-			Types.Size.Diminuative,
-			Types.Size.Tiny,
-			Types.Size.Small,
-			Types.Size.Medium,
-			Types.Size.Large,
-			Types.Size.Huge,
-			Types.Size.Gargantuan,
-			Types.Size.Colossal,
-			Types.Size.ColossalPlus,
+			Methods.GetSizeString(Types.Size.Fine),
+			Methods.GetSizeString(Types.Size.Diminuative),
+			Methods.GetSizeString(Types.Size.Tiny),
+			Methods.GetSizeString(Types.Size.Small),
+			Methods.GetSizeString(Types.Size.Medium),
+			Methods.GetSizeString(Types.Size.Large),
+			Methods.GetSizeString(Types.Size.Huge),
+			Methods.GetSizeString(Types.Size.Gargantuan),
+			Methods.GetSizeString(Types.Size.Colossal),
+			Methods.GetSizeString(Types.Size.ColossalPlus),
 		};
 
-		public static readonly ObservableCollection<Types.DamageType> DamageTypes = new ObservableCollection<Types.DamageType>
+		public static readonly List<string> DamageTypeStrings = new List<string>
 		{
-			Types.DamageType.Fire,
-			Types.DamageType.Cold,
-			Types.DamageType.Electricity,
-			Types.DamageType.Acid,
-			Types.DamageType.PositiveEnergy,
-			Types.DamageType.NegativeEnergy,
-			Types.DamageType.Piercing,
-			Types.DamageType.Bludgeoning,
-			Types.DamageType.Slashing,
-			Types.DamageType.Force,
-			Types.DamageType.Sonic,
-			Types.DamageType.Divine,
-			Types.DamageType.Untyped,
-			Types.DamageType.Subdual,
+			Methods.GetDamageTypeString(Types.DamageType.Fire),
+			Methods.GetDamageTypeString(Types.DamageType.Cold),
+			Methods.GetDamageTypeString(Types.DamageType.Electricity),
+			Methods.GetDamageTypeString(Types.DamageType.Acid),
+			Methods.GetDamageTypeString(Types.DamageType.PositiveEnergy),
+			Methods.GetDamageTypeString(Types.DamageType.NegativeEnergy),
+			Methods.GetDamageTypeString(Types.DamageType.Piercing),
+			Methods.GetDamageTypeString(Types.DamageType.Bludgeoning),
+			Methods.GetDamageTypeString(Types.DamageType.Slashing),
+			Methods.GetDamageTypeString(Types.DamageType.Force),
+			Methods.GetDamageTypeString(Types.DamageType.Sonic),
+			Methods.GetDamageTypeString(Types.DamageType.Divine),
+			Methods.GetDamageTypeString(Types.DamageType.Untyped),
+			Methods.GetDamageTypeString(Types.DamageType.Subdual),
 		};
 
-		public static readonly ObservableCollection<Types.DieType> DieTypes = new ObservableCollection<Types.DieType>
+		public static readonly List<string> DieTypeStrings = new List<string>
 		{
-			Types.DieType.d3,
-			Types.DieType.d4,
-			Types.DieType.d6,
-			Types.DieType.d8,
-			Types.DieType.d10,
-			Types.DieType.d12,
+			Methods.GetDieTypeString(Types.DieType.d3),
+			Methods.GetDieTypeString(Types.DieType.d4),
+			Methods.GetDieTypeString(Types.DieType.d6),
+			Methods.GetDieTypeString(Types.DieType.d8),
+			Methods.GetDieTypeString(Types.DieType.d10),
+			Methods.GetDieTypeString(Types.DieType.d12),
 		};
 
-		public static readonly ObservableCollection<Types.AttackType> AttackTypes = new ObservableCollection<Types.AttackType>
+		public static readonly List<string> AttackTypeStrings = new List<string>
 		{
-			Types.AttackType.Primary,
-			Types.AttackType.Secondary,
-			Types.AttackType.Ranged,
-			Types.AttackType.Touch,
-			Types.AttackType.RangedTouch,
-			Types.AttackType.IncorporealTouch,
+			Methods.GetAttackTypeString(Types.AttackType.Primary),
+			Methods.GetAttackTypeString(Types.AttackType.Secondary),
+			Methods.GetAttackTypeString(Types.AttackType.Ranged),
+			Methods.GetAttackTypeString(Types.AttackType.Touch),
+			Methods.GetAttackTypeString(Types.AttackType.RangedTouch),
+			Methods.GetAttackTypeString(Types.AttackType.IncorporealTouch),
 		};
 
-		public static readonly ObservableCollection<string> ThreatRanges = new ObservableCollection<string>
+		public static readonly List<string> ThreatRangeStrings = new List<string>
 		{
 			Methods.GetThreatRangeString(20),
 			Methods.GetThreatRangeString(19),
@@ -113,7 +116,7 @@ namespace Dungeoneer.Utility
 			Methods.GetThreatRangeString(10),
 		};
 
-		public static readonly ObservableCollection<string> CritMultipliers = new ObservableCollection<string>
+		public static readonly List<string> CritMultiplierStrings = new List<string>
 		{
 			Methods.GetCritMultiplierString(2),
 			Methods.GetCritMultiplierString(3),
@@ -355,9 +358,12 @@ namespace Dungeoneer.Utility
 		{
 			switch (attackType)
 			{
-				case Types.AttackType.Primary:		return Constants.AttackTypePrimary;
-				case Types.AttackType.Secondary:	return Constants.AttackTypeSecondary;
-				case Types.AttackType.Ranged:			return Constants.AttackTypeRanged;
+				case Types.AttackType.Primary:					return Constants.AttackTypePrimary;
+				case Types.AttackType.Secondary:				return Constants.AttackTypeSecondary;
+				case Types.AttackType.Ranged:						return Constants.AttackTypeRanged;
+				case Types.AttackType.Touch:						return Constants.AttackTypeTouch;
+				case Types.AttackType.RangedTouch:			return Constants.AttackTypeRangedTouch;
+				case Types.AttackType.IncorporealTouch: return Constants.AttackTypeIncorporealTouch;
 				default: return "Unrecognised attack type";
 			}
 		}

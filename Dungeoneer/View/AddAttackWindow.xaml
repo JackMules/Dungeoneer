@@ -20,14 +20,14 @@
 			<ColumnDefinition Width="Auto" MinWidth="40"/>
 		</Grid.ColumnDefinitions>
 		<Label Content="Name" Grid.Row="0" Grid.Column="0"/>
-		<TextBox Name="AttackNameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}"/>
+		<TextBox Name="AttackNameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Name}"/>
 		<Label Content="Type" Grid.Row="1" Grid.Column="0"/>
-		<ComboBox Name="AttackTypeComboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AttackTypes}"/>
+		<ComboBox Name="AttackTypeComboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" ItemsSource="{Binding AttackTypes}" SelectedIndex="{Binding Type}"/>
 		<Label Content="To Hit" Grid.Row="2" Grid.Column="0"/>
-		<TextBox Name="AttackRollModifierTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Modifier}"/>
+		<TextBox Name="AttackRollModifierTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Modifier}"/>
 		<Label Content="Crit" Grid.Row="3" Grid.Column="0"/>
-		<ComboBox Name="ThreatRangeComboBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" ItemsSource="{Binding ThreatRanges}" SelectedIndex="{Binding SelectedThreatRange}"/>
-		<ComboBox Name="CritMultiplierComboBox" Grid.Row="3" Grid.Column="2" ItemsSource="{Binding CritMultipliers}" SelectedIndex="{Binding SelectedCritMultiplier}"/>
+		<ComboBox Name="ThreatRangeComboBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Center" ItemsSource="{Binding ThreatRanges}" SelectedIndex="{Binding SelectedThreatRange}"/>
+		<ComboBox Name="CritMultiplierComboBox" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" ItemsSource="{Binding CritMultipliers}" SelectedIndex="{Binding SelectedCritMultiplier}"/>
 		<Label Content="Damage" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2">
 			<ListBox ItemsSource="{Binding Damages}" SelectedIndex="{Binding SelectedDamage}" Grid.Row="4" Grid.Column="1"/>

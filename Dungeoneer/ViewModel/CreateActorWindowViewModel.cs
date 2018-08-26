@@ -15,7 +15,7 @@ namespace Dungeoneer.ViewModel
 			_initiativeMod = "0";
 			_type = "";
 			_challengeRating = "1";
-			_attacks = new Utility.FullyObservableCollection<AttackViewModel>();
+			_attacks = new FullyObservableCollection<AttackViewModel>();
 			_addAttack = new Command(ExecuteAddAttack);
 			_removeAttack = new Command(ExecuteRemoveAttack);
 		}
@@ -24,7 +24,7 @@ namespace Dungeoneer.ViewModel
 		private string _initiativeMod;
 		private string _type;
 		private string _challengeRating;
-		private Utility.FullyObservableCollection<AttackViewModel> _attacks;
+		private FullyObservableCollection<AttackViewModel> _attacks;
 		private Command _addAttack;
 		private Command _removeAttack;
 
@@ -70,7 +70,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Utility.FullyObservableCollection<AttackViewModel> Attacks
+		public FullyObservableCollection<AttackViewModel> Attacks
 		{
 			get { return _attacks; }
 			set
@@ -78,6 +78,21 @@ namespace Dungeoneer.ViewModel
 				_attacks = value;
 				NotifyPropertyChanged("Attacks");
 			}
+		}
+
+		public List<string> DieTypes
+		{
+			get { return Constants.DieTypeStrings; }
+		}
+
+		public List<string> Sizes
+		{
+			get { return Constants.SizeStrings; }
+		}
+
+		public List<string> DamageTypes
+		{
+			get { return Constants.DamageTypeStrings; }
 		}
 
 		public Model.PlayerActor GetPlayerActor()
@@ -160,8 +175,6 @@ namespace Dungeoneer.ViewModel
 			{
 				View.CreateCreatureWindow createCreatureWindow = new View.CreateCreatureWindow(feedback);
 				createCreatureWindow.DataContext = this;
-				createCreatureWindow.HDTypeComboBox.ItemsSource = Constants.DieTypes;
-				createCreatureWindow.SizeComboBox.ItemsSource = Constants.Sizes;
 				if (createCreatureWindow.ShowDialog() == true)
 				{
 					try

@@ -79,6 +79,7 @@
     <Compile Include="ViewModel\NonPlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />
     <Compile Include="View\AddDamageWindow.xaml.cs">
       <DependentUpon>AddDamageWindow.xaml</DependentUpon>
     </Compile>
@@ -100,8 +101,8 @@
     <Compile Include="View\DamageDialog.xaml.cs">
       <DependentUpon>DamageDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\InitiativeDialog.xaml.cs">
-      <DependentUpon>InitiativeDialog.xaml</DependentUpon>
+    <Compile Include="View\SetInitiativeWindow.xaml.cs">
+      <DependentUpon>SetInitiativeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
@@ -165,7 +166,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\InitiativeDialog.xaml">
+    <Page Include="View\SetInitiativeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

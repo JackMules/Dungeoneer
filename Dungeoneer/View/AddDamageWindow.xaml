@@ -17,13 +17,13 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<Label Content="Num Dice" Grid.Row="0" Grid.Column="0"/>
-		<TextBox Name="NumDiceTextBox" Grid.Row="0" Grid.Column="1" Text="{Binding NumDice}"/>
+		<TextBox Name="NumDiceTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding NumDice}"/>
 		<Label Content="Die" Grid.Row="1" Grid.Column="0"/>
-		<ComboBox Name="DieTypeComboBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding DieTypes}" SelectedItem="{Binding Die}"/>
+		<ComboBox Name="DieTypeComboBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding Die}"/>
 		<Label Content="Modifier" Grid.Row="2" Grid.Column="0"/>
-		<TextBox Name="ModifierTextBox" Grid.Row="2" Grid.Column="1" Text="{Binding Modifier}"/>
+		<TextBox Name="ModifierTextBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Modifier}"/>
 		<Label Content="Type" Grid.Row="3" Grid.Column="0"/>
-		<ComboBox Name="DamageTypeComboBox" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding DamageTypes}" SelectedItem="{Binding Type}"/>
+		<ComboBox Name="DamageTypeComboBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding DamageTypes}" SelectedIndex="{Binding Type}"/>
 		<StackPanel Grid.ColumnSpan="2" Grid.Row="4" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
 				<Label.Style>

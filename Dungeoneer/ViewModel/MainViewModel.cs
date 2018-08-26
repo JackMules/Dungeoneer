@@ -18,19 +18,20 @@ namespace Dungeoneer.ViewModel
 			_encounter = new EncounterViewModel();
 
 			_addActor = new Command(AddActorToEncounter);
+			_loadActorLibrary = new Command(ExecuteLoadActorLibrary);
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_exit = new Command(ExecuteExit);
 			_createPlayerActor = new Command(ExecuteCreatePlayerActor);
 			_createNonPlayerActor = new Command(ExecuteCreateNonPlayerActor);
 			_createCreature = new Command(ExecuteCreateCreature);
 
-			ActorLibrary.LoadValues();
 			CreateTestData();
 		}
 
 		private Model.ActorLibrary _actorLibrary;
 		private EncounterViewModel _encounter;
 		private Command _addActor;
+		private Command _loadActorLibrary;
 		private Command _saveActorLibrary;
 		private Command _exit;
 		private Command _createPlayerActor;
@@ -95,6 +96,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public Command LoadActorLibrary
+		{
+			get { return _loadActorLibrary; }
+		}
+
+		private void ExecuteLoadActorLibrary()
+		{
+			ActorLibrary.ReadXML();
+		}
+		
 		public Command SaveActorLibrary
 		{
 			get { return _saveActorLibrary; }

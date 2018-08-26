@@ -9,26 +9,47 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class ActorLibrary
+	public class ActorLibrary : BaseModel
 	{
 		public ActorLibrary()
 		{
-			LoadValues();
+			_characters = new ObservableCollection<PlayerActor>();
+			_enemies = new ObservableCollection<NonPlayerActor>();
+			Load();
 		}
+
+		private ObservableCollection<PlayerActor> _characters;
+		private ObservableCollection<NonPlayerActor> _enemies;
 
 		public ObservableCollection<PlayerActor> Characters
 		{
-			get;
-			set;
+			get { return _characters; }
+			set
+			{
+				_characters = value;
+				NotifyPropertyChanged("Characters");
+			}
 		}
 
 		public ObservableCollection<NonPlayerActor> Enemies
 		{
-			get;
-			set;
+			get { return _enemies; }
+			set
+			{
+				_enemies = value;
+				NotifyPropertyChanged("Enemies");
+			}
 		}
 
-		public void LoadValues()
+		public void Load()
+		{
+			if (!ReadXML())
+			{
+				LoadTestData();
+			}
+		}
+		
+		public void LoadTestData()
 		{
 			ObservableCollection<PlayerActor> characters = new ObservableCollection<PlayerActor>
 			{
@@ -47,7 +68,7 @@ namespace Dungeoneer.Model
 				new Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 0.25f, ArmourClass = 11, HitPoints = 6 },
 				new NonPlayerActor { ActorName = "Poison Dart Trap", InitiativeMod = 6, ChallengeRating = 4 },
 				new Creature { ActorName = "Troll", ArmourClass = 16, HitPoints = 52 }
-		};
+			};
 
 			Enemies = enemies;
 		}
@@ -78,41 +99,41 @@ namespace Dungeoneer.Model
 			xmlWriter.Close();
 		}
 
-		public void ReadXML()
+		public bool ReadXML()
 		{
 			try
 			{
 				XmlDocument xmlDoc = new XmlDocument();
 				xmlDoc.Load("ActorLibrary.xml");
 
-				foreach (XmlNode xmlNode in xmlDoc.DocumentElement)
+				foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes)
 				{
 					if (xmlNode.Name == "Characters")
 					{
 						foreach (XmlNode characterNode in xmlNode.ChildNodes)
 						{
-							if (xmlNode.Name == "PlayerActor")
+							if (characterNode.Name == "PlayerActor")
 							{
 								PlayerActor playerActor = new PlayerActor();
-								playerActor.ReadXML(xmlNode);
+								playerActor.ReadXML(characterNode);
 								Characters.Add(playerActor);
 							}
 						}
 					}
 					else if (xmlNode.Name == "Enemies")
 					{
-						foreach (XmlNode characterNode in xmlNode.ChildNodes)
+						foreach (XmlNode enemyNode in xmlNode.ChildNodes)
 						{
-							if (xmlNode.Name == "NonPlayerActor")
+							if (enemyNode.Name == "NonPlayerActor")
 							{
 								NonPlayerActor nonPlayerActor = new NonPlayerActor();
-								nonPlayerActor.ReadXML(xmlNode);
+								nonPlayerActor.ReadXML(enemyNode);
 								Enemies.Add(nonPlayerActor);
 							}
-							else if (xmlNode.Name == "Creature")
+							else if (enemyNode.Name == "Creature")
 							{
 								Creature creature = new Creature();
-								creature.ReadXML(xmlNode);
+								creature.ReadXML(enemyNode);
 								Enemies.Add(creature);
 							}
 						}
@@ -122,7 +143,10 @@ namespace Dungeoneer.Model
 			catch (System.Xml.XmlException e)
 			{
 				MessageBox.Show(e.ToString());
+				return false;
 			}
+
+			return true;
 		}
 	}
 }

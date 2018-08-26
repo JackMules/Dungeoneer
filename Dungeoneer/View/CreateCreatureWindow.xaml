@@ -30,53 +30,53 @@
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
-		<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6"/>
+		<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="Abilities"/>
 		<Label Grid.Row="1" Grid.Column="1" Content="Str"/>
-		<TextBox Name="StrTextBox" Grid.Row="2" Grid.Column="1"/>
+		<TextBox Name="StrTextBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
 		<Label Grid.Row="1" Grid.Column="2" Content="Dex"/>
-		<TextBox Name="DexTextBox" Grid.Row="2" Grid.Column="2"/>
+		<TextBox Name="DexTextBox" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
 		<Label Grid.Row="1" Grid.Column="3" Content="Con"/>
-		<TextBox Name="ConTextBox" Grid.Row="2" Grid.Column="3"/>
+		<TextBox Name="ConTextBox" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center"/>
 		<Label Grid.Row="1" Grid.Column="4" Content="Int"/>
-		<TextBox Name="IntTextBox" Grid.Row="2" Grid.Column="4"/>
+		<TextBox Name="IntTextBox" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center"/>
 		<Label Grid.Row="1" Grid.Column="5" Content="Wis"/>
-		<TextBox Name="WisTextBox" Grid.Row="2" Grid.Column="5"/>
+		<TextBox Name="WisTextBox" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center"/>
 		<Label Grid.Row="1" Grid.Column="6" Content="Cha"/>
-		<TextBox Name="ChaTextBox" Grid.Row="2" Grid.Column="6"/>
+		<TextBox Name="ChaTextBox" Grid.Row="2" Grid.Column="6" VerticalAlignment="Center"/>
 		<Label Grid.Row="3" Grid.Column="0" Content="BAB"/>
-		<TextBox Name="BABTextBox" Grid.Row="3" Grid.Column="1"/>
+		<TextBox Name="BABTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
 		<Label Grid.Row="3" Grid.Column="2" Content="HP"/>
-		<TextBox Name="HPTextBox" Grid.Row="3" Grid.Column="3"/>
+		<TextBox Name="HPTextBox" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center"/>
 		<Label Grid.Row="3" Grid.Column="4" Content="HD"/>
-		<TextBox Name="HDTextBox" Grid.Row="3" Grid.Column="5"/>
-		<ComboBox Name="HDTypeComboBox" Grid.Row="3" Grid.Column="6"/>
-		<Label Grid.Row="6" Grid.Column="2" Content="CR"/>
-		<TextBox Name="CRTextBox" Grid.Row="6" Grid.Column="3"/>
-		<Label Grid.Row="6" Grid.Column="4" Content="Size"/>
-		<ComboBox Name="SizeComboBox" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2"/>
+		<TextBox Name="HDTextBox" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center"/>
+		<ComboBox Name="HDTypeComboBox" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}"/>
 		<Label Grid.Row="4" Grid.Column="0" Content="AC"/>
-		<TextBox Name="ACTextBox" Grid.Row="4" Grid.Column="1"/>
+		<TextBox Name="ACTextBox" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
 		<Label Grid.Row="4" Grid.Column="2" Content="FF"/>
-		<TextBox Name="FFACTextBox" Grid.Row="4" Grid.Column="3"/>
+		<TextBox Name="FFACTextBox" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center"/>
 		<Label Grid.Row="4" Grid.Column="4" Content="T"/>
-		<TextBox Name="TouchACTextBox" Grid.Row="4" Grid.Column="5"/>
+		<TextBox Name="TouchACTextBox" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center"/>
 		<Label Grid.Row="5" Grid.Column="0" Content="Init"/>
-		<TextBox Name="InitTextBox" Grid.Row="5" Grid.Column="1"/>
+		<TextBox Name="InitTextBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
 		<Label Grid.Row="5" Grid.Column="2" Content="DR"/>
-		<TextBox Name="DRValueTextBox" Grid.Row="5" Grid.Column="3"/>
-		<TextBox Name="DRTypeTextBox" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3"/>
+		<TextBox Name="DRValueTextBox" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center"/>
+		<ComboBox Name="DRTypeComboBox" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" VerticalAlignment="Center" ItemsSource="{Binding DamageTypes}"/>
+		<Label Grid.Row="6" Grid.Column="2" Content="CR"/>
+		<TextBox Name="CRTextBox" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center"/>
+		<Label Grid.Row="6" Grid.Column="4" Content="Size"/>
+		<ComboBox Name="SizeComboBox" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center" ItemsSource="{Binding Sizes}"/>
 		<Label Grid.Row="6" Grid.Column="0" Content="Speed"/>
-		<TextBox Name="SpeedTextBox" Grid.Row="6" Grid.Column="1"/>
+		<TextBox Name="SpeedTextBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
 		<Label Grid.Row="7" Grid.Column="0" Content="Saves"/>
 		<Label Grid.Row="7" Grid.Column="1" Content="Fort"/>
-		<TextBox Name="FortTextBox" Grid.Row="7" Grid.Column="2"/>
+		<TextBox Name="FortTextBox" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center"/>
 		<Label Grid.Row="7" Grid.Column="3" Content="Ref"/>
-		<TextBox Name="RefTextBox" Grid.Row="7" Grid.Column="4"/>
+		<TextBox Name="RefTextBox" Grid.Row="7" Grid.Column="4" VerticalAlignment="Center"/>
 		<Label Grid.Row="7" Grid.Column="5" Content="Will"/>
-		<TextBox Name="WillTextBox" Grid.Row="7" Grid.Column="6"/>
+		<TextBox Name="WillTextBox" Grid.Row="7" Grid.Column="6" VerticalAlignment="Center"/>
 		<Label Grid.Row="8" Grid.Column="0" Content="Feats"/>
-		<CheckBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Content="Power Attack" Margin="0,5,0,0"/>
+		<CheckBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Content="Power Attack" Margin="0,5,0,0" VerticalAlignment="Center"/>
 		<Label Content="Attacks" Grid.Row="9" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2">
 			<ListBox ItemsSource="{Binding Attacks}" SelectedIndex="{Binding SelectedAttack}"/>

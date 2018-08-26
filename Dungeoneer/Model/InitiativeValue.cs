@@ -11,61 +11,61 @@ namespace Dungeoneer.Model
 {
 	public class InitiativeValue : BaseModel
 	{
-		private int? _initiativeScore;
-		private int? _initiativeAdjust;
-		private int? _initiativeMod;
-		private int? _initiativeRoll;
+		private int? _score;
+		private int? _adjust;
+		private int? _modifier;
+		private int? _roll;
 		private bool _delayed;
 		private bool _turnEnded;
 		private bool _readied;
 
 		public InitiativeValue()
 		{
-			_initiativeScore = null;
-			_initiativeAdjust = null;
-			_initiativeMod = null;
-			_initiativeRoll = null;
+			_score = null;
+			_adjust = null;
+			_modifier = null;
+			_roll = null;
 			_delayed = false;
 			_turnEnded = false;
 			_readied = false;
 		}
 
-		public int? InitiativeScore
+		public int? Score
 		{
-			get { return _initiativeScore; }
+			get { return _score; }
 			set
 			{
-				_initiativeScore = value;
+				_score = value;
 				NotifyPropertyChanged("InitiativeScore");
 			}
 		}
 
-		public int? InitiativeAdjust
+		public int? Adjust
 		{
-			get { return _initiativeAdjust; }
+			get { return _adjust; }
 			set
 			{
-				_initiativeAdjust = value;
+				_adjust = value;
 				NotifyPropertyChanged("InitiativeAdjust");
 			}
 		}
 
-		public int? InitiativeMod
+		public int? Modifier
 		{
-			get { return _initiativeMod; }
+			get { return _modifier; }
 			set
 			{
-				_initiativeMod = value;
+				_modifier = value;
 				NotifyPropertyChanged("InitiativeMod");
 			}
 		}
 
-		public int? InitiativeRoll
+		public int? Roll
 		{
-			get { return _initiativeRoll; }
+			get { return _roll; }
 			set
 			{
-				_initiativeRoll = value;
+				_roll = value;
 				NotifyPropertyChanged("InitiativeRoll");
 			}
 		}
@@ -104,20 +104,20 @@ namespace Dungeoneer.Model
 		{
 			xmlWriter.WriteStartElement("InitiativeValue");
 
-			xmlWriter.WriteStartElement("InitiativeScore");
-			xmlWriter.WriteString(InitiativeScore.ToString());
+			xmlWriter.WriteStartElement("Score");
+			xmlWriter.WriteString(Score.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("InitiativeAdjust");
-			xmlWriter.WriteString(InitiativeAdjust.ToString());
+			xmlWriter.WriteStartElement("Adjust");
+			xmlWriter.WriteString(Adjust.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("InitiativeMod");
-			xmlWriter.WriteString(InitiativeMod.ToString());
+			xmlWriter.WriteStartElement("Modifier");
+			xmlWriter.WriteString(Modifier.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("InitiativeRoll");
-			xmlWriter.WriteString(InitiativeRoll.ToString());
+			xmlWriter.WriteStartElement("Roll");
+			xmlWriter.WriteString(Roll.ToString());
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Delayed");
@@ -141,21 +141,21 @@ namespace Dungeoneer.Model
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "InitiativeScore")
+					if (childNode.Name == "Score")
 					{
-						InitiativeScore = Convert.ToInt32(childNode.InnerText);
+						Score = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "InitiativeAdjust")
+					else if (childNode.Name == "Adjust")
 					{
-						InitiativeAdjust = Convert.ToInt32(childNode.InnerText);
+						Adjust = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "InitiativeMod")
+					else if (childNode.Name == "Modifier")
 					{
-						InitiativeMod = Convert.ToInt32(childNode.InnerText);
+						Modifier = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "InitiativeRoll")
+					else if (childNode.Name == "Roll")
 					{
-						InitiativeRoll = Convert.ToInt32(childNode.InnerText);
+						Roll = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Delayed")
 					{

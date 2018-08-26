@@ -16,7 +16,7 @@ namespace Dungeoneer.ViewModel
 			_removeDamage = new Command(ExecuteRemoveDamage);
 			_name = "";
 			_modifier = "";
-			_type = Types.AttackType.Primary;
+			_type = 0;
 			_selectedThreatRangeMinimum = 0;
 			_selectedCritMultiplier = 0;
 			_damages = new FullyObservableCollection<DamageViewModel>();
@@ -24,7 +24,7 @@ namespace Dungeoneer.ViewModel
 
 		private string _name;
 		private string _modifier;
-		private Types.AttackType _type;
+		private int _type;
 		private int _selectedThreatRangeMinimum;
 		private int _selectedCritMultiplier;
 		private FullyObservableCollection<DamageViewModel> _damages;
@@ -56,7 +56,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Types.AttackType AttackType
+		public int Type
 		{
 			get
 			{
@@ -65,7 +65,7 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				_type = value;
-				NotifyPropertyChanged("AttackType");
+				NotifyPropertyChanged("Type");
 			}
 		}
 
@@ -108,19 +108,19 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public ObservableCollection<Types.AttackType> AttackTypes
+		public List<string> AttackTypes
 		{
-			get { return Constants.AttackTypes; }
+			get { return Constants.AttackTypeStrings; }
 		}
 
-		public ObservableCollection<string> ThreatRanges
+		public List<string> ThreatRanges
 		{
-			get { return Constants.ThreatRanges; }
+			get { return Constants.ThreatRangeStrings; }
 		}
 
-		public ObservableCollection<string> CritMultipliers
+		public List<string> CritMultipliers
 		{
-			get { return Constants.CritMultipliers; }
+			get { return Constants.CritMultiplierStrings; }
 		}
 
 		public Model.Attack GetAttack()
@@ -141,7 +141,7 @@ namespace Dungeoneer.ViewModel
 						{
 							Name = Name,
 							Modifier = Convert.ToInt32(Modifier),
-							Type = AttackType,
+							Type = Methods.GetAttackTypeFromString(AttackTypes.ElementAt(Type)),
 							ThreatRangeMin = Methods.GetThreatRangeMinFromString(ThreatRanges.ElementAt(SelectedThreatRange)),
 							CritMultiplier = Methods.GetCritMultiplierFromString(CritMultipliers.ElementAt(SelectedCritMultiplier)),
 						};

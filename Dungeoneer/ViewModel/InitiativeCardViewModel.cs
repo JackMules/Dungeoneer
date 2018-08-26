@@ -77,32 +77,12 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteOpenInitiativeDialog()
 		{
-			bool askForInput = true;
-			string feedback = null;
-			while (askForInput)
+			SetInitiativeWindowViewModel setInitiativeWindowViewModel = new SetInitiativeWindowViewModel();
+			Model.InitiativeValue initiativeValue = setInitiativeWindowViewModel.GetInitiative();
+			if (initiativeValue != null)
 			{
-				View.InitiativeDialog initDialog = new View.InitiativeDialog(InitiativeValueViewModel.InitiativeScore,
-					InitiativeValueViewModel.InitiativeAdjust, InitiativeValueViewModel.InitiativeMod, InitiativeValueViewModel.InitiativeRoll, feedback);
-				if (initDialog.ShowDialog() == true)
-				{
-					try
-					{
-						InitiativeValueViewModel.InitiativeScore = initDialog.InitScore;
-						InitiativeValueViewModel.InitiativeAdjust = initDialog.InitAdjust;
-						InitiativeValueViewModel.InitiativeMod = initDialog.InitMod;
-						InitiativeValueViewModel.InitiativeRoll = initDialog.InitRoll;
-						askForInput = false;
-					}
-					catch (FormatException)
-					{
-						// Failed to parse input
-						feedback = "Invalid format";
-					}
-				}
-				else
-				{
-					askForInput = false;
-				}
+				InitiativeValueViewModel initiativeValueViewModel = new InitiativeValueViewModel { InitiativeValue = initiativeValue };
+				InitiativeValueViewModel = initiativeValueViewModel;
 			}
 		}
 
