@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Xml;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {

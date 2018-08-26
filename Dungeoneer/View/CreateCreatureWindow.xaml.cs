@@ -25,20 +25,6 @@ namespace Dungeoneer.View
 			lblFeedback.Content = feedback;
 		}
 
-		private void Window_Loaded(object sender, RoutedEventArgs e)
-		{
-			// Add hit die values to combobox
-			for (int hd = 1; hd <= 40; ++hd)
-			{
-				HDComboBox.Items.Add(hd);
-			}
-
-//			foreach (string dieStr in Constants.dieTypes)
-//			{
-//				HDTypeComboBox.Items.Add(dieStr);
-//			}
-		}
-
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
 			this.DialogResult = true;

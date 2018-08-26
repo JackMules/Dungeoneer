@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -36,29 +37,29 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string AttackMod
+		public string Modifier
 		{
 			get
 			{
-				return Utility.Methods.GetSignedNumberString(Attack.AttackMod);
+				return Methods.GetSignedNumberString(Attack.Modifier);
 			}
 			set
 			{
-				Attack.AttackMod = Convert.ToInt32(value);
-				NotifyPropertyChanged("AttackMod");
+				Attack.Modifier = Convert.ToInt32(value);
+				NotifyPropertyChanged("Modifier");
 			}
 		}
 
-		public string AttackType
+		public string Type
 		{
 			get
 			{
-				return Utility.Methods.GetAttackTypeString(Attack.AttackType);
+				return Methods.GetAttackTypeString(Attack.Type);
 			}
 			set
 			{
-				Attack.AttackType = Utility.Methods.GetAttackTypeFromString(value);
-				NotifyPropertyChanged("AttackType");
+				Attack.Type = Methods.GetAttackTypeFromString(value);
+				NotifyPropertyChanged("Type");
 			}
 		}
 
@@ -66,7 +67,7 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				return Utility.Methods.GetThreatRangeString(Attack.ThreatRangeMin);
+				return Methods.GetThreatRangeString(Attack.ThreatRangeMin);
 			}
 			set
 			{
@@ -90,20 +91,9 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string Damages
+		public override string ToString()
 		{
-			get
-			{
-				return Utility.Methods.GetDamageString(Attack.Damages);
-			}
-		}
-
-		public string AttackAndDamage
-		{
-			get
-			{
-				return AttackMod + " " + Damages;
-			}
+			return Attack.ToString();
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)

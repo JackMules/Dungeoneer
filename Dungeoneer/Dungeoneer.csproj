@@ -62,6 +62,9 @@
     <Compile Include="Model\Condition.cs" />
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
+    <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
+    <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
@@ -76,6 +79,9 @@
     <Compile Include="ViewModel\NonPlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="View\AddDamageWindow.xaml.cs">
+      <DependentUpon>AddDamageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AttackCard.xaml.cs">
       <DependentUpon>AttackCard.xaml</DependentUpon>
     </Compile>
@@ -131,6 +137,10 @@
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddDamageWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AttackCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

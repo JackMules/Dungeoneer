@@ -6,15 +6,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
 {
 	public class Attack : BaseModel
 	{
+		public Attack()
+		{
+			_name = "";
+			_modifier = 0;
+			_type = Types.AttackType.Primary;
+			_damages = new FullyObservableCollection<Damage>();
+			_threatRangeMin = 20;
+			_critMultiplier = 2;
+		}
+
+		public Attack(
+			string name,
+			int attackMod,
+			Types.AttackType attackType,
+			FullyObservableCollection<Damage> damages,
+			int threatRangeMin,
+			int critMultiplier)
+		{
+			Name = name;
+			Modifier = attackMod;
+			Type = attackType;
+			Damages = damages;
+			ThreatRangeMin = threatRangeMin;
+			CritMultiplier = critMultiplier;
+		}
+
 		private string _name;
-		private int _attackMod;
-		private Utility.Types.AttackType _attackType;
-		private Utility.FullyObservableCollection<Damage> _damages;
+		private int _modifier;
+		private Types.AttackType _type;
+		private FullyObservableCollection<Damage> _damages;
 		private int _threatRangeMin;
 		private int _critMultiplier;
 
@@ -28,27 +55,27 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int AttackMod
+		public int Modifier
 		{
-			get { return _attackMod; }
+			get { return _modifier; }
 			set
 			{
-				_attackMod = value;
-				NotifyPropertyChanged("AttackMod");
+				_modifier = value;
+				NotifyPropertyChanged("Modifier");
 			}
 		}
 
-		public Utility.Types.AttackType AttackType
+		public Types.AttackType Type
 		{
-			get { return _attackType; }
+			get { return _type; }
 			set
 			{
-				_attackType = value;
-				NotifyPropertyChanged("AttackType");
+				_type = value;
+				NotifyPropertyChanged("Type");
 			}
 		}
 
-		public Utility.FullyObservableCollection<Damage> Damages
+		public FullyObservableCollection<Damage> Damages
 		{
 			get { return _damages; }
 			set
@@ -78,23 +105,9 @@ namespace Dungeoneer.Model
 			}
 		}
 
-
-		public Attack(){}
-
-		public Attack(
-			string name,
-			int attackMod,
-			Utility.Types.AttackType attackType,
-			Utility.FullyObservableCollection<Damage> damages,
-			int threatRangeMin,
-			int critMultiplier)
+		public override string ToString()
 		{
-			Name = name;
-			AttackMod = attackMod;
-			AttackType = attackType;
-			Damages = damages;
-			ThreatRangeMin = threatRangeMin;
-			CritMultiplier = critMultiplier;
+			return Type + ": " + Modifier + ", " + Methods.GetDamageString(Damages);
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)
@@ -105,12 +118,12 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Name);
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("AttackMod");
-			xmlWriter.WriteString(AttackMod.ToString());
+			xmlWriter.WriteStartElement("Modifier");
+			xmlWriter.WriteString(Modifier.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("AttackType");
-			xmlWriter.WriteString(Utility.Methods.GetAttackTypeString(AttackType));
+			xmlWriter.WriteStartElement("Type");
+			xmlWriter.WriteString(Methods.GetAttackTypeString(Type));
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Damages");
@@ -141,13 +154,13 @@ namespace Dungeoneer.Model
 					{
 						Name = childNode.InnerText;
 					}
-					else if (childNode.Name == "AttackMod")
+					else if (childNode.Name == "Modifier")
 					{
-						AttackMod = Convert.ToInt32(childNode.InnerText);
+						Modifier = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "AttackType")
+					else if (childNode.Name == "Type")
 					{
-						AttackType = Utility.Methods.GetAttackTypeFromString(childNode.InnerText);
+						Type = Methods.GetAttackTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "Damages")
 					{
@@ -171,7 +184,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
 {
@@ -58,6 +59,11 @@ namespace Dungeoneer.Model
 				_type = value;
 				NotifyPropertyChanged("Type");
 			}
+		}
+
+		public override string ToString()
+		{
+			return NumDice.ToString() + Methods.GetDieTypeString(Die) + Methods.GetSignedNumberString(Modifier) + " " + Methods.GetDamageTypeString(Type);
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)

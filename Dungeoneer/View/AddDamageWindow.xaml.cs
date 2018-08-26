@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for AddAttackWindow.xaml
+	/// Interaction logic for AddDamageWindow.xaml
 	/// </summary>
-	public partial class AddAttackWindow : Window
+	public partial class AddDamageWindow : Window
 	{
-		public AddAttackWindow(string feedback = null)
+		public AddDamageWindow(string feedback = null)
 		{
 			InitializeComponent();
 			lblFeedback.Content = feedback;

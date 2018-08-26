@@ -14,22 +14,31 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
-		<TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ActorName}"/>
+		<TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding ActorName}"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="Initiative"/>
-		<TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding InitiativeMod}"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding InitiativeMod}"/>
 		<Label Grid.Row="2" Grid.Column="0" Content="Type"/>
-		<TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Type}"/>
+		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Type}"/>
 		<Label Grid.Row="3" Grid.Column="0" Content="CR"/>
-		<TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ChallengeRating}"/>
+		<TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding ChallengeRating}"/>
+		<Label Content="Attacks" Grid.Row="4" Grid.Column="0" Margin="0,0,0,5"/>
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="4" Grid.Column="1">
+			<ListBox ItemsSource="{Binding Attacks}" SelectedIndex="{Binding SelectedAttack}"/>
+		</ScrollViewer>
+		<StackPanel Grid.Row="4" Grid.Column="6">
+			<Button Command="{Binding AddAttack}" ToolTip="Add Attack" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding RemoveAttack}" ToolTip="Remove Attack" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+		</StackPanel>
 		<StackPanel Grid.Row="5" Grid.ColumnSpan="2">
 			<Label x:Name="lblFeedback" Margin="0,5,0,0">
 				<Label.Style>

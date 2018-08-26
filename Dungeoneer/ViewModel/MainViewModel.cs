@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -141,10 +142,8 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteCreateCreature()
 		{
-			Model.Creature creature = null;
-			bool askForInput = true;
-			string feedback = null;
-
+			CreateActorWindowViewModel createActorWindowViewModel = new CreateActorWindowViewModel();
+			Model.Creature creature = createActorWindowViewModel.GetCreature();
 			if (creature != null)
 			{
 				ActorLibrary.Enemies.Add(creature);
@@ -173,8 +172,8 @@ namespace Dungeoneer.ViewModel
 			Model.Attack grellAttack = new Model.Attack
 			{
 				Name = "Slam",
-				AttackMod = 5,
-				AttackType = Utility.Types.AttackType.Primary,
+				Modifier = 5,
+				Type = Utility.Types.AttackType.Primary,
 				Damages = damages,
 				CritMultiplier = 2,
 				ThreatRangeMin = 19

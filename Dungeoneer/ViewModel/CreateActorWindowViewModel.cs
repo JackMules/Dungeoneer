@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -12,12 +13,22 @@ namespace Dungeoneer.ViewModel
 		{
 			_actorName = "";
 			_initiativeMod = "0";
+			_type = "";
+			_challengeRating = "1";
+			_attacks = new Utility.FullyObservableCollection<AttackViewModel>();
+			_addAttack = new Command(ExecuteAddAttack);
+			_removeAttack = new Command(ExecuteRemoveAttack);
 		}
 
 		private string _actorName;
 		private string _initiativeMod;
 		private string _type;
 		private string _challengeRating;
+		private Utility.FullyObservableCollection<AttackViewModel> _attacks;
+		private Command _addAttack;
+		private Command _removeAttack;
+
+		public int SelectedAttack { get; set; }
 
 		public string ActorName
 		{
@@ -56,6 +67,16 @@ namespace Dungeoneer.ViewModel
 			{
 				_challengeRating = value;
 				NotifyPropertyChanged("ChallengeRating");
+			}
+		}
+
+		public Utility.FullyObservableCollection<AttackViewModel> Attacks
+		{
+			get { return _attacks; }
+			set
+			{
+				_attacks = value;
+				NotifyPropertyChanged("Attacks");
 			}
 		}
 
@@ -112,6 +133,7 @@ namespace Dungeoneer.ViewModel
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToInt32(ChallengeRating),
+							Attacks = Attacks,
 						};
 						askForInput = false;
 					}
@@ -128,4 +150,70 @@ namespace Dungeoneer.ViewModel
 
 			return nonPlayerActor;
 		}
+
+		public Model.Creature GetCreature()
+		{
+			bool askForInput = true;
+			string feedback = null;
+			Model.Creature creature = null;
+			while (askForInput)
+			{
+				View.CreateCreatureWindow createCreatureWindow = new View.CreateCreatureWindow(feedback);
+				createCreatureWindow.DataContext = this;
+				createCreatureWindow.HDTypeComboBox.ItemsSource = Constants.DieTypes;
+				createCreatureWindow.SizeComboBox.ItemsSource = Constants.Sizes;
+				if (createCreatureWindow.ShowDialog() == true)
+				{
+					try
+					{
+						creature = new Model.Creature
+						{
+							ActorName = ActorName,
+							InitiativeMod = Convert.ToInt32(InitiativeMod),
+							Type = Type,
+							ChallengeRating = Convert.ToInt32(ChallengeRating),
+							Attacks = Attacks,
+						};
+						askForInput = false;
+					}
+					catch (FormatException)
+					{
+						feedback = "Invalid format";
+					}
+				}
+				else
+				{
+					askForInput = false;
+				}
+			}
+
+			return creature;
+		}
+
+		public Command AddAttack
+		{
+			get { return _addAttack; }
+		}
+
+		public Command RemoveAttack
+		{
+			get { return _removeAttack; }
+		}
+
+		private void ExecuteAddAttack()
+		{
+			AddAttackWindowViewModel addAttackWindowViewModel = new AddAttackWindowViewModel();
+			Model.Attack attack = addAttackWindowViewModel.GetAttack();
+			if (attack != null)
+			{
+				AttackViewModel attackViewModel = new AttackViewModel { Attack = attack };
+				Attacks.Add(attackViewModel);
+			}
+		}
+
+		private void ExecuteRemoveAttack()
+		{
+			Attacks.RemoveAt(SelectedAttack);
+		}
 	}
+}

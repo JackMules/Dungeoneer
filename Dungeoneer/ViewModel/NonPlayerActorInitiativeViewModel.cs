@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Windows;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -43,7 +44,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Utility.FullyObservableCollection<AttackViewModel> Attacks
+		public FullyObservableCollection<AttackViewModel> Attacks
 		{
 			get { return Actor.Attacks; }
 			set
