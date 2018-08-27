@@ -17,7 +17,8 @@ namespace Dungeoneer.ViewModel
 			_actorLibrary = new Model.ActorLibrary();
 			_encounter = new EncounterViewModel();
 
-			_addActor = new Command(AddActorToEncounter);
+			_addActor = new Command(ExecuteAddActorToEncounter);
+			_editActor = new Command(ExecuteEditActor);
 			_loadActorLibrary = new Command(ExecuteLoadActorLibrary);
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_exit = new Command(ExecuteExit);
@@ -31,6 +32,7 @@ namespace Dungeoneer.ViewModel
 		private Model.ActorLibrary _actorLibrary;
 		private EncounterViewModel _encounter;
 		private Command _addActor;
+		private Command _editActor;
 		private Command _loadActorLibrary;
 		private Command _saveActorLibrary;
 		private Command _exit;
@@ -73,7 +75,7 @@ namespace Dungeoneer.ViewModel
 			get { return _addActor; }
 		}
 
-		private void AddActorToEncounter(object actorObj)
+		private void ExecuteAddActorToEncounter(object actorObj)
 		{
 			if (actorObj is Model.Actor)
 			{
@@ -91,6 +93,51 @@ namespace Dungeoneer.ViewModel
 					{
 						actor.DisplayName = inputDialog.Answer;
 						Encounter.AddActor(actor);
+					}
+				}
+			}
+		}
+
+		public Command EditActor
+		{
+			get { return _editActor; }
+		}
+
+		private void ExecuteEditActor(object actorObj)
+		{
+			if (actorObj is Model.Actor)
+			{
+				if (actorObj is Model.PlayerActor)
+				{
+					CreateActorWindowViewModel createActorWindowViewModel = new CreateActorWindowViewModel();
+					createActorWindowViewModel.LoadPlayerActor(actorObj as Model.PlayerActor);
+					Model.PlayerActor playerActor = createActorWindowViewModel.GetPlayerActor();
+					if (playerActor != null)
+					{
+						ActorLibrary.EditActor(actorObj as Model.PlayerActor, playerActor);
+					}
+				}
+				else if (actorObj is Model.NonPlayerActor)
+				{
+					if (actorObj is Model.Creature)
+					{
+						CreateActorWindowViewModel createActorWindowViewModel = new CreateActorWindowViewModel();
+						createActorWindowViewModel.LoadCreature(actorObj as Model.Creature);
+						Model.Creature creature = createActorWindowViewModel.GetCreature();
+						if (creature != null)
+						{
+							ActorLibrary.EditActor(actorObj as Model.Creature, creature);
+						}
+					}
+					else
+					{
+						CreateActorWindowViewModel createActorWindowViewModel = new CreateActorWindowViewModel();
+						createActorWindowViewModel.LoadNonPlayerActor(actorObj as Model.NonPlayerActor);
+						Model.NonPlayerActor nonPlayerActor = createActorWindowViewModel.GetNonPlayerActor();
+						if (nonPlayerActor != null)
+						{
+							ActorLibrary.EditActor(actorObj as Model.Creature, nonPlayerActor);
+						}
 					}
 				}
 			}
@@ -123,8 +170,8 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteCreatePlayerActor()
 		{
-			CreateActorWindowViewModel createCharWindowViewModel = new CreateActorWindowViewModel();
-			Model.PlayerActor playerActor = createCharWindowViewModel.GetPlayerActor();
+			CreateActorWindowViewModel createActorWindowViewModel = new CreateActorWindowViewModel();
+			Model.PlayerActor playerActor = createActorWindowViewModel.GetPlayerActor();
 			if (playerActor != null)
 			{
 				ActorLibrary.Characters.Add(playerActor);

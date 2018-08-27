@@ -21,7 +21,7 @@ namespace Dungeoneer.Model
 		private int _baseAttackBonus;
 		private int _hitPoints;
 		private int _hitDice;
-		private Utility.Types.DieType _hitDiceType;
+		private Types.DieType _hitDiceType;
 
 		private int _armourClass;
 		private int _touchArmourClass;
@@ -35,8 +35,8 @@ namespace Dungeoneer.Model
 
 		private bool _powerAttack;
 
-		private Utility.Types.Size _size;
-		private Utility.FullyObservableCollection<DamageReduction> _damageReductions;
+		private Types.Size _size;
+		private FullyObservableCollection<DamageReduction> _damageReductions;
 
 		public int Strength
 		{
@@ -128,7 +128,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.DieType HitDiceType
+		public Types.DieType HitDieType
 		{
 			get { return _hitDiceType; }
 			set
@@ -218,7 +218,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.Size Size
+		public Types.Size Size
 		{
 			get { return _size; }
 			set
@@ -228,7 +228,7 @@ namespace Dungeoneer.Model
 			}
 		}
 		
-		public Utility.FullyObservableCollection<DamageReduction> DamageReductions
+		public FullyObservableCollection<DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
 			set
@@ -250,7 +250,7 @@ namespace Dungeoneer.Model
 			BaseAttackBonus = 0;
 			HitPoints = 3;
 			HitDice = 1;
-			HitDiceType = Utility.Types.DieType.d3;
+			HitDieType = Types.DieType.d3;
 			ArmourClass = 10;
 			TouchArmourClass = 10;
 			FlatFootedArmourClass = 10;
@@ -259,8 +259,8 @@ namespace Dungeoneer.Model
 			ReflexSave = 0;
 			WillSave = 0;
 			PowerAttack = false;
-			Size = Utility.Types.Size.Medium;
-			DamageReductions = new Utility.FullyObservableCollection<DamageReduction>();
+			Size = Types.Size.Medium;
+			DamageReductions = new FullyObservableCollection<DamageReduction>();
 		}
 
 		public Creature(
@@ -269,7 +269,7 @@ namespace Dungeoneer.Model
 			string type, 
 			int initiativeMod,
 			float challengeRating,
-			Utility.FullyObservableCollection<ViewModel.AttackViewModel> attacks,
+			FullyObservableCollection<ViewModel.AttackViewModel> attacks,
 			int strength,
 			int dexterity,
 			int constitution,
@@ -279,7 +279,7 @@ namespace Dungeoneer.Model
 			int baseAttackBonus,
 			int hitPoints,
 			int hitDice,
-			Utility.Types.DieType hitDiceType,
+			Types.DieType hitDiceType,
 			int armourClass,
 			int touchArmourClass,
 			int flatFootedArmourClass,
@@ -290,9 +290,9 @@ namespace Dungeoneer.Model
 			int reflexSave,
 			int willSave,
 			bool powerAttack,
-			Utility.Types.Size size,
-			Utility.FullyObservableCollection<DamageReduction> damageReductions,
-			Utility.FullyObservableCollection<Condition> conditions)
+			Types.Size size,
+			FullyObservableCollection<DamageReduction> damageReductions,
+			FullyObservableCollection<Condition> conditions)
 			: base(displayName, actorName, type, 
 					initiativeMod, challengeRating, attacks, conditions)
 		{
@@ -305,7 +305,7 @@ namespace Dungeoneer.Model
 			BaseAttackBonus = baseAttackBonus;
 			HitPoints = hitPoints; 
 			HitDice = hitDice; 
-			HitDiceType = hitDiceType; 
+			HitDieType = hitDiceType; 
 			ArmourClass = armourClass; 
 			TouchArmourClass = touchArmourClass; 
 			FlatFootedArmourClass = flatFootedArmourClass; 
@@ -364,7 +364,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("HitDiceType");
-			xmlWriter.WriteString(Utility.Methods.GetDieTypeString(HitDiceType));
+			xmlWriter.WriteString(Methods.GetDieTypeString(HitDieType));
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("ArmourClass");
@@ -400,7 +400,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Size");
-			xmlWriter.WriteString(Utility.Methods.GetSizeString(Size));
+			xmlWriter.WriteString(Methods.GetSizeString(Size));
 			xmlWriter.WriteEndElement();
 			
 			xmlWriter.WriteStartElement("DamageReductions");
@@ -457,7 +457,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "HitDiceType")
 					{
-						HitDiceType = Utility.Methods.GetDieTypeFromString(childNode.InnerText);
+						HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "ArmourClass")
 					{
@@ -493,7 +493,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Size")
 					{
-						Size = Utility.Methods.GetSizeFromString(childNode.InnerText);
+						Size = Methods.GetSizeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "DamageReductions")
 					{
@@ -509,7 +509,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

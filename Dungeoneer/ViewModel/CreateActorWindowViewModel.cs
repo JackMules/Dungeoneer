@@ -11,10 +11,6 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreateActorWindowViewModel()
 		{
-			_actorName = "";
-			_initiativeMod = "0";
-			_type = "";
-			_challengeRating = "1";
 			_attacks = new FullyObservableCollection<AttackViewModel>();
 			_addAttack = new Command(ExecuteAddAttack);
 			_removeAttack = new Command(ExecuteRemoveAttack);
@@ -25,6 +21,33 @@ namespace Dungeoneer.ViewModel
 		private string _type;
 		private string _challengeRating;
 		private FullyObservableCollection<AttackViewModel> _attacks;
+		private string _strength;
+		private string _dexterity;
+		private string _constitution;
+		private string _intelligence;
+		private string _wisdom;
+		private string _charisma;
+
+		private string _baseAttackBonus;
+		private string _hitPoints;
+		private string _hitDice;
+		private int _selectedHitDie;
+
+		private string _armourClass;
+		private string _touchArmourClass;
+		private string _flatFootedArmourClass;
+
+		private string _speed;
+
+		private string _fortitudeSave;
+		private string _reflexSave;
+		private string _willSave;
+
+		private bool _powerAttack;
+
+		private int _selectedSize;
+		private FullyObservableCollection<Model.DamageReduction> _damageReductions;
+
 		private Command _addAttack;
 		private Command _removeAttack;
 
@@ -70,6 +93,186 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string Strength
+		{
+			get { return _strength; }
+			set
+			{
+				_strength = value;
+				NotifyPropertyChanged("Strength");
+			}
+		}
+
+		public string Dexterity
+		{
+			get { return _dexterity; }
+			set
+			{
+				_dexterity = value;
+				NotifyPropertyChanged("Dexterity");
+			}
+		}
+
+		public string Constitution
+		{
+			get { return _constitution; }
+			set
+			{
+				_constitution = value;
+				NotifyPropertyChanged("Constitution");
+			}
+		}
+
+		public string Intelligence
+		{
+			get { return _intelligence; }
+			set
+			{
+				_intelligence = value;
+				NotifyPropertyChanged("Intelligence");
+			}
+		}
+
+		public string Wisdom
+		{
+			get { return _wisdom; }
+			set
+			{
+				_wisdom = value;
+				NotifyPropertyChanged("Wisdom");
+			}
+		}
+
+		public string Charisma
+		{
+			get { return _charisma; }
+			set
+			{
+				_charisma = value;
+				NotifyPropertyChanged("Charisma");
+			}
+		}
+
+		public string BaseAttackBonus
+		{
+			get { return _baseAttackBonus; }
+			set
+			{
+				_baseAttackBonus = value;
+				NotifyPropertyChanged("BaseAttackBonus");
+			}
+		}
+
+		public string HitPoints
+		{
+			get { return _hitPoints; }
+			set
+			{
+				_hitPoints = value;
+				NotifyPropertyChanged("HitPoints");
+			}
+		}
+
+		public string HitDice
+		{
+			get { return _hitDice; }
+			set
+			{
+				_hitDice = value;
+				NotifyPropertyChanged("HitDice");
+			}
+		}
+
+		public int SelectedHitDie
+		{
+			get { return _selectedHitDie; }
+			set
+			{
+				_selectedHitDie = value;
+				NotifyPropertyChanged("SelectedHitDie");
+			}
+		}
+
+		public string ArmourClass
+		{
+			get { return _armourClass; }
+			set
+			{
+				_armourClass = value;
+				NotifyPropertyChanged("ArmourClass");
+			}
+		}
+
+		public string TouchArmourClass
+		{
+			get { return _touchArmourClass; }
+			set
+			{
+				_touchArmourClass = value;
+				NotifyPropertyChanged("TouchArmourClass");
+			}
+		}
+
+		public string FlatFootedArmourClass
+		{
+			get { return _flatFootedArmourClass; }
+			set
+			{
+				_flatFootedArmourClass = value;
+				NotifyPropertyChanged("FlatFootedArmourClass");
+			}
+		}
+
+		public string Speed
+		{
+			get { return _speed; }
+			set
+			{
+				_speed = value;
+				NotifyPropertyChanged("Speed");
+			}
+		}
+
+		public string FortitudeSave
+		{
+			get { return _fortitudeSave; }
+			set
+			{
+				_fortitudeSave = value;
+				NotifyPropertyChanged("FortitudeSave");
+			}
+		}
+
+		public string ReflexSave
+		{
+			get { return _reflexSave; }
+			set
+			{
+				_reflexSave = value;
+				NotifyPropertyChanged("ReflexSave");
+			}
+		}
+
+		public string WillSave
+		{
+			get { return _willSave; }
+			set
+			{
+				_willSave = value;
+				NotifyPropertyChanged("WillSave");
+			}
+		}
+
+		public bool PowerAttack
+		{
+			get { return _powerAttack; }
+			set
+			{
+				_powerAttack = value;
+				NotifyPropertyChanged("PowerAttack");
+			}
+		}
+
 		public FullyObservableCollection<AttackViewModel> Attacks
 		{
 			get { return _attacks; }
@@ -77,6 +280,26 @@ namespace Dungeoneer.ViewModel
 			{
 				_attacks = value;
 				NotifyPropertyChanged("Attacks");
+			}
+		}
+
+		public int SelectedSize
+		{
+			get { return _selectedSize; }
+			set
+			{
+				_selectedSize = value;
+				NotifyPropertyChanged("SelectedSize");
+			}
+		}
+
+		public FullyObservableCollection<Model.DamageReduction> DamageReductions
+		{
+			get { return _damageReductions; }
+			set
+			{
+				_damageReductions = value;
+				NotifyPropertyChanged("DamageReductions");
 			}
 		}
 
@@ -93,6 +316,47 @@ namespace Dungeoneer.ViewModel
 		public List<string> DamageTypes
 		{
 			get { return Constants.DamageTypeStrings; }
+		}
+
+		public void LoadPlayerActor(Model.PlayerActor playerActor)
+		{
+			ActorName = playerActor.ActorName;
+			InitiativeMod = playerActor.InitiativeMod.ToString();
+		}
+
+		public void LoadNonPlayerActor(Model.NonPlayerActor nonPlayerActor)
+		{
+			ActorName = nonPlayerActor.ActorName;
+			InitiativeMod = nonPlayerActor.InitiativeMod.ToString();
+			Type = nonPlayerActor.Type;
+			ChallengeRating = nonPlayerActor.ChallengeRating.ToString();
+			Attacks = nonPlayerActor.Attacks;
+		}
+
+		public void LoadCreature(Model.Creature creature)
+		{
+			LoadNonPlayerActor(creature);
+
+			Strength = creature.Strength.ToString();
+			Dexterity = creature.Dexterity.ToString();
+			Constitution = creature.Constitution.ToString();
+			Intelligence = creature.Intelligence.ToString();
+			Wisdom = creature.Wisdom.ToString();
+			Charisma = creature.Charisma.ToString();
+			BaseAttackBonus = creature.BaseAttackBonus.ToString();
+			HitPoints = creature.HitPoints.ToString();
+			HitDice = creature.HitDice.ToString();
+			SelectedHitDie = DieTypes.IndexOf(Methods.GetDieTypeString(creature.HitDieType));
+			ArmourClass = creature.ArmourClass.ToString();
+			TouchArmourClass = creature.TouchArmourClass.ToString();
+			FlatFootedArmourClass = creature.FlatFootedArmourClass.ToString();
+			Speed = creature.Speed.ToString();
+			FortitudeSave = creature.FortitudeSave.ToString();
+			ReflexSave = creature.ReflexSave.ToString();
+			WillSave = creature.WillSave.ToString();
+			PowerAttack = creature.PowerAttack;
+			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
+			DamageReductions = creature.DamageReductions;
 		}
 
 		public Model.PlayerActor GetPlayerActor()
@@ -186,6 +450,26 @@ namespace Dungeoneer.ViewModel
 							Type = Type,
 							ChallengeRating = Convert.ToInt32(ChallengeRating),
 							Attacks = Attacks,
+							Strength = Convert.ToInt32(Strength),
+							Dexterity = Convert.ToInt32(Dexterity),
+							Constitution = Convert.ToInt32(Constitution),
+							Intelligence = Convert.ToInt32(Intelligence),
+							Wisdom = Convert.ToInt32(Wisdom),
+							Charisma = Convert.ToInt32(Charisma),
+							BaseAttackBonus = Convert.ToInt32(BaseAttackBonus),
+							HitPoints = Convert.ToInt32(HitPoints),
+							HitDice = Convert.ToInt32(HitDice),
+							HitDieType = Methods.GetDieTypeFromString(DieTypes.ElementAt(SelectedHitDie)),
+							ArmourClass = Convert.ToInt32(ArmourClass),
+							TouchArmourClass = Convert.ToInt32(TouchArmourClass),
+							FlatFootedArmourClass = Convert.ToInt32(FlatFootedArmourClass),
+							Speed = Convert.ToInt32(Speed),
+							FortitudeSave = Convert.ToInt32(FortitudeSave),
+							ReflexSave = Convert.ToInt32(ReflexSave),
+							WillSave = Convert.ToInt32(WillSave),
+							PowerAttack = PowerAttack,
+							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
+							DamageReductions = new FullyObservableCollection<Model.DamageReduction>(),
 						};
 						askForInput = false;
 					}

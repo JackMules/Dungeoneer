@@ -90,7 +90,7 @@ namespace Dungeoneer.Utility
 			Methods.GetDieTypeString(Types.DieType.d10),
 			Methods.GetDieTypeString(Types.DieType.d12),
 		};
-
+		
 		public static readonly List<string> AttackTypeStrings = new List<string>
 		{
 			Methods.GetAttackTypeString(Types.AttackType.Primary),

@@ -17,14 +17,14 @@ namespace Dungeoneer.Model
 			ActorName = "";
 			InitiativeMod = 0;
 			Active = true;
-			Conditions = new Utility.FullyObservableCollection<Condition>();
+			Conditions = new FullyObservableCollection<Condition>();
 		}
 
 		private string _displayName;
 		private string _actorName;
 		private int _initiativeMod;
 		private bool _active;
-		private Utility.FullyObservableCollection<Condition> _conditions;
+		private FullyObservableCollection<Condition> _conditions;
 
 		public string DisplayName
 		{
@@ -66,7 +66,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.FullyObservableCollection<Condition> Conditions
+		public FullyObservableCollection<Condition> Conditions
 		{
 			get { return _conditions; }
 			set
@@ -80,7 +80,7 @@ namespace Dungeoneer.Model
 			string displayName,
 			string actorName,
 			int initiativeMod,
-			Utility.FullyObservableCollection<Condition> conditions)
+			FullyObservableCollection<Condition> conditions)
 		{
 			DisplayName = displayName;
 			ActorName = actorName;
@@ -155,7 +155,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

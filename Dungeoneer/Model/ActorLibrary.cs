@@ -48,6 +48,30 @@ namespace Dungeoneer.Model
 				LoadTestData();
 			}
 		}
+
+		public void EditActor(Actor oldActor, Actor newActor)
+		{
+			if (oldActor is PlayerActor)
+			{
+				var foundCharacter = Characters.Where(character => character == oldActor).FirstOrDefault();
+
+				if (foundCharacter != null)
+				{
+					Characters.Remove(oldActor as PlayerActor);
+					Characters.Add(newActor as PlayerActor);
+				}
+			}
+			else if (oldActor is NonPlayerActor)
+			{
+				var foundEnemy = Enemies.Where(enemy => enemy == oldActor).FirstOrDefault();
+
+				if (foundEnemy != null)
+				{
+					Enemies.Remove(oldActor as NonPlayerActor);
+					Enemies.Add(newActor as NonPlayerActor);
+				}
+			}
+		}
 		
 		public void LoadTestData()
 		{
@@ -140,7 +164,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 				return false;

@@ -14,9 +14,14 @@
 					<Label Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeMod}"/>
 				</StackPanel>
-				<Button DockPanel.Dock="Right" Content="Add" Height="30" Width="40" FontSize="16" Margin="10"
-								Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type main:MainWindow}}, 
-								Path=DataContext.AddActor}" CommandParameter="{Binding}"/>
+				<StackPanel DockPanel.Dock="Right" Orientation="Vertical">
+					<Button Content="Add" FontSize="16" Margin="5"
+									Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type main:MainWindow}}, 
+									Path=DataContext.AddActor}" CommandParameter="{Binding}"/>
+					<Button Content="Edit" FontSize="16" Margin="5"
+									Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type main:MainWindow}}, 
+									Path=DataContext.EditActor}" CommandParameter="{Binding}"/>
+				</StackPanel>
 				<Label/>
 			</DockPanel>
 		</Border>
