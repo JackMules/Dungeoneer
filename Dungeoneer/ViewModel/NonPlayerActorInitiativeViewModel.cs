@@ -14,8 +14,6 @@ namespace Dungeoneer.ViewModel
 		public NonPlayerActorInitiativeViewModel()
 		{
 			_actor = new Model.NonPlayerActor();
-			_attacksWindow = new View.AttacksWindow();
-			_attacksWindow.DataContext = Attacks;
 			_showAttacksWindow = new Command(ExecuteShowAttacksWindow);
 			_hideAttacksWindow = new Command(ExecuteHideAttacksWindow);
 		}
@@ -61,7 +59,9 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteShowAttacksWindow()
 		{
-			_attacksWindow.Visibility = Visibility.Visible;
+			_attacksWindow = new View.AttacksWindow();
+			_attacksWindow.DataContext = this;
+			_attacksWindow.Show();
 		}
 
 		public Command HideAttacksWindow
@@ -71,7 +71,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteHideAttacksWindow()
 		{
-			_attacksWindow.Visibility = Visibility.Collapsed;
+			_attacksWindow.Close();
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

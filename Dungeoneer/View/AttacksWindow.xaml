@@ -6,7 +6,7 @@
 				xmlns:view="clr-namespace:Dungeoneer.View"
 				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
         mc:Ignorable="d"
-				WindowStyle="None"
+				WindowStyle="ToolWindow"
         Title="Attacks" Height="240" Width="600">
 	<Window.Resources>
 		<DataTemplate x:Key="AttackTemplate" DataType="{x:Type viewmodel:AttackViewModel}">
@@ -18,8 +18,7 @@
 			<DockPanel>
 				<Button DockPanel.Dock="Bottom" Content="Close" FontSize="18" Margin="5" Command="{Binding HideAttacksWindow}"/>
 				<ScrollViewer VerticalScrollBarVisibility="Auto">
-					<ItemsControl ItemsSource="{Binding}"
-										ItemTemplate="{DynamicResource AttackTemplate}"
+					<ListBox ItemsSource="{Binding Attacks}"
 										Background="Transparent"/>
 				</ScrollViewer>
 			</DockPanel>
