@@ -17,14 +17,14 @@ namespace Dungeoneer.Model
 			ActorName = "";
 			InitiativeMod = 0;
 			Active = true;
-			Conditions = new FullyObservableCollection<Condition>();
+			Effects = new FullyObservableCollection<Effect>();
 		}
 
 		private string _displayName;
 		private string _actorName;
 		private int _initiativeMod;
 		private bool _active;
-		private FullyObservableCollection<Condition> _conditions;
+		private FullyObservableCollection<Effect> _effects;
 
 		public string DisplayName
 		{
@@ -66,13 +66,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public FullyObservableCollection<Condition> Conditions
+		public FullyObservableCollection<Effect> Effects
 		{
-			get { return _conditions; }
+			get { return _effects; }
 			set
 			{
-				_conditions = value;
-				NotifyPropertyChanged("Conditions");
+				_effects = value;
+				NotifyPropertyChanged("Effects");
 			}
 		}
 
@@ -80,13 +80,13 @@ namespace Dungeoneer.Model
 			string displayName,
 			string actorName,
 			int initiativeMod,
-			FullyObservableCollection<Condition> conditions)
+			FullyObservableCollection<Effect> effects)
 		{
 			DisplayName = displayName;
 			ActorName = actorName;
 			InitiativeMod = initiativeMod;
 			Active = true;
-			Conditions = conditions;
+			Effects = effects;
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)
@@ -115,10 +115,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(InitiativeMod.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("Conditions");
-			foreach (Condition condition in Conditions)
+			xmlWriter.WriteStartElement("Effects");
+			foreach (Effect effect in Effects)
 			{
-				condition.WriteXML(xmlWriter);
+				effect.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
 		}
@@ -141,15 +141,15 @@ namespace Dungeoneer.Model
 					{
 						InitiativeMod = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "Conditions")
+					else if (childNode.Name == "Effects")
 					{
-						foreach (XmlNode conditionNode in childNode.ChildNodes)
+						foreach (XmlNode effectNode in childNode.ChildNodes)
 						{
-							if (conditionNode.Name == "Condition")
+							if (effectNode.Name == "Effect")
 							{
-								Condition condition = new Condition();
-								condition.ReadXML(conditionNode);
-								Conditions.Add(condition);
+								Effect effect = new Effect();
+								effect.ReadXML(effectNode);
+								Effects.Add(effect);
 							}
 						}
 					}

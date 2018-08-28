@@ -44,11 +44,11 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				return Utility.Methods.GetDieTypeString(Damage.Die);
+				return Methods.GetDieTypeString(Damage.Die);
 			}
 			set
 			{
-				Damage.Die = Utility.Methods.GetDieTypeFromString(value);
+				Damage.Die = Methods.GetDieTypeFromString(value);
 				NotifyPropertyChanged("Die");
 			}
 		}
@@ -70,11 +70,11 @@ namespace Dungeoneer.ViewModel
 		{
 			get
 			{
-				return Utility.Methods.GetDamageTypeString(Damage.Type);
+				return Methods.GetDamageTypeString(Damage.Type);
 			}
 			set
 			{
-				Damage.Type = Utility.Methods.GetDamageTypeFromString(value);
+				Damage.Type = Methods.GetDamageTypeFromString(value);
 				NotifyPropertyChanged("Type");
 			}
 		}

@@ -13,11 +13,11 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreatureInitiativeViewModel()
 		{
-			_openDamageDialog = new Command(ExecuteOpenDamageDialog);
+			_doDamage = new Command(ExecuteDoDamage);
 			_actor = new Model.Creature();
 		}
 
-		private Command _openDamageDialog;
+		private Command _doDamage;
 
 		public new Model.Creature Actor
 		{
@@ -51,38 +51,15 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Command OpenDamageDialog
+		public Command DoDamage
 		{
-			get { return _openDamageDialog; }
+			get { return _doDamage; }
 		}
 
-		private void ExecuteOpenDamageDialog()
+		private void ExecuteDoDamage()
 		{
-			bool askForInput = true;
-			string feedback = null;
-			while (askForInput)
-			{
-				View.DamageDialog damageDialog = new View.DamageDialog(feedback);
-				if (damageDialog.ShowDialog() == true)
-				{
-					try
-					{
-						int damage = Convert.ToInt32(damageDialog.Damage);
-						Utility.Types.DamageType damageType = Utility.Methods.GetDamageTypeFromString(damageDialog.DamageType);
-						HitPoints = Utility.Methods.CalculateNewHitPoints(Actor, damage, damageType).ToString();
-						askForInput = false;
-					}
-					catch (FormatException)
-					{
-						// Failed to parse input
-						feedback = "Invalid format";
-					}
-				}
-				else
-				{
-					askForInput = false;
-				}
-			}
+			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel();
+			HitPoints = doDamageDialogViewModel.GetNewHitPoints(Actor);
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

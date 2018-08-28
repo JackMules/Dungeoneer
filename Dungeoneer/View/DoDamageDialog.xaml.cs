@@ -18,28 +18,16 @@ namespace Dungeoneer.View
 	/// <summary>
 	/// Interaction logic for DamageDialog.xaml
 	/// </summary>
-	public partial class DamageDialog : Window
+	public partial class DoDamageDialog : Window
 	{
-		public DamageDialog(string feedback = null)
+		public DoDamageDialog(string feedback = null)
 		{
 			InitializeComponent();
-			comboDamageType.ItemsSource = Utility.Methods.GetDamageTypeStringList();
-			comboDamageType.SelectedIndex = 10;
 		}
 
 		private void BtnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
-			this.DialogResult = true;
-		}
-
-		public string Damage
-		{
-			get { return txtDamage.Text; }
-		}
-
-		public string DamageType
-		{
-			get { return comboDamageType.SelectedItem.ToString(); }
+			DialogResult = true;
 		}
 	}
 }

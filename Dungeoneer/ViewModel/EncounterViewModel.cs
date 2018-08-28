@@ -14,7 +14,7 @@ namespace Dungeoneer.ViewModel
 {
 	public class EncounterViewModel : BaseViewModel
 	{
-		private Utility.FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
+		private FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
 		private int _round;
 		private RelayCommand _nextRound;
 		private Command _clear;
@@ -23,7 +23,7 @@ namespace Dungeoneer.ViewModel
 
 		public EncounterViewModel()
 		{
-			_initiativeTrack = new Utility.FullyObservableCollection<InitiativeCardViewModel>();
+			_initiativeTrack = new FullyObservableCollection<InitiativeCardViewModel>();
 			_round = 1;
 			_nextRound = new RelayCommand(ExecuteNextRound, CheckRound);
 			_clear = new Command(ExecuteClear);
@@ -70,7 +70,7 @@ namespace Dungeoneer.ViewModel
 			return roundComplete;
 		}
 		
-		public Utility.FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
+		public FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{
 			get { return _initiativeTrack; }
 			set
@@ -190,7 +190,7 @@ namespace Dungeoneer.ViewModel
 						}
 					}
 				}
-				catch (System.Xml.XmlException e)
+				catch (XmlException e)
 				{
 					MessageBox.Show(e.ToString());
 				}

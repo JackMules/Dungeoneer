@@ -292,9 +292,9 @@ namespace Dungeoneer.Model
 			bool powerAttack,
 			Types.Size size,
 			FullyObservableCollection<DamageReduction> damageReductions,
-			FullyObservableCollection<Condition> conditions)
+			FullyObservableCollection<Effect> effects)
 			: base(displayName, actorName, type, 
-					initiativeMod, challengeRating, attacks, conditions)
+					initiativeMod, challengeRating, attacks, effects)
 		{
 			Strength = strength;
 			Dexterity = dexterity;

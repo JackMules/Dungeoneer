@@ -20,7 +20,7 @@ namespace Dungeoneer.Model
 			string displayName,
 			string actorName,
 			int initiativeMod,
-			Utility.FullyObservableCollection<Condition> conditions)
+			Utility.FullyObservableCollection<Effect> conditions)
 			: base(displayName, actorName, initiativeMod, conditions)
 		{
 		}

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class Condition : BaseModel
+	public class Effect : BaseModel
 	{
 		private string _name;
 		private int _value;
@@ -58,7 +58,7 @@ namespace Dungeoneer.Model
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("Condition");
+			xmlWriter.WriteStartElement("Effect");
 
 			xmlWriter.WriteStartElement("Name");
 			xmlWriter.WriteString(Name);
