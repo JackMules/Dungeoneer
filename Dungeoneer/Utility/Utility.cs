@@ -46,7 +46,6 @@ namespace Dungeoneer.Utility
 		public static readonly string DamageTypeForce = "Force";
 		public static readonly string DamageTypeSonic = "Sonic";
 		public static readonly string DamageTypeDivine = "Divine";
-		public static readonly string DamageTypeSubdual = "Subdual";
 		public static readonly string DamageTypeUntyped = "Untyped";
 
 		public static readonly List<string> SizeStrings = new List<string>
@@ -78,7 +77,6 @@ namespace Dungeoneer.Utility
 			Methods.GetDamageTypeString(Types.DamageType.Sonic),
 			Methods.GetDamageTypeString(Types.DamageType.Divine),
 			Methods.GetDamageTypeString(Types.DamageType.Untyped),
-			Methods.GetDamageTypeString(Types.DamageType.Subdual),
 		};
 
 		public static readonly List<string> DieTypeStrings = new List<string>
@@ -176,7 +174,6 @@ namespace Dungeoneer.Utility
 			Sonic,
 			Divine,
 			Untyped,
-			Subdual
 		}
 	}
 

@@ -223,22 +223,22 @@ namespace Dungeoneer.ViewModel
 
 			}
 
-			Utility.FullyObservableCollection<Model.Damage> damages = new Utility.FullyObservableCollection<Model.Damage>();
-			damages.Add(new Model.Damage { NumDice = 1, Die = Utility.Types.DieType.d6, Modifier = 3, Type = Utility.Types.DamageType.Bludgeoning });
-			damages.Add(new Model.Damage { NumDice = 1, Die = Utility.Types.DieType.d4, Modifier = 2, Type = Utility.Types.DamageType.Acid });
+			FullyObservableCollection<Model.Damage> damages = new FullyObservableCollection<Model.Damage>();
+			damages.Add(new Model.Damage { NumDice = 1, Die = Types.DieType.d6, Modifier = 3, Type = Types.DamageType.Bludgeoning });
+			damages.Add(new Model.Damage { NumDice = 1, Die = Types.DieType.d4, Modifier = 2, Type = Types.DamageType.Acid });
 
 			Model.Attack grellAttack = new Model.Attack
 			{
 				Name = "Slam",
 				Modifier = 5,
-				Type = Utility.Types.AttackType.Primary,
+				Type = Types.AttackType.Primary,
 				Damages = damages,
 				CritMultiplier = 2,
 				ThreatRangeMin = 19
 			};
 
 			AttackViewModel grellAttackViewModel = new AttackViewModel { Attack = grellAttack };
-			Utility.FullyObservableCollection<AttackViewModel> grellAttacks = new Utility.FullyObservableCollection<AttackViewModel>();
+			FullyObservableCollection<AttackViewModel> grellAttacks = new FullyObservableCollection<AttackViewModel>();
 			grellAttacks.Add(grellAttackViewModel);
 			Model.Creature grell = new Model.Creature { DisplayName = "Grell 1", ActorName = "Grell", ArmourClass = 14, HitPoints = 24, Attacks = grellAttacks };
 			ActorInitiativeViewModel grellViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(grell);

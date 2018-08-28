@@ -12,11 +12,29 @@ namespace Dungeoneer.ViewModel
 		public DoDamageDialogViewModel()
 		{
 			_damage = "";
-			_selectedDamageType = 10;
+			_selectedDamageType = 8;
+			_adamantine = false;
+			_coldIron = false;
+			_magic = true;
+			_silver = false;
+			_subdual = false;
+			_good = false;
+			_evil = false;
+			_law = false;
+			_chaos = false;
 		}
 
 		private string _damage;
 		private int _selectedDamageType;
+		private bool _adamantine;
+		private bool _coldIron;
+		private bool _magic;
+		private bool _silver;
+		private bool _subdual;
+		private bool _good;
+		private bool _evil; 
+		private bool _law; 
+		private bool _chaos;
 
 		public string Damage
 		{
@@ -35,6 +53,96 @@ namespace Dungeoneer.ViewModel
 			{
 				_selectedDamageType = value;
 				NotifyPropertyChanged("SelectedDamageType");
+			}
+		}
+
+		public bool Adamantine
+		{
+			get { return _adamantine; }
+			set
+			{
+				_adamantine = value;
+				NotifyPropertyChanged("Adamantine");
+			}
+		}
+
+		public bool ColdIron
+		{
+			get { return _coldIron; }
+			set
+			{
+				_coldIron = value;
+				NotifyPropertyChanged("ColdIron");
+			}
+		}
+
+		public bool Magic
+		{
+			get { return _magic; }
+			set
+			{
+				_magic = value;
+				NotifyPropertyChanged("Magic");
+			}
+		}
+
+		public bool Silver
+		{
+			get { return _silver; }
+			set
+			{
+				_silver = value;
+				NotifyPropertyChanged("Silver");
+			}
+		}
+
+		public bool Subdual
+		{
+			get { return _subdual; }
+			set
+			{
+				_subdual = value;
+				NotifyPropertyChanged("Subdual");
+			}
+		}
+
+		public bool Good
+		{
+			get { return _good; }
+			set
+			{
+				_good = value;
+				NotifyPropertyChanged("Good");
+			}
+		}
+
+		public bool Evil
+		{
+			get { return _evil; }
+			set
+			{
+				_evil = value;
+				NotifyPropertyChanged("Evil");
+			}
+		}
+
+		public bool Law
+		{
+			get { return _law; }
+			set
+			{
+				_law = value;
+				NotifyPropertyChanged("Law");
+			}
+		}
+
+		public bool Chaos
+		{
+			get { return _chaos; }
+			set
+			{
+				_chaos = value;
+				NotifyPropertyChanged("Chaos");
 			}
 		}
 

@@ -17,7 +17,7 @@
 					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmourClass}"/>
 					<view:ValueButton Title="HP"
 														ValueBinding="{Binding HitPoints}"
-														CommandBinding="{Binding OpenDamageDialog}"
+														CommandBinding="{Binding DoDamage}"
 														PanelOrientation="Vertical"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="90" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">

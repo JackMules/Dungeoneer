@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Do Damage" SizeToContent="WidthAndHeight"
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="185" Width="248" ResizeMode="NoResize">
 	<Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=txtDamage}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>
@@ -16,12 +16,24 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Grid.Column="0" Grid.Row="0" Content="Damage" Margin="0,0,0,5"/>
 		<TextBox Grid.Column="1" Grid.Row="0" x:Name="txtDamage" Margin="10,0,0,5" VerticalAlignment="Center" Width="40" Text="{Binding Damage}"/>
-		<ComboBox Grid.Column="2" HorizontalAlignment="Left" x:Name="comboDamageType" Margin="10,0,0,5" VerticalAlignment="Center" Width="80"
+		<ComboBox Grid.Column="2" HorizontalAlignment="Left" x:Name="comboDamageType" Margin="10,0,0,5" VerticalAlignment="Center" Width="100"
 							ItemsSource="{Binding DamageTypes}" SelectedIndex="{Binding SelectedDamageType}"/>
-		<Label Grid.ColumnSpan="2" Grid.Row="1" x:Name="lblFeedback">
+		<WrapPanel Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="2">
+			<CheckBox Content="Adamantine" IsChecked="{Binding Adamantine}" Margin="5"/>
+			<CheckBox Content="Cold Iron" IsChecked="{Binding ColdIron}" Margin="5"/>
+			<CheckBox Content="Magic" IsChecked="{Binding Magic}" Margin="5"/>
+			<CheckBox Content="Silver" IsChecked="{Binding Silver}" Margin="5"/>
+			<CheckBox Content="Subdual" IsChecked="{Binding Subdual}" Margin="5"/>
+			<CheckBox Content="Good" IsChecked="{Binding Good}" Margin="5"/>
+			<CheckBox Content="Evil" IsChecked="{Binding Evil}" Margin="5"/>
+			<CheckBox Content="Law" IsChecked="{Binding Law}" Margin="5"/>
+			<CheckBox Content="Chaos" IsChecked="{Binding Chaos}" Margin="5"/>
+		</WrapPanel>
+		<Label Grid.ColumnSpan="2" Grid.Row="2" x:Name="lblFeedback">
 			<Label.Style>
 				<Style TargetType="{x:Type Label}">
 					<Setter Property="Visibility" Value="Collapsed"/>
@@ -33,7 +45,7 @@
 				</Style>
 			</Label.Style>
 		</Label>
-		<WrapPanel Grid.ColumnSpan="3" Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,0,0">
+		<WrapPanel Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Right" Margin="0,5,0,0">
 			<Button IsDefault="True" Name="btnDialogOk" Click="BtnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
 			<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 		</WrapPanel>

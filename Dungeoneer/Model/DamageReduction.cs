@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
 using Dungeoneer.Utility;
+using System.Collections.ObjectModel;
 
 namespace Dungeoneer.Model
 {
 	public class DamageReduction : BaseModel
 	{
+		public DamageReduction()
+		{
+			_types = new ObservableCollection<Types.DamageType>();
+		}
+
 		private int _value;
-		private Utility.Types.DamageType _type;
+		private ObservableCollection<Types.DamageType> _types;
 
 		public int Value
 		{
@@ -25,13 +31,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.DamageType DamageType
+		public ObservableCollection<Types.DamageType> DamageTypes
 		{
-			get { return _type; }
+			get { return _types; }
 			set
 			{
-				_type = value;
-				NotifyPropertyChanged("Type");
+				_types = value;
+				NotifyPropertyChanged("Types");
 			}
 		}
 
@@ -43,10 +49,13 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Value.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("DamageType");
-			xmlWriter.WriteString(Utility.Methods.GetDamageTypeString(DamageType));
-			xmlWriter.WriteEndElement();
-
+			foreach (Types.DamageType type in DamageTypes)
+			{
+				xmlWriter.WriteStartElement("DamageType");
+				xmlWriter.WriteString(Methods.GetDamageTypeString(type));
+				xmlWriter.WriteEndElement();
+			}
+			
 			xmlWriter.WriteEndElement();
 		}
 
@@ -62,11 +71,11 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "DamageType")
 					{
-						DamageType = Utility.Methods.GetDamageTypeFromString(childNode.InnerText);
+						DamageTypes.Add(Methods.GetDamageTypeFromString(childNode.InnerText));
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

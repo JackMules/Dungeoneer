@@ -129,7 +129,7 @@ namespace Dungeoneer.ViewModel
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}
