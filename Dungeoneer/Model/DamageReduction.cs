@@ -15,11 +15,11 @@ namespace Dungeoneer.Model
 	{
 		public DamageReduction()
 		{
-			_types = new ObservableCollection<Types.DamageType>();
+			_types = new ObservableCollection<Types.Damage>();
 		}
 
 		private int _value;
-		private ObservableCollection<Types.DamageType> _types;
+		private ObservableCollection<Types.Damage> _types;
 
 		public int Value
 		{
@@ -31,7 +31,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public ObservableCollection<Types.DamageType> DamageTypes
+		public ObservableCollection<Types.Damage> DamageTypes
 		{
 			get { return _types; }
 			set
@@ -49,7 +49,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Value.ToString());
 			xmlWriter.WriteEndElement();
 
-			foreach (Types.DamageType type in DamageTypes)
+			foreach (Types.Damage type in DamageTypes)
 			{
 				xmlWriter.WriteStartElement("DamageType");
 				xmlWriter.WriteString(Methods.GetDamageTypeString(type));

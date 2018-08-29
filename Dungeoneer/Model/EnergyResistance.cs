@@ -14,9 +14,9 @@ namespace Dungeoneer.Model
 			_energyType = null;
 		}
 
-		private Types.DamageType? _energyType;
+		private Types.Damage? _energyType;
 
-		public Types.DamageType? EnergyType
+		public Types.Damage? EnergyType
 		{
 			get { return _energyType; }
 			set

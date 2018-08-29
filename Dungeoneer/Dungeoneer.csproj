@@ -63,10 +63,12 @@
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="Model\EnergyResistance.cs" />
+    <Compile Include="Model\Weapon.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
+    <Compile Include="ViewModel\DoDamageDialogViewModel2.cs" />
     <Compile Include="ViewModel\DoDamageDialogViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
@@ -102,6 +104,9 @@
     </Compile>
     <Compile Include="View\DoDamageDialog.xaml.cs">
       <DependentUpon>DoDamageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoDamageDialog2.xaml.cs">
+      <DependentUpon>DoDamageDialog2.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SetInitiativeWindow.xaml.cs">
       <DependentUpon>SetInitiativeWindow.xaml</DependentUpon>
@@ -165,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoDamageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoDamageDialog2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

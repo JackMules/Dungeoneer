@@ -7,25 +7,38 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
-	public class DoDamageDialogViewModel : BaseViewModel
+	public class DoDamageDialogViewModel2 : BaseViewModel
 	{
-		public DoDamageDialogViewModel()
+		public DoDamageDialogViewModel2()
 		{
 			_damage = "";
-			_selectedDamageType = 8;
+			_selectedWeapon = 0;
 			_adamantine = false;
 			_coldIron = false;
-			_magic = true;
+			_magic = false;
 			_silver = false;
 			_subdual = false;
 			_good = false;
 			_evil = false;
 			_law = false;
 			_chaos = false;
+			_acid = false;
+			_bludgeoning = false;
+			_cold = false;
+			_divine = false;
+			_electricity = false;
+			_fire = false;
+			_force = false;
+			_negativeEnergy = false;
+			_piercing = false;
+			_positiveEnergy = false;
+			_slashing = false;
+			_sonic = false;
+			_untyped = false;
 		}
 
 		private string _damage;
-		private int _selectedDamageType;
+		private int _selectedWeapon;
 		private bool _adamantine;
 		private bool _coldIron;
 		private bool _magic;
@@ -35,6 +48,19 @@ namespace Dungeoneer.ViewModel
 		private bool _evil; 
 		private bool _law; 
 		private bool _chaos;
+		private bool _acid;
+		private bool _bludgeoning;
+		private bool _cold;
+		private bool _divine;
+		private bool _electricity;
+		private bool _fire;
+		private bool _force;
+		private bool _negativeEnergy;
+		private bool _piercing;
+		private bool _positiveEnergy;
+		private bool _slashing;
+		private bool _sonic;
+		private bool _untyped;
 
 		public string Damage
 		{
@@ -46,13 +72,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public int SelectedDamageType
+		public int SelectedWeapon
 		{
-			get { return _selectedDamageType; }
+			get { return _selectedWeapon; }
 			set
 			{
-				_selectedDamageType = value;
-				NotifyPropertyChanged("SelectedDamageType");
+				_selectedWeapon = value;
+				NotifyPropertyChanged("SelectedWeapon");
 			}
 		}
 
@@ -146,11 +172,131 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public List<string> DamageTypes
+		public bool Acid
+		{
+			get { return _acid; }
+			set
+			{
+				_acid = value;
+				NotifyPropertyChanged("Acid");
+			}
+		}
+
+		public bool Bludgeoning
+		{
+			get { return _bludgeoning; }
+			set
+			{
+				_bludgeoning = value;
+				NotifyPropertyChanged("Bludgeoning");
+			}
+		}
+
+		public bool Cold
+		{
+			get { return _cold; }
+			set
+			{
+				_cold = value;
+				NotifyPropertyChanged("Cold");
+			}
+		}
+
+		public bool Divine
+		{
+			get { return _divine; }
+			set
+			{
+				_divine = value;
+				NotifyPropertyChanged("Divine");
+			}
+		}
+
+		public bool Electricity
+		{
+			get { return _electricity; }
+			set
+			{
+				_electricity = value;
+				NotifyPropertyChanged("Electricity");
+			}
+		}
+
+		public bool Fire
+		{
+			get { return _fire; }
+			set
+			{
+				_fire = value;
+				NotifyPropertyChanged("Fire");
+			}
+		}
+
+		public bool Force
+		{
+			get { return _force; }
+			set
+			{
+				_force = value;
+				NotifyPropertyChanged("Force");
+			}
+		}
+
+		public bool NegativeEnergy
+		{
+			get { return _negativeEnergy; }
+			set
+			{
+				_negativeEnergy = value;
+				NotifyPropertyChanged("NegativeEnergy");
+			}
+		}
+
+		public bool Piercing
+		{
+			get { return _piercing; }
+			set
+			{
+				_piercing = value;
+				NotifyPropertyChanged("Piercing");
+			}
+		}
+
+		public bool PostitiveEnergy
+		{
+			get { return _positiveEnergy; }
+			set
+			{
+				_positiveEnergy = value;
+				NotifyPropertyChanged("PositiveEnergy");
+			}
+		}
+
+		public bool Slashing
+		{
+			get { return _slashing; }
+			set
+			{
+				_slashing = value;
+				NotifyPropertyChanged("Slashing");
+			}
+		}
+
+		public bool Sonic
+		{
+			get { return _sonic; }
+			set
+			{
+				_sonic = value;
+				NotifyPropertyChanged("Sonic");
+			}
+		}
+
+		public List<string> Weapons
 		{
 			get
 			{
-				return Constants.DamageTypeStrings;
+				return GetPlayerWeapons();
 			}
 		}
 
@@ -168,7 +314,6 @@ namespace Dungeoneer.ViewModel
 					try
 					{
 						int damage = Convert.ToInt32(Damage);
-						Types.Damage damageType = Methods.GetDamageTypeFromString(DamageTypes.ElementAt(SelectedDamageType));
 						hitPoints = CalculateNewHitPoints(creature, damage, damageType).ToString();
 						askForInput = false;
 					}

@@ -21,7 +21,7 @@ namespace Dungeoneer.Model
 		private int _baseAttackBonus;
 		private int _hitPoints;
 		private int _hitDice;
-		private Types.DieType _hitDiceType;
+		private Types.Die _hitDiceType;
 
 		private int _armourClass;
 		private int _touchArmourClass;
@@ -128,7 +128,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Types.DieType HitDieType
+		public Types.Die HitDieType
 		{
 			get { return _hitDiceType; }
 			set
@@ -250,7 +250,7 @@ namespace Dungeoneer.Model
 			BaseAttackBonus = 0;
 			HitPoints = 3;
 			HitDice = 1;
-			HitDieType = Types.DieType.d3;
+			HitDieType = Types.Die.d3;
 			ArmourClass = 10;
 			TouchArmourClass = 10;
 			FlatFootedArmourClass = 10;
@@ -279,7 +279,7 @@ namespace Dungeoneer.Model
 			int baseAttackBonus,
 			int hitPoints,
 			int hitDice,
-			Types.DieType hitDiceType,
+			Types.Die hitDiceType,
 			int armourClass,
 			int touchArmourClass,
 			int flatFootedArmourClass,

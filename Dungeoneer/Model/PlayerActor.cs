@@ -11,23 +11,37 @@ namespace Dungeoneer.Model
 	public class PlayerActor : Actor
 	{
 		public PlayerActor()
-			: base()
 		{
-
+			_weapons = new FullyObservableCollection<Weapon>();
 		}
 
-		public PlayerActor(
-			string displayName,
-			string actorName,
-			int initiativeMod,
-			Utility.FullyObservableCollection<Effect> conditions)
-			: base(displayName, actorName, initiativeMod, conditions)
+		private FullyObservableCollection<Weapon> _weapons;
+
+		public FullyObservableCollection<Weapon> Weapons
 		{
+			get { return _weapons; }
+			set
+			{
+				_weapons = value;
+				NotifyPropertyChanged("Weapons");
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("PlayerActor");
+		}
+
+		public override void WritePropertyXML(XmlWriter xmlWriter)
+		{
+			base.WritePropertyXML(xmlWriter);
+
+			xmlWriter.WriteStartElement("Weapons");
+			foreach (Weapon weapon in Weapons)
+			{
+				weapon.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
 		}
 	}
 }

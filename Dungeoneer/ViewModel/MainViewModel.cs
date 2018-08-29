@@ -224,14 +224,14 @@ namespace Dungeoneer.ViewModel
 			}
 
 			FullyObservableCollection<Model.Damage> damages = new FullyObservableCollection<Model.Damage>();
-			damages.Add(new Model.Damage { NumDice = 1, Die = Types.DieType.d6, Modifier = 3, Type = Types.DamageType.Bludgeoning });
-			damages.Add(new Model.Damage { NumDice = 1, Die = Types.DieType.d4, Modifier = 2, Type = Types.DamageType.Acid });
+			damages.Add(new Model.Damage { NumDice = 1, Die = Types.Die.d6, Modifier = 3, Type = Types.Damage.Bludgeoning });
+			damages.Add(new Model.Damage { NumDice = 1, Die = Types.Die.d4, Modifier = 2, Type = Types.Damage.Acid });
 
 			Model.Attack grellAttack = new Model.Attack
 			{
 				Name = "Slam",
 				Modifier = 5,
-				Type = Types.AttackType.Primary,
+				Type = Types.Attack.Primary,
 				Damages = damages,
 				CritMultiplier = 2,
 				ThreatRangeMin = 19

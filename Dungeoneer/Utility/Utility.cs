@@ -64,39 +64,39 @@ namespace Dungeoneer.Utility
 
 		public static readonly List<string> DamageTypeStrings = new List<string>
 		{
-			Methods.GetDamageTypeString(Types.DamageType.Fire),
-			Methods.GetDamageTypeString(Types.DamageType.Cold),
-			Methods.GetDamageTypeString(Types.DamageType.Electricity),
-			Methods.GetDamageTypeString(Types.DamageType.Acid),
-			Methods.GetDamageTypeString(Types.DamageType.PositiveEnergy),
-			Methods.GetDamageTypeString(Types.DamageType.NegativeEnergy),
-			Methods.GetDamageTypeString(Types.DamageType.Piercing),
-			Methods.GetDamageTypeString(Types.DamageType.Bludgeoning),
-			Methods.GetDamageTypeString(Types.DamageType.Slashing),
-			Methods.GetDamageTypeString(Types.DamageType.Force),
-			Methods.GetDamageTypeString(Types.DamageType.Sonic),
-			Methods.GetDamageTypeString(Types.DamageType.Divine),
-			Methods.GetDamageTypeString(Types.DamageType.Untyped),
+			Methods.GetDamageTypeString(Types.Damage.Fire),
+			Methods.GetDamageTypeString(Types.Damage.Cold),
+			Methods.GetDamageTypeString(Types.Damage.Electricity),
+			Methods.GetDamageTypeString(Types.Damage.Acid),
+			Methods.GetDamageTypeString(Types.Damage.PositiveEnergy),
+			Methods.GetDamageTypeString(Types.Damage.NegativeEnergy),
+			Methods.GetDamageTypeString(Types.Damage.Piercing),
+			Methods.GetDamageTypeString(Types.Damage.Bludgeoning),
+			Methods.GetDamageTypeString(Types.Damage.Slashing),
+			Methods.GetDamageTypeString(Types.Damage.Force),
+			Methods.GetDamageTypeString(Types.Damage.Sonic),
+			Methods.GetDamageTypeString(Types.Damage.Divine),
+			Methods.GetDamageTypeString(Types.Damage.Untyped),
 		};
 
 		public static readonly List<string> DieTypeStrings = new List<string>
 		{
-			Methods.GetDieTypeString(Types.DieType.d3),
-			Methods.GetDieTypeString(Types.DieType.d4),
-			Methods.GetDieTypeString(Types.DieType.d6),
-			Methods.GetDieTypeString(Types.DieType.d8),
-			Methods.GetDieTypeString(Types.DieType.d10),
-			Methods.GetDieTypeString(Types.DieType.d12),
+			Methods.GetDieTypeString(Types.Die.d3),
+			Methods.GetDieTypeString(Types.Die.d4),
+			Methods.GetDieTypeString(Types.Die.d6),
+			Methods.GetDieTypeString(Types.Die.d8),
+			Methods.GetDieTypeString(Types.Die.d10),
+			Methods.GetDieTypeString(Types.Die.d12),
 		};
 		
 		public static readonly List<string> AttackTypeStrings = new List<string>
 		{
-			Methods.GetAttackTypeString(Types.AttackType.Primary),
-			Methods.GetAttackTypeString(Types.AttackType.Secondary),
-			Methods.GetAttackTypeString(Types.AttackType.Ranged),
-			Methods.GetAttackTypeString(Types.AttackType.Touch),
-			Methods.GetAttackTypeString(Types.AttackType.RangedTouch),
-			Methods.GetAttackTypeString(Types.AttackType.IncorporealTouch),
+			Methods.GetAttackTypeString(Types.Attack.Primary),
+			Methods.GetAttackTypeString(Types.Attack.Secondary),
+			Methods.GetAttackTypeString(Types.Attack.Ranged),
+			Methods.GetAttackTypeString(Types.Attack.Touch),
+			Methods.GetAttackTypeString(Types.Attack.RangedTouch),
+			Methods.GetAttackTypeString(Types.Attack.IncorporealTouch),
 		};
 
 		public static readonly List<string> ThreatRangeStrings = new List<string>
@@ -125,7 +125,7 @@ namespace Dungeoneer.Utility
 
 	public static class Types
 	{
-		public enum DieType
+		public enum Die
 		{
 			d3,
 			d4,
@@ -149,7 +149,7 @@ namespace Dungeoneer.Utility
 			ColossalPlus,
 		}
 
-		public enum AttackType
+		public enum Attack
 		{
 			Primary,
 			Secondary,
@@ -159,20 +159,29 @@ namespace Dungeoneer.Utility
 			IncorporealTouch,
 		}
 
-		public enum DamageType
+		public enum Damage
 		{
-			Fire,
-			Cold,
-			Electricity,
 			Acid,
-			PositiveEnergy,
+			Adamantine,
+			Bludgeoning,
+			Chaos,
+			Cold,
+			ColdIron,
+			Divine,
+			Electricity,
+			Evil,
+			Fire,
+			Force,
+			Good,
+			Law,
+			Magic,
 			NegativeEnergy,
 			Piercing,
-			Bludgeoning,
+			PositiveEnergy,
+			Silver,
 			Slashing,
-			Force,
 			Sonic,
-			Divine,
+			Subdual,
 			Untyped,
 		}
 	}
@@ -239,45 +248,45 @@ namespace Dungeoneer.Utility
 			return Convert.ToInt32(multiplier.Substring(1,1));
 		}
 
-		public static string GetDieTypeString(Types.DieType dieType)
+		public static string GetDieTypeString(Types.Die dieType)
 		{
 			switch (dieType)
 			{
-				case Types.DieType.d3:	return Constants.DieTypeD3;
-				case Types.DieType.d4:	return Constants.DieTypeD4;
-				case Types.DieType.d6:	return Constants.DieTypeD6;
-				case Types.DieType.d8:	return Constants.DieTypeD8;
-				case Types.DieType.d10: return Constants.DieTypeD10;
-				case Types.DieType.d12: return Constants.DieTypeD12;
+				case Types.Die.d3:	return Constants.DieTypeD3;
+				case Types.Die.d4:	return Constants.DieTypeD4;
+				case Types.Die.d6:	return Constants.DieTypeD6;
+				case Types.Die.d8:	return Constants.DieTypeD8;
+				case Types.Die.d10: return Constants.DieTypeD10;
+				case Types.Die.d12: return Constants.DieTypeD12;
 				default: return "Unrecognised die type";
 			}
 		}
 
-		public static Types.DieType GetDieTypeFromString(string str)
+		public static Types.Die GetDieTypeFromString(string str)
 		{
 			if (str == Constants.DieTypeD3)
 			{
-				return Types.DieType.d3;
+				return Types.Die.d3;
 			}
 			else if (str == Constants.DieTypeD4)
 			{
-				return Types.DieType.d4;
+				return Types.Die.d4;
 			}
 			else if (str == Constants.DieTypeD6)
 			{
-				return Types.DieType.d6;
+				return Types.Die.d6;
 			}
 			else if (str == Constants.DieTypeD8)
 			{
-				return Types.DieType.d8;
+				return Types.Die.d8;
 			}
 			else if (str == Constants.DieTypeD10)
 			{
-				return Types.DieType.d10;
+				return Types.Die.d10;
 			}
 			else if (str == Constants.DieTypeD12)
 			{
-				return Types.DieType.d12;
+				return Types.Die.d12;
 			}
 			else
 			{
@@ -351,33 +360,33 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static string GetAttackTypeString(Types.AttackType attackType)
+		public static string GetAttackTypeString(Types.Attack attackType)
 		{
 			switch (attackType)
 			{
-				case Types.AttackType.Primary:					return Constants.AttackTypePrimary;
-				case Types.AttackType.Secondary:				return Constants.AttackTypeSecondary;
-				case Types.AttackType.Ranged:						return Constants.AttackTypeRanged;
-				case Types.AttackType.Touch:						return Constants.AttackTypeTouch;
-				case Types.AttackType.RangedTouch:			return Constants.AttackTypeRangedTouch;
-				case Types.AttackType.IncorporealTouch: return Constants.AttackTypeIncorporealTouch;
+				case Types.Attack.Primary:					return Constants.AttackTypePrimary;
+				case Types.Attack.Secondary:				return Constants.AttackTypeSecondary;
+				case Types.Attack.Ranged:						return Constants.AttackTypeRanged;
+				case Types.Attack.Touch:						return Constants.AttackTypeTouch;
+				case Types.Attack.RangedTouch:			return Constants.AttackTypeRangedTouch;
+				case Types.Attack.IncorporealTouch: return Constants.AttackTypeIncorporealTouch;
 				default: return "Unrecognised attack type";
 			}
 		}
 
-		public static Types.AttackType GetAttackTypeFromString(string str)
+		public static Types.Attack GetAttackTypeFromString(string str)
 		{
 			if (str == Constants.AttackTypePrimary)
 			{
-				return Types.AttackType.Primary;
+				return Types.Attack.Primary;
 			}
 			else if (str == Constants.AttackTypeSecondary)
 			{
-				return Types.AttackType.Secondary;
+				return Types.Attack.Secondary;
 			}
 			else if (str == Constants.AttackTypeRanged)
 			{
-				return Types.AttackType.Ranged;
+				return Types.Attack.Ranged;
 			}
 			else
 			{
@@ -385,112 +394,87 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static string GetDamageTypeString(Types.DamageType damageType)
+		public static string GetDamageTypeString(Types.Damage damageType)
 		{
 			switch (damageType)
 			{
-				case Types.DamageType.Fire:						return Constants.DamageTypeFire;
-				case Types.DamageType.Cold:						return Constants.DamageTypeCold;
-				case Types.DamageType.Electricity:		return Constants.DamageTypeElectricity;
-				case Types.DamageType.Acid:						return Constants.DamageTypeAcid;
-				case Types.DamageType.PositiveEnergy:	return Constants.DamageTypePositiveEnergy;
-				case Types.DamageType.NegativeEnergy:	return Constants.DamageTypeNegativeEnergy;
-				case Types.DamageType.Piercing:				return Constants.DamageTypePiercing;
-				case Types.DamageType.Bludgeoning:		return Constants.DamageTypeBludgeoning;
-				case Types.DamageType.Slashing:				return Constants.DamageTypeSlashing;
-				case Types.DamageType.Force:					return Constants.DamageTypeForce;
-				case Types.DamageType.Sonic:					return Constants.DamageTypeSonic;
-				case Types.DamageType.Divine:					return Constants.DamageTypeDivine;
-				case Types.DamageType.Subdual:				return Constants.DamageTypeSubdual;
-				case Types.DamageType.Untyped:				return Constants.DamageTypeUntyped;
+				case Types.Damage.Acid:						return Constants.DamageTypeAcid;
+				case Types.Damage.Bludgeoning:		return Constants.DamageTypeBludgeoning;
+				case Types.Damage.Cold:						return Constants.DamageTypeCold;
+				case Types.Damage.Divine:					return Constants.DamageTypeDivine;
+				case Types.Damage.Electricity:		return Constants.DamageTypeElectricity;
+				case Types.Damage.Fire:						return Constants.DamageTypeFire;
+				case Types.Damage.Force:					return Constants.DamageTypeForce;
+				case Types.Damage.NegativeEnergy:	return Constants.DamageTypeNegativeEnergy;
+				case Types.Damage.Piercing:				return Constants.DamageTypePiercing;
+				case Types.Damage.PositiveEnergy:	return Constants.DamageTypePositiveEnergy;
+				case Types.Damage.Slashing:				return Constants.DamageTypeSlashing;
+				case Types.Damage.Sonic:					return Constants.DamageTypeSonic;
+				case Types.Damage.Untyped:				return Constants.DamageTypeUntyped;
 				default:															return "Unrecognised damage type";
 			}
 		}
 
-		public static Types.DamageType GetDamageTypeFromString(string str)
+		public static Types.Damage GetDamageTypeFromString(string str)
 		{
-			if (str == Constants.DamageTypeFire)
+			if (str == Constants.DamageTypeAcid)
 			{
-				return Types.DamageType.Fire;
-			}
-			else if (str == Constants.DamageTypeCold)
-			{
-				return Types.DamageType.Cold;
-			}
-			else if (str == Constants.DamageTypeElectricity)
-			{
-				return Types.DamageType.Electricity;
-			}
-			else if (str == Constants.DamageTypeAcid)
-			{
-				return Types.DamageType.Acid;
-			}
-			else if (str == Constants.DamageTypePositiveEnergy)
-			{
-				return Types.DamageType.PositiveEnergy;
-			}
-			else if (str == Constants.DamageTypeNegativeEnergy)
-			{
-				return Types.DamageType.NegativeEnergy;
-			}
-			else if (str == Constants.DamageTypePiercing)
-			{
-				return Types.DamageType.Piercing;
+				return Types.Damage.Acid;
 			}
 			else if (str == Constants.DamageTypeBludgeoning)
 			{
-				return Types.DamageType.Bludgeoning;
+				return Types.Damage.Bludgeoning;
 			}
-			else if (str == Constants.DamageTypeSlashing)
+			else if (str == Constants.DamageTypeCold)
 			{
-				return Types.DamageType.Slashing;
-			}
-			else if (str == Constants.DamageTypeForce)
-			{
-				return Types.DamageType.Force;
-			}
-			else if (str == Constants.DamageTypeSonic)
-			{
-				return Types.DamageType.Sonic;
+				return Types.Damage.Cold;
 			}
 			else if (str == Constants.DamageTypeDivine)
 			{
-				return Types.DamageType.Divine;
+				return Types.Damage.Divine;
 			}
-			else if (str == Constants.DamageTypeSubdual)
+			else if (str == Constants.DamageTypeElectricity)
 			{
-				return Types.DamageType.Subdual;
+				return Types.Damage.Electricity;
+			}
+			else if (str == Constants.DamageTypeFire)
+			{
+				return Types.Damage.Fire;
+			}
+			else if (str == Constants.DamageTypeForce)
+			{
+				return Types.Damage.Force;
+			}
+			else if (str == Constants.DamageTypeNegativeEnergy)
+			{
+				return Types.Damage.NegativeEnergy;
+			}
+			else if (str == Constants.DamageTypePiercing)
+			{
+				return Types.Damage.Piercing;
+			}
+			else if (str == Constants.DamageTypePositiveEnergy)
+			{
+				return Types.Damage.PositiveEnergy;
+			}
+			else if (str == Constants.DamageTypeSlashing)
+			{
+				return Types.Damage.Slashing;
+			}
+			else if (str == Constants.DamageTypeSonic)
+			{
+				return Types.Damage.Sonic;
 			}
 			else if (str == Constants.DamageTypeUntyped)
 			{
-				return Types.DamageType.Untyped;
+				return Types.Damage.Untyped;
 			}
 			else
 			{
 				throw new FormatException("Damage type \'" + str + "\' not recognised.");
 			}
 		}
-
-		public static List<string> GetDamageTypeStringList()
-		{
-			return new List<string> {
-				Constants.DamageTypeAcid,
-				Constants.DamageTypeBludgeoning,
-				Constants.DamageTypeCold,
-				Constants.DamageTypeDivine,
-				Constants.DamageTypeElectricity,
-				Constants.DamageTypeFire,
-				Constants.DamageTypeForce,
-				Constants.DamageTypeNegativeEnergy,
-				Constants.DamageTypePiercing,
-				Constants.DamageTypePositiveEnergy,
-				Constants.DamageTypeSlashing,
-				Constants.DamageTypeSonic,
-				Constants.DamageTypeSubdual,
-				Constants.DamageTypeUntyped
-			};
-		}
-
+		
 		public static int CalculateXP(int challengeRating)
 		{
 			if (challengeRating == 1)

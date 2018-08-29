@@ -17,9 +17,9 @@ namespace Dungeoneer.Model
 		}
 
 		private int _numDice;
-		private Utility.Types.DieType _die;
+		private Utility.Types.Die _die;
 		private int _modifier;
-		private Utility.Types.DamageType _type;
+		private Utility.Types.Damage _type;
 
 		public int NumDice
 		{
@@ -31,7 +31,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.DieType Die
+		public Utility.Types.Die Die
 		{
 			get { return _die; }
 			set
@@ -51,7 +51,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.DamageType Type
+		public Utility.Types.Damage Type
 		{
 			get { return _type; }
 			set

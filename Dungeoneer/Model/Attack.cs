@@ -16,7 +16,7 @@ namespace Dungeoneer.Model
 		{
 			_name = "";
 			_modifier = 0;
-			_type = Types.AttackType.Primary;
+			_type = Types.Attack.Primary;
 			_damages = new FullyObservableCollection<Damage>();
 			_threatRangeMin = 20;
 			_critMultiplier = 2;
@@ -25,7 +25,7 @@ namespace Dungeoneer.Model
 		public Attack(
 			string name,
 			int attackMod,
-			Types.AttackType attackType,
+			Types.Attack attackType,
 			FullyObservableCollection<Damage> damages,
 			int threatRangeMin,
 			int critMultiplier)
@@ -40,7 +40,7 @@ namespace Dungeoneer.Model
 
 		private string _name;
 		private int _modifier;
-		private Types.AttackType _type;
+		private Types.Attack _type;
 		private FullyObservableCollection<Damage> _damages;
 		private int _threatRangeMin;
 		private int _critMultiplier;
@@ -65,7 +65,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Types.AttackType Type
+		public Types.Attack Type
 		{
 			get { return _type; }
 			set
