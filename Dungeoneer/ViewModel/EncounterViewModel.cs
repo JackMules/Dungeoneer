@@ -14,13 +14,6 @@ namespace Dungeoneer.ViewModel
 {
 	public class EncounterViewModel : BaseViewModel
 	{
-		private FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
-		private int _round;
-		private RelayCommand _nextRound;
-		private Command _clear;
-		private Command _save;
-		private Command _load;
-
 		public EncounterViewModel()
 		{
 			_initiativeTrack = new FullyObservableCollection<InitiativeCardViewModel>();
@@ -30,6 +23,14 @@ namespace Dungeoneer.ViewModel
 			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
 		}
+
+		private FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
+		private int _round;
+		private RelayCommand _nextRound;
+		private Command _clear;
+		private Command _save;
+		private Command _load;
+		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 
 		public int Round
 		{
@@ -80,11 +81,31 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public void InitiativeCardViewModel_OnWeaponsChange(Model.PlayerActor playerActor)
+		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{
-			foreach (InitiativeCardViewModel initCardViewModel in InitiativeTrack)
+			get { return _weaponList; }
+			set
 			{
-				initCardViewModel.
+				_weaponList = value;
+				NotifyPropertyChanged("WeaponList");
+			}
+		}
+
+		public void PlayerActorInitiativeCardViewModel_OnWeaponsChange(Model.WeaponSet weaponSet)
+		{
+			bool found = false;
+			for (int i = 0; i < WeaponList.Count; ++i)
+			{
+				if (WeaponList[i].Owner == weaponSet.Owner)
+				{
+					WeaponList[i] = weaponSet;
+					found = true;
+				}
+			}
+
+			if (!found)
+			{
+				WeaponList.Add(weaponSet);
 			}
 		}
 
@@ -96,9 +117,24 @@ namespace Dungeoneer.ViewModel
 			}
 
 			ActorInitiativeViewModel actorViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(actor);
-			InitiativeCardViewModel initCardViewModel = new InitiativeCardViewModel() { ActorViewModel = actorViewModel };
-			initCardViewModel.OnWeaponsChange += InitiativeCardViewModel_OnWeaponsChange;
-			InitiativeTrack.Add( initCardViewModel );
+			InitiativeCardViewModel initCardViewModel = InitiativeCardViewModelFactory.GetInitiativeCardViewModel(actorViewModel);
+
+			if (initCardViewModel is PlayerActorInitiativeCardViewModel)
+			{
+				PlayerActorInitiativeCardViewModel playerCardVM = initCardViewModel as PlayerActorInitiativeCardViewModel;
+				playerCardVM.OnWeaponsChange += PlayerActorInitiativeCardViewModel_OnWeaponsChange;
+				InitiativeTrack.Add(playerCardVM);
+			}
+			else if (initCardViewModel is CreatureInitiativeCardViewModel)
+			{
+				CreatureInitiativeCardViewModel creatureCardVM = initCardViewModel as CreatureInitiativeCardViewModel;
+				creatureCardVM
+				InitiativeTrack.Add(creatureCardVM);
+			}
+			else
+			{
+				InitiativeTrack.Add(initCardViewModel);
+			}
 		}
 
 		public void AddInitiativeCard(InitiativeCardViewModel initCard)

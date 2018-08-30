@@ -17,9 +17,9 @@ namespace Dungeoneer.Model
 		}
 
 		private int _numDice;
-		private Utility.Types.Die _die;
+		private Types.Die _die;
 		private int _modifier;
-		private Utility.Types.Damage _type;
+		private Types.Damage _type;
 
 		public int NumDice
 		{
@@ -31,7 +31,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.Die Die
+		public Types.Die Die
 		{
 			get { return _die; }
 			set
@@ -51,7 +51,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Utility.Types.Damage Type
+		public Types.Damage Type
 		{
 			get { return _type; }
 			set
@@ -75,7 +75,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Die");
-			xmlWriter.WriteString(Utility.Methods.GetDieTypeString(Die));
+			xmlWriter.WriteString(Methods.GetDieTypeString(Die));
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Modifier");
@@ -83,7 +83,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Type");
-			xmlWriter.WriteString(Utility.Methods.GetDamageTypeString(Type));
+			xmlWriter.WriteString(Methods.GetDamageTypeString(Type));
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteEndElement();
@@ -101,7 +101,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Die")
 					{
-						Die = Utility.Methods.GetDieTypeFromString(childNode.InnerText);
+						Die = Methods.GetDieTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "Modifier")
 					{
@@ -109,11 +109,11 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Type")
 					{
-						Type = Utility.Methods.GetDamageTypeFromString(childNode.InnerText);
+						Type = Methods.GetDamageTypeFromString(childNode.InnerText);
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

@@ -64,8 +64,10 @@
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="Model\EnergyResistance.cs" />
     <Compile Include="Model\Weapon.cs" />
+    <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
+    <Compile Include="ViewModel\CreatureInitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\DoDamageDialogViewModel2.cs" />
@@ -79,8 +81,10 @@
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\CreatureInitiativeViewModel.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
+    <Compile Include="ViewModel\InitiativeCardViewModelFactory.cs" />
     <Compile Include="ViewModel\InitiativeValueViewModel.cs" />
     <Compile Include="ViewModel\NonPlayerActorInitiativeViewModel.cs" />
+    <Compile Include="ViewModel\PlayerActorInitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />

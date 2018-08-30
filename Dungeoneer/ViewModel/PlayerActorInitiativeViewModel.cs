@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -21,6 +22,16 @@ namespace Dungeoneer.ViewModel
 			{
 				_actor = value;
 				NotifyPropertyChanged("Actor");
+			}
+		}
+
+		public FullyObservableCollection<Model.Weapon> Weapons
+		{
+			get { return Actor.Weapons; }
+			set
+			{
+				Actor.Weapons = value;
+				NotifyPropertyChanged("Weapons");
 			}
 		}
 
