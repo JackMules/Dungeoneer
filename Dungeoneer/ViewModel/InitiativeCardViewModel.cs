@@ -20,6 +20,22 @@ namespace Dungeoneer.ViewModel
 		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
 
+		public delegate void WeaponsChange(Model.PlayerActor playerActor);
+
+		public WeaponsChange OnWeaponsChange { get; set; }
+
+		public List<Model.Weapon> WeaponsList
+		{
+			get { return ActorViewModel.Weapons; }
+			set
+			{
+				parameter = value;
+				NotifyPropertyChanged("Parameter");
+				// Always check for null
+				if (OnParameterChange != null) OnParameterChange(parameter);
+			}
+		}
+
 		public InitiativeValueViewModel InitiativeValueViewModel
 		{
 			get { return _initiativeValueViewModel; }

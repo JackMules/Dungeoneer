@@ -80,6 +80,14 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public void InitiativeCardViewModel_OnWeaponsChange(Model.PlayerActor playerActor)
+		{
+			foreach (InitiativeCardViewModel initCardViewModel in InitiativeTrack)
+			{
+				initCardViewModel.
+			}
+		}
+
 		public void AddActor(Model.Actor actor)
 		{
 			if (actor.DisplayName == "")
@@ -88,7 +96,9 @@ namespace Dungeoneer.ViewModel
 			}
 
 			ActorInitiativeViewModel actorViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(actor);
-			InitiativeTrack.Add( new InitiativeCardViewModel() { ActorViewModel = actorViewModel } );
+			InitiativeCardViewModel initCardViewModel = new InitiativeCardViewModel() { ActorViewModel = actorViewModel };
+			initCardViewModel.OnWeaponsChange += InitiativeCardViewModel_OnWeaponsChange;
+			InitiativeTrack.Add( initCardViewModel );
 		}
 
 		public void AddInitiativeCard(InitiativeCardViewModel initCard)
