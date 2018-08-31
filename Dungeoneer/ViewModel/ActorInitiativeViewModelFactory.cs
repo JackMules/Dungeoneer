@@ -8,7 +8,7 @@ namespace Dungeoneer.ViewModel
 {
 	public static class ActorInitiativeViewModelFactory
 	{
-		public static ActorInitiativeViewModel GetActorViewModel(Model.Actor actor)
+		public static ActorInitiativeViewModel GetActorViewModel(Model.Actor actor, EncounterViewModel encounterViewModel)
 		{
 			if (actor is Model.PlayerActor)
 			{
@@ -16,7 +16,7 @@ namespace Dungeoneer.ViewModel
 			}
 			else if (actor is Model.Creature)
 			{
-				return new CreatureInitiativeViewModel { Actor = actor as Model.Creature };
+				return new CreatureInitiativeViewModel(encounterViewModel) { Actor = actor as Model.Creature };
 			}
 			else if (actor is Model.NonPlayerActor)
 			{

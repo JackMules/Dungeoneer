@@ -11,7 +11,7 @@
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 			<Label Content="Damage" Margin="5" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDamage" Margin="5" VerticalAlignment="Center" Width="40" Text="{Binding Damage}"/>
-			<ComboBox Margin="5" VerticalAlignment="Center" Width="100" ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}"/>
+			<ComboBox Margin="5" VerticalAlignment="Center" Width="100" ItemsSource="{Binding WeaponList}" SelectedIndex="{Binding SelectedWeapon}"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal">
 			<WrapPanel Orientation="Vertical">

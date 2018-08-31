@@ -81,6 +81,10 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public delegate void WeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList);
+
+		public WeaponListChange OnWeaponListChange { get; set; }
+
 		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{
 			get { return _weaponList; }
@@ -88,6 +92,7 @@ namespace Dungeoneer.ViewModel
 			{
 				_weaponList = value;
 				NotifyPropertyChanged("WeaponList");
+				OnWeaponListChange?.Invoke(_weaponList);
 			}
 		}
 
@@ -116,7 +121,7 @@ namespace Dungeoneer.ViewModel
 				actor.DisplayName = actor.ActorName;
 			}
 
-			ActorInitiativeViewModel actorViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(actor);
+			ActorInitiativeViewModel actorViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(actor, this);
 			InitiativeCardViewModel initCardViewModel = InitiativeCardViewModelFactory.GetInitiativeCardViewModel(actorViewModel);
 
 			if (initCardViewModel is PlayerActorInitiativeCardViewModel)
@@ -124,12 +129,6 @@ namespace Dungeoneer.ViewModel
 				PlayerActorInitiativeCardViewModel playerCardVM = initCardViewModel as PlayerActorInitiativeCardViewModel;
 				playerCardVM.OnWeaponsChange += PlayerActorInitiativeCardViewModel_OnWeaponsChange;
 				InitiativeTrack.Add(playerCardVM);
-			}
-			else if (initCardViewModel is CreatureInitiativeCardViewModel)
-			{
-				CreatureInitiativeCardViewModel creatureCardVM = initCardViewModel as CreatureInitiativeCardViewModel;
-				creatureCardVM
-				InitiativeTrack.Add(creatureCardVM);
 			}
 			else
 			{

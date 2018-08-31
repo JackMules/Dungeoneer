@@ -11,13 +11,30 @@ namespace Dungeoneer.ViewModel
 {
 	public class CreatureInitiativeViewModel : NonPlayerActorInitiativeViewModel
 	{
-		public CreatureInitiativeViewModel()
+		public CreatureInitiativeViewModel(EncounterViewModel encounterViewModel)
 		{
+			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_doDamage = new Command(ExecuteDoDamage);
 			_actor = new Model.Creature();
 		}
 
+		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 		private Command _doDamage;
+
+		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)
+		{
+			WeaponList = weaponList;
+		}
+
+		public FullyObservableCollection<Model.WeaponSet> WeaponList
+		{
+			get { return _weaponList; }
+			set
+			{
+				_weaponList = value;
+				NotifyPropertyChanged("WeaponList");
+			}
+		}
 
 		public new Model.Creature Actor
 		{
@@ -58,8 +75,8 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteDoDamage()
 		{
-			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel();
-			HitPoints = doDamageDialogViewModel.GetNewHitPoints(Actor);
+			DoDamageDialogViewModel2 doDamageDialogViewModel = new DoDamageDialogViewModel2(WeaponList);
+			HitPoints = doDamageDialogViewModel.ShowDamageDialog(Actor);
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

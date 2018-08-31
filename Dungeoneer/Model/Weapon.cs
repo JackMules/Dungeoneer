@@ -18,6 +18,7 @@ namespace Dungeoneer.Model
 
 		private string _name;
 		private List<Types.Damage> _damageQualities;
+		private List<Effect> _effects;
 
 		public string Name
 		{
@@ -39,6 +40,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public List<Effect> Effects
+		{
+			get { return _effects; }
+			set
+			{
+				_effects = value;
+				NotifyPropertyChanged("Effects");
+			}
+		}
+
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Weapon");
@@ -54,6 +65,13 @@ namespace Dungeoneer.Model
 				xmlWriter.WriteString(Methods.GetDamageTypeString(damage));
 				xmlWriter.WriteEndElement();
 			}
+
+			xmlWriter.WriteStartElement("Effects");
+			foreach (Effect effect in Effects)
+			{
+				effect.WriteXML(xmlWriter);
+			}
+
 			xmlWriter.WriteEndElement();
 		}
 
@@ -75,6 +93,15 @@ namespace Dungeoneer.Model
 							{
 								DamageQualities.Add(Methods.GetDamageTypeFromString(damageNode.InnerText));
 							}
+						}
+					}
+					else if (childNode.Name == "Effects")
+					{
+						foreach (XmlNode effectNode in childNode.ChildNodes)
+						{
+							Effect effect = new Effect();
+							effect.ReadXML(effectNode);
+							Effects.Add(effect);
 						}
 					}
 				}

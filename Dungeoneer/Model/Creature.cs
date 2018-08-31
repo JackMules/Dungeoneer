@@ -36,7 +36,7 @@ namespace Dungeoneer.Model
 		private bool _powerAttack;
 
 		private Types.Size _size;
-		private FullyObservableCollection<DamageReduction> _damageReductions;
+		private List<DamageReduction> _damageReductions;
 
 		public int Strength
 		{
@@ -228,7 +228,7 @@ namespace Dungeoneer.Model
 			}
 		}
 		
-		public FullyObservableCollection<DamageReduction> DamageReductions
+		public List<DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
 			set
@@ -260,7 +260,7 @@ namespace Dungeoneer.Model
 			WillSave = 0;
 			PowerAttack = false;
 			Size = Types.Size.Medium;
-			DamageReductions = new FullyObservableCollection<DamageReduction>();
+			DamageReductions = new List<DamageReduction>();
 		}
 
 		public Creature(
@@ -291,7 +291,7 @@ namespace Dungeoneer.Model
 			int willSave,
 			bool powerAttack,
 			Types.Size size,
-			FullyObservableCollection<DamageReduction> damageReductions,
+			List<DamageReduction> damageReductions,
 			FullyObservableCollection<Effect> effects)
 			: base(displayName, actorName, type, 
 					initiativeMod, challengeRating, attacks, effects)

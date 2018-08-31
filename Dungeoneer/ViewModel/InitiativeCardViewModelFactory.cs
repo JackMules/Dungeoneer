@@ -15,10 +15,6 @@ namespace Dungeoneer.ViewModel
 			{
 				return new PlayerActorInitiativeCardViewModel { ActorViewModel = actorInitiativeViewModel as PlayerActorInitiativeViewModel };
 			}
-			else if (actorInitiativeViewModel.Actor is Model.Creature)
-			{
-				return new CreatureInitiativeCardViewModel { ActorViewModel = actorInitiativeViewModel as NonPlayerActorInitiativeViewModel };
-			}
 			else if (actorInitiativeViewModel.Actor is Model.NonPlayerActor)
 			{
 				return new InitiativeCardViewModel { ActorViewModel = actorInitiativeViewModel as NonPlayerActorInitiativeViewModel };

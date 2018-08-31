@@ -67,7 +67,6 @@
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
-    <Compile Include="ViewModel\CreatureInitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\DoDamageDialogViewModel2.cs" />

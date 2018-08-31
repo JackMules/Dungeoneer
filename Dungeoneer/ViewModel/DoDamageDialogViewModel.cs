@@ -191,7 +191,7 @@ namespace Dungeoneer.ViewModel
 		{
 
 
-			Model.DamageReduction dr = creature.DamageReductions?.SingleOrDefault(i => i.DamageType == damageType);
+/*			Model.DamageReduction dr = creature.DamageReductions?.SingleOrDefault(i => i.DamageType == damageType);
 
 			if (dr != null)
 			{
@@ -202,7 +202,7 @@ namespace Dungeoneer.ViewModel
 					damage = 0;
 				}
 			}
-
+			*/
 			return creature.HitPoints - damage;
 		}
 	}

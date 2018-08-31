@@ -34,20 +34,29 @@ namespace Dungeoneer.Utility
 		public static readonly string AttackTypeRangedTouch = "Ranged Touch";
 		public static readonly string AttackTypeIncorporealTouch = "Incorporeal Touch";
 
-		public static readonly string DamageTypeFire = "Fire";
-		public static readonly string DamageTypeCold = "Cold";
-		public static readonly string DamageTypeElectricity = "Electricity";
 		public static readonly string DamageTypeAcid = "Acid";
-		public static readonly string DamageTypePositiveEnergy = "Positive Energy";
+		public static readonly string DamageTypeAdamantine = "Adamantine";
+		public static readonly string DamageTypeBludgeoning = "Bludgeoning";
+		public static readonly string DamageTypeChaos = "Chaos";
+		public static readonly string DamageTypeCold = "Cold";
+		public static readonly string DamageTypeColdIron = "Cold Iron";
+		public static readonly string DamageTypeDivine = "Divine";
+		public static readonly string DamageTypeElectricity = "Electricity";
+		public static readonly string DamageTypeEpic = "Epic";
+		public static readonly string DamageTypeEvil = "Evil";
+		public static readonly string DamageTypeFire = "Fire";
+		public static readonly string DamageTypeForce = "Force";
+		public static readonly string DamageTypeGood = "Good";
+		public static readonly string DamageTypeLaw = "Law";
+		public static readonly string DamageTypeMagic = "Magic";
 		public static readonly string DamageTypeNegativeEnergy = "Negative Energy";
 		public static readonly string DamageTypePiercing = "Piercing";
-		public static readonly string DamageTypeBludgeoning = "Bludgeoning";
+		public static readonly string DamageTypePositiveEnergy = "Positive Energy";
+		public static readonly string DamageTypeSilver = "Silver";
 		public static readonly string DamageTypeSlashing = "Slashing";
-		public static readonly string DamageTypeForce = "Force";
 		public static readonly string DamageTypeSonic = "Sonic";
-		public static readonly string DamageTypeDivine = "Divine";
-		public static readonly string DamageTypeUntyped = "Untyped";
-
+		public static readonly string DamageTypeSubdual = "Subdual";
+		
 		public static readonly List<string> SizeStrings = new List<string>
 		{
 			Methods.GetSizeString(Types.Size.Fine),
@@ -64,19 +73,8 @@ namespace Dungeoneer.Utility
 
 		public static readonly List<string> DamageTypeStrings = new List<string>
 		{
-			Methods.GetDamageTypeString(Types.Damage.Fire),
-			Methods.GetDamageTypeString(Types.Damage.Cold),
-			Methods.GetDamageTypeString(Types.Damage.Electricity),
-			Methods.GetDamageTypeString(Types.Damage.Acid),
-			Methods.GetDamageTypeString(Types.Damage.PositiveEnergy),
-			Methods.GetDamageTypeString(Types.Damage.NegativeEnergy),
-			Methods.GetDamageTypeString(Types.Damage.Piercing),
-			Methods.GetDamageTypeString(Types.Damage.Bludgeoning),
-			Methods.GetDamageTypeString(Types.Damage.Slashing),
-			Methods.GetDamageTypeString(Types.Damage.Force),
-			Methods.GetDamageTypeString(Types.Damage.Sonic),
-			Methods.GetDamageTypeString(Types.Damage.Divine),
-			Methods.GetDamageTypeString(Types.Damage.Untyped),
+
+			
 		};
 
 		public static readonly List<string> DieTypeStrings = new List<string>
@@ -169,6 +167,7 @@ namespace Dungeoneer.Utility
 			ColdIron,
 			Divine,
 			Electricity,
+			Epic,
 			Evil,
 			Fire,
 			Force,
@@ -182,7 +181,6 @@ namespace Dungeoneer.Utility
 			Slashing,
 			Sonic,
 			Subdual,
-			Untyped,
 		}
 	}
 
@@ -399,18 +397,26 @@ namespace Dungeoneer.Utility
 			switch (damageType)
 			{
 				case Types.Damage.Acid:						return Constants.DamageTypeAcid;
+				case Types.Damage.Adamantine:			return Constants.DamageTypeAdamantine;
 				case Types.Damage.Bludgeoning:		return Constants.DamageTypeBludgeoning;
+				case Types.Damage.Chaos:					return Constants.DamageTypeChaos;
 				case Types.Damage.Cold:						return Constants.DamageTypeCold;
+				case Types.Damage.ColdIron:				return Constants.DamageTypeColdIron;
 				case Types.Damage.Divine:					return Constants.DamageTypeDivine;
+				case Types.Damage.Epic:						return Constants.DamageTypeEpic;
 				case Types.Damage.Electricity:		return Constants.DamageTypeElectricity;
+				case Types.Damage.Evil:						return Constants.DamageTypeEvil;
 				case Types.Damage.Fire:						return Constants.DamageTypeFire;
 				case Types.Damage.Force:					return Constants.DamageTypeForce;
+				case Types.Damage.Good:						return Constants.DamageTypeGood;
+				case Types.Damage.Law:						return Constants.DamageTypeLaw;
 				case Types.Damage.NegativeEnergy:	return Constants.DamageTypeNegativeEnergy;
 				case Types.Damage.Piercing:				return Constants.DamageTypePiercing;
 				case Types.Damage.PositiveEnergy:	return Constants.DamageTypePositiveEnergy;
+				case Types.Damage.Silver:					return Constants.DamageTypeSilver;
 				case Types.Damage.Slashing:				return Constants.DamageTypeSlashing;
 				case Types.Damage.Sonic:					return Constants.DamageTypeSonic;
-				case Types.Damage.Untyped:				return Constants.DamageTypeUntyped;
+				case Types.Damage.Subdual:				return Constants.DamageTypeSubdual;
 				default:															return "Unrecognised damage type";
 			}
 		}
@@ -421,21 +427,41 @@ namespace Dungeoneer.Utility
 			{
 				return Types.Damage.Acid;
 			}
+			else if (str == Constants.DamageTypeAdamantine)
+			{
+				return Types.Damage.Adamantine;
+			}
 			else if (str == Constants.DamageTypeBludgeoning)
 			{
 				return Types.Damage.Bludgeoning;
+			}
+			else if (str == Constants.DamageTypeChaos)
+			{
+				return Types.Damage.Chaos;
 			}
 			else if (str == Constants.DamageTypeCold)
 			{
 				return Types.Damage.Cold;
 			}
+			else if (str == Constants.DamageTypeColdIron)
+			{
+				return Types.Damage.ColdIron;
+			}
 			else if (str == Constants.DamageTypeDivine)
 			{
 				return Types.Damage.Divine;
 			}
+			else if (str == Constants.DamageTypeEpic)
+			{
+				return Types.Damage.Epic;
+			}
 			else if (str == Constants.DamageTypeElectricity)
 			{
 				return Types.Damage.Electricity;
+			}
+			else if (str == Constants.DamageTypeEvil)
+			{
+				return Types.Damage.Evil;
 			}
 			else if (str == Constants.DamageTypeFire)
 			{
@@ -444,6 +470,14 @@ namespace Dungeoneer.Utility
 			else if (str == Constants.DamageTypeForce)
 			{
 				return Types.Damage.Force;
+			}
+			else if (str == Constants.DamageTypeGood)
+			{
+				return Types.Damage.Good;
+			}
+			else if (str == Constants.DamageTypeLaw)
+			{
+				return Types.Damage.Law;
 			}
 			else if (str == Constants.DamageTypeNegativeEnergy)
 			{
@@ -457,6 +491,10 @@ namespace Dungeoneer.Utility
 			{
 				return Types.Damage.PositiveEnergy;
 			}
+			else if (str == Constants.DamageTypeSilver)
+			{
+				return Types.Damage.Silver;
+			}
 			else if (str == Constants.DamageTypeSlashing)
 			{
 				return Types.Damage.Slashing;
@@ -465,9 +503,9 @@ namespace Dungeoneer.Utility
 			{
 				return Types.Damage.Sonic;
 			}
-			else if (str == Constants.DamageTypeUntyped)
+			else if (str == Constants.DamageTypeSubdual)
 			{
-				return Types.Damage.Untyped;
+				return Types.Damage.Subdual;
 			}
 			else
 			{
