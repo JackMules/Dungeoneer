@@ -3,41 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-				xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
         mc:Ignorable="d"
-        Title="CreateCharacterWindow" SizeToContent="WidthAndHeight"
+        Title="Create Character Window" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner"
 				WindowStyle="ToolWindow">
-	<Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=nameTextBox}">
+	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=nameTextBox}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
-		<TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ActorName}"/>
+		<TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding ActorName}"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="Initiative"/>
-		<TextBox x:Name="initTextBox" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" VerticalAlignment="Center" Text="{Binding InitiativeMod}"/>
-		<Label Grid.ColumnSpan="2" Grid.Row="2" x:Name="lblFeedback">
-			<Label.Style>
-				<Style TargetType="{x:Type Label}">
-					<Setter Property="Visibility" Value="Collapsed"/>
-					<Style.Triggers>
-						<Trigger Property="HasContent" Value="True">
-							<Setter Property="Visibility" Value="Visible"/>
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</Label.Style>
-		</Label>
-		<WrapPanel Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,5,0,0">
-			<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
-			<Button IsCancel="True" MinWidth="60">_Cancel</Button>
-		</WrapPanel>
+		<TextBox x:Name="initTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding InitiativeMod}"/>
+		<Label Content="Weapons" Grid.Row="2" Grid.Column="0"/>
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Grid.Column="1">
+			<ListBox ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}" MinWidth="140"/>
+		</ScrollViewer>
+		<StackPanel Grid.Row="2" Grid.Column="2">
+			<Button Command="{Binding AddWeapon}" ToolTip="Add Weapon" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding RemoveWeapon}" ToolTip="Remove Weapon" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+		</StackPanel>
+		<StackPanel Grid.Row="3" Grid.ColumnSpan="3">
+			<Label x:Name="lblFeedback" Margin="0,5,0,0">
+				<Label.Style>
+					<Style TargetType="{x:Type Label}">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<Trigger Property="HasContent" Value="True">
+								<Setter Property="Visibility" Value="Visible"/>
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Label.Style>
+			</Label>
+			<WrapPanel HorizontalAlignment="Right" Margin="0,5,0,0">
+				<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
+				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
+			</WrapPanel>
+		</StackPanel>
 	</Grid>
 </Window>

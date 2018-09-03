@@ -11,23 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Dungeoneer.Utility;
 
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for DamageDialog.xaml
+	/// Interaction logic for DoDamageDialog.xaml
 	/// </summary>
 	public partial class DoDamageDialog : Window
 	{
 		public DoDamageDialog(string feedback = null)
 		{
 			InitializeComponent();
+			lblFeedback.Content = feedback;
 		}
 
-		private void BtnDialogOk_Click(object sender, RoutedEventArgs e)
+		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
-			DialogResult = true;
+			this.DialogResult = true;
 		}
 	}
 }

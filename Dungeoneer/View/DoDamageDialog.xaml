@@ -5,49 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Do Damage" SizeToContent="WidthAndHeight"
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="185" Width="248" ResizeMode="NoResize">
-	<Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=txtDamage}">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<Label Grid.Column="0" Grid.Row="0" Content="Damage" Margin="0,0,0,5"/>
-		<TextBox Grid.Column="1" Grid.Row="0" x:Name="txtDamage" Margin="10,0,0,5" VerticalAlignment="Center" Width="40" Text="{Binding Damage}"/>
-		<ComboBox Grid.Column="2" HorizontalAlignment="Left" x:Name="comboDamageType" Margin="10,0,0,5" VerticalAlignment="Center" Width="100"
-							ItemsSource="{Binding DamageTypes}" SelectedIndex="{Binding SelectedDamageType}"/>
-		<WrapPanel Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="2">
-			<CheckBox Content="Adamantine" IsChecked="{Binding Adamantine}" Margin="5"/>
-			<CheckBox Content="Cold Iron" IsChecked="{Binding ColdIron}" Margin="5"/>
-			<CheckBox Content="Magic" IsChecked="{Binding Magic}" Margin="5"/>
-			<CheckBox Content="Silver" IsChecked="{Binding Silver}" Margin="5"/>
-			<CheckBox Content="Subdual" IsChecked="{Binding Subdual}" Margin="5"/>
-			<CheckBox Content="Good" IsChecked="{Binding Good}" Margin="5"/>
-			<CheckBox Content="Evil" IsChecked="{Binding Evil}" Margin="5"/>
-			<CheckBox Content="Law" IsChecked="{Binding Law}" Margin="5"/>
-			<CheckBox Content="Chaos" IsChecked="{Binding Chaos}" Margin="5"/>
-		</WrapPanel>
-		<Label Grid.ColumnSpan="2" Grid.Row="2" x:Name="lblFeedback">
-			<Label.Style>
-				<Style TargetType="{x:Type Label}">
-					<Setter Property="Visibility" Value="Collapsed"/>
-					<Style.Triggers>
-						<Trigger Property="HasContent" Value="True">
-							<Setter Property="Visibility" Value="Visible"/>
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</Label.Style>
-		</Label>
-		<WrapPanel Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Right" Margin="0,5,0,0">
-			<Button IsDefault="True" Name="btnDialogOk" Click="BtnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
-			<Button IsCancel="True" MinWidth="60">_Cancel</Button>
-		</WrapPanel>
-	</Grid>
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="300" ResizeMode="NoResize">
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+			<Label Content="Damage" Margin="5" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtDamage" Margin="5" VerticalAlignment="Center" Width="40" Text="{Binding Damage}"/>
+			<Label Content="Weapon" Margin="5" VerticalAlignment="Center"/>
+			<ComboBox Margin="5" VerticalAlignment="Center" Width="140" ItemsSource="{Binding WeaponList}" SelectedIndex="{Binding SelectedWeapon}"/>
+		</StackPanel>
+		<StackPanel DockPanel.Dock="Bottom">
+			<Label x:Name="lblFeedback" Margin="0,5,5,0">
+				<Label.Style>
+					<Style TargetType="{x:Type Label}">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<Trigger Property="HasContent" Value="True">
+								<Setter Property="Visibility" Value="Visible"/>
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Label.Style>
+			</Label>
+			<WrapPanel HorizontalAlignment="Right" Margin="5">
+				<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
+				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
+			</WrapPanel>
+		</StackPanel>
+		<WrapPanel Orientation="Vertical" x:Name="DamagePanel">
+				<CheckBox Content="Acid" IsChecked="{Binding Acid}" Margin="5"/>
+				<CheckBox Content="Adamantine" IsChecked="{Binding Adamantine}" Margin="5"/>
+				<CheckBox Content="Bludgeoning" IsChecked="{Binding Bludgeoning}" Margin="5"/>
+				<CheckBox Content="Chaos" IsChecked="{Binding Chaos}" Margin="5"/>
+				<CheckBox Content="Cold" IsChecked="{Binding Cold}" Margin="5"/>
+				<CheckBox Content="Cold Iron" IsChecked="{Binding ColdIron}" Margin="5"/>
+				<CheckBox Content="Divine" IsChecked="{Binding Divine}" Margin="5"/>
+				<CheckBox Content="Electricity" IsChecked="{Binding Electricity}" Margin="5"/>
+				<CheckBox Content="Epic" IsChecked="{Binding Epic}" Margin="5"/>
+				<CheckBox Content="Evil" IsChecked="{Binding Evil}" Margin="5"/>
+				<CheckBox Content="Fire" IsChecked="{Binding Fire}" Margin="5"/>
+				<CheckBox Content="Force" IsChecked="{Binding Force}" Margin="5"/>
+				<CheckBox Content="Good" IsChecked="{Binding Good}" Margin="5"/>
+				<CheckBox Content="Law" IsChecked="{Binding Law}" Margin="5"/>
+				<CheckBox Content="Magic" IsChecked="{Binding Magic}" Margin="5"/>
+				<CheckBox Content="Negative Energy" IsChecked="{Binding NegativeEnergy}" Margin="5"/>
+				<CheckBox Content="Piercing" IsChecked="{Binding Piercing}" Margin="5"/>
+				<CheckBox Content="Positive Energy" IsChecked="{Binding PositiveEnergy}" Margin="5"/>
+				<CheckBox Content="Slashing" IsChecked="{Binding Slashing}" Margin="5"/>
+				<CheckBox Content="Silver" IsChecked="{Binding Silver}" Margin="5"/>
+				<CheckBox Content="Sonic" IsChecked="{Binding Sonic}" Margin="5"/>
+				<CheckBox Content="Subdual" IsChecked="{Binding Subdual}" Margin="5"/>
+			</WrapPanel>
+	</DockPanel>
 </Window>

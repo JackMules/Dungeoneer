@@ -14,6 +14,8 @@ namespace Dungeoneer.ViewModel
 			_attacks = new FullyObservableCollection<AttackViewModel>();
 			_addAttack = new Command(ExecuteAddAttack);
 			_removeAttack = new Command(ExecuteRemoveAttack);
+			_addWeapon = new Command(ExecuteAddWeapon);
+			_removeWeapon = new Command(ExecuteRemoveWeapon);
 		}
 
 		private string _actorName;
@@ -46,12 +48,16 @@ namespace Dungeoneer.ViewModel
 		private bool _powerAttack;
 
 		private int _selectedSize;
-		private FullyObservableCollection<Model.DamageReduction> _damageReductions;
+		private List<Model.DamageReduction> _damageReductions;
+		private List<Model.Weapon> _weapons;
 
 		private Command _addAttack;
 		private Command _removeAttack;
+		private Command _addWeapon;
+		private Command _removeWeapon;
 
 		public int SelectedAttack { get; set; }
+		public int SelectedWeapon { get; set; }
 
 		public string ActorName
 		{
@@ -293,13 +299,23 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.DamageReduction> DamageReductions
+		public List<Model.DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
 			set
 			{
 				_damageReductions = value;
 				NotifyPropertyChanged("DamageReductions");
+			}
+		}
+
+		public List<Model.Weapon> Weapons
+		{
+			get { return _weapons; }
+			set
+			{
+				_weapons = value;
+				NotifyPropertyChanged("Weapons");
 			}
 		}
 
@@ -375,7 +391,8 @@ namespace Dungeoneer.ViewModel
 						playerActor = new Model.PlayerActor
 						{
 							ActorName = ActorName,
-							InitiativeMod = Convert.ToInt32(InitiativeMod)
+							InitiativeMod = Convert.ToInt32(InitiativeMod),
+							Weapons = Weapons,
 						};
 						askForInput = false;
 					}
@@ -469,7 +486,7 @@ namespace Dungeoneer.ViewModel
 							WillSave = Convert.ToInt32(WillSave),
 							PowerAttack = PowerAttack,
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
-							DamageReductions = new FullyObservableCollection<Model.DamageReduction>(),
+							DamageReductions = new List<Model.DamageReduction>(),
 						};
 						askForInput = false;
 					}
@@ -511,6 +528,21 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteRemoveAttack()
 		{
 			Attacks.RemoveAt(SelectedAttack);
+		}
+
+		private void ExecuteAddWeapon()
+		{
+			AddWeaponWindowViewModel addWeaponWindowViewModel = new AddWeaponWindowViewModel();
+			Model.Weapon weapon = addWeaponWindowViewModel.GetWeapon();
+			if (weapon != null)
+			{
+				Weapons.Add(weapon);
+			}
+		}
+
+		private void ExecuteRemoveWeapon()
+		{
+			Weapons.RemoveAt(SelectedWeapon);
 		}
 	}
 }

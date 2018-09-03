@@ -12,12 +12,12 @@ namespace Dungeoneer.Model
 	{
 		public PlayerActor()
 		{
-			_weapons = new FullyObservableCollection<Weapon>();
+			_weapons = new List<Weapon>();
 		}
 
-		private FullyObservableCollection<Weapon> _weapons;
+		private List<Weapon> _weapons;
 
-		public FullyObservableCollection<Weapon> Weapons
+		public List<Weapon> Weapons
 		{
 			get { return _weapons; }
 			set

@@ -182,6 +182,11 @@ namespace Dungeoneer.Utility
 			Sonic,
 			Subdual,
 		}
+
+		public enum Effect
+		{
+			AbilityDamage,
+		}
 	}
 
 	public static class Methods
@@ -417,7 +422,7 @@ namespace Dungeoneer.Utility
 				case Types.Damage.Slashing:				return Constants.DamageTypeSlashing;
 				case Types.Damage.Sonic:					return Constants.DamageTypeSonic;
 				case Types.Damage.Subdual:				return Constants.DamageTypeSubdual;
-				default:															return "Unrecognised damage type";
+				default:													return "Unrecognised damage type";
 			}
 		}
 

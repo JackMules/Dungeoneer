@@ -48,7 +48,7 @@
 				</MenuItem>
 			</Menu>
 			<TabControl>
-				<TabItem x:Name="InitiativeTab" Header="Initiative">
+				<TabItem Header="Initiative">
 					<DockPanel>
 						<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 							<DockPanel>
@@ -66,7 +66,7 @@
 						</Border>
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
+								<ItemsControl x:Name="initiativeControl" ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
 														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
 														Background="Transparent">
 								</ItemsControl>
@@ -77,9 +77,9 @@
 				<TabItem x:Name="EnemiesTab" Header="Enemies">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button x:Name="CreateNonPlayerActorButton" HorizontalAlignment="Right" Content="Create Non-Player Actor" Margin="5,0" Command="{Binding CreateNonPlayerActor}"/>
-							<Button x:Name="CreateCreatureButton" HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" Command="{Binding CreateCreature}"/>
-							<TextBox x:Name="FilterActorsBox" ToolTip="Type to filter Actors" />
+							<Button HorizontalAlignment="Right" Content="Create Non-Player Actor" Margin="5,0" Command="{Binding CreateNonPlayerActor}"/>
+							<Button HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" Command="{Binding CreateCreature}"/>
+							<TextBox ToolTip="Type to filter Actors" />
 						</DockPanel>
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -93,7 +93,7 @@
 				<TabItem x:Name="EnvironmentTab" Header="Environment">
 
 				</TabItem>
-				<TabItem x:Name="PartyTab" Header="Party">
+				<TabItem Header="Party">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
 							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0" Command="{Binding CreatePlayerActor}"/>

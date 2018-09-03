@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Xml;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -69,6 +70,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public FullyObservableCollection<Model.Effect> Effects
+		{
+			get { return Actor.Effects; }
+			set
+			{
+				Actor.Effects = value;
+				NotifyPropertyChanged("Effects");
+			}
+		}
+
 		public Color BackgroundColor
 		{
 			get { return _backgroundColor; }
@@ -76,6 +87,24 @@ namespace Dungeoneer.ViewModel
 			{
 				_backgroundColor = value;
 				NotifyPropertyChanged("BackgroundColor");
+			}
+		}
+
+		public void StartTurn()
+		{
+			for (int i = Effects.Count - 1; i >= 0; --i)
+			{
+				
+
+				if (Effects[i] is Model.TemporaryEffect)
+				{
+					Model.TemporaryEffect tempEffect = Effects[i] as Model.TemporaryEffect;
+					tempEffect.ElapsedDuration++;
+					if (tempEffect.ElapsedDuration == tempEffect.Duration)
+					{
+						Effects.RemoveAt(i);
+					}
+				}
 			}
 		}
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
 using Dungeoneer.Utility;
+using System.Windows.Data;
 
 namespace Dungeoneer.ViewModel
 {
@@ -22,6 +23,8 @@ namespace Dungeoneer.ViewModel
 			_clear = new Command(ExecuteClear);
 			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
+
+			_initiativeTrack.CollectionChanged += _initiativeTrack_CollectionChanged;
 		}
 
 		private FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
@@ -31,6 +34,15 @@ namespace Dungeoneer.ViewModel
 		private Command _save;
 		private Command _load;
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
+
+		private void _initiativeTrack_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			InitiativeCardViewModel firstInitCard = _initiativeTrack.First();
+			if (firstInitCard != null)
+			{
+				firstInitCard.StartTurn();
+			}
+		}
 
 		public int Round
 		{
@@ -230,7 +242,7 @@ namespace Dungeoneer.ViewModel
 						if (xmlNode.Name == "InitiativeCard")
 						{
 							InitiativeCardViewModel initCard = new InitiativeCardViewModel();
-							initCard.ReadXML(xmlNode);
+							initCard.ReadXML(xmlNode, this);
 							InitiativeTrack.Add(initCard);
 						}
 					}

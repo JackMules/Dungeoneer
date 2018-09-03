@@ -94,7 +94,7 @@ namespace Dungeoneer.ViewModel
 			xmlWriter.WriteEndElement();
 		}
 
-		public void ReadXML(XmlNode xmlNode)
+		public void ReadXML(XmlNode xmlNode, EncounterViewModel encounterViewModel)
 		{
 			try
 			{
@@ -116,7 +116,7 @@ namespace Dungeoneer.ViewModel
 						}
 						else if (childNode.Name == "Creature")
 						{
-							actorViewModel = new CreatureInitiativeViewModel();
+							actorViewModel = new CreatureInitiativeViewModel(encounterViewModel);
 						}
 						actorViewModel.ReadXML(childNode);
 						ActorViewModel = actorViewModel;
@@ -133,6 +133,11 @@ namespace Dungeoneer.ViewModel
 			{
 				MessageBox.Show(e.ToString());
 			}
+		}
+
+		public void StartTurn()
+		{
+			ActorViewModel.StartTurn();
 		}
 	}
 }

@@ -15,13 +15,19 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for DoDamageDialog2.xaml
+	/// Interaction logic for AddWeaponWindow.xaml
 	/// </summary>
-	public partial class DoDamageDialog2 : Window
+	public partial class AddWeaponWindow : Window
 	{
-		public DoDamageDialog2()
+		public AddWeaponWindow(string feedback = null)
 		{
 			InitializeComponent();
+			lblFeedback.Content = feedback;
+		}
+
+		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+		{
+			this.DialogResult = true;
 		}
 	}
 }

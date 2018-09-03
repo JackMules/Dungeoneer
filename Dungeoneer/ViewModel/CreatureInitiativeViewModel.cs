@@ -68,6 +68,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public FullyObservableCollection<Model.Effect> Effects
+		{
+			get { return Actor.Effects; }
+			set
+			{
+				Actor.Effects = value;
+				NotifyPropertyChanged("Effects");
+			}
+		}
+
 		public Command DoDamage
 		{
 			get { return _doDamage; }
@@ -75,8 +85,12 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteDoDamage()
 		{
-			DoDamageDialogViewModel2 doDamageDialogViewModel = new DoDamageDialogViewModel2(WeaponList);
-			HitPoints = doDamageDialogViewModel.ShowDamageDialog(Actor);
+			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel(WeaponList);
+			if (doDamageDialogViewModel.ShowDamageDialog(Actor))
+			{
+				HitPoints = doDamageDialogViewModel.HitPoints;
+				Effects = doDamageDialogViewModel.Effects;
+			}
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

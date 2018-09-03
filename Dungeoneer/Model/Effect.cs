@@ -11,10 +11,13 @@ namespace Dungeoneer.Model
 {
 	public class Effect : BaseModel
 	{
+		public Effect()
+		{
+
+		}
+
 		private string _name;
 		private int _value;
-		private int? _originalDuration;
-		private int? _elapsedDuration;
 
 		public string Name
 		{
@@ -36,30 +39,20 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int? OriginalDuration
-		{
-			get { return _originalDuration; }
-			set
-			{
-				_originalDuration = value;
-				NotifyPropertyChanged("OriginalDuration");
-			}
-		}
-
-		public int? ElapsedDuration
-		{
-			get { return _elapsedDuration; }
-			set
-			{
-				_elapsedDuration = value;
-				NotifyPropertyChanged("ElapsedDuration");
-			}
-		}
-
 		public void WriteXML(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("Effect");
+			WriteXMLStartElement(xmlWriter);
+			WritePropertyXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
 
+		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("Effect");
+		}
+
+		public virtual void WritePropertyXML(XmlWriter xmlWriter)
+		{
 			xmlWriter.WriteStartElement("Name");
 			xmlWriter.WriteString(Name);
 			xmlWriter.WriteEndElement();
@@ -67,19 +60,9 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("Value");
 			xmlWriter.WriteString(Value.ToString());
 			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("OriginalDuration");
-			xmlWriter.WriteString(OriginalDuration.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("ElapsedDuration");
-			xmlWriter.WriteString(ElapsedDuration.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteEndElement();
 		}
 
-		public void ReadXML(XmlNode xmlNode)
+		public virtual void ReadXML(XmlNode xmlNode)
 		{
 			try
 			{
@@ -92,14 +75,6 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "Value")
 					{
 						Value = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "OriginalDuration")
-					{
-						OriginalDuration = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "ElapsedDuration")
-					{
-						ElapsedDuration = Convert.ToInt32(childNode.InnerText);
 					}
 				}
 			}
