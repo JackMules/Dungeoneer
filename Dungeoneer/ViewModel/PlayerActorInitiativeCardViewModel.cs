@@ -28,7 +28,7 @@ namespace Dungeoneer.ViewModel
 
 		public WeaponsChange OnWeaponsChange { get; set; }
 
-		public FullyObservableCollection<Model.Weapon> Weapons
+		public List<Model.Weapon> Weapons
 		{
 			get
 			{

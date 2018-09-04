@@ -68,16 +68,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.Effect> Effects
-		{
-			get { return Actor.Effects; }
-			set
-			{
-				Actor.Effects = value;
-				NotifyPropertyChanged("Effects");
-			}
-		}
-
 		public Command DoDamage
 		{
 			get { return _doDamage; }
