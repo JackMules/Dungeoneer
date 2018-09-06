@@ -18,7 +18,9 @@ namespace Dungeoneer.Model
 
 		private string _name;
 		private List<Types.Damage> _damageQualities;
-		private List<Effect> _effects;
+		private bool _abilityDamage;
+		private int _abilityDamageValue;
+		private Types.Ability? _ability;
 
 		public string Name
 		{
@@ -40,16 +42,36 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public List<Effect> Effects
+		public bool AbilityDamage
 		{
-			get { return _effects; }
+			get { return _abilityDamage; }
 			set
 			{
-				_effects = value;
-				NotifyPropertyChanged("Effects");
+				_abilityDamage = value;
+				NotifyPropertyChanged("AbilityDamage");
 			}
 		}
 
+		public int AbilityDamageValue
+		{
+			get { return _abilityDamageValue; }
+			set
+			{
+				_abilityDamageValue = value;
+				NotifyPropertyChanged("AbilityDamageValue");
+			}
+		}
+
+		public Types.Ability? Ability
+		{
+			get { return _ability; }
+			set
+			{
+				_ability = value;
+				NotifyPropertyChanged("Ability");
+			}
+		}
+		
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Weapon");
@@ -65,12 +87,7 @@ namespace Dungeoneer.Model
 				xmlWriter.WriteString(Methods.GetDamageTypeString(damage));
 				xmlWriter.WriteEndElement();
 			}
-
-			xmlWriter.WriteStartElement("Effects");
-			foreach (Effect effect in Effects)
-			{
-				effect.WriteXML(xmlWriter);
-			}
+			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteEndElement();
 		}
@@ -93,15 +110,6 @@ namespace Dungeoneer.Model
 							{
 								DamageQualities.Add(Methods.GetDamageTypeFromString(damageNode.InnerText));
 							}
-						}
-					}
-					else if (childNode.Name == "Effects")
-					{
-						foreach (XmlNode effectNode in childNode.ChildNodes)
-						{
-							Effect effect = new Effect();
-							effect.ReadXML(effectNode);
-							Effects.Add(effect);
 						}
 					}
 				}

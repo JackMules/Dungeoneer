@@ -4,7 +4,7 @@
 				Title="Add Attack" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner"
 				WindowStyle="ToolWindow" MinWidth="250">
-	<Grid Margin="10">
+	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=AttackNameTextBox}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>

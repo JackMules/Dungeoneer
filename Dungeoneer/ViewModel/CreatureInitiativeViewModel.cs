@@ -76,10 +76,10 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteDoDamage()
 		{
 			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel(WeaponList);
-			if (doDamageDialogViewModel.ShowDamageDialog(Actor))
+			Model.Creature creature = doDamageDialogViewModel.DoDamage(Actor);
+			if (creature != null)
 			{
-				HitPoints = doDamageDialogViewModel.HitPoints;
-				// Better to do ability damage in the same way as hit point damage
+				Actor = creature;
 			}
 		}
 

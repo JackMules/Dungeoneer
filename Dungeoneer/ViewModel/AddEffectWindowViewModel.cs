@@ -14,16 +14,16 @@ namespace Dungeoneer.ViewModel
 
 		}
 
-		public List<Model.Effect> EffectList
+		public List<Model.Effect.Effect> EffectList
 		{
 			get { return }
 		}
 
-		public Model.Effect GetEffect()
+		public Model.Effect.Effect GetEffect()
 		{
 			bool askForInput = true;
 			string feedback = null;
-			Model.Effect effect = null;
+			Model.Effect.Effect effect = null;
 			while (askForInput)
 			{
 				View.AddEffectWindow addEffectWindow = new View.AddEffectWindow(feedback);
@@ -33,7 +33,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = new Model.Effect();
+						effect = new Model.Effect.Effect();
 
 						effect.Name = Name;
 						effect.

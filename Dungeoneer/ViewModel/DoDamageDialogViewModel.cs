@@ -376,7 +376,7 @@ namespace Dungeoneer.ViewModel
 
 		public string HitPoints { get; set; }
 
-		public FullyObservableCollection<Model.Effect> Effects { get; set; }
+		public FullyObservableCollection<Model.Effect.Effect> Effects { get; set; }
 
 		public Model.Weapon GetWeapon()
 		{
@@ -474,9 +474,8 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public bool ShowDamageDialog(Model.Creature creature)
+		public Model.Creature DoDamage(Model.Creature creature)
 		{
-			HitPoints = creature.HitPoints.ToString();
 			bool askForInput = true;
 			string feedback = null;
 			while (askForInput)
@@ -489,7 +488,7 @@ namespace Dungeoneer.ViewModel
 					{
 						int damage = Convert.ToInt32(Damage);
 						Model.Weapon weapon = GetWeapon();
-						HitPoints = Methods.CalculateNewHitPoints(creature, damage, weapon).ToString();
+						creature.HitPoints = Methods.CalculateNewHitPoints(creature, damage, weapon);
 
 						askForInput = false;
 					}
@@ -499,13 +498,9 @@ namespace Dungeoneer.ViewModel
 						feedback = "Invalid format";
 					}
 				}
-				else
-				{
-					return false;
-				}
 			}
 
-			return true;
+			return creature;
 		}
 	}
 }

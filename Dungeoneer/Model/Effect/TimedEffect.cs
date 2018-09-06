@@ -7,7 +7,7 @@ using Dungeoneer.Utility;
 using System.Xml;
 using System.Windows.Forms;
 
-namespace Dungeoneer.Model
+namespace Dungeoneer.Model.Effect
 {
 	public class TimedEffect : Effect
 	{

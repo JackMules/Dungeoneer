@@ -4,7 +4,7 @@
 				Title="Add Damage" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner"
 				WindowStyle="ToolWindow">
-	<Grid Margin="10">
+	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=NumDiceTextBox}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>

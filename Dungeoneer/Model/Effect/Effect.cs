@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
 
-namespace Dungeoneer.Model
+namespace Dungeoneer.Model.Effect
 {
 	public abstract class Effect : BaseModel
 	{

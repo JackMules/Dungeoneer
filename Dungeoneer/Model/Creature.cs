@@ -11,6 +11,31 @@ namespace Dungeoneer.Model
 {
 	public class Creature : NonPlayerActor
 	{
+		public Creature()
+			: base()
+		{
+			Strength = 10;
+			Dexterity = 10;
+			Constitution = 10;
+			Intelligence = 10;
+			Wisdom = 10;
+			Charisma = 10;
+			BaseAttackBonus = 0;
+			HitPoints = 3;
+			HitDice = 1;
+			HitDieType = Types.Die.d3;
+			ArmourClass = 10;
+			TouchArmourClass = 10;
+			FlatFootedArmourClass = 10;
+			Speed = 30;
+			FortitudeSave = 0;
+			ReflexSave = 0;
+			WillSave = 0;
+			PowerAttack = false;
+			Size = Types.Size.Medium;
+			DamageReductions = new List<DamageReduction>();
+		}
+
 		private int _strength;
 		private int _dexterity;
 		private int _constitution;
@@ -236,31 +261,6 @@ namespace Dungeoneer.Model
 				_damageReductions = value;
 				NotifyPropertyChanged("DamageReductions");
 			}
-		}
-
-		public Creature()
-			: base()
-		{
-			Strength = 10;
-			Dexterity = 10;
-			Constitution = 10;
-			Intelligence = 10;
-			Wisdom = 10;
-			Charisma = 10;
-			BaseAttackBonus = 0;
-			HitPoints = 3;
-			HitDice = 1;
-			HitDieType = Types.Die.d3;
-			ArmourClass = 10;
-			TouchArmourClass = 10;
-			FlatFootedArmourClass = 10;
-			Speed = 30;
-			FortitudeSave = 0;
-			ReflexSave = 0;
-			WillSave = 0;
-			PowerAttack = false;
-			Size = Types.Size.Medium;
-			DamageReductions = new List<DamageReduction>();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

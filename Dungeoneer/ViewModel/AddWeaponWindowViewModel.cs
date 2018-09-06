@@ -12,10 +12,9 @@ namespace Dungeoneer.ViewModel
 		public AddWeaponWindowViewModel()
 		{
 			_name = "";
-			_effects = new FullyObservableCollection<Model.Effect>();
-			_addEffect = new Command(ExecuteAddEffect);
-			_removeEffect = new Command(ExecuteRemoveEffect);
-			_selectedEffect = 0;
+			_abilityDamage = false;
+			_abilityDamageValue = "";
+			_ability = null;
 			_acid = false;
 			_adamantine = false;
 			_bludgeoning = false;
@@ -41,12 +40,9 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private string _name;
-
-		private FullyObservableCollection<Model.Effect> _effects;
-		private int _selectedEffect;
-
-		private Command _addEffect;
-		private Command _removeEffect;
+		private bool _abilityDamage;
+		private string _abilityDamageValue;
+		private Types.Ability? _ability;
 
 		private bool _acid;
 		private bool _adamantine;
@@ -81,23 +77,33 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.Effect> Effects
+		public bool AbilityDamage
 		{
-			get { return _effects; }
+			get { return _abilityDamage; }
 			set
 			{
-				_effects = value;
-				NotifyPropertyChanged("Effects");
+				_abilityDamage = value;
+				NotifyPropertyChanged("AbilityDamage");
 			}
 		}
 
-		public int SelectedEffect
+		public string AbilityDamageValue
 		{
-			get { return _selectedEffect; }
+			get { return _abilityDamageValue; }
 			set
 			{
-				_selectedEffect = value;
-				NotifyPropertyChanged("SelectedEffect");
+				_abilityDamageValue = value;
+				NotifyPropertyChanged("AbilityDamageValue");
+			}
+		}
+
+		public Types.Ability? Ability
+		{
+			get { return _ability; }
+			set
+			{
+				_ability = value;
+				NotifyPropertyChanged("Ability");
 			}
 		}
 
@@ -337,6 +343,9 @@ namespace Dungeoneer.ViewModel
 						weapon = new Model.Weapon();
 
 						weapon.Name = Name;
+						weapon.AbilityDamage = AbilityDamage;
+						weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
+						weapon.Ability = Ability;
 
 						if (Acid)
 						{
@@ -427,11 +436,6 @@ namespace Dungeoneer.ViewModel
 							weapon.DamageQualities.Add(Types.Damage.Subdual);
 						}
 
-						foreach (Model.Effect effect in Effects)
-						{
-							weapon.Effects.Add(effect);
-						}
-
 						askForInput = false;
 					}
 					catch (FormatException)
@@ -446,31 +450,6 @@ namespace Dungeoneer.ViewModel
 			}
 
 			return weapon;
-		}
-
-		public Command AddEffect
-		{
-			get { return _addEffect; }
-		}
-
-		public Command RemoveEffect
-		{
-			get { return _removeEffect; }
-		}
-
-		private void ExecuteAddEffect()
-		{
-			AddEffectWindowViewModel addEffectWindowViewModel = new AddEffectWindowViewModel();
-			Model.Effect effect = addEffectWindowViewModel.GetEffect();
-			if (effect != null)
-			{
-				Effects.Add(effect);
-			}
-		}
-
-		private void ExecuteRemoveEffect()
-		{
-			Effects.RemoveAt(SelectedEffect);
 		}
 	}
 }

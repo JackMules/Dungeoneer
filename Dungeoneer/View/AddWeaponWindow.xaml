@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         Title="Add Weapon" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="300" ResizeMode="NoResize">
-	<DockPanel>
-		<Grid DockPanel.Dock="Top" Margin="5">
+	<DockPanel Margin ="5" FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
+		<Grid DockPanel.Dock="Top">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -19,14 +19,6 @@
 			</Grid.ColumnDefinitions>
 			<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
 			<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5" Text="{Binding Name}"/>
-			<Label Content="Effects" Grid.Row="1" Grid.Column="0"/>
-			<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="1">
-				<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}" MinWidth="100"/>
-			</ScrollViewer>
-			<StackPanel Grid.Row="1" Grid.Column="2">
-				<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-				<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			</StackPanel>
 		</Grid>
 		<StackPanel DockPanel.Dock="Bottom">
 			<Label x:Name="lblFeedback" Margin="0,0,5,0">
@@ -41,12 +33,29 @@
 					</Style>
 				</Label.Style>
 			</Label>
-			<WrapPanel HorizontalAlignment="Right" Margin="5">
+			<WrapPanel HorizontalAlignment="Right">
 				<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-		<WrapPanel Orientation="Vertical" x:Name="DamagePanel" Margin="5">
+		<DockPanel Margin="5" DockPanel.Dock="Bottom">
+			<CheckBox DockPanel.Dock="Left" Content="Ability Damage" IsChecked="{Binding AbilityDamage}" VerticalContentAlignment="Center"/>
+			<DockPanel>
+				<DockPanel.Style>
+					<Style TargetType="{x:Type DockPanel}">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding AbilityDamage}" Value="True">
+								<Setter Property="Visibility" Value="Visible"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</DockPanel.Style>
+				<TextBox Text="{Binding AbilityDamageValue}" Width="25" Margin="5,0,5,0" VerticalContentAlignment="Center"/>
+				<ComboBox ItemsSource="{Binding Abilities}" VerticalContentAlignment="Center"/>
+			</DockPanel>
+		</DockPanel>
+		<WrapPanel Orientation="Vertical" x:Name="DamagePanel">
 			<CheckBox Content="Acid" IsChecked="{Binding Acid}" Margin="5"/>
 			<CheckBox Content="Adamantine" IsChecked="{Binding Adamantine}" Margin="5"/>
 			<CheckBox Content="Bludgeoning" IsChecked="{Binding Bludgeoning}" Margin="5"/>

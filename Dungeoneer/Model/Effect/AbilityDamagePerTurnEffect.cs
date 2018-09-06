@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using Dungeoneer.Utility;
 
-namespace Dungeoneer.Model
+namespace Dungeoneer.Model.Effect
 {
 	public class AbilityDamagePerTurnEffect : Effect
 	{
@@ -36,7 +36,7 @@ namespace Dungeoneer.Model
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("DamagePerTurnEffect");
+			xmlWriter.WriteStartElement("AbilityDamagePerTurnEffect");
 		}
 	}
 }

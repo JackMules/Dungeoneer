@@ -17,14 +17,14 @@ namespace Dungeoneer.Model
 			ActorName = "";
 			InitiativeMod = 0;
 			Active = true;
-			Effects = new FullyObservableCollection<Effect>();
+			Effects = new FullyObservableCollection<Effect.Effect>();
 		}
 
 		private string _displayName;
 		private string _actorName;
 		private int _initiativeMod;
 		private bool _active;
-		private FullyObservableCollection<Effect> _effects;
+		private FullyObservableCollection<Effect.Effect> _effects;
 
 		public string DisplayName
 		{
@@ -66,7 +66,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public FullyObservableCollection<Effect> Effects
+		public FullyObservableCollection<Effect.Effect> Effects
 		{
 			get { return _effects; }
 			set
@@ -80,7 +80,7 @@ namespace Dungeoneer.Model
 			string displayName,
 			string actorName,
 			int initiativeMod,
-			FullyObservableCollection<Effect> effects)
+			FullyObservableCollection<Effect.Effect> effects)
 		{
 			DisplayName = displayName;
 			ActorName = actorName;
@@ -116,7 +116,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Effects");
-			foreach (Effect effect in Effects)
+			foreach (Effect.Effect effect in Effects)
 			{
 				effect.WriteXML(xmlWriter);
 			}
@@ -147,8 +147,7 @@ namespace Dungeoneer.Model
 						{
 							if (effectNode.Name == "Effect")
 							{
-								Effect effect = new Effect();
-								effect.ReadXML(effectNode);
+								Effect.Effect effect = Effect.EffectFactory.GetEffectFromXML(effectNode);
 								Effects.Add(effect);
 							}
 						}
