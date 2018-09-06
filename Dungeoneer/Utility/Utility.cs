@@ -71,12 +71,6 @@ namespace Dungeoneer.Utility
 			Methods.GetSizeString(Types.Size.ColossalPlus),
 		};
 
-		public static readonly List<string> DamageTypeStrings = new List<string>
-		{
-
-			
-		};
-
 		public static readonly List<string> DieTypeStrings = new List<string>
 		{
 			Methods.GetDieTypeString(Types.Die.d3),
@@ -185,7 +179,24 @@ namespace Dungeoneer.Utility
 
 		public enum Effect
 		{
-			AbilityDamage,
+			DamagePerTurn,
+			TimedDamagePerTurn,
+		}
+
+		public enum Ability
+		{
+			Strength,
+			Dexterity,
+			Constitution,
+			Intelligence,
+			Wisdom,
+			Charisma,
+		}
+
+		public enum Attribute
+		{
+			HitPoints,
+			SubdualHitPoints,
 		}
 	}
 
@@ -536,6 +547,49 @@ namespace Dungeoneer.Utility
 			{
 				return 2 * CalculateXP(challengeRating - 2);
 			}
+		}
+
+		public static int CalculateNewHitPoints(Model.Creature creature, int damage, Model.Weapon weapon)
+		{
+			List<Model.DamageReduction> damageReductions = creature.DamageReductions;
+			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
+
+			foreach (Model.DamageReduction dr in damageReductions)
+			{
+				bool bypassed = true;
+				foreach (Types.Damage drDamageType in dr.DamageTypes)
+				{
+					bool matched = false;
+					foreach (Types.Damage weaponDamageType in weapon.DamageQualities)
+					{
+						if (weaponDamageType == drDamageType)
+						{
+							matched = true;
+							break;
+						}
+					}
+
+					// If none of the weapon's damage qualities match this part of the damage type, then 
+					if (!matched)
+					{
+						bypassed = false;
+						break;
+					}
+				}
+
+				if (!bypassed)
+				{
+					damage -= dr.Value;
+					break;
+				}
+			}
+
+			if (damage < 0)
+			{
+				damage = 0;
+			}
+
+			return creature.HitPoints - damage;
 		}
 	}
 }

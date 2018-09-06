@@ -263,61 +263,6 @@ namespace Dungeoneer.Model
 			DamageReductions = new List<DamageReduction>();
 		}
 
-		public Creature(
-			string displayName,
-			string actorName, 
-			string type, 
-			int initiativeMod,
-			float challengeRating,
-			FullyObservableCollection<ViewModel.AttackViewModel> attacks,
-			int strength,
-			int dexterity,
-			int constitution,
-			int intelligence,
-			int wisdom,
-			int charisma,
-			int baseAttackBonus,
-			int hitPoints,
-			int hitDice,
-			Types.Die hitDiceType,
-			int armourClass,
-			int touchArmourClass,
-			int flatFootedArmourClass,
-			int damageReduction,
-			string damageReductionType,
-			int speed,
-			int fortitudeSave,
-			int reflexSave,
-			int willSave,
-			bool powerAttack,
-			Types.Size size,
-			List<DamageReduction> damageReductions,
-			FullyObservableCollection<Effect> effects)
-			: base(displayName, actorName, type, 
-					initiativeMod, challengeRating, attacks, effects)
-		{
-			Strength = strength;
-			Dexterity = dexterity;
-			Constitution = constitution;
-			Intelligence = intelligence;
-			Wisdom = wisdom;
-			Charisma = charisma;
-			BaseAttackBonus = baseAttackBonus;
-			HitPoints = hitPoints; 
-			HitDice = hitDice; 
-			HitDieType = hitDiceType; 
-			ArmourClass = armourClass; 
-			TouchArmourClass = touchArmourClass; 
-			FlatFootedArmourClass = flatFootedArmourClass; 
-			Speed = speed; 
-			FortitudeSave = fortitudeSave; 
-			ReflexSave = reflexSave; 
-			WillSave = willSave;
-			PowerAttack = powerAttack;
-			Size = size;
-			DamageReductions = damageReductions;
-		}
-
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Creature");

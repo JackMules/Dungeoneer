@@ -19,9 +19,15 @@ namespace Dungeoneer.View
 	/// </summary>
 	public partial class AddEffectWindow : Window
 	{
-		public AddEffectWindow()
+		public AddEffectWindow(string feedback = null)
 		{
 			InitializeComponent();
+			lblFeedback.Content = feedback;
+		}
+
+		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+		{
+			this.DialogResult = true;
 		}
 	}
 }

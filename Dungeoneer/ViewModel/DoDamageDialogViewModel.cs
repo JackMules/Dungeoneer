@@ -375,6 +375,7 @@ namespace Dungeoneer.ViewModel
 		}
 
 		public string HitPoints { get; set; }
+
 		public FullyObservableCollection<Model.Effect> Effects { get; set; }
 
 		public Model.Weapon GetWeapon()
@@ -488,8 +489,7 @@ namespace Dungeoneer.ViewModel
 					{
 						int damage = Convert.ToInt32(Damage);
 						Model.Weapon weapon = GetWeapon();
-						HitPoints = CalculateNewHitPoints(creature, damage, weapon).ToString();
-						Effects = GetEffects(creature, weapon);
+						HitPoints = Methods.CalculateNewHitPoints(creature, damage, weapon).ToString();
 
 						askForInput = false;
 					}
@@ -506,62 +506,6 @@ namespace Dungeoneer.ViewModel
 			}
 
 			return true;
-		}
-
-		public int CalculateNewHitPoints(Model.Creature creature, int damage, Model.Weapon weapon)
-		{
-			List<Model.DamageReduction> damageReductions = creature.DamageReductions;
-			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
-
-			foreach (Model.DamageReduction dr in damageReductions)
-			{
-				bool bypassed = true;
-				foreach (Types.Damage drDamageType in dr.DamageTypes)
-				{
-					bool matched = false;
-					foreach (Types.Damage weaponDamageType in weapon.DamageQualities)
-					{
-						if (weaponDamageType == drDamageType)
-						{
-							matched = true;
-							break;
-						}
-					}
-
-					// If none of the weapon's damage qualities match this part of the damage type, then 
-					if (!matched)
-					{
-						bypassed = false;
-						break;
-					}
-				}
-
-				if (!bypassed)
-				{
-					damage -= dr.Value;
-					break;
-				}
-			}
-		
-			if (damage < 0)
-			{
-				damage = 0;
-			}
-
-			return creature.HitPoints - damage;
-		}
-
-		public FullyObservableCollection<Model.Effect> GetEffects(Model.Creature creature, Model.Weapon weapon)
-		{
-			FullyObservableCollection<Model.Effect> effects = creature.Effects;
-
-			// Add effects
-			foreach (Model.Effect weaponEffect in weapon.Effects)
-			{
-
-			}
-
-			return effects;
 		}
 	}
 }

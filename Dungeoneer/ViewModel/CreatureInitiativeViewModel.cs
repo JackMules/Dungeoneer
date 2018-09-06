@@ -79,7 +79,7 @@ namespace Dungeoneer.ViewModel
 			if (doDamageDialogViewModel.ShowDamageDialog(Actor))
 			{
 				HitPoints = doDamageDialogViewModel.HitPoints;
-				Effects = doDamageDialogViewModel.Effects;
+				// Better to do ability damage in the same way as hit point damage
 			}
 		}
 

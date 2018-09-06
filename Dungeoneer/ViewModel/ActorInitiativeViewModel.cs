@@ -96,9 +96,9 @@ namespace Dungeoneer.ViewModel
 			{
 				
 
-				if (Effects[i] is Model.TemporaryEffect)
+				if (Effects[i] is Model.TimedEffect)
 				{
-					Model.TemporaryEffect tempEffect = Effects[i] as Model.TemporaryEffect;
+					Model.TimedEffect tempEffect = Effects[i] as Model.TimedEffect;
 					tempEffect.ElapsedDuration++;
 					if (tempEffect.ElapsedDuration == tempEffect.Duration)
 					{

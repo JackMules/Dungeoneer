@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
-	public class Effect : BaseModel
+	public abstract class Effect : BaseModel
 	{
 		public Effect()
 		{
@@ -39,6 +39,8 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public abstract Creature DoPerTurnBehaviour(Creature creature);
+
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			WriteXMLStartElement(xmlWriter);
@@ -46,10 +48,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 		}
 
-		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("Effect");
-		}
+		public abstract void WriteXMLStartElement(XmlWriter xmlWriter);
 
 		public virtual void WritePropertyXML(XmlWriter xmlWriter)
 		{

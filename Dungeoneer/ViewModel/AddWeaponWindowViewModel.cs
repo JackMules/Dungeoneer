@@ -427,9 +427,9 @@ namespace Dungeoneer.ViewModel
 							weapon.DamageQualities.Add(Types.Damage.Subdual);
 						}
 
-						foreach (AddEffectWindowViewModel effectViewModel in Effects)
+						foreach (Model.Effect effect in Effects)
 						{
-							weapon.Effects.Add(effectViewModel.Effect);
+							weapon.Effects.Add(effect);
 						}
 
 						askForInput = false;
