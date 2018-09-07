@@ -12,13 +12,13 @@ namespace Dungeoneer.ViewModel
 	{
 		public AddDamageWindowViewModel()
 		{
-
+			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
 		}
 
 		private string _numDice;
 		private int _die;
 		private string _modifier;
-		private int _type;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
 
 		public string NumDice
 		{
@@ -56,16 +56,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public int Type
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
 		{
-			get
-			{
-				return _type;
-			}
+			get { return _damageTypeSelectorViewModel; }
 			set
 			{
-				_type = value;
-				NotifyPropertyChanged("Type");
+				_damageTypeSelectorViewModel = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel");
 			}
 		}
 
@@ -74,14 +71,6 @@ namespace Dungeoneer.ViewModel
 			get
 			{
 				return Constants.DieTypeStrings;
-			}
-		}
-
-		public List<string> DamageTypes
-		{
-			get
-			{
-				return Constants.DamageTypeStrings;
 			}
 		}
 
@@ -104,7 +93,7 @@ namespace Dungeoneer.ViewModel
 							NumDice = Convert.ToInt32(NumDice),
 							Die = Methods.GetDieTypeFromString(DieTypes.ElementAt(Die)),
 							Modifier = Convert.ToInt32(Modifier),
-							Type = Methods.GetDamageTypeFromString(DamageTypes.ElementAt(Type)),
+							DamageDescriptorSet = DamageTypeSelectorViewModel.GetDamageDescriptorSet(),
 						};
 						askForInput = false;
 					}

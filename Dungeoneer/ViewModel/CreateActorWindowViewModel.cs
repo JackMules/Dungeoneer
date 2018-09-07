@@ -329,11 +329,6 @@ namespace Dungeoneer.ViewModel
 			get { return Constants.SizeStrings; }
 		}
 
-		public List<string> DamageTypes
-		{
-			get { return Constants.DamageTypeStrings; }
-		}
-
 		public void LoadPlayerActor(Model.PlayerActor playerActor)
 		{
 			ActorName = playerActor.ActorName;

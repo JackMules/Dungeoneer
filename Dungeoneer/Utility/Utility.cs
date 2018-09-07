@@ -208,7 +208,7 @@ namespace Dungeoneer.Utility
 
 			foreach (Model.Damage damage in damages)
 			{
-				damageStrings.Add(damage.NumDice.ToString() + GetDieTypeString(damage.Die) + GetSignedNumberString(damage.Modifier) + " " + GetDamageTypeString(damage.Type));
+				damageStrings.Add(damage.NumDice.ToString() + GetDieTypeString(damage.Die) + GetSignedNumberString(damage.Modifier) + " " + damage.DamageDescriptorSet.ToString());
 			}
 
 			return String.Join(" + ", damageStrings);
@@ -412,28 +412,29 @@ namespace Dungeoneer.Utility
 		{
 			switch (damageType)
 			{
-				case Types.Damage.Acid:						return Constants.DamageTypeAcid;
-				case Types.Damage.Adamantine:			return Constants.DamageTypeAdamantine;
-				case Types.Damage.Bludgeoning:		return Constants.DamageTypeBludgeoning;
-				case Types.Damage.Chaos:					return Constants.DamageTypeChaos;
-				case Types.Damage.Cold:						return Constants.DamageTypeCold;
-				case Types.Damage.ColdIron:				return Constants.DamageTypeColdIron;
-				case Types.Damage.Divine:					return Constants.DamageTypeDivine;
-				case Types.Damage.Epic:						return Constants.DamageTypeEpic;
-				case Types.Damage.Electricity:		return Constants.DamageTypeElectricity;
-				case Types.Damage.Evil:						return Constants.DamageTypeEvil;
-				case Types.Damage.Fire:						return Constants.DamageTypeFire;
-				case Types.Damage.Force:					return Constants.DamageTypeForce;
-				case Types.Damage.Good:						return Constants.DamageTypeGood;
-				case Types.Damage.Law:						return Constants.DamageTypeLaw;
-				case Types.Damage.NegativeEnergy:	return Constants.DamageTypeNegativeEnergy;
-				case Types.Damage.Piercing:				return Constants.DamageTypePiercing;
-				case Types.Damage.PositiveEnergy:	return Constants.DamageTypePositiveEnergy;
-				case Types.Damage.Silver:					return Constants.DamageTypeSilver;
-				case Types.Damage.Slashing:				return Constants.DamageTypeSlashing;
-				case Types.Damage.Sonic:					return Constants.DamageTypeSonic;
-				case Types.Damage.Subdual:				return Constants.DamageTypeSubdual;
-				default:													return "Unrecognised damage type";
+			case Types.Damage.Acid:						return Constants.DamageTypeAcid;
+			case Types.Damage.Adamantine:			return Constants.DamageTypeAdamantine;
+			case Types.Damage.Bludgeoning:		return Constants.DamageTypeBludgeoning;
+			case Types.Damage.Chaos:					return Constants.DamageTypeChaos;
+			case Types.Damage.Cold:						return Constants.DamageTypeCold;
+			case Types.Damage.ColdIron:				return Constants.DamageTypeColdIron;
+			case Types.Damage.Divine:					return Constants.DamageTypeDivine;
+			case Types.Damage.Epic:						return Constants.DamageTypeEpic;
+			case Types.Damage.Electricity:		return Constants.DamageTypeElectricity;
+			case Types.Damage.Evil:						return Constants.DamageTypeEvil;
+			case Types.Damage.Fire:						return Constants.DamageTypeFire;
+			case Types.Damage.Force:					return Constants.DamageTypeForce;
+			case Types.Damage.Good:						return Constants.DamageTypeGood;
+			case Types.Damage.Law:						return Constants.DamageTypeLaw;
+			case Types.Damage.Magic:					return Constants.DamageTypeMagic;
+			case Types.Damage.NegativeEnergy:	return Constants.DamageTypeNegativeEnergy;
+			case Types.Damage.Piercing:				return Constants.DamageTypePiercing;
+			case Types.Damage.PositiveEnergy:	return Constants.DamageTypePositiveEnergy;
+			case Types.Damage.Silver:					return Constants.DamageTypeSilver;
+			case Types.Damage.Slashing:				return Constants.DamageTypeSlashing;
+			case Types.Damage.Sonic:					return Constants.DamageTypeSonic;
+			case Types.Damage.Subdual:				return Constants.DamageTypeSubdual;
+			default:													return "Unrecognised damage type";
 			}
 		}
 
@@ -494,6 +495,10 @@ namespace Dungeoneer.Utility
 			else if (str == Constants.DamageTypeLaw)
 			{
 				return Types.Damage.Law;
+			}
+			else if (str == Constants.DamageTypeMagic)
+			{
+				return Types.Damage.Magic;
 			}
 			else if (str == Constants.DamageTypeNegativeEnergy)
 			{

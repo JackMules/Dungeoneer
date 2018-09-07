@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Dungeoneer.View.DamageTypeSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+	<Grid>
+		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
+		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+			<WrapPanel Orientation="Vertical" x:Name="DamagePanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<CheckBox Content="Acid" IsChecked="{Binding Acid}" Margin="5"/>
+				<CheckBox Content="Adamantine" IsChecked="{Binding Adamantine}" Margin="5"/>
+				<CheckBox Content="Bludgeoning" IsChecked="{Binding Bludgeoning}" Margin="5"/>
+				<CheckBox Content="Chaos" IsChecked="{Binding Chaos}" Margin="5"/>
+				<CheckBox Content="Cold" IsChecked="{Binding Cold}" Margin="5"/>
+				<CheckBox Content="Cold Iron" IsChecked="{Binding ColdIron}" Margin="5"/>
+				<CheckBox Content="Divine" IsChecked="{Binding Divine}" Margin="5"/>
+				<CheckBox Content="Electricity" IsChecked="{Binding Electricity}" Margin="5"/>
+				<CheckBox Content="Epic" IsChecked="{Binding Epic}" Margin="5"/>
+				<CheckBox Content="Evil" IsChecked="{Binding Evil}" Margin="5"/>
+				<CheckBox Content="Fire" IsChecked="{Binding Fire}" Margin="5"/>
+				<CheckBox Content="Force" IsChecked="{Binding Force}" Margin="5"/>
+				<CheckBox Content="Good" IsChecked="{Binding Good}" Margin="5"/>
+				<CheckBox Content="Law" IsChecked="{Binding Law}" Margin="5"/>
+				<CheckBox Content="Magic" IsChecked="{Binding Magic}" Margin="5"/>
+				<CheckBox Content="Negative Energy" IsChecked="{Binding NegativeEnergy}" Margin="5"/>
+				<CheckBox Content="Piercing" IsChecked="{Binding Piercing}" Margin="5"/>
+				<CheckBox Content="Positive Energy" IsChecked="{Binding PositiveEnergy}" Margin="5"/>
+				<CheckBox Content="Slashing" IsChecked="{Binding Slashing}" Margin="5"/>
+				<CheckBox Content="Silver" IsChecked="{Binding Silver}" Margin="5"/>
+				<CheckBox Content="Sonic" IsChecked="{Binding Sonic}" Margin="5"/>
+				<CheckBox Content="Subdual" IsChecked="{Binding Subdual}" Margin="5"/>
+			</WrapPanel>
+		</Border>
+	</Grid>
+</UserControl>

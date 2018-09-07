@@ -19,7 +19,7 @@ namespace Dungeoneer.Model
 		private int _numDice;
 		private Types.Die _die;
 		private int _modifier;
-		private Types.Damage _type;
+		private DamageDescriptorSet _damageDescriptorSet;
 
 		public int NumDice
 		{
@@ -51,19 +51,19 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Types.Damage Type
+		public DamageDescriptorSet DamageDescriptorSet
 		{
-			get { return _type; }
+			get { return _damageDescriptorSet; }
 			set
 			{
-				_type = value;
-				NotifyPropertyChanged("Type");
+				_damageDescriptorSet = value;
+				NotifyPropertyChanged("DamageDescriptorSet");
 			}
 		}
 
 		public override string ToString()
 		{
-			return NumDice.ToString() + Methods.GetDieTypeString(Die) + Methods.GetSignedNumberString(Modifier) + " " + Methods.GetDamageTypeString(Type);
+			return NumDice.ToString() + Methods.GetDieTypeString(Die) + Methods.GetSignedNumberString(Modifier) + " " + DamageDescriptorSet.ToString();
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)
@@ -82,8 +82,8 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Modifier.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("Type");
-			xmlWriter.WriteString(Methods.GetDamageTypeString(Type));
+			xmlWriter.WriteStartElement("DamageDescriptorSet");
+			DamageDescriptorSet.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteEndElement();
@@ -107,9 +107,11 @@ namespace Dungeoneer.Model
 					{
 						Modifier = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "Type")
+					else if (childNode.Name == "DamageDescriptorSet")
 					{
-						Type = Methods.GetDamageTypeFromString(childNode.InnerText);
+						DamageDescriptorSet damageDescriptorSet = new DamageDescriptorSet();
+						damageDescriptorSet.ReadXML(childNode);
+						DamageDescriptorSet = damageDescriptorSet;
 					}
 				}
 			}

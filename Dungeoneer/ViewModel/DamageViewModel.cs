@@ -33,11 +33,6 @@ namespace Dungeoneer.ViewModel
 			{
 				return Damage.NumDice.ToString();
 			}
-			set
-			{
-				Damage.NumDice = Convert.ToInt32(value);
-				NotifyPropertyChanged("NumDice");
-			}
 		}
 
 		public string Die
@@ -45,11 +40,6 @@ namespace Dungeoneer.ViewModel
 			get
 			{
 				return Methods.GetDieTypeString(Damage.Die);
-			}
-			set
-			{
-				Damage.Die = Methods.GetDieTypeFromString(value);
-				NotifyPropertyChanged("Die");
 			}
 		}
 
@@ -59,23 +49,13 @@ namespace Dungeoneer.ViewModel
 			{
 				return Damage.Modifier.ToString();
 			}
-			set
-			{
-				Damage.Modifier = Convert.ToInt32(value);
-				NotifyPropertyChanged("Modifier");
-			}
 		}
 
-		public string Type
+		public string DescriptorSet
 		{
 			get
 			{
-				return Methods.GetDamageTypeString(Damage.Type);
-			}
-			set
-			{
-				Damage.Type = Methods.GetDamageTypeFromString(value);
-				NotifyPropertyChanged("Type");
+				return Damage.DamageDescriptorSet.ToString();
 			}
 		}
 

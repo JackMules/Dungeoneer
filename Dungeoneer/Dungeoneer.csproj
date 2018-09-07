@@ -59,18 +59,20 @@
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\ActorLibrary.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\DamageDescriptorSet.cs" />
     <Compile Include="Model\Effect\AbilityDamagePerTurnEffect.cs" />
     <Compile Include="Model\Effect\Effect.cs" />
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="Model\Effect\EffectFactory.cs" />
-    <Compile Include="Model\EnergyResistance.cs" />
+    <Compile Include="Model\Effect\EnergyResistance.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
+    <Compile Include="ViewModel\DamageTypeSelectorViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\DoDamageDialogViewModel.cs" />
@@ -114,6 +116,9 @@
     </Compile>
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DamageTypeSelector.xaml.cs">
+      <DependentUpon>DamageTypeSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoDamageDialog.xaml.cs">
       <DependentUpon>DoDamageDialog.xaml</DependentUpon>
@@ -184,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreatureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DamageTypeSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

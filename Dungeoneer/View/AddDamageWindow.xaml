@@ -1,30 +1,38 @@
 ﻿<Window x:Class="Dungeoneer.View.AddDamageWindow"
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-				Title="Add Damage" SizeToContent="WidthAndHeight"
+				xmlns:view="clr-namespace:Dungeoneer.View"
+				Title="Add Damage"
 				WindowStartupLocation="CenterOwner"
-				WindowStyle="ToolWindow">
-	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=NumDiceTextBox}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<Label Content="Num Dice" Grid.Row="0" Grid.Column="0"/>
-		<TextBox Name="NumDiceTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding NumDice}"/>
-		<Label Content="Die" Grid.Row="1" Grid.Column="0"/>
-		<ComboBox Name="DieTypeComboBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding Die}"/>
-		<Label Content="Modifier" Grid.Row="2" Grid.Column="0"/>
-		<TextBox Name="ModifierTextBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Modifier}"/>
-		<Label Content="Type" Grid.Row="3" Grid.Column="0"/>
-		<ComboBox Name="DamageTypeComboBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding DamageTypes}" SelectedIndex="{Binding Type}"/>
-		<StackPanel Grid.ColumnSpan="2" Grid.Row="4" Margin="0,5,0,0">
+				WindowStyle="ToolWindow" ResizeMode="NoResize" Height="400" Width="300">
+	<DockPanel Margin="5">
+		<Grid DockPanel.Dock="Top" Margin="5" FocusManager.FocusedElement="{Binding ElementName=NumDiceTextBox}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<Label Content="Num Dice" Grid.Row="0" Grid.Column="0"/>
+			<TextBox Name="NumDiceTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding NumDice}" HorizontalContentAlignment="Center"
+							 Width="40"/>
+			<Label Content="Die" Grid.Row="0" Grid.Column="2"/>
+			<ComboBox Name="DieTypeComboBox" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding Die}"
+								Width="50" HorizontalContentAlignment="Center"/>
+			<Label Content="Modifier" Grid.Row="0" Grid.Column="4"/>
+			<TextBox Name="ModifierTextBox" Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Text="{Binding Modifier}" Width="40"
+							 HorizontalContentAlignment="Center"/>
+		</Grid>
+		<StackPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
 				<Label.Style>
 					<Style TargetType="{x:Type Label}">
@@ -42,5 +50,6 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-	</Grid>
+		<view:DamageTypeSelector />
+	</DockPanel>
 </Window>

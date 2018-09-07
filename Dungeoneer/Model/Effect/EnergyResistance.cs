@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Dungeoneer.Utility;
 
-namespace Dungeoneer.Model
+namespace Dungeoneer.Model.Effect
 {
 	public class EnergyResistance : Effect
 	{
@@ -24,6 +25,16 @@ namespace Dungeoneer.Model
 				_energyType = value;
 				NotifyPropertyChanged("EnergyType");
 			}
+		}
+
+		public override Creature DoPerTurnBehaviour(Creature creature)
+		{
+			return creature;
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartAttribute("EnergyResistance");
 		}
 	}
 }

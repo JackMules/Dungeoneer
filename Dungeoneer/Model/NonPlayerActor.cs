@@ -26,7 +26,7 @@ namespace Dungeoneer.Model
 			int initiativeMod,
 			float challengeRating,
 			FullyObservableCollection<ViewModel.AttackViewModel> attacks,
-			FullyObservableCollection<Effect> conditions)
+			FullyObservableCollection<Effect.Effect> conditions)
 			: base(displayName, actorName, initiativeMod, conditions)
 		{
 			Type = type;

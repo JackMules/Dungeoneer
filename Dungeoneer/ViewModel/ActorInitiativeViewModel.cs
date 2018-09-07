@@ -70,7 +70,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.Effect> Effects
+		public FullyObservableCollection<Model.Effect.Effect> Effects
 		{
 			get { return Actor.Effects; }
 			set
@@ -96,9 +96,9 @@ namespace Dungeoneer.ViewModel
 			{
 				
 
-				if (Effects[i] is Model.TimedEffect)
+				if (Effects[i] is Model.Effect.TimedEffect)
 				{
-					Model.TimedEffect tempEffect = Effects[i] as Model.TimedEffect;
+					Model.Effect.TimedEffect tempEffect = Effects[i] as Model.Effect.TimedEffect;
 					tempEffect.ElapsedDuration++;
 					if (tempEffect.ElapsedDuration == tempEffect.Duration)
 					{

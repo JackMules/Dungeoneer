@@ -7,6 +7,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
+	/*
 	public class AddEffectWindowViewModel : BaseViewModel
 	{
 		public AddEffectWindowViewModel()
@@ -48,4 +49,5 @@ namespace Dungeoneer.ViewModel
 			return effect;
 		}
 	}
+	*/
 }
