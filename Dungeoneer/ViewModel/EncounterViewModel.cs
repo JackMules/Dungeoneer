@@ -37,10 +37,13 @@ namespace Dungeoneer.ViewModel
 
 		private void _initiativeTrack_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			InitiativeCardViewModel firstInitCard = _initiativeTrack.First();
-			if (firstInitCard != null)
+			if (_initiativeTrack.Count > 0)
 			{
-				firstInitCard.StartTurn();
+				InitiativeCardViewModel firstInitCard = _initiativeTrack.First();
+				if (firstInitCard != null)
+				{
+					firstInitCard.StartTurn();
+				}
 			}
 		}
 

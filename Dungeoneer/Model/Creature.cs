@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
 using Dungeoneer.Utility;
+using System.Collections.ObjectModel;
 
 namespace Dungeoneer.Model
 {
@@ -33,7 +34,7 @@ namespace Dungeoneer.Model
 			WillSave = 0;
 			PowerAttack = false;
 			Size = Types.Size.Medium;
-			DamageReductions = new List<DamageReduction>();
+			DamageReductions = new ObservableCollection<DamageReduction>();
 		}
 
 		private int _strength;
@@ -61,7 +62,7 @@ namespace Dungeoneer.Model
 		private bool _powerAttack;
 
 		private Types.Size _size;
-		private List<DamageReduction> _damageReductions;
+		private ObservableCollection<DamageReduction> _damageReductions;
 
 		public int Strength
 		{
@@ -253,7 +254,7 @@ namespace Dungeoneer.Model
 			}
 		}
 		
-		public List<DamageReduction> DamageReductions
+		public ObservableCollection<DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
 			set

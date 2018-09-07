@@ -12,268 +12,246 @@ namespace Dungeoneer.Model
 	{
 		public DamageDescriptorSet()
 		{
-			_acid = false;
-			_adamantine = false;
-			_bludgeoning = false;
-			_chaos = false;
-			_cold = false;
-			_coldIron = false;
-			_divine = false;
-			_electricity = false;
-			_epic = false;
-			_evil = false;
-			_fire = false;
-			_force = false;
-			_good = false;
-			_law = false;
-			_magic = false;
-			_negativeEnergy = false;
-			_piercing = false;
-			_positiveEnergy = false;
-			_silver = false;
-			_slashing = false;
-			_subdual = false;
-			_sonic = false;
+			_descriptors = new List<Types.Damage>();
 		}
 
-		private bool _acid;
-		private bool _adamantine;
-		private bool _bludgeoning;
-		private bool _chaos;
-		private bool _cold;
-		private bool _coldIron;
-		private bool _divine;
-		private bool _electricity;
-		private bool _epic;
-		private bool _evil;
-		private bool _fire;
-		private bool _force;
-		private bool _good;
-		private bool _law;
-		private bool _magic;
-		private bool _negativeEnergy;
-		private bool _piercing;
-		private bool _positiveEnergy;
-		private bool _silver;
-		private bool _slashing;
-		private bool _sonic;
-		private bool _subdual;
+		private List<Types.Damage> _descriptors;
+
+		public bool Contains(Types.Damage damageType)
+		{
+			return _descriptors.Contains(damageType);
+		}
+
+		private void SetDamageType(Types.Damage damageType, bool setPresent)
+		{
+			if (setPresent)
+			{
+				_descriptors.Add(Types.Damage.Acid);
+			}
+			else
+			{
+				while (Acid)
+				{
+					_descriptors.Remove(Types.Damage.Acid);
+				}
+			}
+		}
 
 		public bool Acid
 		{
-			get { return _acid; }
+			get { return Contains(Types.Damage.Acid); }
 			set
 			{
-				_acid = value;
+				SetDamageType(Types.Damage.Acid, value);
 				NotifyPropertyChanged("Acid");
 			}
 		}
 
 		public bool Adamantine
 		{
-			get { return _adamantine; }
+			get { return Contains(Types.Damage.Adamantine); }
 			set
 			{
-				_adamantine = value;
+				SetDamageType(Types.Damage.Adamantine, value);
 				NotifyPropertyChanged("Adamantine");
 			}
 		}
 
 		public bool Bludgeoning
 		{
-			get { return _bludgeoning; }
+			get { return Contains(Types.Damage.Bludgeoning); }
 			set
 			{
-				_bludgeoning = value;
+				SetDamageType(Types.Damage.Bludgeoning, value);
 				NotifyPropertyChanged("Bludgeoning");
 			}
 		}
 
 		public bool Chaos
 		{
-			get { return _chaos; }
+			get { return Contains(Types.Damage.Chaos); }
 			set
 			{
-				_chaos = value;
+				SetDamageType(Types.Damage.Chaos, value);
 				NotifyPropertyChanged("Chaos");
 			}
 		}
 
 		public bool Cold
 		{
-			get { return _cold; }
+			get { return Contains(Types.Damage.Cold); }
 			set
 			{
-				_cold = value;
+				SetDamageType(Types.Damage.Cold, value);
 				NotifyPropertyChanged("Cold");
 			}
 		}
 
 		public bool ColdIron
 		{
-			get { return _coldIron; }
+			get { return Contains(Types.Damage.ColdIron); }
 			set
 			{
-				_coldIron = value;
+				SetDamageType(Types.Damage.ColdIron, value);
 				NotifyPropertyChanged("ColdIron");
 			}
 		}
 
 		public bool Divine
 		{
-			get { return _divine; }
+			get { return Contains(Types.Damage.Divine); }
 			set
 			{
-				_divine = value;
+				SetDamageType(Types.Damage.Divine, value);
 				NotifyPropertyChanged("Divine");
 			}
 		}
 
 		public bool Electricity
 		{
-			get { return _electricity; }
+			get { return Contains(Types.Damage.Electricity); }
 			set
 			{
-				_electricity = value;
+				SetDamageType(Types.Damage.Electricity, value);
 				NotifyPropertyChanged("Electricity");
 			}
 		}
 		public bool Epic
 		{
-			get { return _epic; }
+			get { return Contains(Types.Damage.Epic); }
 			set
 			{
-				_epic = value;
+				SetDamageType(Types.Damage.Epic, value);
 				NotifyPropertyChanged("Epic");
 			}
 		}
 
 		public bool Evil
 		{
-			get { return _evil; }
+			get { return Contains(Types.Damage.Evil); }
 			set
 			{
-				_evil = value;
+				SetDamageType(Types.Damage.Evil, value);
 				NotifyPropertyChanged("Evil");
 			}
 		}
 
 		public bool Fire
 		{
-			get { return _fire; }
+			get { return Contains(Types.Damage.Fire); }
 			set
 			{
-				_fire = value;
+				SetDamageType(Types.Damage.Fire, value);
 				NotifyPropertyChanged("Fire");
 			}
 		}
 
 		public bool Force
 		{
-			get { return _force; }
+			get { return Contains(Types.Damage.Force); }
 			set
 			{
-				_force = value;
+				SetDamageType(Types.Damage.Force, value);
 				NotifyPropertyChanged("Force");
 			}
 		}
 
 		public bool Good
 		{
-			get { return _good; }
+			get { return Contains(Types.Damage.Good); }
 			set
 			{
-				_good = value;
+				SetDamageType(Types.Damage.Good, value);
 				NotifyPropertyChanged("Good");
 			}
 		}
 
 		public bool Law
 		{
-			get { return _law; }
+			get { return Contains(Types.Damage.Law); }
 			set
 			{
-				_law = value;
+				SetDamageType(Types.Damage.Law, value);
 				NotifyPropertyChanged("Law");
 			}
 		}
 
 		public bool Magic
 		{
-			get { return _magic; }
+			get { return Contains(Types.Damage.Magic); }
 			set
 			{
-				_magic = value;
+				SetDamageType(Types.Damage.Magic, value);
 				NotifyPropertyChanged("Magic");
 			}
 		}
 
 		public bool NegativeEnergy
 		{
-			get { return _negativeEnergy; }
+			get { return Contains(Types.Damage.NegativeEnergy); }
 			set
 			{
-				_negativeEnergy = value;
+				SetDamageType(Types.Damage.NegativeEnergy, value);
 				NotifyPropertyChanged("NegativeEnergy");
 			}
 		}
 
 		public bool Piercing
 		{
-			get { return _piercing; }
+			get { return Contains(Types.Damage.Piercing); }
 			set
 			{
-				_piercing = value;
+				SetDamageType(Types.Damage.Piercing, value);
 				NotifyPropertyChanged("Piercing");
 			}
 		}
 
 		public bool PositiveEnergy
 		{
-			get { return _positiveEnergy; }
+			get { return Contains(Types.Damage.PositiveEnergy); }
 			set
 			{
-				_positiveEnergy = value;
+				SetDamageType(Types.Damage.PositiveEnergy, value);
 				NotifyPropertyChanged("PositiveEnergy");
 			}
 		}
 
 		public bool Silver
 		{
-			get { return _silver; }
+			get { return Contains(Types.Damage.Silver); }
 			set
 			{
-				_silver = value;
+				SetDamageType(Types.Damage.Silver, value);
 				NotifyPropertyChanged("Silver");
 			}
 		}
 
 		public bool Slashing
 		{
-			get { return _slashing; }
+			get { return Contains(Types.Damage.Slashing); }
 			set
 			{
-				_slashing = value;
+				SetDamageType(Types.Damage.Slashing, value);
 				NotifyPropertyChanged("Slashing");
 			}
 		}
 
 		public bool Sonic
 		{
-			get { return _sonic; }
+			get { return Contains(Types.Damage.Sonic); }
 			set
 			{
-				_sonic = value;
+				SetDamageType(Types.Damage.Sonic, value);
 				NotifyPropertyChanged("Sonic");
 			}
 		}
 
 		public bool Subdual
 		{
-			get { return _subdual; }
+			get { return Contains(Types.Damage.Subdual); }
 			set
 			{
-				_subdual = value;
+				SetDamageType(Types.Damage.Subdual, value);
 				NotifyPropertyChanged("Subdual");
 			}
 		}
@@ -282,93 +260,9 @@ namespace Dungeoneer.Model
 		{
 			List<string> damageStrings = new List<string>();
 
-			if (Acid)
+			foreach (Types.Damage damageType in _descriptors)
 			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Acid));
-			}
-			if (Adamantine)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Adamantine));
-			}
-			if (Bludgeoning)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Bludgeoning));
-			}
-			if (Chaos)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Chaos));
-			}
-			if (Cold)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Cold));
-			}
-			if (ColdIron)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.ColdIron));
-			}
-			if (Divine)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Divine));
-			}
-			if (Electricity)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Electricity));
-			}
-			if (Epic)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Epic));
-			}
-			if (Evil)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Evil));
-			}
-			if (Fire)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Fire));
-			}
-			if (Force)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Force));
-			}
-			if (Good)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Good));
-			}
-			if (Law)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Law));
-			}
-			if (Magic)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Magic));
-			}
-			if (NegativeEnergy)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.NegativeEnergy));
-			}
-			if (Piercing)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Piercing));
-			}
-			if (PositiveEnergy)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.PositiveEnergy));
-			}
-			if (Silver)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Silver));
-			}
-			if (Slashing)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Slashing));
-			}
-			if (Sonic)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Sonic));
-			}
-			if (Subdual)
-			{
-				damageStrings.Add(Methods.GetDamageTypeString(Types.Damage.Subdual));
+				damageStrings.Add(Methods.GetDamageTypeString(damageType));
 			}
 
 			return String.Join(" ", damageStrings);

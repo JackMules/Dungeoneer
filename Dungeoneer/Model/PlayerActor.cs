@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,12 @@ namespace Dungeoneer.Model
 	{
 		public PlayerActor()
 		{
-			_weapons = new List<Weapon>();
+			_weapons = new ObservableCollection<Weapon>();
 		}
 
-		private List<Weapon> _weapons;
+		private ObservableCollection<Weapon> _weapons;
 
-		public List<Weapon> Weapons
+		public ObservableCollection<Weapon> Weapons
 		{
 			get { return _weapons; }
 			set

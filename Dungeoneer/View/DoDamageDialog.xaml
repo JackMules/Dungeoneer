@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 				xmlns:view="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
-        Title="Do Damage" SizeToContent="WidthAndHeight"
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="320" ResizeMode="NoResize">
+        Title="Do Damage" 
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="320" Width="350" ResizeMode="NoResize">
 	<DockPanel>
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 			<Label Content="Damage" Margin="5" VerticalAlignment="Center"/>

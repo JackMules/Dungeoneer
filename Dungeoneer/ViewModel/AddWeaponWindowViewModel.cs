@@ -13,59 +13,14 @@ namespace Dungeoneer.ViewModel
 		{
 			_name = "";
 			_abilityDamage = false;
-			_abilityDamageValue = "";
-			_ability = null;
-			_acid = false;
-			_adamantine = false;
-			_bludgeoning = false;
-			_chaos = false;
-			_cold = false;
-			_coldIron = false;
-			_divine = false;
-			_electricity = false;
-			_epic = false;
-			_evil = false;
-			_fire = false;
-			_force = false;
-			_good = false;
-			_law = false;
-			_magic = false;
-			_negativeEnergy = false;
-			_piercing = false;
-			_positiveEnergy = false;
-			_silver = false;
-			_slashing = false;
-			_subdual = false;
-			_sonic = false;
+			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
 		}
 
 		private string _name;
 		private bool _abilityDamage;
 		private string _abilityDamageValue;
-		private Types.Ability? _ability;
-
-		private bool _acid;
-		private bool _adamantine;
-		private bool _bludgeoning;
-		private bool _chaos;
-		private bool _cold;
-		private bool _coldIron;
-		private bool _divine;
-		private bool _electricity;
-		private bool _epic;
-		private bool _evil;
-		private bool _fire;
-		private bool _force;
-		private bool _good;
-		private bool _law;
-		private bool _magic;
-		private bool _negativeEnergy;
-		private bool _piercing;
-		private bool _positiveEnergy;
-		private bool _silver;
-		private bool _slashing;
-		private bool _sonic;
-		private bool _subdual;
+		private Types.Ability _ability;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
 
 		public string Name
 		{
@@ -97,7 +52,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Types.Ability? Ability
+		public Types.Ability Ability
 		{
 			get { return _ability; }
 			set
@@ -107,222 +62,18 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public bool Acid
+		public List<string> Abilities
 		{
-			get { return _acid; }
-			set
-			{
-				_acid = value;
-				NotifyPropertyChanged("Acid");
-			}
+			get { return Constants.AbilityStrings; }
 		}
 
-		public bool Adamantine
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
 		{
-			get { return _adamantine; }
+			get { return _damageTypeSelectorViewModel; }
 			set
 			{
-				_adamantine = value;
-				NotifyPropertyChanged("Adamantine");
-			}
-		}
-
-		public bool Bludgeoning
-		{
-			get { return _bludgeoning; }
-			set
-			{
-				_bludgeoning = value;
-				NotifyPropertyChanged("Bludgeoning");
-			}
-		}
-
-		public bool Chaos
-		{
-			get { return _chaos; }
-			set
-			{
-				_chaos = value;
-				NotifyPropertyChanged("Chaos");
-			}
-		}
-
-		public bool Cold
-		{
-			get { return _cold; }
-			set
-			{
-				_cold = value;
-				NotifyPropertyChanged("Cold");
-			}
-		}
-
-		public bool ColdIron
-		{
-			get { return _coldIron; }
-			set
-			{
-				_coldIron = value;
-				NotifyPropertyChanged("ColdIron");
-			}
-		}
-
-		public bool Divine
-		{
-			get { return _divine; }
-			set
-			{
-				_divine = value;
-				NotifyPropertyChanged("Divine");
-			}
-		}
-
-		public bool Electricity
-		{
-			get { return _electricity; }
-			set
-			{
-				_electricity = value;
-				NotifyPropertyChanged("Electricity");
-			}
-		}
-		public bool Epic
-		{
-			get { return _epic; }
-			set
-			{
-				_epic = value;
-				NotifyPropertyChanged("Epic");
-			}
-		}
-
-		public bool Evil
-		{
-			get { return _evil; }
-			set
-			{
-				_evil = value;
-				NotifyPropertyChanged("Evil");
-			}
-		}
-
-		public bool Fire
-		{
-			get { return _fire; }
-			set
-			{
-				_fire = value;
-				NotifyPropertyChanged("Fire");
-			}
-		}
-
-		public bool Force
-		{
-			get { return _force; }
-			set
-			{
-				_force = value;
-				NotifyPropertyChanged("Force");
-			}
-		}
-
-		public bool Good
-		{
-			get { return _good; }
-			set
-			{
-				_good = value;
-				NotifyPropertyChanged("Good");
-			}
-		}
-
-		public bool Law
-		{
-			get { return _law; }
-			set
-			{
-				_law = value;
-				NotifyPropertyChanged("Law");
-			}
-		}
-
-		public bool Magic
-		{
-			get { return _magic; }
-			set
-			{
-				_magic = value;
-				NotifyPropertyChanged("Magic");
-			}
-		}
-
-		public bool NegativeEnergy
-		{
-			get { return _negativeEnergy; }
-			set
-			{
-				_negativeEnergy = value;
-				NotifyPropertyChanged("NegativeEnergy");
-			}
-		}
-
-		public bool Piercing
-		{
-			get { return _piercing; }
-			set
-			{
-				_piercing = value;
-				NotifyPropertyChanged("Piercing");
-			}
-		}
-
-		public bool PositiveEnergy
-		{
-			get { return _positiveEnergy; }
-			set
-			{
-				_positiveEnergy = value;
-				NotifyPropertyChanged("PositiveEnergy");
-			}
-		}
-
-		public bool Silver
-		{
-			get { return _silver; }
-			set
-			{
-				_silver = value;
-				NotifyPropertyChanged("Silver");
-			}
-		}
-
-		public bool Slashing
-		{
-			get { return _slashing; }
-			set
-			{
-				_slashing = value;
-				NotifyPropertyChanged("Slashing");
-			}
-		}
-
-		public bool Sonic
-		{
-			get { return _sonic; }
-			set
-			{
-				_sonic = value;
-				NotifyPropertyChanged("Sonic");
-			}
-		}
-
-		public bool Subdual
-		{
-			get { return _subdual; }
-			set
-			{
-				_subdual = value;
-				NotifyPropertyChanged("Subdual");
+				_damageTypeSelectorViewModel = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel");
 			}
 		}
 
@@ -346,96 +97,7 @@ namespace Dungeoneer.ViewModel
 						weapon.AbilityDamage = AbilityDamage;
 						weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
 						weapon.Ability = Ability;
-
-						if (Acid)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Acid);
-						}
-						if (Adamantine)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Adamantine);
-						}
-						if (Bludgeoning)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Bludgeoning);
-						}
-						if (Chaos)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Chaos);
-						}
-						if (Cold)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Cold);
-						}
-						if (ColdIron)
-						{
-							weapon.DamageQualities.Add(Types.Damage.ColdIron);
-						}
-						if (Divine)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Divine);
-						}
-						if (Electricity)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Electricity);
-						}
-						if (Epic)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Epic);
-						}
-						if (Evil)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Evil);
-						}
-						if (Fire)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Fire);
-						}
-						if (Force)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Force);
-						}
-						if (Good)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Good);
-						}
-						if (Law)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Law);
-						}
-						if (Magic)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Magic);
-						}
-						if (NegativeEnergy)
-						{
-							weapon.DamageQualities.Add(Types.Damage.NegativeEnergy);
-						}
-						if (Piercing)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Piercing);
-						}
-						if (PositiveEnergy)
-						{
-							weapon.DamageQualities.Add(Types.Damage.PositiveEnergy);
-						}
-						if (Silver)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Silver);
-						}
-						if (Slashing)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Slashing);
-						}
-						if (Sonic)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Sonic);
-						}
-						if (Subdual)
-						{
-							weapon.DamageQualities.Add(Types.Damage.Subdual);
-						}
-
+						weapon.DamageDescriptorSet = DamageTypeSelectorViewModel.GetDamageDescriptorSet();
 						askForInput = false;
 					}
 					catch (FormatException)

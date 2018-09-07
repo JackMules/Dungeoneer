@@ -13,14 +13,14 @@ namespace Dungeoneer.Model
 	{
 		public Weapon()
 		{
-
+			_damageDescriptorSet = new DamageDescriptorSet();
 		}
 
 		private string _name;
-		private List<Types.Damage> _damageQualities;
+		private DamageDescriptorSet _damageDescriptorSet;
 		private bool _abilityDamage;
 		private int _abilityDamageValue;
-		private Types.Ability? _ability;
+		private Types.Ability _ability;
 
 		public string Name
 		{
@@ -32,13 +32,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public List<Types.Damage> DamageQualities
+		public DamageDescriptorSet DamageDescriptorSet
 		{
-			get { return _damageQualities; }
+			get { return _damageDescriptorSet; }
 			set
 			{
-				_damageQualities = value;
-				NotifyPropertyChanged("DamageQualities");
+				_damageDescriptorSet = value;
+				NotifyPropertyChanged("DamageDescriptorSet");
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Types.Ability? Ability
+		public Types.Ability Ability
 		{
 			get { return _ability; }
 			set
@@ -71,7 +71,12 @@ namespace Dungeoneer.Model
 				NotifyPropertyChanged("Ability");
 			}
 		}
-		
+
+		public override string ToString()
+		{
+			return Name;
+		}
+
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Weapon");
@@ -80,14 +85,15 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Name);
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("DamageQualities");
-			foreach (Types.Damage damage in DamageQualities)
+			if (AbilityDamage)
 			{
-				xmlWriter.WriteStartElement("Damage");
-				xmlWriter.WriteString(Methods.GetDamageTypeString(damage));
+				xmlWriter.WriteStartElement("AbilityDamage");
+				xmlWriter.WriteAttributeString("Name", Methods.GetAbilityString(Ability));
+				xmlWriter.WriteAttributeString("Value", AbilityDamageValue.ToString());
 				xmlWriter.WriteEndElement();
 			}
-			xmlWriter.WriteEndElement();
+
+			DamageDescriptorSet.WriteXML(xmlWriter);
 
 			xmlWriter.WriteEndElement();
 		}
@@ -102,13 +108,24 @@ namespace Dungeoneer.Model
 					{
 						Name = childNode.InnerText;
 					}
-					else if (childNode.Name == "DamageQualities")
+					else if (childNode.Name == "DamageDescriptorSet")
 					{
-						foreach (XmlNode damageNode in childNode.ChildNodes)
+						DamageDescriptorSet damageDescriptorSet = new DamageDescriptorSet();
+						damageDescriptorSet.ReadXML(childNode);
+						DamageDescriptorSet = damageDescriptorSet;
+					}
+					else if (childNode.Name == "AbilityDamage")
+					{
+						AbilityDamage = true;
+						foreach (XmlAttribute attribute in childNode.Attributes)
 						{
-							if (damageNode.Name == "Damage")
+							if (attribute.Name == "Ability")
 							{
-								DamageQualities.Add(Methods.GetDamageTypeFromString(damageNode.InnerText));
+								Ability = Methods.GetAbilityFromString(attribute.Value);
+							}
+							else if (attribute.Name == "Value")
+							{
+								AbilityDamageValue = Convert.ToInt32(attribute.Value);
 							}
 						}
 					}

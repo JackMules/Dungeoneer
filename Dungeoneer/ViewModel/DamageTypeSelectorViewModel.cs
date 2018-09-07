@@ -86,6 +86,32 @@ namespace Dungeoneer.ViewModel
 			};
 		}
 
+		public void SetFromDamageDescriptorSet(Model.DamageDescriptorSet damageDescriptorSet)
+		{
+			Acid = damageDescriptorSet.Acid;
+			Adamantine = damageDescriptorSet.Adamantine;
+			Bludgeoning = damageDescriptorSet.Bludgeoning;
+			Chaos = damageDescriptorSet.Chaos;
+			Cold = damageDescriptorSet.Cold;
+			ColdIron = damageDescriptorSet.ColdIron;
+			Divine = damageDescriptorSet.Divine;
+			Electricity = damageDescriptorSet.Electricity;
+			Epic = damageDescriptorSet.Epic;
+			Evil = damageDescriptorSet.Evil;
+			Fire = damageDescriptorSet.Fire;
+			Force = damageDescriptorSet.Force;
+			Good = damageDescriptorSet.Good;
+			Law = damageDescriptorSet.Law;
+			Magic = damageDescriptorSet.Magic;
+			NegativeEnergy = damageDescriptorSet.NegativeEnergy;
+			Piercing = damageDescriptorSet.Piercing;
+			PositiveEnergy = damageDescriptorSet.PositiveEnergy;
+			Silver = damageDescriptorSet.Silver;
+			Slashing = damageDescriptorSet.Slashing;
+			Sonic = damageDescriptorSet.Sonic;
+			Subdual = damageDescriptorSet.Subdual;
+		}
+
 		public bool Acid
 		{
 			get { return _acid; }

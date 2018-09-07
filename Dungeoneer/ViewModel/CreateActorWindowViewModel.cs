@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace Dungeoneer.ViewModel
 			_removeAttack = new Command(ExecuteRemoveAttack);
 			_addWeapon = new Command(ExecuteAddWeapon);
 			_removeWeapon = new Command(ExecuteRemoveWeapon);
+			_weapons = new ObservableCollection<Model.Weapon>();
+			_damageReductions = new ObservableCollection<Model.DamageReduction>();
 		}
 
 		private string _actorName;
@@ -48,8 +51,8 @@ namespace Dungeoneer.ViewModel
 		private bool _powerAttack;
 
 		private int _selectedSize;
-		private List<Model.DamageReduction> _damageReductions;
-		private List<Model.Weapon> _weapons;
+		private ObservableCollection<Model.DamageReduction> _damageReductions;
+		private ObservableCollection<Model.Weapon> _weapons;
 
 		private Command _addAttack;
 		private Command _removeAttack;
@@ -299,7 +302,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public List<Model.DamageReduction> DamageReductions
+		public ObservableCollection<Model.DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
 			set
@@ -309,7 +312,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public List<Model.Weapon> Weapons
+		public ObservableCollection<Model.Weapon> Weapons
 		{
 			get { return _weapons; }
 			set
@@ -333,6 +336,7 @@ namespace Dungeoneer.ViewModel
 		{
 			ActorName = playerActor.ActorName;
 			InitiativeMod = playerActor.InitiativeMod.ToString();
+			Weapons = playerActor.Weapons;
 		}
 
 		public void LoadNonPlayerActor(Model.NonPlayerActor nonPlayerActor)
@@ -481,7 +485,7 @@ namespace Dungeoneer.ViewModel
 							WillSave = Convert.ToInt32(WillSave),
 							PowerAttack = PowerAttack,
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
-							DamageReductions = new List<Model.DamageReduction>(),
+							DamageReductions = new ObservableCollection<Model.DamageReduction>(),
 						};
 						askForInput = false;
 					}
@@ -523,6 +527,16 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteRemoveAttack()
 		{
 			Attacks.RemoveAt(SelectedAttack);
+		}
+
+		public Command AddWeapon
+		{
+			get { return _addWeapon; }
+		}
+
+		public Command RemoveWeapon
+		{
+			get { return _removeWeapon; }
 		}
 
 		private void ExecuteAddWeapon()

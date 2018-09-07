@@ -56,7 +56,14 @@ namespace Dungeoneer.Utility
 		public static readonly string DamageTypeSlashing = "Slashing";
 		public static readonly string DamageTypeSonic = "Sonic";
 		public static readonly string DamageTypeSubdual = "Subdual";
-		
+
+		public static readonly string AbilityStrength = "Strength";
+		public static readonly string AbilityDexterity = "Dexterity";
+		public static readonly string AbilityConstitution = "Constitution";
+		public static readonly string AbilityIntelligence = "Intelligence";
+		public static readonly string AbilityWisdom = "Wisdom";
+		public static readonly string AbilityCharisma = "Charisma";
+
 		public static readonly List<string> SizeStrings = new List<string>
 		{
 			Methods.GetSizeString(Types.Size.Fine),
@@ -112,6 +119,16 @@ namespace Dungeoneer.Utility
 			Methods.GetCritMultiplierString(3),
 			Methods.GetCritMultiplierString(4),
 			Methods.GetCritMultiplierString(5),
+		};
+
+		public static readonly List<string> AbilityStrings = new List<string>
+		{
+			Methods.GetAbilityString(Types.Ability.Strength),
+			Methods.GetAbilityString(Types.Ability.Dexterity),
+			Methods.GetAbilityString(Types.Ability.Constitution),
+			Methods.GetAbilityString(Types.Ability.Intelligence),
+			Methods.GetAbilityString(Types.Ability.Wisdom),
+			Methods.GetAbilityString(Types.Ability.Charisma),
 		};
 	}
 
@@ -374,6 +391,52 @@ namespace Dungeoneer.Utility
 			}
 		}
 
+		public static string GetAbilityString(Types.Ability ability)
+		{
+			switch (ability)
+			{
+			case Types.Ability.Strength:			return Constants.AbilityStrength;
+			case Types.Ability.Dexterity:			return Constants.AbilityDexterity;
+			case Types.Ability.Constitution:	return Constants.AbilityConstitution;
+			case Types.Ability.Intelligence:	return Constants.AbilityIntelligence;
+			case Types.Ability.Wisdom:				return Constants.AbilityWisdom;
+			case Types.Ability.Charisma:			return Constants.AbilityCharisma;
+			default: return "Unrecognised ability";
+			}
+		}
+
+		public static Types.Ability GetAbilityFromString(string str)
+		{
+			if (str == Constants.AbilityStrength)
+			{
+				return Types.Ability.Strength;
+			}
+			else if (str == Constants.AbilityDexterity)
+			{
+				return Types.Ability.Dexterity;
+			}
+			else if (str == Constants.AbilityConstitution)
+			{
+				return Types.Ability.Constitution;
+			}
+			else if (str == Constants.AbilityIntelligence)
+			{
+				return Types.Ability.Intelligence;
+			}
+			else if (str == Constants.AbilityWisdom)
+			{
+				return Types.Ability.Wisdom;
+			}
+			else if (str == Constants.AbilityCharisma)
+			{
+				return Types.Ability.Charisma;
+			}
+			else
+			{
+				throw new FormatException("Ability \'" + str + "\' not recognised.");
+			}
+		}
+
 		public static string GetAttackTypeString(Types.Attack attackType)
 		{
 			switch (attackType)
@@ -556,7 +619,7 @@ namespace Dungeoneer.Utility
 
 		public static int CalculateNewHitPoints(Model.Creature creature, int damage, Model.Weapon weapon)
 		{
-			List<Model.DamageReduction> damageReductions = creature.DamageReductions;
+			List<Model.DamageReduction> damageReductions = creature.DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 
 			foreach (Model.DamageReduction dr in damageReductions)
@@ -564,15 +627,8 @@ namespace Dungeoneer.Utility
 				bool bypassed = true;
 				foreach (Types.Damage drDamageType in dr.DamageTypes)
 				{
-					bool matched = false;
-					foreach (Types.Damage weaponDamageType in weapon.DamageQualities)
-					{
-						if (weaponDamageType == drDamageType)
-						{
-							matched = true;
-							break;
-						}
-					}
+					bool matched = weapon.DamageDescriptorSet.Contains(drDamageType);
+					
 
 					// If none of the weapon's damage qualities match this part of the damage type, then 
 					if (!matched)

@@ -164,6 +164,10 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
+			catch (System.IO.FileNotFoundException e)
+			{
+				return false;
+			}
 			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
