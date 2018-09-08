@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Windows.Forms;
 using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
@@ -43,6 +44,34 @@ namespace Dungeoneer.Model
 				weapon.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
+		}
+
+		public override void ReadXML(XmlNode xmlNode)
+		{
+			base.ReadXML(xmlNode);
+
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "Weapons")
+					{
+						foreach (XmlNode attackNode in childNode.ChildNodes)
+						{
+							if (attackNode.Name == "Weapon")
+							{
+								Weapon weapon = new Weapon();
+								weapon.ReadXML(attackNode);
+								Weapons.Add(weapon);
+							}
+						}
+					}
+				}
+			}
+			catch (XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 	}
 }

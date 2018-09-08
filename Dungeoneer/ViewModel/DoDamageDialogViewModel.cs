@@ -61,7 +61,7 @@ namespace Dungeoneer.ViewModel
 				NotifyPropertyChanged("SelectedWeapon");
 				if (SelectedWeapon != 0)
 				{
-					Model.Weapon weapon = GetFlatWeaponList().ElementAt(SelectedWeapon).Item2;
+					Model.Weapon weapon = GetFlatWeaponList().ElementAt(SelectedWeapon - 1).Item2;
 					DamageTypeSelectorViewModel.SetFromDamageDescriptorSet(weapon.DamageDescriptorSet);
 				}
 			}
@@ -85,7 +85,7 @@ namespace Dungeoneer.ViewModel
 			List<string> weapons = new List<string>();
 			foreach (Tuple<string, Model.Weapon> weapon in GetFlatWeaponList())
 			{
-				weapons.Add(weapon.Item1 + weapon.Item2.Name);
+				weapons.Add(weapon.Item1 + " - " + weapon.Item2.Name);
 			}
 			return weapons;
 		}

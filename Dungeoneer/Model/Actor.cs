@@ -13,28 +13,16 @@ namespace Dungeoneer.Model
 	{
 		public Actor()
 		{
-			DisplayName = "";
 			ActorName = "";
 			InitiativeMod = 0;
 			Active = true;
 			Effects = new FullyObservableCollection<Effect.Effect>();
 		}
 
-		private string _displayName;
 		private string _actorName;
 		private int _initiativeMod;
 		private bool _active;
 		private FullyObservableCollection<Effect.Effect> _effects;
-
-		public string DisplayName
-		{
-			get { return _displayName; }
-			set
-			{
-				_displayName = value;
-				NotifyPropertyChanged("DisplayName");
-			}
-		}
 
 		public string ActorName
 		{
@@ -77,12 +65,10 @@ namespace Dungeoneer.Model
 		}
 
 		public Actor(
-			string displayName,
 			string actorName,
 			int initiativeMod,
 			FullyObservableCollection<Effect.Effect> effects)
 		{
-			DisplayName = displayName;
 			ActorName = actorName;
 			InitiativeMod = initiativeMod;
 			Active = true;
@@ -107,10 +93,6 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(ActorName);
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("DisplayName");
-			xmlWriter.WriteString(DisplayName);
-			xmlWriter.WriteEndElement();
-
 			xmlWriter.WriteStartElement("InitiativeMod");
 			xmlWriter.WriteString(InitiativeMod.ToString());
 			xmlWriter.WriteEndElement();
@@ -132,10 +114,6 @@ namespace Dungeoneer.Model
 					if (childNode.Name == "ActorName")
 					{
 						ActorName = childNode.InnerText;
-					}
-					else if (childNode.Name == "DisplayName")
-					{
-						DisplayName = childNode.InnerText;
 					}
 					else if (childNode.Name == "InitiativeMod")
 					{

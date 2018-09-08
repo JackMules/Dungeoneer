@@ -16,6 +16,7 @@ namespace Dungeoneer.ViewModel
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_doDamage = new Command(ExecuteDoDamage);
 			_actor = new Model.Creature();
+			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;

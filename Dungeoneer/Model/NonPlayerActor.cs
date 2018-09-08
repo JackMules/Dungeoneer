@@ -20,14 +20,13 @@ namespace Dungeoneer.Model
 		}
 
 		public NonPlayerActor(
-			string displayName,
 			string actorName,
 			string type,
 			int initiativeMod,
 			float challengeRating,
 			FullyObservableCollection<ViewModel.AttackViewModel> attacks,
 			FullyObservableCollection<Effect.Effect> conditions)
-			: base(displayName, actorName, initiativeMod, conditions)
+			: base(actorName, initiativeMod, conditions)
 		{
 			Type = type;
 			ChallengeRating = challengeRating;

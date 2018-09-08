@@ -13,7 +13,7 @@ namespace Dungeoneer.Model
 	{
 		public Damage()
 		{
-
+			_damageDescriptorSet = new DamageDescriptorSet();
 		}
 
 		private int _numDice;

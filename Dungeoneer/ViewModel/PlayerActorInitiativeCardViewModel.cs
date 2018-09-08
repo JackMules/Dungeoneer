@@ -22,6 +22,7 @@ namespace Dungeoneer.ViewModel
 			{
 				base.ActorViewModel = value;
 				NotifyPropertyChanged("ActorViewModel");
+				OnWeaponsChanged();
 			}
 		}
 
@@ -38,10 +39,15 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				ActorViewModel.Weapons = value;
-				NotifyPropertyChanged("Weapons");
-				Model.WeaponSet weaponSet = new Model.WeaponSet(ActorViewModel.Actor);
-				OnWeaponsChange?.Invoke(weaponSet);
+				OnWeaponsChanged();
 			}
+		}
+
+		private void OnWeaponsChanged()
+		{
+			NotifyPropertyChanged("Weapons");
+			Model.WeaponSet weaponSet = new Model.WeaponSet(ActorViewModel.Actor);
+			OnWeaponsChange?.Invoke(weaponSet);
 		}
 	}
 }

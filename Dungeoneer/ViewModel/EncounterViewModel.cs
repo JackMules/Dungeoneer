@@ -23,8 +23,9 @@ namespace Dungeoneer.ViewModel
 			_clear = new Command(ExecuteClear);
 			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
-
+			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
 			_initiativeTrack.CollectionChanged += _initiativeTrack_CollectionChanged;
+			_weaponList.CollectionChanged += _weaponList_CollectionChanged;
 		}
 
 		private FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
@@ -45,6 +46,11 @@ namespace Dungeoneer.ViewModel
 					firstInitCard.StartTurn();
 				}
 			}
+		}
+
+		private void _weaponList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			OnWeaponListChange?.Invoke(_weaponList);
 		}
 
 		public int Round
@@ -107,7 +113,6 @@ namespace Dungeoneer.ViewModel
 			{
 				_weaponList = value;
 				NotifyPropertyChanged("WeaponList");
-				OnWeaponListChange?.Invoke(_weaponList);
 			}
 		}
 
@@ -129,16 +134,36 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public void AddActor(Model.Actor actor)
+		public void AddActor(Model.Actor actor, string displayName)
 		{
-			if (actor.DisplayName == "")
-			{
-				actor.DisplayName = actor.ActorName;
-			}
-
 			ActorInitiativeViewModel actorViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(actor, this);
+			actorViewModel.DisplayName = displayName;
 			InitiativeCardViewModel initCardViewModel = InitiativeCardViewModelFactory.GetInitiativeCardViewModel(actorViewModel);
 
+			AddInitiativeCard(initCardViewModel);
+		}
+
+		public void UpdateActor(Model.Actor updatedActor)
+		{
+			foreach (InitiativeCardViewModel initCard in InitiativeTrack)
+			{
+				if (initCard.ActorViewModel.Actor.ActorName == updatedActor.ActorName &&
+					initCard.ActorViewModel.Actor.GetType() == updatedActor.GetType())
+				{
+					if (initCard.ActorViewModel is PlayerActorInitiativeViewModel)
+					{
+						PlayerActorInitiativeViewModel newViewModel = new PlayerActorInitiativeViewModel
+						{
+							Actor = updatedActor as Model.PlayerActor,
+						};
+						(initCard as PlayerActorInitiativeCardViewModel).ActorViewModel = newViewModel;
+					}
+				}
+			}
+		}
+
+		public void AddInitiativeCard(InitiativeCardViewModel initCardViewModel)
+		{
 			if (initCardViewModel is PlayerActorInitiativeCardViewModel)
 			{
 				PlayerActorInitiativeCardViewModel playerCardVM = initCardViewModel as PlayerActorInitiativeCardViewModel;
@@ -149,11 +174,6 @@ namespace Dungeoneer.ViewModel
 			{
 				InitiativeTrack.Add(initCardViewModel);
 			}
-		}
-
-		public void AddInitiativeCard(InitiativeCardViewModel initCard)
-		{
-			InitiativeTrack.Add(initCard);
 		}
 
 		public int GetNumberOfActorsWithName(string actorName)
@@ -246,7 +266,7 @@ namespace Dungeoneer.ViewModel
 						{
 							InitiativeCardViewModel initCard = new InitiativeCardViewModel();
 							initCard.ReadXML(xmlNode, this);
-							InitiativeTrack.Add(initCard);
+							AddInitiativeCard(initCard);
 						}
 					}
 				}

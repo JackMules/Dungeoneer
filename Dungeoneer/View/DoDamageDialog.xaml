@@ -6,13 +6,13 @@
 				xmlns:view="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="Do Damage" 
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="320" Width="350" ResizeMode="NoResize">
-	<DockPanel>
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="320" Width="370" ResizeMode="NoResize">
+	<DockPanel Margin="5">
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-			<Label Content="Damage" Margin="5" VerticalAlignment="Center"/>
-			<TextBox x:Name="txtDamage" Margin="5" VerticalAlignment="Center" Width="40" Text="{Binding Damage}"/>
-			<Label Content="Weapon" Margin="5" VerticalAlignment="Center"/>
-			<ComboBox Margin="5" VerticalAlignment="Center" Width="140" ItemsSource="{Binding WeaponList}" SelectedIndex="{Binding SelectedWeapon}"/>
+			<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtDamage" Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" Text="{Binding Damage}"/>
+			<Label Content="Weapon" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
+			<ComboBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="170" ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}"/>
 		</StackPanel>
 		<StackPanel DockPanel.Dock="Bottom">
 			<Label x:Name="lblFeedback" Margin="0,5,5,0">

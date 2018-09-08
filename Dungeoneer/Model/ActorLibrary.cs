@@ -77,11 +77,11 @@ namespace Dungeoneer.Model
 		{
 			ObservableCollection<PlayerActor> characters = new ObservableCollection<PlayerActor>
 			{
-				new PlayerActor { DisplayName = "Kolnik", ActorName = "Kolnik", InitiativeMod = -1 },
-				new PlayerActor { DisplayName = "Atrion", ActorName = "Atrion", InitiativeMod = 5 },
-				new PlayerActor { DisplayName = "Thrasin", ActorName = "Thrasin", InitiativeMod = 7 },
-				new PlayerActor { DisplayName = "Joshua", ActorName = "Joshua", InitiativeMod = 10 },
-				new PlayerActor { DisplayName = "Osprey", ActorName = "Osprey", InitiativeMod = 13 }
+				new PlayerActor { ActorName = "Kolnik", InitiativeMod = -1 },
+				new PlayerActor { ActorName = "Atrion", InitiativeMod = 5 },
+				new PlayerActor { ActorName = "Thrasin", InitiativeMod = 7 },
+				new PlayerActor { ActorName = "Joshua", InitiativeMod = 10 },
+				new PlayerActor { ActorName = "Osprey", InitiativeMod = 13 }
 			};
 
 			Characters = characters;
@@ -164,7 +164,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.IO.FileNotFoundException e)
+			catch (System.IO.FileNotFoundException)
 			{
 				return false;
 			}

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Forms;
 using System.Xml;
 using Dungeoneer.Utility;
 
@@ -18,6 +19,7 @@ namespace Dungeoneer.ViewModel
 		}
 
 		protected Model.Actor _actor;
+		private string _displayName;
 		private Color _backgroundColor;
 
 		public Model.Actor Actor
@@ -32,10 +34,10 @@ namespace Dungeoneer.ViewModel
 
 		public string DisplayName
 		{
-			get { return Actor.DisplayName; }
+			get { return _displayName; }
 			set
 			{
-				Actor.DisplayName = value;
+				_displayName = value;
 				NotifyPropertyChanged("DisplayName");
 			}
 		}
@@ -110,14 +112,39 @@ namespace Dungeoneer.ViewModel
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
+			xmlWriter.WriteStartElement("ActorInitiativeViewModel");
+
+			xmlWriter.WriteStartElement("DisplayName");
+			xmlWriter.WriteString(DisplayName);
+			xmlWriter.WriteEndElement();
+
 			Actor.WriteXML(xmlWriter);
+
+			xmlWriter.WriteEndElement();
 		}
 
 		public virtual void ReadXML(XmlNode xmlNode)
 		{
-			Model.Actor actor = new Model.Actor();
-			actor.ReadXML(xmlNode);
-			Actor = actor;
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "DisplayName")
+					{
+						DisplayName = childNode.InnerText;
+					}
+					else
+					{
+						Model.Actor actor = new Model.Actor();
+						actor.ReadXML(xmlNode);
+						Actor = actor;
+					}
+				}
+			}
+			catch (XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 	}
 }
