@@ -74,7 +74,17 @@ namespace Dungeoneer.ViewModel
 			_attacksWindow.Close();
 		}
 
-		public override void ReadXML(XmlNode xmlNode)
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("NonPlayerActorInitiativeViewModel");
+		}
+
+		public override void WriteActorXML(XmlWriter xmlWriter)
+		{
+			Actor.WriteXML(xmlWriter);
+		}
+
+		public override void ReadActorXML(XmlNode xmlNode)
 		{
 			Model.NonPlayerActor nonPlayerActor = new Model.NonPlayerActor();
 			nonPlayerActor.ReadXML(xmlNode);

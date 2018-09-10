@@ -36,7 +36,17 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public override void ReadXML(XmlNode xmlNode)
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("PlayerActorInitiativeViewModel");
+		}
+
+		public override void WriteActorXML(XmlWriter xmlWriter)
+		{
+			Actor.WriteXML(xmlWriter);
+		}
+
+		public override void ReadActorXML(XmlNode xmlNode)
 		{
 			Model.PlayerActor playerActor = new Model.PlayerActor();
 			playerActor.ReadXML(xmlNode);

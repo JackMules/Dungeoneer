@@ -16,8 +16,6 @@ namespace Dungeoneer.ViewModel
 			_selectedWeapon = 0;
 			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
 			_abilityDamage = false;
-			_abilityDamageValue = "1";
-			_ability = Types.Ability.Constitution;
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
@@ -26,7 +24,6 @@ namespace Dungeoneer.ViewModel
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
 		private bool _abilityDamage;
 		private string _abilityDamageValue;
-		private Types.Ability _ability;
 
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
 		{
@@ -69,9 +66,24 @@ namespace Dungeoneer.ViewModel
 				{
 					Model.Weapon weapon = GetFlatWeaponList().ElementAt(SelectedWeapon - 1).Item2;
 					DamageTypeSelectorViewModel.SetFromDamageDescriptorSet(weapon.DamageDescriptorSet);
+					AbilityDamage = weapon.AbilityDamage;
+					SelectedAbility = Abilities.IndexOf(Methods.GetAbilityString(weapon.Ability));
+					AbilityDamageValue = weapon.AbilityDamageValue.ToString();
+				}
+				else
+				{
+					Reset();
 				}
 			}
 		}
+
+		private void Reset()
+		{
+			DamageTypeSelectorViewModel.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
+			AbilityDamage = false;
+		}
+
+		public int SelectedAbility { get; set; }
 
 		public bool AbilityDamage
 		{
@@ -95,12 +107,7 @@ namespace Dungeoneer.ViewModel
 
 		public Types.Ability Ability
 		{
-			get { return _ability; }
-			set
-			{
-				_ability = value;
-				NotifyPropertyChanged("Ability");
-			}
+			get { return Methods.GetAbilityFromString(Abilities.ElementAt(SelectedAbility)); }
 		}
 
 		public List<string> Abilities
@@ -145,6 +152,9 @@ namespace Dungeoneer.ViewModel
 		{
 			Model.Weapon weapon = new Model.Weapon();
 			weapon.DamageDescriptorSet = DamageTypeSelectorViewModel.GetDamageDescriptorSet();
+			weapon.AbilityDamage = AbilityDamage;
+			weapon.Ability = Ability;
+			weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
 			return weapon;
 		}
 

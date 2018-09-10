@@ -269,58 +269,24 @@ namespace Dungeoneer.Model
 		{
 			xmlWriter.WriteStartElement("DamageDescriptorSet");
 			
-			xmlWriter.WriteAttributeString("Acid",						Acid.ToString());
-			xmlWriter.WriteAttributeString("Adamantine",			Adamantine.ToString());
-			xmlWriter.WriteAttributeString("Bludgeoning",			Bludgeoning.ToString());
-			xmlWriter.WriteAttributeString("Chaos",						Chaos.ToString());
-			xmlWriter.WriteAttributeString("Cold",						Cold.ToString());
-			xmlWriter.WriteAttributeString("ColdIron",				ColdIron.ToString());
-			xmlWriter.WriteAttributeString("Divine",					Divine.ToString());
-			xmlWriter.WriteAttributeString("Electricity",			Electricity.ToString());
-			xmlWriter.WriteAttributeString("Epic",						Epic.ToString());
-			xmlWriter.WriteAttributeString("Evil",						Evil.ToString());
-			xmlWriter.WriteAttributeString("Fire",						Fire.ToString());
-			xmlWriter.WriteAttributeString("Force",						Force.ToString());
-			xmlWriter.WriteAttributeString("Good",						Good.ToString());
-			xmlWriter.WriteAttributeString("Law",							Law.ToString());
-			xmlWriter.WriteAttributeString("Magic",						Magic.ToString());
-			xmlWriter.WriteAttributeString("NegativeEnergy",	NegativeEnergy.ToString());
-			xmlWriter.WriteAttributeString("Piercing",				Piercing.ToString());
-			xmlWriter.WriteAttributeString("PositiveEnergy",	PositiveEnergy.ToString());
-			xmlWriter.WriteAttributeString("Silver",					Silver.ToString());
-			xmlWriter.WriteAttributeString("Slashing",				Slashing.ToString());
-			xmlWriter.WriteAttributeString("Sonic",						Sonic.ToString());
-			xmlWriter.WriteAttributeString("Subdual",					Subdual.ToString());
+			foreach (Types.Damage damageType in _descriptors)
+			{
+				xmlWriter.WriteStartElement("DamageType");
+				xmlWriter.WriteString(Methods.GetDamageTypeString(damageType));
+				xmlWriter.WriteEndElement();
+			}
 
 			xmlWriter.WriteEndElement();
 		}
 
 		public void ReadXML(XmlNode xmlNode)
 		{
-			foreach (XmlAttribute xmlAttribute in xmlNode.Attributes)
+			foreach (XmlNode childNode in xmlNode.ChildNodes)
 			{
-				if (xmlAttribute.Name == "Acid"						) { Acid					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Adamantine"			) { Adamantine		 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Bludgeoning"		) { Bludgeoning		 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Chaos"					) { Chaos					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Cold"						) { Cold					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "ColdIron"				) { ColdIron			 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Divine"					) { Divine				 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Electricity"		) { Electricity		 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Epic"						) { Epic					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Evil"						) { Evil					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Fire"						) { Fire					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Force"					) { Force					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Good"						) { Good					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Law"						) { Law						 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Magic"					) { Magic					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "NegativeEnergy"	) { NegativeEnergy = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Piercing"				) { Piercing			 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "PositiveEnergy"	) { PositiveEnergy = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Silver"					) { Silver				 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Slashing"				) { Slashing			 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Sonic"					) { Sonic					 = Convert.ToBoolean(xmlAttribute.Value); }
-				if (xmlAttribute.Name == "Subdual"				) { Subdual				 = Convert.ToBoolean(xmlAttribute.Value); }
+				if (childNode.Name == "DamageType")
+				{
+					_descriptors.Add(Methods.GetDamageTypeFromString(childNode.InnerText));
+				}
 			}
 		}
 	}

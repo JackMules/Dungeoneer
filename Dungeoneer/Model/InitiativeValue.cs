@@ -143,19 +143,47 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Score")
 					{
-						Score = Convert.ToInt32(childNode.InnerText);
+						try
+						{
+							Score = Convert.ToInt32(childNode.InnerText);
+						}
+						catch (FormatException)
+						{
+							Score = null;
+						}
 					}
 					else if (childNode.Name == "Adjust")
 					{
-						Adjust = Convert.ToInt32(childNode.InnerText);
+						try
+						{
+							Adjust = Convert.ToInt32(childNode.InnerText);
+						}
+						catch (FormatException)
+						{
+							Score = null;
+						}
 					}
 					else if (childNode.Name == "Modifier")
 					{
-						Modifier = Convert.ToInt32(childNode.InnerText);
+						try
+						{
+							Modifier = Convert.ToInt32(childNode.InnerText);
+						}
+						catch (FormatException)
+						{
+							Score = null;
+						}
 					}
 					else if (childNode.Name == "Roll")
 					{
-						Roll = Convert.ToInt32(childNode.InnerText);
+						try
+						{
+							Roll = Convert.ToInt32(childNode.InnerText);
+						}
+						catch (FormatException)
+						{
+							Score = null;
+						}
 					}
 					else if (childNode.Name == "Delayed")
 					{
@@ -171,7 +199,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.Xml.XmlException e)
+			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
 			}

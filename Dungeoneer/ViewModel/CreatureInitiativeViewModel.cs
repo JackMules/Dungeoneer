@@ -16,7 +16,7 @@ namespace Dungeoneer.ViewModel
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_doDamage = new Command(ExecuteDoDamage);
 			_actor = new Model.Creature();
-			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
+			_weaponList = encounterViewModel.WeaponList;
 			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
 			_hideEffectsWindow = new Command(ExecuteHideEffectsWindow);
 		}
@@ -128,7 +128,17 @@ namespace Dungeoneer.ViewModel
 			_effectsWindow.Close();
 		}
 
-		public override void ReadXML(XmlNode xmlNode)
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("CreatureInitiativeViewModel");
+		}
+
+		public override void WriteActorXML(XmlWriter xmlWriter)
+		{
+			Actor.WriteXML(xmlWriter);
+		}
+
+		public override void ReadActorXML(XmlNode xmlNode)
 		{
 			Model.Creature creature = new Model.Creature();
 			creature.ReadXML(xmlNode);

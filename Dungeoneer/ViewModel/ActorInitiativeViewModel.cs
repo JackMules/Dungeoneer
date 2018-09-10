@@ -110,15 +110,25 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public void WriteXML(XmlWriter xmlWriter)
+		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("ActorInitiativeViewModel");
+		}
+
+		public virtual void WriteActorXML(XmlWriter xmlWriter)
+		{
+			Actor.WriteXML(xmlWriter);
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			WriteXMLStartElement(xmlWriter);
 
 			xmlWriter.WriteStartElement("DisplayName");
 			xmlWriter.WriteString(DisplayName);
 			xmlWriter.WriteEndElement();
 
-			Actor.WriteXML(xmlWriter);
+			WriteActorXML(xmlWriter);
 
 			xmlWriter.WriteEndElement();
 		}
@@ -135,9 +145,7 @@ namespace Dungeoneer.ViewModel
 					}
 					else
 					{
-						Model.Actor actor = new Model.Actor();
-						actor.ReadXML(xmlNode);
-						Actor = actor;
+						ReadActorXML(childNode);
 					}
 				}
 			}
@@ -145,6 +153,13 @@ namespace Dungeoneer.ViewModel
 			{
 				MessageBox.Show(e.ToString());
 			}
+		}
+
+		public virtual void ReadActorXML(XmlNode xmlNode)
+		{
+			Model.Actor actor = new Model.Actor();
+			actor.ReadXML(xmlNode);
+			Actor = actor;
 		}
 	}
 }

@@ -100,21 +100,21 @@ namespace Dungeoneer.ViewModel
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "Actor" ||
-							childNode.Name == "NonPlayerActor" ||
-							childNode.Name == "PlayerActor" ||
-							childNode.Name == "Creature")
+					if (childNode.Name == "ActorInitiativeViewModel" ||
+							childNode.Name == "NonPlayerActorInitiativeViewModel" ||
+							childNode.Name == "PlayerActorInitiativeViewModel" ||
+							childNode.Name == "CreatureInitiativeViewModel")
 					{
 						ActorInitiativeViewModel actorViewModel = null;
-						if (childNode.Name == "NonPlayerActor")
+						if (childNode.Name == "NonPlayerActorInitiativeViewModel")
 						{
 							actorViewModel = new NonPlayerActorInitiativeViewModel();
 						}
-						else if (childNode.Name == "PlayerActor")
+						else if (childNode.Name == "PlayerActorInitiativeViewModel")
 						{
 							actorViewModel = new PlayerActorInitiativeViewModel();
 						}
-						else if (childNode.Name == "Creature")
+						else if (childNode.Name == "CreatureInitiativeViewModel")
 						{
 							actorViewModel = new CreatureInitiativeViewModel(encounterViewModel);
 						}
@@ -137,7 +137,7 @@ namespace Dungeoneer.ViewModel
 
 		public void StartTurn()
 		{
-			ActorViewModel.StartTurn();
+			ActorViewModel?.StartTurn();
 		}
 	}
 }

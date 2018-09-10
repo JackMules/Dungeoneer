@@ -19,7 +19,6 @@ namespace Dungeoneer.ViewModel
 		private string _name;
 		private bool _abilityDamage;
 		private string _abilityDamageValue;
-		private Types.Ability _ability;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
 
 		public string Name
@@ -52,14 +51,11 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public int SelectedAbility { get; set; }
+
 		public Types.Ability Ability
 		{
-			get { return _ability; }
-			set
-			{
-				_ability = value;
-				NotifyPropertyChanged("Ability");
-			}
+			get { return Methods.GetAbilityFromString(Abilities.ElementAt(SelectedAbility)); }
 		}
 
 		public List<string> Abilities

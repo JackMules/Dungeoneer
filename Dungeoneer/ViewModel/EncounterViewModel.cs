@@ -116,7 +116,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public void PlayerActorInitiativeCardViewModel_OnWeaponsChange(Model.WeaponSet weaponSet)
+		public void AddWeaponSet(Model.WeaponSet weaponSet)
 		{
 			bool found = false;
 			for (int i = 0; i < WeaponList.Count; ++i)
@@ -156,6 +156,7 @@ namespace Dungeoneer.ViewModel
 						{
 							Actor = updatedActor as Model.PlayerActor,
 						};
+						newViewModel.DisplayName = initCard.ActorViewModel.DisplayName;
 						(initCard as PlayerActorInitiativeCardViewModel).ActorViewModel = newViewModel;
 					}
 				}
@@ -167,8 +168,11 @@ namespace Dungeoneer.ViewModel
 			if (initCardViewModel is PlayerActorInitiativeCardViewModel)
 			{
 				PlayerActorInitiativeCardViewModel playerCardVM = initCardViewModel as PlayerActorInitiativeCardViewModel;
-				playerCardVM.OnWeaponsChange += PlayerActorInitiativeCardViewModel_OnWeaponsChange;
+				playerCardVM.OnWeaponsChange += AddWeaponSet;
 				InitiativeTrack.Add(playerCardVM);
+
+				Model.WeaponSet weaponSet = new Model.WeaponSet(playerCardVM.ActorViewModel.Actor);
+				AddWeaponSet(weaponSet);
 			}
 			else
 			{
