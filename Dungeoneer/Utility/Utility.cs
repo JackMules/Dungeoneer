@@ -652,5 +652,10 @@ namespace Dungeoneer.Utility
 
 			return creature.HitPoints - damage;
 		}
+
+		public static int GetAbilityModifier(int abilityScore)
+		{
+			return (abilityScore - 10) / 2;
+		}
 	}
 }

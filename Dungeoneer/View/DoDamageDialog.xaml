@@ -6,7 +6,7 @@
 				xmlns:view="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="Do Damage" 
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="320" Width="370" ResizeMode="NoResize">
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="360" Width="370" ResizeMode="NoResize">
 	<DockPanel Margin="5">
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 			<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
@@ -32,6 +32,23 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
+		<DockPanel Margin="5" DockPanel.Dock="Bottom">
+			<CheckBox DockPanel.Dock="Left" Content="Ability Damage" IsChecked="{Binding AbilityDamage}" VerticalContentAlignment="Center"/>
+			<DockPanel>
+				<DockPanel.Style>
+					<Style TargetType="{x:Type DockPanel}">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding AbilityDamage}" Value="True">
+								<Setter Property="Visibility" Value="Visible"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</DockPanel.Style>
+				<TextBox Text="{Binding AbilityDamageValue}" Width="25" Margin="5,0,5,0" VerticalContentAlignment="Center"/>
+				<ComboBox ItemsSource="{Binding Abilities}" VerticalContentAlignment="Center"/>
+			</DockPanel>
+		</DockPanel>
 		<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel}"/>
 	</DockPanel>
 </Window>

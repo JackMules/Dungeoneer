@@ -123,6 +123,9 @@
     <Compile Include="View\DoDamageDialog.xaml.cs">
       <DependentUpon>DoDamageDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EffectsWindow.xaml.cs">
+      <DependentUpon>EffectsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SetInitiativeWindow.xaml.cs">
       <DependentUpon>SetInitiativeWindow.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoDamageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EffectsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

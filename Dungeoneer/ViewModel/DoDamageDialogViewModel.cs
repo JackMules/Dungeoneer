@@ -15,12 +15,18 @@ namespace Dungeoneer.ViewModel
 			_damage = "";
 			_selectedWeapon = 0;
 			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
+			_abilityDamage = false;
+			_abilityDamageValue = "1";
+			_ability = Types.Ability.Constitution;
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 		private string _damage;
 		private int _selectedWeapon;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
+		private bool _abilityDamage;
+		private string _abilityDamageValue;
+		private Types.Ability _ability;
 
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
 		{
@@ -65,6 +71,41 @@ namespace Dungeoneer.ViewModel
 					DamageTypeSelectorViewModel.SetFromDamageDescriptorSet(weapon.DamageDescriptorSet);
 				}
 			}
+		}
+
+		public bool AbilityDamage
+		{
+			get { return _abilityDamage; }
+			set
+			{
+				_abilityDamage = value;
+				NotifyPropertyChanged("AbilityDamage");
+			}
+		}
+
+		public string AbilityDamageValue
+		{
+			get { return _abilityDamageValue; }
+			set
+			{
+				_abilityDamageValue = value;
+				NotifyPropertyChanged("AbilityDamageValue");
+			}
+		}
+
+		public Types.Ability Ability
+		{
+			get { return _ability; }
+			set
+			{
+				_ability = value;
+				NotifyPropertyChanged("Ability");
+			}
+		}
+
+		public List<string> Abilities
+		{
+			get { return Constants.AbilityStrings; }
 		}
 
 		private List<Tuple<string, Model.Weapon>> GetFlatWeaponList()
@@ -122,6 +163,19 @@ namespace Dungeoneer.ViewModel
 						int damage = Convert.ToInt32(Damage);
 						Model.Weapon weapon = GetWeapon();
 						creature.HitPoints = Methods.CalculateNewHitPoints(creature, damage, weapon);
+
+						if (weapon.AbilityDamage)
+						{
+							if (weapon.Ability == Types.Ability.Constitution)
+							{
+								int oldModifier = Methods.GetAbilityModifier(creature.Constitution);
+								creature.Constitution -= weapon.AbilityDamageValue;
+								int newModifier = Methods.GetAbilityModifier(creature.Constitution);
+
+								int change = oldModifier - newModifier;
+								creature.HitPoints -= creature.HitDice * change;
+							}
+						}
 
 						askForInput = false;
 					}

@@ -17,6 +17,8 @@ namespace Dungeoneer.ViewModel
 			_removeAttack = new Command(ExecuteRemoveAttack);
 			_addWeapon = new Command(ExecuteAddWeapon);
 			_removeWeapon = new Command(ExecuteRemoveWeapon);
+			_addDamageReduction = new Command(ExecuteAddDamageReduction);
+			_removeDamageReduction = new Command(ExecuteRemoveDamageReduction);
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
 		}
@@ -58,9 +60,12 @@ namespace Dungeoneer.ViewModel
 		private Command _removeAttack;
 		private Command _addWeapon;
 		private Command _removeWeapon;
+		private Command _addDamageReduction;
+		private Command _removeDamageReduction;
 
 		public int SelectedAttack { get; set; }
 		public int SelectedWeapon { get; set; }
+		public int SelectedDamageReduction { get; set; }
 
 		public string ActorName
 		{
@@ -464,7 +469,7 @@ namespace Dungeoneer.ViewModel
 							ActorName = ActorName,
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
-							ChallengeRating = Convert.ToInt32(ChallengeRating),
+							ChallengeRating = Convert.ToSingle(ChallengeRating),
 							Attacks = Attacks,
 							Strength = Convert.ToInt32(Strength),
 							Dexterity = Convert.ToInt32(Dexterity),
@@ -552,6 +557,33 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteRemoveWeapon()
 		{
 			Weapons.RemoveAt(SelectedWeapon);
+		}
+
+		public Command AddDamageReduction
+		{
+			get { return _addDamageReduction; }
+		}
+
+		public Command RemoveDamageReduction
+		{
+			get { return _removeDamageReduction; }
+		}
+
+		private void ExecuteAddDamageReduction()
+		{
+			/*
+			AddDamageReductionWindowViewModel addDamageReductionWindowViewModel = new AddDamageReductionWindowViewModel();
+			Model.DamageReduction dr = addDamageReductionWindowViewModel.GetDamageReduction();
+			if (dr != null)
+			{
+				DamageReductions.Add(dr);
+			}
+			*/
+		}
+
+		private void ExecuteRemoveDamageReduction()
+		{
+			DamageReductions.RemoveAt(SelectedWeapon);
 		}
 	}
 }

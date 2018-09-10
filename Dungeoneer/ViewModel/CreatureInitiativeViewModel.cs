@@ -17,10 +17,15 @@ namespace Dungeoneer.ViewModel
 			_doDamage = new Command(ExecuteDoDamage);
 			_actor = new Model.Creature();
 			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
+			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
+			_hideEffectsWindow = new Command(ExecuteHideEffectsWindow);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 		private Command _doDamage;
+		private View.EffectsWindow _effectsWindow;
+		private Command _showEffectsWindow;
+		private Command _hideEffectsWindow;
 
 		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)
 		{
@@ -43,7 +48,7 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				_actor = value;
-				NotifyPropertyChanged("Actor");
+				ActorUpdated();
 			}
 		}
 
@@ -53,7 +58,7 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				Actor.ArmourClass = Convert.ToInt32(value);
-				NotifyPropertyChanged("ArmourClass");
+				ArmourClassUpdated();
 			}
 		}
 
@@ -63,10 +68,27 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				Actor.HitPoints = Convert.ToInt32(value);
-				NotifyPropertyChanged("HitPoints");
-				Active = (Actor.HitPoints > 0);
-				BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
+				HitPointsUpdated();
 			}
+		}
+
+		private void ActorUpdated()
+		{
+			NotifyPropertyChanged("Actor");
+			ArmourClassUpdated();
+			HitPointsUpdated();
+		}
+
+		private void ArmourClassUpdated()
+		{
+			NotifyPropertyChanged("ArmourClass");
+		}
+
+		private void HitPointsUpdated()
+		{
+			NotifyPropertyChanged("HitPoints");
+			Active = (Actor.HitPoints > 0);
+			BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
 		}
 
 		public Command DoDamage
@@ -82,6 +104,28 @@ namespace Dungeoneer.ViewModel
 			{
 				Actor = creature;
 			}
+		}
+
+		public Command ShowEffectsWindow
+		{
+			get { return _showEffectsWindow; }
+		}
+
+		private void ExecuteShowEffectsWindow()
+		{
+			_effectsWindow = new View.EffectsWindow();
+			_effectsWindow.DataContext = this;
+			_effectsWindow.Show();
+		}
+
+		public Command HideEffectsWindow
+		{
+			get { return _hideEffectsWindow; }
+		}
+
+		private void ExecuteHideEffectsWindow()
+		{
+			_effectsWindow.Close();
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

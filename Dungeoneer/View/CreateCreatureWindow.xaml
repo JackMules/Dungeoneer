@@ -34,7 +34,7 @@
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
-		<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" Height="25" Margin="0,4"/>
+		<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding ActorName}"/>
 		<Label Grid.Row="1" Grid.Column="0" Content="Abilities"/>
 		<Label Grid.Row="1" Grid.Column="1" Content="Str" Width="32" HorizontalContentAlignment="Center"/>
 		<TextBox Name="StrTextBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Strength}" Height="25" Margin="0,4,0,3"/>
@@ -62,22 +62,22 @@
 		<Label Grid.Row="4" Grid.Column="4" Content="T"/>
 		<TextBox Name="TouchACTextBox" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center" Text="{Binding TouchArmourClass}" Height="25" Margin="0,4"/>
 		<Label Grid.Row="5" Grid.Column="0" Content="Init"/>
-		<TextBox Name="InitTextBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Initiative}" Height="25" Margin="0,4"/>
+		<TextBox Name="InitTextBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding InitiativeMod}" Height="25" Margin="0,4"/>
 		<Label Grid.Row="6" Grid.Column="2" Content="CR"/>
-		<TextBox Name="CRTextBox" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Height="25" Margin="0,4"/>
+		<TextBox Name="CRTextBox" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding ChallengeRating}"/>
 		<Label Grid.Row="6" Grid.Column="4" Content="Size"/>
-		<ComboBox Name="SizeComboBox" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center" ItemsSource="{Binding Sizes}" Height="22" Margin="0,2"/>
+		<ComboBox Name="SizeComboBox" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center" ItemsSource="{Binding Sizes}" SelectedIndex="{Binding SelectedSize}" Height="22" Margin="0,2"/>
 		<Label Grid.Row="6" Grid.Column="0" Content="Speed"/>
-		<TextBox Name="SpeedTextBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Height="25" Margin="0,4"/>
+		<TextBox Name="SpeedTextBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding Speed}"/>
 		<Label Grid.Row="7" Grid.Column="0" Content="Saves"/>
 		<Label Grid.Row="7" Grid.Column="1" Content="Fort"/>
-		<TextBox Name="FortTextBox" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" Height="25" Margin="0,4"/>
+		<TextBox Name="FortTextBox" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding FortitudeSave}"/>
 		<Label Grid.Row="7" Grid.Column="3" Content="Ref"/>
-		<TextBox Name="RefTextBox" Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" Height="25" Margin="0,4"/>
+		<TextBox Name="RefTextBox" Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding ReflexSave}"/>
 		<Label Grid.Row="7" Grid.Column="5" Content="Will"/>
-		<TextBox Name="WillTextBox" Grid.Row="7" Grid.Column="6" VerticalAlignment="Center" Height="25" Margin="0,4"/>
+		<TextBox Name="WillTextBox" Grid.Row="7" Grid.Column="6" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding WillSave}"/>
 		<Label Grid.Row="8" Grid.Column="0" Content="Feats"/>
-		<CheckBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Content="Power Attack" Margin="0,8,0,3" VerticalAlignment="Center" Height="15"/>
+		<CheckBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Content="Power Attack" Margin="0,8,0,3" VerticalAlignment="Center" Height="15" IsChecked="{Binding PowerAttack}"/>
 		<Label Content="Attacks" Grid.Row="9" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2">
 			<ListBox ItemsSource="{Binding Attacks}" SelectedIndex="{Binding SelectedAttack}"/>
@@ -94,14 +94,14 @@
 			<Button Command="{Binding AddDamageReduction}" ToolTip="Add Damage Reduction" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 			<Button Command="{Binding RemoveDamageReduction}" ToolTip="Remove Damage Reduction" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>
-		<Label Content="Effects" Grid.Row="13" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
+<!--		<Label Content="Effects" Grid.Row="13" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2">
 			<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}"/>
 		</ScrollViewer>
 		<StackPanel Grid.Row="13" Grid.Column="6" Grid.RowSpan="2">
 			<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 			<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-		</StackPanel>
+		</StackPanel>-->
 		<StackPanel Grid.ColumnSpan="7" Grid.Row="15" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
 				<Label.Style>

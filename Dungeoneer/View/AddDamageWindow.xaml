@@ -4,7 +4,7 @@
 				xmlns:view="clr-namespace:Dungeoneer.View"
 				Title="Add Damage"
 				WindowStartupLocation="CenterOwner"
-				WindowStyle="ToolWindow" ResizeMode="NoResize" Height="400" Width="300">
+				WindowStyle="ToolWindow" ResizeMode="NoResize" Height="340" Width="370">
 	<DockPanel Margin="5">
 		<Grid DockPanel.Dock="Top" Margin="5" FocusManager.FocusedElement="{Binding ElementName=NumDiceTextBox}">
 			<Grid.RowDefinitions>
@@ -50,6 +50,6 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-		<view:DamageTypeSelector />
+		<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel}"/>
 	</DockPanel>
 </Window>

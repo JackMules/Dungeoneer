@@ -26,14 +26,11 @@ namespace Dungeoneer.Model
 		{
 			if (setPresent)
 			{
-				_descriptors.Add(Types.Damage.Acid);
+				_descriptors.Add(damageType);
 			}
 			else
 			{
-				while (Acid)
-				{
-					_descriptors.Remove(Types.Damage.Acid);
-				}
+				_descriptors.RemoveAll(d => d == damageType);
 			}
 		}
 

@@ -12,7 +12,7 @@
 				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
 					<Label Name="NameLabel" Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
 					<StackPanel Orientation="Vertical">
-						<Button Content="Show Attacks" Margin="5" Height="25" Command="{Binding ShowAttacksWindow}"/>
+						<Button Content="Attacks" Margin="5" Height="25" Command="{Binding ShowAttacksWindow}"/>
 					</StackPanel>
 					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmourClass}"/>
 					<view:ValueButton Title="HP"
@@ -21,7 +21,7 @@
 														PanelOrientation="Vertical"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="90" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
-					<Button Content="Add Effect" Margin="5"/>
+					<Button Content="Effects" Command="{Binding ShowEffectsWindow}" Margin="5"/>
 				</StackPanel>
 			</DockPanel>
 			<Border.Style>

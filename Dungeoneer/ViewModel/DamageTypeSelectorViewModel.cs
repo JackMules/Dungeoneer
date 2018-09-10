@@ -59,7 +59,7 @@ namespace Dungeoneer.ViewModel
 
 		public Model.DamageDescriptorSet GetDamageDescriptorSet()
 		{
-			return new Model.DamageDescriptorSet
+			Model.DamageDescriptorSet damage = new Model.DamageDescriptorSet
 			{
 				Acid = Acid,
 				Adamantine = Adamantine,
@@ -84,6 +84,8 @@ namespace Dungeoneer.ViewModel
 				Sonic = Sonic,
 				Subdual = Subdual,
 			};
+
+			return damage;
 		}
 
 		public void SetFromDamageDescriptorSet(Model.DamageDescriptorSet damageDescriptorSet)
