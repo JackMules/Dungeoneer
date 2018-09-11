@@ -16,13 +16,11 @@ namespace Dungeoneer.Model
 			ActorName = "";
 			InitiativeMod = 0;
 			Active = true;
-			Effects = new FullyObservableCollection<Effect.Effect>();
 		}
 
 		private string _actorName;
 		private int _initiativeMod;
 		private bool _active;
-		private FullyObservableCollection<Effect.Effect> _effects;
 
 		public string ActorName
 		{
@@ -54,25 +52,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public FullyObservableCollection<Effect.Effect> Effects
-		{
-			get { return _effects; }
-			set
-			{
-				_effects = value;
-				NotifyPropertyChanged("Effects");
-			}
-		}
-
 		public Actor(
 			string actorName,
-			int initiativeMod,
-			FullyObservableCollection<Effect.Effect> effects)
+			int initiativeMod)
 		{
 			ActorName = actorName;
 			InitiativeMod = initiativeMod;
 			Active = true;
-			Effects = effects;
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)
@@ -96,12 +82,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("InitiativeMod");
 			xmlWriter.WriteString(InitiativeMod.ToString());
 			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Effects");
-			foreach (Effect.Effect effect in Effects)
-			{
-				effect.WriteXML(xmlWriter);
-			}
+			
 			xmlWriter.WriteEndElement();
 		}
 
@@ -118,17 +99,6 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "InitiativeMod")
 					{
 						InitiativeMod = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Effects")
-					{
-						foreach (XmlNode effectNode in childNode.ChildNodes)
-						{
-							if (effectNode.Name == "Effect")
-							{
-								Effect.Effect effect = Effect.EffectFactory.GetEffectFromXML(effectNode);
-								Effects.Add(effect);
-							}
-						}
 					}
 				}
 			}

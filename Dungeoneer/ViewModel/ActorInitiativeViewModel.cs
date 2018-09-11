@@ -16,11 +16,14 @@ namespace Dungeoneer.ViewModel
 		public ActorInitiativeViewModel()
 		{
 			_backgroundColor = Colors.LightGray;
+			_effects = new FullyObservableCollection<Model.Effect.Effect>();
 		}
 
 		protected Model.Actor _actor;
+		private int _initiativeMod;
 		private string _displayName;
 		private Color _backgroundColor;
+		private FullyObservableCollection<Model.Effect.Effect> _effects;
 
 		public Model.Actor Actor
 		{
@@ -29,6 +32,7 @@ namespace Dungeoneer.ViewModel
 			{
 				_actor = value;
 				NotifyPropertyChanged("Actor");
+				InitiativeMod = Actor.InitiativeMod;
 			}
 		}
 
@@ -74,10 +78,10 @@ namespace Dungeoneer.ViewModel
 
 		public FullyObservableCollection<Model.Effect.Effect> Effects
 		{
-			get { return Actor.Effects; }
+			get { return _effects; }
 			set
 			{
-				Actor.Effects = value;
+				_effects = value;
 				NotifyPropertyChanged("Effects");
 			}
 		}
@@ -96,7 +100,9 @@ namespace Dungeoneer.ViewModel
 		{
 			for (int i = Effects.Count - 1; i >= 0; --i)
 			{
-				
+				// For all effects
+				//	if effect has per-turn operation
+				//		apply effect to actor object
 
 				if (Effects[i] is Model.Effect.TimedEffect)
 				{
@@ -128,6 +134,12 @@ namespace Dungeoneer.ViewModel
 			xmlWriter.WriteString(DisplayName);
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("Effects");
+			foreach (Model.Effect.Effect effect in Effects)
+			{
+				effect.WriteXML(xmlWriter);
+			}
+
 			WriteActorXML(xmlWriter);
 
 			xmlWriter.WriteEndElement();
@@ -142,6 +154,17 @@ namespace Dungeoneer.ViewModel
 					if (childNode.Name == "DisplayName")
 					{
 						DisplayName = childNode.InnerText;
+					}
+					else if (childNode.Name == "Effects")
+					{
+						foreach (XmlNode effectNode in childNode.ChildNodes)
+						{
+							if (effectNode.Name == "Effect")
+							{
+								Model.Effect.Effect effect = Model.Effect.EffectFactory.GetEffectFromXML(effectNode);
+								Effects.Add(effect);
+							}
+						}
 					}
 					else
 					{
