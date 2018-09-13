@@ -617,8 +617,31 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static Model.Creature DoHitPointDamage(Model.Creature creature, int damage, Model.Weapon weapon)
+		public static Model.Creature DoHitPointDamage(Model.Creature creature, int damage, Model.Weapon weapon, ref FullyObservableCollection<Model.Effect.Effect> effects)
 		{
+			foreach (Model.Effect.Effect effect in effects)
+			{
+				if (effect is Model.Effect.EnergyResistance)
+				{
+					Model.Effect.EnergyResistance energyResistance = effect as Model.Effect.EnergyResistance;
+					if (weapon.DamageDescriptorSet.Contains(energyResistance.EnergyType) &&
+						weapon.DamageDescriptorSet.Count == 1)
+					{
+						int newEnergyResistanceValue = energyResistance.Value - damage;
+						if (newEnergyResistanceValue > 0)
+						{
+							damage = 0;
+							energyResistance.Value = newEnergyResistanceValue;
+						}
+						else
+						{
+							damage = newEnergyResistanceValue * -1;
+							energyResistance.Value = 0;
+						}
+					}
+				}
+			}
+
 			List<Model.DamageReduction> damageReductions = creature.DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 
@@ -654,9 +677,9 @@ namespace Dungeoneer.Utility
 			return creature;
 		}
 
-		public static Model.Creature DoDamage(Model.Creature creature, int damage, Model.Weapon weapon)
+		public static Model.Creature DoDamage(Model.Creature creature, int damage, Model.Weapon weapon, ref FullyObservableCollection<Model.Effect.Effect> effects)
 		{
-			creature = DoHitPointDamage(creature, damage, weapon);
+			creature = DoHitPointDamage(creature, damage, weapon, ref effects);
 
 			if (weapon.AbilityDamage)
 			{

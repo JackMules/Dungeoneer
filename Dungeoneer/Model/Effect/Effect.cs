@@ -46,6 +46,8 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
+		public abstract bool Expired();
+
 		public abstract Actor ApplyTo(Actor actor);
 
 		public void WriteXML(XmlWriter xmlWriter)

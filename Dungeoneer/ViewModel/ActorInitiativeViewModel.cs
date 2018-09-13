@@ -20,7 +20,6 @@ namespace Dungeoneer.ViewModel
 		}
 
 		protected Model.Actor _actor;
-		private int _initiativeMod;
 		private string _displayName;
 		private Color _backgroundColor;
 		private FullyObservableCollection<Model.Effect.Effect> _effects;

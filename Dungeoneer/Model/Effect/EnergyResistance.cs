@@ -28,6 +28,11 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
+		public override bool Expired()
+		{
+			return (Value <= 0);
+		}
+
 		public override Creature ApplyTo(Creature creature)
 		{
 			return creature;

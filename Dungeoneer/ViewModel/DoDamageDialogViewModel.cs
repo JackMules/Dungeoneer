@@ -158,7 +158,7 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public Model.Creature DoDamage(Model.Creature creature)
+		public Model.Creature DoDamage(Model.Creature creature, FullyObservableCollection<Model.Effect.Effect> effects)
 		{
 			bool askForInput = true;
 			string feedback = null;
@@ -172,19 +172,11 @@ namespace Dungeoneer.ViewModel
 					{
 						int damage = Convert.ToInt32(Damage);
 						Model.Weapon weapon = GetWeapon();
-						creature.HitPoints = Methods.DoHitPointDamage(creature, damage, weapon);
+						creature = Methods.DoHitPointDamage(creature, damage, weapon, effects);
 
 						if (weapon.AbilityDamage)
 						{
-							if (weapon.Ability == Types.Ability.Constitution)
-							{
-								int oldModifier = Methods.GetAbilityModifier(creature.Constitution);
-								creature.Constitution -= weapon.AbilityDamageValue;
-								int newModifier = Methods.GetAbilityModifier(creature.Constitution);
-
-								int change = oldModifier - newModifier;
-								creature.HitPoints -= creature.HitDice * change;
-							}
+							creature = Methods.DoAbilityDamage(creature, weapon.AbilityDamageValue, weapon.Ability);
 						}
 
 						askForInput = false;

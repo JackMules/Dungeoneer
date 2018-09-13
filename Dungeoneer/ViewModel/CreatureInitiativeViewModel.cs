@@ -93,11 +93,11 @@ namespace Dungeoneer.ViewModel
 
 		public override void StartTurn()
 		{
-			for (int i = Effects.Count - 1; i >= 0; --i)
+			foreach (Model.Effect.Effect effect in Effects)
 			{
-				if (Effects[i] is Model.Effect.PerTurnEffect)
+				if (effect.PerTurn && effect is Model.Effect.CreatureEffect)
 				{
-					Actor = (Effects[i] as Model.Effect.PerTurnEffect).DoPerTurnBehaviour(Actor);
+					Actor = (effect as Model.Effect.CreatureEffect).ApplyTo(Actor);
 				}
 			}
 
@@ -108,9 +108,12 @@ namespace Dungeoneer.ViewModel
 		{
 			Model.Creature affectedActor = Actor;
 
-			foreach (Model.Effect.ConstantEffect effect in Effects)
+			foreach (Model.Effect.Effect effect in Effects)
 			{
-				affectedActor = effect.ApplyTo(affectedActor);
+				if (!effect.PerTurn && effect is Model.Effect.CreatureEffect)
+				{
+					affectedActor = (effect as Model.Effect.CreatureEffect).ApplyTo(affectedActor);
+				}
 			}
 
 			return affectedActor;
@@ -124,7 +127,7 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteDoDamage()
 		{
 			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel(WeaponList);
-			Model.Creature creature = doDamageDialogViewModel.DoDamage(Actor);
+			Model.Creature creature = doDamageDialogViewModel.DoDamage(Actor, Effects);
 			if (creature != null)
 			{
 				Actor = creature;

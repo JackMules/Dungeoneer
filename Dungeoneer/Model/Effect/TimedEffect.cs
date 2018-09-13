@@ -40,6 +40,11 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
+		public override bool Expired()
+		{
+			return (ElapsedDuration >= Duration);
+		}
+
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("TemporaryEffect");

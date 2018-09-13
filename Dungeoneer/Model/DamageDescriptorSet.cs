@@ -12,14 +12,19 @@ namespace Dungeoneer.Model
 	{
 		public DamageDescriptorSet()
 		{
-			_descriptors = new List<Types.Damage>();
+			_descriptors = new HashSet<Types.Damage>();
 		}
 
-		private List<Types.Damage> _descriptors;
+		private HashSet<Types.Damage> _descriptors;
 
 		public bool Contains(Types.Damage damageType)
 		{
 			return _descriptors.Contains(damageType);
+		}
+
+		public int Count
+		{
+			get { return _descriptors.Count; }
 		}
 
 		private void SetDamageType(Types.Damage damageType, bool setPresent)
@@ -30,7 +35,7 @@ namespace Dungeoneer.Model
 			}
 			else
 			{
-				_descriptors.RemoveAll(d => d == damageType);
+				_descriptors.Remove(damageType);
 			}
 		}
 
