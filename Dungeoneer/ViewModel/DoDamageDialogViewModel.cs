@@ -172,7 +172,7 @@ namespace Dungeoneer.ViewModel
 					{
 						int damage = Convert.ToInt32(Damage);
 						Model.Weapon weapon = GetWeapon();
-						creature.HitPoints = Methods.CalculateNewHitPoints(creature, damage, weapon);
+						creature.HitPoints = Methods.DoHitPointDamage(creature, damage, weapon);
 
 						if (weapon.AbilityDamage)
 						{

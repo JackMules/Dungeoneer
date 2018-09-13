@@ -9,9 +9,10 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model.Effect
 {
-	public class TimedEffect : Effect
+	public abstract class TimedEffect : CreatureEffect
 	{
-		public TimedEffect()
+		public TimedEffect(bool perTurn)
+			: base(perTurn)
 		{
 
 		}
@@ -37,11 +38,6 @@ namespace Dungeoneer.Model.Effect
 				_elapsedDuration = value;
 				NotifyPropertyChanged("ElapsedDuration");
 			}
-		}
-
-		public override Creature DoPerTurnBehaviour(Creature creature)
-		{
-			throw new NotImplementedException();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

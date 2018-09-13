@@ -617,7 +617,7 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static int CalculateNewHitPoints(Model.Creature creature, int damage, Model.Weapon weapon)
+		public static Model.Creature DoHitPointDamage(Model.Creature creature, int damage, Model.Weapon weapon)
 		{
 			List<Model.DamageReduction> damageReductions = creature.DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
@@ -628,7 +628,6 @@ namespace Dungeoneer.Utility
 				foreach (Types.Damage drDamageType in dr.DamageTypes)
 				{
 					bool matched = weapon.DamageDescriptorSet.Contains(drDamageType);
-					
 
 					// If none of the weapon's damage qualities match this part of the damage type, then 
 					if (!matched)
@@ -650,7 +649,36 @@ namespace Dungeoneer.Utility
 				damage = 0;
 			}
 
-			return creature.HitPoints - damage;
+			creature.HitPoints -= damage;
+
+			return creature;
+		}
+
+		public static Model.Creature DoDamage(Model.Creature creature, int damage, Model.Weapon weapon)
+		{
+			creature = DoHitPointDamage(creature, damage, weapon);
+
+			if (weapon.AbilityDamage)
+			{
+				creature = DoAbilityDamage(creature, weapon.AbilityDamageValue, weapon.Ability);
+			}
+
+			return creature;
+		}
+
+		public static Model.Creature DoAbilityDamage(Model.Creature creature, int damage, Types.Ability ability)
+		{
+			if (ability == Types.Ability.Constitution)
+			{
+				int oldModifier = GetAbilityModifier(creature.Constitution);
+				creature.Constitution -= damage;
+				int newModifier = GetAbilityModifier(creature.Constitution);
+
+				int change = oldModifier - newModifier;
+				creature.HitPoints -= creature.HitDice * change;
+			}
+
+			return creature;
 		}
 
 		public static int GetAbilityModifier(int abilityScore)

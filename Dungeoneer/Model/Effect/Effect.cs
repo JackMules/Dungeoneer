@@ -11,13 +11,20 @@ namespace Dungeoneer.Model.Effect
 {
 	public abstract class Effect : BaseModel
 	{
-		public Effect()
+		public Effect(bool perTurn)
 		{
-
+			_perTurn = perTurn;
 		}
 
+		private bool _perTurn;
 		private string _name;
 		private int _value;
+
+		public bool PerTurn
+		{
+			get { return _perTurn; }
+			private set { _perTurn = value; }
+		}
 
 		public string Name
 		{
@@ -39,7 +46,7 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
-		public abstract Creature DoPerTurnBehaviour(Creature creature);
+		public abstract Actor ApplyTo(Actor actor);
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
@@ -52,6 +59,10 @@ namespace Dungeoneer.Model.Effect
 
 		public virtual void WritePropertyXML(XmlWriter xmlWriter)
 		{
+			xmlWriter.WriteStartElement("PerTurn");
+			xmlWriter.WriteString(PerTurn.ToString());
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteStartElement("Name");
 			xmlWriter.WriteString(Name);
 			xmlWriter.WriteEndElement();
@@ -67,7 +78,11 @@ namespace Dungeoneer.Model.Effect
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "Name")
+					if (childNode.Name == "PerTurn")
+					{
+						PerTurn = Convert.ToBoolean(childNode.InnerText);
+					}
+					else if (childNode.Name == "Name")
 					{
 						Name = childNode.InnerText;
 					}

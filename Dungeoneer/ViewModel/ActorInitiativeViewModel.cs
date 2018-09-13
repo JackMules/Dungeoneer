@@ -96,14 +96,10 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public void StartTurn()
+		public virtual void StartTurn()
 		{
 			for (int i = Effects.Count - 1; i >= 0; --i)
 			{
-				// For all effects
-				//	if effect has per-turn operation
-				//		apply effect to actor object
-
 				if (Effects[i] is Model.Effect.TimedEffect)
 				{
 					Model.Effect.TimedEffect tempEffect = Effects[i] as Model.Effect.TimedEffect;

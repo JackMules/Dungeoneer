@@ -10,7 +10,7 @@ namespace Dungeoneer.Model.Effect
 {
 	public static class EffectFactory
 	{
-		
+		/*
 		public static Effect GetEffect(Types.Effect effectType)
 		{
 			return new AbilityDamagePerTurnEffect();
@@ -21,6 +21,6 @@ namespace Dungeoneer.Model.Effect
 
 			return new AbilityDamagePerTurnEffect();
 		}
-		
+		*/
 	}
 }

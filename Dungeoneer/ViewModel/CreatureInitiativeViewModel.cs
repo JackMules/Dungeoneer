@@ -91,6 +91,31 @@ namespace Dungeoneer.ViewModel
 			BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
 		}
 
+		public override void StartTurn()
+		{
+			for (int i = Effects.Count - 1; i >= 0; --i)
+			{
+				if (Effects[i] is Model.Effect.PerTurnEffect)
+				{
+					Actor = (Effects[i] as Model.Effect.PerTurnEffect).DoPerTurnBehaviour(Actor);
+				}
+			}
+
+			base.StartTurn();
+		}
+
+		private Model.Creature GetAffectedActor()
+		{
+			Model.Creature affectedActor = Actor;
+
+			foreach (Model.Effect.ConstantEffect effect in Effects)
+			{
+				affectedActor = effect.ApplyTo(affectedActor);
+			}
+
+			return affectedActor;
+		}
+
 		public Command DoDamage
 		{
 			get { return _doDamage; }

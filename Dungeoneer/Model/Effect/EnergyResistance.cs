@@ -8,16 +8,17 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model.Effect
 {
-	public class EnergyResistance : Effect
+	public class EnergyResistance : CreatureEffect
 	{
-		public EnergyResistance()
+		public EnergyResistance(Types.Damage energyType)
+			: base(false)
 		{
-			_energyType = null;
+			_energyType = energyType;
 		}
 
-		private Types.Damage? _energyType;
+		private Types.Damage _energyType;
 
-		public Types.Damage? EnergyType
+		public Types.Damage EnergyType
 		{
 			get { return _energyType; }
 			set
@@ -27,7 +28,7 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
-		public override Creature DoPerTurnBehaviour(Creature creature)
+		public override Creature ApplyTo(Creature creature)
 		{
 			return creature;
 		}
