@@ -6,7 +6,7 @@
 				xmlns:view="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="Add Weapon"
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="300" Width="400" ResizeMode="NoResize">
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="380" Width="400" ResizeMode="NoResize">
 	<DockPanel Margin ="5" FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
 		<Grid DockPanel.Dock="Top">
 			<Grid.RowDefinitions>
@@ -56,6 +56,16 @@
 				<ComboBox ItemsSource="{Binding Abilities}" VerticalContentAlignment="Center" SelectedIndex="{Binding SelectedAbility}"/>
 			</DockPanel>
 		</DockPanel>
-		<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel}"/>
+		<TabControl>
+			<TabItem Header="Damage Type 1">
+				<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel1}"/>
+			</TabItem>
+			<TabItem Header="Damage Type 2">
+				<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel2}"/>
+			</TabItem>
+			<TabItem Header="Damage Type 3">
+				<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel3}"/>
+			</TabItem>
+		</TabControl>
 	</DockPanel>
 </Window>

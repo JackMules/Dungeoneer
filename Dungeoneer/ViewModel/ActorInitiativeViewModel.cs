@@ -22,7 +22,7 @@ namespace Dungeoneer.ViewModel
 		protected Model.Actor _actor;
 		private string _displayName;
 		private Color _backgroundColor;
-		private FullyObservableCollection<Model.Effect.Effect> _effects;
+		protected FullyObservableCollection<Model.Effect.Effect> _effects;
 
 		public Model.Actor Actor
 		{
@@ -156,8 +156,8 @@ namespace Dungeoneer.ViewModel
 						{
 							if (effectNode.Name == "Effect")
 							{
-								Model.Effect.Effect effect = Model.Effect.EffectFactory.GetEffectFromXML(effectNode);
-								Effects.Add(effect);
+//								Model.Effect.Effect effect = Model.Effect.EffectFactory.GetEffectFromXML(effectNode);
+//								Effects.Add(effect);
 							}
 						}
 					}

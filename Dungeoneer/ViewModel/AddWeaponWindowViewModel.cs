@@ -13,13 +13,17 @@ namespace Dungeoneer.ViewModel
 		{
 			_name = "";
 			_abilityDamage = false;
-			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel1 = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel2 = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel3 = new DamageTypeSelectorViewModel();
 		}
 
 		private string _name;
 		private bool _abilityDamage;
 		private string _abilityDamageValue;
-		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel1;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel2;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel3;
 
 		public string Name
 		{
@@ -63,13 +67,33 @@ namespace Dungeoneer.ViewModel
 			get { return Constants.AbilityStrings; }
 		}
 
-		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel1
 		{
-			get { return _damageTypeSelectorViewModel; }
+			get { return _damageTypeSelectorViewModel1; }
 			set
 			{
-				_damageTypeSelectorViewModel = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel");
+				_damageTypeSelectorViewModel1 = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel1");
+			}
+		}
+
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel2
+		{
+			get { return _damageTypeSelectorViewModel2; }
+			set
+			{
+				_damageTypeSelectorViewModel2 = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel2");
+			}
+		}
+
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel3
+		{
+			get { return _damageTypeSelectorViewModel3; }
+			set
+			{
+				_damageTypeSelectorViewModel3 = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel3");
 			}
 		}
 
@@ -87,13 +111,17 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						weapon = new Model.Weapon();
+						weapon = new Model.Weapon
+						{
+							Name = Name,
+							AbilityDamage = AbilityDamage,
+							AbilityDamageValue = Convert.ToInt32(AbilityDamageValue),
+							Ability = Ability
+						};
 
-						weapon.Name = Name;
-						weapon.AbilityDamage = AbilityDamage;
-						weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
-						weapon.Ability = Ability;
-						weapon.DamageDescriptorSet = DamageTypeSelectorViewModel.GetDamageDescriptorSet();
+						weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel1.GetDamageDescriptorSet());
+						weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel2.GetDamageDescriptorSet());
+						weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel3.GetDamageDescriptorSet());
 						askForInput = false;
 					}
 					catch (FormatException)

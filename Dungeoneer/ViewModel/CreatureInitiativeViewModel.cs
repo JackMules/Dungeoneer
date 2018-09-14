@@ -127,7 +127,7 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteDoDamage()
 		{
 			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel(WeaponList);
-			Model.Creature creature = doDamageDialogViewModel.DoDamage(Actor, Effects);
+			Model.Creature creature = doDamageDialogViewModel.DoDamage(Actor, ref _effects);
 			if (creature != null)
 			{
 				Actor = creature;

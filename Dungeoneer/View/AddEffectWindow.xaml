@@ -6,74 +6,9 @@
         mc:Ignorable="d"
         Title="Add Effect" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize">
-	<Grid FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-		</Grid.ColumnDefinitions>
-		<Grid Margin="5">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
-			<Label Grid.Row="0" Grid.Column="0" Content="Name" VerticalContentAlignment="Center"/>
-			<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" Height="25" Margin="0,4"/>
-			<Label Grid.Row="1" Grid.Column="0" Content="Abilities"/>
-			<Label Grid.Row="1" Grid.Column="1" Content="Str" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="StrTextBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Strength}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="2" Content="Dex" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="DexTextBox" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Text="{Binding Dexterity}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="3" Content="Con" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="ConTextBox" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Text="{Binding Constitution}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="4" Content="Int" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="IntTextBox" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Text="{Binding Intelligence}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="5" Content="Wis" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="WisTextBox" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Text="{Binding Wisdom}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="6" Content="Cha" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="ChaTextBox" Grid.Row="2" Grid.Column="6" VerticalAlignment="Center" Text="{Binding Charisma}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="3" Grid.Column="0" Content="To Hit" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="BABTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ToHit}" Height="25" Margin="0,4"/>
-			<Label Grid.Row="3" Grid.Column="2" Content="HP" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="HPTextBox" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Text="{Binding HitPoints}" Height="25" Margin="0,4"/>
-			<Label Grid.Row="3" Grid.Column="4" Content="AC" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="ACTextBox" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" Text="{Binding ArmourClass}" Height="25" Margin="0,4"/>
-		</Grid>
-		<WrapPanel Grid.Row="1" Orientation="Vertical" Margin="5">
-			<CheckBox Content="Temporary" IsChecked="{Binding Temporary}"/>
-			<DockPanel>
-				<DockPanel.Style>
-					<Style TargetType="{x:Type DockPanel}">
-						<Setter Property="Visibility" Value="Collapsed"/>
-						<Style.Triggers>
-							<DataTrigger Binding="{Binding Temporary}" Value="True">
-								<Setter Property="Visibility" Value="Visible"/>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</DockPanel.Style>
-				<Label DockPanel.Dock="Left" Content="Duration" Margin="0,5,5,0"/>
-				<TextBox Text="{Binding Duration}" Margin="0,5,0,0"/>
-			</DockPanel>
-			<CheckBox Content="Apply effect every turn" Margin="0,5,0,0" IsChecked="{Binding EveryTurn}"/>
-		</WrapPanel>
-		<StackPanel Grid.Row="2">
+	<DockPanel>
+		<ComboBox DockPanel.Dock="Top" ItemsSource="{Binding EffectNames}"/>
+		<StackPanel DockPanel.Dock="Bottom">
 			<Label x:Name="lblFeedback" Margin="0,0,5,0">
 				<Label.Style>
 					<Style TargetType="{x:Type Label}">
@@ -91,5 +26,6 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-	</Grid>
+		<ContentControl Content="{Binding EffectViewModel}"/>
+	</DockPanel>
 </Window>

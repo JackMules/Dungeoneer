@@ -48,7 +48,9 @@ namespace Dungeoneer.ViewModel
 
 			//  If the event has been cancelled, bail now.
 			if (args.Cancel)
+			{
 				return;
+			}
 
 			//  Call the action or the parameterized action, whichever has been set.
 			InvokeAction(param);
@@ -62,27 +64,23 @@ namespace Dungeoneer.ViewModel
 			Action theAction = action;
 			Action<object> theParameterizedAction = parameterizedAction;
 			if (theAction != null)
+			{
 				theAction();
-			else if (theParameterizedAction != null)
-				theParameterizedAction(param);
+			}
+			else
+			{
+				theParameterizedAction?.Invoke(param);
+			}
 		}
 
 		protected void InvokeExecuted(CommandEventArgs args)
 		{
-			CommandEventHandler executed = Executed;
-
-			//  Call the executed event.
-			if (executed != null)
-				executed(this, args);
+			Executed?.Invoke(this, args);
 		}
 
 		protected void InvokeExecuting(CancelCommandEventArgs args)
 		{
-			CancelCommandEventHandler executing = Executing;
-
-			//  Call the executed event.
-			if (executing != null)
-				executing(this, args);
+			Executing?.Invoke(this, args);
 		}
 
 
@@ -111,9 +109,7 @@ namespace Dungeoneer.ViewModel
 				if (canExecute != value)
 				{
 					canExecute = value;
-					EventHandler canExecuteChanged = CanExecuteChanged;
-					if (canExecuteChanged != null)
-						canExecuteChanged(this, EventArgs.Empty);
+					CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 				}
 			}
 		}

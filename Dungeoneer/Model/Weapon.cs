@@ -13,11 +13,11 @@ namespace Dungeoneer.Model
 	{
 		public Weapon()
 		{
-			_damageDescriptorSet = new DamageDescriptorSet();
+			_damageDescriptorSets = new List<DamageDescriptorSet>();
 		}
 
 		private string _name;
-		private DamageDescriptorSet _damageDescriptorSet;
+		private List<DamageDescriptorSet> _damageDescriptorSets;
 		private bool _abilityDamage;
 		private int _abilityDamageValue;
 		private Types.Ability _ability;
@@ -32,16 +32,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public DamageDescriptorSet DamageDescriptorSet
+		public List<DamageDescriptorSet> DamageDescriptorSets
 		{
-			get { return _damageDescriptorSet; }
+			get { return _damageDescriptorSets; }
 			set
 			{
-				_damageDescriptorSet = value;
-				NotifyPropertyChanged("DamageDescriptorSet");
+				_damageDescriptorSets = value;
+				NotifyPropertyChanged("DamageDescriptorSets");
 			}
 		}
-
+		
 		public bool AbilityDamage
 		{
 			get { return _abilityDamage; }
@@ -93,13 +93,17 @@ namespace Dungeoneer.Model
 				xmlWriter.WriteEndElement();
 			}
 
-			DamageDescriptorSet.WriteXML(xmlWriter);
+			foreach (DamageDescriptorSet damage in DamageDescriptorSets)
+			{
+				damage.WriteXML(xmlWriter);
+			}
 
 			xmlWriter.WriteEndElement();
 		}
 
 		public void ReadXML(XmlNode xmlNode)
 		{
+			DamageDescriptorSets = new List<DamageDescriptorSet>();
 			try
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
@@ -112,7 +116,7 @@ namespace Dungeoneer.Model
 					{
 						DamageDescriptorSet damageDescriptorSet = new DamageDescriptorSet();
 						damageDescriptorSet.ReadXML(childNode);
-						DamageDescriptorSet = damageDescriptorSet;
+						DamageDescriptorSets.Add(damageDescriptorSet);
 					}
 					else if (childNode.Name == "AbilityDamage")
 					{

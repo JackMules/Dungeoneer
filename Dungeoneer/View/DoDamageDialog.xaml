@@ -6,11 +6,9 @@
 				xmlns:view="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="Do Damage" 
-				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="360" Width="370" ResizeMode="NoResize">
+				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="400" Width="400" ResizeMode="NoResize">
 	<DockPanel Margin="5">
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-			<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
-			<TextBox x:Name="txtDamage" Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" Text="{Binding Damage}"/>
 			<Label Content="Weapon" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
 			<ComboBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="170" ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}"/>
 		</StackPanel>
@@ -49,6 +47,34 @@
 				<ComboBox ItemsSource="{Binding Abilities}" VerticalContentAlignment="Center" SelectedIndex="{Binding SelectedAbility, Mode=TwoWay}"/>
 			</DockPanel>
 		</DockPanel>
-		<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel}"/>
+		<TabControl>
+			<TabItem Header="Damage Type 1">
+				<DockPanel>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+						<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
+						<TextBox x:Name="txtDamage" Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" Text="{Binding Damage1}"/>
+					</StackPanel>
+					<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel1}"/>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Damage Type 2">
+				<DockPanel>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+						<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
+						<TextBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" Text="{Binding Damage2}"/>
+					</StackPanel>
+					<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel2}"/>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Damage Type 3">
+				<DockPanel>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+						<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
+						<TextBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" Text="{Binding Damage3}"/>
+					</StackPanel>
+					<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel3}"/>
+				</DockPanel>
+			</TabItem>
+		</TabControl>
 	</DockPanel>
 </Window>

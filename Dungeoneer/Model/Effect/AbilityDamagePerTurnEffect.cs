@@ -32,6 +32,11 @@ namespace Dungeoneer.Model.Effect
 			return creature;
 		}
 
+		public override bool Expired()
+		{
+			return false;
+		}
+
 		public override string ToString()
 		{
 			return Value.ToString() + " " + Methods.GetAbilityString(Ability) + " damage per turn";

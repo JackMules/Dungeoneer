@@ -12,26 +12,54 @@ namespace Dungeoneer.ViewModel
 		public DoDamageDialogViewModel(FullyObservableCollection<Model.WeaponSet> weaponList)
 		{
 			_weaponList = weaponList;
-			_damage = "";
+			_damage1 = "";
+			_damage2 = "";
+			_damage3 = "";
 			_selectedWeapon = 0;
-			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel1 = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel2 = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel3 = new DamageTypeSelectorViewModel();
 			_abilityDamage = false;
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		private string _damage;
+		private string _damage1;
+		private string _damage2;
+		private string _damage3;
 		private int _selectedWeapon;
-		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel1;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel2;
+		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel3;
 		private bool _abilityDamage;
 		private string _abilityDamageValue;
 
-		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel1
 		{
-			get { return _damageTypeSelectorViewModel; }
+			get { return _damageTypeSelectorViewModel1; }
 			set
 			{
-				_damageTypeSelectorViewModel = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel");
+				_damageTypeSelectorViewModel1 = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel1");
+			}
+		}
+
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel2
+		{
+			get { return _damageTypeSelectorViewModel2; }
+			set
+			{
+				_damageTypeSelectorViewModel2 = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel2");
+			}
+		}
+
+		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel3
+		{
+			get { return _damageTypeSelectorViewModel3; }
+			set
+			{
+				_damageTypeSelectorViewModel3 = value;
+				NotifyPropertyChanged("DamageTypeSelectorViewModel3");
 			}
 		}
 
@@ -45,13 +73,33 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string Damage
+		public string Damage1
 		{
-			get { return _damage; }
+			get { return _damage1; }
 			set
 			{
-				_damage = value;
-				NotifyPropertyChanged("Damage");
+				_damage1 = value;
+				NotifyPropertyChanged("Damage1");
+			}
+		}
+
+		public string Damage2
+		{
+			get { return _damage2; }
+			set
+			{
+				_damage2 = value;
+				NotifyPropertyChanged("Damage2");
+			}
+		}
+
+		public string Damage3
+		{
+			get { return _damage3; }
+			set
+			{
+				_damage3 = value;
+				NotifyPropertyChanged("Damage3");
 			}
 		}
 
@@ -65,7 +113,20 @@ namespace Dungeoneer.ViewModel
 				if (SelectedWeapon != 0)
 				{
 					Model.Weapon weapon = GetFlatWeaponList().ElementAt(SelectedWeapon - 1).Item2;
-					DamageTypeSelectorViewModel.SetFromDamageDescriptorSet(weapon.DamageDescriptorSet);
+
+					if (weapon.DamageDescriptorSets.Count > 0)
+					{
+						DamageTypeSelectorViewModel1.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[0]);
+					}
+					if (weapon.DamageDescriptorSets.Count > 1)
+					{
+						DamageTypeSelectorViewModel2.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[1]);
+					}
+					if (weapon.DamageDescriptorSets.Count > 2)
+					{
+						DamageTypeSelectorViewModel3.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[2]);
+					}
+
 					AbilityDamage = weapon.AbilityDamage;
 					SelectedAbility = Abilities.IndexOf(Methods.GetAbilityString(weapon.Ability));
 					AbilityDamageValue = weapon.AbilityDamageValue.ToString();
@@ -79,7 +140,9 @@ namespace Dungeoneer.ViewModel
 
 		private void Reset()
 		{
-			DamageTypeSelectorViewModel.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
+			DamageTypeSelectorViewModel1.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
+			DamageTypeSelectorViewModel2.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
+			DamageTypeSelectorViewModel3.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
 			AbilityDamage = false;
 		}
 
@@ -151,14 +214,16 @@ namespace Dungeoneer.ViewModel
 		public Model.Weapon GetWeapon()
 		{
 			Model.Weapon weapon = new Model.Weapon();
-			weapon.DamageDescriptorSet = DamageTypeSelectorViewModel.GetDamageDescriptorSet();
+			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel1.GetDamageDescriptorSet());
+			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel2.GetDamageDescriptorSet());
+			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel3.GetDamageDescriptorSet());
 			weapon.AbilityDamage = AbilityDamage;
 			weapon.Ability = Ability;
 			weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
 			return weapon;
 		}
 
-		public Model.Creature DoDamage(Model.Creature creature, FullyObservableCollection<Model.Effect.Effect> effects)
+		public Model.Creature DoDamage(Model.Creature creature, ref FullyObservableCollection<Model.Effect.Effect> effects)
 		{
 			bool askForInput = true;
 			string feedback = null;
@@ -168,11 +233,24 @@ namespace Dungeoneer.ViewModel
 				damageDialog.DataContext = this;
 				if (damageDialog.ShowDialog() == true)
 				{
+					List<int> damage = new List<int> { 0, 0, 0 };
 					try
 					{
-						int damage = Convert.ToInt32(Damage);
+						if (Damage1 != "")
+						{
+							damage[0] = Convert.ToInt32(Damage1);
+						}
+						if (Damage2 != "")
+						{
+							damage[1] = Convert.ToInt32(Damage2);
+						}
+						if (Damage3 != "")
+						{
+							damage[2] = Convert.ToInt32(Damage3);
+						}
+
 						Model.Weapon weapon = GetWeapon();
-						creature = Methods.DoHitPointDamage(creature, damage, weapon, effects);
+						creature = Methods.DoHitPointDamage(creature, damage, weapon, ref effects);
 
 						if (weapon.AbilityDamage)
 						{
