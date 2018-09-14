@@ -76,18 +76,16 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectDeafened = "Deafened";
 		public static readonly string EffectDisabled = "Disabled";
 		public static readonly string EffectDying = "Dying";
-		public static readonly string EffectEnergyDrained = "EnergyDrained";
+		public static readonly string EffectNegativeLevel = "Negative Level";
 		public static readonly string EffectEntangled = "Entangled";
 		public static readonly string EffectExhausted = "Exhausted";
 		public static readonly string EffectFascinated = "Fascinated";
 		public static readonly string EffectFatigued = "Fatigued";
-		public static readonly string EffectFlatFooted = "FlatFooted";
 		public static readonly string EffectFrightened = "Frightened";
 		public static readonly string EffectGrappling = "Grappling";
 		public static readonly string EffectHelpless = "Helpless";
 		public static readonly string EffectIncorporeal = "Incorporeal";
 		public static readonly string EffectInvisible = "Invisible";
-		public static readonly string EffectKnockedDown = "KnockedDown";
 		public static readonly string EffectNauseated = "Nauseated";
 		public static readonly string EffectPanicked = "Panicked";
 		public static readonly string EffectParalysed = "Paralysed";
@@ -183,18 +181,16 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Deafened),
 			Methods.GetEffectTypeString(Types.Effect.Disabled),
 			Methods.GetEffectTypeString(Types.Effect.Dying),
-			Methods.GetEffectTypeString(Types.Effect.EnergyDrained),
+			Methods.GetEffectTypeString(Types.Effect.NegativeLevel),
 			Methods.GetEffectTypeString(Types.Effect.Entangled),
 			Methods.GetEffectTypeString(Types.Effect.Exhausted),
 			Methods.GetEffectTypeString(Types.Effect.Fascinated),
 			Methods.GetEffectTypeString(Types.Effect.Fatigued),
-			Methods.GetEffectTypeString(Types.Effect.FlatFooted),
 			Methods.GetEffectTypeString(Types.Effect.Frightened),
 			Methods.GetEffectTypeString(Types.Effect.Grappling),
 			Methods.GetEffectTypeString(Types.Effect.Helpless),
 			Methods.GetEffectTypeString(Types.Effect.Incorporeal),
 			Methods.GetEffectTypeString(Types.Effect.Invisible),
-			Methods.GetEffectTypeString(Types.Effect.KnockedDown),
 			Methods.GetEffectTypeString(Types.Effect.Nauseated),
 			Methods.GetEffectTypeString(Types.Effect.Panicked),
 			Methods.GetEffectTypeString(Types.Effect.Paralysed),
@@ -287,18 +283,16 @@ namespace Dungeoneer.Utility
 			Deafened,
 			Disabled,
 			Dying,
-			EnergyDrained,
+			NegativeLevel,
 			Entangled,
 			Exhausted,
 			Fascinated,
 			Fatigued,
-			FlatFooted,
 			Frightened,
 			Grappling,
 			Helpless,
 			Incorporeal,
 			Invisible,
-			KnockedDown,
 			Nauseated,
 			Panicked, 
 			Paralysed,
@@ -567,18 +561,16 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Deafened:						return Constants.EffectDeafened;
 			case Types.Effect.Disabled:						return Constants.EffectDisabled;
 			case Types.Effect.Dying:							return Constants.EffectDying;
-			case Types.Effect.EnergyDrained:			return Constants.EffectEnergyDrained;
+			case Types.Effect.NegativeLevel:			return Constants.EffectNegativeLevel;
 			case Types.Effect.Entangled:					return Constants.EffectEntangled;
 			case Types.Effect.Exhausted:					return Constants.EffectExhausted;
 			case Types.Effect.Fascinated:					return Constants.EffectFascinated;
 			case Types.Effect.Fatigued:						return Constants.EffectFatigued;
-			case Types.Effect.FlatFooted:					return Constants.EffectFlatFooted;
 			case Types.Effect.Frightened:					return Constants.EffectFrightened;
 			case Types.Effect.Grappling:					return Constants.EffectGrappling;
 			case Types.Effect.Helpless:						return Constants.EffectHelpless;
 			case Types.Effect.Incorporeal:				return Constants.EffectIncorporeal;
 			case Types.Effect.Invisible:					return Constants.EffectInvisible;
-			case Types.Effect.KnockedDown:				return Constants.EffectKnockedDown;
 			case Types.Effect.Nauseated:					return Constants.EffectNauseated;
 			case Types.Effect.Panicked:						return Constants.EffectPanicked;
 			case Types.Effect.Paralysed:					return Constants.EffectParalysed;
@@ -646,9 +638,9 @@ namespace Dungeoneer.Utility
 			{
 				return Types.Effect.Dying;
 			}
-			else if (effect == Constants.EffectEnergyDrained)
+			else if (effect == Constants.EffectNegativeLevel)
 			{
-				return Types.Effect.EnergyDrained;
+				return Types.Effect.NegativeLevel;
 			}
 			else if (effect == Constants.EffectEntangled)
 			{
@@ -665,10 +657,6 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectFatigued)
 			{
 				return Types.Effect.Fatigued;
-			}
-			else if (effect == Constants.EffectFlatFooted)
-			{
-				return Types.Effect.FlatFooted;
 			}
 			else if (effect == Constants.EffectFrightened)
 			{
@@ -689,10 +677,6 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectInvisible)
 			{
 				return Types.Effect.Invisible;
-			}
-			else if (effect == Constants.EffectKnockedDown)
-			{
-				return Types.Effect.KnockedDown;
 			}
 			else if (effect == Constants.EffectNauseated)
 			{

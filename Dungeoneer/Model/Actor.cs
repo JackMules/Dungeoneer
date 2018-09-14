@@ -82,8 +82,6 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("InitiativeMod");
 			xmlWriter.WriteString(InitiativeMod.ToString());
 			xmlWriter.WriteEndElement();
-			
-			xmlWriter.WriteEndElement();
 		}
 
 		public virtual void ReadXML(XmlNode xmlNode)

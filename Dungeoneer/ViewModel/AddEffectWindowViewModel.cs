@@ -13,27 +13,38 @@ namespace Dungeoneer.ViewModel
 		{
 
 		}
+		
+		private int _selectedIndex;
 
-		private EffectViewModel _effectViewModel;
-
-		public EffectViewModel EffectViewModel
+		public List<string> EffectNames
 		{
-			get { return _effectViewModel; }
+			get { return Constants.EffectStrings; }
+		}
+
+		public int SelectedIndex
+		{
+			get { return _selectedIndex; }
 			set
 			{
-				_effectViewModel = value;
-				NotifyPropertyChanged("EffectViewModel");
+				_selectedIndex = value;
+				NotifyPropertyChanged("SelectedIndex");
+				SetupView(Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]));
 			}
 		}
 
-		public List<string> Effects
+		public Types.Effect SelectedEffect
 		{
-			get { return }
+			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]); }
 		}
 
-		public List<Model.Effect.Effect> EffectList
+		private void ResetView()
 		{
-			get { return }
+
+		}
+
+		private void SetupView(Types.Effect effectType)
+		{
+			
 		}
 
 		public Model.Effect.Effect GetEffect()
@@ -50,12 +61,10 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = new Model.Effect.Effect();
-
-						effect.Name = Name;
-						effect.
+						effect = Model.Effect.EffectFactory.GetEffect(SelectedEffect);
+						
 					}
-					catch (FormatException e)
+					catch (FormatException)
 					{
 
 					}

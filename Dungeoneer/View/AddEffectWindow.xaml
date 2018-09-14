@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         Title="Add Effect" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize">
-	<DockPanel>
-		<ComboBox DockPanel.Dock="Top" ItemsSource="{Binding EffectNames}"/>
+	<DockPanel Margin="5">
+		<ComboBox DockPanel.Dock="Top" ItemsSource="{Binding EffectNames}" SelectedIndex="{Binding SelectedEffect}"/>
 		<StackPanel DockPanel.Dock="Bottom">
 			<Label x:Name="lblFeedback" Margin="0,0,5,0">
 				<Label.Style>
@@ -26,6 +26,19 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-		<ContentControl Content="{Binding EffectViewModel}"/>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Label x:Name="lblValue" Grid.Row="0" Grid.Column="0" Content="Value" Visibility="Collapsed"/>
+			<TextBox x:Name="txtValue" Grid.Row="0" Grid.Column="1" Text="{Binding Value}" Visibility="Collapsed"/>
+			<Label x:Name="lblDuration" Grid.Row="1" Grid.Column="0" Content="Duration" Visibility="Collapsed"/>
+			<TextBox x:Name="txtDuration" Grid.Row="1" Grid.Column="1" Text="{Binding Duration}" Visibility="Collapsed"/>
+		</Grid>
 	</DockPanel>
 </Window>

@@ -19,6 +19,9 @@ namespace Dungeoneer.Model.Effect
 			return ApplyTo(actor as Creature);
 		}
 
-		public abstract Creature ApplyTo(Creature creature);
+		public virtual Creature ApplyTo(Creature creature)
+		{
+			return creature;
+		}
 	}
 }

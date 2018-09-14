@@ -61,6 +61,7 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\DamageDescriptorSet.cs" />
     <Compile Include="Model\Effect\AbilityDamagePerTurnEffect.cs" />
+    <Compile Include="Model\Effect\Condition.cs" />
     <Compile Include="Model\Effect\CreatureEffect.cs" />
     <Compile Include="Model\Effect\Effect.cs" />
     <Compile Include="Model\Damage.cs" />

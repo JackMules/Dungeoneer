@@ -31,7 +31,7 @@ namespace Dungeoneer.Model
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("PlayerActor");
+			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override void WritePropertyXML(XmlWriter xmlWriter)

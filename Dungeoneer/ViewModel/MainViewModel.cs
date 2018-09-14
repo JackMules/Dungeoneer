@@ -26,7 +26,7 @@ namespace Dungeoneer.ViewModel
 			_createNonPlayerActor = new Command(ExecuteCreateNonPlayerActor);
 			_createCreature = new Command(ExecuteCreateCreature);
 
-			CreateTestData();
+//			CreateTestData();
 		}
 
 		private Model.ActorLibrary _actorLibrary;
