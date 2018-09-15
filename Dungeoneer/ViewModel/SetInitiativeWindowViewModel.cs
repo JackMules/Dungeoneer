@@ -8,9 +8,9 @@ namespace Dungeoneer.ViewModel
 {
 	public class SetInitiativeWindowViewModel : BaseViewModel
 	{
-		public SetInitiativeWindowViewModel()
+		public SetInitiativeWindowViewModel(int initMod)
 		{
-
+			_modifier = initMod.ToString();
 		}
 
 		private string _score;
@@ -66,6 +66,7 @@ namespace Dungeoneer.ViewModel
 			while (askForInput)
 			{
 				View.SetInitiativeWindow initDialog = new View.SetInitiativeWindow(feedback);
+				initDialog.DataContext = this;
 				if (initDialog.ShowDialog() == true)
 				{
 					try
