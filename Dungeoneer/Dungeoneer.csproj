@@ -79,6 +79,7 @@
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\DoDamageDialogViewModel.cs" />
     <Compile Include="ViewModel\AddEffectWindowViewModel.cs" />
+    <Compile Include="ViewModel\EffectsWindowViewModel.cs" />
     <Compile Include="ViewModel\EffectViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />

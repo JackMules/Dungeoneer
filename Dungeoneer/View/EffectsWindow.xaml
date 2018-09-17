@@ -11,10 +11,21 @@
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 			<DockPanel>
 				<Button DockPanel.Dock="Bottom" Content="Close" FontSize="18" Margin="5" Command="{Binding HideEffectsWindow}"/>
-				<ScrollViewer VerticalScrollBarVisibility="Auto">
-					<ListBox ItemsSource="{Binding Effects}"
-										Background="Transparent"/>
-				</ScrollViewer>
+				<Grid Margin="0,5,0,0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<Label Content="Effects" Grid.Row="13" Grid.Column="0" Margin="0,0,0,5"/>
+					<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1">
+						<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}"/>
+					</ScrollViewer>
+					<StackPanel Grid.Row="13" Grid.Column="6">
+						<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+						<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+					</StackPanel>
+				</Grid>
 			</DockPanel>
 		</Border>
 	</Grid>
