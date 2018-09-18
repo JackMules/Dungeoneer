@@ -11,10 +11,11 @@ namespace Dungeoneer.ViewModel
 	{
 		public AddEffectWindowViewModel()
 		{
-
+			_selectedEffect = null;
 		}
-		
+
 		private int _selectedIndex;
+		private Model.Effect.Effect _selectedEffect;
 
 		public List<string> EffectNames
 		{
@@ -28,23 +29,19 @@ namespace Dungeoneer.ViewModel
 			{
 				_selectedIndex = value;
 				NotifyPropertyChanged("SelectedIndex");
-				SetupView(Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]));
+				Types.Effect effectType = Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]);
+				SelectedEffect = Model.Effect.EffectFactory.GetEffect(effectType);
 			}
 		}
 
-		public Types.Effect SelectedEffect
+		public Model.Effect.Effect SelectedEffect
 		{
-			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]); }
-		}
-
-		private void ResetView()
-		{
-
-		}
-
-		private void SetupView(Types.Effect effectType)
-		{
-			
+			get { return _selectedEffect; }
+			set
+			{
+				_selectedEffect = value;
+				NotifyPropertyChanged("SelectedEffect");
+			}
 		}
 
 		public Model.Effect.Effect GetEffect()
@@ -61,7 +58,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = Model.Effect.EffectFactory.GetEffect(SelectedEffect);
+						effect = SelectedEffect;
 						
 					}
 					catch (FormatException)

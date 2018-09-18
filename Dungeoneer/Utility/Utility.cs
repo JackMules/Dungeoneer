@@ -81,6 +81,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectExhausted = "Exhausted";
 		public static readonly string EffectFascinated = "Fascinated";
 		public static readonly string EffectFatigued = "Fatigued";
+		public static readonly string EffectFlatFooted = "Flat Footed";
 		public static readonly string EffectFrightened = "Frightened";
 		public static readonly string EffectGrappling = "Grappling";
 		public static readonly string EffectHelpless = "Helpless";
@@ -288,6 +289,7 @@ namespace Dungeoneer.Utility
 			Exhausted,
 			Fascinated,
 			Fatigued,
+			FlatFooted,
 			Frightened,
 			Grappling,
 			Helpless,
@@ -566,6 +568,7 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Exhausted:					return Constants.EffectExhausted;
 			case Types.Effect.Fascinated:					return Constants.EffectFascinated;
 			case Types.Effect.Fatigued:						return Constants.EffectFatigued;
+			case Types.Effect.FlatFooted:					return Constants.EffectFlatFooted;
 			case Types.Effect.Frightened:					return Constants.EffectFrightened;
 			case Types.Effect.Grappling:					return Constants.EffectGrappling;
 			case Types.Effect.Helpless:						return Constants.EffectHelpless;
@@ -657,6 +660,10 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectFatigued)
 			{
 				return Types.Effect.Fatigued;
+			}
+			else if (effect == Constants.EffectFlatFooted)
+			{
+				return Types.Effect.FlatFooted;
 			}
 			else if (effect == Constants.EffectFrightened)
 			{

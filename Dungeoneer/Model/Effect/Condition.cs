@@ -177,37 +177,6 @@ namespace Dungeoneer.Model.Effect.Condition
 		}
 	}
 
-	public class NegativeLevel : TimedEffect
-	{
-		public NegativeLevel()
-			: base(false)
-		{
-			Name = GetType().Name;
-		}
-
-		public override Creature ApplyTo(Creature creature)
-		{
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 1;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
-
-			creature.FortitudeSave -= 1;
-			creature.ReflexSave -= 1;
-			creature.WillSave -= 1;
-
-			creature.HitPoints -= 5;
-
-			return creature;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-	}
-
 	public class Entangled : TimedEffect
 	{
 		public Entangled()
@@ -287,6 +256,28 @@ namespace Dungeoneer.Model.Effect.Condition
 		{
 			creature.Strength -= 2;
 			creature.Dexterity -= 2;
+
+			return creature;
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement(GetType().Name);
+		}
+	}
+
+	public class FlatFooted : TimedEffect
+	{
+		public FlatFooted()
+			: base(false)
+		{
+			Name = GetType().Name;
+		}
+
+		public override Creature ApplyTo(Creature creature)
+		{
+			creature.ArmourClass = creature.FlatFootedArmourClass;
+			creature.TouchArmourClass = creature.TouchArmourClass - Methods.GetAbilityModifier(creature.Dexterity);
 
 			return creature;
 		}
@@ -395,6 +386,37 @@ namespace Dungeoneer.Model.Effect.Condition
 			: base(false)
 		{
 			Name = GetType().Name;
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement(GetType().Name);
+		}
+	}
+
+	public class NegativeLevel : TimedEffect
+	{
+		public NegativeLevel()
+			: base(false)
+		{
+			Name = GetType().Name;
+		}
+
+		public override Creature ApplyTo(Creature creature)
+		{
+			for (int i = 0; i < creature.Attacks.Count; ++i)
+			{
+				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 1;
+				creature.Attacks[i].Modifier = newAttackMod.ToString();
+			}
+
+			creature.FortitudeSave -= 1;
+			creature.ReflexSave -= 1;
+			creature.WillSave -= 1;
+
+			creature.HitPoints -= 5;
+
+			return creature;
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

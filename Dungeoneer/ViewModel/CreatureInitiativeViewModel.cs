@@ -143,7 +143,7 @@ namespace Dungeoneer.ViewModel
 		{
 			_effectsWindowViewModel = new EffectsWindowViewModel(Effects);
 			_effectsWindowViewModel.Show();
-			Effects = _effectsWindowViewModel.GetEffects();
+			Effects = _effectsWindowViewModel.Effects;
 		}
 
 		public Command HideEffectsWindow
@@ -153,7 +153,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteHideEffectsWindow()
 		{
-			_effectsWindowViewModel.Close();
+			_effectsWindowViewModel.Hide();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
