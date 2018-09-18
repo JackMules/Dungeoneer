@@ -142,6 +142,7 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteShowEffectsWindow()
 		{
 			_effectsWindowViewModel = new EffectsWindowViewModel(Effects);
+			_effectsWindowViewModel.Show();
 			Effects = _effectsWindowViewModel.GetEffects();
 		}
 
