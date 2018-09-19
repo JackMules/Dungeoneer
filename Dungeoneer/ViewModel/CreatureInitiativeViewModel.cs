@@ -18,14 +18,12 @@ namespace Dungeoneer.ViewModel
 			_actor = new Model.Creature();
 			_weaponList = encounterViewModel.WeaponList;
 			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
-			_hideEffectsWindow = new Command(ExecuteHideEffectsWindow);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 		private Command _doDamage;
 		private EffectsWindowViewModel _effectsWindowViewModel;
 		private Command _showEffectsWindow;
-		private Command _hideEffectsWindow;
 
 		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)
 		{
@@ -144,16 +142,6 @@ namespace Dungeoneer.ViewModel
 			_effectsWindowViewModel = new EffectsWindowViewModel(Effects);
 			_effectsWindowViewModel.Show();
 			Effects = _effectsWindowViewModel.Effects;
-		}
-
-		public Command HideEffectsWindow
-		{
-			get { return _hideEffectsWindow; }
-		}
-
-		private void ExecuteHideEffectsWindow()
-		{
-			_effectsWindowViewModel.Hide();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

@@ -14,8 +14,10 @@ namespace Dungeoneer.ViewModel
 			_effects = effects;
 			_addEffect = new Command(ExecuteAddEffect);
 			_removeEffect = new Command(ExecuteRemoveEffect);
+			_closeEffectsWindow = new Command(ExecuteCloseEffectsWindow);
 		}
 
+		private Command _closeEffectsWindow;
 		private FullyObservableCollection<Model.Effect.Effect> _effects;
 		private View.EffectsWindow _effectsWindow;
 		private Command _addEffect;
@@ -40,9 +42,14 @@ namespace Dungeoneer.ViewModel
 			_effectsWindow.Show();
 		}
 
-		public void Hide()
+		public void ExecuteCloseEffectsWindow()
 		{
 			_effectsWindow.Close();
+		}
+
+		public Command CloseEffectsWindow
+		{
+			get { return _closeEffectsWindow; }
 		}
 
 		public Command AddEffect
