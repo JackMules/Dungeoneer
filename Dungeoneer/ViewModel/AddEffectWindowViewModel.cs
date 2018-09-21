@@ -59,12 +59,16 @@ namespace Dungeoneer.ViewModel
 					try
 					{
 						effect = SelectedEffect;
-						
+						askForInput = false;
 					}
 					catch (FormatException)
 					{
-
+						feedback = "Invalid format";
 					}
+				}
+				else
+				{
+					askForInput = false;
 				}
 			}
 

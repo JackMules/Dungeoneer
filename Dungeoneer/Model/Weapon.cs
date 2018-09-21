@@ -88,7 +88,7 @@ namespace Dungeoneer.Model
 			if (AbilityDamage)
 			{
 				xmlWriter.WriteStartElement("AbilityDamage");
-				xmlWriter.WriteAttributeString("Name", Methods.GetAbilityString(Ability));
+				xmlWriter.WriteAttributeString("Ability", Methods.GetAbilityString(Ability));
 				xmlWriter.WriteAttributeString("Value", AbilityDamageValue.ToString());
 				xmlWriter.WriteEndElement();
 			}

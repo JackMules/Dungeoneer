@@ -44,7 +44,7 @@
 					</Style>
 				</DockPanel.Style>
 				<TextBox Text="{Binding AbilityDamageValue}" Width="25" Margin="5,0,5,0" VerticalContentAlignment="Center"/>
-				<ComboBox ItemsSource="{Binding Abilities}" VerticalContentAlignment="Center" SelectedIndex="{Binding SelectedAbility, Mode=TwoWay}"/>
+				<ComboBox ItemsSource="{Binding Abilities}" VerticalContentAlignment="Center" SelectedItem="{Binding SelectedAbility, Mode=TwoWay}"/>
 			</DockPanel>
 		</DockPanel>
 		<TabControl>
