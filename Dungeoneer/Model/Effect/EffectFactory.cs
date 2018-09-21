@@ -10,24 +10,28 @@ namespace Dungeoneer.Model.Effect
 {
 	public static class EffectFactory
 	{
-		public static Effect GetEffect(ViewModel.AddEffectWindowViewModel vm)
+		public static Effect GetEffect(XmlNode xmlNode)
 		{
+			string effectName = xmlNode.Name;
 			Effect effect = null;
-
-			effect = GetCondition(vm.SelectedEffectType, Convert.ToInt32(vm.Duration));
-			
-			if (effect == null)
+			try
 			{
-				effect = GetEffect(vm.SelectedEffectType, vm.SelectedEnergyType, Convert.ToInt32(vm.Value), Convert.ToInt32(vm.Duration));
+				Types.Effect effectType = Methods.GetEffectTypeFromString(effectName);
+				effect = GetEffect(effectType);
+				effect.ReadXML(xmlNode);
 			}
+			catch (FormatException)
+			{
 
+			}
 			return effect;
 		}
 
-		public static Effect GetCondition(Types.Effect effectType, int duration)
+		public static Effect GetEffect(Types.Effect effectType)
 		{
 			switch (effectType)
 			{
+				case Types.Effect.EnergyResistance:		return new EnergyResistance();
 				case Types.Effect.Blinded:						return new Condition.Blinded();
 				case Types.Effect.Confused:						return new Condition.Confused();
 				case Types.Effect.Cowering:						return new Condition.Cowering();
@@ -63,24 +67,5 @@ namespace Dungeoneer.Model.Effect
 			}
 			return null;
 		}
-
-		public static Effect GetEffect(Types.Effect effectType, Types.Damage damage, int value, int duration)
-		{
-			switch (effectType)
-			{
-//				case Types.Effect.DamagePerTurn:			return new DamagePerTurnEffect();
-//				case Types.Effect.TimedDamagePerTurn: return new TimedDamagePerTurnEffect();
-				case Types.Effect.EnergyResistance:		return new EnergyResistance(damage, value);
-			}
-			return null;
-		}
-
-		/*
-		public static Effect GetEffect(XmlNode xmlNode)
-		{
-
-			return new AbilityDamagePerTurnEffect();
-		}
-		*/
 	}
 }

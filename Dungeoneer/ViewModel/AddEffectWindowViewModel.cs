@@ -88,7 +88,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = Model.Effect.EffectFactory.GetEffect(this);
+						effect = Model.Effect.EffectFactory.GetEffect(SelectedEffectType);
 						askForInput = false;
 					}
 					catch (FormatException)

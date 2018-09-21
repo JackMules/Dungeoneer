@@ -10,7 +10,7 @@ namespace Dungeoneer.Model.Effect
 {
 	public class EnergyResistance : CreatureEffect
 	{
-		public EnergyResistance(Types.Damage energyType, int value)
+		public EnergyResistance()
 			: base(false)
 		{
 			_energyType = energyType;
