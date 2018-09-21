@@ -11,11 +11,13 @@ namespace Dungeoneer.ViewModel
 	{
 		public AddEffectWindowViewModel()
 		{
-			_selectedEffect = null;
+
 		}
 
 		private int _selectedIndex;
-		private Model.Effect.Effect _selectedEffect;
+		private int _selectedEnergyTypeIndex;
+		private string _value;
+		private string _duration;
 
 		public List<string> EffectNames
 		{
@@ -29,19 +31,47 @@ namespace Dungeoneer.ViewModel
 			{
 				_selectedIndex = value;
 				NotifyPropertyChanged("SelectedIndex");
-				Types.Effect effectType = Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]);
-				SelectedEffect = Model.Effect.EffectFactory.GetEffect(effectType);
 			}
 		}
 
-		public Model.Effect.Effect SelectedEffect
+		public Types.Effect SelectedEffectType
 		{
-			get { return _selectedEffect; }
+			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]); }
+		}
+
+		public string Value
+		{
+			get { return _value; }
 			set
 			{
-				_selectedEffect = value;
-				NotifyPropertyChanged("SelectedEffect");
+				_value = value;
+				NotifyPropertyChanged("Value");
 			}
+		}
+
+		public string Duration
+		{
+			get { return _duration; }
+			set
+			{
+				_duration = value;
+				NotifyPropertyChanged("Duration");
+			}
+		}
+
+		public int SelectedEnergyTypeIndex
+		{
+			get { return _selectedEnergyTypeIndex; }
+			set
+			{
+				_selectedEnergyTypeIndex = value;
+				NotifyPropertyChanged("SelectedEnergyType");
+			}
+		}
+
+		public Types.Damage SelectedEnergyType
+		{
+			get { return Methods.GetDamageTypeFromString(Constants.EnergyTypeStrings[_selectedEnergyTypeIndex]); }
 		}
 
 		public Model.Effect.Effect GetEffect()
@@ -58,7 +88,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = SelectedEffect;
+						effect = Model.Effect.EffectFactory.GetEffect(this);
 						askForInput = false;
 					}
 					catch (FormatException)

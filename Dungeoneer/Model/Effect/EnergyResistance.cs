@@ -10,13 +10,15 @@ namespace Dungeoneer.Model.Effect
 {
 	public class EnergyResistance : CreatureEffect
 	{
-		public EnergyResistance()
+		public EnergyResistance(Types.Damage energyType, int value)
 			: base(false)
 		{
-
+			_energyType = energyType;
+			_value = value;
 		}
 
 		private Types.Damage _energyType;
+		private int _value;
 
 		public Types.Damage EnergyType
 		{
@@ -25,6 +27,16 @@ namespace Dungeoneer.Model.Effect
 			{
 				_energyType = value;
 				NotifyPropertyChanged("EnergyType");
+			}
+		}
+
+		public int Value
+		{
+			get { return _value; }
+			set
+			{
+				_value = value;
+				NotifyPropertyChanged("Value");
 			}
 		}
 

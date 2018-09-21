@@ -18,7 +18,6 @@ namespace Dungeoneer.Model.Effect
 
 		private bool _perTurn;
 		private string _name;
-		private int _value;
 
 		public bool PerTurn
 		{
@@ -33,16 +32,6 @@ namespace Dungeoneer.Model.Effect
 			{
 				_name = value;
 				NotifyPropertyChanged("Name");
-			}
-		}
-
-		public int Value
-		{
-			get { return _value; }
-			set
-			{
-				_value = value;
-				NotifyPropertyChanged("Value");
 			}
 		}
 
@@ -68,10 +57,6 @@ namespace Dungeoneer.Model.Effect
 			xmlWriter.WriteStartElement("Name");
 			xmlWriter.WriteString(Name);
 			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Value");
-			xmlWriter.WriteString(Value.ToString());
-			xmlWriter.WriteEndElement();
 		}
 
 		public virtual void ReadXML(XmlNode xmlNode)
@@ -87,10 +72,6 @@ namespace Dungeoneer.Model.Effect
 					else if (childNode.Name == "Name")
 					{
 						Name = childNode.InnerText;
-					}
-					else if (childNode.Name == "Value")
-					{
-						Value = Convert.ToInt32(childNode.InnerText);
 					}
 				}
 			}

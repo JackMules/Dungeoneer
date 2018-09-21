@@ -14,6 +14,11 @@ namespace Dungeoneer.Model.Effect
 
 		}
 
+		public override bool Expired()
+		{
+			return false;
+		}
+
 		public override Actor ApplyTo(Actor actor)
 		{
 			return ApplyTo(actor as Creature);

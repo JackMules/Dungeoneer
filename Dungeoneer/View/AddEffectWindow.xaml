@@ -8,9 +8,6 @@
         mc:Ignorable="d"
         Title="Add Effect" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize">
-	<Window.Resources>
-		<util:DataTypeConverter x:Key="DataTypeConverter"></util:DataTypeConverter>
-	</Window.Resources>
 	<DockPanel Margin="5">
 		<ComboBox DockPanel.Dock="Top" ItemsSource="{Binding EffectNames}" SelectedIndex="{Binding SelectedIndex}"/>
 		<StackPanel DockPanel.Dock="Bottom">
@@ -47,7 +44,7 @@
 					<Style TargetType="{x:Type Label}">
 						<Setter Property="Visibility" Value="Collapsed"/>
 						<Style.Triggers>
-							<DataTrigger Binding="{Binding SelectedItem, Converter={StaticResource DataTypeConverter}}" Value="{x:Type effect:TimedEffect}">
+							<DataTrigger Binding="{Binding SelectedEffectType}" Value="">
 								<Setter Property="Visibility" Value="Visible"/>
 							</DataTrigger>
 						</Style.Triggers>
@@ -59,7 +56,7 @@
 					<Style TargetType="{x:Type TextBox}">
 						<Setter Property="Visibility" Value="Collapsed"/>
 						<Style.Triggers>
-							<DataTrigger Binding="{Binding SelectedItem, Converter={StaticResource DataTypeConverter}}" Value="{x:Type effect:TimedEffect}">
+							<DataTrigger Binding="{Binding SelectedEffectType}" Value="">
 								<Setter Property="Visibility" Value="Visible"/>
 							</DataTrigger>
 						</Style.Triggers>

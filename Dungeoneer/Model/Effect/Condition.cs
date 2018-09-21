@@ -103,7 +103,7 @@ namespace Dungeoneer.Model.Effect.Condition
 		}
 	}
 
-	public class Dead : TimedEffect
+	public class Dead : CreatureEffect
 	{
 		public Dead()
 			: base(false)

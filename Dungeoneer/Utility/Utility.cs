@@ -187,6 +187,7 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Exhausted),
 			Methods.GetEffectTypeString(Types.Effect.Fascinated),
 			Methods.GetEffectTypeString(Types.Effect.Fatigued),
+			Methods.GetEffectTypeString(Types.Effect.FlatFooted),
 			Methods.GetEffectTypeString(Types.Effect.Frightened),
 			Methods.GetEffectTypeString(Types.Effect.Grappling),
 			Methods.GetEffectTypeString(Types.Effect.Helpless),
@@ -205,6 +206,15 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Stunned),
 			Methods.GetEffectTypeString(Types.Effect.Turned),
 			Methods.GetEffectTypeString(Types.Effect.Unconscious),
+		};
+
+		public static List<string> EnergyTypeStrings = new List<string>
+		{
+			Methods.GetDamageTypeString(Types.Damage.Acid),
+			Methods.GetDamageTypeString(Types.Damage.Cold),
+			Methods.GetDamageTypeString(Types.Damage.Electricity),
+			Methods.GetDamageTypeString(Types.Damage.Fire),
+			Methods.GetDamageTypeString(Types.Damage.Sonic),
 		};
 	}
 

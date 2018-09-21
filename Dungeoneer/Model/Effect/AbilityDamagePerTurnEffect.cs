@@ -9,6 +9,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model.Effect
 {
+	/*
 	public class AbilityDamagePerTurnEffect : CreatureEffect
 	{
 		public AbilityDamagePerTurnEffect(Types.Ability ability, int damage)
@@ -76,4 +77,5 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 	}
+	*/
 }
