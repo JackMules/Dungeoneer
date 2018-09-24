@@ -37,32 +37,8 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<Label x:Name="lblValue" Grid.Row="0" Grid.Column="0" Content="Value" Visibility="Collapsed"/>
-			<TextBox x:Name="txtValue" Grid.Row="0" Grid.Column="1" Text="{Binding Value}" Visibility="Collapsed"/>
-			<Label x:Name="lblDuration" Grid.Row="1" Grid.Column="0" Content="Duration">
-				<Label.Style>
-					<Style TargetType="{x:Type Label}">
-						<Setter Property="Visibility" Value="Collapsed"/>
-						<Style.Triggers>
-							<DataTrigger Binding="{Binding SelectedEffectType}" Value="">
-								<Setter Property="Visibility" Value="Visible"/>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</Label.Style>
-			</Label>
-			<TextBox x:Name="txtDuration" Grid.Row="1" Grid.Column="1" Text="{Binding Duration}" Visibility="Collapsed">
-				<TextBox.Style>
-					<Style TargetType="{x:Type TextBox}">
-						<Setter Property="Visibility" Value="Collapsed"/>
-						<Style.Triggers>
-							<DataTrigger Binding="{Binding SelectedEffectType}" Value="">
-								<Setter Property="Visibility" Value="Visible"/>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</TextBox.Style>
-			</TextBox>
+			<Label x:Name="lblDuration" Grid.Row="0" Grid.Column="0" Content="Duration"/>
+			<TextBox x:Name="txtDuration" Grid.Row="0" Grid.Column="1" Text="{Binding Duration}"/>
 		</Grid>
 	</DockPanel>
 </Window>

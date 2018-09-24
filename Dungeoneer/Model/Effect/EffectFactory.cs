@@ -31,7 +31,6 @@ namespace Dungeoneer.Model.Effect
 		{
 			switch (effectType)
 			{
-				case Types.Effect.EnergyResistance:		return new EnergyResistance();
 				case Types.Effect.Blinded:						return new Condition.Blinded();
 				case Types.Effect.Confused:						return new Condition.Confused();
 				case Types.Effect.Cowering:						return new Condition.Cowering();

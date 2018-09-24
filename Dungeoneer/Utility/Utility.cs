@@ -170,9 +170,6 @@ namespace Dungeoneer.Utility
 
 		public static readonly List<string> EffectStrings = new List<string>
 		{
-			Methods.GetEffectTypeString(Types.Effect.DamagePerTurn),
-			Methods.GetEffectTypeString(Types.Effect.TimedDamagePerTurn),
-			Methods.GetEffectTypeString(Types.Effect.EnergyResistance),
 			Methods.GetEffectTypeString(Types.Effect.Blinded),
 			Methods.GetEffectTypeString(Types.Effect.Confused),
 			Methods.GetEffectTypeString(Types.Effect.Cowering),
@@ -282,9 +279,6 @@ namespace Dungeoneer.Utility
 
 		public enum Effect
 		{
-			DamagePerTurn,
-			TimedDamagePerTurn,
-			EnergyResistance,
 			Blinded,
 			Confused,
 			Cowering,
@@ -561,9 +555,6 @@ namespace Dungeoneer.Utility
 		{
 			switch (effect)
 			{
-			case Types.Effect.DamagePerTurn:			return Constants.EffectDamagePerTurn;
-			case Types.Effect.TimedDamagePerTurn:	return Constants.EffectTimedDamagePerTurn;
-			case Types.Effect.EnergyResistance:		return Constants.EffectEnergyResistance;
 			case Types.Effect.Blinded:						return Constants.EffectBlinded;
 			case Types.Effect.Confused:						return Constants.EffectConfused;
 			case Types.Effect.Cowering:						return Constants.EffectCowering;
@@ -603,19 +594,7 @@ namespace Dungeoneer.Utility
 
 		public static Types.Effect GetEffectTypeFromString(string effect)
 		{
-			if (effect == Constants.EffectDamagePerTurn)
-			{
-				return Types.Effect.DamagePerTurn;
-			}
-			else if (effect == Constants.EffectTimedDamagePerTurn)
-			{
-				return Types.Effect.TimedDamagePerTurn;
-			}
-			else if (effect == Constants.EffectEnergyResistance)
-			{
-				return Types.Effect.EnergyResistance;
-			}
-			else if (effect == Constants.EffectBlinded)
+			if (effect == Constants.EffectBlinded)
 			{
 				return Types.Effect.Blinded;
 			}
@@ -947,32 +926,6 @@ namespace Dungeoneer.Utility
 
 		public static Model.Creature DoHitPointDamage(Model.Creature creature, List<int> damages, Model.Weapon weapon, ref FullyObservableCollection<Model.Effect.Effect> effects)
 		{
-			for (int d = 0; d < damages.Count; ++d)
-			{
-				foreach (Model.Effect.Effect effect in effects)
-				{
-					if (effect is Model.Effect.EnergyResistance)
-					{
-						Model.Effect.EnergyResistance energyResistance = effect as Model.Effect.EnergyResistance;
-						if (weapon.DamageDescriptorSets[d].Contains(energyResistance.EnergyType) &&
-							weapon.DamageDescriptorSets[d].Count == 1)
-						{
-							int newEnergyResistanceValue = energyResistance.Value - damages[d];
-							if (newEnergyResistanceValue > 0)
-							{
-								damages[d] = 0;
-								energyResistance.Value = newEnergyResistanceValue;
-							}
-							else
-							{
-								damages[d] = newEnergyResistanceValue * -1;
-								energyResistance.Value = 0;
-							}
-						}
-					}
-				}
-			}
-
 			List<Model.DamageReduction> damageReductions = creature.DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 

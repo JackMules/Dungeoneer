@@ -15,7 +15,6 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private int _selectedIndex;
-		private int _selectedEnergyTypeIndex;
 		private string _value;
 		private string _duration;
 
@@ -59,21 +58,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public int SelectedEnergyTypeIndex
-		{
-			get { return _selectedEnergyTypeIndex; }
-			set
-			{
-				_selectedEnergyTypeIndex = value;
-				NotifyPropertyChanged("SelectedEnergyType");
-			}
-		}
-
-		public Types.Damage SelectedEnergyType
-		{
-			get { return Methods.GetDamageTypeFromString(Constants.EnergyTypeStrings[_selectedEnergyTypeIndex]); }
-		}
-
 		public Model.Effect.Effect GetEffect()
 		{
 			bool askForInput = true;
@@ -89,6 +73,10 @@ namespace Dungeoneer.ViewModel
 					try
 					{
 						effect = Model.Effect.EffectFactory.GetEffect(SelectedEffectType);
+						if (effect is Model.Effect.TimedEffect)
+						{
+							(effect as Model.Effect.TimedEffect).Duration = Convert.ToInt32(Duration);
+						}
 						askForInput = false;
 					}
 					catch (FormatException)

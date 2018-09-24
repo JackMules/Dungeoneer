@@ -60,14 +60,12 @@
     <Compile Include="Model\ActorLibrary.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\DamageDescriptorSet.cs" />
-    <Compile Include="Model\Effect\AbilityDamagePerTurnEffect.cs" />
     <Compile Include="Model\Effect\Condition.cs" />
     <Compile Include="Model\Effect\CreatureEffect.cs" />
     <Compile Include="Model\Effect\Effect.cs" />
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="Model\Effect\EffectFactory.cs" />
-    <Compile Include="Model\Effect\EnergyResistance.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
@@ -81,7 +79,6 @@
     <Compile Include="ViewModel\DoDamageDialogViewModel.cs" />
     <Compile Include="ViewModel\AddEffectWindowViewModel.cs" />
     <Compile Include="ViewModel\EffectsWindowViewModel.cs" />
-    <Compile Include="ViewModel\EffectViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
     <Compile Include="Utility\FullyObservableCollection.cs" />
