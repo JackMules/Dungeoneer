@@ -116,6 +116,7 @@
 				</Label.Style>
 			</Label>
 			<WrapPanel HorizontalAlignment="Right">
+				<Button Command="{Binding Import}" MinWidth="60" Margin="0,0,10,0">_Import</Button>
 				<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Create</Button>
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>

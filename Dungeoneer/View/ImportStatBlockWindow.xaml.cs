@@ -15,16 +15,15 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for InitiativeDialog.xaml
+	/// Interaction logic for ImportStatBlockWindow.xaml
 	/// </summary>
-	public partial class SetInitiativeWindow : Window
+	public partial class ImportStatBlockWindow : Window
 	{
-		public SetInitiativeWindow(string feedback = null)
+		public ImportStatBlockWindow(string feedback = null)
 		{
 			InitializeComponent();
 			lblFeedback.Content = feedback;
 		}
-
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;

@@ -19,6 +19,7 @@ namespace Dungeoneer.ViewModel
 			_removeWeapon = new Command(ExecuteRemoveWeapon);
 			_addDamageReduction = new Command(ExecuteAddDamageReduction);
 			_removeDamageReduction = new Command(ExecuteRemoveDamageReduction);
+			_openImportWindow = new Command(ExecuteOpenImportWindow);
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
 		}
@@ -62,6 +63,7 @@ namespace Dungeoneer.ViewModel
 		private Command _removeWeapon;
 		private Command _addDamageReduction;
 		private Command _removeDamageReduction;
+		private Command _openImportWindow;
 
 		public int SelectedAttack { get; set; }
 		public int SelectedWeapon { get; set; }
@@ -584,6 +586,22 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteRemoveDamageReduction()
 		{
 			DamageReductions.RemoveAt(SelectedWeapon);
+		}
+
+		public Command Import
+		{
+			get { return _openImportWindow; }
+		}
+
+		private void ExecuteOpenImportWindow()
+		{
+			ImportStatBlockWindowViewModel importVM = new ImportStatBlockWindowViewModel();
+
+			Model.Creature creature = importVM.GetCreature();
+			if (creature != null)
+			{
+				LoadCreature(creature);
+			}
 		}
 	}
 }

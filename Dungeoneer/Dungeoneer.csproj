@@ -69,7 +69,7 @@
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
-    <Compile Include="Utility\Converter.cs" />
+    <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
@@ -87,6 +87,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\CreatureInitiativeViewModel.cs" />
+    <Compile Include="ViewModel\ImportStatBlockWindowViewModel.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModelFactory.cs" />
     <Compile Include="ViewModel\InitiativeValueViewModel.cs" />
@@ -127,6 +128,9 @@
     </Compile>
     <Compile Include="View\EffectsWindow.xaml.cs">
       <DependentUpon>EffectsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImportStatBlockWindow.xaml.cs">
+      <DependentUpon>ImportStatBlockWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SetInitiativeWindow.xaml.cs">
       <DependentUpon>SetInitiativeWindow.xaml</DependentUpon>
@@ -206,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EffectsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ImportStatBlockWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
