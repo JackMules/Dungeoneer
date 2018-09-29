@@ -25,6 +25,6 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-		<TextBlock Text="{Binding StatBlockText}"/>
+		<TextBox Text="{Binding StatBlockText}"/>
 	</DockPanel>
 </Window>
