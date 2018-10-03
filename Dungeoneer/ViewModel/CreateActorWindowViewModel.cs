@@ -12,7 +12,7 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreateActorWindowViewModel()
 		{
-			_attacks = new FullyObservableCollection<AttackViewModel>();
+			_attackSets = new FullyObservableCollection<AttackSetViewModel>();
 			_addAttack = new Command(ExecuteAddAttack);
 			_removeAttack = new Command(ExecuteRemoveAttack);
 			_addWeapon = new Command(ExecuteAddWeapon);
@@ -28,7 +28,7 @@ namespace Dungeoneer.ViewModel
 		private string _initiativeMod;
 		private string _type;
 		private string _challengeRating;
-		private FullyObservableCollection<AttackViewModel> _attacks;
+		private FullyObservableCollection<AttackSetViewModel> _attackSets;
 		private string _strength;
 		private string _dexterity;
 		private string _constitution;
@@ -289,12 +289,12 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<AttackViewModel> Attacks
+		public FullyObservableCollection<AttackSetViewModel> AttackSets
 		{
-			get { return _attacks; }
+			get { return _attackSets; }
 			set
 			{
-				_attacks = value;
+				_attackSets = value;
 				NotifyPropertyChanged("Attacks");
 			}
 		}
@@ -352,7 +352,7 @@ namespace Dungeoneer.ViewModel
 			InitiativeMod = nonPlayerActor.InitiativeMod.ToString();
 			Type = nonPlayerActor.Type;
 			ChallengeRating = nonPlayerActor.ChallengeRating.ToString();
-			Attacks = nonPlayerActor.Attacks;
+			AttackSets = nonPlayerActor.AttackSets;
 		}
 
 		public void LoadCreature(Model.Creature creature)
@@ -435,7 +435,7 @@ namespace Dungeoneer.ViewModel
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToInt32(ChallengeRating),
-							Attacks = Attacks,
+							AttackSets = AttackSets,
 						};
 						askForInput = false;
 					}
@@ -472,7 +472,7 @@ namespace Dungeoneer.ViewModel
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToSingle(ChallengeRating),
-							Attacks = Attacks,
+							AttackSets = AttackSets,
 							Strength = Convert.ToInt32(Strength),
 							Dexterity = Convert.ToInt32(Dexterity),
 							Constitution = Convert.ToInt32(Constitution),
@@ -527,13 +527,13 @@ namespace Dungeoneer.ViewModel
 			if (attack != null)
 			{
 				AttackViewModel attackViewModel = new AttackViewModel { Attack = attack };
-				Attacks.Add(attackViewModel);
+				AttackSets.Add(attackViewModel);
 			}
 		}
 
 		private void ExecuteRemoveAttack()
 		{
-			Attacks.RemoveAt(SelectedAttack);
+			AttackSets.RemoveAt(SelectedAttack);
 		}
 
 		public Command AddWeapon

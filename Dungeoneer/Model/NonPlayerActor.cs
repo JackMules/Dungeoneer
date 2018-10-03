@@ -16,7 +16,7 @@ namespace Dungeoneer.Model
 		{
 			Type = "No Type";
 			ChallengeRating = 1;
-			Attacks = new FullyObservableCollection<ViewModel.AttackViewModel>();
+			AttackSets = new FullyObservableCollection<AttackSet>();
 		}
 
 		public NonPlayerActor(
@@ -24,17 +24,17 @@ namespace Dungeoneer.Model
 			string type,
 			int initiativeMod,
 			float challengeRating,
-			FullyObservableCollection<ViewModel.AttackViewModel> attacks)
+			FullyObservableCollection<AttackSet> attackSets)
 			: base(actorName, initiativeMod)
 		{
 			Type = type;
 			ChallengeRating = challengeRating;
-			Attacks = attacks;
+			AttackSets = attackSets;
 		}
 
 		private string _type;
 		private float _challengeRating;
-		private FullyObservableCollection<ViewModel.AttackViewModel> _attacks;
+		private FullyObservableCollection<AttackSet> _attackSets;
 
 		public string Type
 		{
@@ -56,12 +56,12 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public FullyObservableCollection<ViewModel.AttackViewModel> Attacks
+		public FullyObservableCollection<AttackSet> AttackSets
 		{
-			get { return _attacks; }
+			get { return _attackSets; }
 			set
 			{
-				_attacks = value;
+				_attackSets = value;
 				NotifyPropertyChanged("Attacks");
 			}
 		}
@@ -83,10 +83,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(ChallengeRating.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("Attacks");
-			foreach (ViewModel.AttackViewModel attack in Attacks)
+			xmlWriter.WriteStartElement("AttackSets");
+			foreach (AttackSet attackSet in AttackSets)
 			{
-				attack.WriteXML(xmlWriter);
+				attackSet.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
 		}
@@ -109,13 +109,13 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Attacks")
 					{
-						foreach (XmlNode attackNode in childNode.ChildNodes)
+						foreach (XmlNode attackSetNode in childNode.ChildNodes)
 						{
-							if (attackNode.Name == "Attack")
+							if (attackSetNode.Name == "AttackSet")
 							{
-								ViewModel.AttackViewModel attack = new ViewModel.AttackViewModel();
-								attack.ReadXML(attackNode);
-								Attacks.Add(attack);
+								AttackSet attackSet = new AttackSet();
+								attackSet.ReadXML(attackSetNode);
+								AttackSets.Add(attackSet);
 							}
 						}
 					}

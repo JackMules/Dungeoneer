@@ -17,6 +17,7 @@ namespace Dungeoneer.ViewModel
 			_name = "";
 			_modifier = "";
 			_type = 0;
+			_ability = 0;
 			_selectedThreatRangeMinimum = 0;
 			_selectedCritMultiplier = 0;
 			_damages = new FullyObservableCollection<DamageViewModel>();
@@ -25,6 +26,7 @@ namespace Dungeoneer.ViewModel
 		private string _name;
 		private string _modifier;
 		private int _type;
+		private int _ability;
 		private int _selectedThreatRangeMinimum;
 		private int _selectedCritMultiplier;
 		private FullyObservableCollection<DamageViewModel> _damages;
@@ -66,6 +68,19 @@ namespace Dungeoneer.ViewModel
 			{
 				_type = value;
 				NotifyPropertyChanged("Type");
+			}
+		}
+
+		public int Ability
+		{
+			get
+			{
+				return _ability;
+			}
+			set
+			{
+				_ability = value;
+				NotifyPropertyChanged("Ability");
 			}
 		}
 
@@ -113,6 +128,11 @@ namespace Dungeoneer.ViewModel
 			get { return Constants.AttackTypeStrings; }
 		}
 
+		public List<string> Abilities
+		{
+			get { return new List<string> { Constants.AbilityStrength, Constants.AbilityDexterity, }; }
+		}
+
 		public List<string> ThreatRanges
 		{
 			get { return Constants.ThreatRangeStrings; }
@@ -142,6 +162,7 @@ namespace Dungeoneer.ViewModel
 							Name = Name,
 							Modifier = Convert.ToInt32(Modifier),
 							Type = Methods.GetAttackTypeFromString(AttackTypes.ElementAt(Type)),
+							Ability = Methods.GetAbilityFromString(Abilities.ElementAt(Ability)),
 							ThreatRangeMin = Methods.GetThreatRangeMinFromString(ThreatRanges.ElementAt(SelectedThreatRange)),
 							CritMultiplier = Methods.GetCritMultiplierFromString(CritMultipliers.ElementAt(SelectedCritMultiplier)),
 						};
