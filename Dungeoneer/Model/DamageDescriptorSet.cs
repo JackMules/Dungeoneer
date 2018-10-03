@@ -17,6 +17,11 @@ namespace Dungeoneer.Model
 
 		private HashSet<Types.Damage> _descriptors;
 
+		public void Add(Types.Damage damageType)
+		{
+			SetDamageType(damageType, true);
+		}
+
 		public bool Contains(Types.Damage damageType)
 		{
 			return _descriptors.Contains(damageType);

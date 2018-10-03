@@ -26,15 +26,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		private Model.Creature ParseText()
-		{
-			Model.Creature creature = new Model.Creature();
-
-
-
-			return creature;
-		}
-
 		public Model.Creature GetCreature()
 		{
 			bool askForInput = true;
@@ -49,7 +40,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						creature = ParseText();
+						creature = StatBlockImporter.ParseText(StatBlockText);
 						askForInput = false;
 					}
 					catch (FormatException)

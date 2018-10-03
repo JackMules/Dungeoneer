@@ -439,6 +439,38 @@ namespace Dungeoneer.Utility
 			}
 		}
 
+		public static Types.Die GetDieTypeFromInt(int sides)
+		{
+			if (sides == 3)
+			{
+				return Types.Die.d3;
+			}
+			else if (sides == 4)
+			{
+				return Types.Die.d4;
+			}
+			else if (sides == 6)
+			{
+				return Types.Die.d6;
+			}
+			else if (sides == 8)
+			{
+				return Types.Die.d8;
+			}
+			else if (sides == 10)
+			{
+				return Types.Die.d10;
+			}
+			else if (sides == 12)
+			{
+				return Types.Die.d12;
+			}
+			else
+			{
+				throw new FormatException("Die type d\'" + sides.ToString() + "\' not recognised.");
+			}
+		}
+
 		public static string GetSizeString(Types.Size size)
 		{
 			switch (size)
@@ -798,91 +830,91 @@ namespace Dungeoneer.Utility
 
 		public static Types.Damage GetDamageTypeFromString(string str)
 		{
-			if (str == Constants.DamageTypeAcid)
+			if (String.Equals(str, Constants.DamageTypeAcid, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Acid;
 			}
-			else if (str == Constants.DamageTypeAdamantine)
+			else if (String.Equals(str, Constants.DamageTypeAdamantine, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Adamantine;
 			}
-			else if (str == Constants.DamageTypeBludgeoning)
+			else if (String.Equals(str, Constants.DamageTypeBludgeoning, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Bludgeoning;
 			}
-			else if (str == Constants.DamageTypeChaos)
+			else if (String.Equals(str, Constants.DamageTypeChaos, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Chaos;
 			}
-			else if (str == Constants.DamageTypeCold)
+			else if (String.Equals(str, Constants.DamageTypeCold, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Cold;
 			}
-			else if (str == Constants.DamageTypeColdIron)
+			else if (String.Equals(str, Constants.DamageTypeColdIron, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.ColdIron;
 			}
-			else if (str == Constants.DamageTypeDivine)
+			else if (String.Equals(str, Constants.DamageTypeDivine, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Divine;
 			}
-			else if (str == Constants.DamageTypeEpic)
+			else if (String.Equals(str, Constants.DamageTypeEpic, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Epic;
 			}
-			else if (str == Constants.DamageTypeElectricity)
+			else if (String.Equals(str, Constants.DamageTypeElectricity, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Electricity;
 			}
-			else if (str == Constants.DamageTypeEvil)
+			else if (String.Equals(str, Constants.DamageTypeEvil, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Evil;
 			}
-			else if (str == Constants.DamageTypeFire)
+			else if (String.Equals(str, Constants.DamageTypeFire, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Fire;
 			}
-			else if (str == Constants.DamageTypeForce)
+			else if (String.Equals(str, Constants.DamageTypeForce, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Force;
 			}
-			else if (str == Constants.DamageTypeGood)
+			else if (String.Equals(str, Constants.DamageTypeGood, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Good;
 			}
-			else if (str == Constants.DamageTypeLaw)
+			else if (String.Equals(str, Constants.DamageTypeLaw, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Law;
 			}
-			else if (str == Constants.DamageTypeMagic)
+			else if (String.Equals(str, Constants.DamageTypeMagic, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Magic;
 			}
-			else if (str == Constants.DamageTypeNegativeEnergy)
+			else if (String.Equals(str, Constants.DamageTypeNegativeEnergy, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.NegativeEnergy;
 			}
-			else if (str == Constants.DamageTypePiercing)
+			else if (String.Equals(str, Constants.DamageTypePiercing, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Piercing;
 			}
-			else if (str == Constants.DamageTypePositiveEnergy)
+			else if (String.Equals(str, Constants.DamageTypePositiveEnergy, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.PositiveEnergy;
 			}
-			else if (str == Constants.DamageTypeSilver)
+			else if (String.Equals(str, Constants.DamageTypeSilver, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Silver;
 			}
-			else if (str == Constants.DamageTypeSlashing)
+			else if (String.Equals(str, Constants.DamageTypeSlashing, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Slashing;
 			}
-			else if (str == Constants.DamageTypeSonic)
+			else if (String.Equals(str, Constants.DamageTypeSonic, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Sonic;
 			}
-			else if (str == Constants.DamageTypeSubdual)
+			else if (String.Equals(str, Constants.DamageTypeSubdual, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Damage.Subdual;
 			}

@@ -17,6 +17,7 @@ namespace Dungeoneer.Model
 			_name = "";
 			_modifier = 0;
 			_type = Types.Attack.Primary;
+			_ability = Types.Ability.Strength;
 			_damages = new FullyObservableCollection<Damage>();
 			_threatRangeMin = 20;
 			_critMultiplier = 2;
@@ -26,6 +27,7 @@ namespace Dungeoneer.Model
 			string name,
 			int attackMod,
 			Types.Attack attackType,
+			Types.Ability ability,
 			FullyObservableCollection<Damage> damages,
 			int threatRangeMin,
 			int critMultiplier)
@@ -33,6 +35,7 @@ namespace Dungeoneer.Model
 			Name = name;
 			Modifier = attackMod;
 			Type = attackType;
+			Ability = ability;
 			Damages = damages;
 			ThreatRangeMin = threatRangeMin;
 			CritMultiplier = critMultiplier;
@@ -41,6 +44,7 @@ namespace Dungeoneer.Model
 		private string _name;
 		private int _modifier;
 		private Types.Attack _type;
+		private Types.Ability _ability;
 		private FullyObservableCollection<Damage> _damages;
 		private int _threatRangeMin;
 		private int _critMultiplier;
@@ -72,6 +76,16 @@ namespace Dungeoneer.Model
 			{
 				_type = value;
 				NotifyPropertyChanged("Type");
+			}
+		}
+
+		public Types.Ability Ability
+		{
+			get { return _ability; }
+			set
+			{
+				_ability = value;
+				NotifyPropertyChanged("Ability");
 			}
 		}
 
@@ -126,6 +140,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Methods.GetAttackTypeString(Type));
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("Ability");
+			xmlWriter.WriteString(Methods.GetAbilityString(Ability));
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteStartElement("Damages");
 			foreach (Damage damage in Damages)
 			{
@@ -161,6 +179,10 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "Type")
 					{
 						Type = Methods.GetAttackTypeFromString(childNode.InnerText);
+					}
+					else if (childNode.Name == "Ability")
+					{
+						Ability = Methods.GetAbilityFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "Damages")
 					{

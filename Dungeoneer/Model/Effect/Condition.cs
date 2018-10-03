@@ -89,11 +89,7 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 1;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
+			ChangeAttackModifier(creature, -1);
 			return creature;
 		}
 
@@ -189,11 +185,7 @@ namespace Dungeoneer.Model.Effect.Condition
 		{
 			creature.Speed /= 2;
 
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 2;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
+			ChangeAttackModifier(creature, -2);
 
 			creature.Dexterity -= 4;
 
@@ -298,11 +290,7 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 2;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
+			ChangeAttackModifier(creature, -2);
 
 			creature.FortitudeSave -= 2;
 			creature.ReflexSave -= 2;
@@ -404,11 +392,7 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 1;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
+			ChangeAttackModifier(creature, -1);
 
 			creature.FortitudeSave -= 1;
 			creature.ReflexSave -= 1;
@@ -522,11 +506,7 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 2;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
+			ChangeAttackModifier(creature, -2);
 
 			creature.FortitudeSave -= 2;
 			creature.ReflexSave -= 2;
@@ -551,11 +531,7 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			for (int i = 0; i < creature.Attacks.Count; ++i)
-			{
-				int newAttackMod = Convert.ToInt32(creature.Attacks[i].Modifier) - 2;
-				creature.Attacks[i].Modifier = newAttackMod.ToString();
-			}
+			ChangeAttackModifier(creature, -2);
 
 			creature.FortitudeSave -= 2;
 			creature.ReflexSave -= 2;

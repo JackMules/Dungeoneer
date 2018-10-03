@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Actor.cs" />
     <Compile Include="Model\ActorLibrary.cs" />
+    <Compile Include="Model\AttackSet.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\DamageDescriptorSet.cs" />
     <Compile Include="Model\Effect\Condition.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
+    <Compile Include="ViewModel\AttackSetViewModel.cs" />
     <Compile Include="ViewModel\DamageTypeSelectorViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
