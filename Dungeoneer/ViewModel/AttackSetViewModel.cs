@@ -15,5 +15,15 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private Model.AttackSet _attackSet;
+
+		public Model.AttackSet AttackSet
+		{
+			get { return _attackSet; }
+			set
+			{
+				_attackSet = value;
+				NotifyPropertyChanged("AttackSet");
+			}
+		}
 	}
 }

@@ -352,7 +352,13 @@ namespace Dungeoneer.ViewModel
 			InitiativeMod = nonPlayerActor.InitiativeMod.ToString();
 			Type = nonPlayerActor.Type;
 			ChallengeRating = nonPlayerActor.ChallengeRating.ToString();
-			AttackSets = nonPlayerActor.AttackSets;
+			foreach (Model.AttackSet attackSet in nonPlayerActor.AttackSets)
+			{
+				AttackSets.Add(new AttackSetViewModel
+				{
+					AttackSet = attackSet,
+				});
+			}
 		}
 
 		public void LoadCreature(Model.Creature creature)
