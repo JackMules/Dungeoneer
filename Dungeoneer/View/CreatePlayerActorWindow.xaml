@@ -28,9 +28,10 @@
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Grid.Column="1">
 			<ListBox ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}" MinWidth="140"/>
 		</ScrollViewer>
-		<StackPanel Grid.Row="2" Grid.Column="2">
-			<Button Command="{Binding AddWeapon}" ToolTip="Add Weapon" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding RemoveWeapon}" ToolTip="Remove Weapon" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+		<StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+			<Button Command="{Binding AddWeapon}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding EditWeapon}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding RemoveWeapon}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>
 		<StackPanel Grid.Row="3" Grid.ColumnSpan="3">
 			<Label x:Name="lblFeedback" Margin="0,5,0,0">

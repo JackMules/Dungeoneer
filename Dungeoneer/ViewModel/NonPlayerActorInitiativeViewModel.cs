@@ -42,12 +42,12 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<AttackViewModel> Attacks
+		public FullyObservableCollection<Model.AttackSet> AttackSets
 		{
-			get { return Actor.Attacks; }
+			get { return Actor.AttackSets; }
 			set
 			{
-				Actor.Attacks = value;
+				Actor.AttackSets = value;
 				NotifyPropertyChanged("Attacks");
 			}
 		}

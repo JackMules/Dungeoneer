@@ -82,17 +82,19 @@
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2">
 			<ListBox ItemsSource="{Binding Attacks}" SelectedIndex="{Binding SelectedAttack}"/>
 		</ScrollViewer>
-		<StackPanel Grid.Row="9" Grid.Column="6" Grid.RowSpan="2">
-			<Button Command="{Binding AddAttack}" ToolTip="Add Attack" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding RemoveAttack}" ToolTip="Remove Attack" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+		<StackPanel Grid.Row="9" Grid.Column="6" Grid.RowSpan="2" VerticalAlignment="Center">
+			<Button Command="{Binding AddAttack}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding EditAttack}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding RemoveAttack}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>
 		<Label Content="Damage&#10;Reductions" Grid.Row="11" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2">
 			<ListBox ItemsSource="{Binding DamageReductions}" SelectedIndex="{Binding SelectedDamageReduction}"/>
 		</ScrollViewer>
-		<StackPanel Grid.Row="11" Grid.Column="6" Grid.RowSpan="2">
-			<Button Command="{Binding AddDamageReduction}" ToolTip="Add Damage Reduction" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding RemoveDamageReduction}" ToolTip="Remove Damage Reduction" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+		<StackPanel Grid.Row="11" Grid.Column="6" Grid.RowSpan="2" VerticalAlignment="Center">
+			<Button Command="{Binding AddDamageReduction}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding EditDamageReduction}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding RemoveDamageReduction}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>
 <!--		<Label Content="Effects" Grid.Row="13" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2">

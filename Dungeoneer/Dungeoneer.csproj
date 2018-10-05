@@ -71,6 +71,7 @@
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
+    <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
@@ -98,6 +99,9 @@
     <Compile Include="ViewModel\PlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />
+    <Compile Include="View\AddAttackSetWindow.xaml.cs">
+      <DependentUpon>AddAttackSetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddDamageWindow.xaml.cs">
       <DependentUpon>AddDamageWindow.xaml</DependentUpon>
     </Compile>
@@ -171,6 +175,10 @@
     <Compile Include="View\ValueDisplay.xaml.cs">
       <DependentUpon>ValueDisplay.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddAttackSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddDamageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

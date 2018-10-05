@@ -207,7 +207,7 @@ namespace Dungeoneer.ViewModel
 				ActorLibrary.Enemies.Add(creature);
 			}
 		}
-
+		/*
 		private void CreateTestData()
 		{
 			Model.PlayerActor osprey = ActorLibrary.Characters.Single(i => i.ActorName == "Osprey");
@@ -235,7 +235,7 @@ namespace Dungeoneer.ViewModel
 			AttackViewModel grellAttackViewModel = new AttackViewModel { Attack = grellAttack };
 			FullyObservableCollection<AttackViewModel> grellAttacks = new FullyObservableCollection<AttackViewModel>();
 			grellAttacks.Add(grellAttackViewModel);
-			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmourClass = 14, HitPoints = 24, Attacks = grellAttacks };
+			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmourClass = 14, HitPoints = 24, AttackSets = grellAttacks };
 			ActorInitiativeViewModel grellViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(grell, Encounter);
 			grellViewModel.DisplayName = "Grell 1";
 			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeAdjust = "0", InitiativeMod = "6", InitiativeRoll = "5" };
@@ -256,5 +256,6 @@ namespace Dungeoneer.ViewModel
 			InitiativeCardViewModel troll2Card = new InitiativeCardViewModel { ActorViewModel = troll2ViewModel, InitiativeValueViewModel = troll2Init };
 			Encounter.AddInitiativeCard(troll2Card);
 		}
+		*/
 	}
 }
