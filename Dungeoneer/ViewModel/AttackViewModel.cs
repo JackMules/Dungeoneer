@@ -10,9 +10,16 @@ namespace Dungeoneer.ViewModel
 {
 	public class AttackViewModel : BaseViewModel
 	{
-		public AttackViewModel()
+		public AttackViewModel(Model.Attack attack = null)
 		{
-			_attack = new Model.Attack();
+			if (attack != null)
+			{
+				_attack = attack;
+			}
+			else
+			{
+				_attack = new Model.Attack();
+			}
 		}
 
 		private Model.Attack _attack;

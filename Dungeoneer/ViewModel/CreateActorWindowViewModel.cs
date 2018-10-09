@@ -12,12 +12,15 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreateActorWindowViewModel()
 		{
-			_attackSetViewModels = new FullyObservableCollection<AttackSetViewModel>();
+			_attackSets = new FullyObservableCollection<Model.AttackSet>();
 			_addAttackSet = new Command(ExecuteAddAttackSet);
+			_editAttackSet = new Command(ExecuteEditAttackSet);
 			_removeAttackSet = new Command(ExecuteRemoveAttackSet);
 			_addWeapon = new Command(ExecuteAddWeapon);
+			_editWeapon = new Command(ExecuteEditWeapon);
 			_removeWeapon = new Command(ExecuteRemoveWeapon);
 			_addDamageReduction = new Command(ExecuteAddDamageReduction);
+			_editDamageReduction = new Command(ExecuteEditDamageReduction);
 			_removeDamageReduction = new Command(ExecuteRemoveDamageReduction);
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 			_weapons = new ObservableCollection<Model.Weapon>();
@@ -28,7 +31,7 @@ namespace Dungeoneer.ViewModel
 		private string _initiativeMod;
 		private string _type;
 		private string _challengeRating;
-		private FullyObservableCollection<AttackSetViewModel> _attackSetViewModels;
+		private FullyObservableCollection<Model.AttackSet> _attackSets;
 		private string _strength;
 		private string _dexterity;
 		private string _constitution;
@@ -58,10 +61,13 @@ namespace Dungeoneer.ViewModel
 		private ObservableCollection<Model.Weapon> _weapons;
 
 		private Command _addAttackSet;
+		private Command _editAttackSet;
 		private Command _removeAttackSet;
 		private Command _addWeapon;
+		private Command _editWeapon;
 		private Command _removeWeapon;
 		private Command _addDamageReduction;
+		private Command _editDamageReduction;
 		private Command _removeDamageReduction;
 		private Command _openImportWindow;
 
@@ -289,13 +295,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<AttackSetViewModel> AttackSetViewModels
+		public FullyObservableCollection<Model.AttackSet> AttackSets
 		{
-			get { return _attackSetViewModels; }
+			get { return _attackSets; }
 			set
 			{
-				_attackSetViewModels = value;
-				NotifyPropertyChanged("Attacks");
+				_attackSets = value;
+				NotifyPropertyChanged("AttackSets");
 			}
 		}
 
@@ -354,10 +360,7 @@ namespace Dungeoneer.ViewModel
 			ChallengeRating = nonPlayerActor.ChallengeRating.ToString();
 			foreach (Model.AttackSet attackSet in nonPlayerActor.AttackSets)
 			{
-				AttackSetViewModels.Add(new AttackSetViewModel
-				{
-					AttackSet = attackSet,
-				});
+				AttackSets.Add(attackSet);
 			}
 		}
 
@@ -422,16 +425,6 @@ namespace Dungeoneer.ViewModel
 			return playerActor;
 		}
 
-		public FullyObservableCollection<Model.AttackSet> GetAttackSets(FullyObservableCollection<AttackSetViewModel> attackSetVMs)
-		{
-			FullyObservableCollection<Model.AttackSet> attackSets = new FullyObservableCollection<Model.AttackSet>();
-			foreach (AttackSetViewModel attackSetVM in attackSetVMs)
-			{
-				attackSets.Add(attackSetVM.AttackSet);
-			}
-			return attackSets;
-		}
-
 		public Model.NonPlayerActor GetNonPlayerActor()
 		{
 			bool askForInput = true;
@@ -451,7 +444,7 @@ namespace Dungeoneer.ViewModel
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToInt32(ChallengeRating),
-							AttackSets = GetAttackSets(AttackSetViewModels),
+							AttackSets = AttackSets,
 						};
 						askForInput = false;
 					}
@@ -488,7 +481,7 @@ namespace Dungeoneer.ViewModel
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToSingle(ChallengeRating),
-							AttackSets = GetAttackSets(AttackSetViewModels),
+							AttackSets = AttackSets,
 							Strength = Convert.ToInt32(Strength),
 							Dexterity = Convert.ToInt32(Dexterity),
 							Constitution = Convert.ToInt32(Constitution),
@@ -531,6 +524,11 @@ namespace Dungeoneer.ViewModel
 			get { return _addAttackSet; }
 		}
 
+		public Command EditAttackSet
+		{
+			get { return _editAttackSet; }
+		}
+
 		public Command RemoveAttackSet
 		{
 			get { return _removeAttackSet; }
@@ -542,19 +540,33 @@ namespace Dungeoneer.ViewModel
 			Model.AttackSet attackSet = addAttackSetWindowViewModel.GetAttackSet();
 			if (attackSet != null)
 			{
-				AttackSetViewModel attackSetViewModel = new AttackSetViewModel { AttackSet = attackSet };
-				AttackSetViewModels.Add(attackSetViewModel);
+				AttackSets.Add(attackSet);
+			}
+		}
+
+		private void ExecuteEditAttackSet()
+		{
+			AddAttackSetWindowViewModel addAttackSetWindowViewModel = new AddAttackSetWindowViewModel(AttackSets[SelectedAttackSet]);
+			Model.AttackSet attackSet = addAttackSetWindowViewModel.GetAttackSet();
+			if (attackSet != null)
+			{
+				AttackSets[SelectedAttackSet] = attackSet;
 			}
 		}
 
 		private void ExecuteRemoveAttackSet()
 		{
-			AttackSetViewModels.RemoveAt(SelectedAttackSet);
+			AttackSets.RemoveAt(SelectedAttackSet);
 		}
 
 		public Command AddWeapon
 		{
 			get { return _addWeapon; }
+		}
+
+		public Command EditWeapon
+		{
+			get { return _editWeapon; }
 		}
 
 		public Command RemoveWeapon
@@ -572,6 +584,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		private void ExecuteEditWeapon()
+		{
+			AddWeaponWindowViewModel addWeaponWindowViewModel = new AddWeaponWindowViewModel(Weapons[SelectedWeapon]);
+			Model.Weapon weapon = addWeaponWindowViewModel.GetWeapon();
+			if (weapon != null)
+			{
+				Weapons[SelectedWeapon] = weapon;
+			}
+		}
+
 		private void ExecuteRemoveWeapon()
 		{
 			Weapons.RemoveAt(SelectedWeapon);
@@ -580,6 +602,11 @@ namespace Dungeoneer.ViewModel
 		public Command AddDamageReduction
 		{
 			get { return _addDamageReduction; }
+		}
+
+		public Command EditDamageReduction
+		{
+			get { return _editDamageReduction; }
 		}
 
 		public Command RemoveDamageReduction
@@ -597,6 +624,11 @@ namespace Dungeoneer.ViewModel
 				DamageReductions.Add(dr);
 			}
 			*/
+		}
+
+		private void ExecuteEditDamageReduction()
+		{
+			
 		}
 
 		private void ExecuteRemoveDamageReduction()

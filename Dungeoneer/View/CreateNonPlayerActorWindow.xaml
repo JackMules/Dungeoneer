@@ -31,14 +31,14 @@
 		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Type}"/>
 		<Label Grid.Row="3" Grid.Column="0" Content="CR"/>
 		<TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding ChallengeRating}"/>
-		<Label Content="Attacks" Grid.Row="4" Grid.Column="0" Margin="0,0,0,5"/>
+		<Label Content="Attack&#10;Sets" Grid.Row="4" Grid.Column="0" Margin="0,0,0,5"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="4" Grid.Column="1">
-			<ListBox ItemsSource="{Binding Attacks}" SelectedIndex="{Binding SelectedAttack}"/>
+			<ListBox ItemsSource="{Binding AttackSetViewModels}" SelectedIndex="{Binding SelectedAttackSet}"/>
 		</ScrollViewer>
 		<StackPanel Grid.Row="4" Grid.Column="6" VerticalAlignment="Center">
-			<Button Command="{Binding AddAttack}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding EditAttack}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding RemoveAttack}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding AddAttackSet}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding EditAttackSet}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+			<Button Command="{Binding RemoveAttackSet}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>
 		<StackPanel Grid.Row="5" Grid.ColumnSpan="2">
 			<Label x:Name="lblFeedback" Margin="0,5,0,0">

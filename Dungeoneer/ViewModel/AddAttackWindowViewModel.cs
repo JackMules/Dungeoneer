@@ -10,18 +10,32 @@ namespace Dungeoneer.ViewModel
 {
 	public class AddAttackWindowViewModel : BaseViewModel
 	{
-		public AddAttackWindowViewModel()
+		public AddAttackWindowViewModel(Model.Attack attack = null)
 		{
 			_addDamage = new Command(ExecuteAddDamage);
+			_editDamage = new Command(ExecuteEditDamage);
 			_removeDamage = new Command(ExecuteRemoveDamage);
-			_name = "";
-			_modifier = "";
-			_type = 0;
-			_ability = 0;
-			_selectedThreatRangeMinimum = 0;
-			_selectedCritMultiplier = 0;
 			_damages = new FullyObservableCollection<DamageViewModel>();
-	}
+
+			if (attack != null)
+			{
+				_name = attack.Name;
+				_modifier = attack.Modifier.ToString();
+				_type = GetTypeIndex(attack.Type);
+				_ability = GetAbilityIndex(attack.Ability);
+				_selectedThreatRangeMinimum = GetThreatRangeIndex(attack.ThreatRangeMin);
+				_selectedCritMultiplier = GetCritMultiplierIndex(attack.CritMultiplier);
+			}
+			else
+			{
+				_name = "";
+				_modifier = "";
+				_type = 0;
+				_ability = 0;
+				_selectedThreatRangeMinimum = 0;
+				_selectedCritMultiplier = 0;
+			}
+		}
 
 		private string _name;
 		private string _modifier;
@@ -31,9 +45,58 @@ namespace Dungeoneer.ViewModel
 		private int _selectedCritMultiplier;
 		private FullyObservableCollection<DamageViewModel> _damages;
 		private Command _addDamage;
+		private Command _editDamage;
 		private Command _removeDamage;
 
 		public int SelectedDamage { get; set; }
+
+		private int GetTypeIndex(Types.Attack attackType)
+		{
+			for (int i = 0; i < AttackTypes.Count; ++i)
+			{
+				if (AttackTypes[i] == Methods.GetAttackTypeString(attackType))
+				{
+					return i;
+				}
+			}
+			return 0;
+		}
+
+		private int GetAbilityIndex(Types.Ability ability)
+		{
+			for (int i = 0; i < Abilities.Count; ++i)
+			{
+				if (Abilities[i] == Methods.GetAbilityString(ability))
+				{
+					return i;
+				}
+			}
+			return 0;
+		}
+
+		private int GetThreatRangeIndex(int threatRangeMin)
+		{
+			for (int i = 0; i < ThreatRanges.Count; ++i)
+			{
+				if (ThreatRanges[i] == Methods.GetThreatRangeString(threatRangeMin))
+				{
+					return i;
+				}
+			}
+			return 0;
+		}
+
+		private int GetCritMultiplierIndex(int critMultiplier)
+		{
+			for (int i = 0; i < CritMultipliers.Count; ++i)
+			{
+				if (CritMultipliers[i] == Methods.GetCritMultiplierString(critMultiplier))
+				{
+					return i;
+				}
+			}
+			return 0;
+		}
 
 		public string Name
 		{
@@ -193,6 +256,11 @@ namespace Dungeoneer.ViewModel
 			get { return _addDamage; }
 		}
 
+		public Command EditDamage
+		{
+			get { return _editDamage; }
+		}
+
 		public Command RemoveDamage
 		{
 			get { return _removeDamage; }
@@ -206,6 +274,17 @@ namespace Dungeoneer.ViewModel
 			{
 				DamageViewModel damageViewModel = new DamageViewModel { Damage = damage };
 				Damages.Add(damageViewModel);
+			}
+		}
+
+		private void ExecuteEditDamage()
+		{
+			AddDamageWindowViewModel addDamageWindowViewModel = new AddDamageWindowViewModel(Damages[SelectedDamage].Damage);
+			Model.Damage damage = addDamageWindowViewModel.GetDamage();
+			if (damage != null)
+			{
+				DamageViewModel damageViewModel = new DamageViewModel { Damage = damage };
+				Damages[SelectedDamage] = damageViewModel;
 			}
 		}
 

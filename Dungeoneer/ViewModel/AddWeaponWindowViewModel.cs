@@ -9,13 +9,34 @@ namespace Dungeoneer.ViewModel
 {
 	public class AddWeaponWindowViewModel : BaseViewModel
 	{
-		public AddWeaponWindowViewModel()
+		public AddWeaponWindowViewModel(Model.Weapon weapon = null)
 		{
-			_name = "";
-			_abilityDamage = false;
 			_damageTypeSelectorViewModel1 = new DamageTypeSelectorViewModel();
 			_damageTypeSelectorViewModel2 = new DamageTypeSelectorViewModel();
 			_damageTypeSelectorViewModel3 = new DamageTypeSelectorViewModel();
+
+			if (weapon != null)
+			{
+				_name = weapon.Name;
+				_abilityDamage = weapon.AbilityDamage;
+				if (weapon.DamageDescriptorSets.Count < 0)
+				{
+					_damageTypeSelectorViewModel1.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[0]);
+				}
+				if (weapon.DamageDescriptorSets.Count < 1)
+				{
+					_damageTypeSelectorViewModel2.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[1]);
+				}
+				if (weapon.DamageDescriptorSets.Count < 2)
+				{
+					_damageTypeSelectorViewModel3.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[2]);
+				}
+			}
+			else
+			{
+				_name = "";
+				_abilityDamage = false;
+			}
 		}
 
 		private string _name;

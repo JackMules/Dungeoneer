@@ -10,9 +10,17 @@ namespace Dungeoneer.ViewModel
 {
 	public class AddDamageWindowViewModel : BaseViewModel
 	{
-		public AddDamageWindowViewModel()
+		public AddDamageWindowViewModel(Model.Damage damage = null)
 		{
 			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
+
+			if (damage != null)
+			{
+				_numDice = damage.NumDice;
+				_die = damage.Die;
+				_modifier = damage.Modifier;
+				_damageTypeSelectorViewModel.SetFromDamageDescriptorSet(damage.DamageDescriptorSet);
+			}
 		}
 
 		private string _numDice;

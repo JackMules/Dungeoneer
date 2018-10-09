@@ -9,12 +9,24 @@ namespace Dungeoneer.ViewModel
 {
 	public class AddAttackSetWindowViewModel : BaseViewModel
 	{
-		public AddAttackSetWindowViewModel()
+		public AddAttackSetWindowViewModel(Model.AttackSet attackSet = null)
 		{
-			_name = "Attack";
 			_attackViewModels = new FullyObservableCollection<AttackViewModel>();
 			_addAttack = new Command(ExecuteAddAttack);
 			_removeAttack = new Command(ExecuteRemoveAttack);
+
+			if (attackSet != null)
+			{
+				_name = attackSet.Name;
+				foreach (Model.Attack attack in attackSet.Attacks)
+				{
+					_attackViewModels.Add(new AttackViewModel(attack));
+				}
+			}
+			else
+			{
+				_name = "Attack";
+			}
 		}
 
 		private string _name;
@@ -98,6 +110,17 @@ namespace Dungeoneer.ViewModel
 			{
 				AttackViewModel attackViewModel = new AttackViewModel { Attack = attack };
 				AttackViewModels.Add(attackViewModel);
+			}
+		}
+
+		private void ExecuteEditAttack()
+		{
+			AddAttackWindowViewModel addAttackWindowViewModel = new AddAttackWindowViewModel(AttackViewModels[SelectedAttack].Attack);
+			Model.Attack attack = addAttackWindowViewModel.GetAttack();
+			if (attack != null)
+			{
+				AttackViewModel attackViewModel = new AttackViewModel { Attack = attack };
+				AttackViewModels[SelectedAttack] = attackViewModel;
 			}
 		}
 
