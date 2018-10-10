@@ -22,7 +22,7 @@
 		<TextBox Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
 									Margin="0,5,0,0">
-			<ListBox ItemsSource="{Binding Attacks}" SelectedIndex="{Binding SelectedAttack}"/>
+			<ListBox ItemsSource="{Binding AttackViewModels}" SelectedIndex="{Binding SelectedAttack}"/>
 		</ScrollViewer>
 		<StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center" Margin="0,5,0,0">
 			<Button Command="{Binding AddAttack}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>

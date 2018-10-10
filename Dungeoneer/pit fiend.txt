@@ -1,0 +1,22 @@
+Size/Type:	Large Outsider (Evil, Extraplanar, Lawful)
+Hit Dice:	18d8+144 (225 hp)
+Initiative:	+12
+Speed:	40 ft. (8 squares), fly 60 ft. (average)
+Armor Class:	40 (-1 size, +8 Dex, +23 natural), touch 17, flat-footed 32
+Base Attack/Grapple:	+18/+35
+Attack:	Claw +30 melee (2d8+13)
+Full Attack:	2 claws +30 melee (2d8+13) and 2 wings +28 melee (2d6+6) and bite +28 melee (4d6+6 plus poison plus disease) and tail slap +28 melee (2d8+6)
+Space/Reach:	10 ft./10 ft.
+Special Attacks:	Constrict 2d8+26, fear aura, improved grab, spell-like abilities, summon devil
+Special Qualities:	Damage reduction 15/good and silver, darkvision 60 ft., immunity to fire and poison, resistance to acid 10 and cold 10, regeneration 5, see in darkness, spell resistance 32, telepathy 100 ft.
+Saves:	Fort +19, Ref +19, Will +21
+Abilities:	Str 37, Dex 27, Con 27, Int 26, Wis 26, Cha 26
+Skills:	Balance +10, Bluff +29, Climb +34, Concentration +29, Diplomacy +10, Disguise +29 (+31 acting), Hide +25, Intimidate +31, Jump +40, Knowledge (arcana) +29, Knowledge (nature) +10, Knowledge (the planes) +29, Knowledge (religion) +29, Listen +29, Move Silently +29, Search +29, Spellcraft +31, Spot +29, Survival +8 (+10 on other planes, +10 when tracking), Tumble +31
+Feats:	Cleave, Great Cleave, Improved Initiative, Iron Will, Multiattack, Power Attack, Quicken Spell-Like Ability (fireball)
+Environment:	A lawful evil-aligned plane
+Organization:	Solitary, pair, team (3-4), or troupe (1-2 pit fiends, 2-5 horned devils, and 2-5 barbed devils)
+Challenge Rating:	20
+Treasure:	Standard coins; double goods; standard items
+Alignment:	Always lawful evil
+Advancement:	19-36 HD (Large); 37-54 HD (Huge)
+Level Adjustment:	—

@@ -121,7 +121,7 @@ namespace Dungeoneer.Model
 
 		public override string ToString()
 		{
-			return Methods.GetAttackTypeString(Type) + ": " + Methods.GetSignedNumberString(Modifier) + ", " + Methods.GetDamageString(Damages);
+			return Name + " (" + Methods.GetAttackTypeString(Type) + "): " + Methods.GetSignedNumberString(Modifier) + ", " + Methods.GetDamageString(Damages);
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)

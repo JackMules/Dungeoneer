@@ -13,6 +13,7 @@ namespace Dungeoneer.ViewModel
 		{
 			_attackViewModels = new FullyObservableCollection<AttackViewModel>();
 			_addAttack = new Command(ExecuteAddAttack);
+			_editAttack = new Command(ExecuteEditAttack);
 			_removeAttack = new Command(ExecuteRemoveAttack);
 
 			if (attackSet != null)
@@ -32,6 +33,7 @@ namespace Dungeoneer.ViewModel
 		private string _name;
 		private FullyObservableCollection<AttackViewModel> _attackViewModels;
 		private Command _addAttack;
+		private Command _editAttack;
 		private Command _removeAttack;
 
 		public int SelectedAttack { get; set; }
@@ -97,6 +99,11 @@ namespace Dungeoneer.ViewModel
 			get { return _addAttack; }
 		}
 
+		public Command EditAttack
+		{
+			get { return _editAttack; }
+		}
+
 		public Command RemoveAttack
 		{
 			get { return _removeAttack; }
@@ -115,12 +122,15 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditAttack()
 		{
-			AddAttackWindowViewModel addAttackWindowViewModel = new AddAttackWindowViewModel(AttackViewModels[SelectedAttack].Attack);
-			Model.Attack attack = addAttackWindowViewModel.GetAttack();
-			if (attack != null)
+			if (SelectedAttack < AttackViewModels.Count)
 			{
-				AttackViewModel attackViewModel = new AttackViewModel { Attack = attack };
-				AttackViewModels[SelectedAttack] = attackViewModel;
+				AddAttackWindowViewModel addAttackWindowViewModel = new AddAttackWindowViewModel(AttackViewModels[SelectedAttack].Attack);
+				Model.Attack attack = addAttackWindowViewModel.GetAttack();
+				if (attack != null)
+				{
+					AttackViewModel attackViewModel = new AttackViewModel { Attack = attack };
+					AttackViewModels[SelectedAttack] = attackViewModel;
+				}
 			}
 		}
 

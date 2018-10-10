@@ -25,6 +25,15 @@ namespace Dungeoneer.ViewModel
 				_ability = GetAbilityIndex(attack.Ability);
 				_selectedThreatRangeMinimum = GetThreatRangeIndex(attack.ThreatRangeMin);
 				_selectedCritMultiplier = GetCritMultiplierIndex(attack.CritMultiplier);
+
+				foreach (Model.Damage damage in attack.Damages)
+				{
+					DamageViewModel damageVM = new DamageViewModel
+					{
+						Damage = damage,
+					};
+					_damages.Add(damageVM);
+				}
 			}
 			else
 			{
@@ -279,12 +288,15 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditDamage()
 		{
-			AddDamageWindowViewModel addDamageWindowViewModel = new AddDamageWindowViewModel(Damages[SelectedDamage].Damage);
-			Model.Damage damage = addDamageWindowViewModel.GetDamage();
-			if (damage != null)
+			if (SelectedDamage < Damages.Count)
 			{
-				DamageViewModel damageViewModel = new DamageViewModel { Damage = damage };
-				Damages[SelectedDamage] = damageViewModel;
+				AddDamageWindowViewModel addDamageWindowViewModel = new AddDamageWindowViewModel(Damages[SelectedDamage].Damage);
+				Model.Damage damage = addDamageWindowViewModel.GetDamage();
+				if (damage != null)
+				{
+					DamageViewModel damageViewModel = new DamageViewModel { Damage = damage };
+					Damages[SelectedDamage] = damageViewModel;
+				}
 			}
 		}
 

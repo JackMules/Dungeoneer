@@ -16,9 +16,9 @@ namespace Dungeoneer.ViewModel
 
 			if (damage != null)
 			{
-				_numDice = damage.NumDice;
-				_die = damage.Die;
-				_modifier = damage.Modifier;
+				_numDice = damage.NumDice.ToString();
+				_die = GetDieTypeIndex(damage.Die);
+				_modifier = damage.Modifier.ToString();
 				_damageTypeSelectorViewModel.SetFromDamageDescriptorSet(damage.DamageDescriptorSet);
 			}
 		}
@@ -27,6 +27,18 @@ namespace Dungeoneer.ViewModel
 		private int _die;
 		private string _modifier;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel;
+
+		private int GetDieTypeIndex(Types.Die dieType)
+		{
+			for (int i = 0; i < DieTypes.Count; ++i)
+			{
+				if (DieTypes[i] == Methods.GetDieTypeString(dieType))
+				{
+					return i;
+				}
+			}
+			return 0;
+		}
 
 		public string NumDice
 		{

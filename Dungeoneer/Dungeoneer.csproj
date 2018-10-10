@@ -161,7 +161,7 @@
       <DependentUpon>CreateCreatureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Creature.cs" />
-    <Compile Include="Model\InitiativeValue.cs" />
+    <Compile Include="View\InitiativeValue.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Model\NonPlayerActor.cs" />
     <Compile Include="Utility\Utility.cs" />

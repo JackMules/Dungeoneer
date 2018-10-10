@@ -546,11 +546,14 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditAttackSet()
 		{
-			AddAttackSetWindowViewModel addAttackSetWindowViewModel = new AddAttackSetWindowViewModel(AttackSets[SelectedAttackSet]);
-			Model.AttackSet attackSet = addAttackSetWindowViewModel.GetAttackSet();
-			if (attackSet != null)
+			if (SelectedAttackSet < AttackSets.Count)
 			{
-				AttackSets[SelectedAttackSet] = attackSet;
+				AddAttackSetWindowViewModel addAttackSetWindowViewModel = new AddAttackSetWindowViewModel(AttackSets[SelectedAttackSet]);
+				Model.AttackSet attackSet = addAttackSetWindowViewModel.GetAttackSet();
+				if (attackSet != null)
+				{
+					AttackSets[SelectedAttackSet] = attackSet;
+				}
 			}
 		}
 
@@ -586,11 +589,14 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditWeapon()
 		{
-			AddWeaponWindowViewModel addWeaponWindowViewModel = new AddWeaponWindowViewModel(Weapons[SelectedWeapon]);
-			Model.Weapon weapon = addWeaponWindowViewModel.GetWeapon();
-			if (weapon != null)
+			if (SelectedWeapon < Weapons.Count)
 			{
-				Weapons[SelectedWeapon] = weapon;
+				AddWeaponWindowViewModel addWeaponWindowViewModel = new AddWeaponWindowViewModel(Weapons[SelectedWeapon]);
+				Model.Weapon weapon = addWeaponWindowViewModel.GetWeapon();
+				if (weapon != null)
+				{
+					Weapons[SelectedWeapon] = weapon;
+				}
 			}
 		}
 

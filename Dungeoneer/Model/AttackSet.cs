@@ -12,7 +12,7 @@ namespace Dungeoneer.Model
 	{
 		public AttackSet()
 		{
-
+			_attacks = new FullyObservableCollection<Attack>();
 		}
 
 		private string _name;
@@ -35,6 +35,18 @@ namespace Dungeoneer.Model
 			{
 				_attacks = value;
 				NotifyPropertyChanged("Attacks");
+			}
+		}
+
+		public override string ToString()
+		{
+			if (Name != "")
+			{
+				return Name;
+			}
+			else
+			{
+				return "Unnamed attack set";
 			}
 		}
 
