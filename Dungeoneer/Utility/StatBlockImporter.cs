@@ -99,6 +99,7 @@ namespace Dungeoneer.Utility
 								additionalDamage.NumDice = numbers[4];
 								additionalDamage.Die = Methods.GetDieTypeFromInt(numbers[5]);
 								additionalDamage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(words[7]));
+								attack.Damages.Add(additionalDamage);
 							}
 
 							Model.AttackSet standardAttack = new Model.AttackSet
@@ -112,6 +113,28 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Full Attack")
 						{
+							string[] attackStrings = splitLine[1].Split(new string[] { " and " }, StringSplitOptions.RemoveEmptyEntries);
+
+							foreach (string attackStr in attackStrings)
+							{
+								List<int> nums = GetNumbersFromString(attackStr);
+
+								string[] splitAttackStr = attackStr.Split(' ');
+								int numAttacks = 1;
+								if (int.TryParse(splitAttackStr[0], out int n))
+								{
+									numAttacks = n;
+									nums.RemoveAt(0);
+								}
+
+								int attackMod = nums[0];
+								int numDice = nums[1];
+								int dieType = nums[2];
+								int damageMod = nums[3];
+
+								
+								
+							}
 							Model.Attack attack = new Model.Attack();
 							attack.Name = words[0];
 							attack.Modifier = numbers[0];
@@ -186,6 +209,33 @@ namespace Dungeoneer.Utility
 			}
 
 			return creature;
+		}
+
+		private static Model.Attack GetAttack(string name, int attackMod, Types.Attack attackType, List<Model.Damage> damages)
+		{
+			Model.Attack attack = new Model.Attack();
+			attack.Name = name;
+			attack.Modifier = attackMod;
+			attack.Type = attackType;
+			foreach (Model.Damage damage in damages)
+			{
+				attack.Damages.Add(damage);
+			}
+			return attack;
+		}
+
+		private static Model.Damage GetDamage(int numDice, Types.Die die, int damageMod, string[] damageTypeStrings)
+		{
+			Model.Damage damage = new Model.Damage();
+			damage.NumDice = numDice;
+			damage.Die = die;
+			damage.Modifier = damageMod;
+			foreach (string damageTypeString in damageTypeStrings)
+			{
+				damage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(damageTypeString));
+			}
+			
+			return damage;
 		}
 	}
 }

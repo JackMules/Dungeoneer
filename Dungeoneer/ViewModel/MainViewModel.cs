@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
 using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
@@ -26,9 +29,11 @@ namespace Dungeoneer.ViewModel
 			_createNonPlayerActor = new Command(ExecuteCreateNonPlayerActor);
 			_createCreature = new Command(ExecuteCreateCreature);
 
-//			CreateTestData();
+			SaveTimer = new System.Threading.Timer(new TimerCallback(DoChangeRefresh), null, Timeout.Infinite, Timeout.Infinite);
+			//			CreateTestData();
 		}
 
+		private System.Threading.Timer SaveTimer;
 		private Model.ActorLibrary _actorLibrary;
 		private EncounterViewModel _encounter;
 		private Command _addActor;
@@ -257,5 +262,103 @@ namespace Dungeoneer.ViewModel
 			Encounter.AddInitiativeCard(troll2Card);
 		}
 		*/
+		
+		public double WindowWidth
+		{
+			get
+			{
+				return Properties.Settings.Default.WindowWidth;
+			}
+			set
+			{
+				if (Properties.Settings.Default.WindowWidth != value)
+				{
+					Properties.Settings.Default.WindowWidth = value;
+					NotifyPropertyChanged("WindowWidth");
+					RestartTimer();
+				}
+			}
+		}
+
+		public double WindowHeight
+		{
+			get
+			{
+				return Properties.Settings.Default.WindowHeight;
+			}
+			set
+			{
+				if (Properties.Settings.Default.WindowHeight != value)
+				{
+					Properties.Settings.Default.WindowHeight = value;
+					NotifyPropertyChanged("WindowHeight");
+					RestartTimer();
+				}
+			}
+		}
+
+		public double WindowTop
+		{
+			get
+			{
+				return Properties.Settings.Default.WindowTop;
+			}
+			set
+			{
+				if (Properties.Settings.Default.WindowTop != value)
+				{
+					Properties.Settings.Default.WindowTop = value;
+					NotifyPropertyChanged("WindowTop");
+					RestartTimer();
+				}
+			}
+		}
+
+		public double WindowLeft
+		{
+			get
+			{
+				return Properties.Settings.Default.WindowLeft;
+			}
+			set
+			{
+				if (Properties.Settings.Default.WindowLeft != value)
+				{
+					Properties.Settings.Default.WindowLeft = value;
+					NotifyPropertyChanged("WindowLeft");
+					RestartTimer();
+				}
+			}
+		}
+
+		public System.Windows.WindowState WindowState
+		{
+			get
+			{
+				return (System.Windows.WindowState)Enum.Parse(typeof(System.Windows.WindowState), Properties.Settings.Default.WindowState);
+			}
+			set
+			{
+				if (Properties.Settings.Default.WindowState != value.ToString())
+				{
+					Properties.Settings.Default.WindowState = value.ToString();
+					Properties.Settings.Default.Save();
+					NotifyPropertyChanged("WindowState");
+				}
+			}
+		}
+
+		void DoChangeRefresh(object state)
+		{
+			System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+			{
+				Properties.Settings.Default.Save();
+			}));
+		}
+
+		void RestartTimer()
+		{
+			SaveTimer.Change(200, Timeout.Infinite);
+		}
 	}
 }
