@@ -87,7 +87,7 @@ namespace Dungeoneer.Utility
 							Model.Attack attack = new Model.Attack();
 							attack.Name = words[0];
 							attack.Modifier = numbers[0];
-							attack.Type = Types.Attack.Primary;
+							attack.Type = Types.Attack.Melee;
 							Model.Damage damage = new Model.Damage();
 							damage.NumDice = numbers[1];
 							damage.Die = Methods.GetDieTypeFromInt(numbers[2]);
@@ -113,24 +113,39 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Full Attack")
 						{
+							// split multiple full attacks out with "or"
+
 							string[] attackStrings = splitLine[1].Split(new string[] { " and " }, StringSplitOptions.RemoveEmptyEntries);
 
 							foreach (string attackStr in attackStrings)
 							{
-								List<int> nums = GetNumbersFromString(attackStr);
-
-								string[] splitAttackStr = attackStr.Split(' ');
 								int numAttacks = 1;
-								if (int.TryParse(splitAttackStr[0], out int n))
-								{
-									numAttacks = n;
-									nums.RemoveAt(0);
-								}
+								string name = "";
+								int attackMod = 0;
+								Types.Attack attackType = Types.Attack.Melee;
 
-								int attackMod = nums[0];
-								int numDice = nums[1];
-								int dieType = nums[2];
-								int damageMod = nums[3];
+								string attackPattern = @"(?<NumAttacks>\d+)\s(?<Name>\w+)(?<AttackMod>[\+\-\]d+)\s(?<Type>\w+\s?[A-Za-z]*)\s\((?<Damage>.*)\)";
+								Regex attackRegex = new Regex(attackPattern, RegexOptions.IgnoreCase);
+								Match attackMatch = attackRegex.Match(text);
+								if (attackMatch.Success)
+								{
+									numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
+									name = attackMatch.Groups["Name"].Value;
+									attackMod = Convert.ToInt32(attackMatch.Groups["AttackMod"].Value);
+									attackType = Methods.GetAttackTypeFromString(attackMatch.Groups["Type"].Value);
+										
+									string damageStr = attackMatch.Groups["Damage"].Value;
+									string damagePattern = @"(?<NumDice>\d+)(?<Die>d\d+)(?<DamageMod>[\+\-]?\d*)\s?(?<DamageType>\w+)?)";
+									Regex damageRegex = new Regex(damagePattern, RegexOptions.IgnoreCase);
+									MatchCollection damageMatches = damageRegex.Matches(damageStr);
+
+									foreach (Match damageMatch in damageMatches)
+									{
+										int numDice = Convert.ToInt32(damageMatch.Groups["NumDice"].Value);
+										Types.Die die = Methods.GetDieTypeFromString(damageMatch.Groups["Die"].Value);
+										int damageMod = Convert.ToInt32(damageMatch.Groups["DamageMod"].Value);
+									}
+								}
 
 								
 								
@@ -138,7 +153,7 @@ namespace Dungeoneer.Utility
 							Model.Attack attack = new Model.Attack();
 							attack.Name = words[0];
 							attack.Modifier = numbers[0];
-							attack.Type = Types.Attack.Primary;
+							attack.Type = Types.Attack.Melee;
 							Model.Damage damage = new Model.Damage();
 							damage.NumDice = numbers[1];
 							damage.Die = Methods.GetDieTypeFromInt(numbers[2]);

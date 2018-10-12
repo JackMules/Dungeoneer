@@ -27,12 +27,11 @@ namespace Dungeoneer.Utility
 		public static readonly string SizeColossal = "Colossal";
 		public static readonly string SizeColossalPlus = "Colossal+";
 
-		public static readonly string AttackTypePrimary = "Melee Primary";
-		public static readonly string AttackTypeSecondary = "Melee Secondary";
-		public static readonly string AttackTypeRanged = "Ranged";
-		public static readonly string AttackTypeTouch = "Touch";
-		public static readonly string AttackTypeRangedTouch = "Ranged Touch";
-		public static readonly string AttackTypeIncorporealTouch = "Incorporeal Touch";
+		public static readonly string AttackTypeMelee = "melee";
+		public static readonly string AttackTypeRanged = "ranged";
+		public static readonly string AttackTypeMeleeTouch = "melee touch";
+		public static readonly string AttackTypeRangedTouch = "ranged touch";
+		public static readonly string AttackTypeIncorporealTouch = "incorporeal touch";
 
 		public static readonly string DamageTypeAcid = "Acid";
 		public static readonly string DamageTypeAdamantine = "Adamantine";
@@ -127,10 +126,9 @@ namespace Dungeoneer.Utility
 		
 		public static readonly List<string> AttackTypeStrings = new List<string>
 		{
-			Methods.GetAttackTypeString(Types.Attack.Primary),
-			Methods.GetAttackTypeString(Types.Attack.Secondary),
+			Methods.GetAttackTypeString(Types.Attack.Melee),
 			Methods.GetAttackTypeString(Types.Attack.Ranged),
-			Methods.GetAttackTypeString(Types.Attack.Touch),
+			Methods.GetAttackTypeString(Types.Attack.MeleeTouch),
 			Methods.GetAttackTypeString(Types.Attack.RangedTouch),
 			Methods.GetAttackTypeString(Types.Attack.IncorporealTouch),
 		};
@@ -243,10 +241,9 @@ namespace Dungeoneer.Utility
 
 		public enum Attack
 		{
-			Primary,
-			Secondary,
+			Melee,
 			Ranged,
-			Touch,
+			MeleeTouch,
 			RangedTouch,
 			IncorporealTouch,
 		}
@@ -768,29 +765,36 @@ namespace Dungeoneer.Utility
 		{
 			switch (attackType)
 			{
-				case Types.Attack.Primary:					return Constants.AttackTypePrimary;
-				case Types.Attack.Secondary:				return Constants.AttackTypeSecondary;
-				case Types.Attack.Ranged:						return Constants.AttackTypeRanged;
-				case Types.Attack.Touch:						return Constants.AttackTypeTouch;
-				case Types.Attack.RangedTouch:			return Constants.AttackTypeRangedTouch;
-				case Types.Attack.IncorporealTouch: return Constants.AttackTypeIncorporealTouch;
-				default:														return "Unrecognised attack type";
+				case Types.Attack.Melee:									return Constants.AttackTypeMelee;
+				case Types.Attack.Ranged:									return Constants.AttackTypeRanged;
+				case Types.Attack.MeleeTouch:							return Constants.AttackTypeMeleeTouch;
+				case Types.Attack.RangedTouch:						return Constants.AttackTypeRangedTouch;
+				case Types.Attack.IncorporealTouch:				return Constants.AttackTypeIncorporealTouch;
+				default:																	return "Unrecognised attack type";
 			}
 		}
 
 		public static Types.Attack GetAttackTypeFromString(string str)
 		{
-			if (str == Constants.AttackTypePrimary)
+			if (str == Constants.AttackTypeMelee)
 			{
-				return Types.Attack.Primary;
-			}
-			else if (str == Constants.AttackTypeSecondary)
-			{
-				return Types.Attack.Secondary;
+				return Types.Attack.Melee;
 			}
 			else if (str == Constants.AttackTypeRanged)
 			{
 				return Types.Attack.Ranged;
+			}
+			else if (str == Constants.AttackTypeMeleeTouch)
+			{
+				return Types.Attack.MeleeTouch;
+			}
+			else if (str == Constants.AttackTypeRangedTouch)
+			{
+				return Types.Attack.RangedTouch;
+			}
+			else if (str == Constants.AttackTypeIncorporealTouch)
+			{
+				return Types.Attack.IncorporealTouch;
 			}
 			else
 			{

@@ -1,0 +1,22 @@
+Size/Type:	Huge Elemental (Fire, Extraplanar)
+Hit Dice:	16d8+64 (136 hp)
+Initiative:	+11	
+Speed:	60 ft. (12 squares)	
+Armor Class:	19 (-2 size, +7 Dex, +4 natural), touch 15, flat-footed 12	
+Base Attack/Grapple:	+12/+24	
+Attack:	Slam +17 melee (2d8+4 plus 2d8 fire)	
+Full Attack:	2 slams +17 melee (2d8+4 plus 2d8 fire)	
+Space/Reach:	15 ft./15 ft.	
+Special Attacks:	Burn
+Special Qualities:	Damage reduction 5/-, darkvision 60 ft., elemental traits, immunity to fire, vulnerability to cold	
+Saves:	Fort +9, Ref +17, Will +7	
+Abilities:	Str 18, Dex 25, Con 18, Int 6, Wis 11, Cha 11	
+Skills:	Listen +11, Spot +12	
+Feats:	Alertness, Combat Reflexes, Dodge, Improved InitiativeB, Iron Will, Mobility, Spring Attack, Weapon FinesseB	
+Environment:	Elemental Plane of Fire	
+Organization:	Solitary	
+Challenge Rating:	7	
+Treasure:	None	
+Alignment:	Usually neutral	
+Advancement:	17-20 HD (Huge)
+Level Adjustment:	—

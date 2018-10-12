@@ -16,7 +16,7 @@ namespace Dungeoneer.Model
 		{
 			_name = "";
 			_modifier = 0;
-			_type = Types.Attack.Primary;
+			_type = Types.Attack.Melee;
 			_ability = Types.Ability.Strength;
 			_damages = new FullyObservableCollection<Damage>();
 			_threatRangeMin = 20;
