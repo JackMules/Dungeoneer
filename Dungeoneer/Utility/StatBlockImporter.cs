@@ -42,7 +42,8 @@ namespace Dungeoneer.Utility
 						currentLine = line;
 						string[] splitLine = line.Split(':');
 						string identifier = splitLine[0];
-						List<int> numbers = GetNumbersFromString(splitLine[1]);
+						string entry = splitLine[1];
+						List<int> numbers = GetNumbersFromString(entry);
 						string[] tokens = splitLine[1].Split(' ');
 						List<string> words = new List<string>();
 						foreach (string token in tokens)
@@ -82,99 +83,59 @@ namespace Dungeoneer.Utility
 						{
 							creature.BaseAttackBonus = numbers[0];
 						}
-						else if (identifier == "Attack")
+						else if (identifier == "Attack" || identifier == "Full Attack")
 						{
-							Model.Attack attack = new Model.Attack();
-							attack.Name = words[0];
-							attack.Modifier = numbers[0];
-							attack.Type = Types.Attack.Melee;
-							Model.Damage damage = new Model.Damage();
-							damage.NumDice = numbers[1];
-							damage.Die = Methods.GetDieTypeFromInt(numbers[2]);
-							damage.Modifier = numbers[3];
-							attack.Damages.Add(damage);
-							if (words[5] == "plus")
+							Model.AttackSet attackSet = new Model.AttackSet
 							{
-								Model.Damage additionalDamage = new Model.Damage();
-								additionalDamage.NumDice = numbers[4];
-								additionalDamage.Die = Methods.GetDieTypeFromInt(numbers[5]);
-								additionalDamage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(words[7]));
-								attack.Damages.Add(additionalDamage);
-							}
-
-							Model.AttackSet standardAttack = new Model.AttackSet
-							{
-								Name = "Standard Attack",
+								Name = identifier,
 							};
 
-							standardAttack.Attacks.Add(attack);
-
-							creature.AttackSets.Add(standardAttack);
-						}
-						else if (identifier == "Full Attack")
-						{
-							// split multiple full attacks out with "or"
-
-							string[] attackStrings = splitLine[1].Split(new string[] { " and " }, StringSplitOptions.RemoveEmptyEntries);
-
-							foreach (string attackStr in attackStrings)
+							string attackPattern = @"(?<NumAttacks>\d+)?\s(?<Name>\D+)\s(?<AttackMod>[\+\-]\d+)\s(?<Type>\D+\s?\D*)\s\((?<Damage>.*)\)";
+							Regex attackRegex = new Regex(attackPattern, RegexOptions.IgnoreCase);
+							MatchCollection attackMatches = attackRegex.Matches(entry);
+							foreach (Match attackMatch in attackMatches)
 							{
 								int numAttacks = 1;
-								string name = "";
-								int attackMod = 0;
-								Types.Attack attackType = Types.Attack.Melee;
 
-								string attackPattern = @"(?<NumAttacks>\d+)\s(?<Name>\w+)(?<AttackMod>[\+\-\]d+)\s(?<Type>\w+\s?[A-Za-z]*)\s\((?<Damage>.*)\)";
-								Regex attackRegex = new Regex(attackPattern, RegexOptions.IgnoreCase);
-								Match attackMatch = attackRegex.Match(text);
-								if (attackMatch.Success)
+								if (attackMatch.Groups["NumAttacks"].Value != "")
 								{
-									numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
-									name = attackMatch.Groups["Name"].Value;
-									attackMod = Convert.ToInt32(attackMatch.Groups["AttackMod"].Value);
-									attackType = Methods.GetAttackTypeFromString(attackMatch.Groups["Type"].Value);
-										
+									Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
+								}
+
+								for (int i = 0; i < numAttacks; ++i)
+								{
+									Model.Attack attack = new Model.Attack();
+									
+									attack.Name = attackMatch.Groups["Name"].Value;
+									attack.Modifier = Convert.ToInt32(attackMatch.Groups["AttackMod"].Value);
+									attack.Type = Methods.GetAttackTypeFromString(attackMatch.Groups["Type"].Value);
+
 									string damageStr = attackMatch.Groups["Damage"].Value;
-									string damagePattern = @"(?<NumDice>\d+)(?<Die>d\d+)(?<DamageMod>[\+\-]?\d*)\s?(?<DamageType>\w+)?)";
+									string damagePattern = @"(?<NumDice>\d+)(?<Die>d\d+)(?<DamageMod>[\+\-]?\d*)\s?(?<DamageType>(?!plus\b)\b\w+)?";
 									Regex damageRegex = new Regex(damagePattern, RegexOptions.IgnoreCase);
 									MatchCollection damageMatches = damageRegex.Matches(damageStr);
 
 									foreach (Match damageMatch in damageMatches)
 									{
-										int numDice = Convert.ToInt32(damageMatch.Groups["NumDice"].Value);
-										Types.Die die = Methods.GetDieTypeFromString(damageMatch.Groups["Die"].Value);
-										int damageMod = Convert.ToInt32(damageMatch.Groups["DamageMod"].Value);
+										Model.Damage damage = new Model.Damage();
+										damage.NumDice = Convert.ToInt32(damageMatch.Groups["NumDice"].Value);
+										damage.Die = Methods.GetDieTypeFromString(damageMatch.Groups["Die"].Value);
+										if (damageMatch.Groups["DamageMod"].Value != "")
+										{
+											damage.Modifier = Convert.ToInt32(damageMatch.Groups["DamageMod"].Value);
+										}
+										if (damageMatch.Groups["DamageType"].Value != "")
+										{
+											damage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(damageMatch.Groups["DamageType"].Value));
+										}
+										attack.Damages.Add(damage);
 									}
+
+									attackSet.Attacks.Add(attack);
 								}
-
-								
-								
 							}
-							Model.Attack attack = new Model.Attack();
-							attack.Name = words[0];
-							attack.Modifier = numbers[0];
-							attack.Type = Types.Attack.Melee;
-							Model.Damage damage = new Model.Damage();
-							damage.NumDice = numbers[1];
-							damage.Die = Methods.GetDieTypeFromInt(numbers[2]);
-							damage.Modifier = numbers[3];
-							attack.Damages.Add(damage);
-							if (words[5] == "plus")
-							{
-								Model.Damage additionalDamage = new Model.Damage();
-								additionalDamage.NumDice = numbers[4];
-								additionalDamage.Die = Methods.GetDieTypeFromInt(numbers[5]);
-								additionalDamage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(words[7]));
-							}
-
-							Model.AttackSet fullAttack = new Model.AttackSet
-							{
-								Name = "Full Attack",
-							};
-
-							fullAttack.Attacks.Add(attack);
-
-							creature.AttackSets.Add(fullAttack);
+							
+							creature.AttackSets.Add(attackSet);
 						}
 						else if (identifier == "Space/Reach")
 						{

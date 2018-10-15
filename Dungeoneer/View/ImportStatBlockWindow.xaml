@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="ImportStatBlockWindow" Height="450" Width="520">
-	<DockPanel Margin="5">
+	<DockPanel Margin="5" FocusManager.FocusedElement="{Binding ElementName=txtInput}">
 		<StackPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
 				<Label.Style>
@@ -25,7 +25,7 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-		<TextBox Text="{Binding StatBlockText}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+		<TextBox Name="txtInput" Text="{Binding StatBlockText}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
 						 TextWrapping="NoWrap" AcceptsReturn="True"/>
 	</DockPanel>
 </Window>
