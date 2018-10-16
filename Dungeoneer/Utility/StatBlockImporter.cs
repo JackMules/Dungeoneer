@@ -90,7 +90,7 @@ namespace Dungeoneer.Utility
 								Name = identifier,
 							};
 
-							string attackPattern = @"(?<NumAttacks>\d+)?\s(?<Name>\D+)\s(?<AttackMod>[\+\-]\d+)\s(?<Type>\D+\s?\D*)\s\((?<Damage>.*)\)";
+							string attackPattern = @"(?<NumAttacks>\d+)?\s(?<Name>(?!and\b)\b\D+)\s(?<AttackMod>[\+\-]\d+)\s(?<Type>\D+\s?\D*)\s\((?<Damage>[^\(]*)\)";
 							Regex attackRegex = new Regex(attackPattern, RegexOptions.IgnoreCase);
 							MatchCollection attackMatches = attackRegex.Matches(entry);
 							foreach (Match attackMatch in attackMatches)
