@@ -61,6 +61,7 @@
     <Compile Include="Model\AttackSet.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\DamageDescriptorSet.cs" />
+    <Compile Include="Model\DamageSet.cs" />
     <Compile Include="Model\Effect\Condition.cs" />
     <Compile Include="Model\Effect\CreatureEffect.cs" />
     <Compile Include="Model\Effect\Effect.cs" />
@@ -68,10 +69,12 @@
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="Model\Effect\EffectFactory.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
+    <Compile Include="Model\Hit.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddDamageReductionWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
@@ -100,6 +103,9 @@
     <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />
     <Compile Include="View\AddAttackSetWindow.xaml.cs">
       <DependentUpon>AddAttackSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddDamageReductionWindow.xaml.cs">
+      <DependentUpon>AddDamageReductionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddDamageWindow.xaml.cs">
       <DependentUpon>AddDamageWindow.xaml</DependentUpon>
@@ -177,6 +183,10 @@
     <Page Include="View\AddAttackSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddDamageReductionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AddDamageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

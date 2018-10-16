@@ -622,19 +622,25 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteAddDamageReduction()
 		{
-			/*
 			AddDamageReductionWindowViewModel addDamageReductionWindowViewModel = new AddDamageReductionWindowViewModel();
 			Model.DamageReduction dr = addDamageReductionWindowViewModel.GetDamageReduction();
 			if (dr != null)
 			{
 				DamageReductions.Add(dr);
 			}
-			*/
 		}
 
 		private void ExecuteEditDamageReduction()
 		{
-			
+			if (SelectedDamageReduction < DamageReductions.Count)
+			{
+				AddDamageReductionWindowViewModel addDamageReductionWindowViewModel = new AddDamageReductionWindowViewModel(DamageReductions[SelectedDamageReduction]);
+				Model.DamageReduction dr = addDamageReductionWindowViewModel.GetDamageReduction();
+				if (dr != null)
+				{
+					DamageReductions[SelectedDamageReduction] = dr;
+				}
+			}
 		}
 
 		private void ExecuteRemoveDamageReduction()

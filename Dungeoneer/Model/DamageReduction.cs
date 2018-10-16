@@ -15,11 +15,11 @@ namespace Dungeoneer.Model
 	{
 		public DamageReduction()
 		{
-			_types = new ObservableCollection<Types.Damage>();
+			_types = new DamageDescriptorSet();
 		}
 
 		private int _value;
-		private ObservableCollection<Types.Damage> _types;
+		private DamageDescriptorSet _types;
 
 		public int Value
 		{
@@ -31,7 +31,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public ObservableCollection<Types.Damage> DamageTypes
+		public DamageDescriptorSet DamageTypes
 		{
 			get { return _types; }
 			set
@@ -41,6 +41,29 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool IsBypassedBy(DamageDescriptorSet damage)
+		{
+			bool bypassed = true;
+			foreach (Types.Damage drDamageType in DamageTypes.ToList())
+			{
+				bool matched = damage.Contains(drDamageType);
+
+				// If none of the weapon's damage qualities match this part of the damage type, then 
+				if (!matched)
+				{
+					bypassed = false;
+					break;
+				}
+			}
+			return bypassed;
+		}
+
+		public override string ToString()
+		{
+			string damageTypes = string.Join(" and ", DamageTypes.ToString().Split(' '));
+			return Value.ToString() + "/" + damageTypes;
+		}
+		
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("DamageReduction");
@@ -49,13 +72,8 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Value.ToString());
 			xmlWriter.WriteEndElement();
 
-			foreach (Types.Damage type in DamageTypes)
-			{
-				xmlWriter.WriteStartElement("DamageType");
-				xmlWriter.WriteString(Methods.GetDamageTypeString(type));
-				xmlWriter.WriteEndElement();
-			}
-			
+			DamageTypes.WriteXML(xmlWriter);
+
 			xmlWriter.WriteEndElement();
 		}
 
@@ -69,9 +87,9 @@ namespace Dungeoneer.Model
 					{
 						Value = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "DamageType")
+					else if (childNode.Name == "DamageDescriptorSet")
 					{
-						DamageTypes.Add(Methods.GetDamageTypeFromString(childNode.InnerText));
+						DamageTypes.ReadXML(childNode);
 					}
 				}
 			}

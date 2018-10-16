@@ -147,7 +147,26 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Special Qualities")
 						{
+							string drPattern = @"Damage reduction (?<Value>\d+)\/(?<Types>.+?)\,";
+							Regex drRegex = new Regex(drPattern, RegexOptions.IgnoreCase);
+							MatchCollection drMatches = drRegex.Matches(entry);
 
+							foreach (Match drMatch in drMatches)
+							{
+								Model.DamageReduction dr = new Model.DamageReduction();
+								dr.Value = Convert.ToInt32(drMatch.Groups["Value"].Value);
+
+								string typePattern = @"(?!and\b)\b\w+";
+								Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
+								MatchCollection typeMatches = typeRegex.Matches(drMatch.Groups["Types"].Value);
+
+								foreach (Match typeMatch in typeMatches)
+								{
+									dr.DamageTypes.Add(Methods.GetDamageTypeFromString(typeMatch.Value));
+								}
+
+								creature.DamageReductions.Add(dr);
+							}
 						}
 						else if (identifier == "Saves")
 						{

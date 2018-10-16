@@ -948,55 +948,30 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static Model.Creature DoDamage(Model.Creature creature, List<int> damages, Model.Weapon weapon, ref FullyObservableCollection<Model.Effect.Effect> effects)
-		{
-			creature = DoHitPointDamage(creature, damages, weapon, ref effects);
-
-			if (weapon.AbilityDamage)
-			{
-				creature = DoAbilityDamage(creature, weapon.AbilityDamageValue, weapon.Ability);
-			}
-
-			return creature;
-		}
-
-		public static Model.Creature DoHitPointDamage(Model.Creature creature, List<int> damages, Model.Weapon weapon, ref FullyObservableCollection<Model.Effect.Effect> effects)
+		public static Model.Creature DoHitPointDamage(Model.Creature creature, Model.Hit hit, ref FullyObservableCollection<Model.Effect.Effect> effects)
 		{
 			List<Model.DamageReduction> damageReductions = creature.DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 
-			for (int d = 0; d < damages.Count; ++d)
+			foreach (Model.DamageSet damageSet in hit.DamageSets)
 			{
 				foreach (Model.DamageReduction dr in damageReductions)
 				{
-					bool bypassed = true;
-					foreach (Types.Damage drDamageType in dr.DamageTypes)
+					if (!dr.IsBypassedBy(damageSet.DamageDescriptorSet))
 					{
-						bool matched = weapon.DamageDescriptorSets[d].Contains(drDamageType);
-
-						// If none of the weapon's damage qualities match this part of the damage type, then 
-						if (!matched)
-						{
-							bypassed = false;
-							break;
-						}
-					}
-
-					if (!bypassed)
-					{
-						damages[d] -= dr.Value;
+						damageSet.Amount -= dr.Value;
 						break;
 					}
 				}
-				if (damages[d] < 0)
+				if (damageSet.Amount < 0)
 				{
-					damages[d] = 0;
+					damageSet.Amount = 0;
 				}
 			}
 
-			foreach (int damage in damages)
+			foreach (Model.DamageSet damageSet in hit.DamageSets)
 			{
-				creature.HitPoints -= damage;
+				creature.HitPoints -= damageSet.Amount;
 			}
 
 			return creature;

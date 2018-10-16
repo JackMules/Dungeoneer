@@ -1,32 +1,22 @@
-﻿<Window x:Class="Dungeoneer.View.AddDamageWindow"
+﻿<Window x:Class="Dungeoneer.View.AddDamageReductionWindow"
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				xmlns:view="clr-namespace:Dungeoneer.View"
-				Title="Add Damage"
+				Title="Add Damage Reduction"
 				WindowStartupLocation="CenterOwner"
 				WindowStyle="ToolWindow" ResizeMode="NoResize" Height="340" Width="370">
 	<DockPanel Margin="5">
-		<Grid DockPanel.Dock="Top" Margin="5" FocusManager.FocusedElement="{Binding ElementName=NumDiceTextBox}">
+		<Grid DockPanel.Dock="Top" Margin="5" FocusManager.FocusedElement="{Binding ElementName=ValueTextBox}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			<Label Content="Num Dice" Grid.Row="0" Grid.Column="0"/>
-			<TextBox Name="NumDiceTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding NumDice}" HorizontalContentAlignment="Center"
+			<Label Content="Value" Grid.Row="0" Grid.Column="0"/>
+			<TextBox Name="ValueTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Value}" HorizontalContentAlignment="Center"
 							 Width="40"/>
-			<Label Content="Die" Grid.Row="0" Grid.Column="2"/>
-			<ComboBox Name="DieTypeComboBox" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding Die}"
-								Width="50" HorizontalContentAlignment="Center"/>
-			<Label Content="Modifier" Grid.Row="0" Grid.Column="4"/>
-			<TextBox Name="ModifierTextBox" Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Text="{Binding Modifier}" Width="40"
-							 HorizontalContentAlignment="Center"/>
 		</Grid>
 		<StackPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">

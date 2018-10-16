@@ -259,11 +259,18 @@ namespace Dungeoneer.ViewModel
 						}
 
 						Model.Weapon weapon = GetWeapon();
-						creature = Methods.DoHitPointDamage(creature, damage, weapon, ref effects);
 
-						if (weapon.AbilityDamage)
+						Model.Hit hit = new Model.Hit(damage, weapon);
+						int hp = creature.HitPoints;
+						creature = Methods.DoHitPointDamage(creature, hit, ref effects);
+
+						if (creature.HitPoints != hp)
 						{
-							creature = Methods.DoAbilityDamage(creature, weapon.AbilityDamageValue, weapon.Ability);
+							// Damage dealt, apply other effects
+							if (weapon.AbilityDamage)
+							{
+								creature = Methods.DoAbilityDamage(creature, weapon.AbilityDamageValue, weapon.Ability);
+							}
 						}
 
 						askForInput = false;

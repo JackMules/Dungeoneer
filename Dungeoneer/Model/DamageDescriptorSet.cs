@@ -27,6 +27,11 @@ namespace Dungeoneer.Model
 			return _descriptors.Contains(damageType);
 		}
 
+		public List<Types.Damage> ToList()
+		{
+			return new List<Types.Damage>(_descriptors);
+		}
+
 		public int Count
 		{
 			get { return _descriptors.Count; }
@@ -272,7 +277,7 @@ namespace Dungeoneer.Model
 				damageStrings.Add(Methods.GetDamageTypeString(damageType));
 			}
 
-			return String.Join(" ", damageStrings);
+			return string.Join(" ", damageStrings);
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)
