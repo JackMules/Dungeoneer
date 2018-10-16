@@ -501,7 +501,7 @@ namespace Dungeoneer.ViewModel
 							WillSave = Convert.ToInt32(WillSave),
 							PowerAttack = PowerAttack,
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
-							DamageReductions = new ObservableCollection<Model.DamageReduction>(),
+							DamageReductions = DamageReductions,
 						};
 						askForInput = false;
 					}
@@ -645,7 +645,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteRemoveDamageReduction()
 		{
-			DamageReductions.RemoveAt(SelectedWeapon);
+			DamageReductions.RemoveAt(SelectedDamageReduction);
 		}
 
 		public Command Import

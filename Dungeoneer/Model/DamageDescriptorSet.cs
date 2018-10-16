@@ -282,16 +282,12 @@ namespace Dungeoneer.Model
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("DamageDescriptorSet");
-			
 			foreach (Types.Damage damageType in _descriptors)
 			{
 				xmlWriter.WriteStartElement("DamageType");
 				xmlWriter.WriteString(Methods.GetDamageTypeString(damageType));
 				xmlWriter.WriteEndElement();
 			}
-
-			xmlWriter.WriteEndElement();
 		}
 
 		public void ReadXML(XmlNode xmlNode)

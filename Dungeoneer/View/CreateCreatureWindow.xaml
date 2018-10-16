@@ -42,32 +42,84 @@
 			</Grid.ColumnDefinitions>
 			<Label Grid.Row="0" Grid.Column="0" Content="Name"/>
 			<TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalAlignment="Center" Height="25" Margin="0,4" Text="{Binding ActorName}"/>
-			<Label Grid.Row="1" Grid.Column="0" Content="Abilities"/>
-			<Label Grid.Row="1" Grid.Column="1" Content="Str" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="StrTextBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Strength}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="2" Content="Dex" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="DexTextBox" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Text="{Binding Dexterity}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="3" Content="Con" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="ConTextBox" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Text="{Binding Constitution}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="4" Content="Int" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="IntTextBox" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Text="{Binding Intelligence}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="5" Content="Wis" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="WisTextBox" Grid.Row="2" Grid.Column="5" VerticalAlignment="Center" Text="{Binding Wisdom}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="1" Grid.Column="6" Content="Cha" Width="32" HorizontalContentAlignment="Center"/>
-			<TextBox Name="ChaTextBox" Grid.Row="2" Grid.Column="6" VerticalAlignment="Center" Text="{Binding Charisma}" Height="25" Margin="0,4,0,3"/>
-			<Label Grid.Row="3" Grid.Column="0" Content="BAB"/>
-			<TextBox Name="BABTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BaseAttackBonus}" Height="25" Margin="0,4"/>
-			<Label Grid.Row="3" Grid.Column="2" Content="HP"/>
-			<TextBox Name="HPTextBox" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Text="{Binding HitPoints}" Height="25" Margin="0,4"/>
-			<Label Grid.Row="3" Grid.Column="4" Content="HD"/>
-			<TextBox Name="HDTextBox" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" Text="{Binding HitDice}" Height="25" Margin="0,4"/>
-			<ComboBox Name="HDTypeComboBox" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding SelectedHitDie}" Height="22" Margin="0,2"/>
-			<Label Grid.Row="4" Grid.Column="0" Content="AC"/>
-			<TextBox Name="ACTextBox" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ArmourClass}" Height="25" Margin="0,4"/>
-			<Label Grid.Row="4" Grid.Column="2" Content="FF"/>
-			<TextBox Name="FFACTextBox" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Text="{Binding FlatFootedArmourClass}" Height="25" Margin="0,4"/>
-			<Label Grid.Row="4" Grid.Column="4" Content="T"/>
-			<TextBox Name="TouchACTextBox" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center" Text="{Binding TouchArmourClass}" Height="25" Margin="0,4"/>
+			<Grid Grid.Row="1" Grid.ColumnSpan="7">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto" MinHeight="25"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Row="0" Grid.Column="0" Content="Str" Width="32" HorizontalContentAlignment="Center"/>
+				<TextBox Name="StrTextBox" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding Strength}" Height="25" Margin="0,4,0,3"/>
+				<Label Grid.Row="0" Grid.Column="1" Content="Dex" Width="32" HorizontalContentAlignment="Center"/>
+				<TextBox Name="DexTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Dexterity}" Height="25" Margin="0,4,0,3"/>
+				<Label Grid.Row="0" Grid.Column="2" Content="Con" Width="32" HorizontalContentAlignment="Center"/>
+				<TextBox Name="ConTextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Text="{Binding Constitution}" Height="25" Margin="0,4,0,3"/>
+				<Label Grid.Row="0" Grid.Column="3" Content="Int" Width="32" HorizontalContentAlignment="Center"/>
+				<TextBox Name="IntTextBox" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Text="{Binding Intelligence}" Height="25" Margin="0,4,0,3"/>
+				<Label Grid.Row="0" Grid.Column="4" Content="Wis" Width="32" HorizontalContentAlignment="Center"/>
+				<TextBox Name="WisTextBox" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Text="{Binding Wisdom}" Height="25" Margin="0,4,0,3"/>
+				<Label Grid.Row="0" Grid.Column="5" Content="Cha" Width="32" HorizontalContentAlignment="Center"/>
+				<TextBox Name="ChaTextBox" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Text="{Binding Charisma}" Height="25" Margin="0,4,0,3"/>
+			</Grid>
+			<Grid Grid.Row="2" Grid.ColumnSpan="7">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Content="BAB"/>
+				<TextBox Name="BABTextBox" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BaseAttackBonus}" Height="25" Margin="0,4" MinWidth="40"/>
+				<Label Grid.Column="2" Content="Grapple"/>
+				<TextBox Name="GrappleTextBox" Grid.Column="3" VerticalAlignment="Center" Text="{Binding GrappleModifier}" Height="25" Margin="0,4" MinWidth="40"/>
+			</Grid>
+			<Grid Grid.Row="3">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Content="HP"/>
+				<TextBox Name="HPTextBox" Grid.Column="1" VerticalAlignment="Center" Text="{Binding HitPoints}" Height="25" Margin="5,0" MinWidth="40"/>
+				<Label Grid.Column="2" Content="HD"/>
+				<TextBox Name="HDTextBox" Grid.Column="3" VerticalAlignment="Center" Text="{Binding HitDice}" Height="25" Margin="5,0" MinWidth="40"/>
+				<ComboBox Name="HDTypeComboBox" Grid.Column="4" VerticalAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding SelectedHitDie}" Height="22" Margin="5,0" MinWidth="40"/>
+			</Grid>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Content="AC"/>
+				<TextBox Name="ACTextBox" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ArmourClass}" Height="25" Margin="0,4" MinWidth="40"/>
+				<Label Grid.Column="2" Content="FF"/>
+				<TextBox Name="FFACTextBox" Grid.Column="3" VerticalAlignment="Center" Text="{Binding FlatFootedArmourClass}" Height="25" Margin="0,4" MinWidth="40"/>
+				<Label Grid.Column="4" Content="T"/>
+				<TextBox Name="TouchACTextBox" Grid.Column="5" VerticalAlignment="Center" Text="{Binding TouchArmourClass}" Height="25" Margin="0,4" MinWidth="40"/>
+			</Grid>
 			<Label Grid.Row="5" Grid.Column="0" Content="Init"/>
 			<TextBox Name="InitTextBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding InitiativeMod}" Height="25" Margin="0,4"/>
 			<Label Grid.Row="6" Grid.Column="2" Content="CR"/>

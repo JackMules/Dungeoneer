@@ -127,7 +127,6 @@ namespace Dungeoneer.ViewModel
 				{
 					if (actorObj is Model.Creature)
 					{
-						
 						createActorWindowViewModel.LoadCreature(actorObj as Model.Creature);
 						Model.Creature creature = createActorWindowViewModel.GetCreature();
 						if (creature != null)

@@ -955,6 +955,13 @@ namespace Dungeoneer.Utility
 
 			foreach (Model.DamageSet damageSet in hit.DamageSets)
 			{
+				foreach (Types.Damage damageType in damageSet.DamageDescriptorSet.ToList())
+				{
+					if (creature.Immunities.Contains(damageType))
+					{
+						damageSet.Amount = 0;
+					}
+				}
 				foreach (Model.DamageReduction dr in damageReductions)
 				{
 					if (!dr.IsBypassedBy(damageSet.DamageDescriptorSet))

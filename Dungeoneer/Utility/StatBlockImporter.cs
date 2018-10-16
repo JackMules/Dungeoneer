@@ -147,7 +147,7 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Special Qualities")
 						{
-							string drPattern = @"Damage reduction (?<Value>\d+)\/(?<Types>.+?)\,";
+							string drPattern = @"damage reduction (?<Value>\d+)\/(?<Types>.+?)\,";
 							Regex drRegex = new Regex(drPattern, RegexOptions.IgnoreCase);
 							MatchCollection drMatches = drRegex.Matches(entry);
 
@@ -155,18 +155,25 @@ namespace Dungeoneer.Utility
 							{
 								Model.DamageReduction dr = new Model.DamageReduction();
 								dr.Value = Convert.ToInt32(drMatch.Groups["Value"].Value);
-
-								string typePattern = @"(?!and\b)\b\w+";
-								Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
-								MatchCollection typeMatches = typeRegex.Matches(drMatch.Groups["Types"].Value);
-
-								foreach (Match typeMatch in typeMatches)
-								{
-									dr.DamageTypes.Add(Methods.GetDamageTypeFromString(typeMatch.Value));
-								}
-
+								dr.DamageTypes = GetDamageDescriptorSetFromString(drMatch.Groups["Types"].Value, "and");
 								creature.DamageReductions.Add(dr);
 							}
+
+							string immunityPattern = @"immunity to (?<Types>.+?)\,";
+							Regex immunityRegex = new Regex(immunityPattern, RegexOptions.IgnoreCase);
+							Match immunityMatch = immunityRegex.Match(entry);
+
+							if (immunityMatch.Success)
+							{
+								Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(immunityMatch.Groups["Types"].Value, "and");
+								foreach (Types.Damage damageType in damageTypes.ToList())
+								{
+									creature.Immunities.Add(damageType);
+								}
+							}
+
+							string resistancePattern = @"";
+
 						}
 						else if (identifier == "Saves")
 						{
@@ -204,6 +211,21 @@ namespace Dungeoneer.Utility
 			}
 
 			return creature;
+		}
+
+		private static Model.DamageDescriptorSet GetDamageDescriptorSetFromString(string str, string separator)
+		{
+			string typePattern = @"(?!" + separator + @"\b)\b\w+";
+			Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
+			MatchCollection typeMatches = typeRegex.Matches(str);
+			Model.DamageDescriptorSet damageDescriptorSet = new Model.DamageDescriptorSet();
+
+			foreach (Match typeMatch in typeMatches)
+			{
+				damageDescriptorSet.Add(Methods.GetDamageTypeFromString(typeMatch.Value));
+			}
+
+			return damageDescriptorSet;
 		}
 
 		private static Model.Attack GetAttack(string name, int attackMod, Types.Attack attackType, List<Model.Damage> damages)

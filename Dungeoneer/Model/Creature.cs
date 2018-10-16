@@ -35,6 +35,7 @@ namespace Dungeoneer.Model
 			PowerAttack = false;
 			Size = Types.Size.Medium;
 			DamageReductions = new ObservableCollection<DamageReduction>();
+			Immunities = new DamageDescriptorSet();
 		}
 
 		private int _strength;
@@ -63,6 +64,7 @@ namespace Dungeoneer.Model
 
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
+		private DamageDescriptorSet _immunities;
 
 		public int Strength
 		{
@@ -264,6 +266,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public DamageDescriptorSet Immunities
+		{
+			get { return _immunities; }
+			set
+			{
+				_immunities = value;
+				NotifyPropertyChanged("Immunities");
+			}
+		}
+
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Creature");
@@ -354,6 +366,10 @@ namespace Dungeoneer.Model
 			{
 				dr.WriteXML(xmlWriter);
 			}
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Immunities");
+			Immunities.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
 

@@ -95,7 +95,9 @@ namespace Dungeoneer.Model
 
 			foreach (DamageDescriptorSet damage in DamageDescriptorSets)
 			{
+				xmlWriter.WriteStartElement("DamageDescriptorSet");
 				damage.WriteXML(xmlWriter);
+				xmlWriter.WriteEndElement();
 			}
 
 			xmlWriter.WriteEndElement();
