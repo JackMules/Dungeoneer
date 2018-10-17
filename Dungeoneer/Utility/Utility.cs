@@ -983,25 +983,76 @@ namespace Dungeoneer.Utility
 
 			return creature;
 		}
-		
-		public static Model.Creature DoAbilityDamage(Model.Creature creature, int damage, Types.Ability ability)
-		{
-			if (ability == Types.Ability.Constitution)
-			{
-				int oldModifier = GetAbilityModifier(creature.Constitution);
-				creature.Constitution -= damage;
-				int newModifier = GetAbilityModifier(creature.Constitution);
 
-				int change = oldModifier - newModifier;
-				creature.HitPoints -= creature.HitDice * change;
+		public static int GetAbilityModifier(int abilityScore)
+		{
+			return (abilityScore - 10) / 2;
+		}
+
+		public static Model.Creature ModifyAbilityScore(Model.Creature creature, Types.Ability ability, int change)
+		{
+			int oldModifier = creature.GetAbilityModifier(ability);
+			creature.SetAbilityScore(ability, creature.GetAbilityScore(ability) + change);
+			int newModifier = creature.GetAbilityModifier(ability);
+
+			int modifierDifference = newModifier - oldModifier;
+
+			if (ability == Types.Ability.Strength ||
+				ability == Types.Ability.Dexterity)
+			{
+				creature = ChangeAttackModifier(creature, ability, modifierDifference);
+
+				if (ability == Types.Ability.Dexterity)
+				{
+					creature.ReflexSave += modifierDifference;
+				}
+			}
+			else if (ability == Types.Ability.Constitution)
+			{
+				creature.HitPoints += creature.HitDice * modifierDifference;
+				creature.FortitudeSave += modifierDifference;
+			}
+			else
+			{
+				// Modify spell DCs
+
+				if (ability == Types.Ability.Wisdom)
+				{
+					creature.WillSave += modifierDifference;
+				}
 			}
 
 			return creature;
 		}
 
-		public static int GetAbilityModifier(int abilityScore)
+		public static Model.Creature ChangeAttackModifier(Model.Creature creature, Types.Ability ability, int change)
 		{
-			return (abilityScore - 10) / 2;
+			for (int set = 0; set < creature.AttackSets.Count; ++set)
+			{
+				for (int attack = 0; attack < creature.AttackSets[set].Attacks.Count; ++attack)
+				{
+					bool meleeAttack = false;
+					bool rangedAttack = false;
+
+					if ((creature.AttackSets[set].Attacks[attack].Type == Types.Attack.Melee) ||
+						(creature.AttackSets[set].Attacks[attack].Type == Types.Attack.MeleeTouch))
+					{
+						meleeAttack = true;
+					}
+					else
+					{
+						rangedAttack = true;
+					}
+
+					if ((meleeAttack && ability == Types.Ability.Strength) ||
+						(rangedAttack && ability == Types.Ability.Dexterity))
+					{
+						int newAttackMod = Convert.ToInt32(creature.AttackSets[set].Attacks[attack].Modifier) + change;
+						creature.AttackSets[set].Attacks[attack].Modifier = newAttackMod;
+					}
+				}
+			}
+			return creature;
 		}
 	}
 }

@@ -88,10 +88,10 @@ namespace Dungeoneer.Model
 
 			ObservableCollection<NonPlayerActor> enemies = new ObservableCollection<NonPlayerActor>
 			{
-				new Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 0.5f, ArmourClass = 13, HitPoints = 8 },
-				new Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 0.25f, ArmourClass = 11, HitPoints = 6 },
+				new Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 0.5f, ArmorClass = 13, HitPoints = 8 },
+				new Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 0.25f, ArmorClass = 11, HitPoints = 6 },
 				new NonPlayerActor { ActorName = "Poison Dart Trap", InitiativeMod = 6, ChallengeRating = 4 },
-				new Creature { ActorName = "Troll", ArmourClass = 16, HitPoints = 52 }
+				new Creature { ActorName = "Troll", ArmorClass = 16, HitPoints = 52 }
 			};
 
 			Enemies = enemies;

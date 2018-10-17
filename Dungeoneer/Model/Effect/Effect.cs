@@ -35,19 +35,6 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
-		protected Creature ChangeAttackModifier(Creature creature, int penalty)
-		{
-			for (int set = 0; set < creature.AttackSets.Count; ++set)
-			{
-				for (int attack = 0; attack < creature.AttackSets[set].Attacks.Count; ++attack)
-				{
-					int newAttackMod = Convert.ToInt32(creature.AttackSets[set].Attacks[attack].Modifier) + penalty;
-					creature.AttackSets[set].Attacks[attack].Modifier = newAttackMod;
-				}
-			}
-			return creature;
-		}
-
 		public abstract bool Expired();
 
 		public abstract Actor ApplyTo(Actor actor);

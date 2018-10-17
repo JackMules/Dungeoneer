@@ -50,13 +50,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string ArmourClass
+		public string ArmorClass
 		{
-			get { return Actor.ArmourClass.ToString(); }
+			get { return Actor.ArmorClass.ToString(); }
 			set
 			{
-				Actor.ArmourClass = Convert.ToInt32(value);
-				ArmourClassUpdated();
+				Actor.ArmorClass = Convert.ToInt32(value);
+				ArmorClassUpdated();
 			}
 		}
 
@@ -73,13 +73,13 @@ namespace Dungeoneer.ViewModel
 		private void ActorUpdated()
 		{
 			NotifyPropertyChanged("Actor");
-			ArmourClassUpdated();
+			ArmorClassUpdated();
 			HitPointsUpdated();
 		}
 
-		private void ArmourClassUpdated()
+		private void ArmorClassUpdated()
 		{
-			NotifyPropertyChanged("ArmourClass");
+			NotifyPropertyChanged("ArmorClass");
 		}
 
 		private void HitPointsUpdated()

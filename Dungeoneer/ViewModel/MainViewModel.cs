@@ -239,21 +239,21 @@ namespace Dungeoneer.ViewModel
 			AttackViewModel grellAttackViewModel = new AttackViewModel { Attack = grellAttack };
 			FullyObservableCollection<AttackViewModel> grellAttacks = new FullyObservableCollection<AttackViewModel>();
 			grellAttacks.Add(grellAttackViewModel);
-			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmourClass = 14, HitPoints = 24, AttackSets = grellAttacks };
+			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmorClass = 14, HitPoints = 24, AttackSets = grellAttacks };
 			ActorInitiativeViewModel grellViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(grell, Encounter);
 			grellViewModel.DisplayName = "Grell 1";
 			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeAdjust = "0", InitiativeMod = "6", InitiativeRoll = "5" };
 			InitiativeCardViewModel grellCard = new InitiativeCardViewModel { ActorViewModel = grellViewModel, InitiativeValueViewModel = grellInit };
 			Encounter.AddInitiativeCard(grellCard);
 
-			Model.Creature troll = new Model.Creature { ActorName = "Troll", ArmourClass = 16, HitPoints = 52 };
+			Model.Creature troll = new Model.Creature { ActorName = "Troll", ArmorClass = 16, HitPoints = 52 };
 			ActorInitiativeViewModel trollViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(troll, Encounter);
 			trollViewModel.DisplayName = "Troll 1";
 			InitiativeValueViewModel trollInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "3", InitiativeRoll = "9" };
 			InitiativeCardViewModel trollCard = new InitiativeCardViewModel { ActorViewModel = trollViewModel, InitiativeValueViewModel = trollInit };
 			Encounter.AddInitiativeCard(trollCard);
 
-			Model.Creature troll2 = new Model.Creature { ActorName = "Troll", ArmourClass = 16, HitPoints = 52 };
+			Model.Creature troll2 = new Model.Creature { ActorName = "Troll", ArmorClass = 16, HitPoints = 52 };
 			ActorInitiativeViewModel troll2ViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(troll2, Encounter);
 			troll2ViewModel.DisplayName = "Troll 2";
 			InitiativeValueViewModel troll2Init = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "3", InitiativeRoll = "3" };

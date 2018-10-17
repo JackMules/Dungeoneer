@@ -269,7 +269,7 @@ namespace Dungeoneer.ViewModel
 							// Damage dealt, apply other effects
 							if (weapon.AbilityDamage)
 							{
-								creature = Methods.DoAbilityDamage(creature, weapon.AbilityDamageValue, weapon.Ability);
+								creature = Methods.ModifyAbilityScore(creature, weapon.Ability, weapon.AbilityDamageValue);
 							}
 						}
 

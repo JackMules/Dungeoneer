@@ -75,13 +75,21 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Armor Class")
 						{
-							creature.ArmourClass = numbers[0];
-							creature.TouchArmourClass = numbers[3];
-							creature.FlatFootedArmourClass = numbers[4];
+							string acPattern = @"(?<AC>\d+)\s\(.*\),\stouch\s(?<TouchAC>\d+),\sflat\-footed\s(?<FFAC>\d+)";
+							Regex acRegex = new Regex(acPattern, RegexOptions.IgnoreCase);
+							Match acMatch = acRegex.Match(entry);
+
+							if (acMatch.Success)
+							{
+								creature.ArmorClass = Convert.ToInt32(acMatch.Groups["AC"].Value);
+								creature.TouchArmorClass = Convert.ToInt32(acMatch.Groups["TouchAC"].Value);
+								creature.FlatFootedArmorClass = Convert.ToInt32(acMatch.Groups["FFAC"].Value);
+							}
 						}
 						else if (identifier == "Base Attack/Grapple")
 						{
 							creature.BaseAttackBonus = numbers[0];
+							creature.GrappleModifier = numbers[1];
 						}
 						else if (identifier == "Attack" || identifier == "Full Attack")
 						{
@@ -222,7 +230,14 @@ namespace Dungeoneer.Utility
 
 			foreach (Match typeMatch in typeMatches)
 			{
-				damageDescriptorSet.Add(Methods.GetDamageTypeFromString(typeMatch.Value));
+				try
+				{
+					damageDescriptorSet.Add(Methods.GetDamageTypeFromString(typeMatch.Value));
+				}
+				catch (FormatException)
+				{
+					// Format not recognised, never mind
+				}
 			}
 
 			return damageDescriptorSet;

@@ -18,8 +18,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			creature.ArmourClass = creature.FlatFootedArmourClass - 2;
-			creature.TouchArmourClass = creature.TouchArmourClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
+			creature.ArmorClass = creature.FlatFootedArmorClass - 2;
+			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
 			creature.Speed /= 2;
 			return creature;
 		}
@@ -54,8 +54,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			creature.ArmourClass = creature.FlatFootedArmourClass - 2;
-			creature.TouchArmourClass = creature.TouchArmourClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
+			creature.ArmorClass = creature.FlatFootedArmorClass - 2;
+			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
 			return creature;
 		}
 
@@ -89,7 +89,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			ChangeAttackModifier(creature, -1);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
 			return creature;
 		}
 
@@ -185,9 +186,10 @@ namespace Dungeoneer.Model.Effect.Condition
 		{
 			creature.Speed /= 2;
 
-			ChangeAttackModifier(creature, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
 
-			creature.Dexterity -= 4;
+			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Dexterity, -4);
 
 			return creature;
 		}
@@ -210,8 +212,8 @@ namespace Dungeoneer.Model.Effect.Condition
 		{
 			creature.Speed /= 2;
 
-			creature.Strength -= 6;
-			creature.Dexterity -= 6;
+			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Strength, -6);
+			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Dexterity, -6);
 
 			return creature;
 		}
@@ -246,8 +248,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			creature.Strength -= 2;
-			creature.Dexterity -= 2;
+			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Strength, -2);
+			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Dexterity, -2);
 
 			return creature;
 		}
@@ -268,8 +270,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			creature.ArmourClass = creature.FlatFootedArmourClass;
-			creature.TouchArmourClass = creature.TouchArmourClass - Methods.GetAbilityModifier(creature.Dexterity);
+			creature.ArmorClass = creature.FlatFootedArmorClass;
+			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity);
 
 			return creature;
 		}
@@ -290,7 +292,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			ChangeAttackModifier(creature, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
 
 			creature.FortitudeSave -= 2;
 			creature.ReflexSave -= 2;
@@ -392,7 +395,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			ChangeAttackModifier(creature, -1);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -1);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -1);
 
 			creature.FortitudeSave -= 1;
 			creature.ReflexSave -= 1;
@@ -506,7 +510,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			ChangeAttackModifier(creature, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
 
 			creature.FortitudeSave -= 2;
 			creature.ReflexSave -= 2;
@@ -531,7 +536,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			ChangeAttackModifier(creature, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
+			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
 
 			creature.FortitudeSave -= 2;
 			creature.ReflexSave -= 2;
@@ -584,8 +590,8 @@ namespace Dungeoneer.Model.Effect.Condition
 
 		public override Creature ApplyTo(Creature creature)
 		{
-			creature.ArmourClass = creature.FlatFootedArmourClass - 2;
-			creature.TouchArmourClass = creature.TouchArmourClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
+			creature.ArmorClass = creature.FlatFootedArmorClass - 2;
+			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
 
 			return creature;
 		}

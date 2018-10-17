@@ -19,15 +19,17 @@ namespace Dungeoneer.ViewModel
 			{
 				_name = weapon.Name;
 				_abilityDamage = weapon.AbilityDamage;
-				if (weapon.DamageDescriptorSets.Count < 0)
+				_abilityDamageValue = weapon.AbilityDamageValue.ToString();
+				
+				if (weapon.DamageDescriptorSets.Count > 0)
 				{
 					_damageTypeSelectorViewModel1.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[0]);
 				}
-				if (weapon.DamageDescriptorSets.Count < 1)
+				if (weapon.DamageDescriptorSets.Count > 1)
 				{
 					_damageTypeSelectorViewModel2.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[1]);
 				}
-				if (weapon.DamageDescriptorSets.Count < 2)
+				if (weapon.DamageDescriptorSets.Count > 2)
 				{
 					_damageTypeSelectorViewModel3.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[2]);
 				}
@@ -42,6 +44,7 @@ namespace Dungeoneer.ViewModel
 		private string _name;
 		private bool _abilityDamage;
 		private string _abilityDamageValue;
+		private int _selectedAbility;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel1;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel2;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel3;
@@ -76,7 +79,14 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public int SelectedAbility { get; set; }
+		public int SelectedAbility
+		{
+			get { return _selectedAbility; }
+			set
+			{
+				_selectedAbility = value;
+				NotifyPropertyChanged("SelectedAbility");
+			}
 
 		public Types.Ability Ability
 		{

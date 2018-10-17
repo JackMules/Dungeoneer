@@ -14,7 +14,7 @@
 					<StackPanel Orientation="Vertical">
 						<Button Content="Attacks" Margin="5" Height="25" Command="{Binding ShowAttacksWindow}"/>
 					</StackPanel>
-					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmourClass}"/>
+					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmorClass}"/>
 					<view:ValueButton Title="HP"
 														ValueBinding="{Binding HitPoints}"
 														CommandBinding="{Binding DoDamage}"

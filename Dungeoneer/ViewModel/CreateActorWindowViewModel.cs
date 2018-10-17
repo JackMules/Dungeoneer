@@ -40,13 +40,14 @@ namespace Dungeoneer.ViewModel
 		private string _charisma;
 
 		private string _baseAttackBonus;
+		private string _grappleModifier;
 		private string _hitPoints;
 		private string _hitDice;
 		private int _selectedHitDie;
 
-		private string _armourClass;
-		private string _touchArmourClass;
-		private string _flatFootedArmourClass;
+		private string _armorClass;
+		private string _touchArmorClass;
+		private string _flatFootedArmorClass;
 
 		private string _speed;
 
@@ -184,6 +185,15 @@ namespace Dungeoneer.ViewModel
 				NotifyPropertyChanged("BaseAttackBonus");
 			}
 		}
+		public string GrappleModifier
+		{
+			get { return _grappleModifier; }
+			set
+			{
+				_grappleModifier = value;
+				NotifyPropertyChanged("GrappleModifier");
+			}
+		}
 
 		public string HitPoints
 		{
@@ -215,33 +225,33 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string ArmourClass
+		public string ArmorClass
 		{
-			get { return _armourClass; }
+			get { return _armorClass; }
 			set
 			{
-				_armourClass = value;
-				NotifyPropertyChanged("ArmourClass");
+				_armorClass = value;
+				NotifyPropertyChanged("ArmorClass");
 			}
 		}
 
-		public string TouchArmourClass
+		public string TouchArmorClass
 		{
-			get { return _touchArmourClass; }
+			get { return _touchArmorClass; }
 			set
 			{
-				_touchArmourClass = value;
-				NotifyPropertyChanged("TouchArmourClass");
+				_touchArmorClass = value;
+				NotifyPropertyChanged("TouchArmorClass");
 			}
 		}
 
-		public string FlatFootedArmourClass
+		public string FlatFootedArmorClass
 		{
-			get { return _flatFootedArmourClass; }
+			get { return _flatFootedArmorClass; }
 			set
 			{
-				_flatFootedArmourClass = value;
-				NotifyPropertyChanged("FlatFootedArmourClass");
+				_flatFootedArmorClass = value;
+				NotifyPropertyChanged("FlatFootedArmorClass");
 			}
 		}
 
@@ -375,12 +385,13 @@ namespace Dungeoneer.ViewModel
 			Wisdom = creature.Wisdom.ToString();
 			Charisma = creature.Charisma.ToString();
 			BaseAttackBonus = creature.BaseAttackBonus.ToString();
+			GrappleModifier = creature.GrappleModifier.ToString();
 			HitPoints = creature.HitPoints.ToString();
 			HitDice = creature.HitDice.ToString();
 			SelectedHitDie = DieTypes.IndexOf(Methods.GetDieTypeString(creature.HitDieType));
-			ArmourClass = creature.ArmourClass.ToString();
-			TouchArmourClass = creature.TouchArmourClass.ToString();
-			FlatFootedArmourClass = creature.FlatFootedArmourClass.ToString();
+			ArmorClass = creature.ArmorClass.ToString();
+			TouchArmorClass = creature.TouchArmorClass.ToString();
+			FlatFootedArmorClass = creature.FlatFootedArmorClass.ToString();
 			Speed = creature.Speed.ToString();
 			FortitudeSave = creature.FortitudeSave.ToString();
 			ReflexSave = creature.ReflexSave.ToString();
@@ -489,12 +500,13 @@ namespace Dungeoneer.ViewModel
 							Wisdom = Convert.ToInt32(Wisdom),
 							Charisma = Convert.ToInt32(Charisma),
 							BaseAttackBonus = Convert.ToInt32(BaseAttackBonus),
+							GrappleModifier = Convert.ToInt32(GrappleModifier),
 							HitPoints = Convert.ToInt32(HitPoints),
 							HitDice = Convert.ToInt32(HitDice),
 							HitDieType = Methods.GetDieTypeFromString(DieTypes.ElementAt(SelectedHitDie)),
-							ArmourClass = Convert.ToInt32(ArmourClass),
-							TouchArmourClass = Convert.ToInt32(TouchArmourClass),
-							FlatFootedArmourClass = Convert.ToInt32(FlatFootedArmourClass),
+							ArmorClass = Convert.ToInt32(ArmorClass),
+							TouchArmorClass = Convert.ToInt32(TouchArmorClass),
+							FlatFootedArmorClass = Convert.ToInt32(FlatFootedArmorClass),
 							Speed = Convert.ToInt32(Speed),
 							FortitudeSave = Convert.ToInt32(FortitudeSave),
 							ReflexSave = Convert.ToInt32(ReflexSave),
@@ -546,7 +558,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditAttackSet()
 		{
-			if (SelectedAttackSet < AttackSets.Count)
+			if (SelectedAttackSet < AttackSets.Count && SelectedAttackSet >= 0)
 			{
 				AddAttackSetWindowViewModel addAttackSetWindowViewModel = new AddAttackSetWindowViewModel(AttackSets[SelectedAttackSet]);
 				Model.AttackSet attackSet = addAttackSetWindowViewModel.GetAttackSet();
@@ -589,7 +601,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditWeapon()
 		{
-			if (SelectedWeapon < Weapons.Count)
+			if (SelectedWeapon < Weapons.Count && SelectedWeapon >= 0)
 			{
 				AddWeaponWindowViewModel addWeaponWindowViewModel = new AddWeaponWindowViewModel(Weapons[SelectedWeapon]);
 				Model.Weapon weapon = addWeaponWindowViewModel.GetWeapon();
@@ -632,7 +644,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditDamageReduction()
 		{
-			if (SelectedDamageReduction < DamageReductions.Count)
+			if (SelectedDamageReduction < DamageReductions.Count && SelectedDamageReduction >= 0)
 			{
 				AddDamageReductionWindowViewModel addDamageReductionWindowViewModel = new AddDamageReductionWindowViewModel(DamageReductions[SelectedDamageReduction]);
 				Model.DamageReduction dr = addDamageReductionWindowViewModel.GetDamageReduction();

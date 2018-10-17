@@ -22,12 +22,13 @@ namespace Dungeoneer.Model
 			Wisdom = 10;
 			Charisma = 10;
 			BaseAttackBonus = 0;
+			GrappleModifier = 0;
 			HitPoints = 3;
 			HitDice = 1;
 			HitDieType = Types.Die.d3;
-			ArmourClass = 10;
-			TouchArmourClass = 10;
-			FlatFootedArmourClass = 10;
+			ArmorClass = 10;
+			TouchArmorClass = 10;
+			FlatFootedArmorClass = 10;
 			Speed = 30;
 			FortitudeSave = 0;
 			ReflexSave = 0;
@@ -46,13 +47,14 @@ namespace Dungeoneer.Model
 		private int _charisma;
 
 		private int _baseAttackBonus;
+		private int _grappleModifier;
 		private int _hitPoints;
 		private int _hitDice;
 		private Types.Die _hitDiceType;
 
-		private int _armourClass;
-		private int _touchArmourClass;
-		private int _flatFootedArmourClass;
+		private int _armorClass;
+		private int _touchArmorClass;
+		private int _flatFootedArmorClass;
 
 		private int _speed;
 
@@ -65,6 +67,56 @@ namespace Dungeoneer.Model
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
+
+		public int GetAbilityScore(Types.Ability ability)
+		{
+			switch (ability)
+			{
+			case Types.Ability.Strength:
+				return Strength;
+			case Types.Ability.Dexterity:
+				return Dexterity;
+			case Types.Ability.Constitution:
+				return Constitution;
+			case Types.Ability.Intelligence:
+				return Intelligence;
+			case Types.Ability.Wisdom:
+				return Wisdom;
+			case Types.Ability.Charisma:
+				return Charisma;
+			}
+			return 0;
+		}
+
+		public int GetAbilityModifier(Types.Ability ability)
+		{
+			return Methods.GetAbilityModifier(GetAbilityScore(ability));
+		}
+
+		public void SetAbilityScore(Types.Ability ability, int score)
+		{
+			switch (ability)
+			{
+			case Types.Ability.Strength:
+				Strength = score;
+				break;
+			case Types.Ability.Dexterity:
+				Dexterity = score;
+				break;
+			case Types.Ability.Constitution:
+				Constitution = score;
+				break;
+			case Types.Ability.Intelligence:
+				Intelligence = score;
+				break;
+			case Types.Ability.Wisdom:
+				Wisdom = score;
+				break;
+			case Types.Ability.Charisma:
+				Charisma = score;
+				break;
+			}
+		}
 
 		public int Strength
 		{
@@ -136,6 +188,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public int GrappleModifier
+		{
+			get { return _grappleModifier; }
+			set
+			{
+				_grappleModifier = value;
+				NotifyPropertyChanged("BaseGrappleModifierAttackBonus");
+			}
+		}
+
 		public int HitPoints
 		{
 			get { return _hitPoints; }
@@ -166,33 +228,33 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int ArmourClass
+		public int ArmorClass
 		{
-			get { return _armourClass; }
+			get { return _armorClass; }
 			set
 			{
-				_armourClass = value;
-				NotifyPropertyChanged("ArmourClass");
+				_armorClass = value;
+				NotifyPropertyChanged("ArmorClass");
 			}
 		}
 
-		public int TouchArmourClass
+		public int TouchArmorClass
 		{
-			get { return _touchArmourClass; }
+			get { return _touchArmorClass; }
 			set
 			{
-				_touchArmourClass = value;
-				NotifyPropertyChanged("TouchArmourClass");
+				_touchArmorClass = value;
+				NotifyPropertyChanged("TouchArmorClass");
 			}
 		}
 
-		public int FlatFootedArmourClass
+		public int FlatFootedArmorClass
 		{
-			get { return _flatFootedArmourClass; }
+			get { return _flatFootedArmorClass; }
 			set
 			{
-				_flatFootedArmourClass = value;
-				NotifyPropertyChanged("FlatFootedArmourClass");
+				_flatFootedArmorClass = value;
+				NotifyPropertyChanged("FlatFootedArmorClass");
 			}
 		}
 
@@ -313,6 +375,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(BaseAttackBonus.ToString());
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("GrappleModifier");
+			xmlWriter.WriteString(GrappleModifier.ToString());
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteStartElement("HitPoints");
 			xmlWriter.WriteString(HitPoints.ToString());
 			xmlWriter.WriteEndElement();
@@ -325,16 +391,16 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Methods.GetDieTypeString(HitDieType));
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("ArmourClass");
-			xmlWriter.WriteString(ArmourClass.ToString());
+			xmlWriter.WriteStartElement("ArmorClass");
+			xmlWriter.WriteString(ArmorClass.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("TouchArmourClass");
-			xmlWriter.WriteString(TouchArmourClass.ToString());
+			xmlWriter.WriteStartElement("TouchArmorClass");
+			xmlWriter.WriteString(TouchArmorClass.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("FlatFootedArmourClass");
-			xmlWriter.WriteString(FlatFootedArmourClass.ToString());
+			xmlWriter.WriteStartElement("FlatFootedArmorClass");
+			xmlWriter.WriteString(FlatFootedArmorClass.ToString());
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Speed");
@@ -409,6 +475,10 @@ namespace Dungeoneer.Model
 					{
 						BaseAttackBonus = Convert.ToInt32(childNode.InnerText);
 					}
+					else if (childNode.Name == "GrappleModifier")
+					{
+						GrappleModifier = Convert.ToInt32(childNode.InnerText);
+					}
 					else if (childNode.Name == "HitPoints")
 					{
 						HitPoints = Convert.ToInt32(childNode.InnerText);
@@ -421,17 +491,17 @@ namespace Dungeoneer.Model
 					{
 						HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
 					}
-					else if (childNode.Name == "ArmourClass")
+					else if (childNode.Name == "ArmorClass")
 					{
-						ArmourClass = Convert.ToInt32(childNode.InnerText);
+						ArmorClass = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "TouchArmourClass")
+					else if (childNode.Name == "TouchArmorClass")
 					{
-						TouchArmourClass = Convert.ToInt32(childNode.InnerText);
+						TouchArmorClass = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "FlatFootedArmourClass")
+					else if (childNode.Name == "FlatFootedArmorClass")
 					{
-						FlatFootedArmourClass = Convert.ToInt32(childNode.InnerText);
+						FlatFootedArmorClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Speed")
 					{
