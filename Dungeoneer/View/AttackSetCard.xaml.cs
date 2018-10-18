@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for AttackCard.xaml
+	/// Interaction logic for AttackSetCard.xaml
 	/// </summary>
-	public partial class AttackCard : UserControl
+	public partial class AttackSetCard : UserControl
 	{
-		public AttackCard()
+		public AttackSetCard()
 		{
 			InitializeComponent();
 		}
