@@ -5,18 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:Dungeoneer.View"
 						 xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
+						 xmlns:model="clr-namespace:Dungeoneer.Model"
              mc:Ignorable="d" 
              d:DesignHeight="76" d:DesignWidth="596">
 	<Grid>
 		<Border Margin="2" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="4">
 			<DockPanel>
+				<TreeView DockPanel.Dock="Bottom" Background="Transparent">
+					<TreeView.Resources>
+						<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding AttackSets}">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="{Binding Name}"/>
+								<TextBlock Text=" ["/>
+								<TextBlock Text="{Binding Attacks.Count}"/>
+								<TextBlock Text="]"/>
+							</StackPanel>
+						</HierarchicalDataTemplate>
+						<HierarchicalDataTemplate DataType="{x:Type model:Attack}">
+							<TextBlock Text="{Binding AsString}"/>
+						</HierarchicalDataTemplate>
+					</TreeView.Resources>
+					<TreeView.Style>
+						<Style TargetType="{x:Type TreeView}">
+							<Setter Property="Visibility" Value="Collapsed"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding IsChecked, ElementName=AttacksToggleButton}" Value="True">
+									<Setter Property="Visibility" Value="Visible"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TreeView.Style>
+				</TreeView>
 				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
 					<Label Name="NameLabel" Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
 					<StackPanel Orientation="Vertical">
-						<ToggleButton Content="Attacks" Margin="5" Height="25"/>
+						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="5" Height="25"/>
 					</StackPanel>
 				</StackPanel>
-				
 			</DockPanel>
 		</Border>
 	</Grid>

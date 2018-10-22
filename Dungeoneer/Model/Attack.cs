@@ -119,6 +119,11 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public string AsString
+		{
+			get { return ToString(); }
+		}
+
 		public override string ToString()
 		{
 			return Name + " (" + Methods.GetAttackTypeString(Type) + "): " + Methods.GetSignedNumberString(Modifier) + ", " + Methods.GetDamageString(Damages);
