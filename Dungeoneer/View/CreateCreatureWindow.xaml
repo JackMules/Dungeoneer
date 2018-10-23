@@ -3,7 +3,9 @@
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				Title="Create a new creature type" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner"
-				WindowStyle="ToolWindow">
+				WindowStyle="ToolWindow"
+				MinHeight="660"
+				MinWidth="320">
 	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -15,10 +17,10 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -152,7 +154,8 @@
 		<!-- Feats -->
 		<Label Grid.Row="10" Grid.Column="0" Content="Feats" VerticalContentAlignment="Center"/>
 		<ScrollViewer Grid.Row="10" Grid.Column="1">
-			<TextBox Text="{Binding FeatsText}" VerticalAlignment="Center" Height="50" Margin="0,4"/>
+			<TextBox Text="{Binding FeatsText}" VerticalAlignment="Center" Height="50" Margin="0,4" TextWrapping="Wrap"
+							 MaxWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}, Path=ActualWidth}"/>
 		</ScrollViewer>
 		
 		<!-- Attacks -->

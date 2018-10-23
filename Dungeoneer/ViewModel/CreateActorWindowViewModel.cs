@@ -303,6 +303,7 @@ namespace Dungeoneer.ViewModel
 			{
 				_feats = value;
 				NotifyPropertyChanged("Feats");
+				NotifyPropertyChanged("FeatsText");
 			}
 		}
 

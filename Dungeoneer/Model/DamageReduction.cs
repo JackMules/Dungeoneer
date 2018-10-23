@@ -61,6 +61,10 @@ namespace Dungeoneer.Model
 		public override string ToString()
 		{
 			string damageTypes = string.Join(" and ", DamageTypes.ToString().Split(' '));
+			if (DamageTypes.Count == 0)
+			{
+				damageTypes = "-";
+			}
 			return Value.ToString() + "/" + damageTypes;
 		}
 		

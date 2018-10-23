@@ -12,7 +12,7 @@ Special Qualities:	Damage reduction 5/-, darkvision 60 ft., elemental traits, im
 Saves:	Fort +9, Ref +17, Will +7	
 Abilities:	Str 18, Dex 25, Con 18, Int 6, Wis 11, Cha 11	
 Skills:	Listen +11, Spot +12	
-Feats:	Alertness, Combat Reflexes, Dodge, Improved InitiativeB, Iron Will, Mobility, Spring Attack, Weapon FinesseB	
+Feats:	Alertness, Combat Reflexes, Dodge, Improved Initiative, Iron Will, Mobility, Spring Attack, Weapon Finesse
 Environment:	Elemental Plane of Fire	
 Organization:	Solitary	
 Challenge Rating:	7	
