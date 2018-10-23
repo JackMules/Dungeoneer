@@ -151,8 +151,10 @@
 
 		<!-- Feats -->
 		<Label Grid.Row="10" Grid.Column="0" Content="Feats" VerticalContentAlignment="Center"/>
-		<CheckBox Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Content="Power Attack" Margin="0,8,0,3" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="15" IsChecked="{Binding PowerAttack}"/>
-
+		<ScrollViewer Grid.Row="10" Grid.Column="1">
+			<TextBox Text="{Binding FeatsText}" VerticalAlignment="Center" Height="50" Margin="0,4"/>
+		</ScrollViewer>
+		
 		<!-- Attacks -->
 		<Label Content="Attack&#10;Sets" Grid.Row="11" Grid.Column="0" Margin="0,0,0,5" VerticalContentAlignment="Center"/>
 		<Grid Grid.Row="11" Grid.Column="1">

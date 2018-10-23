@@ -107,7 +107,7 @@ namespace Dungeoneer.Utility
 
 								if (attackMatch.Groups["NumAttacks"].Value != "")
 								{
-									Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
+									numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
 								}
 
 								for (int i = 0; i < numAttacks; ++i)
@@ -147,7 +147,8 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Space/Reach")
 						{
-
+							creature.Space = numbers[0];
+							creature.Reach = numbers[1];
 						}
 						else if (identifier == "Special Attacks")
 						{
@@ -180,8 +181,24 @@ namespace Dungeoneer.Utility
 								}
 							}
 
-							string resistancePattern = @"";
+							string resistancesPattern = @"resistance to (?<Types>.+?)\,";
+							Regex resistancesRegex = new Regex(resistancesPattern, RegexOptions.IgnoreCase);
+							Match resistancesMatch = resistancesRegex.Match(entry);
 
+							if (resistancesMatch.Success)
+							{
+								string resistancePattern = @"(?<Type>[a-z]+)\s(?<Value>\d+)";
+								Regex resistanceRegex = new Regex(resistancePattern, RegexOptions.IgnoreCase);
+								MatchCollection resistanceMatches = resistanceRegex.Matches(resistancesMatch.Groups["Types"].Value);
+
+								foreach (Match resistanceMatch in resistanceMatches)
+								{
+									Model.DamageReduction res = new Model.DamageReduction();
+									res.Value = Convert.ToInt32(resistanceMatch.Groups["Value"].Value);
+									res.DamageTypes = GetDamageDescriptorSetFromString(resistanceMatch.Groups["Type"].Value);
+									creature.DamageReductions.Add(res);
+								}
+							}
 						}
 						else if (identifier == "Saves")
 						{
@@ -197,6 +214,13 @@ namespace Dungeoneer.Utility
 							creature.Intelligence = numbers[3];
 							creature.Wisdom = numbers[4];
 							creature.Charisma = numbers[5];
+						}
+						else if (identifier == "Feats")
+						{
+							foreach (string feat in entry.Split(','))
+							{
+								creature.Feats.Add(feat.Trim());
+							}
 						}
 						else if (identifier == "Challenge Rating")
 						{
@@ -221,9 +245,10 @@ namespace Dungeoneer.Utility
 			return creature;
 		}
 
-		private static Model.DamageDescriptorSet GetDamageDescriptorSetFromString(string str, string separator)
+		private static Model.DamageDescriptorSet GetDamageDescriptorSetFromString(string str, string separator = null)
 		{
-			string typePattern = @"(?!" + separator + @"\b)\b\w+";
+			string separatorStr = separator != null ? @"(?!" + separator + @"\b)\b" : separator;
+			string typePattern = separatorStr + @"[a-z]+";	
 			Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
 			MatchCollection typeMatches = typeRegex.Matches(str);
 			Model.DamageDescriptorSet damageDescriptorSet = new Model.DamageDescriptorSet();

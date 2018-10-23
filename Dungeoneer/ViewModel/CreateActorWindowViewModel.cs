@@ -12,6 +12,7 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreateActorWindowViewModel()
 		{
+			_feats = new List<string>();
 			_attackSets = new FullyObservableCollection<Model.AttackSet>();
 			_addAttackSet = new Command(ExecuteAddAttackSet);
 			_editAttackSet = new Command(ExecuteEditAttackSet);
@@ -55,7 +56,7 @@ namespace Dungeoneer.ViewModel
 		private string _reflexSave;
 		private string _willSave;
 
-		private bool _powerAttack;
+		private List<string> _feats;
 
 		private int _selectedSize;
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
@@ -295,13 +296,37 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public bool PowerAttack
+		public List<string> Feats
 		{
-			get { return _powerAttack; }
+			get { return _feats; }
 			set
 			{
-				_powerAttack = value;
-				NotifyPropertyChanged("PowerAttack");
+				_feats = value;
+				NotifyPropertyChanged("Feats");
+			}
+		}
+
+		public string FeatsText
+		{
+			get
+			{
+				string featsText = null;
+				if (Feats.Count > 0)
+				{
+					featsText = Feats.Aggregate((i, j) => i + ", " + j);
+				}
+				return featsText;
+			}
+			set
+			{
+				string[] tokens = value.Split(',');
+				List<string> strings = new List<string>();
+				foreach (string token in tokens)
+				{
+					strings.Add(token.Trim());
+				}
+				Feats = strings;
+				NotifyPropertyChanged("FeatsText");
 			}
 		}
 
@@ -396,7 +421,7 @@ namespace Dungeoneer.ViewModel
 			FortitudeSave = creature.FortitudeSave.ToString();
 			ReflexSave = creature.ReflexSave.ToString();
 			WillSave = creature.WillSave.ToString();
-			PowerAttack = creature.PowerAttack;
+			Feats = creature.Feats;
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
 			DamageReductions = creature.DamageReductions;
 		}
@@ -511,7 +536,7 @@ namespace Dungeoneer.ViewModel
 							FortitudeSave = Convert.ToInt32(FortitudeSave),
 							ReflexSave = Convert.ToInt32(ReflexSave),
 							WillSave = Convert.ToInt32(WillSave),
-							PowerAttack = PowerAttack,
+							Feats = Feats,
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
 						};

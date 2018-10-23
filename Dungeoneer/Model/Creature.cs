@@ -33,7 +33,9 @@ namespace Dungeoneer.Model
 			FortitudeSave = 0;
 			ReflexSave = 0;
 			WillSave = 0;
-			PowerAttack = false;
+			Feats = new List<string>();
+			Space = 5;
+			Reach = 5;
 			Size = Types.Size.Medium;
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
@@ -62,8 +64,10 @@ namespace Dungeoneer.Model
 		private int _reflexSave;
 		private int _willSave;
 
-		private bool _powerAttack;
+		private List<string> _feats;
 
+		private int _space;
+		private int _reach;
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
@@ -300,10 +304,36 @@ namespace Dungeoneer.Model
 
 		public bool PowerAttack
 		{
-			get { return _powerAttack; }
+			get { return Feats.Contains("Power Attack", StringComparer.CurrentCultureIgnoreCase); }
+		}
+
+		public int Space
+		{
+			get { return _space; }
 			set
 			{
-				_powerAttack = value;
+				_space = value;
+				NotifyPropertyChanged("Space");
+			}
+		}
+
+		public int Reach
+		{
+			get { return _reach; }
+			set
+			{
+				_reach = value;
+				NotifyPropertyChanged("Reach");
+			}
+		}
+
+		public List<string> Feats
+		{
+			get { return _feats; }
+			set
+			{
+				_feats = value;
+				NotifyPropertyChanged("Feats");
 				NotifyPropertyChanged("PowerAttack");
 			}
 		}
@@ -418,9 +448,22 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("WillSave");
 			xmlWriter.WriteString(WillSave.ToString());
 			xmlWriter.WriteEndElement();
+			
+			xmlWriter.WriteStartElement("Feats");
+			foreach (string feat in Feats)
+			{
+				xmlWriter.WriteStartElement("Feat");
+				xmlWriter.WriteString(feat);
+				xmlWriter.WriteEndElement();
+			}
+			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("PowerAttack");
-			xmlWriter.WriteString(PowerAttack.ToString());
+			xmlWriter.WriteStartElement("Space");
+			xmlWriter.WriteString(Space.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Reach");
+			xmlWriter.WriteString(Reach.ToString());
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Size");
@@ -519,9 +562,23 @@ namespace Dungeoneer.Model
 					{
 						WillSave = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "PowerAttack")
+					else if (childNode.Name == "Feats")
 					{
-						PowerAttack = Convert.ToBoolean(childNode.InnerText);
+						foreach (XmlNode featNode in childNode.ChildNodes)
+						{
+							if (featNode.Name == "Feat")
+							{
+								Feats.Add(featNode.InnerText);
+							}
+						}
+					}
+					else if (childNode.Name == "Space")
+					{
+						Space = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Reach")
+					{
+						Reach = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Size")
 					{

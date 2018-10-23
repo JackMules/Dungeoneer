@@ -99,7 +99,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectStunned = "Stunned";
 		public static readonly string EffectTurned = "Turned";
 		public static readonly string EffectUnconscious = "Unconscious";
-
+		
 		public static readonly List<string> SizeStrings = new List<string>
 		{
 			Methods.GetSizeString(Types.Size.Fine),

@@ -18,6 +18,7 @@
 								<TextBlock Text=" ["/>
 								<TextBlock Text="{Binding Attacks.Count}"/>
 								<TextBlock Text="]"/>
+								<!-- How about a button to roll an attack and display the results? -->
 							</StackPanel>
 						</HierarchicalDataTemplate>
 						<HierarchicalDataTemplate DataType="{x:Type model:Attack}">

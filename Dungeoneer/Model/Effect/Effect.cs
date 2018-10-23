@@ -35,6 +35,11 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
+		public override string ToString()
+		{
+			return Name;
+		}
+
 		public abstract bool Expired();
 
 		public abstract Actor ApplyTo(Actor actor);
