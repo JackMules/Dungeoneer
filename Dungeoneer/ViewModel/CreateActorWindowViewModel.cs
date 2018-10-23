@@ -384,14 +384,14 @@ namespace Dungeoneer.ViewModel
 		public void LoadPlayerActor(Model.PlayerActor playerActor)
 		{
 			ActorName = playerActor.ActorName;
-			InitiativeMod = playerActor.InitiativeMod.ToString();
+			InitiativeMod = Methods.GetSignedNumberString(playerActor.InitiativeMod);
 			Weapons = playerActor.Weapons;
 		}
 
 		public void LoadNonPlayerActor(Model.NonPlayerActor nonPlayerActor)
 		{
 			ActorName = nonPlayerActor.ActorName;
-			InitiativeMod = nonPlayerActor.InitiativeMod.ToString();
+			InitiativeMod = Methods.GetSignedNumberString(nonPlayerActor.InitiativeMod);
 			Type = nonPlayerActor.Type;
 			ChallengeRating = nonPlayerActor.ChallengeRating.ToString();
 			foreach (Model.AttackSet attackSet in nonPlayerActor.AttackSets)
@@ -410,8 +410,8 @@ namespace Dungeoneer.ViewModel
 			Intelligence = creature.Intelligence.ToString();
 			Wisdom = creature.Wisdom.ToString();
 			Charisma = creature.Charisma.ToString();
-			BaseAttackBonus = creature.BaseAttackBonus.ToString();
-			GrappleModifier = creature.GrappleModifier.ToString();
+			BaseAttackBonus = Methods.GetSignedNumberString(creature.BaseAttackBonus);
+			GrappleModifier = Methods.GetSignedNumberString(creature.GrappleModifier);
 			HitPoints = creature.HitPoints.ToString();
 			HitDice = creature.HitDice.ToString();
 			SelectedHitDie = DieTypes.IndexOf(Methods.GetDieTypeString(creature.HitDieType));
@@ -419,9 +419,9 @@ namespace Dungeoneer.ViewModel
 			TouchArmorClass = creature.TouchArmorClass.ToString();
 			FlatFootedArmorClass = creature.FlatFootedArmorClass.ToString();
 			Speed = creature.Speed.ToString();
-			FortitudeSave = creature.FortitudeSave.ToString();
-			ReflexSave = creature.ReflexSave.ToString();
-			WillSave = creature.WillSave.ToString();
+			FortitudeSave = Methods.GetSignedNumberString(creature.FortitudeSave);
+			ReflexSave = Methods.GetSignedNumberString(creature.ReflexSave);
+			WillSave = Methods.GetSignedNumberString(creature.WillSave);
 			Feats = creature.Feats;
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
 			DamageReductions = creature.DamageReductions;

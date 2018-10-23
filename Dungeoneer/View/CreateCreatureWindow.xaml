@@ -18,9 +18,9 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -60,11 +60,13 @@
 
 		<!-- Initiative -->
 		<Label Grid.Row="3" Grid.Column="0" Content="Init" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding InitiativeMod}" Height="25" Margin="0,4"/>
+		<TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"
+						 Text="{Binding InitiativeMod}" Height="25" Width="30" HorizontalAlignment="Left" Margin="0,4"/>
 		
 		<!-- Speed -->
 		<Label Grid.Row="4" Grid.Column="0" Content="Speed" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="25" Margin="0,4" Text="{Binding Speed}"/>
+		<TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,4" Text="{Binding Speed}"/>
 		<!--		<StackPanel >
 			<ComboBox ItemsSource="{Binding SpeedTypes}"/>
 			<Button Command="{Binding AddSpeed}"
@@ -111,11 +113,11 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<Label Grid.Column="0" Content="Fort"  VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" MinWidth="40" Height="25" Margin="0,4" Text="{Binding FortitudeSave}"/>
+			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="25" Margin="0,4" Text="{Binding FortitudeSave}"/>
 			<Label Grid.Column="2" Content="Ref"  VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" MinWidth="40" Height="25" Margin="0,4" Text="{Binding ReflexSave}"/>
+			<TextBox Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="25" Margin="0,4" Text="{Binding ReflexSave}"/>
 			<Label Grid.Column="4" Content="Will"  VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" MinWidth="40" Height="25" Margin="0,4" Text="{Binding WillSave}"/>
+			<TextBox Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="25" Margin="0,4" Text="{Binding WillSave}"/>
 		</Grid>
 
 		<!-- Abilities -->
@@ -134,27 +136,28 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<Label Grid.Row="0" Grid.Column="0" Content="Str" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="StrTextBox" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Strength}" Height="25" Margin="0,4,0,3"/>
+			<TextBox Name="StrTextBox" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Strength}" Height="25"/>
 			<Label Grid.Row="0" Grid.Column="1" Content="Dex" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="DexTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Dexterity}" Height="25" Margin="0,4,0,3"/>
+			<TextBox Name="DexTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Dexterity}" Height="25"/>
 			<Label Grid.Row="0" Grid.Column="2" Content="Con" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="ConTextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Constitution}" Height="25" Margin="0,4,0,3"/>
+			<TextBox Name="ConTextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Constitution}" Height="25"/>
 			<Label Grid.Row="0" Grid.Column="3" Content="Int" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="IntTextBox" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Intelligence}" Height="25" Margin="0,4,0,3"/>
+			<TextBox Name="IntTextBox" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Intelligence}" Height="25"/>
 			<Label Grid.Row="0" Grid.Column="4" Content="Wis" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="WisTextBox" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Wisdom}" Height="25" Margin="0,4,0,3"/>
+			<TextBox Name="WisTextBox" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Wisdom}" Height="25"/>
 			<Label Grid.Row="0" Grid.Column="5" Content="Cha" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="ChaTextBox" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Charisma}" Height="25" Margin="0,4,0,3"/>
+			<TextBox Name="ChaTextBox" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Charisma}" Height="25"/>
 		</Grid>
 
 		<!-- Challenge Rating -->
 		<Label Grid.Row="9" Grid.Column="0" Content="CR" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="25" Margin="0,4" Text="{Binding ChallengeRating}"/>
+		<TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,4" Text="{Binding ChallengeRating}"/>
 
 		<!-- Feats -->
 		<Label Grid.Row="10" Grid.Column="0" Content="Feats" VerticalContentAlignment="Center"/>
-		<ScrollViewer Grid.Row="10" Grid.Column="1">
-			<TextBox Text="{Binding FeatsText}" VerticalAlignment="Center" Height="50" Margin="0,4" TextWrapping="Wrap"
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="10" Grid.Column="1">
+			<TextBox Text="{Binding FeatsText}" Height="60" TextWrapping="Wrap"
 							 MaxWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}, Path=ActualWidth}"/>
 		</ScrollViewer>
 		
@@ -172,7 +175,7 @@
 			<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
 				<ListBox ItemsSource="{Binding AttackSets}" SelectedIndex="{Binding SelectedAttackSet}"/>
 			</ScrollViewer>
-			<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+			<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="90">
 				<Button Command="{Binding AddAttackSet}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 				<Button Command="{Binding EditAttackSet}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 				<Button Command="{Binding RemoveAttackSet}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
@@ -193,7 +196,7 @@
 			<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
 				<ListBox ItemsSource="{Binding DamageReductions}" SelectedIndex="{Binding SelectedDamageReduction}"/>
 			</ScrollViewer>
-			<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+			<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="90">
 				<Button Command="{Binding AddDamageReduction}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 				<Button Command="{Binding EditDamageReduction}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 				<Button Command="{Binding RemoveDamageReduction}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
