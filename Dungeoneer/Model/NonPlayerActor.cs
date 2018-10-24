@@ -107,7 +107,7 @@ namespace Dungeoneer.Model
 					{
 						ChallengeRating = Convert.ToSingle(childNode.InnerText);
 					}
-					else if (childNode.Name == "Attacks")
+					else if (childNode.Name == "AttackSets")
 					{
 						foreach (XmlNode attackSetNode in childNode.ChildNodes)
 						{

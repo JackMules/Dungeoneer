@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Data.Entity.Design.PluralizationServices;
+using System.Globalization;
 
 namespace Dungeoneer.Utility
 {
@@ -104,17 +106,21 @@ namespace Dungeoneer.Utility
 							foreach (Match attackMatch in attackMatches)
 							{
 								int numAttacks = 1;
-
+								string name = attackMatch.Groups["Name"].Value;
 								if (attackMatch.Groups["NumAttacks"].Value != "")
 								{
 									numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
+									PluralizationService ps = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
+									name = ps.Singularize(name);
 								}
+
+								name = char.ToUpper(name[0]) + name.Substring(1);
 
 								for (int i = 0; i < numAttacks; ++i)
 								{
 									Model.Attack attack = new Model.Attack();
-									
-									attack.Name = attackMatch.Groups["Name"].Value;
+
+									attack.Name = name;
 									attack.Modifier = Convert.ToInt32(attackMatch.Groups["AttackMod"].Value);
 									attack.Type = Methods.GetAttackTypeFromString(attackMatch.Groups["Type"].Value);
 

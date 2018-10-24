@@ -26,6 +26,8 @@ namespace Dungeoneer.ViewModel
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
+
+			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(Types.Size.Medium));
 		}
 
 		private string _actorName;

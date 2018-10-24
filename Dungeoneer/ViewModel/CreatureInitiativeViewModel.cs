@@ -52,27 +52,19 @@ namespace Dungeoneer.ViewModel
 
 		public string ArmorClass
 		{
-			get { return Actor.ArmorClass.ToString(); }
-			set
-			{
-				Actor.ArmorClass = Convert.ToInt32(value);
-				ArmorClassUpdated();
-			}
+			get { return GetAffectedActor().ArmorClass.ToString(); }
 		}
 
 		public string HitPoints
 		{
-			get { return Actor.HitPoints.ToString(); }
-			set
-			{
-				Actor.HitPoints = Convert.ToInt32(value);
-				HitPointsUpdated();
-			}
+			get { return GetAffectedActor().HitPoints.ToString(); }
 		}
 
-		private void ActorUpdated()
+		// Implement properties for attack set view models
+
+		protected override void ActorUpdated()
 		{
-			NotifyPropertyChanged("Actor");
+			base.ActorUpdated();
 			ArmorClassUpdated();
 			HitPointsUpdated();
 		}
@@ -84,9 +76,9 @@ namespace Dungeoneer.ViewModel
 
 		private void HitPointsUpdated()
 		{
-			NotifyPropertyChanged("HitPoints");
 			Active = (Actor.HitPoints > 0);
 			BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
+			NotifyPropertyChanged("HitPoints");
 		}
 
 		public override void StartTurn()

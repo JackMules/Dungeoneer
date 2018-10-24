@@ -30,9 +30,15 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				_actor = value;
-				NotifyPropertyChanged("Actor");
-				InitiativeMod = Actor.InitiativeMod;
+				ActorUpdated();
 			}
+		}
+
+		protected virtual void ActorUpdated()
+		{
+			InitiativeMod = Actor.InitiativeMod;
+			ActorName = Actor.ActorName;
+			NotifyPropertyChanged("Actor");
 		}
 
 		public string DisplayName

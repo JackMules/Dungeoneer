@@ -4,8 +4,8 @@
 				Title="Create a new creature type" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner"
 				WindowStyle="ToolWindow"
-				MinHeight="660"
-				MinWidth="320">
+				MinHeight="680"
+				MinWidth="340">
 	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -30,7 +30,8 @@
 		
 		<!-- Name -->
 		<Label Grid.Row="0" Grid.Column="0" Content="Name" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Row="0" Grid.Column="1" x:Name="NameTextBox" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="25" Margin="0,4" Text="{Binding ActorName}"/>
+		<TextBox Grid.Row="0" Grid.Column="1" x:Name="NameTextBox" VerticalAlignment="Center" 
+						 VerticalContentAlignment="Center" Height="25" Margin="0,2" Text="{Binding ActorName}"/>
 		
 		<!-- Size/Type -->
 		<Label Grid.Row="1" Grid.Column="0" Content="Size/Type" VerticalContentAlignment="Center"/>
@@ -39,8 +40,11 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<ComboBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding Sizes}" SelectedIndex="{Binding SelectedSize}" Height="25" Margin="0,4" MinWidth="80"/>
-			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="25" Margin="0,4" Text="{Binding Type}"/>
+			<ComboBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+								ItemsSource="{Binding Sizes}" SelectedIndex="{Binding SelectedSize}" Height="25" 
+								Margin="0,2" MinWidth="80"/>
+			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="25" 
+							 Margin="0,2" Text="{Binding Type}"/>
 		</Grid>
 
 		<!-- HD -->
@@ -52,21 +56,26 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			<TextBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding HitDice}" Height="25" Margin="2,4" MinWidth="40"/>
-			<ComboBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding SelectedHitDie}" Height="22" Margin="2,4" MinWidth="40"/>
-			<TextBox Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding HitPoints}" Height="25" Margin="2,4" MinWidth="40"/>
-			<Label Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="hp" Height="25" Margin="2,4"/>
+			<TextBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding HitDice}" Height="25" Margin="2,2" MinWidth="40"/>
+			<ComboBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+								ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding SelectedHitDie}" 
+								Height="22" Margin="2,2" MinWidth="40"/>
+			<TextBox Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding HitPoints}" Height="25" Margin="2,2" MinWidth="40"/>
+			<Label Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+						 Content="hp" Height="25" Margin="2,2"/>
 		</Grid>
 
 		<!-- Initiative -->
 		<Label Grid.Row="3" Grid.Column="0" Content="Init" VerticalContentAlignment="Center"/>
 		<TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"
-						 Text="{Binding InitiativeMod}" Height="25" Width="30" HorizontalAlignment="Left" Margin="0,4"/>
+						 Text="{Binding InitiativeMod}" Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2"/>
 		
 		<!-- Speed -->
 		<Label Grid.Row="4" Grid.Column="0" Content="Speed" VerticalContentAlignment="Center"/>
 		<TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,4" Text="{Binding Speed}"/>
+						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding Speed}"/>
 		<!--		<StackPanel >
 			<ComboBox ItemsSource="{Binding SpeedTypes}"/>
 			<Button Command="{Binding AddSpeed}"
@@ -83,11 +92,14 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			<TextBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding ArmorClass}" Height="25" Margin="0,4" MinWidth="40"/>
+			<TextBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding ArmorClass}" Height="25" Margin="0,2" MinWidth="40"/>
 			<Label Grid.Column="1" Content="touch" VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding TouchArmorClass}" Height="25" Margin="0,4" MinWidth="40"/>
+			<TextBox Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding TouchArmorClass}" Height="25" Margin="0,2" MinWidth="40"/>
 			<Label Grid.Column="3" Content="flat footed" VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="4" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding FlatFootedArmorClass}" Height="25" Margin="0,4" MinWidth="40"/>
+			<TextBox Grid.Column="4" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding FlatFootedArmorClass}" Height="25" Margin="0,2" MinWidth="40"/>
 		</Grid>
 
 		<!-- BAB/Grapple -->
@@ -97,8 +109,10 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			<TextBox Name="BABTextBox" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding BaseAttackBonus}" Height="25" Margin="0,4" MinWidth="40"/>
-			<TextBox Name="GrappleTextBox" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding GrappleModifier}" Height="25" Margin="0,4" MinWidth="40"/>
+			<TextBox Name="BABTextBox" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding BaseAttackBonus}" Height="25" Margin="0,2" MinWidth="40"/>
+			<TextBox Name="GrappleTextBox" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Text="{Binding GrappleModifier}" Height="25" Margin="0,2" MinWidth="40"/>
 		</Grid>
 
 		<!-- Saves -->
@@ -113,11 +127,14 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<Label Grid.Column="0" Content="Fort"  VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="25" Margin="0,4" Text="{Binding FortitudeSave}"/>
+			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Width="40" Height="25" Margin="0,2" Text="{Binding FortitudeSave}"/>
 			<Label Grid.Column="2" Content="Ref"  VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="25" Margin="0,4" Text="{Binding ReflexSave}"/>
+			<TextBox Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Width="40" Height="25" Margin="0,2" Text="{Binding ReflexSave}"/>
 			<Label Grid.Column="4" Content="Will"  VerticalContentAlignment="Center"/>
-			<TextBox Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="25" Margin="0,4" Text="{Binding WillSave}"/>
+			<TextBox Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+							 Width="40" Height="25" Margin="0,2" Text="{Binding WillSave}"/>
 		</Grid>
 
 		<!-- Abilities -->
@@ -136,28 +153,34 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<Label Grid.Row="0" Grid.Column="0" Content="Str" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="StrTextBox" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Strength}" Height="25"/>
+			<TextBox Name="StrTextBox" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" 
+							 VerticalContentAlignment="Center" Text="{Binding Strength}" Height="25" Margin="0,0,0,2"/>
 			<Label Grid.Row="0" Grid.Column="1" Content="Dex" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="DexTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Dexterity}" Height="25"/>
+			<TextBox Name="DexTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" 
+							 VerticalContentAlignment="Center" Text="{Binding Dexterity}" Height="25" Margin="0,0,0,2"/>
 			<Label Grid.Row="0" Grid.Column="2" Content="Con" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="ConTextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Constitution}" Height="25"/>
+			<TextBox Name="ConTextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" 
+							 VerticalContentAlignment="Center" Text="{Binding Constitution}" Height="25" Margin="0,0,0,2"/>
 			<Label Grid.Row="0" Grid.Column="3" Content="Int" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="IntTextBox" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Intelligence}" Height="25"/>
+			<TextBox Name="IntTextBox" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" 
+							 VerticalContentAlignment="Center" Text="{Binding Intelligence}" Height="25" Margin="0,0,0,2"/>
 			<Label Grid.Row="0" Grid.Column="4" Content="Wis" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="WisTextBox" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Wisdom}" Height="25"/>
+			<TextBox Name="WisTextBox" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" 
+							 VerticalContentAlignment="Center" Text="{Binding Wisdom}" Height="25" Margin="0,0,0,2"/>
 			<Label Grid.Row="0" Grid.Column="5" Content="Cha" Width="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-			<TextBox Name="ChaTextBox" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Charisma}" Height="25"/>
+			<TextBox Name="ChaTextBox" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" 
+							 VerticalContentAlignment="Center" Text="{Binding Charisma}" Height="25" Margin="0,0,0,2"/>
 		</Grid>
 
 		<!-- Challenge Rating -->
 		<Label Grid.Row="9" Grid.Column="0" Content="CR" VerticalContentAlignment="Center"/>
 		<TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,4" Text="{Binding ChallengeRating}"/>
+						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding ChallengeRating}"/>
 
 		<!-- Feats -->
 		<Label Grid.Row="10" Grid.Column="0" Content="Feats" VerticalContentAlignment="Center"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="10" Grid.Column="1">
-			<TextBox Text="{Binding FeatsText}" Height="60" TextWrapping="Wrap"
+			<TextBox Text="{Binding FeatsText}" MinHeight="60" TextWrapping="Wrap" Margin="0,2"
 							 MaxWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}, Path=ActualWidth}"/>
 		</ScrollViewer>
 		
@@ -173,7 +196,7 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
-				<ListBox ItemsSource="{Binding AttackSets}" SelectedIndex="{Binding SelectedAttackSet}"/>
+				<ListBox ItemsSource="{Binding AttackSets}" SelectedIndex="{Binding SelectedAttackSet}" Margin="0,2"/>
 			</ScrollViewer>
 			<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="90">
 				<Button Command="{Binding AddAttackSet}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
@@ -194,7 +217,7 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
-				<ListBox ItemsSource="{Binding DamageReductions}" SelectedIndex="{Binding SelectedDamageReduction}"/>
+				<ListBox ItemsSource="{Binding DamageReductions}" SelectedIndex="{Binding SelectedDamageReduction}" Margin="0,2"/>
 			</ScrollViewer>
 			<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="90">
 				<Button Command="{Binding AddDamageReduction}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
