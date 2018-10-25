@@ -35,11 +35,11 @@ namespace Dungeoneer.ViewModel
 
 		public int SelectedEffect { get; set; }
 
-		public void Show()
+		public void ShowDialog()
 		{
 			_effectsWindow = new View.EffectsWindow();
 			_effectsWindow.DataContext = this;
-			_effectsWindow.Show();
+			_effectsWindow.ShowDialog();
 		}
 
 		public void ExecuteCloseEffectsWindow()

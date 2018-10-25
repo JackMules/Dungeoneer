@@ -59,14 +59,18 @@ namespace Dungeoneer.ViewModel
 		{
 			get { return GetAffectedActor().HitPoints.ToString(); }
 		}
-
-		// Implement properties for attack set view models
+		
+		public new FullyObservableCollection<Model.AttackSet> AttackSets
+		{
+			get { return GetAffectedActor().AttackSets; }
+		}
 
 		protected override void ActorUpdated()
 		{
 			base.ActorUpdated();
 			ArmorClassUpdated();
 			HitPointsUpdated();
+			AttackSetsUpdated();
 		}
 
 		private void ArmorClassUpdated()
@@ -79,6 +83,11 @@ namespace Dungeoneer.ViewModel
 			Active = (Actor.HitPoints > 0);
 			BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
 			NotifyPropertyChanged("HitPoints");
+		}
+
+		private void AttackSetsUpdated()
+		{
+			NotifyPropertyChanged("AttackSets");
 		}
 
 		public override void StartTurn()
@@ -132,8 +141,9 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteShowEffectsWindow()
 		{
 			_effectsWindowViewModel = new EffectsWindowViewModel(Effects);
-			_effectsWindowViewModel.Show();
+			_effectsWindowViewModel.ShowDialog();
 			Effects = _effectsWindowViewModel.Effects;
+			ActorUpdated();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

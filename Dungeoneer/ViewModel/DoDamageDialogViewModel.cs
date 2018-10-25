@@ -227,8 +227,11 @@ namespace Dungeoneer.ViewModel
 			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel2.GetDamageDescriptorSet());
 			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel3.GetDamageDescriptorSet());
 			weapon.AbilityDamage = AbilityDamage;
-			weapon.Ability = Ability;
-			weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
+			if (AbilityDamage)
+			{
+				weapon.Ability = Ability;
+				weapon.AbilityDamageValue = Convert.ToInt32(AbilityDamageValue);
+			}
 			return weapon;
 		}
 
