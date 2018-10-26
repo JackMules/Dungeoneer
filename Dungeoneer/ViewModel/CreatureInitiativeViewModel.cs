@@ -52,17 +52,17 @@ namespace Dungeoneer.ViewModel
 
 		public string ArmorClass
 		{
-			get { return GetAffectedActor().ArmorClass.ToString(); }
+			get { return Actor.ArmorClass.ToString(); }
 		}
 
 		public string HitPoints
 		{
-			get { return GetAffectedActor().HitPoints.ToString(); }
+			get { return Actor.HitPoints.ToString(); }
 		}
 		
 		public new FullyObservableCollection<Model.AttackSet> AttackSets
 		{
-			get { return GetAffectedActor().AttackSets; }
+			get { return Actor.AttackSets; }
 		}
 
 		protected override void ActorUpdated()
@@ -101,21 +101,6 @@ namespace Dungeoneer.ViewModel
 			}
 
 			base.StartTurn();
-		}
-
-		private Model.Creature GetAffectedActor()
-		{
-			Model.Creature affectedActor = Actor;
-
-			foreach (Model.Effect.Effect effect in Effects)
-			{
-				if (!effect.PerTurn && effect is Model.Effect.CreatureEffect)
-				{
-					affectedActor = (effect as Model.Effect.CreatureEffect).ApplyTo(affectedActor);
-				}
-			}
-
-			return affectedActor;
 		}
 
 		public Command DoDamage

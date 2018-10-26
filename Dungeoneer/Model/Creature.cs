@@ -41,6 +41,35 @@ namespace Dungeoneer.Model
 			Immunities = new DamageDescriptorSet();
 		}
 
+		public Creature(Creature creature)
+			: base()
+		{
+			Strength = creature.Strength;
+			Dexterity = creature.Dexterity;
+			Constitution = creature.Constitution;
+			Intelligence = creature.Intelligence;
+			Wisdom = creature.Wisdom;
+			Charisma = creature.Charisma;
+			BaseAttackBonus = creature.BaseAttackBonus;
+			GrappleModifier = creature.GrappleModifier;
+			HitPoints = creature.HitPoints;
+			HitDice = creature.HitDice;
+			HitDieType = creature.HitDieType;
+			ArmorClass = creature.ArmorClass;
+			TouchArmorClass = creature.TouchArmorClass;
+			FlatFootedArmorClass = creature.FlatFootedArmorClass;
+			Speed = creature.Speed;
+			FortitudeSave = creature.FortitudeSave;
+			ReflexSave = creature.ReflexSave;
+			WillSave = creature.WillSave;
+			Feats = creature.Feats;
+			Space = creature.Space;
+			Reach = creature.Reach;
+			Size = creature.Size;
+			DamageReductions = creature.DamageReductions;
+			Immunities = creature.Immunities;
+		}
+
 		private int _strength;
 		private int _dexterity;
 		private int _constitution;
@@ -52,7 +81,7 @@ namespace Dungeoneer.Model
 		private int _grappleModifier;
 		private int _hitPoints;
 		private int _hitDice;
-		private Types.Die _hitDiceType;
+		private Types.Die _hitDieType;
 
 		private int _armorClass;
 		private int _touchArmorClass;
@@ -122,9 +151,22 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		private Creature GetAffectedCreature()
+		{
+			Creature temp = new Creature(this);
+			foreach (Effect.Effect effect in Effects)
+			{
+				effect.ApplyTo(ref temp);
+			}
+			return temp;
+		}
+
 		public int Strength
 		{
-			get { return _strength; }
+			get
+			{
+				return GetAffectedCreature()._strength;
+			}
 			set
 			{
 				_strength = value;
@@ -134,7 +176,7 @@ namespace Dungeoneer.Model
 
 		public int Dexterity
 		{
-			get { return _dexterity; }
+			get { return GetAffectedCreature()._dexterity; }
 			set
 			{
 				_dexterity = value;
@@ -144,7 +186,7 @@ namespace Dungeoneer.Model
 
 		public int Constitution
 		{
-			get { return _constitution; }
+			get { return GetAffectedCreature()._constitution; }
 			set
 			{
 				_constitution = value;
@@ -154,7 +196,7 @@ namespace Dungeoneer.Model
 
 		public int Intelligence
 		{
-			get { return _intelligence; }
+			get { return GetAffectedCreature()._intelligence; }
 			set
 			{
 				_intelligence = value;
@@ -164,7 +206,7 @@ namespace Dungeoneer.Model
 
 		public int Wisdom
 		{
-			get { return _wisdom; }
+			get { return GetAffectedCreature()._wisdom; }
 			set
 			{
 				_wisdom = value;
@@ -174,7 +216,7 @@ namespace Dungeoneer.Model
 
 		public int Charisma
 		{
-			get { return _charisma; }
+			get { return GetAffectedCreature()._charisma; }
 			set
 			{
 				_charisma = value;
@@ -184,7 +226,7 @@ namespace Dungeoneer.Model
 
 		public int BaseAttackBonus
 		{
-			get { return _baseAttackBonus; }
+			get { return GetAffectedCreature()._baseAttackBonus; }
 			set
 			{
 				_baseAttackBonus = value;
@@ -194,7 +236,7 @@ namespace Dungeoneer.Model
 
 		public int GrappleModifier
 		{
-			get { return _grappleModifier; }
+			get { return GetAffectedCreature()._grappleModifier; }
 			set
 			{
 				_grappleModifier = value;
@@ -204,7 +246,7 @@ namespace Dungeoneer.Model
 
 		public int HitPoints
 		{
-			get { return _hitPoints; }
+			get { return GetAffectedCreature()._hitPoints; }
 			set
 			{
 				_hitPoints = value;
@@ -214,7 +256,7 @@ namespace Dungeoneer.Model
 
 		public int HitDice
 		{
-			get { return _hitDice; }
+			get { return GetAffectedCreature()._hitDice; }
 			set
 			{
 				_hitDice = value;
@@ -224,17 +266,17 @@ namespace Dungeoneer.Model
 
 		public Types.Die HitDieType
 		{
-			get { return _hitDiceType; }
+			get { return GetAffectedCreature()._hitDieType; }
 			set
 			{
-				_hitDiceType = value;
+				_hitDieType = value;
 				NotifyPropertyChanged("HitDiceType");
 			}
 		}
 
 		public int ArmorClass
 		{
-			get { return _armorClass; }
+			get { return GetAffectedCreature()._armorClass; }
 			set
 			{
 				_armorClass = value;
@@ -244,7 +286,7 @@ namespace Dungeoneer.Model
 
 		public int TouchArmorClass
 		{
-			get { return _touchArmorClass; }
+			get { return GetAffectedCreature()._touchArmorClass; }
 			set
 			{
 				_touchArmorClass = value;
@@ -254,7 +296,7 @@ namespace Dungeoneer.Model
 
 		public int FlatFootedArmorClass
 		{
-			get { return _flatFootedArmorClass; }
+			get { return GetAffectedCreature()._flatFootedArmorClass; }
 			set
 			{
 				_flatFootedArmorClass = value;
@@ -264,7 +306,7 @@ namespace Dungeoneer.Model
 
 		public int Speed
 		{
-			get { return _speed; }
+			get { return GetAffectedCreature()._speed; }
 			set
 			{
 				_speed = value;
@@ -274,7 +316,7 @@ namespace Dungeoneer.Model
 
 		public int FortitudeSave
 		{
-			get { return _fortitudeSave; }
+			get { return GetAffectedCreature()._fortitudeSave; }
 			set
 			{
 				_fortitudeSave = value;
@@ -284,7 +326,7 @@ namespace Dungeoneer.Model
 
 		public int ReflexSave
 		{
-			get { return _reflexSave; }
+			get { return GetAffectedCreature()._reflexSave; }
 			set
 			{
 				_reflexSave = value;
@@ -294,7 +336,7 @@ namespace Dungeoneer.Model
 
 		public int WillSave
 		{
-			get { return _willSave; }
+			get { return GetAffectedCreature()._willSave; }
 			set
 			{
 				_willSave = value;
@@ -304,12 +346,16 @@ namespace Dungeoneer.Model
 
 		public bool PowerAttack
 		{
-			get { return Feats.Contains("Power Attack", StringComparer.CurrentCultureIgnoreCase); }
+			get
+			{
+				return Feats.Contains("Power Attack", StringComparer.CurrentCultureIgnoreCase) &&
+					Strength >= 13;
+			}
 		}
 
 		public int Space
 		{
-			get { return _space; }
+			get { return GetAffectedCreature()._space; }
 			set
 			{
 				_space = value;
@@ -319,7 +365,7 @@ namespace Dungeoneer.Model
 
 		public int Reach
 		{
-			get { return _reach; }
+			get { return GetAffectedCreature()._reach; }
 			set
 			{
 				_reach = value;
@@ -340,7 +386,7 @@ namespace Dungeoneer.Model
 
 		public Types.Size Size
 		{
-			get { return _size; }
+			get { return GetAffectedCreature()._size; }
 			set
 			{
 				_size = value;
@@ -350,7 +396,7 @@ namespace Dungeoneer.Model
 		
 		public ObservableCollection<DamageReduction> DamageReductions
 		{
-			get { return _damageReductions; }
+			get { return GetAffectedCreature()._damageReductions; }
 			set
 			{
 				_damageReductions = value;
@@ -360,7 +406,7 @@ namespace Dungeoneer.Model
 
 		public DamageDescriptorSet Immunities
 		{
-			get { return _immunities; }
+			get { return GetAffectedCreature()._immunities; }
 			set
 			{
 				_immunities = value;
@@ -417,7 +463,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(HitDice.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("HitDiceType");
+			xmlWriter.WriteStartElement("HitDieType");
 			xmlWriter.WriteString(Methods.GetDieTypeString(HitDieType));
 			xmlWriter.WriteEndElement();
 
@@ -530,7 +576,7 @@ namespace Dungeoneer.Model
 					{
 						HitDice = Convert.ToInt32(childNode.InnerText);
 					}
-					else if (childNode.Name == "HitDiceType")
+					else if (childNode.Name == "HitDieType")
 					{
 						HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
 					}

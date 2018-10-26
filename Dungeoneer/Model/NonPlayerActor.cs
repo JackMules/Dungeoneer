@@ -17,6 +17,7 @@ namespace Dungeoneer.Model
 			Type = "No Type";
 			ChallengeRating = 1;
 			AttackSets = new FullyObservableCollection<AttackSet>();
+			Effects = new FullyObservableCollection<Effect.Effect>();
 		}
 
 		public NonPlayerActor(
@@ -35,6 +36,17 @@ namespace Dungeoneer.Model
 		private string _type;
 		private float _challengeRating;
 		private FullyObservableCollection<AttackSet> _attackSets;
+		private FullyObservableCollection<Effect.Effect> _effects;
+
+		private NonPlayerActor GetAffectedNonPlayerActor()
+		{
+			NonPlayerActor temp = new NonPlayerActor(this);
+			foreach (Effect.Effect effect in Effects)
+			{
+				effect.ApplyTo(ref temp);
+			}
+			return temp;
+		}
 
 		public string Type
 		{
@@ -58,11 +70,21 @@ namespace Dungeoneer.Model
 
 		public FullyObservableCollection<AttackSet> AttackSets
 		{
-			get { return _attackSets; }
+			get { return GetAffectedNonPlayerActor()._attackSets; }
 			set
 			{
 				_attackSets = value;
 				NotifyPropertyChanged("Attacks");
+			}
+		}
+
+		public FullyObservableCollection<Effect.Effect> Effects
+		{
+			get { return _effects; }
+			set
+			{
+				_effects = value;
+				NotifyPropertyChanged("Effects");
 			}
 		}
 
@@ -87,6 +109,13 @@ namespace Dungeoneer.Model
 			foreach (AttackSet attackSet in AttackSets)
 			{
 				attackSet.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Effects");
+			foreach (Effect.Effect effect in Effects)
+			{
+				effect.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
 		}
@@ -116,6 +145,16 @@ namespace Dungeoneer.Model
 								AttackSet attackSet = new AttackSet();
 								attackSet.ReadXML(attackSetNode);
 								AttackSets.Add(attackSet);
+							}
+						}
+					}
+					else if (childNode.Name == "Effects")
+					{
+						foreach (XmlNode effectNode in childNode.ChildNodes)
+						{
+							if (effectNode.Name == "Effect")
+							{
+								Effects.Add(Effect.EffectFactory.GetEffect(effectNode));
 							}
 						}
 					}

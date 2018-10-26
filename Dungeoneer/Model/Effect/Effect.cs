@@ -13,7 +13,7 @@ namespace Dungeoneer.Model.Effect
 	{
 		public Effect(bool perTurn)
 		{
-			_perTurn = perTurn;
+			PerTurn = perTurn;
 		}
 
 		private bool _perTurn;
@@ -40,9 +40,13 @@ namespace Dungeoneer.Model.Effect
 			return Name;
 		}
 
-		public abstract bool Expired();
+		public virtual bool Expired()
+		{
+			return false;
+		}
 
-		public abstract Actor ApplyTo(Actor actor);
+		public virtual void ApplyTo(ref Creature creature)
+		{ }
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{

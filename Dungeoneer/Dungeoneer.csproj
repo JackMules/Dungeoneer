@@ -140,7 +140,6 @@
     <Compile Include="Model\DamageDescriptorSet.cs" />
     <Compile Include="Model\DamageSet.cs" />
     <Compile Include="Model\Effect\Condition.cs" />
-    <Compile Include="Model\Effect\CreatureEffect.cs" />
     <Compile Include="Model\Effect\Effect.cs" />
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />

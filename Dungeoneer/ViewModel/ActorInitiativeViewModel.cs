@@ -22,7 +22,6 @@ namespace Dungeoneer.ViewModel
 		protected Model.Actor _actor;
 		private string _displayName;
 		private Color _backgroundColor;
-		protected FullyObservableCollection<Model.Effect.Effect> _effects;
 
 		public Model.Actor Actor
 		{

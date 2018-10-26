@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model.Effect
 {
-	public abstract class TimedEffect : CreatureEffect
+	public abstract class TimedEffect : Effect
 	{
 		public TimedEffect(bool perTurn)
 			: base(perTurn)
