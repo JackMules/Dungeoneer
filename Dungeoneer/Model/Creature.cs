@@ -12,334 +12,217 @@ namespace Dungeoneer.Model
 {
 	public class Creature : NonPlayerActor
 	{
-		public Creature()
-			: base()
+		public Creature(Creature other)
+			: base(other)
 		{
-			Strength = 10;
-			Dexterity = 10;
-			Constitution = 10;
-			Intelligence = 10;
-			Wisdom = 10;
-			Charisma = 10;
-			BaseAttackBonus = 0;
-			GrappleModifier = 0;
-			HitPoints = 3;
-			HitDice = 1;
-			HitDieType = Types.Die.d3;
-			ArmorClass = 10;
-			TouchArmorClass = 10;
-			FlatFootedArmorClass = 10;
-			Speed = 30;
-			FortitudeSave = 0;
-			ReflexSave = 0;
-			WillSave = 0;
-			Feats = new List<string>();
-			Space = 5;
-			Reach = 5;
-			Size = Types.Size.Medium;
-			DamageReductions = new ObservableCollection<DamageReduction>();
-			Immunities = new DamageDescriptorSet();
+			_baseCreatureAttributes = new CreatureAttributes(other._baseCreatureAttributes);
+			_modifiedCreatureAttributes = new CreatureAttributes(_baseCreatureAttributes);
 		}
 
-		public Creature(Creature creature)
-			: base()
+		public Creature(CreatureAttributes attributes)
+			: base(attributes)
 		{
-			Strength = creature.Strength;
-			Dexterity = creature.Dexterity;
-			Constitution = creature.Constitution;
-			Intelligence = creature.Intelligence;
-			Wisdom = creature.Wisdom;
-			Charisma = creature.Charisma;
-			BaseAttackBonus = creature.BaseAttackBonus;
-			GrappleModifier = creature.GrappleModifier;
-			HitPoints = creature.HitPoints;
-			HitDice = creature.HitDice;
-			HitDieType = creature.HitDieType;
-			ArmorClass = creature.ArmorClass;
-			TouchArmorClass = creature.TouchArmorClass;
-			FlatFootedArmorClass = creature.FlatFootedArmorClass;
-			Speed = creature.Speed;
-			FortitudeSave = creature.FortitudeSave;
-			ReflexSave = creature.ReflexSave;
-			WillSave = creature.WillSave;
-			Feats = creature.Feats;
-			Space = creature.Space;
-			Reach = creature.Reach;
-			Size = creature.Size;
-			DamageReductions = creature.DamageReductions;
-			Immunities = creature.Immunities;
+			_baseCreatureAttributes = new CreatureAttributes(attributes);
+			_modifiedCreatureAttributes = new CreatureAttributes(attributes);
 		}
 
-		private int _strength;
-		private int _dexterity;
-		private int _constitution;
-		private int _intelligence;
-		private int _wisdom;
-		private int _charisma;
-
-		private int _baseAttackBonus;
-		private int _grappleModifier;
-		private int _hitPoints;
-		private int _hitDice;
-		private Types.Die _hitDieType;
-
-		private int _armorClass;
-		private int _touchArmorClass;
-		private int _flatFootedArmorClass;
-
-		private int _speed;
-
-		private int _fortitudeSave;
-		private int _reflexSave;
-		private int _willSave;
-
-		private List<string> _feats;
-
-		private int _space;
-		private int _reach;
-		private Types.Size _size;
-		private ObservableCollection<DamageReduction> _damageReductions;
-		private DamageDescriptorSet _immunities;
-
-		public int GetAbilityScore(Types.Ability ability)
+		public Creature(XmlNode xmlNode)
 		{
-			switch (ability)
-			{
-			case Types.Ability.Strength:
-				return Strength;
-			case Types.Ability.Dexterity:
-				return Dexterity;
-			case Types.Ability.Constitution:
-				return Constitution;
-			case Types.Ability.Intelligence:
-				return Intelligence;
-			case Types.Ability.Wisdom:
-				return Wisdom;
-			case Types.Ability.Charisma:
-				return Charisma;
-			}
-			return 0;
+			ReadXML(xmlNode);
 		}
 
-		public int GetAbilityModifier(Types.Ability ability)
-		{
-			return Methods.GetAbilityModifier(GetAbilityScore(ability));
-		}
+		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
+		private CreatureAttributes _modifiedCreatureAttributes = new CreatureAttributes();
 
-		public void SetAbilityScore(Types.Ability ability, int score)
+		public CreatureAttributes GetEffectiveCreatureAttributes()
 		{
-			switch (ability)
-			{
-			case Types.Ability.Strength:
-				Strength = score;
-				break;
-			case Types.Ability.Dexterity:
-				Dexterity = score;
-				break;
-			case Types.Ability.Constitution:
-				Constitution = score;
-				break;
-			case Types.Ability.Intelligence:
-				Intelligence = score;
-				break;
-			case Types.Ability.Wisdom:
-				Wisdom = score;
-				break;
-			case Types.Ability.Charisma:
-				Charisma = score;
-				break;
-			}
-		}
-
-		private Creature GetAffectedCreature()
-		{
-			Creature temp = new Creature(this);
+			CreatureAttributes effectiveAttributes = new CreatureAttributes(_modifiedCreatureAttributes);
 			foreach (Effect.Effect effect in Effects)
 			{
-				effect.ApplyTo(ref temp);
+				effect.ApplyTo(effectiveAttributes);
 			}
-			return temp;
+			return effectiveAttributes;
 		}
 
 		public int Strength
 		{
 			get
 			{
-				return GetAffectedCreature()._strength;
+				return GetEffectiveCreatureAttributes().Strength;
 			}
 			set
 			{
-				_strength = value;
+				_modifiedCreatureAttributes.Strength = value;
 				NotifyPropertyChanged("Strength");
 			}
 		}
 
 		public int Dexterity
 		{
-			get { return GetAffectedCreature()._dexterity; }
+			get { return GetEffectiveCreatureAttributes().Dexterity; }
 			set
 			{
-				_dexterity = value;
+				_modifiedCreatureAttributes.Dexterity = value;
 				NotifyPropertyChanged("Dexterity");
 			}
 		}
 
 		public int Constitution
 		{
-			get { return GetAffectedCreature()._constitution; }
+			get { return GetEffectiveCreatureAttributes().Constitution; }
 			set
 			{
-				_constitution = value;
+				_modifiedCreatureAttributes.Constitution = value;
 				NotifyPropertyChanged("Constitution");
 			}
 		}
 
 		public int Intelligence
 		{
-			get { return GetAffectedCreature()._intelligence; }
+			get { return GetEffectiveCreatureAttributes().Intelligence; }
 			set
 			{
-				_intelligence = value;
+				_modifiedCreatureAttributes.Intelligence = value;
 				NotifyPropertyChanged("Intelligence");
 			}
 		}
 
 		public int Wisdom
 		{
-			get { return GetAffectedCreature()._wisdom; }
+			get { return GetEffectiveCreatureAttributes().Wisdom; }
 			set
 			{
-				_wisdom = value;
+				_modifiedCreatureAttributes.Wisdom = value;
 				NotifyPropertyChanged("Wisdom");
 			}
 		}
 
 		public int Charisma
 		{
-			get { return GetAffectedCreature()._charisma; }
+			get { return GetEffectiveCreatureAttributes().Charisma; }
 			set
 			{
-				_charisma = value;
+				_modifiedCreatureAttributes.Charisma = value;
 				NotifyPropertyChanged("Charisma");
 			}
 		}
 
 		public int BaseAttackBonus
 		{
-			get { return GetAffectedCreature()._baseAttackBonus; }
+			get { return GetEffectiveCreatureAttributes().BaseAttackBonus; }
 			set
 			{
-				_baseAttackBonus = value;
+				_modifiedCreatureAttributes.BaseAttackBonus = value;
 				NotifyPropertyChanged("BaseAttackBonus");
 			}
 		}
 
 		public int GrappleModifier
 		{
-			get { return GetAffectedCreature()._grappleModifier; }
+			get { return GetEffectiveCreatureAttributes().GrappleModifier; }
 			set
 			{
-				_grappleModifier = value;
+				_modifiedCreatureAttributes.GrappleModifier = value;
 				NotifyPropertyChanged("BaseGrappleModifierAttackBonus");
 			}
 		}
 
 		public int HitPoints
 		{
-			get { return GetAffectedCreature()._hitPoints; }
+			get { return GetEffectiveCreatureAttributes().HitPoints; }
 			set
 			{
-				_hitPoints = value;
+				_modifiedCreatureAttributes.HitPoints = value;
 				NotifyPropertyChanged("HitPoints");
 			}
 		}
 
 		public int HitDice
 		{
-			get { return GetAffectedCreature()._hitDice; }
+			get { return GetEffectiveCreatureAttributes().HitDice; }
 			set
 			{
-				_hitDice = value;
+				_modifiedCreatureAttributes.HitDice = value;
 				NotifyPropertyChanged("HitDice");
 			}
 		}
 
 		public Types.Die HitDieType
 		{
-			get { return GetAffectedCreature()._hitDieType; }
+			get { return GetEffectiveCreatureAttributes().HitDieType; }
 			set
 			{
-				_hitDieType = value;
+				_modifiedCreatureAttributes.HitDieType = value;
 				NotifyPropertyChanged("HitDiceType");
 			}
 		}
 
 		public int ArmorClass
 		{
-			get { return GetAffectedCreature()._armorClass; }
+			get { return GetEffectiveCreatureAttributes().ArmorClass; }
 			set
 			{
-				_armorClass = value;
+				_modifiedCreatureAttributes.ArmorClass = value;
 				NotifyPropertyChanged("ArmorClass");
 			}
 		}
 
 		public int TouchArmorClass
 		{
-			get { return GetAffectedCreature()._touchArmorClass; }
+			get { return GetEffectiveCreatureAttributes().TouchArmorClass; }
 			set
 			{
-				_touchArmorClass = value;
+				_modifiedCreatureAttributes.TouchArmorClass = value;
 				NotifyPropertyChanged("TouchArmorClass");
 			}
 		}
 
 		public int FlatFootedArmorClass
 		{
-			get { return GetAffectedCreature()._flatFootedArmorClass; }
+			get { return GetEffectiveCreatureAttributes().FlatFootedArmorClass; }
 			set
 			{
-				_flatFootedArmorClass = value;
+				_modifiedCreatureAttributes.FlatFootedArmorClass = value;
 				NotifyPropertyChanged("FlatFootedArmorClass");
 			}
 		}
 
 		public int Speed
 		{
-			get { return GetAffectedCreature()._speed; }
+			get { return GetEffectiveCreatureAttributes().Speed; }
 			set
 			{
-				_speed = value;
+				_modifiedCreatureAttributes.Speed = value;
 				NotifyPropertyChanged("Speed");
 			}
 		}
 
 		public int FortitudeSave
 		{
-			get { return GetAffectedCreature()._fortitudeSave; }
+			get { return GetEffectiveCreatureAttributes().FortitudeSave; }
 			set
 			{
-				_fortitudeSave = value;
+				_modifiedCreatureAttributes.FortitudeSave = value;
 				NotifyPropertyChanged("FortitudeSave");
 			}
 		}
 
 		public int ReflexSave
 		{
-			get { return GetAffectedCreature()._reflexSave; }
+			get { return GetEffectiveCreatureAttributes().ReflexSave; }
 			set
 			{
-				_reflexSave = value;
+				_modifiedCreatureAttributes.ReflexSave = value;
 				NotifyPropertyChanged("ReflexSave");
 			}
 		}
 
 		public int WillSave
 		{
-			get { return GetAffectedCreature()._willSave; }
+			get { return GetEffectiveCreatureAttributes().WillSave; }
 			set
 			{
-				_willSave = value;
+				_modifiedCreatureAttributes.WillSave = value;
 				NotifyPropertyChanged("WillSave");
 			}
 		}
@@ -355,30 +238,30 @@ namespace Dungeoneer.Model
 
 		public int Space
 		{
-			get { return GetAffectedCreature()._space; }
+			get { return GetEffectiveCreatureAttributes().Space; }
 			set
 			{
-				_space = value;
+				_modifiedCreatureAttributes.Space = value;
 				NotifyPropertyChanged("Space");
 			}
 		}
 
 		public int Reach
 		{
-			get { return GetAffectedCreature()._reach; }
+			get { return GetEffectiveCreatureAttributes().Reach; }
 			set
 			{
-				_reach = value;
+				_modifiedCreatureAttributes.Reach = value;
 				NotifyPropertyChanged("Reach");
 			}
 		}
 
 		public List<string> Feats
 		{
-			get { return _feats; }
+			get { return GetEffectiveCreatureAttributes().Feats; }
 			set
 			{
-				_feats = value;
+				_modifiedCreatureAttributes.Feats = value;
 				NotifyPropertyChanged("Feats");
 				NotifyPropertyChanged("PowerAttack");
 			}
@@ -386,32 +269,43 @@ namespace Dungeoneer.Model
 
 		public Types.Size Size
 		{
-			get { return GetAffectedCreature()._size; }
+			get { return GetEffectiveCreatureAttributes().Size; }
 			set
 			{
-				_size = value;
+				_modifiedCreatureAttributes.Size = value;
 				NotifyPropertyChanged("Size");
 			}
 		}
-		
+
 		public ObservableCollection<DamageReduction> DamageReductions
 		{
-			get { return GetAffectedCreature()._damageReductions; }
+			get { return GetEffectiveCreatureAttributes().DamageReductions; }
 			set
 			{
-				_damageReductions = value;
+				_modifiedCreatureAttributes.DamageReductions = value;
 				NotifyPropertyChanged("DamageReductions");
 			}
 		}
 
 		public DamageDescriptorSet Immunities
 		{
-			get { return GetAffectedCreature()._immunities; }
+			get { return GetEffectiveCreatureAttributes().Immunities; }
 			set
 			{
-				_immunities = value;
+				_modifiedCreatureAttributes.Immunities = value;
 				NotifyPropertyChanged("Immunities");
 			}
+		}
+
+		public void ModifyAbilityScore(Types.Ability ability, int change)
+		{
+			_modifiedCreatureAttributes.ModifyAbilityScore(ability, change);
+			NotifyPropertyChanged(Methods.GetAbilityString(ability));
+		}
+
+		public int DoHitPointDamage(Hit hit)
+		{
+			return _modifiedCreatureAttributes.DoHitPointDamage(hit);
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -538,75 +432,75 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Strength")
 					{
-						Strength = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Strength = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Dexterity")
 					{
-						Dexterity = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Dexterity = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Constitution")
 					{
-						Constitution = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Constitution = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Intelligence")
 					{
-						Intelligence = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Intelligence = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Wisdom")
 					{
-						Wisdom = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Wisdom = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Charisma")
 					{
-						Charisma = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Charisma = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "BaseAttackBonus")
 					{
-						BaseAttackBonus = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.BaseAttackBonus = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "GrappleModifier")
 					{
-						GrappleModifier = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.GrappleModifier = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "HitPoints")
 					{
-						HitPoints = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.HitPoints = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "HitDice")
 					{
-						HitDice = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.HitDice = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "HitDieType")
 					{
-						HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
+						_baseCreatureAttributes.HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "ArmorClass")
 					{
-						ArmorClass = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.ArmorClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "TouchArmorClass")
 					{
-						TouchArmorClass = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.TouchArmorClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "FlatFootedArmorClass")
 					{
-						FlatFootedArmorClass = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.FlatFootedArmorClass = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Speed")
 					{
-						Speed = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Speed = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "FortitudeSave")
 					{
-						FortitudeSave = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.FortitudeSave = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "ReflexSave")
 					{
-						ReflexSave = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.ReflexSave = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "WillSave")
 					{
-						WillSave = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.WillSave = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Feats")
 					{
@@ -614,21 +508,21 @@ namespace Dungeoneer.Model
 						{
 							if (featNode.Name == "Feat")
 							{
-								Feats.Add(featNode.InnerText);
+								_baseCreatureAttributes.Feats.Add(featNode.InnerText);
 							}
 						}
 					}
 					else if (childNode.Name == "Space")
 					{
-						Space = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Space = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Reach")
 					{
-						Reach = Convert.ToInt32(childNode.InnerText);
+						_baseCreatureAttributes.Reach = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "Size")
 					{
-						Size = Methods.GetSizeFromString(childNode.InnerText);
+						_baseCreatureAttributes.Size = Methods.GetSizeFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "DamageReductions")
 					{
@@ -638,11 +532,13 @@ namespace Dungeoneer.Model
 							{
 								DamageReduction dr = new DamageReduction();
 								dr.ReadXML(drNode);
-								DamageReductions.Add(dr);
+								_baseCreatureAttributes.DamageReductions.Add(dr);
 							}
 						}
 					}
 				}
+
+				_modifiedCreatureAttributes = new CreatureAttributes(_baseCreatureAttributes);
 			}
 			catch (XmlException e)
 			{

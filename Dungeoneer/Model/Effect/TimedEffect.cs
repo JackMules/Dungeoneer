@@ -16,6 +16,11 @@ namespace Dungeoneer.Model.Effect
 		{
 
 		}
+
+		public TimedEffect(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
 		
 		private int _duration;
 		private int _elapsedDuration;

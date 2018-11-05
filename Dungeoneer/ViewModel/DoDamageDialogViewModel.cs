@@ -235,62 +235,63 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public Model.Creature DoDamage(Model.Creature creature, ref FullyObservableCollection<Model.Effect.Effect> effects)
+		public void DoDamage(Model.Actor actor)
 		{
-			bool askForInput = true;
-			string feedback = null;
-			while (askForInput)
+			if (actor is Model.Creature)
 			{
-				View.DoDamageDialog damageDialog = new View.DoDamageDialog(feedback);
-				damageDialog.DataContext = this;
-				if (damageDialog.ShowDialog() == true)
+				bool askForInput = true;
+				string feedback = null;
+				while (askForInput)
 				{
-					List<int> damage = new List<int> { 0, 0, 0 };
-					try
+					View.DoDamageDialog damageDialog = new View.DoDamageDialog(feedback);
+					damageDialog.DataContext = this;
+					if (damageDialog.ShowDialog() == true)
 					{
-						if (Damage1 != "")
+						List<int> damage = new List<int> { 0, 0, 0 };
+						try
 						{
-							damage[0] = Convert.ToInt32(Damage1);
-						}
-						if (Damage2 != "")
-						{
-							damage[1] = Convert.ToInt32(Damage2);
-						}
-						if (Damage3 != "")
-						{
-							damage[2] = Convert.ToInt32(Damage3);
-						}
-
-						Model.Weapon weapon = GetWeapon();
-
-						Model.Hit hit = new Model.Hit(damage, weapon);
-						int hp = creature.HitPoints;
-						creature = Methods.DoHitPointDamage(creature, hit, ref effects);
-
-						if (creature.HitPoints != hp)
-						{
-							// Damage dealt, apply other effects
-							if (weapon.AbilityDamage)
+							if (Damage1 != "")
 							{
-								creature = Methods.ModifyAbilityScore(creature, weapon.Ability, -weapon.AbilityDamageValue);
+								damage[0] = Convert.ToInt32(Damage1);
 							}
-						}
+							if (Damage2 != "")
+							{
+								damage[1] = Convert.ToInt32(Damage2);
+							}
+							if (Damage3 != "")
+							{
+								damage[2] = Convert.ToInt32(Damage3);
+							}
 
+							Model.Weapon weapon = GetWeapon();
+
+							Model.Hit hit = new Model.Hit(damage, weapon);
+
+							int damageDone = (actor as Model.Creature).DoHitPointDamage(hit);
+
+							if (damageDone > 0)
+							{
+								// Damage dealt, apply other effects
+								if (weapon.AbilityDamage)
+								{
+									(actor as Model.Creature).ModifyAbilityScore(weapon.Ability, -weapon.AbilityDamageValue);
+								}
+							}
+
+							askForInput = false;
+						}
+						catch (FormatException)
+						{
+							// Failed to parse input
+							feedback = "Invalid format";
+						}
+					}
+					else
+					{
 						askForInput = false;
 					}
-					catch (FormatException)
-					{
-						// Failed to parse input
-						feedback = "Invalid format";
-					}
-				}
-				else
-				{
-					askForInput = false;
 				}
 			}
-
-			return creature;
 		}
 	}
 }

@@ -11,80 +11,71 @@ namespace Dungeoneer.Model
 {
 	public class NonPlayerActor : Actor
 	{
-		public NonPlayerActor()
-			: base()
+		protected NonPlayerActor()
 		{
-			Type = "No Type";
-			ChallengeRating = 1;
-			AttackSets = new FullyObservableCollection<AttackSet>();
-			Effects = new FullyObservableCollection<Effect.Effect>();
+
 		}
 
-		public NonPlayerActor(
-			string actorName,
-			string type,
-			int initiativeMod,
-			float challengeRating,
-			FullyObservableCollection<AttackSet> attackSets)
-			: base(actorName, initiativeMod)
+		public NonPlayerActor(NonPlayerActor other)
+			: base(other)
 		{
-			Type = type;
-			ChallengeRating = challengeRating;
-			AttackSets = attackSets;
+			_baseNonPlayerActorAttributes = new NonPlayerActorAttributes(other._baseNonPlayerActorAttributes);
+			_modifiedNonPlayerActorAttributes = new NonPlayerActorAttributes(_baseNonPlayerActorAttributes);
 		}
 
-		private string _type;
-		private float _challengeRating;
-		private FullyObservableCollection<AttackSet> _attackSets;
-		private FullyObservableCollection<Effect.Effect> _effects;
-
-		private NonPlayerActor GetAffectedNonPlayerActor()
+		public NonPlayerActor(NonPlayerActorAttributes attributes)
+			: base(attributes)
 		{
-			NonPlayerActor temp = new NonPlayerActor(this);
+			_baseNonPlayerActorAttributes = new NonPlayerActorAttributes(attributes);
+			_modifiedNonPlayerActorAttributes = new NonPlayerActorAttributes(attributes);
+		}
+
+		public NonPlayerActor(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+			_modifiedNonPlayerActorAttributes = new NonPlayerActorAttributes(_baseNonPlayerActorAttributes);
+		}
+
+		private NonPlayerActorAttributes _baseNonPlayerActorAttributes = new NonPlayerActorAttributes();
+		private NonPlayerActorAttributes _modifiedNonPlayerActorAttributes = new NonPlayerActorAttributes();
+
+		public new NonPlayerActorAttributes GetEffectiveAttributes()
+		{
+			NonPlayerActorAttributes effectiveAttributes = new NonPlayerActorAttributes(_modifiedNonPlayerActorAttributes);
 			foreach (Effect.Effect effect in Effects)
 			{
-				effect.ApplyTo(ref temp);
+				effect.ApplyTo(effectiveAttributes);
 			}
-			return temp;
+			return effectiveAttributes;
 		}
 
 		public string Type
 		{
-			get { return _type; }
+			get { return GetEffectiveAttributes().Type; }
 			set
 			{
-				_type = value;
+				_modifiedNonPlayerActorAttributes.Type = value;
 				NotifyPropertyChanged("Type");
 			}
 		}
 
 		public float ChallengeRating
 		{
-			get { return _challengeRating; }
+			get { return GetEffectiveAttributes().ChallengeRating; }
 			set
 			{
-				_challengeRating = value;
+				_modifiedNonPlayerActorAttributes.ChallengeRating = value;
 				NotifyPropertyChanged("ChallengeRating");
 			}
 		}
 
 		public FullyObservableCollection<AttackSet> AttackSets
 		{
-			get { return GetAffectedNonPlayerActor()._attackSets; }
+			get { return GetEffectiveAttributes().AttackSets; }
 			set
 			{
-				_attackSets = value;
+				_modifiedNonPlayerActorAttributes.AttackSets = value;
 				NotifyPropertyChanged("Attacks");
-			}
-		}
-
-		public FullyObservableCollection<Effect.Effect> Effects
-		{
-			get { return _effects; }
-			set
-			{
-				_effects = value;
-				NotifyPropertyChanged("Effects");
 			}
 		}
 
@@ -111,13 +102,6 @@ namespace Dungeoneer.Model
 				attackSet.WriteXML(xmlWriter);
 			}
 			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Effects");
-			foreach (Effect.Effect effect in Effects)
-			{
-				effect.WriteXML(xmlWriter);
-			}
-			xmlWriter.WriteEndElement();
 		}
 
 		public override void ReadXML(XmlNode xmlNode)
@@ -130,35 +114,26 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Type")
 					{
-						Type = childNode.InnerText;
+						_baseNonPlayerActorAttributes.Type = childNode.InnerText;
 					}
 					else if (childNode.Name == "ChallengeRating")
 					{
-						ChallengeRating = Convert.ToSingle(childNode.InnerText);
+						_baseNonPlayerActorAttributes.ChallengeRating = Convert.ToSingle(childNode.InnerText);
 					}
 					else if (childNode.Name == "AttackSets")
 					{
+						_baseNonPlayerActorAttributes.AttackSets.Clear();
 						foreach (XmlNode attackSetNode in childNode.ChildNodes)
 						{
 							if (attackSetNode.Name == "AttackSet")
 							{
-								AttackSet attackSet = new AttackSet();
-								attackSet.ReadXML(attackSetNode);
-								AttackSets.Add(attackSet);
-							}
-						}
-					}
-					else if (childNode.Name == "Effects")
-					{
-						foreach (XmlNode effectNode in childNode.ChildNodes)
-						{
-							if (effectNode.Name == "Effect")
-							{
-								Effects.Add(Effect.EffectFactory.GetEffect(effectNode));
+								_baseNonPlayerActorAttributes.AttackSets.Add(new AttackSet(attackSetNode));
 							}
 						}
 					}
 				}
+
+				_modifiedNonPlayerActorAttributes = new NonPlayerActorAttributes(_baseNonPlayerActorAttributes);
 			}
 			catch (XmlException e)
 			{

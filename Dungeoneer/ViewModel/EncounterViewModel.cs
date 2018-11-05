@@ -152,10 +152,7 @@ namespace Dungeoneer.ViewModel
 				{
 					if (initCard.ActorViewModel is PlayerActorInitiativeViewModel)
 					{
-						PlayerActorInitiativeViewModel newViewModel = new PlayerActorInitiativeViewModel
-						{
-							Actor = updatedActor as Model.PlayerActor,
-						};
+						PlayerActorInitiativeViewModel newViewModel = new PlayerActorInitiativeViewModel(updatedActor as Model.PlayerActor);
 						newViewModel.DisplayName = initCard.ActorViewModel.DisplayName;
 						(initCard as PlayerActorInitiativeCardViewModel).ActorViewModel = newViewModel;
 					}

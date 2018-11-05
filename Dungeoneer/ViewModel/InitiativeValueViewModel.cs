@@ -15,6 +15,11 @@ namespace Dungeoneer.ViewModel
 			_initiativeSet = false;
 		}
 
+		public InitiativeValueViewModel(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		private Model.InitiativeValue _initiativeValue;
 		private bool _initiativeSet;
 
@@ -162,9 +167,7 @@ namespace Dungeoneer.ViewModel
 
 		public void ReadXML(XmlNode xmlNode)
 		{
-			Model.InitiativeValue initiativeValue = new Model.InitiativeValue();
-			initiativeValue.ReadXML(xmlNode);
-			InitiativeValue = initiativeValue;
+			InitiativeValue = new Model.InitiativeValue(xmlNode);
 		}
 	}
 }

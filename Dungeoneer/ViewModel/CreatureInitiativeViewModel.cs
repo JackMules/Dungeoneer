@@ -11,12 +11,25 @@ namespace Dungeoneer.ViewModel
 {
 	public class CreatureInitiativeViewModel : NonPlayerActorInitiativeViewModel
 	{
-		public CreatureInitiativeViewModel(EncounterViewModel encounterViewModel)
+		public CreatureInitiativeViewModel(Model.Creature creature, EncounterViewModel encounterViewModel)
 		{
+			_actor = new Model.Creature(creature);
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
-			_doDamage = new Command(ExecuteDoDamage);
-			_actor = new Model.Creature();
 			_weaponList = encounterViewModel.WeaponList;
+		}
+
+		public CreatureInitiativeViewModel(XmlNode creatureXml, EncounterViewModel encounterViewModel)
+		{
+			_actor = new Model.Creature(creatureXml);
+			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
+			_weaponList = encounterViewModel.WeaponList;
+			
+		}
+
+		protected override void InitCommands()
+		{
+			base.InitCommands();
+			_doDamage = new Command(ExecuteDoDamage);
 			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
 		}
 
@@ -90,19 +103,6 @@ namespace Dungeoneer.ViewModel
 			NotifyPropertyChanged("AttackSets");
 		}
 
-		public override void StartTurn()
-		{
-			foreach (Model.Effect.Effect effect in Effects)
-			{
-				if (effect.PerTurn && effect is Model.Effect.CreatureEffect)
-				{
-					Actor = (effect as Model.Effect.CreatureEffect).ApplyTo(Actor);
-				}
-			}
-
-			base.StartTurn();
-		}
-
 		public Command DoDamage
 		{
 			get { return _doDamage; }
@@ -111,11 +111,8 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteDoDamage()
 		{
 			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel(WeaponList);
-			Model.Creature creature = doDamageDialogViewModel.DoDamage(Actor, ref _effects);
-			if (creature != null)
-			{
-				Actor = creature;
-			}
+			doDamageDialogViewModel.DoDamage(Actor);
+			HitPointsUpdated();
 		}
 
 		public Command ShowEffectsWindow
@@ -125,9 +122,9 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteShowEffectsWindow()
 		{
-			_effectsWindowViewModel = new EffectsWindowViewModel(Effects);
+			_effectsWindowViewModel = new EffectsWindowViewModel(Actor.Effects);
 			_effectsWindowViewModel.ShowDialog();
-			Effects = _effectsWindowViewModel.Effects;
+			Actor.Effects = _effectsWindowViewModel.Effects;
 			ActorUpdated();
 		}
 
@@ -143,8 +140,7 @@ namespace Dungeoneer.ViewModel
 
 		public override void ReadActorXML(XmlNode xmlNode)
 		{
-			Model.Creature creature = new Model.Creature();
-			creature.ReadXML(xmlNode);
+			Model.Creature creature = new Model.Creature(xmlNode);
 			Actor = creature;
 		}
 	}

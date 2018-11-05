@@ -31,7 +31,7 @@ namespace Dungeoneer.Utility
 
 		public static Model.Creature ParseText(string text)
 		{
-			Model.Creature creature = new Model.Creature();
+			Model.CreatureAttributes attributes = new Model.CreatureAttributes();
 
 			if (text != null && text != "")
 			{
@@ -58,22 +58,22 @@ namespace Dungeoneer.Utility
 
 						if (identifier == "Size/Type")
 						{
-							creature.Size = Methods.GetSizeFromString(words[0]);
-							creature.Type = string.Join(" ", words.Skip(1));
+							attributes.Size = Methods.GetSizeFromString(words[0]);
+							attributes.Type = string.Join(" ", words.Skip(1));
 						}
 						else if (identifier == "Hit Dice")
 						{
-							creature.HitDice = numbers[0];
-							creature.HitDieType = Methods.GetDieTypeFromInt(numbers[1]);
-							creature.HitPoints = numbers[3];
+							attributes.HitDice = numbers[0];
+							attributes.HitDieType = Methods.GetDieTypeFromInt(numbers[1]);
+							attributes.HitPoints = numbers[3];
 						}
 						else if (identifier == "Initiative")
 						{
-							creature.InitiativeMod = numbers[0];
+							attributes.InitiativeMod = numbers[0];
 						}
 						else if (identifier == "Speed")
 						{
-							creature.Speed = numbers[0];
+							attributes.Speed = numbers[0];
 						}
 						else if (identifier == "Armor Class")
 						{
@@ -83,15 +83,15 @@ namespace Dungeoneer.Utility
 
 							if (acMatch.Success)
 							{
-								creature.ArmorClass = Convert.ToInt32(acMatch.Groups["AC"].Value);
-								creature.TouchArmorClass = Convert.ToInt32(acMatch.Groups["TouchAC"].Value);
-								creature.FlatFootedArmorClass = Convert.ToInt32(acMatch.Groups["FFAC"].Value);
+								attributes.ArmorClass = Convert.ToInt32(acMatch.Groups["AC"].Value);
+								attributes.TouchArmorClass = Convert.ToInt32(acMatch.Groups["TouchAC"].Value);
+								attributes.FlatFootedArmorClass = Convert.ToInt32(acMatch.Groups["FFAC"].Value);
 							}
 						}
 						else if (identifier == "Base Attack/Grapple")
 						{
-							creature.BaseAttackBonus = numbers[0];
-							creature.GrappleModifier = numbers[1];
+							attributes.BaseAttackBonus = numbers[0];
+							attributes.GrappleModifier = numbers[1];
 						}
 						else if (identifier == "Attack" || identifier == "Full Attack")
 						{
@@ -149,12 +149,12 @@ namespace Dungeoneer.Utility
 								}
 							}
 							
-							creature.AttackSets.Add(attackSet);
+							attributes.AttackSets.Add(attackSet);
 						}
 						else if (identifier == "Space/Reach")
 						{
-							creature.Space = numbers[0];
-							creature.Reach = numbers[1];
+							attributes.Space = numbers[0];
+							attributes.Reach = numbers[1];
 						}
 						else if (identifier == "Special Attacks")
 						{
@@ -171,7 +171,7 @@ namespace Dungeoneer.Utility
 								Model.DamageReduction dr = new Model.DamageReduction();
 								dr.Value = Convert.ToInt32(drMatch.Groups["Value"].Value);
 								dr.DamageTypes = GetDamageDescriptorSetFromString(drMatch.Groups["Types"].Value, "and");
-								creature.DamageReductions.Add(dr);
+								attributes.DamageReductions.Add(dr);
 							}
 
 							string immunityPattern = @"immunity to (?<Types>.+?)\,";
@@ -183,7 +183,7 @@ namespace Dungeoneer.Utility
 								Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(immunityMatch.Groups["Types"].Value, "and");
 								foreach (Types.Damage damageType in damageTypes.ToList())
 								{
-									creature.Immunities.Add(damageType);
+									attributes.Immunities.Add(damageType);
 								}
 							}
 
@@ -202,41 +202,41 @@ namespace Dungeoneer.Utility
 									Model.DamageReduction res = new Model.DamageReduction();
 									res.Value = Convert.ToInt32(resistanceMatch.Groups["Value"].Value);
 									res.DamageTypes = GetDamageDescriptorSetFromString(resistanceMatch.Groups["Type"].Value);
-									creature.DamageReductions.Add(res);
+									attributes.DamageReductions.Add(res);
 								}
 							}
 						}
 						else if (identifier == "Saves")
 						{
-							creature.FortitudeSave = numbers[0];
-							creature.ReflexSave = numbers[1];
-							creature.WillSave = numbers[2];
+							attributes.FortitudeSave = numbers[0];
+							attributes.ReflexSave = numbers[1];
+							attributes.WillSave = numbers[2];
 						}
 						else if (identifier == "Abilities")
 						{
-							creature.Strength = numbers[0];
-							creature.Dexterity = numbers[1];
-							creature.Constitution = numbers[2];
-							creature.Intelligence = numbers[3];
-							creature.Wisdom = numbers[4];
-							creature.Charisma = numbers[5];
+							attributes.Strength = numbers[0];
+							attributes.Dexterity = numbers[1];
+							attributes.Constitution = numbers[2];
+							attributes.Intelligence = numbers[3];
+							attributes.Wisdom = numbers[4];
+							attributes.Charisma = numbers[5];
 						}
 						else if (identifier == "Feats")
 						{
 							foreach (string feat in entry.Split(','))
 							{
-								creature.Feats.Add(feat.Trim());
+								attributes.Feats.Add(feat.Trim());
 							}
 						}
 						else if (identifier == "Challenge Rating")
 						{
 							if (numbers.Count == 2)
 							{
-								creature.ChallengeRating = numbers[0] / numbers[1];
+								attributes.ChallengeRating = numbers[0] / numbers[1];
 							}
 							else
 							{
-								creature.ChallengeRating = numbers[0];
+								attributes.ChallengeRating = numbers[0];
 							}
 						}
 					}
@@ -247,6 +247,8 @@ namespace Dungeoneer.Utility
 					throw e;
 				}
 			}
+
+			Model.Creature creature = new Model.Creature(attributes);
 
 			return creature;
 		}

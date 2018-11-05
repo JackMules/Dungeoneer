@@ -18,34 +18,20 @@ namespace Dungeoneer.Model
 			_modifier = 0;
 			_type = Types.Attack.Melee;
 			_ability = Types.Ability.Strength;
-			_damages = new FullyObservableCollection<Damage>();
 			_threatRangeMin = 20;
 			_critMultiplier = 2;
 		}
 
-		public Attack(
-			string name,
-			int attackMod,
-			Types.Attack attackType,
-			Types.Ability ability,
-			FullyObservableCollection<Damage> damages,
-			int threatRangeMin,
-			int critMultiplier)
+		public Attack(XmlNode xmlNode)
 		{
-			Name = name;
-			Modifier = attackMod;
-			Type = attackType;
-			Ability = ability;
-			Damages = damages;
-			ThreatRangeMin = threatRangeMin;
-			CritMultiplier = critMultiplier;
+			ReadXML(xmlNode);
 		}
 
 		private string _name;
 		private int _modifier;
 		private Types.Attack _type;
 		private Types.Ability _ability;
-		private FullyObservableCollection<Damage> _damages;
+		private FullyObservableCollection<Damage> _damages = new FullyObservableCollection<Damage>();
 		private int _threatRangeMin;
 		private int _critMultiplier;
 
@@ -195,9 +181,7 @@ namespace Dungeoneer.Model
 						{
 							if (damageNode.Name == "Damage")
 							{
-								Damage damage = new Damage();
-								damage.ReadXML(damageNode);
-								Damages.Add(damage);
+								Damages.Add(new Damage(damageNode));
 							}
 						}
 					}

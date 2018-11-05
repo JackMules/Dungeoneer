@@ -75,6 +75,7 @@ namespace Dungeoneer.Model
 		
 		public void LoadTestData()
 		{
+/*
 			ObservableCollection<PlayerActor> characters = new ObservableCollection<PlayerActor>
 			{
 				new PlayerActor { ActorName = "Kolnik", InitiativeMod = -1 },
@@ -95,6 +96,7 @@ namespace Dungeoneer.Model
 			};
 
 			Enemies = enemies;
+*/
 		}
 
 		public void WriteXML()
@@ -138,9 +140,7 @@ namespace Dungeoneer.Model
 						{
 							if (characterNode.Name == "PlayerActor")
 							{
-								PlayerActor playerActor = new PlayerActor();
-								playerActor.ReadXML(characterNode);
-								Characters.Add(playerActor);
+								Characters.Add(new PlayerActor(characterNode));
 							}
 						}
 					}
@@ -150,15 +150,11 @@ namespace Dungeoneer.Model
 						{
 							if (enemyNode.Name == "NonPlayerActor")
 							{
-								NonPlayerActor nonPlayerActor = new NonPlayerActor();
-								nonPlayerActor.ReadXML(enemyNode);
-								Enemies.Add(nonPlayerActor);
+								Enemies.Add(new NonPlayerActor(enemyNode));
 							}
 							else if (enemyNode.Name == "Creature")
 							{
-								Creature creature = new Creature();
-								creature.ReadXML(enemyNode);
-								Enemies.Add(creature);
+								Enemies.Add(new Creature(enemyNode));
 							}
 						}
 					}

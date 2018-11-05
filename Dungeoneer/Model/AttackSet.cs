@@ -12,11 +12,15 @@ namespace Dungeoneer.Model
 	{
 		public AttackSet()
 		{
-			_attacks = new FullyObservableCollection<Attack>();
 		}
 
-		private string _name;
-		private FullyObservableCollection<Attack> _attacks;
+		public AttackSet(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
+		private string _name = "";
+		private FullyObservableCollection<Attack> _attacks = new FullyObservableCollection<Attack>();
 
 		public string Name
 		{
@@ -75,9 +79,7 @@ namespace Dungeoneer.Model
 			{
 				if (attackNode.Name == "Attack")
 				{
-					Attack attack = new Attack();
-					attack.ReadXML(attackNode);
-					Attacks.Add(attack);
+					Attacks.Add(new Attack(attackNode));
 				}
 			}
 		}

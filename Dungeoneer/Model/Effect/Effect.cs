@@ -11,9 +11,19 @@ namespace Dungeoneer.Model.Effect
 {
 	public abstract class Effect : BaseModel
 	{
+		protected Effect()
+		{
+			PerTurn = false;
+		}
+
 		public Effect(bool perTurn)
 		{
 			PerTurn = perTurn;
+		}
+
+		public Effect(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
 		}
 
 		private bool _perTurn;
@@ -45,7 +55,7 @@ namespace Dungeoneer.Model.Effect
 			return false;
 		}
 
-		public virtual void ApplyTo(ref Creature creature)
+		public virtual void ApplyTo(ActorAttributes attributes)
 		{ }
 
 		public void WriteXML(XmlWriter xmlWriter)

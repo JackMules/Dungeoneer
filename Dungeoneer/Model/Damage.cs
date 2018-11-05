@@ -16,6 +16,11 @@ namespace Dungeoneer.Model
 			_damageDescriptorSet = new DamageDescriptorSet();
 		}
 
+		public Damage(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		private int _numDice;
 		private Types.Die _die;
 		private int _modifier;
@@ -109,9 +114,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "DamageDescriptorSet")
 					{
-						DamageDescriptorSet damageDescriptorSet = new DamageDescriptorSet();
-						damageDescriptorSet.ReadXML(childNode);
-						DamageDescriptorSet = damageDescriptorSet;
+						DamageDescriptorSet = new DamageDescriptorSet(childNode);
 					}
 				}
 			}

@@ -134,9 +134,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Actor.cs" />
+    <Compile Include="Model\ActorAttributes.cs" />
     <Compile Include="Model\ActorLibrary.cs" />
     <Compile Include="Model\AttackSet.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\CreatureAttributes.cs" />
     <Compile Include="Model\DamageDescriptorSet.cs" />
     <Compile Include="Model\DamageSet.cs" />
     <Compile Include="Model\Effect\Condition.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Model\Effect\EffectFactory.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Hit.cs" />
+    <Compile Include="Model\NonPlayerActorAttributes.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />

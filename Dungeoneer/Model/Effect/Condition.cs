@@ -16,11 +16,14 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.ArmorClass = creature.FlatFootedArmorClass - 2;
-			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
-			creature.Speed /= 2;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).SetFlatFooted();
+				(attributes as CreatureAttributes).ModifyArmorClass(-2);
+				(attributes as CreatureAttributes).Speed /= 2;
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -51,10 +54,13 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.ArmorClass = creature.FlatFootedArmorClass - 2;
-			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).SetFlatFooted();
+				(attributes as CreatureAttributes).ModifyArmorClass(-2);
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -85,10 +91,13 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
+			if (attributes is NonPlayerActorAttributes)
+			{
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -105,9 +114,12 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.HitPoints = creature.Constitution * -1;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).HitPoints = (attributes as CreatureAttributes).Constitution * -1;
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -124,9 +136,9 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.InitiativeMod -= 4;
+			attributes.InitiativeMod -= 4;
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -143,9 +155,12 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.Speed /= 2;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).Speed /= 2;
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -176,14 +191,19 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.Speed /= 2;
+			if (attributes is NonPlayerActorAttributes)
+			{
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
 
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
-
-			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Dexterity, -4);
+				if (attributes is CreatureAttributes)
+				{
+					(attributes as CreatureAttributes).Speed /= 2;
+					(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -4);
+				}
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -200,12 +220,14 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.Speed /= 2;
-
-			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Strength, -6);
-			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Dexterity, -6);
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).Speed /= 2;
+				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -6);
+				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -6);
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -236,10 +258,13 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Strength, -2);
-			creature = Methods.ModifyAbilityScore(creature, Types.Ability.Dexterity, -2);
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -2);
+				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -2);
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -256,10 +281,12 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.ArmorClass = creature.FlatFootedArmorClass;
-			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity);
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).SetFlatFooted();
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -276,14 +303,18 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
+			if (attributes is NonPlayerActorAttributes)
+			{
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
 
-			creature.FortitudeSave -= 2;
-			creature.ReflexSave -= 2;
-			creature.WillSave -= 2;
+				if (attributes is CreatureAttributes)
+				{
+					(attributes as CreatureAttributes).ModifySaves(-2);
+				}
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -314,9 +345,12 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.Dexterity = 0;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).Dexterity = 0;
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -375,16 +409,19 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -1);
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -1);
-
-			creature.FortitudeSave -= 1;
-			creature.ReflexSave -= 1;
-			creature.WillSave -= 1;
-
-			creature.HitPoints -= 5;
+			if (attributes is NonPlayerActorAttributes)
+			{
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Strength, -1);
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -1);
+				
+				if (attributes is CreatureAttributes)
+				{
+					(attributes as CreatureAttributes).HitPoints -= 5;
+					(attributes as CreatureAttributes).ModifySaves(-1);
+				}
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -401,11 +438,12 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.FortitudeSave -= 2;
-			creature.ReflexSave -= 2;
-			creature.WillSave -= 2;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).ModifySaves(-2);
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -422,10 +460,13 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.Strength = 0;
-			creature.Dexterity = 0;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).Strength = 0;
+				(attributes as CreatureAttributes).Dexterity = 0;
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -484,14 +525,18 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
+			if (attributes is NonPlayerActorAttributes)
+			{
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
 
-			creature.FortitudeSave -= 2;
-			creature.ReflexSave -= 2;
-			creature.WillSave -= 2;
+				if (attributes is CreatureAttributes)
+				{
+					(attributes as CreatureAttributes).ModifySaves(-2);
+				}
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -508,14 +553,18 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Strength, -2);
-			creature = Methods.ChangeAttackModifier(creature, Types.Ability.Dexterity, -2);
+			if (attributes is NonPlayerActorAttributes)
+			{
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(attributes as NonPlayerActorAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
 
-			creature.FortitudeSave -= 2;
-			creature.ReflexSave -= 2;
-			creature.WillSave -= 2;
+				if (attributes is CreatureAttributes)
+				{
+					(attributes as CreatureAttributes).ModifySaves(-2);
+				}
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -560,10 +609,13 @@ namespace Dungeoneer.Model.Effect.Condition
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ref Creature creature)
+		public override void ApplyTo(ActorAttributes attributes)
 		{
-			creature.ArmorClass = creature.FlatFootedArmorClass - 2;
-			creature.TouchArmorClass = creature.TouchArmorClass - Methods.GetAbilityModifier(creature.Dexterity) - 2;
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).ModifyArmorClass(-2);
+				(attributes as CreatureAttributes).SetFlatFooted();
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

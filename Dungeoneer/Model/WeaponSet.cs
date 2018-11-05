@@ -22,6 +22,11 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public WeaponSet(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		private string _owner;
 		private List<Weapon> _weapons;
 
@@ -71,15 +76,13 @@ namespace Dungeoneer.Model
 					{
 						Owner = childNode.InnerText;
 					}
-					else if(childNode.Name == "Weapons")
+					else if (childNode.Name == "Weapons")
 					{
 						foreach (XmlNode weaponNode in childNode.ChildNodes)
 						{
 							if (weaponNode.Name == "Weapon")
 							{
-								Weapon weapon = new Weapon();
-								weapon.ReadXML(weaponNode);
-								Weapons.Add(weapon);
+								Weapons.Add(new Weapon(weaponNode));
 							}
 						}
 					}

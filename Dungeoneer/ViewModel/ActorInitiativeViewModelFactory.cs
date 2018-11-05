@@ -12,15 +12,15 @@ namespace Dungeoneer.ViewModel
 		{
 			if (actor is Model.PlayerActor)
 			{
-				return new PlayerActorInitiativeViewModel { Actor = actor as Model.PlayerActor };
+				return new PlayerActorInitiativeViewModel(actor as Model.PlayerActor);
 			}
 			else if (actor is Model.Creature)
 			{
-				return new CreatureInitiativeViewModel(encounterViewModel) { Actor = actor as Model.Creature };
+				return new CreatureInitiativeViewModel(actor as Model.Creature, encounterViewModel);
 			}
 			else if (actor is Model.NonPlayerActor)
 			{
-				return new NonPlayerActorInitiativeViewModel { Actor = actor as Model.NonPlayerActor };
+				return new NonPlayerActorInitiativeViewModel(actor as Model.NonPlayerActor);
 			}
 			else
 			{

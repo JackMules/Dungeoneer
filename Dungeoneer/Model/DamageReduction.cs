@@ -95,6 +95,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "DamageDescriptorSet")
 					{
+						DamageTypes = new DamageDescriptorSet();
 						DamageTypes.ReadXML(childNode);
 					}
 				}

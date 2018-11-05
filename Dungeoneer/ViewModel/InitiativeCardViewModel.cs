@@ -81,8 +81,7 @@ namespace Dungeoneer.ViewModel
 			Model.InitiativeValue initiativeValue = setInitiativeWindowViewModel.GetInitiative();
 			if (initiativeValue != null)
 			{
-				InitiativeValueViewModel initiativeValueViewModel = new InitiativeValueViewModel { InitiativeValue = initiativeValue };
-				InitiativeValueViewModel = initiativeValueViewModel;
+				InitiativeValueViewModel = new InitiativeValueViewModel { InitiativeValue = initiativeValue };
 			}
 		}
 
@@ -105,27 +104,22 @@ namespace Dungeoneer.ViewModel
 							childNode.Name == "PlayerActorInitiativeViewModel" ||
 							childNode.Name == "CreatureInitiativeViewModel")
 					{
-						ActorInitiativeViewModel actorViewModel = null;
 						if (childNode.Name == "NonPlayerActorInitiativeViewModel")
 						{
-							actorViewModel = new NonPlayerActorInitiativeViewModel();
+							ActorViewModel = new NonPlayerActorInitiativeViewModel(childNode);
 						}
 						else if (childNode.Name == "PlayerActorInitiativeViewModel")
 						{
-							actorViewModel = new PlayerActorInitiativeViewModel();
+							ActorViewModel = new PlayerActorInitiativeViewModel(childNode);
 						}
 						else if (childNode.Name == "CreatureInitiativeViewModel")
 						{
-							actorViewModel = new CreatureInitiativeViewModel(encounterViewModel);
+							ActorViewModel = new CreatureInitiativeViewModel(childNode, encounterViewModel);
 						}
-						actorViewModel.ReadXML(childNode);
-						ActorViewModel = actorViewModel;
 					}
 					else if (childNode.Name == "InitiativeValue")
 					{
-						InitiativeValueViewModel initValueViewModel = new InitiativeValueViewModel();
-						initValueViewModel.ReadXML(childNode);
-						InitiativeValueViewModel = initValueViewModel;
+						InitiativeValueViewModel = new InitiativeValueViewModel(childNode);
 					}
 				}
 			}

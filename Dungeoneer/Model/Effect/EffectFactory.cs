@@ -20,9 +20,9 @@ namespace Dungeoneer.Model.Effect
 				effect = GetEffect(effectType);
 				effect.ReadXML(xmlNode);
 			}
-			catch (FormatException)
+			catch (FormatException e)
 			{
-
+				throw e;
 			}
 			return effect;
 		}

@@ -442,10 +442,13 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						playerActor = new Model.PlayerActor
+						Model.ActorAttributes attributes = new Model.ActorAttributes
+						{
+							InitiativeMod = Convert.ToInt32(InitiativeMod),
+						};
+						playerActor = new Model.PlayerActor(attributes)
 						{
 							ActorName = ActorName,
-							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Weapons = Weapons,
 						};
 						askForInput = false;
@@ -477,13 +480,16 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						nonPlayerActor = new Model.NonPlayerActor
+						Model.NonPlayerActorAttributes attributes = new Model.NonPlayerActorAttributes
 						{
-							ActorName = ActorName,
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToInt32(ChallengeRating),
 							AttackSets = AttackSets,
+						};
+						nonPlayerActor = new Model.NonPlayerActor(attributes)
+						{
+							ActorName = ActorName,
 						};
 						askForInput = false;
 					}
@@ -514,9 +520,8 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						creature = new Model.Creature
+						Model.CreatureAttributes attributes = new Model.CreatureAttributes
 						{
-							ActorName = ActorName,
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
 							ChallengeRating = Convert.ToSingle(ChallengeRating),
@@ -542,6 +547,10 @@ namespace Dungeoneer.ViewModel
 							Feats = Feats,
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
+						};
+						creature = new Model.Creature(attributes)
+						{
+							ActorName = ActorName,
 						};
 						askForInput = false;
 					}

@@ -15,6 +15,16 @@ namespace Dungeoneer.Model
 			_descriptors = new HashSet<Types.Damage>();
 		}
 
+		public DamageDescriptorSet(DamageDescriptorSet other)
+		{
+			_descriptors = new HashSet<Types.Damage>(other._descriptors);
+		}
+
+		public DamageDescriptorSet(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		private HashSet<Types.Damage> _descriptors;
 
 		public void Add(Types.Damage damageType)
@@ -292,6 +302,8 @@ namespace Dungeoneer.Model
 
 		public void ReadXML(XmlNode xmlNode)
 		{
+			_descriptors = new HashSet<Types.Damage>();
+
 			foreach (XmlNode childNode in xmlNode.ChildNodes)
 			{
 				if (childNode.Name == "DamageType")

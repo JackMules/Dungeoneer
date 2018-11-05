@@ -16,6 +16,11 @@ namespace Dungeoneer.Model
 			_damageDescriptorSets = new List<DamageDescriptorSet>();
 		}
 
+		public Weapon(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		private string _name;
 		private List<DamageDescriptorSet> _damageDescriptorSets;
 		private bool _abilityDamage;
@@ -116,9 +121,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "DamageDescriptorSet")
 					{
-						DamageDescriptorSet damageDescriptorSet = new DamageDescriptorSet();
-						damageDescriptorSet.ReadXML(childNode);
-						DamageDescriptorSets.Add(damageDescriptorSet);
+						DamageDescriptorSets.Add(new DamageDescriptorSet(childNode));
 					}
 					else if (childNode.Name == "AbilityDamage")
 					{

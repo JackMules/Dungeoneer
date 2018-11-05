@@ -12,12 +12,23 @@ namespace Dungeoneer.Model
 {
 	public class PlayerActor : Actor
 	{
-		public PlayerActor()
+		public PlayerActor(PlayerActor other)
+			: base(other)
 		{
-			_weapons = new ObservableCollection<Weapon>();
+			_weapons = new ObservableCollection<Weapon>(other.Weapons);
 		}
 
-		private ObservableCollection<Weapon> _weapons;
+		public PlayerActor(ActorAttributes attributes)
+			: base(attributes)
+		{
+		}
+
+		public PlayerActor(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
+		private ObservableCollection<Weapon> _weapons = new ObservableCollection<Weapon>();
 
 		public ObservableCollection<Weapon> Weapons
 		{
@@ -56,13 +67,11 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Weapons")
 					{
-						foreach (XmlNode attackNode in childNode.ChildNodes)
+						foreach (XmlNode weaponNode in childNode.ChildNodes)
 						{
-							if (attackNode.Name == "Weapon")
+							if (weaponNode.Name == "Weapon")
 							{
-								Weapon weapon = new Weapon();
-								weapon.ReadXML(attackNode);
-								Weapons.Add(weapon);
+								Weapons.Add(new Weapon(weaponNode));
 							}
 						}
 					}

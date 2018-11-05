@@ -11,9 +11,26 @@ namespace Dungeoneer.ViewModel
 {
 	public class NonPlayerActorInitiativeViewModel : ActorInitiativeViewModel
 	{
-		public NonPlayerActorInitiativeViewModel()
+		protected NonPlayerActorInitiativeViewModel()
 		{
-			_actor = new Model.NonPlayerActor();
+			InitCommands();
+		}
+
+		public NonPlayerActorInitiativeViewModel(Model.NonPlayerActor nonPlayerActor)
+		{
+			_actor = new Model.NonPlayerActor(nonPlayerActor);
+			InitCommands();
+		}
+
+		public NonPlayerActorInitiativeViewModel(XmlNode nonPlayerActorXml)
+		{
+			_actor = new Model.NonPlayerActor(nonPlayerActorXml);
+			InitCommands();
+		}
+
+		protected override void InitCommands()
+		{
+			base.InitCommands();
 			_showAttacksWindow = new Command(ExecuteShowAttacksWindow);
 			_hideAttacksWindow = new Command(ExecuteHideAttacksWindow);
 		}
@@ -86,9 +103,7 @@ namespace Dungeoneer.ViewModel
 
 		public override void ReadActorXML(XmlNode xmlNode)
 		{
-			Model.NonPlayerActor nonPlayerActor = new Model.NonPlayerActor();
-			nonPlayerActor.ReadXML(xmlNode);
-			Actor = nonPlayerActor;
+			Actor = new Model.NonPlayerActor(xmlNode);
 		}
 	}
 }

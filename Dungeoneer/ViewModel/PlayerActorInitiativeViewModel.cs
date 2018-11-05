@@ -11,9 +11,14 @@ namespace Dungeoneer.ViewModel
 {
 	public class PlayerActorInitiativeViewModel : ActorInitiativeViewModel
 	{
-		public PlayerActorInitiativeViewModel()
+		public PlayerActorInitiativeViewModel(Model.PlayerActor playerActor)
 		{
-			_actor = new Model.PlayerActor();
+			_actor = new Model.PlayerActor(playerActor);
+		}
+
+		public PlayerActorInitiativeViewModel(XmlNode playerXml)
+		{
+			_actor = new Model.PlayerActor(playerXml);
 		}
 
 		public new Model.PlayerActor Actor
@@ -48,9 +53,7 @@ namespace Dungeoneer.ViewModel
 
 		public override void ReadActorXML(XmlNode xmlNode)
 		{
-			Model.PlayerActor playerActor = new Model.PlayerActor();
-			playerActor.ReadXML(xmlNode);
-			Actor = playerActor;
+			Actor = new Model.PlayerActor(xmlNode);
 		}
 	}
 }

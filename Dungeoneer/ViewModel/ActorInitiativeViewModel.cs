@@ -16,8 +16,10 @@ namespace Dungeoneer.ViewModel
 		public ActorInitiativeViewModel()
 		{
 			_backgroundColor = Colors.LightGray;
-			_effects = new FullyObservableCollection<Model.Effect.Effect>();
 		}
+
+		protected virtual void InitCommands()
+		{ }
 
 		protected Model.Actor _actor;
 		private string _displayName;
@@ -80,16 +82,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.Effect.Effect> Effects
-		{
-			get { return _effects; }
-			set
-			{
-				_effects = value;
-				NotifyPropertyChanged("Effects");
-			}
-		}
-
 		public Color BackgroundColor
 		{
 			get { return _backgroundColor; }
@@ -102,18 +94,22 @@ namespace Dungeoneer.ViewModel
 
 		public virtual void StartTurn()
 		{
-			for (int i = Effects.Count - 1; i >= 0; --i)
+			Actor.ApplyPerTurnEffects();
+
+			for (int i = Actor.Effects.Count - 1; i >= 0; --i)
 			{
-				if (Effects[i] is Model.Effect.TimedEffect)
+				if (Actor.Effects[i] is Model.Effect.TimedEffect)
 				{
-					Model.Effect.TimedEffect tempEffect = Effects[i] as Model.Effect.TimedEffect;
+					Model.Effect.TimedEffect tempEffect = Actor.Effects[i] as Model.Effect.TimedEffect;
 					tempEffect.ElapsedDuration++;
 					if (tempEffect.ElapsedDuration == tempEffect.Duration)
 					{
-						Effects.RemoveAt(i);
+						Actor.Effects.RemoveAt(i);
 					}
 				}
 			}
+
+			NotifyPropertyChanged("Actor");
 		}
 
 		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -134,12 +130,6 @@ namespace Dungeoneer.ViewModel
 			xmlWriter.WriteString(DisplayName);
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("Effects");
-			foreach (Model.Effect.Effect effect in Effects)
-			{
-				effect.WriteXML(xmlWriter);
-			}
-
 			WriteActorXML(xmlWriter);
 
 			xmlWriter.WriteEndElement();
@@ -155,17 +145,6 @@ namespace Dungeoneer.ViewModel
 					{
 						DisplayName = childNode.InnerText;
 					}
-					else if (childNode.Name == "Effects")
-					{
-						foreach (XmlNode effectNode in childNode.ChildNodes)
-						{
-							if (effectNode.Name == "Effect")
-							{
-//								Model.Effect.Effect effect = Model.Effect.EffectFactory.GetEffectFromXML(effectNode);
-//								Effects.Add(effect);
-							}
-						}
-					}
 					else
 					{
 						ReadActorXML(childNode);
@@ -180,8 +159,7 @@ namespace Dungeoneer.ViewModel
 
 		public virtual void ReadActorXML(XmlNode xmlNode)
 		{
-			Model.Actor actor = new Model.Actor();
-			actor.ReadXML(xmlNode);
+			Model.Actor actor = new Model.Actor(xmlNode);
 			Actor = actor;
 		}
 	}

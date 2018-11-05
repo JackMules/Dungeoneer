@@ -30,6 +30,11 @@ namespace Dungeoneer.Model
 			_readied = false;
 		}
 
+		public InitiativeValue(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		public int? Score
 		{
 			get { return _score; }
