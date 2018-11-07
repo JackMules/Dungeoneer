@@ -83,14 +83,13 @@
 				<TabItem x:Name="EnemiesTab" Header="Enemies">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button HorizontalAlignment="Right" Content="Create Non-Player Actor" Margin="5,0" Command="{Binding CreateNonPlayerActor}"/>
 							<Button HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" Command="{Binding CreateCreature}"/>
 							<TextBox ToolTip="Type to filter Actors" />
 						</DockPanel>
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
 								<ItemsControl ItemsSource="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
-														ItemTemplate="{DynamicResource NonPlayerActorDisplayTemplate}"
+														ItemTemplate="{DynamicResource CreatureDisplayTemplate}"
 														Background="Transparent"/>
 							</ScrollViewer>
 						</Border>

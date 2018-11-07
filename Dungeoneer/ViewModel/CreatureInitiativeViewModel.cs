@@ -9,7 +9,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
-	public class CreatureInitiativeViewModel : NonPlayerActorInitiativeViewModel
+	public class CreatureInitiativeViewModel : ActorInitiativeViewModel
 	{
 		public CreatureInitiativeViewModel(Model.Creature creature, EncounterViewModel encounterViewModel)
 		{
@@ -29,6 +29,8 @@ namespace Dungeoneer.ViewModel
 		protected override void InitCommands()
 		{
 			base.InitCommands();
+			_showAttacksWindow = new Command(ExecuteShowAttacksWindow);
+			_hideAttacksWindow = new Command(ExecuteHideAttacksWindow);
 			_doDamage = new Command(ExecuteDoDamage);
 			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
 		}
@@ -37,6 +39,51 @@ namespace Dungeoneer.ViewModel
 		private Command _doDamage;
 		private EffectsWindowViewModel _effectsWindowViewModel;
 		private Command _showEffectsWindow;
+		private View.AttacksWindow _attacksWindow;
+		private Command _showAttacksWindow;
+		private Command _hideAttacksWindow;
+
+		public float ChallengeRating
+		{
+			get { return Actor.ChallengeRating; }
+			set
+			{
+				Actor.ChallengeRating = value;
+				NotifyPropertyChanged("ChallengeRating");
+			}
+		}
+
+		public FullyObservableCollection<Model.AttackSet> AttackSets
+		{
+			get { return Actor.AttackSets; }
+			set
+			{
+				Actor.AttackSets = value;
+				NotifyPropertyChanged("AttackSets");
+			}
+		}
+
+		public Command ShowAttacksWindow
+		{
+			get { return _showAttacksWindow; }
+		}
+
+		private void ExecuteShowAttacksWindow()
+		{
+			_attacksWindow = new View.AttacksWindow();
+			_attacksWindow.DataContext = this;
+			_attacksWindow.Show();
+		}
+
+		public Command HideAttacksWindow
+		{
+			get { return _hideAttacksWindow; }
+		}
+
+		private void ExecuteHideAttacksWindow()
+		{
+			_attacksWindow.Close();
+		}
 
 		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)
 		{
@@ -71,11 +118,6 @@ namespace Dungeoneer.ViewModel
 		public string HitPoints
 		{
 			get { return Actor.HitPoints.ToString(); }
-		}
-		
-		public new FullyObservableCollection<Model.AttackSet> AttackSets
-		{
-			get { return Actor.AttackSets; }
 		}
 
 		protected override void ActorUpdated()

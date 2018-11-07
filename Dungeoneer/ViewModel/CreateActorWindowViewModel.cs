@@ -389,22 +389,17 @@ namespace Dungeoneer.ViewModel
 			InitiativeMod = Methods.GetSignedNumberString(playerActor.InitiativeMod);
 			Weapons = playerActor.Weapons;
 		}
-
-		public void LoadNonPlayerActor(Model.NonPlayerActor nonPlayerActor)
+		
+		public void LoadCreature(Model.Creature creature)
 		{
-			ActorName = nonPlayerActor.ActorName;
-			InitiativeMod = Methods.GetSignedNumberString(nonPlayerActor.InitiativeMod);
-			Type = nonPlayerActor.Type;
-			ChallengeRating = nonPlayerActor.ChallengeRating.ToString();
-			foreach (Model.AttackSet attackSet in nonPlayerActor.AttackSets)
+			ActorName = creature.ActorName;
+			InitiativeMod = Methods.GetSignedNumberString(creature.InitiativeMod);
+			Type = creature.Type;
+			ChallengeRating = creature.ChallengeRating.ToString();
+			foreach (Model.AttackSet attackSet in creature.AttackSets)
 			{
 				AttackSets.Add(attackSet);
 			}
-		}
-
-		public void LoadCreature(Model.Creature creature)
-		{
-			LoadNonPlayerActor(creature);
 
 			Strength = creature.Strength.ToString();
 			Dexterity = creature.Dexterity.ToString();
@@ -467,46 +462,6 @@ namespace Dungeoneer.ViewModel
 			return playerActor;
 		}
 
-		public Model.NonPlayerActor GetNonPlayerActor()
-		{
-			bool askForInput = true;
-			string feedback = null;
-			Model.NonPlayerActor nonPlayerActor = null;
-			while (askForInput)
-			{
-				View.CreateNonPlayerActorWindow createActorWindow = new View.CreateNonPlayerActorWindow(feedback);
-				createActorWindow.DataContext = this;
-				if (createActorWindow.ShowDialog() == true)
-				{
-					try
-					{
-						Model.NonPlayerActorAttributes attributes = new Model.NonPlayerActorAttributes
-						{
-							InitiativeMod = Convert.ToInt32(InitiativeMod),
-							Type = Type,
-							ChallengeRating = Convert.ToInt32(ChallengeRating),
-							AttackSets = AttackSets,
-						};
-						nonPlayerActor = new Model.NonPlayerActor(attributes)
-						{
-							ActorName = ActorName,
-						};
-						askForInput = false;
-					}
-					catch (FormatException)
-					{
-						feedback = "Invalid format";
-					}
-				}
-				else
-				{
-					askForInput = false;
-				}
-			}
-
-			return nonPlayerActor;
-		}
-
 		public Model.Creature GetCreature()
 		{
 			bool askForInput = true;
@@ -520,7 +475,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						Model.CreatureAttributes attributes = new Model.CreatureAttributes
+						Model.CreatureAttributes creatureAttributes = new Model.CreatureAttributes
 						{
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
 							Type = Type,
@@ -548,7 +503,7 @@ namespace Dungeoneer.ViewModel
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
 						};
-						creature = new Model.Creature(attributes)
+						creature = new Model.Creature(creatureAttributes)
 						{
 							ActorName = ActorName,
 						};

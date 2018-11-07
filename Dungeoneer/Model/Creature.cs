@@ -10,19 +10,19 @@ using System.Collections.ObjectModel;
 
 namespace Dungeoneer.Model
 {
-	public class Creature : NonPlayerActor
+	public class Creature : Actor
 	{
 		public Creature(Creature other)
 			: base(other)
 		{
-			_baseCreatureAttributes = new CreatureAttributes(other._baseCreatureAttributes);
-			_modifiedCreatureAttributes = new CreatureAttributes(_baseCreatureAttributes);
+			BaseAttributes = new CreatureAttributes(other.BaseAttributes);
+			ModifiedAttributes = new CreatureAttributes(BaseAttributes);
 		}
 
 		public Creature(CreatureAttributes attributes)
 			: base(attributes)
 		{
-			_baseCreatureAttributes = new CreatureAttributes(attributes);
+			BaseAttributes = new CreatureAttributes(attributes);
 			_modifiedCreatureAttributes = new CreatureAttributes(attributes);
 		}
 
@@ -34,9 +34,29 @@ namespace Dungeoneer.Model
 		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
 		private CreatureAttributes _modifiedCreatureAttributes = new CreatureAttributes();
 
-		public CreatureAttributes GetEffectiveCreatureAttributes()
+		protected new CreatureAttributes BaseAttributes
 		{
-			CreatureAttributes effectiveAttributes = new CreatureAttributes(_modifiedCreatureAttributes);
+			get { return _baseCreatureAttributes; }
+			set
+			{
+				_baseCreatureAttributes = value;
+				NotifyPropertyChanged("BaseAttributes");
+			}
+		}
+
+		protected new CreatureAttributes ModifiedAttributes
+		{
+			get { return _modifiedCreatureAttributes; }
+			set
+			{
+				_modifiedCreatureAttributes = value;
+				NotifyPropertyChanged("ModifiedAttributes");
+			}
+		}
+
+		public new CreatureAttributes GetEffectiveAttributes()
+		{
+			CreatureAttributes effectiveAttributes = new CreatureAttributes(ModifiedAttributes);
 			foreach (Effect.Effect effect in Effects)
 			{
 				effect.ApplyTo(effectiveAttributes);
@@ -44,185 +64,215 @@ namespace Dungeoneer.Model
 			return effectiveAttributes;
 		}
 
+		public string Type
+		{
+			get { return GetEffectiveAttributes().Type; }
+			set
+			{
+				ModifiedAttributes.Type = value;
+				NotifyPropertyChanged("Type");
+			}
+		}
+
+		public float ChallengeRating
+		{
+			get { return GetEffectiveAttributes().ChallengeRating; }
+			set
+			{
+				ModifiedAttributes.ChallengeRating = value;
+				NotifyPropertyChanged("ChallengeRating");
+			}
+		}
+
+		public FullyObservableCollection<AttackSet> AttackSets
+		{
+			get { return GetEffectiveAttributes().AttackSets; }
+			set
+			{
+				ModifiedAttributes.AttackSets = value;
+				NotifyPropertyChanged("AttackSets");
+			}
+		}
+
 		public int Strength
 		{
 			get
 			{
-				return GetEffectiveCreatureAttributes().Strength;
+				return GetEffectiveAttributes().Strength;
 			}
 			set
 			{
-				_modifiedCreatureAttributes.Strength = value;
+				ModifiedAttributes.Strength = value;
 				NotifyPropertyChanged("Strength");
 			}
 		}
 
 		public int Dexterity
 		{
-			get { return GetEffectiveCreatureAttributes().Dexterity; }
+			get { return GetEffectiveAttributes().Dexterity; }
 			set
 			{
-				_modifiedCreatureAttributes.Dexterity = value;
+				ModifiedAttributes.Dexterity = value;
 				NotifyPropertyChanged("Dexterity");
 			}
 		}
 
 		public int Constitution
 		{
-			get { return GetEffectiveCreatureAttributes().Constitution; }
+			get { return GetEffectiveAttributes().Constitution; }
 			set
 			{
-				_modifiedCreatureAttributes.Constitution = value;
+				ModifiedAttributes.Constitution = value;
 				NotifyPropertyChanged("Constitution");
 			}
 		}
 
 		public int Intelligence
 		{
-			get { return GetEffectiveCreatureAttributes().Intelligence; }
+			get { return GetEffectiveAttributes().Intelligence; }
 			set
 			{
-				_modifiedCreatureAttributes.Intelligence = value;
+				ModifiedAttributes.Intelligence = value;
 				NotifyPropertyChanged("Intelligence");
 			}
 		}
 
 		public int Wisdom
 		{
-			get { return GetEffectiveCreatureAttributes().Wisdom; }
+			get { return GetEffectiveAttributes().Wisdom; }
 			set
 			{
-				_modifiedCreatureAttributes.Wisdom = value;
+				ModifiedAttributes.Wisdom = value;
 				NotifyPropertyChanged("Wisdom");
 			}
 		}
 
 		public int Charisma
 		{
-			get { return GetEffectiveCreatureAttributes().Charisma; }
+			get { return GetEffectiveAttributes().Charisma; }
 			set
 			{
-				_modifiedCreatureAttributes.Charisma = value;
+				ModifiedAttributes.Charisma = value;
 				NotifyPropertyChanged("Charisma");
 			}
 		}
 
 		public int BaseAttackBonus
 		{
-			get { return GetEffectiveCreatureAttributes().BaseAttackBonus; }
+			get { return GetEffectiveAttributes().BaseAttackBonus; }
 			set
 			{
-				_modifiedCreatureAttributes.BaseAttackBonus = value;
+				ModifiedAttributes.BaseAttackBonus = value;
 				NotifyPropertyChanged("BaseAttackBonus");
 			}
 		}
 
 		public int GrappleModifier
 		{
-			get { return GetEffectiveCreatureAttributes().GrappleModifier; }
+			get { return GetEffectiveAttributes().GrappleModifier; }
 			set
 			{
-				_modifiedCreatureAttributes.GrappleModifier = value;
+				ModifiedAttributes.GrappleModifier = value;
 				NotifyPropertyChanged("BaseGrappleModifierAttackBonus");
 			}
 		}
 
 		public int HitPoints
 		{
-			get { return GetEffectiveCreatureAttributes().HitPoints; }
+			get { return GetEffectiveAttributes().HitPoints; }
 			set
 			{
-				_modifiedCreatureAttributes.HitPoints = value;
+				ModifiedAttributes.HitPoints = value;
 				NotifyPropertyChanged("HitPoints");
 			}
 		}
 
 		public int HitDice
 		{
-			get { return GetEffectiveCreatureAttributes().HitDice; }
+			get { return GetEffectiveAttributes().HitDice; }
 			set
 			{
-				_modifiedCreatureAttributes.HitDice = value;
+				ModifiedAttributes.HitDice = value;
 				NotifyPropertyChanged("HitDice");
 			}
 		}
 
 		public Types.Die HitDieType
 		{
-			get { return GetEffectiveCreatureAttributes().HitDieType; }
+			get { return GetEffectiveAttributes().HitDieType; }
 			set
 			{
-				_modifiedCreatureAttributes.HitDieType = value;
+				ModifiedAttributes.HitDieType = value;
 				NotifyPropertyChanged("HitDiceType");
 			}
 		}
 
 		public int ArmorClass
 		{
-			get { return GetEffectiveCreatureAttributes().ArmorClass; }
+			get { return GetEffectiveAttributes().ArmorClass; }
 			set
 			{
-				_modifiedCreatureAttributes.ArmorClass = value;
+				ModifiedAttributes.ArmorClass = value;
 				NotifyPropertyChanged("ArmorClass");
 			}
 		}
 
 		public int TouchArmorClass
 		{
-			get { return GetEffectiveCreatureAttributes().TouchArmorClass; }
+			get { return GetEffectiveAttributes().TouchArmorClass; }
 			set
 			{
-				_modifiedCreatureAttributes.TouchArmorClass = value;
+				ModifiedAttributes.TouchArmorClass = value;
 				NotifyPropertyChanged("TouchArmorClass");
 			}
 		}
 
 		public int FlatFootedArmorClass
 		{
-			get { return GetEffectiveCreatureAttributes().FlatFootedArmorClass; }
+			get { return GetEffectiveAttributes().FlatFootedArmorClass; }
 			set
 			{
-				_modifiedCreatureAttributes.FlatFootedArmorClass = value;
+				ModifiedAttributes.FlatFootedArmorClass = value;
 				NotifyPropertyChanged("FlatFootedArmorClass");
 			}
 		}
 
 		public int Speed
 		{
-			get { return GetEffectiveCreatureAttributes().Speed; }
+			get { return GetEffectiveAttributes().Speed; }
 			set
 			{
-				_modifiedCreatureAttributes.Speed = value;
+				ModifiedAttributes.Speed = value;
 				NotifyPropertyChanged("Speed");
 			}
 		}
 
 		public int FortitudeSave
 		{
-			get { return GetEffectiveCreatureAttributes().FortitudeSave; }
+			get { return GetEffectiveAttributes().FortitudeSave; }
 			set
 			{
-				_modifiedCreatureAttributes.FortitudeSave = value;
+				ModifiedAttributes.FortitudeSave = value;
 				NotifyPropertyChanged("FortitudeSave");
 			}
 		}
 
 		public int ReflexSave
 		{
-			get { return GetEffectiveCreatureAttributes().ReflexSave; }
+			get { return GetEffectiveAttributes().ReflexSave; }
 			set
 			{
-				_modifiedCreatureAttributes.ReflexSave = value;
+				ModifiedAttributes.ReflexSave = value;
 				NotifyPropertyChanged("ReflexSave");
 			}
 		}
 
 		public int WillSave
 		{
-			get { return GetEffectiveCreatureAttributes().WillSave; }
+			get { return GetEffectiveAttributes().WillSave; }
 			set
 			{
-				_modifiedCreatureAttributes.WillSave = value;
+				ModifiedAttributes.WillSave = value;
 				NotifyPropertyChanged("WillSave");
 			}
 		}
@@ -238,30 +288,30 @@ namespace Dungeoneer.Model
 
 		public int Space
 		{
-			get { return GetEffectiveCreatureAttributes().Space; }
+			get { return GetEffectiveAttributes().Space; }
 			set
 			{
-				_modifiedCreatureAttributes.Space = value;
+				ModifiedAttributes.Space = value;
 				NotifyPropertyChanged("Space");
 			}
 		}
 
 		public int Reach
 		{
-			get { return GetEffectiveCreatureAttributes().Reach; }
+			get { return GetEffectiveAttributes().Reach; }
 			set
 			{
-				_modifiedCreatureAttributes.Reach = value;
+				ModifiedAttributes.Reach = value;
 				NotifyPropertyChanged("Reach");
 			}
 		}
 
 		public List<string> Feats
 		{
-			get { return GetEffectiveCreatureAttributes().Feats; }
+			get { return GetEffectiveAttributes().Feats; }
 			set
 			{
-				_modifiedCreatureAttributes.Feats = value;
+				ModifiedAttributes.Feats = value;
 				NotifyPropertyChanged("Feats");
 				NotifyPropertyChanged("PowerAttack");
 			}
@@ -269,43 +319,43 @@ namespace Dungeoneer.Model
 
 		public Types.Size Size
 		{
-			get { return GetEffectiveCreatureAttributes().Size; }
+			get { return GetEffectiveAttributes().Size; }
 			set
 			{
-				_modifiedCreatureAttributes.Size = value;
+				ModifiedAttributes.Size = value;
 				NotifyPropertyChanged("Size");
 			}
 		}
 
 		public ObservableCollection<DamageReduction> DamageReductions
 		{
-			get { return GetEffectiveCreatureAttributes().DamageReductions; }
+			get { return GetEffectiveAttributes().DamageReductions; }
 			set
 			{
-				_modifiedCreatureAttributes.DamageReductions = value;
+				ModifiedAttributes.DamageReductions = value;
 				NotifyPropertyChanged("DamageReductions");
 			}
 		}
 
 		public DamageDescriptorSet Immunities
 		{
-			get { return GetEffectiveCreatureAttributes().Immunities; }
+			get { return GetEffectiveAttributes().Immunities; }
 			set
 			{
-				_modifiedCreatureAttributes.Immunities = value;
+				ModifiedAttributes.Immunities = value;
 				NotifyPropertyChanged("Immunities");
 			}
 		}
 
 		public void ModifyAbilityScore(Types.Ability ability, int change)
 		{
-			_modifiedCreatureAttributes.ModifyAbilityScore(ability, change);
+			ModifiedAttributes.ModifyAbilityScore(ability, change);
 			NotifyPropertyChanged(Methods.GetAbilityString(ability));
 		}
 
 		public int DoHitPointDamage(Hit hit)
 		{
-			return _modifiedCreatureAttributes.DoHitPointDamage(hit);
+			return ModifiedAttributes.DoHitPointDamage(hit);
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -313,236 +363,45 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("Creature");
 		}
 
-		public override void WritePropertyXML(XmlWriter xmlWriter)
+		public override void WriteAttributesXML(XmlWriter xmlWriter)
 		{
-			base.WritePropertyXML(xmlWriter);
-
-			xmlWriter.WriteStartElement("Strength");
-			xmlWriter.WriteString(Strength.ToString());
+			xmlWriter.WriteStartElement("BaseAttributes");
+			BaseAttributes.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("Dexterity");
-			xmlWriter.WriteString(Dexterity.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Constitution");
-			xmlWriter.WriteString(Constitution.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Intelligence");
-			xmlWriter.WriteString(Intelligence.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Wisdom");
-			xmlWriter.WriteString(Wisdom.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Charisma");
-			xmlWriter.WriteString(Charisma.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("BaseAttackBonus");
-			xmlWriter.WriteString(BaseAttackBonus.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("GrappleModifier");
-			xmlWriter.WriteString(GrappleModifier.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("HitPoints");
-			xmlWriter.WriteString(HitPoints.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("HitDice");
-			xmlWriter.WriteString(HitDice.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("HitDieType");
-			xmlWriter.WriteString(Methods.GetDieTypeString(HitDieType));
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("ArmorClass");
-			xmlWriter.WriteString(ArmorClass.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("TouchArmorClass");
-			xmlWriter.WriteString(TouchArmorClass.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("FlatFootedArmorClass");
-			xmlWriter.WriteString(FlatFootedArmorClass.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Speed");
-			xmlWriter.WriteString(Speed.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("FortitudeSave");
-			xmlWriter.WriteString(FortitudeSave.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("ReflexSave");
-			xmlWriter.WriteString(ReflexSave.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("WillSave");
-			xmlWriter.WriteString(WillSave.ToString());
-			xmlWriter.WriteEndElement();
-			
-			xmlWriter.WriteStartElement("Feats");
-			foreach (string feat in Feats)
-			{
-				xmlWriter.WriteStartElement("Feat");
-				xmlWriter.WriteString(feat);
-				xmlWriter.WriteEndElement();
-			}
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Space");
-			xmlWriter.WriteString(Space.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Reach");
-			xmlWriter.WriteString(Reach.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Size");
-			xmlWriter.WriteString(Methods.GetSizeString(Size));
-			xmlWriter.WriteEndElement();
-			
-			xmlWriter.WriteStartElement("DamageReductions");
-			foreach (DamageReduction dr in DamageReductions)
-			{
-				dr.WriteXML(xmlWriter);
-			}
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Immunities");
-			Immunities.WriteXML(xmlWriter);
+			xmlWriter.WriteStartElement("ModifiedAttributes");
+			ModifiedAttributes.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
 
-		public override void ReadXML(XmlNode xmlNode)
+		public override void ReadAttributesXML(XmlNode xmlNode)
 		{
-			base.ReadXML(xmlNode);
-
+			bool readBase = false;
+			bool readModified = false;
 			try
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "Strength")
+					if (childNode.Name == "BaseAttributes")
 					{
-						_baseCreatureAttributes.Strength = Convert.ToInt32(childNode.InnerText);
+						BaseAttributes.ReadXML(childNode.ChildNodes[0]);
+						readBase = true;
 					}
-					else if (childNode.Name == "Dexterity")
+					else if (childNode.Name == "ModifiedAttributes")
 					{
-						_baseCreatureAttributes.Dexterity = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Constitution")
-					{
-						_baseCreatureAttributes.Constitution = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Intelligence")
-					{
-						_baseCreatureAttributes.Intelligence = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Wisdom")
-					{
-						_baseCreatureAttributes.Wisdom = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Charisma")
-					{
-						_baseCreatureAttributes.Charisma = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "BaseAttackBonus")
-					{
-						_baseCreatureAttributes.BaseAttackBonus = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "GrappleModifier")
-					{
-						_baseCreatureAttributes.GrappleModifier = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "HitPoints")
-					{
-						_baseCreatureAttributes.HitPoints = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "HitDice")
-					{
-						_baseCreatureAttributes.HitDice = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "HitDieType")
-					{
-						_baseCreatureAttributes.HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
-					}
-					else if (childNode.Name == "ArmorClass")
-					{
-						_baseCreatureAttributes.ArmorClass = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "TouchArmorClass")
-					{
-						_baseCreatureAttributes.TouchArmorClass = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "FlatFootedArmorClass")
-					{
-						_baseCreatureAttributes.FlatFootedArmorClass = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Speed")
-					{
-						_baseCreatureAttributes.Speed = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "FortitudeSave")
-					{
-						_baseCreatureAttributes.FortitudeSave = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "ReflexSave")
-					{
-						_baseCreatureAttributes.ReflexSave = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "WillSave")
-					{
-						_baseCreatureAttributes.WillSave = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Feats")
-					{
-						foreach (XmlNode featNode in childNode.ChildNodes)
-						{
-							if (featNode.Name == "Feat")
-							{
-								_baseCreatureAttributes.Feats.Add(featNode.InnerText);
-							}
-						}
-					}
-					else if (childNode.Name == "Space")
-					{
-						_baseCreatureAttributes.Space = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Reach")
-					{
-						_baseCreatureAttributes.Reach = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Size")
-					{
-						_baseCreatureAttributes.Size = Methods.GetSizeFromString(childNode.InnerText);
-					}
-					else if (childNode.Name == "DamageReductions")
-					{
-						foreach (XmlNode drNode in childNode.ChildNodes)
-						{
-							if (drNode.Name == "DamageReduction")
-							{
-								DamageReduction dr = new DamageReduction();
-								dr.ReadXML(drNode);
-								_baseCreatureAttributes.DamageReductions.Add(dr);
-							}
-						}
+						ModifiedAttributes.ReadXML(childNode.ChildNodes[0]);
+						readModified = true;
 					}
 				}
-
-				_modifiedCreatureAttributes = new CreatureAttributes(_baseCreatureAttributes);
 			}
 			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
+			}
+
+			if (readBase && !readModified)
+			{
+				ModifiedAttributes = new CreatureAttributes(BaseAttributes);
 			}
 		}
 	}

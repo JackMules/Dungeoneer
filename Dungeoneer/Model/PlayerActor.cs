@@ -57,9 +57,9 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 		}
 
-		public override void ReadXML(XmlNode xmlNode)
+		public override void ReadPropertyXML(XmlNode xmlNode)
 		{
-			base.ReadXML(xmlNode);
+			base.ReadPropertyXML(xmlNode);
 
 			try
 			{

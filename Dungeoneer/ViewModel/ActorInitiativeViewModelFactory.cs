@@ -18,10 +18,6 @@ namespace Dungeoneer.ViewModel
 			{
 				return new CreatureInitiativeViewModel(actor as Model.Creature, encounterViewModel);
 			}
-			else if (actor is Model.NonPlayerActor)
-			{
-				return new NonPlayerActorInitiativeViewModel(actor as Model.NonPlayerActor);
-			}
 			else
 			{
 				throw new ArgumentException("Unknown type: " + actor.GetType().ToString());

@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Dungeoneer.Utility;
 using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
-	public class CreatureAttributes : NonPlayerActorAttributes
+	public class CreatureAttributes : ActorAttributes
 	{
 		public CreatureAttributes()
-			: base()
 		{
+			Type = "No Type";
+			ChallengeRating = 1;
+			AttackSets = new FullyObservableCollection<AttackSet>();
 			Strength = 10;
 			Dexterity = 10;
 			Constitution = 10;
@@ -40,8 +44,10 @@ namespace Dungeoneer.Model
 		}
 
 		public CreatureAttributes(CreatureAttributes other)
-			: base(other)
 		{
+			Type = other._type;
+			ChallengeRating = other._challengeRating;
+			AttackSets = other._attackSets;
 			Strength = other.Strength;
 			Dexterity = other.Dexterity;
 			Constitution = other.Constitution;
@@ -67,6 +73,10 @@ namespace Dungeoneer.Model
 			DamageReductions = new ObservableCollection<DamageReduction>(other.DamageReductions);
 			Immunities = new DamageDescriptorSet(other.Immunities);
 		}
+
+		private string _type;
+		private float _challengeRating;
+		private FullyObservableCollection<AttackSet> _attackSets;
 
 		private int _strength;
 		private int _dexterity;
@@ -98,6 +108,36 @@ namespace Dungeoneer.Model
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
+
+		public string Type
+		{
+			get { return _type; }
+			set
+			{
+				_type = value;
+				NotifyPropertyChanged("Type");
+			}
+		}
+
+		public float ChallengeRating
+		{
+			get { return _challengeRating; }
+			set
+			{
+				_challengeRating = value;
+				NotifyPropertyChanged("ChallengeRating");
+			}
+		}
+
+		public FullyObservableCollection<AttackSet> AttackSets
+		{
+			get { return _attackSets; }
+			set
+			{
+				_attackSets = value;
+				NotifyPropertyChanged("AttackSets");
+			}
+		}
 
 		public int Strength
 		{
@@ -352,6 +392,36 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public void ChangeAttackModifier(Types.Ability ability, int change)
+		{
+			for (int set = 0; set < AttackSets.Count; ++set)
+			{
+				for (int attack = 0; attack < AttackSets[set].Attacks.Count; ++attack)
+				{
+					bool meleeAttack = false;
+					bool rangedAttack = false;
+
+					if ((AttackSets[set].Attacks[attack].Type == Types.Attack.Melee) ||
+						(AttackSets[set].Attacks[attack].Type == Types.Attack.MeleeTouch))
+					{
+						meleeAttack = true;
+					}
+					else
+					{
+						rangedAttack = true;
+					}
+
+					if ((meleeAttack && ability == Types.Ability.Strength) ||
+						(rangedAttack && ability == Types.Ability.Dexterity))
+					{
+						int newAttackMod = Convert.ToInt32(AttackSets[set].Attacks[attack].Modifier) + change;
+						AttackSets[set].Attacks[attack].Modifier = newAttackMod;
+					}
+				}
+			}
+			NotifyPropertyChanged("AttackSets");
+		}
+
 		public void ModifyArmorClass(int change)
 		{
 			ArmorClass += change;
@@ -492,6 +562,278 @@ namespace Dungeoneer.Model
 			}
 
 			return hp - HitPoints;
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("CreatureAttributes");
+		}
+
+		public override void WritePropertyXML(XmlWriter xmlWriter)
+		{
+			base.WritePropertyXML(xmlWriter);
+
+			xmlWriter.WriteStartElement("Type");
+			xmlWriter.WriteString(Type);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ChallengeRating");
+			xmlWriter.WriteString(ChallengeRating.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("AttackSets");
+			foreach (AttackSet attackSet in AttackSets)
+			{
+				attackSet.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Strength");
+			xmlWriter.WriteString(Strength.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Dexterity");
+			xmlWriter.WriteString(Dexterity.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Constitution");
+			xmlWriter.WriteString(Constitution.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Intelligence");
+			xmlWriter.WriteString(Intelligence.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Wisdom");
+			xmlWriter.WriteString(Wisdom.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Charisma");
+			xmlWriter.WriteString(Charisma.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("BaseAttackBonus");
+			xmlWriter.WriteString(BaseAttackBonus.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("GrappleModifier");
+			xmlWriter.WriteString(GrappleModifier.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HitPoints");
+			xmlWriter.WriteString(HitPoints.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HitDice");
+			xmlWriter.WriteString(HitDice.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HitDieType");
+			xmlWriter.WriteString(Methods.GetDieTypeString(HitDieType));
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ArmorClass");
+			xmlWriter.WriteString(ArmorClass.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("TouchArmorClass");
+			xmlWriter.WriteString(TouchArmorClass.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("FlatFootedArmorClass");
+			xmlWriter.WriteString(FlatFootedArmorClass.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Speed");
+			xmlWriter.WriteString(Speed.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("FortitudeSave");
+			xmlWriter.WriteString(FortitudeSave.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ReflexSave");
+			xmlWriter.WriteString(ReflexSave.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("WillSave");
+			xmlWriter.WriteString(WillSave.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Feats");
+			foreach (string feat in Feats)
+			{
+				xmlWriter.WriteStartElement("Feat");
+				xmlWriter.WriteString(feat);
+				xmlWriter.WriteEndElement();
+			}
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Space");
+			xmlWriter.WriteString(Space.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Reach");
+			xmlWriter.WriteString(Reach.ToString());
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Size");
+			xmlWriter.WriteString(Methods.GetSizeString(Size));
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("DamageReductions");
+			foreach (DamageReduction dr in DamageReductions)
+			{
+				dr.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Immunities");
+			Immunities.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteEndElement();
+		}
+
+		public override void ReadXML(XmlNode xmlNode)
+		{
+			base.ReadXML(xmlNode);
+
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "Type")
+					{
+						Type = childNode.InnerText;
+					}
+					else if (childNode.Name == "ChallengeRating")
+					{
+						ChallengeRating = Convert.ToSingle(childNode.InnerText);
+					}
+					else if (childNode.Name == "AttackSets")
+					{
+						AttackSets.Clear();
+						foreach (XmlNode attackSetNode in childNode.ChildNodes)
+						{
+							if (attackSetNode.Name == "AttackSet")
+							{
+								AttackSets.Add(new AttackSet(attackSetNode));
+							}
+						}
+					}
+					else if (childNode.Name == "Strength")
+					{
+						Strength = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Dexterity")
+					{
+						Dexterity = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Constitution")
+					{
+						Constitution = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Intelligence")
+					{
+						Intelligence = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Wisdom")
+					{
+						Wisdom = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Charisma")
+					{
+						Charisma = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "BaseAttackBonus")
+					{
+						BaseAttackBonus = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "GrappleModifier")
+					{
+						GrappleModifier = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "HitPoints")
+					{
+						HitPoints = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "HitDice")
+					{
+						HitDice = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "HitDieType")
+					{
+						HitDieType = Methods.GetDieTypeFromString(childNode.InnerText);
+					}
+					else if (childNode.Name == "ArmorClass")
+					{
+						ArmorClass = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "TouchArmorClass")
+					{
+						TouchArmorClass = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "FlatFootedArmorClass")
+					{
+						FlatFootedArmorClass = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Speed")
+					{
+						Speed = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "FortitudeSave")
+					{
+						FortitudeSave = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "ReflexSave")
+					{
+						ReflexSave = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "WillSave")
+					{
+						WillSave = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Feats")
+					{
+						foreach (XmlNode featNode in childNode.ChildNodes)
+						{
+							if (featNode.Name == "Feat")
+							{
+								Feats.Add(featNode.InnerText);
+							}
+						}
+					}
+					else if (childNode.Name == "Space")
+					{
+						Space = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Reach")
+					{
+						Reach = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "Size")
+					{
+						Size = Methods.GetSizeFromString(childNode.InnerText);
+					}
+					else if (childNode.Name == "DamageReductions")
+					{
+						foreach (XmlNode drNode in childNode.ChildNodes)
+						{
+							if (drNode.Name == "DamageReduction")
+							{
+								DamageReduction dr = new DamageReduction();
+								dr.ReadXML(drNode);
+								DamageReductions.Add(dr);
+							}
+						}
+					}
+				}
+			}
+			catch (XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 	}
 }

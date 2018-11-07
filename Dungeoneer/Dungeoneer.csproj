@@ -148,7 +148,6 @@
     <Compile Include="Model\Effect\EffectFactory.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Hit.cs" />
-    <Compile Include="Model\NonPlayerActorAttributes.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
@@ -176,7 +175,6 @@
     <Compile Include="ViewModel\InitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\InitiativeCardViewModelFactory.cs" />
     <Compile Include="ViewModel\InitiativeValueViewModel.cs" />
-    <Compile Include="ViewModel\NonPlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorInitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\PlayerActorInitiativeViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -202,11 +200,11 @@
     <Compile Include="View\AttacksWindow.xaml.cs">
       <DependentUpon>AttacksWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CreateNonPlayerActorWindow.xaml.cs">
-      <DependentUpon>CreateNonPlayerActorWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\CreatePlayerActorWindow.xaml.cs">
       <DependentUpon>CreatePlayerActorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreatureCard.xaml.cs">
+      <DependentUpon>CreatureCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
@@ -229,12 +227,6 @@
     <Compile Include="View\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NonPlayerActorControl.xaml.cs">
-      <DependentUpon>NonPlayerActorControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\NonPlayerActorCard.xaml.cs">
-      <DependentUpon>NonPlayerActorCard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\PlayerActorCard.xaml.cs">
       <DependentUpon>PlayerActorCard.xaml</DependentUpon>
     </Compile>
@@ -249,7 +241,6 @@
     <Compile Include="Model\Creature.cs" />
     <Compile Include="View\InitiativeValue.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Model\NonPlayerActor.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="View\PlayerActorControl.xaml.cs">
       <DependentUpon>PlayerActorControl.xaml</DependentUpon>
@@ -288,11 +279,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CreateNonPlayerActorWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\CreatePlayerActorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreatureCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,14 +314,6 @@
     <Page Include="View\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NonPlayerActorControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NonPlayerActorCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PlayerActorCard.xaml">
       <SubType>Designer</SubType>

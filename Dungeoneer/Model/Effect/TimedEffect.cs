@@ -45,9 +45,24 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
+		public int RemainingDuration
+		{
+			get { return Duration - ElapsedDuration; }
+		}
+
 		public override bool Expired()
 		{
 			return (ElapsedDuration >= Duration);
+		}
+
+		public override string ToString()
+		{
+			string str =  RemainingDuration.ToString() + " turn";
+			if (RemainingDuration > 1)
+			{
+				str += "s";
+			}
+			return base.ToString() + " (" + str + ")";
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

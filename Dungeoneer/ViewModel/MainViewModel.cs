@@ -26,7 +26,6 @@ namespace Dungeoneer.ViewModel
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_exit = new Command(ExecuteExit);
 			_createPlayerActor = new Command(ExecuteCreatePlayerActor);
-			_createNonPlayerActor = new Command(ExecuteCreateNonPlayerActor);
 			_createCreature = new Command(ExecuteCreateCreature);
 
 			SaveTimer = new System.Threading.Timer(new TimerCallback(DoChangeRefresh), null, Timeout.Infinite, Timeout.Infinite);
@@ -42,7 +41,6 @@ namespace Dungeoneer.ViewModel
 		private Command _saveActorLibrary;
 		private Command _exit;
 		private Command _createPlayerActor;
-		private Command _createNonPlayerActor;
 		private Command _createCreature;
 
 		public Command Exit
@@ -123,25 +121,13 @@ namespace Dungeoneer.ViewModel
 						Encounter.UpdateActor(actorObj as Model.PlayerActor);
 					}
 				}
-				else if (actorObj is Model.NonPlayerActor)
+				else if (actorObj is Model.Creature)
 				{
-					if (actorObj is Model.Creature)
+					createActorWindowViewModel.LoadCreature(actorObj as Model.Creature);
+					Model.Creature creature = createActorWindowViewModel.GetCreature();
+					if (creature != null)
 					{
-						createActorWindowViewModel.LoadCreature(actorObj as Model.Creature);
-						Model.Creature creature = createActorWindowViewModel.GetCreature();
-						if (creature != null)
-						{
-							ActorLibrary.EditActor(actorObj as Model.Creature, creature);
-						}
-					}
-					else
-					{
-						createActorWindowViewModel.LoadNonPlayerActor(actorObj as Model.NonPlayerActor);
-						Model.NonPlayerActor nonPlayerActor = createActorWindowViewModel.GetNonPlayerActor();
-						if (nonPlayerActor != null)
-						{
-							ActorLibrary.EditActor(actorObj as Model.Creature, nonPlayerActor);
-						}
+						ActorLibrary.EditActor(actorObj as Model.Creature, creature);
 					}
 				}
 			}
@@ -179,21 +165,6 @@ namespace Dungeoneer.ViewModel
 			if (playerActor != null)
 			{
 				ActorLibrary.Characters.Add(playerActor);
-			}
-		}
-
-		public Command CreateNonPlayerActor
-		{
-			get { return _createNonPlayerActor; }
-		}
-
-		private void ExecuteCreateNonPlayerActor()
-		{
-			CreateActorWindowViewModel createActorWindowViewModel = new CreateActorWindowViewModel();
-			Model.NonPlayerActor nonPlayerActor = createActorWindowViewModel.GetNonPlayerActor();
-			if (nonPlayerActor != null)
-			{
-				ActorLibrary.Enemies.Add(nonPlayerActor);
 			}
 		}
 

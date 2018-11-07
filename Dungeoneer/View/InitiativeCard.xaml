@@ -11,9 +11,6 @@
 		<DataTemplate DataType="{x:Type viewmodel:PlayerActorInitiativeViewModel}">
 			<view:PlayerActorControl/>
 		</DataTemplate>
-		<DataTemplate DataType="{x:Type viewmodel:NonPlayerActorInitiativeViewModel}">
-			<view:NonPlayerActorControl/>
-		</DataTemplate>
 		<DataTemplate DataType="{x:Type viewmodel:CreatureInitiativeViewModel}">
 			<view:CreatureControl/>
 		</DataTemplate>

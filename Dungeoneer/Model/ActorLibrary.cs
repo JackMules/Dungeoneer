@@ -14,12 +14,12 @@ namespace Dungeoneer.Model
 		public ActorLibrary()
 		{
 			_characters = new ObservableCollection<PlayerActor>();
-			_enemies = new ObservableCollection<NonPlayerActor>();
+			_enemies = new ObservableCollection<Creature>();
 			Load();
 		}
 
 		private ObservableCollection<PlayerActor> _characters;
-		private ObservableCollection<NonPlayerActor> _enemies;
+		private ObservableCollection<Creature> _enemies;
 
 		public ObservableCollection<PlayerActor> Characters
 		{
@@ -31,7 +31,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public ObservableCollection<NonPlayerActor> Enemies
+		public ObservableCollection<Creature> Enemies
 		{
 			get { return _enemies; }
 			set
@@ -61,14 +61,14 @@ namespace Dungeoneer.Model
 					Characters.Add(newActor as PlayerActor);
 				}
 			}
-			else if (oldActor is NonPlayerActor)
+			else if (oldActor is Creature)
 			{
 				var foundEnemy = Enemies.Where(enemy => enemy == oldActor).FirstOrDefault();
 
 				if (foundEnemy != null)
 				{
-					Enemies.Remove(oldActor as NonPlayerActor);
-					Enemies.Add(newActor as NonPlayerActor);
+					Enemies.Remove(oldActor as Creature);
+					Enemies.Add(newActor as Creature);
 				}
 			}
 		}
@@ -114,7 +114,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Enemies");
-			foreach (NonPlayerActor enemy in Enemies)
+			foreach (Creature enemy in Enemies)
 			{
 				enemy.WriteXML(xmlWriter);
 			}
@@ -148,11 +148,7 @@ namespace Dungeoneer.Model
 					{
 						foreach (XmlNode enemyNode in xmlNode.ChildNodes)
 						{
-							if (enemyNode.Name == "NonPlayerActor")
-							{
-								Enemies.Add(new NonPlayerActor(enemyNode));
-							}
-							else if (enemyNode.Name == "Creature")
+							if (enemyNode.Name == "Creature")
 							{
 								Enemies.Add(new Creature(enemyNode));
 							}

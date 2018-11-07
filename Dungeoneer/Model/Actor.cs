@@ -17,20 +17,20 @@ namespace Dungeoneer.Model
 
 		public Actor(Actor other)
 		{
-			_baseActorAttributes = new ActorAttributes(other._baseActorAttributes);
-			_modifiedActorAttributes = new ActorAttributes(_baseActorAttributes);
+			BaseAttributes = new ActorAttributes(other.BaseAttributes);
+			ModifiedAttributes = new ActorAttributes(BaseAttributes);
 		}
 
 		public Actor(ActorAttributes attributes)
 		{
-			_baseActorAttributes = new ActorAttributes(attributes);
-			_modifiedActorAttributes = new ActorAttributes(attributes);
+			BaseAttributes = new ActorAttributes(attributes);
+			ModifiedAttributes = new ActorAttributes(attributes);
 		}
 
 		public Actor(XmlNode xmlNode)
 		{
 			ReadXML(xmlNode);
-			_modifiedActorAttributes = new ActorAttributes(_baseActorAttributes);
+			ModifiedAttributes = new ActorAttributes(BaseAttributes);
 		}
 
 		private string _actorName = "";
@@ -39,9 +39,29 @@ namespace Dungeoneer.Model
 		private ActorAttributes _baseActorAttributes = new ActorAttributes();
 		private ActorAttributes _modifiedActorAttributes = new ActorAttributes();
 
+		protected ActorAttributes BaseAttributes
+		{
+			get { return _baseActorAttributes; }
+			set
+			{
+				_baseActorAttributes = value;
+				NotifyPropertyChanged("BaseAttributes");
+			}
+		}
+
+		protected ActorAttributes ModifiedAttributes
+		{
+			get { return _modifiedActorAttributes; }
+			set
+			{
+				_modifiedActorAttributes = value;
+				NotifyPropertyChanged("ModifiedAttributes");
+			}
+		}
+
 		public ActorAttributes GetEffectiveAttributes()
 		{
-			ActorAttributes effectiveAttributes = new ActorAttributes(_modifiedActorAttributes);
+			ActorAttributes effectiveAttributes = new ActorAttributes(ModifiedAttributes);
 			foreach (Effect.Effect effect in Effects)
 			{
 				effect.ApplyTo(effectiveAttributes);
@@ -74,7 +94,7 @@ namespace Dungeoneer.Model
 			get { return GetEffectiveAttributes().InitiativeMod; }
 			set
 			{
-				_modifiedActorAttributes.InitiativeMod = value;
+				ModifiedAttributes.InitiativeMod = value;
 				NotifyPropertyChanged("InitiativeMod");
 			}
 		}
@@ -84,7 +104,7 @@ namespace Dungeoneer.Model
 			get { return GetEffectiveAttributes().Active; }
 			set
 			{
-				_modifiedActorAttributes.Active = value;
+				ModifiedAttributes.Active = value;
 				NotifyPropertyChanged("Active");
 			}
 		}
@@ -95,7 +115,7 @@ namespace Dungeoneer.Model
 			{
 				if (effect.PerTurn)
 				{
-					effect.ApplyTo(_modifiedActorAttributes);
+					effect.ApplyTo(ModifiedAttributes);
 				}
 			}
 		}
@@ -104,6 +124,7 @@ namespace Dungeoneer.Model
 		{
 			WriteXMLStartElement(xmlWriter);
 			WritePropertyXML(xmlWriter);
+			WriteAttributesXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -118,14 +139,6 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(ActorName);
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("InitiativeMod");
-			xmlWriter.WriteString(InitiativeMod.ToString());
-			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteStartElement("Active");
-			xmlWriter.WriteString(Active.ToString());
-			xmlWriter.WriteEndElement();
-
 			xmlWriter.WriteStartElement("Effects");
 			foreach (Effect.Effect effect in Effects)
 			{
@@ -134,7 +147,24 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 		}
 
-		public virtual void ReadXML(XmlNode xmlNode)
+		public virtual void WriteAttributesXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("BaseAttributes");
+			BaseAttributes.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("ModifiedAttributes");
+			ModifiedAttributes.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			ReadPropertyXML(xmlNode);
+			ReadAttributesXML(xmlNode);
+		}
+
+		public virtual void ReadPropertyXML(XmlNode xmlNode)
 		{
 			try
 			{
@@ -143,14 +173,6 @@ namespace Dungeoneer.Model
 					if (childNode.Name == "ActorName")
 					{
 						ActorName = childNode.InnerText;
-					}
-					else if (childNode.Name == "InitiativeMod")
-					{
-						_baseActorAttributes.InitiativeMod = Convert.ToInt32(childNode.InnerText);
-					}
-					else if (childNode.Name == "Active")
-					{
-						_baseActorAttributes.Active = Convert.ToBoolean(childNode.InnerText);
 					}
 					else if (childNode.Name == "Effects")
 					{
@@ -163,12 +185,41 @@ namespace Dungeoneer.Model
 						}
 					}
 				}
-
-				_modifiedActorAttributes = new ActorAttributes(_baseActorAttributes);
 			}
 			catch (XmlException e)
 			{
 				MessageBox.Show(e.ToString());
+			}
+		}
+
+		public virtual void ReadAttributesXML(XmlNode xmlNode)
+		{
+			bool readBase = false;
+			bool readModified = false;
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "BaseAttributes")
+					{
+						BaseAttributes.ReadXML(childNode.ChildNodes[0]);
+						readBase = true;
+					}
+					else if (childNode.Name == "ModifiedAttributes")
+					{
+						ModifiedAttributes.ReadXML(childNode.ChildNodes[0]);
+						readModified = true;
+					}
+				}
+			}
+			catch (XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
+
+			if (readBase && !readModified)
+			{
+				ModifiedAttributes = new ActorAttributes(BaseAttributes);
 			}
 		}
 	}
