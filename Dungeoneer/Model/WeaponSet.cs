@@ -22,6 +22,12 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public WeaponSet(WeaponSet other)
+		{
+			Owner = other.Owner;
+			Weapons = new List<Weapon>(other.Weapons);
+		}
+
 		public WeaponSet(XmlNode xmlNode)
 		{
 			ReadXML(xmlNode);

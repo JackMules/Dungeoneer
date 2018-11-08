@@ -16,6 +16,11 @@ namespace Dungeoneer.Model
 			_damageDescriptorSet = new DamageDescriptorSet();
 		}
 
+		public Damage(Damage other)
+		{
+			DamageDescriptorSet = new DamageDescriptorSet(other.DamageDescriptorSet);
+		}
+
 		public Damage(XmlNode xmlNode)
 		{
 			ReadXML(xmlNode);

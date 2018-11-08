@@ -22,6 +22,17 @@ namespace Dungeoneer.Model
 			_critMultiplier = 2;
 		}
 
+		public Attack(Attack other)
+		{
+			Name = other.Name;
+			Modifier = other.Modifier;
+			Type = other.Type;
+			Ability = other.Ability;
+			Damages = new FullyObservableCollection<Damage>(other.Damages);
+			ThreatRangeMin = other.ThreatRangeMin;
+			CritMultiplier = other.CritMultiplier;
+		}
+
 		public Attack(XmlNode xmlNode)
 		{
 			ReadXML(xmlNode);

@@ -14,6 +14,12 @@ namespace Dungeoneer.Model
 			_damageDescriptorSet = damageDescriptorSet;
 		}
 
+		public DamageSet(DamageSet other)
+		{
+			Amount = other.Amount;
+			DamageDescriptorSet = new DamageDescriptorSet(other.DamageDescriptorSet);
+		}
+
 		private int _amount;
 		private DamageDescriptorSet _damageDescriptorSet;
 
@@ -30,6 +36,11 @@ namespace Dungeoneer.Model
 		public DamageDescriptorSet DamageDescriptorSet
 		{
 			get { return _damageDescriptorSet; }
+			private set
+			{
+				_damageDescriptorSet = value;
+				NotifyPropertyChanged("DamageSet");
+			}
 		}
 	}
 }

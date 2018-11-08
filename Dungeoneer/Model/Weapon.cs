@@ -16,6 +16,11 @@ namespace Dungeoneer.Model
 			_damageDescriptorSets = new List<DamageDescriptorSet>();
 		}
 
+		public Weapon(Weapon other)
+		{
+			DamageDescriptorSets = new List<DamageDescriptorSet>(other.DamageDescriptorSets);
+		}
+
 		public Weapon(XmlNode xmlNode)
 		{
 			ReadXML(xmlNode);

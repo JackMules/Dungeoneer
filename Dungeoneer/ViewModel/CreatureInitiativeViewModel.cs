@@ -16,6 +16,7 @@ namespace Dungeoneer.ViewModel
 			_actor = new Model.Creature(creature);
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_weaponList = encounterViewModel.WeaponList;
+			InitCommands();
 		}
 
 		public CreatureInitiativeViewModel(XmlNode creatureXml, EncounterViewModel encounterViewModel)
@@ -23,25 +24,20 @@ namespace Dungeoneer.ViewModel
 			_actor = new Model.Creature(creatureXml);
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_weaponList = encounterViewModel.WeaponList;
-			
+			InitCommands();
 		}
 
 		protected override void InitCommands()
 		{
 			base.InitCommands();
-			_showAttacksWindow = new Command(ExecuteShowAttacksWindow);
-			_hideAttacksWindow = new Command(ExecuteHideAttacksWindow);
 			_doDamage = new Command(ExecuteDoDamage);
 			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		private Command _doDamage;
 		private EffectsWindowViewModel _effectsWindowViewModel;
+		private Command _doDamage;
 		private Command _showEffectsWindow;
-		private View.AttacksWindow _attacksWindow;
-		private Command _showAttacksWindow;
-		private Command _hideAttacksWindow;
 
 		public float ChallengeRating
 		{
@@ -61,28 +57,6 @@ namespace Dungeoneer.ViewModel
 				Actor.AttackSets = value;
 				NotifyPropertyChanged("AttackSets");
 			}
-		}
-
-		public Command ShowAttacksWindow
-		{
-			get { return _showAttacksWindow; }
-		}
-
-		private void ExecuteShowAttacksWindow()
-		{
-			_attacksWindow = new View.AttacksWindow();
-			_attacksWindow.DataContext = this;
-			_attacksWindow.Show();
-		}
-
-		public Command HideAttacksWindow
-		{
-			get { return _hideAttacksWindow; }
-		}
-
-		private void ExecuteHideAttacksWindow()
-		{
-			_attacksWindow.Close();
 		}
 
 		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)

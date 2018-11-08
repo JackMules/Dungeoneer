@@ -44,10 +44,11 @@ namespace Dungeoneer.Model
 		}
 
 		public CreatureAttributes(CreatureAttributes other)
+			: base(other)
 		{
 			Type = other._type;
 			ChallengeRating = other._challengeRating;
-			AttackSets = other._attackSets;
+			AttackSets = new FullyObservableCollection<AttackSet>(other.AttackSets);
 			Strength = other.Strength;
 			Dexterity = other.Dexterity;
 			Constitution = other.Constitution;
@@ -414,8 +415,7 @@ namespace Dungeoneer.Model
 					if ((meleeAttack && ability == Types.Ability.Strength) ||
 						(rangedAttack && ability == Types.Ability.Dexterity))
 					{
-						int newAttackMod = Convert.ToInt32(AttackSets[set].Attacks[attack].Modifier) + change;
-						AttackSets[set].Attacks[attack].Modifier = newAttackMod;
+						AttackSets[set].Attacks[attack].Modifier += change;
 					}
 				}
 			}

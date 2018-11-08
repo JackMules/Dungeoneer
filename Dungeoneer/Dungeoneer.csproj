@@ -194,12 +194,6 @@
     <Compile Include="View\AddWeaponWindow.xaml.cs">
       <DependentUpon>AddWeaponWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AttackSetCard.xaml.cs">
-      <DependentUpon>AttackSetCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AttacksWindow.xaml.cs">
-      <DependentUpon>AttacksWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\CreatePlayerActorWindow.xaml.cs">
       <DependentUpon>CreatePlayerActorWindow.xaml</DependentUpon>
     </Compile>
@@ -268,14 +262,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddWeaponWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AttackSetCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AttacksWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

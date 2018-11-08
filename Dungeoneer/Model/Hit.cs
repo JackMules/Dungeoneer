@@ -22,11 +22,21 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public Hit(Hit other)
+		{
+			DamageSets = new List<DamageSet>(other.DamageSets);
+		}
+
 		private List<DamageSet> _damageSets;
 
 		public List<DamageSet> DamageSets
 		{
 			get { return _damageSets; }
+			private set
+			{
+				_damageSets = value;
+				NotifyPropertyChanged("DamageSets");
+			}
 		}
 	}
 }

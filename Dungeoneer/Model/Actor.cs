@@ -89,7 +89,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int InitiativeMod
+		public virtual int InitiativeMod
 		{
 			get { return GetEffectiveAttributes().InitiativeMod; }
 			set
@@ -99,7 +99,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public bool Active
+		public virtual bool Active
 		{
 			get { return GetEffectiveAttributes().Active; }
 			set

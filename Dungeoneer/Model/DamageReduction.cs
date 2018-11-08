@@ -18,6 +18,11 @@ namespace Dungeoneer.Model
 			_types = new DamageDescriptorSet();
 		}
 
+		public DamageReduction(DamageReduction other)
+		{
+			DamageTypes = new DamageDescriptorSet(other.DamageTypes);
+		}
+
 		private int _value;
 		private DamageDescriptorSet _types;
 

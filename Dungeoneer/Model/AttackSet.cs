@@ -14,6 +14,12 @@ namespace Dungeoneer.Model
 		{
 		}
 
+		public AttackSet(AttackSet other)
+		{
+			Name = other.Name;
+			Attacks = new FullyObservableCollection<Attack>(other.Attacks);
+		}
+
 		public AttackSet(XmlNode xmlNode)
 		{
 			ReadXML(xmlNode);

@@ -57,11 +57,35 @@ namespace Dungeoneer.Model
 		public new CreatureAttributes GetEffectiveAttributes()
 		{
 			CreatureAttributes effectiveAttributes = new CreatureAttributes(ModifiedAttributes);
+
+			// What if I take non-simple types out of the attributes object, so that can function as it is,
+			// then for the object types, 
+
 			foreach (Effect.Effect effect in Effects)
 			{
 				effect.ApplyTo(effectiveAttributes);
 			}
 			return effectiveAttributes;
+		}
+
+		public override int InitiativeMod
+		{
+			get { return GetEffectiveAttributes().InitiativeMod; }
+			set
+			{
+				ModifiedAttributes.InitiativeMod = value;
+				NotifyPropertyChanged("InitiativeMod");
+			}
+		}
+
+		public override bool Active
+		{
+			get { return GetEffectiveAttributes().Active; }
+			set
+			{
+				ModifiedAttributes.Active = value;
+				NotifyPropertyChanged("Active");
+			}
 		}
 
 		public string Type
