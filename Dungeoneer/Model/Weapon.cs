@@ -9,6 +9,7 @@ using System.Xml;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class Weapon : BaseModel
 	{
 		public Weapon()

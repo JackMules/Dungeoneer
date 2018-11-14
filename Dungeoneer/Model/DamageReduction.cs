@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class DamageReduction : BaseModel
 	{
 		public DamageReduction()

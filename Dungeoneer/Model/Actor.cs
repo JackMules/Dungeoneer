@@ -9,6 +9,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class Actor : BaseModel
 	{
 		protected Actor()
@@ -61,7 +62,7 @@ namespace Dungeoneer.Model
 
 		public ActorAttributes GetEffectiveAttributes()
 		{
-			ActorAttributes effectiveAttributes = new ActorAttributes(ModifiedAttributes);
+			ActorAttributes effectiveAttributes = ModifiedAttributes.Clone();
 			foreach (Effect.Effect effect in Effects)
 			{
 				effect.ApplyTo(effectiveAttributes);
@@ -219,7 +220,7 @@ namespace Dungeoneer.Model
 
 			if (readBase && !readModified)
 			{
-				ModifiedAttributes = new ActorAttributes(BaseAttributes);
+				ModifiedAttributes = BaseAttributes.Clone();
 			}
 		}
 	}

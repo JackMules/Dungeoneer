@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class Hit : BaseModel
 	{
 		public Hit(List<int> damages, Weapon weapon)

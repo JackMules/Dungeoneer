@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class DamageSet : BaseModel
 	{
 		public DamageSet(int amount, DamageDescriptorSet damageDescriptorSet)

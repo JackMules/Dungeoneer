@@ -20,6 +20,11 @@ namespace Dungeoneer.ViewModel
 		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
 
+		public virtual void StartNewRound()
+		{
+			TurnEnded = false;
+		}
+
 		public InitiativeValueViewModel InitiativeValueViewModel
 		{
 			get { return _initiativeValueViewModel; }
@@ -122,11 +127,6 @@ namespace Dungeoneer.ViewModel
 			{
 				MessageBox.Show(e.ToString());
 			}
-		}
-
-		public void StartTurn()
-		{
-			ActorViewModel?.StartTurn();
 		}
 	}
 }

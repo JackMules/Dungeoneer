@@ -10,6 +10,7 @@ using System.Xml;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class CreatureAttributes : ActorAttributes
 	{
 		public CreatureAttributes()

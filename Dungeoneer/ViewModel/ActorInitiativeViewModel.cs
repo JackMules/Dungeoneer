@@ -35,7 +35,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		protected virtual void ActorUpdated()
+		public virtual void ActorUpdated()
 		{
 			InitiativeMod = Actor.InitiativeMod;
 			ActorName = Actor.ActorName;
@@ -90,26 +90,6 @@ namespace Dungeoneer.ViewModel
 				_backgroundColor = value;
 				NotifyPropertyChanged("BackgroundColor");
 			}
-		}
-
-		public virtual void StartTurn()
-		{
-			Actor.ApplyPerTurnEffects();
-
-			for (int i = Actor.Effects.Count - 1; i >= 0; --i)
-			{
-				if (Actor.Effects[i] is Model.Effect.TimedEffect)
-				{
-					Model.Effect.TimedEffect tempEffect = Actor.Effects[i] as Model.Effect.TimedEffect;
-					tempEffect.ElapsedDuration++;
-					if (tempEffect.ElapsedDuration == tempEffect.Duration)
-					{
-						Actor.Effects.RemoveAt(i);
-					}
-				}
-			}
-
-			NotifyPropertyChanged("Actor");
 		}
 
 		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)

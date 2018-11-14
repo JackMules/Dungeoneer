@@ -8,6 +8,7 @@ using System.Xml;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class DamageDescriptorSet : BaseModel
 	{
 		public DamageDescriptorSet()

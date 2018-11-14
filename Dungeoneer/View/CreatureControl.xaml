@@ -52,7 +52,21 @@
 														CommandBinding="{Binding DoDamage}"
 														PanelOrientation="Vertical"/>
 				</StackPanel>
-				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="90" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
+				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="72" HorizontalAlignment="Right" VerticalAlignment="Center">
+					<Button Margin="5" Command="{Binding StartTurn}">
+						<Button.Style>
+							<Style TargetType="{x:Type Button}">
+								<Setter Property="Content" Value="Start Turn"/>
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding TurnStarted, UpdateSourceTrigger=PropertyChanged}" Value="True">
+										<Setter Property="Content" Value="Turn Started"/>
+										<Setter Property="FontWeight" Value="Bold"/>
+										<Setter Property="IsEnabled" Value="False"/>
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</Button.Style>
+					</Button>
 					<Button Content="Effects" Command="{Binding ShowEffectsWindow}" Margin="5"/>
 				</StackPanel>
 			</DockPanel>

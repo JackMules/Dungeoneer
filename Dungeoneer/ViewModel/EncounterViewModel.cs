@@ -24,7 +24,7 @@ namespace Dungeoneer.ViewModel
 			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
 			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
-			_initiativeTrack.CollectionChanged += _initiativeTrack_CollectionChanged;
+//			_initiativeTrack.CollectionChanged += _initiativeTrack_CollectionChanged;
 			_weaponList.CollectionChanged += _weaponList_CollectionChanged;
 		}
 
@@ -35,19 +35,20 @@ namespace Dungeoneer.ViewModel
 		private Command _save;
 		private Command _load;
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-
+		/*
 		private void _initiativeTrack_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			if (_initiativeTrack.Count > 0)
 			{
 				InitiativeCardViewModel firstInitCard = _initiativeTrack.First();
-				if (firstInitCard != null)
+				if (firstInitCard != null &&
+					firstInitCard.TurnEnded == false)
 				{
 					firstInitCard.StartTurn();
 				}
 			}
 		}
-
+		*/
 		private void _weaponList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnWeaponListChange?.Invoke(_weaponList);
@@ -74,7 +75,7 @@ namespace Dungeoneer.ViewModel
 
 			foreach (InitiativeCardViewModel initCard in _initiativeTrack)
 			{
-				initCard.TurnEnded = false;
+				initCard.StartNewRound();
 			}
 		}
 

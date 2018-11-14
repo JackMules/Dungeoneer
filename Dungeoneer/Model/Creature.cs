@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class Creature : Actor
 	{
 		public Creature(Creature other)
@@ -56,11 +57,7 @@ namespace Dungeoneer.Model
 
 		public new CreatureAttributes GetEffectiveAttributes()
 		{
-			CreatureAttributes effectiveAttributes = new CreatureAttributes(ModifiedAttributes);
-
-			// What if I take non-simple types out of the attributes object, so that can function as it is,
-			// then for the object types, 
-
+			CreatureAttributes effectiveAttributes = ModifiedAttributes.Clone();
 			foreach (Effect.Effect effect in Effects)
 			{
 				effect.ApplyTo(effectiveAttributes);

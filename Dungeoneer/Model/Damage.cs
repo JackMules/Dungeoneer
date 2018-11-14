@@ -9,6 +9,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class Damage : BaseModel
 	{
 		public Damage()

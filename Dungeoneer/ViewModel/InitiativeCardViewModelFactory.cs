@@ -17,7 +17,7 @@ namespace Dungeoneer.ViewModel
 			}
 			else if (actorInitiativeViewModel.Actor is Model.Creature)
 			{
-				return new InitiativeCardViewModel { ActorViewModel = actorInitiativeViewModel as CreatureInitiativeViewModel };
+				return new CreatureInitiativeCardViewModel { ActorViewModel = actorInitiativeViewModel as CreatureInitiativeViewModel };
 			}
 			else
 			{

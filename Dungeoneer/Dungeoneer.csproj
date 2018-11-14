@@ -141,7 +141,7 @@
     <Compile Include="Model\CreatureAttributes.cs" />
     <Compile Include="Model\DamageDescriptorSet.cs" />
     <Compile Include="Model\DamageSet.cs" />
-    <Compile Include="Model\Effect\Condition.cs" />
+    <Compile Include="Model\Effect\Conditions.cs" />
     <Compile Include="Model\Effect\Effect.cs" />
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
@@ -150,6 +150,7 @@
     <Compile Include="Model\Hit.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
+    <Compile Include="Utility\ObjectCopier.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageReductionWindowViewModel.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
     <Compile Include="ViewModel\AttackSetViewModel.cs" />
+    <Compile Include="ViewModel\CreatureInitiativeCardViewModel.cs" />
     <Compile Include="ViewModel\DamageTypeSelectorViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class ActorAttributes : BaseModel
 	{
 		public ActorAttributes()

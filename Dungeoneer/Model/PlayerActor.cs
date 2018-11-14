@@ -10,6 +10,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class PlayerActor : Actor
 	{
 		public PlayerActor(PlayerActor other)

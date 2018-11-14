@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.Utility
 {
+	[Serializable]
 	public class FullyObservableCollection<T> : ObservableCollection<T>
 				where T : INotifyPropertyChanged
 	{

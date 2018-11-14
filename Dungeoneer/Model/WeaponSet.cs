@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class WeaponSet : BaseModel
 	{
 		public WeaponSet(PlayerActor playerActor)

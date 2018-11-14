@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using Dungeoneer.Utility;
 
-namespace Dungeoneer.Model.Effect.Condition
+namespace Dungeoneer.Model.Effect.Conditions
 {
 	public class Blinded : TimedEffect
 	{

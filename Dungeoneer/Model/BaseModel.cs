@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class BaseModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
