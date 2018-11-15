@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -10,10 +11,10 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreatureInitiativeCardViewModel()
 		{
-			_endTurn = new Command(ExecuteEndTurn);
+			_advanceTurnState = new Command(ExecuteAdvanceTurnState);
 		}
 
-		private Command _endTurn;
+		private Command _advanceTurnState;
 
 		public new CreatureInitiativeViewModel ActorViewModel
 		{
@@ -28,15 +29,32 @@ namespace Dungeoneer.ViewModel
 		public override void StartNewRound()
 		{
 			base.StartNewRound();
-			ActorViewModel.TurnStarted = false;
+			TurnState = Types.TurnState.NotStarted;
 		}
 
-		public Command EndTurn
+		public Command AdvanceTurnState
 		{
-			get { return _endTurn; }
+			get { return _advanceTurnState; }
 		}
 
-		public virtual void ExecuteEndTurn()
+		public void ExecuteAdvanceTurnState()
+		{
+			switch (TurnState)
+			{
+			case Types.TurnState.NotStarted:	StartTurn();	break;
+			case Types.TurnState.Started:			EndTurn();		break;
+			}
+		}
+
+		public virtual void StartTurn()
+		{
+			ActorViewModel.Actor.ApplyPerTurnEffects();
+
+			TurnState = Types.TurnState.Started;
+			ActorViewModel.ActorUpdated();
+		}
+		
+		public virtual void EndTurn()
 		{
 			for (int i = ActorViewModel.Actor.Effects.Count - 1; i >= 0; --i)
 			{
@@ -51,6 +69,7 @@ namespace Dungeoneer.ViewModel
 				}
 			}
 
+			TurnState = Types.TurnState.Ended;
 			ActorViewModel.ActorUpdated();
 		}
 	}

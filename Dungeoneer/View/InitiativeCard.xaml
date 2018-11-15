@@ -5,6 +5,8 @@
 						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 						 xmlns:viewmodel="clr-namespace:Dungeoneer.ViewModel"
 						 xmlns:view="clr-namespace:Dungeoneer.View"
+						 xmlns:util="clr-namespace:Dungeoneer.Utility"
+						 xmlns:convert="clr-namespace:Dungeoneer.Utility.Converter"
 						 mc:Ignorable="d"
 						 d:DesignHeight="80" d:DesignWidth="600">
 	<UserControl.Resources>
@@ -14,27 +16,45 @@
 		<DataTemplate DataType="{x:Type viewmodel:CreatureInitiativeViewModel}">
 			<view:CreatureControl/>
 		</DataTemplate>
+		<convert:BooleanAndConverter x:Key="booleanAndConverter" />
 	</UserControl.Resources>
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
-		<Border x:Name="theBorder" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+		<Border x:Name="theBorder" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
+						CornerRadius="8,8,8,8">
 			<DockPanel>
-				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="4,0">
-					
-					<ToggleButton Width="60" IsChecked="{Binding TurnEnded}" IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
-						<ToggleButton.Style>
-							<Style TargetType="{x:Type ToggleButton}">
-								<Setter Property="Content" Value="End Turn"/>
+				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="70" HorizontalAlignment="Right" 
+										VerticalAlignment="Center" Margin="4,0">
+					<Button Width="70" 
+									Command="{Binding AdvanceTurnState}">
+						<Button.IsEnabled>
+							<MultiBinding Converter="{StaticResource booleanAndConverter}">
+								<Binding Path="InitiativeValueViewModel.InitiativeSet"/>
+								<Binding Path="TurnNotEnded"/>
+							</MultiBinding>
+						</Button.IsEnabled>
+						<Button.Style>
+							<Style TargetType="{x:Type Button}">
+								<Setter Property="Content" Value="Start Turn"/>
 								<Style.Triggers>
-									<Trigger Property="IsChecked" Value="True">
-										<Setter Property="Content" Value="Finished"/>
-										<Setter Property="FontWeight" Value="Bold"/>
-									</Trigger>
+									<DataTrigger Binding="{Binding TurnState, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="{x:Static util:Types+TurnState.NotStarted}">
+										<Setter Property="Content" Value="Start Turn"/>
+									</DataTrigger>
+									<DataTrigger Binding="{Binding TurnState, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="{x:Static util:Types+TurnState.Started}">
+										<Setter Property="Content" Value="End Turn"/>
+									</DataTrigger>
+									<DataTrigger Binding="{Binding TurnState, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="{x:Static util:Types+TurnState.Ended}">
+										<Setter Property="Content" Value="Turn Ended"/>
+									</DataTrigger>
 								</Style.Triggers>
 							</Style>
-						</ToggleButton.Style>
-					</ToggleButton>
-					<ToggleButton Width="60" IsChecked="{Binding Delayed}" IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
+						</Button.Style>
+					</Button>
+					<ToggleButton Width="70" IsChecked="{Binding Delayed}" 
+												IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
 						<ToggleButton.Style>
 							<Style TargetType="{x:Type ToggleButton}">
 								<Setter Property="Content" Value="Delay"/>
@@ -47,7 +67,8 @@
 							</Style>
 						</ToggleButton.Style>
 					</ToggleButton>
-					<ToggleButton Width="60" IsChecked="{Binding Readied}" IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
+					<ToggleButton Width="70" IsChecked="{Binding Readied}" 
+												IsEnabled="{Binding InitiativeValueViewModel.InitiativeSet, UpdateSourceTrigger=PropertyChanged}">
 						<ToggleButton.Style>
 							<Style TargetType="{x:Type ToggleButton}">
 								<Setter Property="Content" Value="Ready"/>

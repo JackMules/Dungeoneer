@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -22,7 +23,7 @@ namespace Dungeoneer.ViewModel
 
 		public virtual void StartNewRound()
 		{
-			TurnEnded = false;
+			TurnState = Types.TurnState.NotStarted;
 		}
 
 		public InitiativeValueViewModel InitiativeValueViewModel
@@ -55,14 +56,26 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public bool TurnEnded
+		public Types.TurnState TurnState
 		{
-			get { return InitiativeValueViewModel.TurnEnded; }
+			get { return InitiativeValueViewModel.TurnState; }
 			set
 			{
-				InitiativeValueViewModel.TurnEnded = value;
+				InitiativeValueViewModel.TurnState = value;
+				NotifyPropertyChanged("TurnState");
 				NotifyPropertyChanged("TurnEnded");
+				NotifyPropertyChanged("TurnNotEnded");
 			}
+		}
+
+		public bool TurnEnded
+		{
+			get { return TurnState == Types.TurnState.Ended; }
+		}
+
+		public bool TurnNotEnded
+		{
+			get { return TurnState != Types.TurnState.Ended; }
 		}
 
 		public bool Readied

@@ -150,6 +150,7 @@
     <Compile Include="Model\Hit.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
+    <Compile Include="Utility\Converter.cs" />
     <Compile Include="Utility\ObjectCopier.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
@@ -140,13 +141,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public bool TurnEnded
+		public Types.TurnState TurnState
 		{
-			get { return InitiativeValue.TurnEnded; }
+			get { return InitiativeValue.TurnState; }
 			set
 			{
-				InitiativeValue.TurnEnded = value;
-				NotifyPropertyChanged("TurnEnded");
+				InitiativeValue.TurnState = value;
+				NotifyPropertyChanged("TurnState");
 			}
 		}
 

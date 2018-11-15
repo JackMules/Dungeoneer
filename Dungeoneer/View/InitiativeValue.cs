@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model
 {
@@ -16,7 +17,7 @@ namespace Dungeoneer.Model
 		private int? _modifier;
 		private int? _roll;
 		private bool _delayed;
-		private bool _turnEnded;
+		private Types.TurnState _turnState;
 		private bool _readied;
 
 		public InitiativeValue()
@@ -26,7 +27,7 @@ namespace Dungeoneer.Model
 			_modifier = null;
 			_roll = null;
 			_delayed = false;
-			_turnEnded = false;
+			_turnState = Types.TurnState.NotStarted;
 			_readied = false;
 		}
 
@@ -85,13 +86,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public bool TurnEnded
+		public Types.TurnState TurnState
 		{
-			get { return _turnEnded; }
+			get { return _turnState; }
 			set
 			{
-				_turnEnded = value;
-				NotifyPropertyChanged("TurnEnded");
+				_turnState = value;
+				NotifyPropertyChanged("TurnState");
 			}
 		}
 
@@ -129,8 +130,8 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Delayed.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("TurnEnded");
-			xmlWriter.WriteString(TurnEnded.ToString());
+			xmlWriter.WriteStartElement("TurnState");
+			xmlWriter.WriteString(Methods.GetTurnStateString(TurnState));
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Readied");
@@ -196,7 +197,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "TurnEnded")
 					{
-						TurnEnded = Convert.ToBoolean(childNode.InnerText);
+						TurnState = Methods.GetTurnStateFromString(childNode.InnerText);
 					}
 					else if (childNode.Name == "Readied")
 					{

@@ -99,6 +99,10 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectStunned = "Stunned";
 		public static readonly string EffectTurned = "Turned";
 		public static readonly string EffectUnconscious = "Unconscious";
+
+		public static readonly string TurnStateNotStarted = "Not Started";
+		public static readonly string TurnStateStarted = "Started";
+		public static readonly string TurnStateEnded = "Ended";
 		
 		public static readonly List<string> SizeStrings = new List<string>
 		{
@@ -325,6 +329,13 @@ namespace Dungeoneer.Utility
 		{
 			HitPoints,
 			SubdualHitPoints,
+		}
+
+		public enum TurnState
+		{
+			NotStarted,
+			Started,
+			Ended,
 		}
 	}
 
@@ -928,6 +939,37 @@ namespace Dungeoneer.Utility
 			}
 		}
 		
+		public static string GetTurnStateString(Types.TurnState turnState)
+		{
+			switch (turnState)
+			{
+			case Types.TurnState.NotStarted:	return Constants.TurnStateNotStarted;
+			case Types.TurnState.Started:			return Constants.TurnStateStarted;
+			case Types.TurnState.Ended:				return Constants.TurnStateEnded;
+			default:													return "Unrecognised turn state!";
+			}
+		}
+
+		public static Types.TurnState GetTurnStateFromString(string str)
+		{
+			if (str == Constants.TurnStateNotStarted)
+			{
+				return Types.TurnState.NotStarted;
+			}
+			else if (str == Constants.TurnStateStarted)
+			{
+				return Types.TurnState.Started;
+			}
+			else if (str == Constants.TurnStateEnded)
+			{
+				return Types.TurnState.Ended;
+			}
+			else
+			{
+				throw new FormatException("TurnState \'" + str + "\' not recognised.");
+			}
+		}
+
 		public static int CalculateXP(int challengeRating)
 		{
 			if (challengeRating == 1)

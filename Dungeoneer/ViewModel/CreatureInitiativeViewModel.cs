@@ -32,15 +32,12 @@ namespace Dungeoneer.ViewModel
 			base.InitCommands();
 			_doDamage = new Command(ExecuteDoDamage);
 			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
-			_startTurn = new Command(ExecuteStartTurn);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 		private EffectsWindowViewModel _effectsWindowViewModel;
 		private Command _doDamage;
 		private Command _showEffectsWindow;
-		private Command _startTurn;
-		private bool _turnStarted = false;
 
 		public float ChallengeRating
 		{
@@ -146,31 +143,6 @@ namespace Dungeoneer.ViewModel
 			Actor.Effects = _effectsWindowViewModel.Effects;
 			ActorUpdated();
 		}
-
-		public bool TurnStarted
-		{
-			get { return _turnStarted; }
-			set
-			{
-				_turnStarted = value;
-				NotifyPropertyChanged("TurnStarted");
-			}
-		}
-
-		public Command StartTurn
-		{
-			get { return _startTurn; }
-		}
-
-		public virtual void ExecuteStartTurn()
-		{
-			Actor.ApplyPerTurnEffects();
-
-			TurnStarted = true;
-			ActorUpdated();
-		}
-
-		
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{

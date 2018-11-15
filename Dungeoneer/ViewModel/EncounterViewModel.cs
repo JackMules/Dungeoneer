@@ -24,7 +24,6 @@ namespace Dungeoneer.ViewModel
 			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
 			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
-//			_initiativeTrack.CollectionChanged += _initiativeTrack_CollectionChanged;
 			_weaponList.CollectionChanged += _weaponList_CollectionChanged;
 		}
 
@@ -35,20 +34,7 @@ namespace Dungeoneer.ViewModel
 		private Command _save;
 		private Command _load;
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		/*
-		private void _initiativeTrack_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			if (_initiativeTrack.Count > 0)
-			{
-				InitiativeCardViewModel firstInitCard = _initiativeTrack.First();
-				if (firstInitCard != null &&
-					firstInitCard.TurnEnded == false)
-				{
-					firstInitCard.StartTurn();
-				}
-			}
-		}
-		*/
+
 		private void _weaponList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnWeaponListChange?.Invoke(_weaponList);
@@ -73,7 +59,7 @@ namespace Dungeoneer.ViewModel
 		{
 			++Round;
 
-			foreach (InitiativeCardViewModel initCard in _initiativeTrack)
+			foreach (InitiativeCardViewModel initCard in InitiativeTrack)
 			{
 				initCard.StartNewRound();
 			}
@@ -81,16 +67,23 @@ namespace Dungeoneer.ViewModel
 
 		private bool CheckRound()
 		{
-			bool roundComplete = true;
-			foreach (InitiativeCardViewModel initCard in _initiativeTrack)
+			if (InitiativeTrack.Count > 0)
 			{
-				if (!initCard.TurnEnded && !initCard.Delayed && !initCard.Readied)
+				bool roundComplete = true;
+				foreach (InitiativeCardViewModel initCard in InitiativeTrack)
 				{
-					roundComplete = false;
+					if (!initCard.TurnEnded && !initCard.Delayed && !initCard.Readied)
+					{
+						roundComplete = false;
+					}
 				}
-			}
 
-			return roundComplete;
+				return roundComplete;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		
 		public FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
