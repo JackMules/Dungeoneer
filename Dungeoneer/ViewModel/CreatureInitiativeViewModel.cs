@@ -31,13 +31,16 @@ namespace Dungeoneer.ViewModel
 		{
 			base.InitCommands();
 			_doDamage = new Command(ExecuteDoDamage);
-			_showEffectsWindow = new Command(ExecuteShowEffectsWindow);
+			_addEffect = new Command(ExecuteAddEffect);
+			_removeEffect = new Command(ExecuteRemoveEffect);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		private EffectsWindowViewModel _effectsWindowViewModel;
 		private Command _doDamage;
-		private Command _showEffectsWindow;
+		private Command _addEffect;
+		private Command _removeEffect;
+
+		public int SelectedEffect { get; set; }
 
 		public float ChallengeRating
 		{
@@ -56,6 +59,16 @@ namespace Dungeoneer.ViewModel
 			{
 				Actor.AttackSets = value;
 				NotifyPropertyChanged("AttackSets");
+			}
+		}
+
+		public FullyObservableCollection<Model.Effect.Effect> Effects
+		{
+			get { return Actor.Effects; }
+			set
+			{
+				Actor.Effects = value;
+				NotifyPropertyChanged("Effects");
 			}
 		}
 
@@ -118,6 +131,7 @@ namespace Dungeoneer.ViewModel
 		{
 			NotifyPropertyChanged("AttackSets");
 		}
+		
 
 		public Command DoDamage
 		{
@@ -131,16 +145,30 @@ namespace Dungeoneer.ViewModel
 			HitPointsUpdated();
 		}
 
-		public Command ShowEffectsWindow
+		public Command AddEffect
 		{
-			get { return _showEffectsWindow; }
+			get { return _addEffect; }
 		}
 
-		private void ExecuteShowEffectsWindow()
+		public Command RemoveEffect
 		{
-			_effectsWindowViewModel = new EffectsWindowViewModel(Actor.Effects);
-			_effectsWindowViewModel.ShowDialog();
-			Actor.Effects = _effectsWindowViewModel.Effects;
+			get { return _removeEffect; }
+		}
+
+		private void ExecuteAddEffect()
+		{
+			AddEffectWindowViewModel addEffectWindowViewModel = new AddEffectWindowViewModel();
+			Model.Effect.Effect effect = addEffectWindowViewModel.GetEffect();
+			if (effect != null)
+			{
+				Effects.Add(effect);
+				ActorUpdated();
+			}
+		}
+
+		private void ExecuteRemoveEffect()
+		{
+			Effects.RemoveAt(SelectedEffect);
 			ActorUpdated();
 		}
 

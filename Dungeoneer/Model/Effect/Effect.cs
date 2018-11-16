@@ -50,6 +50,9 @@ namespace Dungeoneer.Model.Effect
 			return Name;
 		}
 
+		public virtual void AdvanceTurn()
+		{ }
+
 		public virtual bool Expired()
 		{
 			return false;

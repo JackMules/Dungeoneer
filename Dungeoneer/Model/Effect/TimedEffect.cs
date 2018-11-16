@@ -32,6 +32,7 @@ namespace Dungeoneer.Model.Effect
 			{
 				_duration = value;
 				NotifyPropertyChanged("Duration");
+				NotifyPropertyChanged("RemainingDuration");
 			}
 		}
 
@@ -42,12 +43,18 @@ namespace Dungeoneer.Model.Effect
 			{
 				_elapsedDuration = value;
 				NotifyPropertyChanged("ElapsedDuration");
+				NotifyPropertyChanged("RemainingDuration");
 			}
 		}
 
 		public int RemainingDuration
 		{
 			get { return Duration - ElapsedDuration; }
+		}
+
+		public override void AdvanceTurn()
+		{
+			ElapsedDuration++;
 		}
 
 		public override bool Expired()

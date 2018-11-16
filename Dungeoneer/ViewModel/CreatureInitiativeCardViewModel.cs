@@ -56,16 +56,12 @@ namespace Dungeoneer.ViewModel
 		
 		public virtual void EndTurn()
 		{
-			for (int i = ActorViewModel.Actor.Effects.Count - 1; i >= 0; --i)
+			for (int i = ActorViewModel.Effects.Count - 1; i >= 0; --i)
 			{
-				if (ActorViewModel.Actor.Effects[i] is Model.Effect.TimedEffect)
+				ActorViewModel.Effects[i].AdvanceTurn();
+				if (ActorViewModel.Effects[i].Expired())
 				{
-					Model.Effect.TimedEffect tempEffect = ActorViewModel.Actor.Effects[i] as Model.Effect.TimedEffect;
-					tempEffect.ElapsedDuration++;
-					if (tempEffect.ElapsedDuration > tempEffect.Duration)
-					{
-						ActorViewModel.Actor.Effects.RemoveAt(i);
-					}
+					ActorViewModel.Effects.RemoveAt(i);
 				}
 			}
 

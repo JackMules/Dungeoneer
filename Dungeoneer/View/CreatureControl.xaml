@@ -10,6 +10,43 @@
 	<Grid>
 		<Border Margin="2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="4">
 			<DockPanel>
+				<Grid DockPanel.Dock="Bottom" Margin="0,5,0,0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1">
+						<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<WrapPanel>
+										<TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+										<TextBlock Text=" (" />
+										<TextBlock Text="{Binding RemainingDuration}"/>
+										<TextBlock Text=")" />
+									</WrapPanel>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</ScrollViewer>
+					<StackPanel Grid.Row="13" Grid.Column="6">
+						<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" Width="20" 
+										FontWeight="Bold"/>
+						<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" 
+										FontWeight="Bold"/>
+					</StackPanel>
+					<Grid.Style>
+						<Style TargetType="{x:Type Grid}">
+							<Setter Property="Visibility" Value="Collapsed"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding IsChecked, ElementName=EffectsToggleButton}" Value="True">
+									<Setter Property="Visibility" Value="Visible"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</Grid.Style>
+				</Grid>
 				<TreeView DockPanel.Dock="Bottom" Background="Transparent" ItemsSource="{Binding AttackSets}">
 					<TreeView.Resources>
 						<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
@@ -41,19 +78,18 @@
 						</Style>
 					</TreeView.Style>
 				</TreeView>
+				
 				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
 					<Label Name="NameLabel" Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
-					<StackPanel Orientation="Vertical">
-						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="5" Height="25"/>
+					<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="5,5,5,0" Height="25"/>
+						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="5" Height="25"/>
 					</StackPanel>
 					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmorClass}"/>
 					<view:ValueButton Title="HP"
 														ValueBinding="{Binding HitPoints}"
 														CommandBinding="{Binding DoDamage}"
 														PanelOrientation="Vertical"/>
-				</StackPanel>
-				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="70" HorizontalAlignment="Right" VerticalAlignment="Center">
-					<Button Content="Effects" Command="{Binding ShowEffectsWindow}" Margin="5"/>
 				</StackPanel>
 			</DockPanel>
 			<Border.Style>
