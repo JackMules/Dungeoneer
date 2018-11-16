@@ -1,12 +1,13 @@
 ﻿<UserControl x:Class="Dungeoneer.View.CreatureControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:view="clr-namespace:Dungeoneer.View"
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+						 xmlns:view="clr-namespace:Dungeoneer.View"
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
-             mc:Ignorable="d" 
-             d:DesignHeight="76" d:DesignWidth="596">
+						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
+						 mc:Ignorable="d" 
+						 d:DesignHeight="76" d:DesignWidth="596">
 	<Grid>
 		<Border Margin="2" BorderBrush="White" BorderThickness="1,1,1,1" CornerRadius="4">
 			<DockPanel>
@@ -17,23 +18,31 @@
 						<ColumnDefinition Width="Auto"/>
 					</Grid.ColumnDefinitions>
 					<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1">
-						<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}">
-							<ListBox.ItemTemplate>
-								<DataTemplate>
+						<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}" 
+										 Background="Transparent">
+							<ListBox.Resources>
+								<DataTemplate DataType="{x:Type effect:Effect}">
 									<WrapPanel>
-										<TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-										<TextBlock Text=" (" />
-										<TextBlock Text="{Binding RemainingDuration}"/>
-										<TextBlock Text=")" />
+										<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
 									</WrapPanel>
 								</DataTemplate>
-							</ListBox.ItemTemplate>
+								<DataTemplate DataType="{x:Type effect:TimedEffect}">
+									<WrapPanel>
+										<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
+										<TextBlock Text=" (" Background="Transparent"/>
+										<TextBlock Text="{Binding RemainingDuration}" Background="Transparent"/>
+										<TextBlock Text=")" Background="Transparent"/>
+									</WrapPanel>
+								</DataTemplate>
+							</ListBox.Resources>
 						</ListBox>
 					</ScrollViewer>
 					<StackPanel Grid.Row="13" Grid.Column="6">
-						<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" Width="20" 
+						<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" 
+										Width="20" 
 										FontWeight="Bold"/>
-						<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" 
+						<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" 
+										Width="20" 
 										FontWeight="Bold"/>
 					</StackPanel>
 					<Grid.Style>

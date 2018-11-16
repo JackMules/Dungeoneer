@@ -20,6 +20,7 @@ namespace Dungeoneer.ViewModel
 		private InitiativeValueViewModel _initiativeValueViewModel;
 		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
+		private Command _removeCard;
 
 		public virtual void StartNewRound()
 		{

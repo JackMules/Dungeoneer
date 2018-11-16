@@ -165,7 +165,6 @@
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
     <Compile Include="ViewModel\DoDamageDialogViewModel.cs" />
     <Compile Include="ViewModel\AddEffectWindowViewModel.cs" />
-    <Compile Include="ViewModel\EffectsWindowViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
     <Compile Include="Utility\FullyObservableCollection.cs" />
@@ -211,9 +210,6 @@
     </Compile>
     <Compile Include="View\DoDamageDialog.xaml.cs">
       <DependentUpon>DoDamageDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\EffectsWindow.xaml.cs">
-      <DependentUpon>EffectsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ImportStatBlockWindow.xaml.cs">
       <DependentUpon>ImportStatBlockWindow.xaml</DependentUpon>
@@ -285,10 +281,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoDamageDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\EffectsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -85,7 +85,7 @@ namespace Dungeoneer.ViewModel
 				return false;
 			}
 		}
-		
+
 		public FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{
 			get { return _initiativeTrack; }
@@ -126,6 +126,11 @@ namespace Dungeoneer.ViewModel
 			{
 				WeaponList.Add(weaponSet);
 			}
+		}
+
+		public void Delete(InitiativeCardViewModel initCardViewModel)
+		{
+			InitiativeTrack.Remove(initCardViewModel);
 		}
 
 		public void AddActor(Model.Actor actor, string displayName)

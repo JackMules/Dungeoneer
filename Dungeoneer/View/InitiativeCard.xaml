@@ -10,19 +10,30 @@
 						 mc:Ignorable="d"
 						 d:DesignHeight="80" d:DesignWidth="600">
 	<UserControl.Resources>
-		<DataTemplate DataType="{x:Type viewmodel:PlayerActorInitiativeViewModel}">
-			<view:PlayerActorControl/>
-		</DataTemplate>
-		<DataTemplate DataType="{x:Type viewmodel:CreatureInitiativeViewModel}">
-			<view:CreatureControl/>
-		</DataTemplate>
-		<convert:BooleanAndConverter x:Key="booleanAndConverter" />
+		<ResourceDictionary>
+			<DataTemplate DataType="{x:Type viewmodel:PlayerActorInitiativeViewModel}">
+				<view:PlayerActorControl/>
+			</DataTemplate>
+			<DataTemplate DataType="{x:Type viewmodel:CreatureInitiativeViewModel}">
+				<view:CreatureControl/>
+			</DataTemplate>
+			<convert:BooleanAndConverter x:Key="booleanAndConverter"/>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="../MyDictionary.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 	</UserControl.Resources>
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
 		<Border x:Name="theBorder" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
 						CornerRadius="8,8,8,8">
 			<DockPanel>
+				<StackPanel DockPanel.Dock="Right">
+					<Button Template="{StaticResource ResourceKey=XButtonTemplate}"
+									Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+									AncestorType={x:Type ItemsControl}}, 
+									Path=DataContext.DeleteCard}" CommandParameter="{Binding}"/>
+				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="70" HorizontalAlignment="Right" 
 										VerticalAlignment="Center" Margin="4,0">
 					<Button Width="70" 

@@ -970,9 +970,13 @@ namespace Dungeoneer.Utility
 			}
 		}
 
-		public static int CalculateXP(int challengeRating)
+		public static int CalculateXP(float challengeRating)
 		{
-			if (challengeRating == 1)
+			if (challengeRating < 1)
+			{
+				return (int)(challengeRating * CalculateXP(1));
+			}
+			else if (challengeRating == 1)
 			{
 				return 300;
 			}

@@ -25,6 +25,7 @@ namespace Dungeoneer.ViewModel
 			_loadActorLibrary = new Command(ExecuteLoadActorLibrary);
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_exit = new Command(ExecuteExit);
+			_deleteCard = new Command(ExecuteDeleteCard);
 			_createPlayerActor = new Command(ExecuteCreatePlayerActor);
 			_createCreature = new Command(ExecuteCreateCreature);
 
@@ -42,6 +43,7 @@ namespace Dungeoneer.ViewModel
 		private Command _exit;
 		private Command _createPlayerActor;
 		private Command _createCreature;
+		private Command _deleteCard;
 
 		public Command Exit
 		{
@@ -70,6 +72,19 @@ namespace Dungeoneer.ViewModel
 			{
 				_actorLibrary = value;
 				NotifyPropertyChanged("ActorLibrary");
+			}
+		}
+
+		public Command DeleteCard
+		{
+			get { return _deleteCard; }
+		}
+
+		public void ExecuteDeleteCard(object initCardObj)
+		{
+			if (initCardObj is InitiativeCardViewModel)
+			{
+				Encounter.Delete(initCardObj as InitiativeCardViewModel);
 			}
 		}
 

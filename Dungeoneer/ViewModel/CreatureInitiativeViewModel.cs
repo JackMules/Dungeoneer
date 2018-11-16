@@ -122,16 +122,20 @@ namespace Dungeoneer.ViewModel
 
 		private void HitPointsUpdated()
 		{
-			Active = (Actor.HitPoints > 0);
-			BackgroundColor = Active ? Colors.LightGray : Colors.DarkRed;
+			BackgroundColor = Dead ? Colors.DarkRed : Colors.LightGray;
 			NotifyPropertyChanged("HitPoints");
+			NotifyPropertyChanged("Dead");
 		}
 
 		private void AttackSetsUpdated()
 		{
 			NotifyPropertyChanged("AttackSets");
 		}
-		
+
+		public bool Dead
+		{
+			get { return Actor.HitPoints > 0; }
+		}
 
 		public Command DoDamage
 		{
