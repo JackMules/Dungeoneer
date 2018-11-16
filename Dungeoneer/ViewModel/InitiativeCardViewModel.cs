@@ -14,13 +14,17 @@ namespace Dungeoneer.ViewModel
 		public InitiativeCardViewModel()
 		{
 			_initiativeValueViewModel = new InitiativeValueViewModel();
-			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
+			InitCommands();
 		}
 
 		private InitiativeValueViewModel _initiativeValueViewModel;
 		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
-		private Command _removeCard;
+
+		protected virtual void InitCommands()
+		{
+			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
+		}
 
 		public virtual void StartNewRound()
 		{
@@ -104,34 +108,26 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public void WriteXML(XmlWriter xmlWriter)
+		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("InitiativeCard");
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			WriteXMLStartElement(xmlWriter);
 			ActorViewModel.WriteXML(xmlWriter);
 			InitiativeValueViewModel.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
 
-		public void ReadXML(XmlNode xmlNode, EncounterViewModel encounterViewModel)
+		public virtual void ReadXML(XmlNode xmlNode, EncounterViewModel encounterViewModel = null)
 		{
 			try
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "ActorInitiativeViewModel" ||
-							childNode.Name == "PlayerActorInitiativeViewModel" ||
-							childNode.Name == "CreatureInitiativeViewModel")
-					{
-						if (childNode.Name == "PlayerActorInitiativeViewModel")
-						{
-							ActorViewModel = new PlayerActorInitiativeViewModel(childNode);
-						}
-						else if (childNode.Name == "CreatureInitiativeViewModel")
-						{
-							ActorViewModel = new CreatureInitiativeViewModel(childNode, encounterViewModel);
-						}
-					}
-					else if (childNode.Name == "InitiativeValue")
+					if (childNode.Name == "InitiativeValue")
 					{
 						InitiativeValueViewModel = new InitiativeValueViewModel(childNode);
 					}

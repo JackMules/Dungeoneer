@@ -19,9 +19,9 @@ namespace Dungeoneer.ViewModel
 			InitCommands();
 		}
 
-		public CreatureInitiativeViewModel(XmlNode creatureXml, EncounterViewModel encounterViewModel)
+		public CreatureInitiativeViewModel(XmlNode xmlNode, EncounterViewModel encounterViewModel)
 		{
-			_actor = new Model.Creature(creatureXml);
+			ReadXML(xmlNode);
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_weaponList = encounterViewModel.WeaponList;
 			InitCommands();

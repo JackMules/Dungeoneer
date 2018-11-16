@@ -262,12 +262,7 @@ namespace Dungeoneer.ViewModel
 
 					foreach (XmlNode xmlNode in xmlDoc.DocumentElement)
 					{
-						if (xmlNode.Name == "InitiativeCard")
-						{
-							InitiativeCardViewModel initCard = new InitiativeCardViewModel();
-							initCard.ReadXML(xmlNode, this);
-							AddInitiativeCard(initCard);
-						}
+						AddInitiativeCard(InitiativeCardViewModelFactory.GetInitiativeCardViewModel(xmlNode, this));
 					}
 				}
 				catch (XmlException e)

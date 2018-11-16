@@ -692,8 +692,6 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("Immunities");
 			Immunities.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
-
-			xmlWriter.WriteEndElement();
 		}
 
 		public override void ReadXML(XmlNode xmlNode)

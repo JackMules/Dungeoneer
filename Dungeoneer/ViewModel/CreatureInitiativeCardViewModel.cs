@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Dungeoneer.Utility;
+using System.Xml;
 
 namespace Dungeoneer.ViewModel
 {
@@ -11,6 +13,18 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreatureInitiativeCardViewModel()
 		{
+			InitCommands();
+		}
+
+		public CreatureInitiativeCardViewModel(XmlNode xmlNode, EncounterViewModel encounterViewModel)
+		{
+			ReadXML(xmlNode, encounterViewModel);
+			InitCommands();
+		}
+
+		protected override void InitCommands()
+		{
+			base.InitCommands();
 			_advanceTurnState = new Command(ExecuteAdvanceTurnState);
 		}
 
@@ -67,6 +81,39 @@ namespace Dungeoneer.ViewModel
 
 			TurnState = Types.TurnState.Ended;
 			ActorViewModel.ActorUpdated();
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("CreatureCard");
+		}
+
+		public override void ReadXML(XmlNode xmlNode, EncounterViewModel encounterViewModel)
+		{
+			base.ReadXML(xmlNode);
+
+			if (encounterViewModel != null)
+			{
+				try
+				{
+					foreach (XmlNode childNode in xmlNode.ChildNodes)
+					{
+						if (childNode.Name == "CreatureInitiativeViewModel")
+						{
+							ActorViewModel = new CreatureInitiativeViewModel(childNode, encounterViewModel);
+						}
+
+					}
+				}
+				catch (XmlException e)
+				{
+					MessageBox.Show(e.ToString());
+				}
+			}
+			else
+			{
+				throw new ArgumentException("EncounterViewModel is null!");
+			}
 		}
 	}
 }
