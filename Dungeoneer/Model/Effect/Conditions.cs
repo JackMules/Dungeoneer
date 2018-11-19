@@ -8,6 +8,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model.Effect.Conditions
 {
+	[Serializable]
 	public class Blinded : TimedEffect
 	{
 		public Blinded()
@@ -32,6 +33,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Confused : TimedEffect
 	{
 		public Confused()
@@ -46,6 +48,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Cowering : TimedEffect
 	{
 		public Cowering()
@@ -69,6 +72,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Dazed : TimedEffect
 	{
 		public Dazed()
@@ -83,6 +87,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Dazzled : TimedEffect
 	{
 		public Dazzled()
@@ -106,6 +111,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Dead : Effect
 	{
 		public Dead()
@@ -128,6 +134,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Deafened : TimedEffect
 	{
 		public Deafened()
@@ -147,6 +154,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Disabled : TimedEffect
 	{
 		public Disabled()
@@ -169,6 +177,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Dying : TimedEffect
 	{
 		public Dying()
@@ -183,6 +192,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Entangled : TimedEffect
 	{
 		public Entangled()
@@ -208,6 +218,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Exhausted : TimedEffect
 	{
 		public Exhausted()
@@ -232,6 +243,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Fascinated : TimedEffect
 	{
 		public Fascinated()
@@ -246,6 +258,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Fatigued : TimedEffect
 	{
 		public Fatigued()
@@ -269,6 +282,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class FlatFooted : TimedEffect
 	{
 		public FlatFooted()
@@ -291,6 +305,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Frightened : TimedEffect
 	{
 		public Frightened()
@@ -315,6 +330,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Grappling : TimedEffect
 	{
 		public Grappling()
@@ -329,6 +345,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Helpless : TimedEffect
 	{
 		public Helpless()
@@ -351,6 +368,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Incorporeal : TimedEffect
 	{
 		public Incorporeal()
@@ -365,6 +383,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Invisible : TimedEffect
 	{
 		public Invisible()
@@ -379,6 +398,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Nauseated : TimedEffect
 	{
 		public Nauseated()
@@ -393,6 +413,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class NegativeLevel : TimedEffect
 	{
 		public NegativeLevel()
@@ -418,6 +439,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Panicked : TimedEffect
 	{
 		public Panicked()
@@ -440,6 +462,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Paralysed : TimedEffect
 	{
 		public Paralysed()
@@ -463,6 +486,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Petrified : TimedEffect
 	{
 		public Petrified()
@@ -477,6 +501,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Pinned : TimedEffect
 	{
 		public Pinned()
@@ -491,6 +516,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Prone : TimedEffect
 	{
 		public Prone()
@@ -505,6 +531,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Shaken : TimedEffect
 	{
 		public Shaken()
@@ -529,6 +556,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Sickened : TimedEffect
 	{
 		public Sickened()
@@ -553,6 +581,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Stable : TimedEffect
 	{
 		public Stable()
@@ -567,6 +596,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Staggered : TimedEffect
 	{
 		public Staggered()
@@ -581,6 +611,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Stunned : TimedEffect
 	{
 		public Stunned()
@@ -604,6 +635,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Turned : TimedEffect
 	{
 		public Turned()
@@ -618,6 +650,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		}
 	}
 
+	[Serializable]
 	public class Unconscious : TimedEffect
 	{
 		public Unconscious()

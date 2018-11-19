@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model.Effect
 {
+	[Serializable]
 	public abstract class Effect : BaseModel
 	{
 		protected Effect()

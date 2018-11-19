@@ -22,14 +22,6 @@ namespace Dungeoneer.ViewModel
 			InitCommands();
 		}
 
-		protected override void InitCommands()
-		{
-			base.InitCommands();
-			_advanceTurnState = new Command(ExecuteAdvanceTurnState);
-		}
-
-		private Command _advanceTurnState;
-
 		public new CreatureInitiativeViewModel ActorViewModel
 		{
 			get { return base.ActorViewModel as CreatureInitiativeViewModel; }
@@ -40,35 +32,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public override void StartNewRound()
-		{
-			base.StartNewRound();
-			TurnState = Types.TurnState.NotStarted;
-		}
-
-		public Command AdvanceTurnState
-		{
-			get { return _advanceTurnState; }
-		}
-
-		public void ExecuteAdvanceTurnState()
-		{
-			switch (TurnState)
-			{
-			case Types.TurnState.NotStarted:	StartTurn();	break;
-			case Types.TurnState.Started:			EndTurn();		break;
-			}
-		}
-
-		public virtual void StartTurn()
-		{
-			ActorViewModel.Actor.ApplyPerTurnEffects();
-
-			TurnState = Types.TurnState.Started;
-			ActorViewModel.ActorUpdated();
-		}
-		
-		public virtual void EndTurn()
+		public override void EndTurn()
 		{
 			for (int i = ActorViewModel.Effects.Count - 1; i >= 0; --i)
 			{
@@ -79,8 +43,7 @@ namespace Dungeoneer.ViewModel
 				}
 			}
 
-			TurnState = Types.TurnState.Ended;
-			ActorViewModel.ActorUpdated();
+			base.EndTurn();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

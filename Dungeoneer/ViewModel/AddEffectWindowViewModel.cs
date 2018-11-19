@@ -30,10 +30,22 @@ namespace Dungeoneer.ViewModel
 			{
 				_selectedIndex = value;
 				NotifyPropertyChanged("SelectedIndex");
+				NotifyPropertyChanged("SelectedEffectType");
+				NotifyPropertyChanged("TimedEffect");
 			}
 		}
 
-		public Types.Effect SelectedEffectType
+		public bool TimedEffect
+		{
+			get { return GetSelectedEffect() is Model.Effect.TimedEffect; }
+		}
+
+		private Model.Effect.Effect GetSelectedEffect()
+		{
+			return Model.Effect.EffectFactory.GetEffect(SelectedEffectType);
+		}
+
+		private Types.Effect SelectedEffectType
 		{
 			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]); }
 		}
@@ -72,7 +84,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = Model.Effect.EffectFactory.GetEffect(SelectedEffectType);
+						effect = GetSelectedEffect();
 						if (effect is Model.Effect.TimedEffect)
 						{
 							(effect as Model.Effect.TimedEffect).Duration = Convert.ToInt32(Duration);

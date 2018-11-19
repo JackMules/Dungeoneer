@@ -13,18 +13,22 @@ namespace Dungeoneer.ViewModel
 	{
 		public CreatureInitiativeViewModel(Model.Creature creature, EncounterViewModel encounterViewModel)
 		{
-			_actor = new Model.Creature(creature);
-			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
-			_weaponList = encounterViewModel.WeaponList;
+			_actor = creature.Clone();
+			InitWeaponList(encounterViewModel);
 			InitCommands();
 		}
 
 		public CreatureInitiativeViewModel(XmlNode xmlNode, EncounterViewModel encounterViewModel)
 		{
 			ReadXML(xmlNode);
+			InitWeaponList(encounterViewModel);
+			InitCommands();
+		}
+
+		protected virtual void InitWeaponList(EncounterViewModel encounterViewModel)
+		{
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_weaponList = encounterViewModel.WeaponList;
-			InitCommands();
 		}
 
 		protected override void InitCommands()

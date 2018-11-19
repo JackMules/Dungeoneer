@@ -13,7 +13,7 @@ namespace Dungeoneer.ViewModel
 	{
 		public PlayerActorInitiativeViewModel(Model.PlayerActor playerActor)
 		{
-			_actor = new Model.PlayerActor(playerActor);
+			_actor = playerActor.Clone();
 		}
 
 		public PlayerActorInitiativeViewModel(XmlNode playerXml)

@@ -10,6 +10,7 @@ namespace Dungeoneer.Model
 	[Serializable]
 	public class BaseModel : INotifyPropertyChanged
 	{
+		[field:NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public virtual void NotifyPropertyChanged(string propertyName)

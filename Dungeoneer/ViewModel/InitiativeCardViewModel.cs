@@ -20,10 +20,40 @@ namespace Dungeoneer.ViewModel
 		private InitiativeValueViewModel _initiativeValueViewModel;
 		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
+		private Command _advanceTurnState;
 
 		protected virtual void InitCommands()
 		{
 			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
+			_advanceTurnState = new Command(ExecuteAdvanceTurnState);
+		}
+
+		public Command AdvanceTurnState
+		{
+			get { return _advanceTurnState; }
+		}
+
+		public void ExecuteAdvanceTurnState()
+		{
+			switch (TurnState)
+			{
+			case Types.TurnState.NotStarted:	StartTurn();	break;
+			case Types.TurnState.Started:			EndTurn();		break;
+			}
+		}
+
+		public virtual void StartTurn()
+		{
+			ActorViewModel.Actor.ApplyPerTurnEffects();
+
+			TurnState = Types.TurnState.Started;
+			ActorViewModel.ActorUpdated();
+		}
+		
+		public virtual void EndTurn()
+		{
+			TurnState = Types.TurnState.Ended;
+			ActorViewModel.ActorUpdated();
 		}
 
 		public virtual void StartNewRound()
