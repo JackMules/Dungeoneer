@@ -38,6 +38,25 @@
 					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.Roll" Direction="Descending"/>
 				</CollectionViewSource.SortDescriptions>
 			</CollectionViewSource>
+			<CollectionViewSource x:Key="characterCVS" Source="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
+														IsLiveSortingRequested="True">
+				<CollectionViewSource.LiveSortingProperties>
+					<clr:String>ActorName</clr:String>
+				</CollectionViewSource.LiveSortingProperties>
+				<CollectionViewSource.SortDescriptions>
+					<scm:SortDescription PropertyName="ActorName" Direction="Ascending"/>
+				</CollectionViewSource.SortDescriptions>
+			</CollectionViewSource>
+			<CollectionViewSource x:Key="enemyCVS" Source="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
+														IsLiveSortingRequested="True"
+														IsLiveFilteringRequested="True">
+				<CollectionViewSource.LiveSortingProperties>
+					<clr:String>ActorName</clr:String>
+				</CollectionViewSource.LiveSortingProperties>
+				<CollectionViewSource.SortDescriptions>
+					<scm:SortDescription PropertyName="ActorName" Direction="Ascending"/>
+				</CollectionViewSource.SortDescriptions>
+			</CollectionViewSource>
 		</ResourceDictionary>
 	</Window.Resources>
 	<Grid>
@@ -56,21 +75,24 @@
 			<TabControl>
 				<TabItem Header="Initiative">
 					<DockPanel>
-						<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+						<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" 
+										BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
 							<DockPanel>
 								<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
 									<Label Content="Round" FontWeight="Bold" Margin="5,0,0,0"/>
-									<Label Content="{Binding Encounter.Round}" Margin="0,0,5,0" Background="White" FontWeight="Bold" MinWidth="25"/>
+									<Label Content="{Binding Encounter.Round}" Margin="0,0,5,0" Background="White" 
+												 FontWeight="Bold" MinWidth="25"/>
 									<Button Content="Next Round" Command="{Binding Encounter.NextRound}" Margin="5,0"/>
 								</StackPanel>
 								<Label/>
 							</DockPanel>
 						</Border>
-						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
+										CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl x:Name="initiativeControl" ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
-														ItemTemplate="{DynamicResource InitiativeCardTemplate}"
-														Background="Transparent">
+								<ItemsControl ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
+															ItemTemplate="{StaticResource InitiativeCardTemplate}"
+															Background="Transparent">
 								</ItemsControl>
 							</ScrollViewer>
 						</Border>
@@ -79,31 +101,34 @@
 				<TabItem x:Name="EnemiesTab" Header="Enemies">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" Command="{Binding CreateCreature}"/>
-							<TextBox ToolTip="Type to filter Actors" />
+							<Button HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" 
+											Command="{Binding CreateCreature}"/>
+							<TextBox ToolTip="Type to filter creatures" />
 						</DockPanel>
-						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
+										CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl ItemsSource="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
-														ItemTemplate="{DynamicResource CreatureDisplayTemplate}"
-														Background="Transparent"/>
+								<ItemsControl ItemsSource="{Binding Source={StaticResource enemyCVS}, UpdateSourceTrigger=PropertyChanged}"
+															ItemTemplate="{StaticResource CreatureDisplayTemplate}"
+															Background="Transparent"/>
 							</ScrollViewer>
 						</Border>
 					</DockPanel>
 				</TabItem>
-				<TabItem x:Name="EnvironmentTab" Header="Environment">
+				<!-- <TabItem x:Name="EnvironmentTab" Header="Environment">
 
-				</TabItem>
+				</TabItem> -->
 				<TabItem Header="Party">
 					<DockPanel>
 						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" Margin="5,0" Command="{Binding CreatePlayerActor}"/>
+							<Button x:Name="CreateCharacterButton" HorizontalAlignment="Right" Content="Create Character" 
+											Margin="5,0" Command="{Binding CreatePlayerActor}"/>
 						</DockPanel>
 						<Border Margin="4" Background="LightGray" CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl x:Name="CharactersControl" ItemsSource="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
-														ItemTemplate="{DynamicResource PlayerActorDisplayTemplate}"
-														Background="Transparent"/>
+								<ItemsControl ItemsSource="{Binding Source={StaticResource characterCVS}, UpdateSourceTrigger=PropertyChanged}"
+															ItemTemplate="{StaticResource PlayerActorDisplayTemplate}"
+															Background="Transparent"/>
 							</ScrollViewer>
 						</Border>
 					</DockPanel>
