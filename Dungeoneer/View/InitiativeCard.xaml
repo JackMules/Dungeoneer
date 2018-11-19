@@ -8,7 +8,7 @@
 						 xmlns:util="clr-namespace:Dungeoneer.Utility"
 						 xmlns:convert="clr-namespace:Dungeoneer.Utility.Converter"
 						 mc:Ignorable="d"
-						 d:DesignHeight="80" d:DesignWidth="600">
+						 d:DesignHeight="88" d:DesignWidth="600">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<DataTemplate DataType="{x:Type viewmodel:PlayerActorInitiativeViewModel}">
@@ -25,8 +25,36 @@
 	</UserControl.Resources>
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
-		<Border x:Name="theBorder" Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
+		<Border x:Name="theBorder" Margin="4" BorderThickness="3,3,3,3" 
 						CornerRadius="8,8,8,8">
+			<Border.Style>
+				<Style TargetType="{x:Type Border}">
+					<Setter Property="BorderBrush" Value="White"/>
+					<Setter Property="Background" Value="LightGray"/>
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding TurnState, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="{x:Static util:Types+TurnState.NotStarted}">
+							<Setter Property="BorderBrush" Value="White"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding TurnState, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="{x:Static util:Types+TurnState.Started}">
+							<Setter Property="BorderBrush" Value="MediumBlue"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding TurnState, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="{x:Static util:Types+TurnState.Ended}">
+							<Setter Property="BorderBrush" Value="LimeGreen"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding Readied, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="True">
+							<Setter Property="Background" Value="#ffd8d8"/>
+						</DataTrigger>
+						<DataTrigger Binding="{Binding Delayed, UpdateSourceTrigger=PropertyChanged}" 
+															 Value="True">
+							<Setter Property="Background" Value="#ffead8"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Border.Style>
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Right">
 					<Button Template="{StaticResource ResourceKey=XButtonTemplate}"
@@ -35,7 +63,7 @@
 									Path=DataContext.DeleteCard}" CommandParameter="{Binding}"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="70" HorizontalAlignment="Right" 
-										VerticalAlignment="Center" Margin="4,0">
+										VerticalAlignment="Center" Margin="4,4">
 					<Button Width="70" 
 									Command="{Binding AdvanceTurnState}">
 						<Button.IsEnabled>

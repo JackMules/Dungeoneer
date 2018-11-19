@@ -81,16 +81,6 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public bool Delayed
-		{
-			get { return InitiativeValueViewModel.Delayed; }
-			set
-			{
-				InitiativeValueViewModel.Delayed = value;
-				NotifyPropertyChanged("Delayed");
-			}
-		}
-
 		public Types.TurnState TurnState
 		{
 			get { return InitiativeValueViewModel.TurnState; }
@@ -113,13 +103,27 @@ namespace Dungeoneer.ViewModel
 			get { return TurnState != Types.TurnState.Ended; }
 		}
 
+		public bool Delayed
+		{
+			get { return InitiativeValueViewModel.Delayed; }
+			set
+			{
+				InitiativeValueViewModel.Delayed = value;
+				InitiativeValueViewModel.Readied = !value;
+				NotifyPropertyChanged("Delayed");
+				NotifyPropertyChanged("Readied");
+			}
+		}
+
 		public bool Readied
 		{
 			get { return InitiativeValueViewModel.Readied; }
 			set
 			{
 				InitiativeValueViewModel.Readied = value;
+				InitiativeValueViewModel.Delayed = !value;
 				NotifyPropertyChanged("Readied");
+				NotifyPropertyChanged("Delayed");
 			}
 		}
 

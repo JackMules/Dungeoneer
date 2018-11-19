@@ -15,7 +15,6 @@ namespace Dungeoneer.ViewModel
 	{
 		public ActorInitiativeViewModel()
 		{
-			_backgroundColor = Colors.LightGray;
 		}
 
 		protected virtual void InitCommands()
@@ -23,7 +22,6 @@ namespace Dungeoneer.ViewModel
 
 		protected Model.Actor _actor;
 		private string _displayName;
-		private Color _backgroundColor;
 
 		public Model.Actor Actor
 		{
@@ -79,16 +77,6 @@ namespace Dungeoneer.ViewModel
 			{
 				Actor.Active = value;
 				NotifyPropertyChanged("Active");
-			}
-		}
-
-		public Color BackgroundColor
-		{
-			get { return _backgroundColor; }
-			set
-			{
-				_backgroundColor = value;
-				NotifyPropertyChanged("BackgroundColor");
 			}
 		}
 
