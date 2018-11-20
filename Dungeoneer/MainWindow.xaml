@@ -19,6 +19,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="MyDictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
+			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 			<CollectionViewSource x:Key="initiativeTrackCVS" Source="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
 														IsLiveSortingRequested="True">
 				<CollectionViewSource.LiveSortingProperties>
@@ -40,16 +41,6 @@
 			</CollectionViewSource>
 			<CollectionViewSource x:Key="characterCVS" Source="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
 														IsLiveSortingRequested="True">
-				<CollectionViewSource.LiveSortingProperties>
-					<clr:String>ActorName</clr:String>
-				</CollectionViewSource.LiveSortingProperties>
-				<CollectionViewSource.SortDescriptions>
-					<scm:SortDescription PropertyName="ActorName" Direction="Ascending"/>
-				</CollectionViewSource.SortDescriptions>
-			</CollectionViewSource>
-			<CollectionViewSource x:Key="enemyCVS" Source="{Binding ActorLibrary.Enemies, UpdateSourceTrigger=PropertyChanged}"
-														IsLiveSortingRequested="True"
-														IsLiveFilteringRequested="True">
 				<CollectionViewSource.LiveSortingProperties>
 					<clr:String>ActorName</clr:String>
 				</CollectionViewSource.LiveSortingProperties>
@@ -100,15 +91,19 @@
 				</TabItem>
 				<TabItem x:Name="EnemiesTab" Header="Enemies">
 					<DockPanel>
-						<DockPanel DockPanel.Dock="Top" FlowDirection="RightToLeft">
-							<Button HorizontalAlignment="Right" Content="Create Creature" Margin="0,0,5,0" 
+						<DockPanel DockPanel.Dock="Top">
+							<Label DockPanel.Dock="Left" Content="Filter:" Margin="0,0,5,0"/>
+							<Button	DockPanel.Dock="Right"
+											HorizontalAlignment="Right" Content="Create Creature" Margin="5,0,0,0" 
 											Command="{Binding CreateCreature}"/>
-							<TextBox ToolTip="Type to filter creatures" />
+							<TextBox Name="EnemyFilterBox"
+											 ToolTip="Type to filter creatures" Background="Transparent"
+											 Text="{Binding EnemyFilter, UpdateSourceTrigger=PropertyChanged}"/>
 						</DockPanel>
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
 										CornerRadius="8,8,8,8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl ItemsSource="{Binding Source={StaticResource enemyCVS}, UpdateSourceTrigger=PropertyChanged}"
+								<ItemsControl ItemsSource="{Binding EnemiesView, UpdateSourceTrigger=PropertyChanged}"
 															ItemTemplate="{StaticResource CreatureDisplayTemplate}"
 															Background="Transparent"/>
 							</ScrollViewer>

@@ -261,3 +261,5 @@ paket-files/
 __pycache__/
 *.pyc
 /Dungeoneer/.cov
+/Dungeoneer/View/ValuePicker.xaml
+/Dungeoneer/View/ValuePicker.xaml.cs

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Do Damage" 
 				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Height="400" Width="400" ResizeMode="NoResize">
-	<DockPanel Margin="5">
+	<DockPanel Margin="5" FocusManager.FocusedElement="{Binding ElementName=txtDamage}">
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 			<Label Content="Weapon" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
 			<ComboBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="170" ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}"/>
@@ -52,7 +52,8 @@
 				<DockPanel>
 					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 						<Label Content="Damage" Margin="0" VerticalContentAlignment="Center"/>
-						<TextBox x:Name="txtDamage" Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" Text="{Binding Damage1}"/>
+						<TextBox Name="txtDamage" Margin="5,0,0,0" VerticalContentAlignment="Center" Width="40" 
+										 Text="{Binding Damage1}"/>
 					</StackPanel>
 					<view:DamageTypeSelector DataContext="{Binding DamageTypeSelectorViewModel1}"/>
 				</DockPanel>

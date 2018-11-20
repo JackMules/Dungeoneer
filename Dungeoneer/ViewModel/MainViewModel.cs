@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using Dungeoneer.Utility;
+using System.Windows.Data;
 
 namespace Dungeoneer.ViewModel
 {
@@ -31,6 +32,11 @@ namespace Dungeoneer.ViewModel
 
 			SaveTimer = new System.Threading.Timer(new TimerCallback(DoChangeRefresh), null, Timeout.Infinite, Timeout.Infinite);
 			//			CreateTestData();
+
+			_enemyFilter = "";
+			EnemiesCVS = new CollectionViewSource();
+			EnemiesCVS.Source = ActorLibrary.Enemies;
+			EnemiesCVS.Filter += ApplyFilter;
 		}
 
 		private System.Threading.Timer SaveTimer;
@@ -44,6 +50,42 @@ namespace Dungeoneer.ViewModel
 		private Command _createPlayerActor;
 		private Command _createCreature;
 		private Command _deleteCard;
+		private string _enemyFilter;
+
+		internal CollectionViewSource EnemiesCVS { get; set; }
+		public ICollectionView EnemiesView
+		{
+			get { return EnemiesCVS.View; }
+		}
+
+		public string EnemyFilter
+		{
+			get { return _enemyFilter; }
+			set
+			{
+				_enemyFilter = value;
+				OnEnemyFilterChanged();
+			}
+		}
+
+		private void OnEnemyFilterChanged()
+		{
+			EnemiesCVS.View.Refresh();
+		}
+
+		public void ApplyFilter(object sender, FilterEventArgs e)
+		{
+			Model.Creature enemy = (Model.Creature)e.Item;
+
+			if (String.IsNullOrWhiteSpace(EnemyFilter) || EnemyFilter.Length == 0)
+			{
+				e.Accepted = true;
+			}
+			else
+			{
+				e.Accepted = enemy.ActorName.Contains(EnemyFilter, StringComparison.OrdinalIgnoreCase);
+			}
+		}
 
 		public Command Exit
 		{
@@ -54,7 +96,7 @@ namespace Dungeoneer.ViewModel
 		{
 			App.Current.Shutdown();
 		}
-
+		
 		public EncounterViewModel Encounter
 		{
 			get { return _encounter; }

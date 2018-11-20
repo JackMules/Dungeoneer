@@ -99,6 +99,7 @@
 														ValueBinding="{Binding HitPoints}"
 														CommandBinding="{Binding DoDamage}"
 														PanelOrientation="Vertical"/>
+					
 				</StackPanel>
 			</DockPanel>
 			<Border.Style>

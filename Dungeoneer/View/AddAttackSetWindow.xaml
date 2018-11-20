@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dungeoneer.View"
         mc:Ignorable="d"
         Title="{Binding Name}" SizeToContent="Height" Width="250" MinWidth="200">
-	<Grid Margin="5">
+	<Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=txtName}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -19,7 +19,7 @@
 			<ColumnDefinition Width="Auto" MinWidth="40"/>
 		</Grid.ColumnDefinitions>
 		<Label Content="Name" Grid.Row="0" Grid.Column="0"/>
-		<TextBox Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+		<TextBox Name="txtName" Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
 									Margin="0,5,0,0">
 			<ListBox ItemsSource="{Binding AttackViewModels}" SelectedIndex="{Binding SelectedAttack}"/>
