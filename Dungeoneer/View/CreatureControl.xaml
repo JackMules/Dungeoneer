@@ -7,10 +7,25 @@
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
 						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
 						 mc:Ignorable="d" 
-						 d:DesignHeight="76" d:DesignWidth="596">
+						 d:DesignHeight="80" d:DesignWidth="596">
 	<Grid>
 		<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
 			<DockPanel>
+				<StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Margin="0,5,0,0">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding }"
+					</StackPanel>
+					<StackPanel.Style>
+						<Style TargetType="{x:Type StackPanel}">
+							<Setter Property="Visibility" Value="Collapsed"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding IsChecked, ElementName=SpecialToggleButton}" Value="True">
+									<Setter Property="Visibility" Value="Visible"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
+				</StackPanel>
 				<Grid DockPanel.Dock="Bottom" Margin="0,5,0,0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto"/>
@@ -56,7 +71,8 @@
 						</Style>
 					</Grid.Style>
 				</Grid>
-				<TreeView DockPanel.Dock="Bottom" Background="Transparent" ItemsSource="{Binding AttackSets}">
+				<TreeView DockPanel.Dock="Bottom" Background="Transparent" ItemsSource="{Binding AttackSets}"
+									Margin="0,5,0,0">
 					<TreeView.Resources>
 						<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
 							<StackPanel Orientation="Horizontal">
@@ -89,17 +105,29 @@
 				</TreeView>
 				
 				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-					<Label Name="NameLabel" Margin="10" Content="{Binding DisplayName}" FontSize="24" FontWeight="Bold"/>
+					<TextBox Margin="5" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+										 Background="Transparent" VerticalAlignment="Center"/>
 					<StackPanel Orientation="Vertical" VerticalAlignment="Center">
-						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="5,5,5,0" Height="25"/>
-						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="5" Height="25"/>
+						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="5,5,5,0" Height="22"/>
+						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="5,2" Height="22"/>
+						<ToggleButton x:Name="SpecialToggleButton" Content="Special" Margin="5,0,5,5" Height="22"/>
 					</StackPanel>
 					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmorClass}"/>
 					<view:ValueButton Title="HP"
 														ValueBinding="{Binding HitPoints}"
 														CommandBinding="{Binding DoDamage}"
 														PanelOrientation="Vertical"/>
-					
+					<StackPanel Margin="2,0" Orientation="Vertical">
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
+							<TextBlock Text=" (" FontSize="12"/>
+							<TextBlock Text="{Binding Space}" FontSize="12"/>
+							<TextBlock Text="&quot;)" FontSize="12"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							
+						</StackPanel>
+					</StackPanel>
 				</StackPanel>
 			</DockPanel>
 			<Border.Style>

@@ -42,6 +42,7 @@ namespace Dungeoneer.Model
 			Size = Types.Size.Medium;
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
+			SpecialQualities = "";
 		}
 
 		public CreatureAttributes(CreatureAttributes other)
@@ -49,7 +50,7 @@ namespace Dungeoneer.Model
 		{
 			Type = other._type;
 			ChallengeRating = other._challengeRating;
-			AttackSets = new FullyObservableCollection<AttackSet>(other.AttackSets);
+			AttackSets = other.AttackSets.Clone();
 			Strength = other.Strength;
 			Dexterity = other.Dexterity;
 			Constitution = other.Constitution;
@@ -68,12 +69,13 @@ namespace Dungeoneer.Model
 			FortitudeSave = other.FortitudeSave;
 			ReflexSave = other.ReflexSave;
 			WillSave = other.WillSave;
-			Feats = new List<string>(other.Feats);
+			Feats = other.Feats.Clone();
 			Space = other.Space;
 			Reach = other.Reach;
 			Size = other.Size;
-			DamageReductions = new ObservableCollection<DamageReduction>(other.DamageReductions);
-			Immunities = new DamageDescriptorSet(other.Immunities);
+			DamageReductions = other.DamageReductions.Clone();
+			Immunities = other.Immunities.Clone();
+			SpecialQualities = other.SpecialQualities;
 		}
 
 		private string _type;
@@ -110,6 +112,7 @@ namespace Dungeoneer.Model
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
+		private string _specialQualities;
 
 		public string Type
 		{
@@ -391,6 +394,16 @@ namespace Dungeoneer.Model
 			{
 				_immunities = value;
 				NotifyPropertyChanged("Immunities");
+			}
+		}
+
+		public string SpecialQualities
+		{
+			get { return _specialQualities; }
+			set
+			{
+				_specialQualities = value;
+				NotifyPropertyChanged("SpecialQualities");
 			}
 		}
 
@@ -692,6 +705,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("Immunities");
 			Immunities.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("SpecialQualities");
+			xmlWriter.WriteString(SpecialQualities);
+			xmlWriter.WriteEndElement();
 		}
 
 		public override void ReadXML(XmlNode xmlNode)
@@ -826,6 +843,10 @@ namespace Dungeoneer.Model
 								DamageReductions.Add(dr);
 							}
 						}
+					}
+					else if (childNode.Name == "SpecialQualities")
+					{
+						SpecialQualities = childNode.InnerText;
 					}
 				}
 			}

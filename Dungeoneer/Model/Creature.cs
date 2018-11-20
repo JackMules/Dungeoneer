@@ -368,6 +368,11 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public string SpecialQaulities
+		{
+			get { return BaseAttributes.SpecialQualities; }
+		}
+
 		public void ModifyAbilityScore(Types.Ability ability, int change)
 		{
 			ModifiedAttributes.ModifyAbilityScore(ability, change);

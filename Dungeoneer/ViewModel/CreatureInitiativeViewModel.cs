@@ -76,6 +76,21 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string Size
+		{
+			get { return Methods.GetSizeString(Actor.Size); }
+		}
+
+		public string Space
+		{
+			get { return Actor.Space.ToString(); }
+		}
+
+		public string SpecialQualities
+		{
+			get { return Actor.SpecialQualities; }
+		}
+
 		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)
 		{
 			WeaponList = weaponList;
