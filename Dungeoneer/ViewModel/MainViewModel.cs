@@ -37,6 +37,8 @@ namespace Dungeoneer.ViewModel
 			EnemiesCVS = new CollectionViewSource();
 			EnemiesCVS.Source = ActorLibrary.Enemies;
 			EnemiesCVS.Filter += ApplyFilter;
+			EnemiesCVS.SortDescriptions.Add(new SortDescription("ActorName", ListSortDirection.Ascending));
+			EnemiesCVS.IsLiveSortingRequested = true;
 		}
 
 		private System.Threading.Timer SaveTimer;
