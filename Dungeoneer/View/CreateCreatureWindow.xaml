@@ -18,9 +18,11 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -115,9 +117,28 @@
 							 Text="{Binding GrappleModifier}" Height="25" Margin="0,2" MinWidth="40"/>
 		</Grid>
 
-		<!-- Saves -->
-		<Label Grid.Row="7" Grid.Column="0" Content="Saves" VerticalContentAlignment="Center"/>
+		<!-- Space/Reach -->
+		<Label Grid.Row="7" Grid.Column="0" Content="Space/Reach" VerticalContentAlignment="Center"/>
 		<Grid Grid.Row="7" Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<StackPanel Grid.Column="0" Orientation="Horizontal">
+				<TextBox Name="SpaceTextBox" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+								 Text="{Binding Space}" Height="25" Margin="0,2" MinWidth="40"/>
+				<TextBlock Text="ft" VerticalAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Grid.Column="1" Orientation="Horizontal">
+				<TextBox Name="ReachTextBox" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+								 Text="{Binding Reach}" Height="25" Margin="0,2" MinWidth="40"/>
+				<TextBlock Text="ft" VerticalAlignment="Center"/>
+			</StackPanel>
+		</Grid>
+
+		<!-- Saves -->
+		<Label Grid.Row="8" Grid.Column="0" Content="Saves" VerticalContentAlignment="Center"/>
+		<Grid Grid.Row="8" Grid.Column="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
@@ -138,8 +159,8 @@
 		</Grid>
 
 		<!-- Abilities -->
-		<Label Grid.Row="8" Grid.Column="0" Content="Abilities" VerticalContentAlignment="Center"/>
-		<Grid Grid.Row="8" Grid.Column="1">
+		<Label Grid.Row="9" Grid.Column="0" Content="Abilities" VerticalContentAlignment="Center"/>
+		<Grid Grid.Row="9" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto" MinHeight="25"/>
@@ -173,20 +194,20 @@
 		</Grid>
 
 		<!-- Challenge Rating -->
-		<Label Grid.Row="9" Grid.Column="0" Content="CR" VerticalContentAlignment="Center"/>
-		<TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+		<Label Grid.Row="10" Grid.Column="0" Content="CR" VerticalContentAlignment="Center"/>
+		<TextBox Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
 						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding ChallengeRating}"/>
 
 		<!-- Feats -->
-		<Label Grid.Row="10" Grid.Column="0" Content="Feats" VerticalContentAlignment="Center"/>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="10" Grid.Column="1">
+		<Label Grid.Row="11" Grid.Column="0" Content="Feats" VerticalContentAlignment="Center"/>
+		<ScrollViewer Grid.Row="11" Grid.Column="1" VerticalScrollBarVisibility="Auto">
 			<TextBox Text="{Binding FeatsText}" MinHeight="60" TextWrapping="Wrap" Margin="0,2"
 							 MaxWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollViewer}, Path=ActualWidth}"/>
 		</ScrollViewer>
 		
 		<!-- Attacks -->
-		<Label Content="Attack&#10;Sets" Grid.Row="11" Grid.Column="0" Margin="0,0,0,5" VerticalContentAlignment="Center"/>
-		<Grid Grid.Row="11" Grid.Column="1">
+		<Label Grid.Row="12" Grid.Column="0" Content="Attack&#10;Sets" VerticalContentAlignment="Center"/>
+		<Grid Grid.Row="12" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -206,8 +227,8 @@
 		</Grid>
 		
 		<!-- Damage Reduction -->
-		<Label Content="Damage&#10;Reductions" Grid.Row="12" Grid.Column="0" Margin="0,0,0,5" VerticalContentAlignment="Center"/>
-		<Grid Grid.Row="12" Grid.Column="1">
+		<Label Grid.Row="13" Grid.Column="0" Content="Damage&#10;Reductions" VerticalContentAlignment="Center"/>
+		<Grid Grid.Row="13" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -236,8 +257,19 @@
 			<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>-->
 		
-		
-		<StackPanel Grid.Row="13" Grid.ColumnSpan="2" Margin="0,5,0,0">
+		<!-- Immunities -->
+		<Label Grid.Row="14" Grid.Column="0" Content="Immunities" VerticalContentAlignment="Center"/>
+		<Grid Grid.Row="14" Grid.Column="1" VerticalAlignment="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<Button Content="Edit" Width="40" VerticalAlignment="Center" Command="{Binding EditImmunities}"/>
+		</Grid>
+
+		<StackPanel Grid.Row="15" Grid.ColumnSpan="2" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
 				<Label.Style>
 					<Style TargetType="{x:Type Label}">

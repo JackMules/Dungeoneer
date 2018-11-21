@@ -368,7 +368,17 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public string SpecialQaulities
+		public int SpellResistance
+		{
+			get { return BaseAttributes.SpellResistance; }
+			set
+			{
+				ModifiedAttributes.SpellResistance = value;
+				NotifyPropertyChanged("SpellResistance");
+			}
+		}
+
+		public string SpecialQualities
 		{
 			get { return BaseAttributes.SpecialQualities; }
 		}

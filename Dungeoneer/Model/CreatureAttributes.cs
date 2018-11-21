@@ -42,6 +42,7 @@ namespace Dungeoneer.Model
 			Size = Types.Size.Medium;
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
+			SpellResistance = 0;
 			SpecialQualities = "";
 		}
 
@@ -75,6 +76,7 @@ namespace Dungeoneer.Model
 			Size = other.Size;
 			DamageReductions = other.DamageReductions.Clone();
 			Immunities = other.Immunities.Clone();
+			SpellResistance = 0;
 			SpecialQualities = other.SpecialQualities;
 		}
 
@@ -109,6 +111,8 @@ namespace Dungeoneer.Model
 
 		private int _space;
 		private int _reach;
+		private int _spellResistance;
+
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
@@ -394,6 +398,16 @@ namespace Dungeoneer.Model
 			{
 				_immunities = value;
 				NotifyPropertyChanged("Immunities");
+			}
+		}
+
+		public int SpellResistance
+		{
+			get { return _spellResistance; }
+			set
+			{
+				_spellResistance = value;
+				NotifyPropertyChanged("SpellResistance");
 			}
 		}
 
@@ -706,6 +720,10 @@ namespace Dungeoneer.Model
 			Immunities.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("SpellResistance");
+			xmlWriter.WriteString(SpellResistance.ToString());
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteStartElement("SpecialQualities");
 			xmlWriter.WriteString(SpecialQualities);
 			xmlWriter.WriteEndElement();
@@ -843,6 +861,14 @@ namespace Dungeoneer.Model
 								DamageReductions.Add(dr);
 							}
 						}
+					}
+					else if (childNode.Name == "Immunities")
+					{
+						Immunities.ReadXML(childNode);
+					}
+					else if (childNode.Name == "SpellResistance")
+					{
+						SpellResistance = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "SpecialQualities")
 					{

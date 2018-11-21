@@ -148,14 +148,9 @@ namespace Dungeoneer.ViewModel
 				}
 				else
 				{
-					Model.Actor actor = (Model.Actor)actorObj;
+					Model.Actor actor = actorObj as Model.Actor;
 					string defaultActorName = actor.ActorName + " " + (Encounter.GetNumberOfActorsWithName(actor.ActorName) + 1);
-
-					View.InputDialog inputDialog = new View.InputDialog("Enter name", defaultActorName);
-					if (inputDialog.ShowDialog() == true)
-					{
-						Encounter.AddActor(actor, inputDialog.Answer);
-					}
+					Encounter.AddActor(actor, defaultActorName);
 				}
 			}
 		}

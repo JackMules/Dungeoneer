@@ -23,6 +23,7 @@ namespace Dungeoneer.ViewModel
 			_addDamageReduction = new Command(ExecuteAddDamageReduction);
 			_editDamageReduction = new Command(ExecuteEditDamageReduction);
 			_removeDamageReduction = new Command(ExecuteRemoveDamageReduction);
+			_editImmunities = new Command(ExecuteEditImmunities);
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
@@ -53,6 +54,8 @@ namespace Dungeoneer.ViewModel
 		private string _flatFootedArmorClass;
 
 		private string _speed;
+		private string _space;
+		private string _reach;
 
 		private string _fortitudeSave;
 		private string _reflexSave;
@@ -63,6 +66,7 @@ namespace Dungeoneer.ViewModel
 		private int _selectedSize;
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
 		private ObservableCollection<Model.Weapon> _weapons;
+		private Model.DamageDescriptorSet _immunities;
 
 		private Command _addAttackSet;
 		private Command _editAttackSet;
@@ -73,6 +77,7 @@ namespace Dungeoneer.ViewModel
 		private Command _addDamageReduction;
 		private Command _editDamageReduction;
 		private Command _removeDamageReduction;
+		private Command _editImmunities;
 		private Command _openImportWindow;
 
 		public int SelectedAttackSet { get; set; }
@@ -268,6 +273,26 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string Space
+		{
+			get { return _space; }
+			set
+			{
+				_space = value;
+				NotifyPropertyChanged("Space");
+			}
+		}
+
+		public string Reach
+		{
+			get { return _reach; }
+			set
+			{
+				_reach = value;
+				NotifyPropertyChanged("Reach");
+			}
+		}
+
 		public string FortitudeSave
 		{
 			get { return _fortitudeSave; }
@@ -363,6 +388,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public Model.DamageDescriptorSet Immunities
+		{
+			get { return _immunities; }
+			set
+			{
+				_immunities = value;
+				NotifyPropertyChanged("Immunities");
+			}
+		}
+
 		public ObservableCollection<Model.Weapon> Weapons
 		{
 			get { return _weapons; }
@@ -396,11 +431,7 @@ namespace Dungeoneer.ViewModel
 			InitiativeMod = Methods.GetSignedNumberString(creature.InitiativeMod);
 			Type = creature.Type;
 			ChallengeRating = creature.ChallengeRating.ToString();
-			foreach (Model.AttackSet attackSet in creature.AttackSets)
-			{
-				AttackSets.Add(attackSet);
-			}
-
+			AttackSets = creature.AttackSets;
 			Strength = creature.Strength.ToString();
 			Dexterity = creature.Dexterity.ToString();
 			Constitution = creature.Constitution.ToString();
@@ -416,12 +447,15 @@ namespace Dungeoneer.ViewModel
 			TouchArmorClass = creature.TouchArmorClass.ToString();
 			FlatFootedArmorClass = creature.FlatFootedArmorClass.ToString();
 			Speed = creature.Speed.ToString();
+			Space = creature.Space.ToString();
+			Reach = creature.Reach.ToString();
 			FortitudeSave = Methods.GetSignedNumberString(creature.FortitudeSave);
 			ReflexSave = Methods.GetSignedNumberString(creature.ReflexSave);
 			WillSave = Methods.GetSignedNumberString(creature.WillSave);
 			Feats = creature.Feats;
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
 			DamageReductions = creature.DamageReductions;
+			Immunities = creature.Immunities;
 		}
 
 		public Model.PlayerActor GetPlayerActor()
@@ -496,12 +530,15 @@ namespace Dungeoneer.ViewModel
 							TouchArmorClass = Convert.ToInt32(TouchArmorClass),
 							FlatFootedArmorClass = Convert.ToInt32(FlatFootedArmorClass),
 							Speed = Convert.ToInt32(Speed),
+							Space = Convert.ToInt32(Space),
+							Reach = Convert.ToInt32(Reach),
 							FortitudeSave = Convert.ToInt32(FortitudeSave),
 							ReflexSave = Convert.ToInt32(ReflexSave),
 							WillSave = Convert.ToInt32(WillSave),
 							Feats = Feats,
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
+							Immunities = Immunities,
 						};
 						creature = new Model.Creature(creatureAttributes)
 						{
@@ -650,6 +687,21 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteRemoveDamageReduction()
 		{
 			DamageReductions.RemoveAt(SelectedDamageReduction);
+		}
+
+		public Command EditImmunities
+		{
+			get { return _editImmunities; }
+		}
+
+		private void ExecuteEditImmunities()
+		{
+			AddImmunityWindowViewModel addImmunityWindowViewModel = new AddImmunityWindowViewModel(Immunities);
+			Model.DamageDescriptorSet immunity = addImmunityWindowViewModel.GetImmunity();
+			if (immunity != null)
+			{
+				Immunities = immunity;
+			}
 		}
 
 		public Command Import

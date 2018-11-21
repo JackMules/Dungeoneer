@@ -86,6 +86,11 @@ namespace Dungeoneer.ViewModel
 			get { return Actor.Space.ToString(); }
 		}
 
+		public string Reach
+		{
+			get { return Actor.Reach.ToString(); }
+		}
+
 		public string SpecialQualities
 		{
 			get { return Actor.SpecialQualities; }

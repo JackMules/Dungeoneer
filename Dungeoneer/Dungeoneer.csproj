@@ -154,6 +154,7 @@
     <Compile Include="Utility\ObjectCopier.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddImmunityWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageReductionWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
     <Compile Include="ViewModel\AddAttackWindowViewModel.cs" />
@@ -183,6 +184,9 @@
     <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />
     <Compile Include="View\AddAttackSetWindow.xaml.cs">
       <DependentUpon>AddAttackSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddImmunityWindow.xaml.cs">
+      <DependentUpon>AddImmunityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddDamageReductionWindow.xaml.cs">
       <DependentUpon>AddDamageReductionWindow.xaml</DependentUpon>
@@ -250,6 +254,10 @@
     <Page Include="View\AddAttackSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddImmunityWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AddDamageReductionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
