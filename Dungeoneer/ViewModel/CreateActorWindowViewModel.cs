@@ -61,6 +61,11 @@ namespace Dungeoneer.ViewModel
 		private string _reflexSave;
 		private string _willSave;
 
+		private string _spellResistance;
+
+		private string _specialAttacks;
+		private string _specialQualities;
+
 		private List<string> _feats;
 
 		private int _selectedSize;
@@ -408,6 +413,36 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string SpellResistance
+		{
+			get { return _spellResistance; }
+			set
+			{
+				_spellResistance = value;
+				NotifyPropertyChanged("SpellResistance");
+			}
+		}
+
+		public string SpecialAttacks
+		{
+			get { return _specialAttacks; }
+			set
+			{
+				_specialAttacks = value;
+				NotifyPropertyChanged("SpecialAttacks");
+			}
+		}
+
+		public string SpecialQualities
+		{
+			get { return _specialQualities; }
+			set
+			{
+				_specialQualities = value;
+				NotifyPropertyChanged("SpecialQualities");
+			}
+		}
+
 		public List<string> DieTypes
 		{
 			get { return Constants.DieTypeStrings; }
@@ -456,6 +491,9 @@ namespace Dungeoneer.ViewModel
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
 			DamageReductions = creature.DamageReductions;
 			Immunities = creature.Immunities;
+			SpellResistance = creature.SpellResistance.ToString();
+			SpecialAttacks = creature.SpecialAttacks;
+			SpecialQualities = creature.SpecialQualities;
 		}
 
 		public Model.PlayerActor GetPlayerActor()
@@ -539,6 +577,9 @@ namespace Dungeoneer.ViewModel
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
 							Immunities = Immunities,
+							SpellResistance = Convert.ToInt32(SpellResistance),
+							SpecialAttacks = SpecialAttacks,
+							SpecialQualities = SpecialQualities,
 						};
 						creature = new Model.Creature(creatureAttributes)
 						{

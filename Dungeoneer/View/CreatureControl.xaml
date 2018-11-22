@@ -7,26 +7,11 @@
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
 						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
 						 mc:Ignorable="d" 
-						 d:DesignHeight="80" d:DesignWidth="596">
+						 d:DesignHeight="76" d:DesignWidth="596">
 	<Grid>
 		<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
 			<DockPanel>
-				<StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Margin="0,5,0,0">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding SpecialQualities}"/>
-					</StackPanel>
-					<StackPanel.Style>
-						<Style TargetType="{x:Type StackPanel}">
-							<Setter Property="Visibility" Value="Collapsed"/>
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding IsChecked, ElementName=SpecialToggleButton}" Value="True">
-									<Setter Property="Visibility" Value="Visible"/>
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
-					</StackPanel.Style>
-				</StackPanel>
-				<Grid DockPanel.Dock="Bottom" Margin="0,5,0,0">
+				<Grid DockPanel.Dock="Bottom" Margin="0,2,0,0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="*"/>
@@ -34,7 +19,7 @@
 					</Grid.ColumnDefinitions>
 					<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1">
 						<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}" 
-										 Background="Transparent">
+										 Background="Transparent" BorderThickness="0">
 							<ListBox.Resources>
 								<DataTemplate DataType="{x:Type effect:Effect}">
 									<WrapPanel>
@@ -72,7 +57,7 @@
 					</Grid.Style>
 				</Grid>
 				<TreeView DockPanel.Dock="Bottom" Background="Transparent" ItemsSource="{Binding AttackSets}"
-									Margin="0,5,0,0">
+									Margin="0,2,0,0" BorderThickness="0">
 					<TreeView.Resources>
 						<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
 							<StackPanel Orientation="Horizontal">
@@ -104,20 +89,38 @@
 					</TreeView.Style>
 				</TreeView>
 				
-				<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-					<TextBox Margin="5" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
-										 Background="Transparent" VerticalAlignment="Center"/>
-					<StackPanel Orientation="Vertical" VerticalAlignment="Center">
-						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="5,5,5,0" Height="22"/>
-						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="5,2" Height="22"/>
-						<ToggleButton x:Name="SpecialToggleButton" Content="Special" Margin="5,0,5,5" Height="22"/>
+				<Grid DockPanel.Dock="Left">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<TextBox Grid.Column="0" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+										 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
+					<StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="1" Height="22"/>
+						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="1" Height="22"/>
 					</StackPanel>
-					<view:ValueDisplay Title="AC" ValueBinding="{Binding ArmorClass}"/>
-					<view:ValueButton Title="HP"
-														ValueBinding="{Binding HitPoints}"
-														CommandBinding="{Binding DoDamage}"
-														PanelOrientation="Vertical"/>
-					<StackPanel Margin="2,0" Orientation="Vertical">
+					<view:ValueDisplay Grid.Column="2" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
+					<view:ValueButton Grid.Column="3" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
+														CommandBinding="{Binding DoDamage}" PanelOrientation="Vertical"/>
+					<Grid Grid.Column="4">
+						<Grid.Style>
+							<Style TargetType="{x:Type Grid}">
+								<Setter Property="Visibility" Value="Collapsed"/>
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding HasSpellResistance}" Value="True">
+										<Setter Property="Visibility" Value="Visible"/>
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</Grid.Style>
+						<view:ValueDisplay Title="SR" ValueBinding="{Binding SpellResistance}" Margin="1,0"/>
+					</Grid>
+					<StackPanel Grid.Column="5" Orientation="Vertical">
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
 							<TextBlock Text=" (" FontSize="12"/>
@@ -126,8 +129,10 @@
 							<TextBlock Text="{Binding Reach}" FontSize="12" FontWeight="Bold"/>
 							<TextBlock Text="ft" FontSize="12"/>
 						</StackPanel>
+						<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap"/>
+						<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
 					</StackPanel>
-				</StackPanel>
+				</Grid>
 			</DockPanel>
 			<Border.Style>
 				<Style TargetType="{x:Type Border}">

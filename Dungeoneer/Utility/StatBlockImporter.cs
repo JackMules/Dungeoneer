@@ -158,13 +158,13 @@ namespace Dungeoneer.Utility
 						}
 						else if (identifier == "Special Attacks")
 						{
-
+							attributes.SpecialAttacks = entry;
 						}
 						else if (identifier == "Special Qualities")
 						{
 							attributes.SpecialQualities = entry;
 
-							string drPattern = @"damage reduction (?<Value>\d+)\/(?<Types>.+?)\,";
+							string drPattern = @"damage reduction (?<Value>\d+)\/(?<Types>.+?)(\,|\z)";
 							Regex drRegex = new Regex(drPattern, RegexOptions.IgnoreCase);
 							MatchCollection drMatches = drRegex.Matches(entry);
 
@@ -176,7 +176,7 @@ namespace Dungeoneer.Utility
 								attributes.DamageReductions.Add(dr);
 							}
 
-							string immunityPattern = @"immunity to (?<Types>.+?)\,";
+							string immunityPattern = @"immunity to (?<Types>.+?)(\,|\z)";
 							Regex immunityRegex = new Regex(immunityPattern, RegexOptions.IgnoreCase);
 							Match immunityMatch = immunityRegex.Match(entry);
 
@@ -189,7 +189,7 @@ namespace Dungeoneer.Utility
 								}
 							}
 
-							string resistancesPattern = @"resistance to (?<Types>.+?)\,";
+							string resistancesPattern = @"resistance to (?<Types>.+?)(\,|\z)";
 							Regex resistancesRegex = new Regex(resistancesPattern, RegexOptions.IgnoreCase);
 							Match resistancesMatch = resistancesRegex.Match(entry);
 
@@ -206,6 +206,15 @@ namespace Dungeoneer.Utility
 									res.DamageTypes = GetDamageDescriptorSetFromString(resistanceMatch.Groups["Type"].Value);
 									attributes.DamageReductions.Add(res);
 								}
+							}
+
+							string spellResistancePattern = @"spell resistance (?<Value>\d+)(\,|\z)";
+							Regex spellResistanceRegex = new Regex(spellResistancePattern, RegexOptions.IgnoreCase);
+							Match spellResistanceMatch = spellResistanceRegex.Match(entry);
+
+							if (spellResistanceMatch.Success)
+							{
+								attributes.SpellResistance = Convert.ToInt32(spellResistanceMatch.Groups["Value"].Value);
 							}
 						}
 						else if (identifier == "Saves")

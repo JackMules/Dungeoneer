@@ -16,15 +16,15 @@ namespace Dungeoneer.Model
 		public Creature(Creature other)
 			: base(other)
 		{
-			BaseAttributes = new CreatureAttributes(other.BaseAttributes);
-			ModifiedAttributes = new CreatureAttributes(BaseAttributes);
+			BaseAttributes = other.BaseAttributes.Clone();
+			ModifiedAttributes = BaseAttributes.Clone();
 		}
 
 		public Creature(CreatureAttributes attributes)
 			: base(attributes)
 		{
-			BaseAttributes = new CreatureAttributes(attributes);
-			_modifiedCreatureAttributes = new CreatureAttributes(attributes);
+			BaseAttributes = attributes.Clone();
+			_modifiedCreatureAttributes = attributes.Clone();
 		}
 
 		public Creature(XmlNode xmlNode)
@@ -370,12 +370,17 @@ namespace Dungeoneer.Model
 
 		public int SpellResistance
 		{
-			get { return BaseAttributes.SpellResistance; }
+			get { return GetEffectiveAttributes().SpellResistance; }
 			set
 			{
 				ModifiedAttributes.SpellResistance = value;
 				NotifyPropertyChanged("SpellResistance");
 			}
+		}
+
+		public string SpecialAttacks
+		{
+			get { return BaseAttributes.SpecialAttacks; }
 		}
 
 		public string SpecialQualities

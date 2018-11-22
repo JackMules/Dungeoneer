@@ -91,9 +91,24 @@ namespace Dungeoneer.ViewModel
 			get { return Actor.Reach.ToString(); }
 		}
 
+		public string SpecialAttacks
+		{
+			get { return Actor.SpecialAttacks; }
+		}
+
 		public string SpecialQualities
 		{
 			get { return Actor.SpecialQualities; }
+		}
+
+		public int SpellResistance
+		{
+			get { return Actor.SpellResistance; }
+		}
+
+		public bool HasSpellResistance
+		{
+			get { return Actor.SpellResistance > 0; }
 		}
 
 		public void OnWeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList)
@@ -137,6 +152,7 @@ namespace Dungeoneer.ViewModel
 			ArmorClassUpdated();
 			HitPointsUpdated();
 			AttackSetsUpdated();
+			SpellResistanceUpdated();
 		}
 
 		private void ArmorClassUpdated()
@@ -153,6 +169,12 @@ namespace Dungeoneer.ViewModel
 		private void AttackSetsUpdated()
 		{
 			NotifyPropertyChanged("AttackSets");
+		}
+
+		private void SpellResistanceUpdated()
+		{
+			NotifyPropertyChanged("SpellResistance");
+			NotifyPropertyChanged("HasSpellResistance");
 		}
 
 		public bool Dead

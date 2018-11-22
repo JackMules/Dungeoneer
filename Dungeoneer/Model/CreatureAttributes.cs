@@ -43,6 +43,7 @@ namespace Dungeoneer.Model
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
 			SpellResistance = 0;
+			SpecialAttacks = "";
 			SpecialQualities = "";
 		}
 
@@ -77,6 +78,7 @@ namespace Dungeoneer.Model
 			DamageReductions = other.DamageReductions.Clone();
 			Immunities = other.Immunities.Clone();
 			SpellResistance = 0;
+			SpecialAttacks = other.SpecialAttacks;
 			SpecialQualities = other.SpecialQualities;
 		}
 
@@ -116,6 +118,7 @@ namespace Dungeoneer.Model
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
+		private string _specialAttacks;
 		private string _specialQualities;
 
 		public string Type
@@ -408,6 +411,16 @@ namespace Dungeoneer.Model
 			{
 				_spellResistance = value;
 				NotifyPropertyChanged("SpellResistance");
+			}
+		}
+
+		public string SpecialAttacks
+		{
+			get { return _specialAttacks; }
+			set
+			{
+				_specialAttacks = value;
+				NotifyPropertyChanged("SpecialAttacks");
 			}
 		}
 
@@ -724,6 +737,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(SpellResistance.ToString());
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("SpecialAttacks");
+			xmlWriter.WriteString(SpecialAttacks);
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteStartElement("SpecialQualities");
 			xmlWriter.WriteString(SpecialQualities);
 			xmlWriter.WriteEndElement();
@@ -869,6 +886,10 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "SpellResistance")
 					{
 						SpellResistance = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "SpecialAttacks")
+					{
+						SpecialAttacks = childNode.InnerText;
 					}
 					else if (childNode.Name == "SpecialQualities")
 					{
