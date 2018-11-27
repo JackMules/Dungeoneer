@@ -1,0 +1,22 @@
+Size/Type:	Large Giant
+Hit Dice:	4d8+11 (29 hp)
+Initiative:	-1
+Speed:	30 ft. in hide armor (6 squares); base speed 40 ft.
+Armor Class:	16 (-1 size, -1 Dex, +5 natural, +3 hide armor), touch 8, flat-footed 16
+Base Attack/Grapple:	0.25
+Attack:	Greatclub +8 melee (2d8+7) or javelin +1 ranged (1d8+5)
+Full Attack:	Greatclub +8 melee (2d8+7) or javelin +1 ranged (1d8+5)
+Space/Reach:	10 ft./10 ft.
+Special Attacks:	—
+Special Qualities:	Darkvision 60 ft., low-light vision
+Saves:	Fort +6, Ref +0, Will +1
+Abilities:	Str 21, Dex 8, Con 15, Int 6, Wis 10, Cha 7
+Skills:	Climb +5, Listen +2, Spot +2
+Feats:	Toughness, Weapon Focus (greatclub)
+Environment:	Temperate hills (Merrow: Temperate aquatic)
+Organization:	Solitary, pair, gang (3-4), or band (5-8)
+Challenge Rating:	3
+Treasure:	Standard
+Alignment:	Usually chaotic evil
+Advancement:	By character class
+Level Adjustment:	2

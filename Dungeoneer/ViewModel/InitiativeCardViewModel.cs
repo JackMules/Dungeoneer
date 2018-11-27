@@ -109,9 +109,14 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				InitiativeValueViewModel.Delayed = value;
-				InitiativeValueViewModel.Readied = !value;
 				NotifyPropertyChanged("Delayed");
-				NotifyPropertyChanged("Readied");
+
+				if (InitiativeValueViewModel.Delayed &&
+						InitiativeValueViewModel.Readied)
+				{
+					InitiativeValueViewModel.Readied = false;
+					NotifyPropertyChanged("Readied");
+				}
 			}
 		}
 
@@ -121,9 +126,14 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				InitiativeValueViewModel.Readied = value;
-				InitiativeValueViewModel.Delayed = !value;
 				NotifyPropertyChanged("Readied");
-				NotifyPropertyChanged("Delayed");
+
+				if (InitiativeValueViewModel.Readied &&
+						InitiativeValueViewModel.Delayed)
+				{
+					InitiativeValueViewModel.Delayed = false;
+					NotifyPropertyChanged("Delayed");
+				}
 			}
 		}
 

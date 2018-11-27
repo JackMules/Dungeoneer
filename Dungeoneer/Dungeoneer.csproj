@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons8-Ios7-Military-Sword.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CG.Pluralization, Version=0.3000.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CG.Pluralization.0.3000.12\lib\net40\CG.Pluralization.dll</HintPath>
@@ -386,6 +389,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Icons8-Ios7-Military-Sword.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

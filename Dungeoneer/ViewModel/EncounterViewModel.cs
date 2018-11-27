@@ -72,7 +72,7 @@ namespace Dungeoneer.ViewModel
 				bool roundComplete = true;
 				foreach (InitiativeCardViewModel initCard in InitiativeTrack)
 				{
-					if (!initCard.TurnEnded && !initCard.Delayed && !initCard.Readied)
+					if (!initCard.TurnEnded)
 					{
 						roundComplete = false;
 					}
