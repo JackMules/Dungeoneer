@@ -8,134 +8,127 @@
 						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
 						 mc:Ignorable="d" 
 						 d:DesignHeight="76" d:DesignWidth="596">
-	<Grid>
-		<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
-			<DockPanel>
-				<Grid DockPanel.Dock="Bottom" Margin="0,2,0,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="Auto"/>
-					</Grid.ColumnDefinitions>
-					<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="13" Grid.Column="1">
-						<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}" 
-										 Background="Transparent" BorderThickness="0">
-							<ListBox.Resources>
-								<DataTemplate DataType="{x:Type effect:Effect}">
-									<WrapPanel>
-										<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
-									</WrapPanel>
-								</DataTemplate>
-								<DataTemplate DataType="{x:Type effect:TimedEffect}">
-									<WrapPanel>
-										<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
-										<TextBlock Text=" (" Background="Transparent"/>
-										<TextBlock Text="{Binding RemainingDuration}" Background="Transparent"/>
-										<TextBlock Text=")" Background="Transparent"/>
-									</WrapPanel>
-								</DataTemplate>
-							</ListBox.Resources>
-						</ListBox>
-					</ScrollViewer>
-					<StackPanel Grid.Row="13" Grid.Column="6">
-						<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="+" Margin="5" Height="20" 
-										Width="20" 
-										FontWeight="Bold"/>
-						<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" 
-										Width="20" 
-										FontWeight="Bold"/>
-					</StackPanel>
+	<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
+		<DockPanel>
+			<Grid DockPanel.Dock="Bottom" Margin="0,2,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Border Grid.Column="0" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
+					<TreeView Background="Transparent" ItemsSource="{Binding AttackSets}" BorderThickness="0">
+						<TreeView.Resources>
+							<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="{Binding Name}"/>
+									<TextBlock Text=" ["/>
+									<TextBlock Text="{Binding Attacks.Count}"/>
+									<TextBlock Text="]"/>
+									<!-- How about a button to roll an attack and display the results? -->
+								</StackPanel>
+							</HierarchicalDataTemplate>
+							<HierarchicalDataTemplate DataType="{x:Type model:Attack}">
+								<TextBlock Text="{Binding AsString}"/>
+							</HierarchicalDataTemplate>
+						</TreeView.Resources>
+						<TreeView.ItemContainerStyle>
+							<Style>
+								<Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+							</Style>
+						</TreeView.ItemContainerStyle>
+					</TreeView>
+				</Border>
+				<Border Grid.Column="1" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+							<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}" 
+										 Background="Transparent" BorderThickness="0" MinWidth="60">
+								<ListBox.Resources>
+									<DataTemplate DataType="{x:Type effect:Effect}">
+										<WrapPanel>
+											<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
+										</WrapPanel>
+									</DataTemplate>
+									<DataTemplate DataType="{x:Type effect:TimedEffect}">
+										<WrapPanel>
+											<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
+											<TextBlock Text=" (" Background="Transparent"/>
+											<TextBlock Text="{Binding RemainingDuration}" Background="Transparent"/>
+											<TextBlock Text=")" Background="Transparent"/>
+										</WrapPanel>
+									</DataTemplate>
+								</ListBox.Resources>
+							</ListBox>
+						</ScrollViewer>
+						<StackPanel Grid.Column="1">
+							<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="Add" Margin="5" Height="20" 
+									Width="55" FontWeight="Bold"/>
+							<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="Remove" Margin="5" 
+									Height="20" Width="55" FontWeight="Bold"/>
+						</StackPanel>
+					</Grid>
+				</Border>
+				<Grid.Style>
+					<Style TargetType="{x:Type Grid}">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding IsChecked, ElementName=InfoPanelToggleButton}" Value="True">
+								<Setter Property="Visibility" Value="Visible"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Grid.Style>
+			</Grid>
+			<DockPanel DockPanel.Dock="Left">
+				<TextBox DockPanel.Dock="Left" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+										 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
+				<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
+					<ToggleButton x:Name="InfoPanelToggleButton" Content="Info" Margin="1" FontSize="14" 
+												FontWeight="Bold"/>
+				</StackPanel>
+				<view:ValueDisplay DockPanel.Dock="Left" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
+				<view:ValueButton DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
+														CommandBinding="{Binding ChangeHitPoints}" PanelOrientation="Vertical"/>
+				<Grid DockPanel.Dock="Left">
 					<Grid.Style>
 						<Style TargetType="{x:Type Grid}">
 							<Setter Property="Visibility" Value="Collapsed"/>
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding IsChecked, ElementName=EffectsToggleButton}" Value="True">
+								<DataTrigger Binding="{Binding HasSpellResistance}" Value="True">
 									<Setter Property="Visibility" Value="Visible"/>
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
 					</Grid.Style>
+					<view:ValueDisplay Title="SR" ValueBinding="{Binding SpellResistance}" Margin="1,0"/>
 				</Grid>
-				<TreeView DockPanel.Dock="Bottom" Background="Transparent" ItemsSource="{Binding AttackSets}"
-									Margin="0,2,0,0" BorderThickness="0">
-					<TreeView.Resources>
-						<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
-							<StackPanel Orientation="Horizontal">
-								<TextBlock Text="{Binding Name}"/>
-								<TextBlock Text=" ["/>
-								<TextBlock Text="{Binding Attacks.Count}"/>
-								<TextBlock Text="]"/>
-								<!-- How about a button to roll an attack and display the results? -->
-							</StackPanel>
-						</HierarchicalDataTemplate>
-						<HierarchicalDataTemplate DataType="{x:Type model:Attack}">
-							<TextBlock Text="{Binding AsString}"/>
-						</HierarchicalDataTemplate>
-					</TreeView.Resources>
-					<TreeView.ItemContainerStyle>
-						<Style>
-							<Setter Property="TreeViewItem.IsExpanded" Value="True"/>
-						</Style>
-					</TreeView.ItemContainerStyle>
-					<TreeView.Style>
-						<Style TargetType="{x:Type TreeView}">
-							<Setter Property="Visibility" Value="Collapsed"/>
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding IsChecked, ElementName=AttacksToggleButton}" Value="True">
-									<Setter Property="Visibility" Value="Visible"/>
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
-					</TreeView.Style>
-				</TreeView>
-
-				<DockPanel DockPanel.Dock="Left">
-					<TextBox DockPanel.Dock="Left" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
-										 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
-					<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
-						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="1" Height="22"/>
-						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="1" Height="22"/>
+				<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
+						<TextBlock Text=" (" FontSize="12"/>
+						<TextBlock Text="{Binding Space}" FontSize="12"/>
+						<TextBlock Text="ft), reach " FontSize="12"/>
+						<TextBlock Text="{Binding Reach}" FontSize="12"/>
+						<TextBlock Text="ft" FontSize="12"/>
 					</StackPanel>
-					<view:ValueDisplay DockPanel.Dock="Left" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
-					<view:ValueButton DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
-														CommandBinding="{Binding ChangeHitPoints}" PanelOrientation="Vertical"/>
-					<Grid DockPanel.Dock="Left">
-						<Grid.Style>
-							<Style TargetType="{x:Type Grid}">
-								<Setter Property="Visibility" Value="Collapsed"/>
-								<Style.Triggers>
-									<DataTrigger Binding="{Binding HasSpellResistance}" Value="True">
-										<Setter Property="Visibility" Value="Visible"/>
-									</DataTrigger>
-								</Style.Triggers>
-							</Style>
-						</Grid.Style>
-						<view:ValueDisplay Title="SR" ValueBinding="{Binding SpellResistance}" Margin="1,0"/>
-					</Grid>
-					<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
-							<TextBlock Text=" (" FontSize="12"/>
-							<TextBlock Text="{Binding Space}" FontSize="12"/>
-							<TextBlock Text="ft), reach " FontSize="12"/>
-							<TextBlock Text="{Binding Reach}" FontSize="12"/>
-							<TextBlock Text="ft" FontSize="12"/>
-						</StackPanel>
-						<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap" />
-						<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
-					</StackPanel>
-				</DockPanel>
+					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap" />
+					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
+				</StackPanel>
 			</DockPanel>
-			<Border.Style>
-				<Style TargetType="{x:Type Border}">
-					<Setter Property="Background" Value="LightGray"/>
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding Dead}" Value="True">
-							<Setter Property="Background" Value="DarkGray"/>
-						</DataTrigger>
-					</Style.Triggers>
-				</Style>
-			</Border.Style>
-		</Border>
-	</Grid>
+		</DockPanel>
+		<Border.Style>
+			<Style TargetType="{x:Type Border}">
+				<Setter Property="Background" Value="LightGray"/>
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding Dead}" Value="True">
+						<Setter Property="Background" Value="DarkGray"/>
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+		</Border.Style>
+	</Border>
 </UserControl>
