@@ -88,26 +88,18 @@
 						</Style>
 					</TreeView.Style>
 				</TreeView>
-				
-				<Grid DockPanel.Dock="Left">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-					</Grid.ColumnDefinitions>
-					<TextBox Grid.Column="0" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+
+				<DockPanel DockPanel.Dock="Left">
+					<TextBox DockPanel.Dock="Left" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
 										 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
-					<StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+					<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
 						<ToggleButton x:Name="AttacksToggleButton" Content="Attacks" Margin="1" Height="22"/>
 						<ToggleButton x:Name="EffectsToggleButton" Content="Effects" Margin="1" Height="22"/>
 					</StackPanel>
-					<view:ValueDisplay Grid.Column="2" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
-					<view:ValueButton Grid.Column="3" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
+					<view:ValueDisplay DockPanel.Dock="Left" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
+					<view:ValueButton DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
 														CommandBinding="{Binding ChangeHitPoints}" PanelOrientation="Vertical"/>
-					<Grid Grid.Column="4">
+					<Grid DockPanel.Dock="Left">
 						<Grid.Style>
 							<Style TargetType="{x:Type Grid}">
 								<Setter Property="Visibility" Value="Collapsed"/>
@@ -120,19 +112,19 @@
 						</Grid.Style>
 						<view:ValueDisplay Title="SR" ValueBinding="{Binding SpellResistance}" Margin="1,0"/>
 					</Grid>
-					<StackPanel Grid.Column="5" Orientation="Vertical">
+					<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
 							<TextBlock Text=" (" FontSize="12"/>
 							<TextBlock Text="{Binding Space}" FontSize="12"/>
 							<TextBlock Text="ft), reach " FontSize="12"/>
-							<TextBlock Text="{Binding Reach}" FontSize="12" FontWeight="Bold"/>
+							<TextBlock Text="{Binding Reach}" FontSize="12"/>
 							<TextBlock Text="ft" FontSize="12"/>
 						</StackPanel>
-						<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap"/>
+						<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap" />
 						<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
 					</StackPanel>
-				</Grid>
+				</DockPanel>
 			</DockPanel>
 			<Border.Style>
 				<Style TargetType="{x:Type Border}">
