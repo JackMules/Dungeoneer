@@ -106,7 +106,7 @@
 					</StackPanel>
 					<view:ValueDisplay Grid.Column="2" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
 					<view:ValueButton Grid.Column="3" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
-														CommandBinding="{Binding DoDamage}" PanelOrientation="Vertical"/>
+														CommandBinding="{Binding ChangeHitPoints}" PanelOrientation="Vertical"/>
 					<Grid Grid.Column="4">
 						<Grid.Style>
 							<Style TargetType="{x:Type Grid}">

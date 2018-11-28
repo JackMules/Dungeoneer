@@ -7,14 +7,15 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
-	public class DoDamageDialogViewModel : BaseViewModel
+	public class HitPointChangeDialogViewModel : BaseViewModel
 	{
-		public DoDamageDialogViewModel(FullyObservableCollection<Model.WeaponSet> weaponList)
+		public HitPointChangeDialogViewModel(FullyObservableCollection<Model.WeaponSet> weaponList)
 		{
 			_weaponList = weaponList;
 			_damage1 = "";
 			_damage2 = "";
 			_damage3 = "";
+			_healing = "";
 			_selectedWeapon = 0;
 			_damageTypeSelectorViewModel1 = new DamageTypeSelectorViewModel();
 			_damageTypeSelectorViewModel2 = new DamageTypeSelectorViewModel();
@@ -26,6 +27,7 @@ namespace Dungeoneer.ViewModel
 		private string _damage1;
 		private string _damage2;
 		private string _damage3;
+		private string _healing;
 		private int _selectedWeapon;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel1;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel2;
@@ -101,6 +103,16 @@ namespace Dungeoneer.ViewModel
 			{
 				_damage3 = value;
 				NotifyPropertyChanged("Damage3");
+			}
+		}
+
+		public string Healing
+		{
+			get { return _healing; }
+			set
+			{
+				_healing = value;
+				NotifyPropertyChanged("Healing");
 			}
 		}
 
@@ -235,7 +247,7 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public void DoDamage(Model.Actor actor)
+		public void ChangeHitPoints(Model.Actor actor)
 		{
 			if (actor is Model.Creature)
 			{
@@ -243,7 +255,7 @@ namespace Dungeoneer.ViewModel
 				string feedback = null;
 				while (askForInput)
 				{
-					View.DoDamageDialog damageDialog = new View.DoDamageDialog(feedback);
+					View.HitPointChangeDialog damageDialog = new View.HitPointChangeDialog(feedback);
 					damageDialog.DataContext = this;
 					if (damageDialog.ShowDialog() == true)
 					{
@@ -261,6 +273,11 @@ namespace Dungeoneer.ViewModel
 							if (Damage3 != "")
 							{
 								damage[2] = Convert.ToInt32(Damage3);
+							}
+							if (Healing != "")
+							{
+								int healing = Convert.ToInt32(Healing);
+								(actor as Model.Creature).Heal(healing);
 							}
 
 							Model.Weapon weapon = GetWeapon();

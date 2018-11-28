@@ -167,7 +167,7 @@
     <Compile Include="ViewModel\DamageTypeSelectorViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
-    <Compile Include="ViewModel\DoDamageDialogViewModel.cs" />
+    <Compile Include="ViewModel\HitPointChangeDialogViewModel.cs" />
     <Compile Include="ViewModel\AddEffectWindowViewModel.cs" />
     <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="Model\PlayerActor.cs" />
@@ -215,8 +215,8 @@
     <Compile Include="View\DamageTypeSelector.xaml.cs">
       <DependentUpon>DamageTypeSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoDamageDialog.xaml.cs">
-      <DependentUpon>DoDamageDialog.xaml</DependentUpon>
+    <Compile Include="View\HitPointChangeDialog.xaml.cs">
+      <DependentUpon>HitPointChangeDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ImportStatBlockWindow.xaml.cs">
       <DependentUpon>ImportStatBlockWindow.xaml</DependentUpon>
@@ -294,7 +294,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoDamageDialog.xaml">
+    <Page Include="View\HitPointChangeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

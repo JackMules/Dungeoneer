@@ -3,7 +3,7 @@ Hit Dice:	4d8+11 (29 hp)
 Initiative:	-1
 Speed:	30 ft. in hide armor (6 squares); base speed 40 ft.
 Armor Class:	16 (-1 size, -1 Dex, +5 natural, +3 hide armor), touch 8, flat-footed 16
-Base Attack/Grapple:	0.25
+Base Attack/Grapple:	+3/+12
 Attack:	Greatclub +8 melee (2d8+7) or javelin +1 ranged (1d8+5)
 Full Attack:	Greatclub +8 melee (2d8+7) or javelin +1 ranged (1d8+5)
 Space/Reach:	10 ft./10 ft.

@@ -399,6 +399,15 @@ namespace Dungeoneer.Model
 			return ModifiedAttributes.DoHitPointDamage(hit);
 		}
 
+		public void Heal(int healing)
+		{
+			ModifiedAttributes.HitPoints += healing;
+			if (ModifiedAttributes.HitPoints > BaseAttributes.HitPoints)
+			{
+				ModifiedAttributes.HitPoints = BaseAttributes.HitPoints;
+			}
+		}
+
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Creature");

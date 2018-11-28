@@ -34,13 +34,13 @@ namespace Dungeoneer.ViewModel
 		protected override void InitCommands()
 		{
 			base.InitCommands();
-			_doDamage = new Command(ExecuteDoDamage);
+			_changeHitPoints = new Command(ExecuteChangeHitPoints);
 			_addEffect = new Command(ExecuteAddEffect);
 			_removeEffect = new Command(ExecuteRemoveEffect);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		private Command _doDamage;
+		private Command _changeHitPoints;
 		private Command _addEffect;
 		private Command _removeEffect;
 
@@ -182,15 +182,15 @@ namespace Dungeoneer.ViewModel
 			get { return Actor.HitPoints <= 0; }
 		}
 
-		public Command DoDamage
+		public Command ChangeHitPoints
 		{
-			get { return _doDamage; }
+			get { return _changeHitPoints; }
 		}
 
-		private void ExecuteDoDamage()
+		private void ExecuteChangeHitPoints()
 		{
-			DoDamageDialogViewModel doDamageDialogViewModel = new DoDamageDialogViewModel(WeaponList);
-			doDamageDialogViewModel.DoDamage(Actor);
+			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
+			hitPointChangeDialogViewModel.ChangeHitPoints(Actor);
 			HitPointsUpdated();
 		}
 

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Dungeoneer.View
 {
 	/// <summary>
-	/// Interaction logic for DoDamageDialog.xaml
+	/// Interaction logic for HitPointChangeDialog.xaml
 	/// </summary>
-	public partial class DoDamageDialog : Window
+	public partial class HitPointChangeDialog : Window
 	{
-		public DoDamageDialog(string feedback = null)
+		public HitPointChangeDialog(string feedback = null)
 		{
 			InitializeComponent();
 			lblFeedback.Content = feedback;
