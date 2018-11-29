@@ -32,7 +32,7 @@ namespace Dungeoneer.Model
 			ArmorClass = 10;
 			TouchArmorClass = 10;
 			FlatFootedArmorClass = 10;
-			Speed = 30;
+			Speed = new SpeedSet(30);
 			FortitudeSave = 0;
 			ReflexSave = 0;
 			WillSave = 0;
@@ -67,7 +67,7 @@ namespace Dungeoneer.Model
 			ArmorClass = other.ArmorClass;
 			TouchArmorClass = other.TouchArmorClass;
 			FlatFootedArmorClass = other.FlatFootedArmorClass;
-			Speed = other.Speed;
+			Speed = other.Speed.Clone();
 			FortitudeSave = other.FortitudeSave;
 			ReflexSave = other.ReflexSave;
 			WillSave = other.WillSave;
@@ -103,7 +103,7 @@ namespace Dungeoneer.Model
 		private int _touchArmorClass;
 		private int _flatFootedArmorClass;
 
-		private int _speed;
+		private SpeedSet _speed;
 
 		private int _fortitudeSave;
 		private int _reflexSave;
@@ -294,7 +294,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int Speed
+		public SpeedSet Speed
 		{
 			get { return _speed; }
 			set
@@ -686,7 +686,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("Speed");
-			xmlWriter.WriteString(Speed.ToString());
+			Speed.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("FortitudeSave");
@@ -831,7 +831,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Speed")
 					{
-						Speed = Convert.ToInt32(childNode.InnerText);
+						Speed.ReadXML(childNode);
 					}
 					else if (childNode.Name == "FortitudeSave")
 					{

@@ -103,7 +103,14 @@ namespace Dungeoneer.Utility
 		public static readonly string TurnStateNotStarted = "Not Started";
 		public static readonly string TurnStateStarted = "Started";
 		public static readonly string TurnStateEnded = "Ended";
-		
+
+		public static readonly string ManouverabilityPerfect = "Perfect";
+		public static readonly string ManouverabilityGood = "Good";
+		public static readonly string ManouverabilityAverage = "Average";
+		public static readonly string ManouverabilityPoor = "Poor";
+		public static readonly string ManouverabilityClumsy = "Clumsy";
+		public static readonly string ManouverabilityNone = "None";
+
 		public static readonly List<string> SizeStrings = new List<string>
 		{
 			Methods.GetSizeString(Types.Size.Fine),
@@ -336,6 +343,42 @@ namespace Dungeoneer.Utility
 			NotStarted,
 			Started,
 			Ended,
+		}
+
+		public class Speed
+		{
+			public Speed() { }
+
+			public Speed(int distance, string type)
+			{
+				Distance = distance;
+				Type = type;
+			}
+
+			private int _distance;
+			private string _type;
+
+			public int Distance
+			{
+				get { return _distance; }
+				set { _distance = value; }
+			}
+
+			public string Type
+			{
+				get { return _type; }
+				set { _type = value; }
+			}
+		}
+
+		public enum Manouverability
+		{
+			Perfect, 
+			Good, 
+			Average, 
+			Poor, 
+			Clumsy,
+			None,
 		}
 	}
 
@@ -967,6 +1010,52 @@ namespace Dungeoneer.Utility
 			else
 			{
 				throw new FormatException("TurnState \'" + str + "\' not recognised.");
+			}
+		}
+
+		public static string GetManouverabilityString(Types.Manouverability manouverability)
+		{
+			switch (manouverability)
+			{
+			case Types.Manouverability.Perfect:	return Constants.ManouverabilityPerfect;
+			case Types.Manouverability.Good:		return Constants.ManouverabilityGood;
+			case Types.Manouverability.Average:	return Constants.ManouverabilityAverage;
+			case Types.Manouverability.Poor:		return Constants.ManouverabilityPoor;
+			case Types.Manouverability.Clumsy:	return Constants.ManouverabilityClumsy;
+			case Types.Manouverability.None:		return Constants.ManouverabilityNone;
+			default:														return "Unrecognised manouverability!";
+			}
+		}
+
+		public static Types.Manouverability GetManouverabilityFromString(string str)
+		{
+			if (str == Constants.ManouverabilityPerfect)
+			{
+				return Types.Manouverability.Perfect;
+			}
+			else if (str == Constants.ManouverabilityGood)
+			{
+				return Types.Manouverability.Good;
+			}
+			else if (str == Constants.ManouverabilityAverage)
+			{
+				return Types.Manouverability.Average;
+			}
+			else if (str == Constants.ManouverabilityPoor)
+			{
+				return Types.Manouverability.Poor;
+			}
+			else if (str == Constants.ManouverabilityClumsy)
+			{
+				return Types.Manouverability.Clumsy;
+			}
+			else if (str == Constants.ManouverabilityNone)
+			{
+				return Types.Manouverability.None;
+			}
+			else
+			{
+				throw new FormatException("Manouverability \'" + str + "\' not recognised.");
 			}
 		}
 

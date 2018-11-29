@@ -151,6 +151,7 @@
     <Compile Include="Model\Effect\EffectFactory.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Hit.cs" />
+    <Compile Include="Model\SpeedSet.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
     <Compile Include="Utility\Converter.cs" />

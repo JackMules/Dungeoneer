@@ -67,7 +67,13 @@ namespace Dungeoneer.Utility
 							}
 							else if (identifier == "Speed")
 							{
-								attributes.Speed = numbers[0];
+								Model.SpeedSet speedSet = new Model.SpeedSet();
+
+								string speedPattern = @"(?<LandSpeed>\d+).*,(?<OtherSpeeds>.*)";
+								Regex speedRegex = new Regex(speedPattern, RegexOptions.IgnoreCase);
+								Match speedMatch = speedRegex.Match(entry);
+
+								attributes.Speed = speedSet;
 							}
 							else if (identifier == "Armor Class")
 							{
