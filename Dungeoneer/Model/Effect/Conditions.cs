@@ -23,7 +23,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 			{
 				(attributes as CreatureAttributes).SetFlatFooted();
 				(attributes as CreatureAttributes).ModifyArmorClass(-2);
-				(attributes as CreatureAttributes).Speed /= 2;
+				(attributes as CreatureAttributes).ModifySpeed(1/2);
 			}
 		}
 
@@ -167,7 +167,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (attributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).Speed /= 2;
+				(attributes as CreatureAttributes).ModifySpeed(1/2);
 			}
 		}
 
@@ -207,7 +207,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 			{
 				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
 				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
-				(attributes as CreatureAttributes).Speed /= 2;
+				(attributes as CreatureAttributes).ModifySpeed(1/2);
 				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -4);
 			}
 		}
@@ -231,7 +231,7 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (attributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).Speed /= 2;
+				(attributes as CreatureAttributes).ModifySpeed(1/2);
 				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -6);
 				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -6);
 			}

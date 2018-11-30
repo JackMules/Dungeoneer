@@ -14,6 +14,9 @@ namespace Dungeoneer.ViewModel
 		{
 			_feats = new List<string>();
 			_attackSets = new FullyObservableCollection<Model.AttackSet>();
+			_addSpeed = new Command(ExecuteAddSpeed);
+			_editSpeed = new Command(ExecuteEditSpeed);
+			_removeSpeed = new Command(ExecuteRemoveSpeed);
 			_addAttackSet = new Command(ExecuteAddAttackSet);
 			_editAttackSet = new Command(ExecuteEditAttackSet);
 			_removeAttackSet = new Command(ExecuteRemoveAttackSet);
@@ -53,7 +56,6 @@ namespace Dungeoneer.ViewModel
 		private string _touchArmorClass;
 		private string _flatFootedArmorClass;
 
-		private string _speed;
 		private string _space;
 		private string _reach;
 
@@ -72,7 +74,11 @@ namespace Dungeoneer.ViewModel
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
 		private ObservableCollection<Model.Weapon> _weapons;
 		private Model.DamageDescriptorSet _immunities;
+		private Model.SpeedSet _speeds;
 
+		private Command _addSpeed;
+		private Command _editSpeed;
+		private Command _removeSpeed;
 		private Command _addAttackSet;
 		private Command _editAttackSet;
 		private Command _removeAttackSet;
@@ -85,6 +91,7 @@ namespace Dungeoneer.ViewModel
 		private Command _editImmunities;
 		private Command _openImportWindow;
 
+		public int SelectedSpeed { get; set; }
 		public int SelectedAttackSet { get; set; }
 		public int SelectedWeapon { get; set; }
 		public int SelectedDamageReduction { get; set; }
@@ -268,13 +275,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public string Speed
+		public Model.SpeedSet Speeds
 		{
-			get { return _speed; }
+			get { return _speeds; }
 			set
 			{
-				_speed = value;
-				NotifyPropertyChanged("Speed");
+				_speeds = value;
+				NotifyPropertyChanged("Speeds");
 			}
 		}
 
@@ -481,7 +488,7 @@ namespace Dungeoneer.ViewModel
 			ArmorClass = creature.ArmorClass.ToString();
 			TouchArmorClass = creature.TouchArmorClass.ToString();
 			FlatFootedArmorClass = creature.FlatFootedArmorClass.ToString();
-			Speed = creature.Speed.ToString();
+			Speeds = creature.Speed;
 			Space = creature.Space.ToString();
 			Reach = creature.Reach.ToString();
 			FortitudeSave = Methods.GetSignedNumberString(creature.FortitudeSave);
@@ -567,7 +574,7 @@ namespace Dungeoneer.ViewModel
 							ArmorClass = Convert.ToInt32(ArmorClass),
 							TouchArmorClass = Convert.ToInt32(TouchArmorClass),
 							FlatFootedArmorClass = Convert.ToInt32(FlatFootedArmorClass),
-							Speed = Convert.ToInt32(Speed),
+							Speed = Speeds,
 							Space = Convert.ToInt32(Space),
 							Reach = Convert.ToInt32(Reach),
 							FortitudeSave = Convert.ToInt32(FortitudeSave),
@@ -599,6 +606,49 @@ namespace Dungeoneer.ViewModel
 			}
 
 			return creature;
+		}
+
+		public Command AddSpeed
+		{
+			get { return _addSpeed; }
+		}
+
+		public Command EditSpeed
+		{
+			get { return _editSpeed; }
+		}
+
+		public Command RemoveSpeed
+		{
+			get { return _removeSpeed; }
+		}
+
+		private void ExecuteAddSpeed()
+		{
+			AddSpeedWindowViewModel addSpeedWindowViewModel = new AddSpeedWindowViewModel();
+			Model.Speed Speed = addSpeedWindowViewModel.GetSpeed();
+			if (Speed != null)
+			{
+				Speeds.Speeds.Add(Speed);
+			}
+		}
+
+		private void ExecuteEditSpeed()
+		{
+			if (SelectedSpeed < Speeds.Speeds.Count && SelectedSpeed >= 0)
+			{
+				AddSpeedWindowViewModel addSpeedWindowViewModel = new AddSpeedWindowViewModel(Speeds.Speeds[SelectedSpeed]);
+				Model.Speed Speed = addSpeedWindowViewModel.GetSpeed();
+				if (Speed != null)
+				{
+					Speeds.Speeds[SelectedSpeed] = Speed;
+				}
+			}
+		}
+
+		private void ExecuteRemoveSpeed()
+		{
+			Speeds.Speeds.RemoveAt(SelectedSpeed);
 		}
 
 		public Command AddAttackSet

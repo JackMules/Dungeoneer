@@ -258,7 +258,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int Speed
+		public SpeedSet Speed
 		{
 			get { return GetEffectiveAttributes().Speed; }
 			set

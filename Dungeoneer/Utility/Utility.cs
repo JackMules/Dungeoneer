@@ -111,6 +111,11 @@ namespace Dungeoneer.Utility
 		public static readonly string ManouverabilityClumsy = "Clumsy";
 		public static readonly string ManouverabilityNone = "None";
 
+		public static readonly string MovementBurrow = "Burrow";
+		public static readonly string MovementClimb = "Climb";
+		public static readonly string MovementFly = "Fly";
+		public static readonly string MovementSwim = "Swim";
+
 		public static readonly List<string> SizeStrings = new List<string>
 		{
 			Methods.GetSizeString(Types.Size.Fine),
@@ -134,7 +139,7 @@ namespace Dungeoneer.Utility
 			Methods.GetDieTypeString(Types.Die.d10),
 			Methods.GetDieTypeString(Types.Die.d12),
 		};
-		
+
 		public static readonly List<string> AttackTypeStrings = new List<string>
 		{
 			Methods.GetAttackTypeString(Types.Attack.Melee),
@@ -221,6 +226,24 @@ namespace Dungeoneer.Utility
 			Methods.GetDamageTypeString(Types.Damage.Electricity),
 			Methods.GetDamageTypeString(Types.Damage.Fire),
 			Methods.GetDamageTypeString(Types.Damage.Sonic),
+		};
+
+		public static List<string> ManouverabilityStrings = new List<string>
+		{
+			 Methods.GetManouverabilityString(Types.Manouverability.Perfect),
+			 Methods.GetManouverabilityString(Types.Manouverability.Good),
+			 Methods.GetManouverabilityString(Types.Manouverability.Average),
+			 Methods.GetManouverabilityString(Types.Manouverability.Poor),
+			 Methods.GetManouverabilityString(Types.Manouverability.Clumsy),
+			 Methods.GetManouverabilityString(Types.Manouverability.None),
+		};
+
+		public static List<string> MovementTypeStrings = new List<string>
+		{
+			 Methods.GetMovementTypeString(Types.Movement.Burrow),
+			 Methods.GetMovementTypeString(Types.Movement.Climb),
+			 Methods.GetMovementTypeString(Types.Movement.Fly),
+			 Methods.GetMovementTypeString(Types.Movement.Swim),
 		};
 	}
 
@@ -345,30 +368,12 @@ namespace Dungeoneer.Utility
 			Ended,
 		}
 
-		public class Speed
+		public enum Movement
 		{
-			public Speed() { }
-
-			public Speed(int distance, string type)
-			{
-				Distance = distance;
-				Type = type;
-			}
-
-			private int _distance;
-			private string _type;
-
-			public int Distance
-			{
-				get { return _distance; }
-				set { _distance = value; }
-			}
-
-			public string Type
-			{
-				get { return _type; }
-				set { _type = value; }
-			}
+			Burrow,
+			Climb,
+			Fly,
+			Swim,
 		}
 
 		public enum Manouverability
@@ -830,23 +835,23 @@ namespace Dungeoneer.Utility
 
 		public static Types.Attack GetAttackTypeFromString(string str)
 		{
-			if (str == Constants.AttackTypeMelee)
+			if (str.Equals(Constants.AttackTypeMelee, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Attack.Melee;
 			}
-			else if (str == Constants.AttackTypeRanged)
+			else if (str.Equals(Constants.AttackTypeRanged, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Attack.Ranged;
 			}
-			else if (str == Constants.AttackTypeMeleeTouch)
+			else if (str.Equals(Constants.AttackTypeMeleeTouch, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Attack.MeleeTouch;
 			}
-			else if (str == Constants.AttackTypeRangedTouch)
+			else if (str.Equals(Constants.AttackTypeRangedTouch, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Attack.RangedTouch;
 			}
-			else if (str == Constants.AttackTypeIncorporealTouch)
+			else if (str.Equals(Constants.AttackTypeIncorporealTouch, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Attack.IncorporealTouch;
 			}
@@ -995,15 +1000,15 @@ namespace Dungeoneer.Utility
 
 		public static Types.TurnState GetTurnStateFromString(string str)
 		{
-			if (str == Constants.TurnStateNotStarted)
+			if (str.Equals(Constants.TurnStateNotStarted, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.TurnState.NotStarted;
 			}
-			else if (str == Constants.TurnStateStarted)
+			else if (str.Equals(Constants.TurnStateStarted, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.TurnState.Started;
 			}
-			else if (str == Constants.TurnStateEnded)
+			else if (str.Equals(Constants.TurnStateEnded, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.TurnState.Ended;
 			}
@@ -1029,33 +1034,74 @@ namespace Dungeoneer.Utility
 
 		public static Types.Manouverability GetManouverabilityFromString(string str)
 		{
-			if (str == Constants.ManouverabilityPerfect)
+			if (str.Equals(Constants.ManouverabilityPerfect, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Manouverability.Perfect;
 			}
-			else if (str == Constants.ManouverabilityGood)
+			else if (str.Equals(Constants.ManouverabilityGood, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Manouverability.Good;
 			}
-			else if (str == Constants.ManouverabilityAverage)
+			else if (str.Equals(Constants.ManouverabilityAverage, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Manouverability.Average;
 			}
-			else if (str == Constants.ManouverabilityPoor)
+			else if (str.Equals(Constants.ManouverabilityPoor, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Manouverability.Poor;
 			}
-			else if (str == Constants.ManouverabilityClumsy)
+			else if (str.Equals(Constants.ManouverabilityClumsy, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Manouverability.Clumsy;
 			}
-			else if (str == Constants.ManouverabilityNone)
+			else if (str.Equals(Constants.ManouverabilityNone, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Manouverability.None;
 			}
 			else
 			{
 				throw new FormatException("Manouverability \'" + str + "\' not recognised.");
+			}
+		}
+
+		public static string GetMovementTypeString(Types.Movement movementType)
+		{
+			switch (movementType)
+			{
+			case Types.Movement.Burrow:
+				return Constants.MovementBurrow;
+			case Types.Movement.Climb:
+				return Constants.MovementClimb;
+			case Types.Movement.Fly:
+				return Constants.MovementFly;
+			case Types.Movement.Swim:
+				return Constants.MovementSwim;
+			default:
+				return "Unrecognised movement type!";
+			}
+		}
+
+		public static Types.Movement GetMovementTypeFromString(string str)
+		{
+			if (str.Equals(Constants.MovementBurrow, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Movement.Burrow;
+			}
+			else if (str.Equals(Constants.MovementClimb, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Movement.Climb;
+			}
+			else if (str.Equals(Constants.MovementFly, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Movement.Fly;
+			}
+			else if (str.Equals(Constants.MovementSwim, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Movement.Swim;
+			}
+			else
+			{
+				throw new FormatException("Movement type \'" + str + "\' not recognised.");
 			}
 		}
 

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Dungeoneer.Model
 {
+	[Serializable]
 	public class SpeedSet : BaseModel
 	{
 		public SpeedSet()
@@ -23,13 +24,11 @@ namespace Dungeoneer.Model
 
 		private void Init()
 		{
-			_speeds = new List<Types.Speed>();
-			_manouverability = Types.Manouverability.None;
+			_speeds = new FullyObservableCollection<Speed>();
 		}
 
 		private int _landSpeed;
-		private List<Types.Speed> _speeds;
-		private Types.Manouverability _manouverability;
+		private FullyObservableCollection<Speed> _speeds;
 		
 		public int LandSpeed
 		{
@@ -41,7 +40,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public List<Types.Speed> Speeds
+		public FullyObservableCollection<Speed> Speeds
 		{
 			get { return _speeds; }
 			set
@@ -51,45 +50,22 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Types.Manouverability Manouverability
-		{
-			get { return _manouverability; }
-			set
-			{
-				_manouverability = value;
-			}
-		}
-
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("LandSpeed");
 			xmlWriter.WriteString(LandSpeed.ToString());
 			xmlWriter.WriteEndElement();
 
-			foreach (Types.Speed speed in Speeds)
+			foreach (Speed speed in Speeds)
 			{
-				xmlWriter.WriteStartElement("Speed");
-
-				xmlWriter.WriteStartElement("Distance");
-				xmlWriter.WriteString(speed.Distance.ToString());
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteStartElement("Type");
-				xmlWriter.WriteString(speed.Type);
-				xmlWriter.WriteEndElement();
-
-				xmlWriter.WriteEndElement();
+				speed.WriteXML(xmlWriter);
 			}
-
-			xmlWriter.WriteStartElement("Manouverability");
-			xmlWriter.WriteString(Methods.GetManouverabilityString(Manouverability));
-			xmlWriter.WriteEndElement();
 		}
 
 		public void ReadXML(XmlNode xmlNode)
 		{
 			try
-			{
+			{	
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
 					if (childNode.Name == "LandSpeed")
@@ -98,25 +74,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Speed")
 					{
-						Types.Speed speed = new Types.Speed();
-
-						foreach (XmlNode speedNode in childNode.ChildNodes)
-						{
-							if (speedNode.Name == "Distance")
-							{
-								speed.Distance = Convert.ToInt32(speedNode.InnerText);
-							}
-							else if (speedNode.Name == "Type")
-							{
-								speed.Type = speedNode.InnerText;
-							}
-						}
-
-						Speeds.Add(speed);
-					}
-					else if (childNode.Name == "Manouverability")
-					{
-						Manouverability = Methods.GetManouverabilityFromString(childNode.InnerText);
+						Speeds.Add(new Speed(childNode));
 					}
 				}
 			}

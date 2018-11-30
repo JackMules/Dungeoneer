@@ -470,6 +470,20 @@ namespace Dungeoneer.Model
 			TouchArmorClass += change;
 		}
 
+		public void ModifySpeed(double factor)
+		{
+			double distance = Speed.LandSpeed;
+			distance *= factor;
+			Speed.LandSpeed = (int)distance;
+
+			foreach (Model.Speed speed in Speed.Speeds)
+			{
+				distance = speed.Distance;
+				distance *= factor;
+				speed.Distance = (int)distance;
+			}
+		}
+
 		public void SetFlatFooted()
 		{
 			ArmorClass = FlatFootedArmorClass;

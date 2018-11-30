@@ -151,6 +151,7 @@
     <Compile Include="Model\Effect\EffectFactory.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Hit.cs" />
+    <Compile Include="Model\Speed.cs" />
     <Compile Include="Model\SpeedSet.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\WeaponSet.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Utility\ObjectCopier.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddSpeedWindowViewModel.cs" />
     <Compile Include="ViewModel\AddImmunityWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageReductionWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageWindowViewModel.cs" />
@@ -188,6 +190,9 @@
     <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />
     <Compile Include="View\AddAttackSetWindow.xaml.cs">
       <DependentUpon>AddAttackSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSpeedWindow.xaml.cs">
+      <DependentUpon>AddSpeedWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddImmunityWindow.xaml.cs">
       <DependentUpon>AddImmunityWindow.xaml</DependentUpon>
@@ -258,6 +263,10 @@
     <Page Include="View\AddAttackSetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSpeedWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AddImmunityWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
