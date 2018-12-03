@@ -62,12 +62,25 @@
 					<MenuItem Header="_Save Actor Data" Command="{Binding SaveActorLibrary}"/>
 					<MenuItem Header="_Exit" Command="{Binding Exit}"/>
 				</MenuItem>
+				<Label Content="Unsaved!" FontSize="12" FontWeight="Bold" Background="Yellow">
+					<Label.Style>
+						<Style TargetType="Label">
+							<Setter Property="Visibility" Value="Collapsed"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ActorLibrary.Modified, UpdateSourceTrigger=PropertyChanged}"
+														 Value="True">
+									<Setter Property="Visibility" Value="Visible"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</Label.Style>
+				</Label>
 			</Menu>
 			<TabControl>
 				<TabItem Header="Initiative">
 					<DockPanel>
 						<Border DockPanel.Dock="Top" Margin="4" BorderBrush="White" Background="LightGray" 
-										BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+										BorderThickness="1" CornerRadius="8">
 							<DockPanel>
 								<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
 									<Label Content="Round" FontWeight="Bold" Margin="5,0,0,0"/>
@@ -78,8 +91,8 @@
 								<Label/>
 							</DockPanel>
 						</Border>
-						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" 
-										CornerRadius="8,8,8,8">
+						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1" 
+										CornerRadius="8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
 								<ItemsControl ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
 															ItemTemplate="{StaticResource InitiativeCardTemplate}"

@@ -67,16 +67,13 @@ namespace Dungeoneer.Utility
 							}
 							else if (identifier == "Speed")
 							{
-								Model.SpeedSet speedSet = new Model.SpeedSet();
-								
-								speedSet.LandSpeed = numbers[0];
-
 								char[] commaChar = { ',' };
+
 								foreach (string speedStr in entry.Split(commaChar, StringSplitOptions.RemoveEmptyEntries))
 								{
 									string speedPattern = @"\s?(?<Type>\D*)\s(?<Speed>\d+)\sft.\s+(\((?<Manouverability>\w+)\))?";
 									Regex speedRegex = new Regex(speedPattern, RegexOptions.IgnoreCase);
-									Match speedMatch = speedRegex.Match(entry);
+									Match speedMatch = speedRegex.Match(speedStr);
 
 									if (speedMatch.Success)
 									{
@@ -87,12 +84,17 @@ namespace Dungeoneer.Utility
 										}
 										int distance = Convert.ToInt32(speedMatch.Groups["Speed"].Value);
 										string movementString = speedMatch.Groups["Type"].Value.Trim();
-										Types.Movement movementType = Methods.GetMovementTypeFromString(movementString);
-										speedSet.Speeds.Add(new Model.Speed(distance, movementType, manouverability));
+										if (movementString.Equals(""))
+										{
+											attributes.Speed.LandSpeed = distance;
+										}
+										else
+										{
+											Types.Movement movementType = Methods.GetMovementTypeFromString(movementString);
+											attributes.Speed.Speeds.Add(new Model.Speed(distance, movementType, manouverability));
+										}
 									}
 								}
-
-								attributes.Speed = speedSet;
 							}
 							else if (identifier == "Armor Class")
 							{

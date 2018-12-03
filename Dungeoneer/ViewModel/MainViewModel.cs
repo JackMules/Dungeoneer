@@ -218,7 +218,7 @@ namespace Dungeoneer.ViewModel
 			Model.PlayerActor playerActor = createActorWindowViewModel.GetPlayerActor();
 			if (playerActor != null)
 			{
-				ActorLibrary.Characters.Add(playerActor);
+				ActorLibrary.AddActor(playerActor);
 			}
 		}
 
@@ -233,59 +233,9 @@ namespace Dungeoneer.ViewModel
 			Model.Creature creature = createActorWindowViewModel.GetCreature();
 			if (creature != null)
 			{
-				ActorLibrary.Enemies.Add(creature);
+				ActorLibrary.AddActor(creature);
 			}
 		}
-		/*
-		private void CreateTestData()
-		{
-			Model.PlayerActor osprey = ActorLibrary.Characters.Single(i => i.ActorName == "Osprey");
-			ActorInitiativeViewModel ospreyViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(osprey, Encounter);
-			ospreyViewModel.DisplayName = osprey.ActorName;
-			InitiativeValueViewModel ospreyInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "12", InitiativeRoll = "19" };
-			InitiativeCardViewModel ospreyCard = InitiativeCardViewModelFactory.GetInitiativeCardViewModel(ospreyViewModel);
-			ospreyCard.InitiativeValueViewModel = ospreyInit;
-			Encounter.AddInitiativeCard(ospreyCard);
-
-			FullyObservableCollection<Model.Damage> damages = new FullyObservableCollection<Model.Damage>();
-			damages.Add(new Model.Damage { NumDice = 1, Die = Types.Die.d6, Modifier = 3, DamageDescriptorSet = new Model.DamageDescriptorSet { Bludgeoning = true, Piercing = true, Magic = true } });
-			damages.Add(new Model.Damage { NumDice = 1, Die = Types.Die.d4, Modifier = 2, DamageDescriptorSet = new Model.DamageDescriptorSet { Fire = true } });
-
-			Model.Attack grellAttack = new Model.Attack
-			{
-				Name = "Morning Star",
-				Modifier = 5,
-				Type = Types.Attack.Primary,
-				Damages = damages,
-				CritMultiplier = 2,
-				ThreatRangeMin = 19
-			};
-
-			AttackViewModel grellAttackViewModel = new AttackViewModel { Attack = grellAttack };
-			FullyObservableCollection<AttackViewModel> grellAttacks = new FullyObservableCollection<AttackViewModel>();
-			grellAttacks.Add(grellAttackViewModel);
-			Model.Creature grell = new Model.Creature { ActorName = "Grell", ArmorClass = 14, HitPoints = 24, AttackSets = grellAttacks };
-			ActorInitiativeViewModel grellViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(grell, Encounter);
-			grellViewModel.DisplayName = "Grell 1";
-			InitiativeValueViewModel grellInit = new InitiativeValueViewModel { InitiativeScore = "18", InitiativeAdjust = "0", InitiativeMod = "6", InitiativeRoll = "5" };
-			InitiativeCardViewModel grellCard = new InitiativeCardViewModel { ActorViewModel = grellViewModel, InitiativeValueViewModel = grellInit };
-			Encounter.AddInitiativeCard(grellCard);
-
-			Model.Creature troll = new Model.Creature { ActorName = "Troll", ArmorClass = 16, HitPoints = 52 };
-			ActorInitiativeViewModel trollViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(troll, Encounter);
-			trollViewModel.DisplayName = "Troll 1";
-			InitiativeValueViewModel trollInit = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "3", InitiativeRoll = "9" };
-			InitiativeCardViewModel trollCard = new InitiativeCardViewModel { ActorViewModel = trollViewModel, InitiativeValueViewModel = trollInit };
-			Encounter.AddInitiativeCard(trollCard);
-
-			Model.Creature troll2 = new Model.Creature { ActorName = "Troll", ArmorClass = 16, HitPoints = 52 };
-			ActorInitiativeViewModel troll2ViewModel = ActorInitiativeViewModelFactory.GetActorViewModel(troll2, Encounter);
-			troll2ViewModel.DisplayName = "Troll 2";
-			InitiativeValueViewModel troll2Init = new InitiativeValueViewModel { InitiativeScore = "15", InitiativeAdjust = "0", InitiativeMod = "3", InitiativeRoll = "3" };
-			InitiativeCardViewModel troll2Card = new InitiativeCardViewModel { ActorViewModel = troll2ViewModel, InitiativeValueViewModel = troll2Init };
-			Encounter.AddInitiativeCard(troll2Card);
-		}
-		*/
 		
 		public double WindowWidth
 		{
@@ -355,11 +305,11 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public System.Windows.WindowState WindowState
+		public WindowState WindowState
 		{
 			get
 			{
-				return (System.Windows.WindowState)Enum.Parse(typeof(System.Windows.WindowState), Properties.Settings.Default.WindowState);
+				return (WindowState)Enum.Parse(typeof(WindowState), Properties.Settings.Default.WindowState);
 			}
 			set
 			{

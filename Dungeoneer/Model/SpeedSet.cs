@@ -15,11 +15,13 @@ namespace Dungeoneer.Model
 		public SpeedSet()
 		{
 			_landSpeed = 0;
+			Init();
 		}
 
 		public SpeedSet(int landSpeed)
 		{
 			LandSpeed = landSpeed;
+			Init();
 		}
 
 		private void Init()
@@ -48,6 +50,18 @@ namespace Dungeoneer.Model
 				_speeds = value;
 				NotifyPropertyChanged("Speeds");
 			}
+		}
+
+		public override string ToString()
+		{
+			string str = LandSpeed.ToString() + " ft.";
+
+			foreach (Speed speed in Speeds)
+			{
+				str += ", " + speed.ToString();
+			}
+
+			return str;
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)

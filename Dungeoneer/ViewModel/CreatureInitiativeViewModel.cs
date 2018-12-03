@@ -101,6 +101,14 @@ namespace Dungeoneer.ViewModel
 			get { return Actor.SpecialQualities; }
 		}
 
+		public string Speed
+		{
+			get
+			{
+				return "speed " + Actor.Speed.ToString();
+			}
+		}
+
 		public int SpellResistance
 		{
 			get { return Actor.SpellResistance; }

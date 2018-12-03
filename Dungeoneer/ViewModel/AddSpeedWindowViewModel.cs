@@ -14,15 +14,13 @@ namespace Dungeoneer.ViewModel
 		{
 			if (speed != null)
 			{
-				_movementType = speed.MovementType;
-				_distance = speed.Distance.ToString();
-				_manouverability = speed.Manouverability;
+				SelectedMovementType = GetMovementTypeIndex(speed.MovementType);
+				Distance = speed.Distance.ToString();
+				SelectedManouverability = GetManouverabilityIndex(speed.Manouverability);
 			}
 		}
-
-		private Types.Movement _movementType;
+		
 		private string _distance;
-		private Types.Manouverability _manouverability;
 
 		private bool _enableManouverability;
 		private int _selectedMovementType;

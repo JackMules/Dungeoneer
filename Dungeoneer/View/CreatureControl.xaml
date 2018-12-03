@@ -111,9 +111,10 @@
 						<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
 						<TextBlock Text=" (" FontSize="12"/>
 						<TextBlock Text="{Binding Space}" FontSize="12"/>
-						<TextBlock Text="ft), reach " FontSize="12"/>
+						<TextBlock Text="ft.), reach " FontSize="12"/>
 						<TextBlock Text="{Binding Reach}" FontSize="12"/>
-						<TextBlock Text="ft" FontSize="12"/>
+						<TextBlock Text="ft., " FontSize="12"/>
+						<TextBlock Text="{Binding Speed}" FontSize="12"/>
 					</StackPanel>
 					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap" />
 					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>

@@ -60,6 +60,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public override string ToString()
+		{
+			string str = Methods.GetMovementTypeString(MovementType) + " " + Distance.ToString() + " ft.";
+			if (MovementType == Types.Movement.Fly)
+			{
+				str += " (" + Methods.GetManouverabilityString(Manouverability) + ")";
+			}
+			return str;
+		}
+
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Speed");

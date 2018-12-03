@@ -13,13 +13,12 @@ namespace Dungeoneer.Model
 	{
 		public ActorLibrary()
 		{
-			_characters = new ObservableCollection<PlayerActor>();
-			_enemies = new ObservableCollection<Creature>();
 			Load();
 		}
 
-		private ObservableCollection<PlayerActor> _characters;
-		private ObservableCollection<Creature> _enemies;
+		private ObservableCollection<PlayerActor> _characters = new ObservableCollection<PlayerActor>();
+		private ObservableCollection<Creature> _enemies = new ObservableCollection<Creature>();
+		private bool _modified = false;
 
 		public ObservableCollection<PlayerActor> Characters
 		{
@@ -41,11 +40,32 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool Modified
+		{
+			get { return _modified; }
+			set
+			{
+				_modified = value;
+				NotifyPropertyChanged("Modified");
+			}
+		}
+
 		public void Load()
 		{
-			if (!ReadXML())
+			ReadXML();
+		}
+
+		public void AddActor(Actor actor)
+		{
+			if (actor is PlayerActor)
 			{
-				LoadTestData();
+				Characters.Add(actor as PlayerActor);
+				Modified = true;
+			}
+			else if (actor is Creature)
+			{
+				Enemies.Add(actor as Creature);
+				Modified = true;
 			}
 		}
 
@@ -59,6 +79,7 @@ namespace Dungeoneer.Model
 				{
 					Characters.Remove(oldActor as PlayerActor);
 					Characters.Add(newActor as PlayerActor);
+					Modified = true;
 				}
 			}
 			else if (oldActor is Creature)
@@ -69,34 +90,9 @@ namespace Dungeoneer.Model
 				{
 					Enemies.Remove(oldActor as Creature);
 					Enemies.Add(newActor as Creature);
+					Modified = true;
 				}
 			}
-		}
-		
-		public void LoadTestData()
-		{
-/*
-			ObservableCollection<PlayerActor> characters = new ObservableCollection<PlayerActor>
-			{
-				new PlayerActor { ActorName = "Kolnik", InitiativeMod = -1 },
-				new PlayerActor { ActorName = "Atrion", InitiativeMod = 5 },
-				new PlayerActor { ActorName = "Thrasin", InitiativeMod = 7 },
-				new PlayerActor { ActorName = "Joshua", InitiativeMod = 10 },
-				new PlayerActor { ActorName = "Osprey", InitiativeMod = 13 }
-			};
-
-			Characters = characters;
-
-			ObservableCollection<NonPlayerActor> enemies = new ObservableCollection<NonPlayerActor>
-			{
-				new Creature { ActorName = "Orc", InitiativeMod = 3, ChallengeRating = 0.5f, ArmorClass = 13, HitPoints = 8 },
-				new Creature { ActorName = "Goblin", InitiativeMod = 2, ChallengeRating = 0.25f, ArmorClass = 11, HitPoints = 6 },
-				new NonPlayerActor { ActorName = "Poison Dart Trap", InitiativeMod = 6, ChallengeRating = 4 },
-				new Creature { ActorName = "Troll", ArmorClass = 16, HitPoints = 52 }
-			};
-
-			Enemies = enemies;
-*/
 		}
 
 		public void WriteXML()
@@ -123,6 +119,8 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
+
+			Modified = false;
 		}
 
 		public bool ReadXML()
