@@ -84,8 +84,12 @@
 				</Grid.Style>
 			</Grid>
 			<DockPanel DockPanel.Dock="Left">
-				<TextBox DockPanel.Dock="Left" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
-										 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
+				<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+					<TextBox Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+									 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
+					<TextBlock Text="{Binding ActorName}" FontSize="10" FontWeight="Light" HorizontalAlignment="Center"
+										 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
+				</StackPanel>
 				<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
 					<ToggleButton x:Name="InfoPanelToggleButton" Content="Info" Margin="1" FontSize="14" 
 												FontWeight="Bold"/>
