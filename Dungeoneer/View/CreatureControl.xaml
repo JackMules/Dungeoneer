@@ -84,12 +84,22 @@
 				</Grid.Style>
 			</Grid>
 			<DockPanel DockPanel.Dock="Left">
-				<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-					<TextBox Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
-									 Background="Transparent" VerticalAlignment="Center" BorderThickness="0"/>
-					<TextBlock Text="{Binding ActorName}" FontSize="10" FontWeight="Light" HorizontalAlignment="Center"
-										 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
-				</StackPanel>
+				<Grid DockPanel.Dock="Left">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="2*"/>
+						<RowDefinition Height="1*"/>
+					</Grid.RowDefinitions>
+					<TextBox Grid.Row="0" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+									 Background="Transparent" VerticalAlignment="Bottom" BorderThickness="0"/>
+					<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<TextBlock Text="{Binding ActorName}" FontSize="10" FontWeight="Light"
+											 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
+						<TextBlock Text=" CR" FontSize="10" FontWeight="Light" 
+											 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
+						<TextBlock Text="{Binding ChallengeRating}" FontSize="10" FontWeight="Light" 
+											 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
+					</StackPanel>
+				</Grid>
 				<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
 					<ToggleButton x:Name="InfoPanelToggleButton" Content="Info" Margin="1" FontSize="14" 
 												FontWeight="Bold"/>
