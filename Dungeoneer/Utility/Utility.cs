@@ -465,27 +465,27 @@ namespace Dungeoneer.Utility
 
 		public static Types.Die GetDieTypeFromString(string str)
 		{
-			if (str == Constants.DieTypeD3)
+			if (String.Equals(str, Constants.DieTypeD3, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Die.d3;
 			}
-			else if (str == Constants.DieTypeD4)
+			else if (String.Equals(str, Constants.DieTypeD4, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Die.d4;
 			}
-			else if (str == Constants.DieTypeD6)
+			else if (String.Equals(str, Constants.DieTypeD6, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Die.d6;
 			}
-			else if (str == Constants.DieTypeD8)
+			else if (String.Equals(str, Constants.DieTypeD8, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Die.d8;
 			}
-			else if (str == Constants.DieTypeD10)
+			else if (String.Equals(str, Constants.DieTypeD10, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Die.d10;
 			}
-			else if (str == Constants.DieTypeD12)
+			else if (String.Equals(str, Constants.DieTypeD12, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Die.d12;
 			}
@@ -547,43 +547,43 @@ namespace Dungeoneer.Utility
 
 		public static Types.Size GetSizeFromString(string str)
 		{
-			if (str == Constants.SizeFine)
+			if (String.Equals(str, Constants.SizeFine, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Fine;
 			}
-			else if (str == Constants.SizeDiminuative)
+			else if (String.Equals(str, Constants.SizeDiminuative, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Diminuative;
 			}
-			else if (str == Constants.SizeTiny)
+			else if (String.Equals(str, Constants.SizeTiny, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Tiny;
 			}
-			else if (str == Constants.SizeSmall)
+			else if (String.Equals(str, Constants.SizeSmall, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Small;
 			}
-			else if (str == Constants.SizeMedium)
+			else if (String.Equals(str, Constants.SizeMedium, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Medium;
 			}
-			else if (str == Constants.SizeLarge)
+			else if (String.Equals(str, Constants.SizeLarge, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Large;
 			}
-			else if (str == Constants.SizeHuge)
+			else if (String.Equals(str, Constants.SizeHuge, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Huge;
 			}
-			else if (str == Constants.SizeGargantuan)
+			else if (String.Equals(str, Constants.SizeGargantuan, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Gargantuan;
 			}
-			else if (str == Constants.SizeColossal)
+			else if (String.Equals(str, Constants.SizeColossal, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.Colossal;
 			}
-			else if (str == Constants.SizeColossalPlus)
+			else if (String.Equals(str, Constants.SizeColossalPlus, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Size.ColossalPlus;
 			}
@@ -609,27 +609,27 @@ namespace Dungeoneer.Utility
 
 		public static Types.Ability GetAbilityFromString(string str)
 		{
-			if (str == Constants.AbilityStrength)
+			if (String.Equals(str, Constants.AbilityStrength, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Ability.Strength;
 			}
-			else if (str == Constants.AbilityDexterity)
+			else if (String.Equals(str, Constants.AbilityDexterity, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Ability.Dexterity;
 			}
-			else if (str == Constants.AbilityConstitution)
+			else if (String.Equals(str, Constants.AbilityConstitution, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Ability.Constitution;
 			}
-			else if (str == Constants.AbilityIntelligence)
+			else if (String.Equals(str, Constants.AbilityIntelligence, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Ability.Intelligence;
 			}
-			else if (str == Constants.AbilityWisdom)
+			else if (String.Equals(str, Constants.AbilityWisdom, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Ability.Wisdom;
 			}
-			else if (str == Constants.AbilityCharisma)
+			else if (String.Equals(str, Constants.AbilityCharisma, StringComparison.OrdinalIgnoreCase))
 			{
 				return Types.Ability.Charisma;
 			}

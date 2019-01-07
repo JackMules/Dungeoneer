@@ -57,9 +57,16 @@ namespace Dungeoneer.Utility
 							}
 							else if (identifier == "Hit Dice")
 							{
-								attributes.HitDice = numbers[0];
-								attributes.HitDieType = Methods.GetDieTypeFromInt(numbers[1]);
-								attributes.HitPoints = numbers[3];
+								string hpPattern = @"\s?(?<NumHD>\d+)(?<HDType>[dD]\d+)\s?(?<HDMod>[\+\-]\d+)?\s?\((?<HP>\d+)\s?hp\)";
+								Regex hpRegex = new Regex(hpPattern, RegexOptions.IgnoreCase);
+								Match hpMatch = hpRegex.Match(entry);
+
+								if (hpMatch.Success)
+								{
+									attributes.HitDice = Convert.ToInt32(hpMatch.Groups["NumHD"].Value);
+									attributes.HitDieType = Methods.GetDieTypeFromString(hpMatch.Groups["HDType"].Value);
+									attributes.HitPoints = Convert.ToInt32(hpMatch.Groups["HP"].Value);
+								}
 							}
 							else if (identifier == "Initiative")
 							{
@@ -250,12 +257,101 @@ namespace Dungeoneer.Utility
 							}
 							else if (identifier == "Abilities")
 							{
-								attributes.Strength = numbers[0];
-								attributes.Dexterity = numbers[1];
-								attributes.Constitution = numbers[2];
-								attributes.Intelligence = numbers[3];
-								attributes.Wisdom = numbers[4];
-								attributes.Charisma = numbers[5];
+								string attributePattern = @"Str\s(?<Value>\w+)";
+								Regex attributeRegex = new Regex(attributePattern, RegexOptions.IgnoreCase);
+								Match attributeMatch = attributeRegex.Match(entry);
+
+								if (attributeMatch.Success)
+								{
+									try
+									{
+										attributes.Strength = Convert.ToInt32(attributeMatch.Groups["Value"].Value);
+									}
+									catch (FormatException)
+									{
+										attributes.Strength = 0;
+									}
+								}
+
+								attributePattern = @"Dex\s(?<Value>\w+)";
+								attributeRegex = new Regex(attributePattern, RegexOptions.IgnoreCase);
+								attributeMatch = attributeRegex.Match(entry);
+
+								if (attributeMatch.Success)
+								{
+									try
+									{
+										attributes.Dexterity = Convert.ToInt32(attributeMatch.Groups["Value"].Value);
+									}
+									catch (FormatException)
+									{
+										attributes.Dexterity = 0;
+									}
+								}
+
+								attributePattern = @"Con\s(?<Value>\w+)";
+								attributeRegex = new Regex(attributePattern, RegexOptions.IgnoreCase);
+								attributeMatch = attributeRegex.Match(entry);
+
+								if (attributeMatch.Success)
+								{
+									try
+									{
+										attributes.Constitution = Convert.ToInt32(attributeMatch.Groups["Value"].Value);
+									}
+									catch (FormatException)
+									{
+										attributes.Constitution = 0;
+									}
+								}
+
+								attributePattern = @"Int\s(?<Value>\w+)";
+								attributeRegex = new Regex(attributePattern, RegexOptions.IgnoreCase);
+								attributeMatch = attributeRegex.Match(entry);
+
+								if (attributeMatch.Success)
+								{
+									try
+									{
+										attributes.Intelligence = Convert.ToInt32(attributeMatch.Groups["Value"].Value);
+									}
+									catch (FormatException)
+									{
+										attributes.Intelligence = 0;
+									}
+								}
+
+								attributePattern = @"Wis\s(?<Value>\w+)";
+								attributeRegex = new Regex(attributePattern, RegexOptions.IgnoreCase);
+								attributeMatch = attributeRegex.Match(entry);
+
+								if (attributeMatch.Success)
+								{
+									try
+									{
+										attributes.Wisdom = Convert.ToInt32(attributeMatch.Groups["Value"].Value);
+									}
+									catch (FormatException)
+									{
+										attributes.Wisdom = 0;
+									}
+								}
+
+								attributePattern = @"Cha\s(?<Value>\w+)";
+								attributeRegex = new Regex(attributePattern, RegexOptions.IgnoreCase);
+								attributeMatch = attributeRegex.Match(entry);
+
+								if (attributeMatch.Success)
+								{
+									try
+									{
+										attributes.Charisma = Convert.ToInt32(attributeMatch.Groups["Value"].Value);
+									}
+									catch (FormatException)
+									{
+										attributes.Charisma = 0;
+									}
+								}
 							}
 							else if (identifier == "Feats")
 							{
