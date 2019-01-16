@@ -1,0 +1,22 @@
+Size/Type: Medium Monstrous Humanoid 
+Hit Dice: 2d8+2 (11 hp)
+Initiative: +1
+Speed: 30 ft. (6 squares)
+Armor Class: 15 (+1 Dex, +4 natural), touch 11, flat-footed 14 
+Base Attack/Grapple: +2/+4
+Attack: Battleaxe +4 melee (1d8+3/×3)
+Full Attack: Battleaxe +4 melee (1d8+3/×3)
+Space/Reach: 5 ft./5 ft.
+Special Attacks: —
+Special Qualities: Blindsight 40 ft., immunities, scent 
+Saves: Fort +1, Ref +4, Will +2 
+Abilities: Str 15, Dex 13, Con 13, Int 10, Wis 8, Cha 6 
+Skills: Climb +4, Hide +3*, Listen +5, Spot +3 
+Feats: Alertness, Track
+Environment: Underground 
+Organization: Gang (2–4), pack (10–20), tribe (10–60 plus 1 leader of 3rd–5th level per 10 adults), or cult (10–80 plus 1 leader of 3rd–5th level per 10 adults and 1 mind flayer or medusa)
+Challenge Rating: 1
+Treasure: Standard coins; standard goods (gems only); standard items
+Alignment: Often neutral evil 
+Advancement: By character class 
+Level Adjustment: +2

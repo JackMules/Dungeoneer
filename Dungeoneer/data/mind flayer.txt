@@ -1,0 +1,22 @@
+Size/Type: Medium Aberration                                                               
+Hit Dice: 8d8+8 (44 hp)                                                                               
+Initiative: +6
+Speed: 30 ft. (6 squares)                                                                           
+Armor Class: 15 (+2 Dex, +3 natural), touch 12, flat-footed 13              
+Base Attack/Grapple: +6/+7 
+Attack: Tentacle +8 melee (1d4+1)                                                       
+Full Attack: 4 tentacles +8 melee (1d4+1)                                                  
+Space/Reach: 5 ft./5 ft.                                                                                        
+Special Attacks: Mind blast, psionics, improved grab, extract 
+Special Qualities: Spell resistance 25, telepathy 100 ft.                                     
+Saves: Fort +3, Ref +4, Will +9                                                           
+Abilities: Str 12, Dex 14, Con 12, Int 19, Wis 17, Cha 17     
+Skills: Bluff +11, Concentration +11, Diplomacy +7, Disguise +3 (+5 acting), Hide +10, Intimidate +9, Knowledge (any) +12, Listen +11, Move Silently +10, Sense Motive +7, Spot +11 
+Feats: Combat Casting, Improved Initiative, Weapon Finesse                                                                                           
+Environment: Underground 
+Organization: Solitary, pair, inquisition (3–5), or cult (3–5 plus 6–10 grimlocks)                                            
+Challenge Rating: 8 
+Treasure: Double standard                                                                          
+Alignment: Usually lawful evil                                                                     
+Advancement: By character class                                                                       
+Level Adjustment: +7

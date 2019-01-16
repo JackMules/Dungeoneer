@@ -1,0 +1,22 @@
+Size/Type:	Medium Undead
+Hit Dice:	9d12 (58hp)
+Initiative:	+2
+Speed:	30 ft. (6 squares)
+Armor Class:	29 (+2 Dex, +12 natural, +5 deflection), touch 17, flat-footed 27
+Base Attack/Grapple:	+4/+11
+Attack:	Claw +16 melee (1d8+11 plus poison tears)
+Full Attack:	2 claws +16 melee (1d8+11 plus poison tears) and bite +13 melee (1d6+5 plus poison tears)
+Space/Reach:	5ft./5ft.
+Special Attacks:	Weeping dirge, poison tears
+Special Qualities:	Blindsight 60ft. damage reduction 5/magic and piercing, darkvision 60ft., fast healing 10, undead traits, unholy grace, +4 turn resistance
+Saves:	Fort +8, Ref +10, Will +13
+Abilities:	Str 33, Dex 15, Con --, Int 6, Wis 14, Cha 20
+Skills:	Hide +8, Listen +8, Move Silently +8, Spot +8
+Feats:	Dodge, Mobility, Multiattack, Weapon Focus (claws)
+Environment:	Cold mountains
+Organization:	Solitary, pair, group (3-4), or weep (6-10)
+Challenge Rating:	11
+Treasure:	Standard
+Alignment:	Always lawful evil
+Advancement:	9-16 HD (Medium); 17-24 HD (Large)
+Level Adjustment:	-
