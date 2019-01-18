@@ -78,7 +78,7 @@ namespace Dungeoneer.Utility
 
 								foreach (string speedStr in entry.Split(commaChar, StringSplitOptions.RemoveEmptyEntries))
 								{
-									string speedPattern = @"\s?(?<Type>\D*)\s(?<Speed>\d+)\sft.\s+(\((?<Manouverability>\w+)\))?";
+									string speedPattern = @"\s?(?<Type>\D*)\s(?<Speed>\d+)\s*ft.\s*(\((?<Manouverability>\w+)\))?";
 									Regex speedRegex = new Regex(speedPattern, RegexOptions.IgnoreCase);
 									Match speedMatch = speedRegex.Match(speedStr);
 
@@ -105,7 +105,7 @@ namespace Dungeoneer.Utility
 							}
 							else if (identifier == "Armor Class")
 							{
-								string acPattern = @"(?<AC>\d+)\s\(.*\),\stouch\s(?<TouchAC>\d+),\sflat\-footed\s(?<FFAC>\d+)";
+								string acPattern = @"(?<AC>\d+)\s\(.*\),\s*touch\s*(?<TouchAC>\d+),\s*flat\-footed\s*(?<FFAC>\d+)";
 								Regex acRegex = new Regex(acPattern, RegexOptions.IgnoreCase);
 								Match acMatch = acRegex.Match(entry);
 

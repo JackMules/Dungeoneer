@@ -1,0 +1,22 @@
+Size/Type:	Medium Undead
+Hit Dice:	11d12 (71 hp)
+Initiative:	+0
+Speed:	30 ft.
+Armor Class:	26 (+5 natural, +8 armor, +2 magic vestment), touch 10, flat-footed 26
+Base Attack/Grapple:	+8/+10
+Attack:	Scythe +12 melee (2d4+4) or touch +10 melee (negative energy and paralysis)
+Full Attack:	Scythe +12 melee (2d4+4) or touch +10 melee (negative energy and paralysis)
+Space/Reach:	5 ft./5 ft.
+Special Attacks:	Negative Energy Touch, Paralysing Touch, Rebuke Undead, Cleric spells
+Special Qualities:	Damage reduction 15/bludgeoning and magic, immunity to cold, immunity to electricity, immunity to polymorph, +4 turn resistance
+Saves:	Fort +10, Ref +6, Will +14
+Abilities:	Str 14, Dex 10, Con --, Int 14, Wis 19, Cha 16
+Skills:	Concentration +17, Knowledge (religion) +15, Spellcraft +15
+Feats:	Craft Wondrous Item, Extra Turning, Combat Casting, Extend Spell
+Environment:	-
+Organization:	-
+Challenge Rating:	13
+Treasure:	Double standard
+Alignment:	Chaotic Evil
+Advancement:	By character class
+Level Adjustment:	+2

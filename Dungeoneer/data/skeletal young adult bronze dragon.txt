@@ -1,10 +1,10 @@
 Size/Type:	Large Undead
 Hit Dice:	18d12+36 (153hp)
 Initiative:	+5
-Speed:	40 ft., fly 150 ft. (poor), swim 60 ft.
+Speed:	40 ft., fly 150 ft. (poor), swim 60 ft. 
 Armor Class:	14 (-1 size, +1 Dex , +2 natural, +2 deflection), touch 12,  flat-footed 13
 Base Attack/Grapple:	+9/+19
-Attack:	Claw +14 melee (1d6+6) or Bite melee +14 (2d6+6)
+Attack:	Claw +14 melee (1d6+6) or Bite +14 melee (2d6+6)
 Full Attack:	Bite +14 melee (2d6+6), 2 Claws +9 melee (1d8+3), 2 Wings +9 melee (1d6+3), Tail Slap +9 melee (1d8+3)
 Space/Reach:	10 ft./5 ft.
 Special Attacks:	—

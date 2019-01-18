@@ -4,8 +4,8 @@ Initiative:	+2
 Speed:	30 ft. (6 squares)
 Armor Class:	19 (+4 natural, +3 Hide , +2 Shield, heavy steel), touch 10, flat-footed 19
 Base Attack/Grapple:	+5/+9
-Attack:	Battleaxe +11 1d8+6
-Full Attack:	Battleaxe +11 1d8+6
+Attack:	Battleaxe +11 melee (1d8+6)
+Full Attack:	Battleaxe +11 melee (1d8+6)
 Space/Reach:	5 ft./5 ft.
 Special Attacks:	
 Special Qualities:	Blindsight(Ex): 40 ft., Sight-reliant Immunities(Ex): Grimlocks are immune to gaze attacks, visual effects, illusions, and other attack forms that rely on sight., Scent(Ex):, Natural Camouflage(Ex): A grimlock's dull gray skin helps it hide in its native terrain, conferring a +10 racial bonus on Hide checks when in mountains or underground., Rage(Ex): A barbarian can fly into a rage a certain number of times per day.

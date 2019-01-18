@@ -251,9 +251,6 @@
     <Compile Include="View\PlayerActorControl.xaml.cs">
       <DependentUpon>PlayerActorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ValuePicker.xaml.cs">
-      <DependentUpon>ValuePicker.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ValueButton.xaml.cs">
       <DependentUpon>ValueButton.xaml</DependentUpon>
     </Compile>
@@ -358,10 +355,6 @@
     <Page Include="View\PlayerActorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ValuePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ValueButton.xaml">
       <SubType>Designer</SubType>

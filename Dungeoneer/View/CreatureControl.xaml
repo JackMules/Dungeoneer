@@ -89,16 +89,11 @@
 						<RowDefinition Height="2*"/>
 						<RowDefinition Height="1*"/>
 					</Grid.RowDefinitions>
-					<TextBox Grid.Row="0" Margin="2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
+					<TextBox Name="DisplayNameTextBox" Grid.Row="0" Margin="4,2" Text="{Binding DisplayName}" FontSize="24" FontWeight="Bold" 
 									 Background="Transparent" VerticalAlignment="Bottom" BorderThickness="0"/>
-					<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-						<TextBlock Text="{Binding ActorName}" FontSize="10" FontWeight="Light"
-											 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
-						<TextBlock Text=" CR" FontSize="10" FontWeight="Light" 
-											 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
-						<TextBlock Text="{Binding ChallengeRating}" FontSize="10" FontWeight="Light" 
-											 VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"/>
-					</StackPanel>
+					<TextBlock Grid.Row="1" Text="{Binding CreatureInfo}" Margin="4,2"  FontSize="10" FontWeight="Light" 
+										 TextWrapping="Wrap" VerticalAlignment="Bottom" Background="Transparent" FontStyle="Italic"
+										 MaxWidth="{Binding ActualWidth, ElementName=DisplayNameTextBox}"/>
 				</Grid>
 				<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
 					<ToggleButton x:Name="InfoPanelToggleButton" Content="Info" Margin="1" FontSize="14" 

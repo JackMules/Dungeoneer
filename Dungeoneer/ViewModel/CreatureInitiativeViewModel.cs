@@ -56,6 +56,11 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string CreatureInfo
+		{
+			get { return ActorName + " CR" + ChallengeRating.ToString(); }
+		}
+
 		public FullyObservableCollection<Model.AttackSet> AttackSets
 		{
 			get { return Actor.AttackSets; }

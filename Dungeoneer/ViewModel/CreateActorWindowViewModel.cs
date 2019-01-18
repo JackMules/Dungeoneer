@@ -648,7 +648,10 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteRemoveSpeed()
 		{
-			Speeds.Speeds.RemoveAt(SelectedSpeed);
+			if (SelectedSpeed < Speeds.Speeds.Count)
+			{
+				Speeds.Speeds.RemoveAt(SelectedSpeed);
+			}
 		}
 
 		public Command AddAttackSet
@@ -691,7 +694,10 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteRemoveAttackSet()
 		{
-			AttackSets.RemoveAt(SelectedAttackSet);
+			if (SelectedAttackSet < AttackSets.Count)
+			{
+				AttackSets.RemoveAt(SelectedAttackSet);
+			}
 		}
 
 		public Command AddWeapon
@@ -734,7 +740,10 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteRemoveWeapon()
 		{
-			Weapons.RemoveAt(SelectedWeapon);
+			if (SelectedWeapon < Weapons.Count)
+			{
+				Weapons.RemoveAt(SelectedWeapon);
+			}
 		}
 
 		public Command AddDamageReduction
@@ -777,7 +786,10 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteRemoveDamageReduction()
 		{
-			DamageReductions.RemoveAt(SelectedDamageReduction);
+			if (SelectedDamageReduction < DamageReductions.Count)
+			{
+				DamageReductions.RemoveAt(SelectedDamageReduction);
+			}
 		}
 
 		public Command EditImmunities
