@@ -1,0 +1,22 @@
+Size/Type:	Medium Monstrous Humanoid
+Hit Dice:	2d8+6, 3d12+9 (43hp)
+Initiative:	+2
+Speed:	30 ft. (6 squares)
+Armor Class:	19 (+4 natural, +3 Hide , +2 Shield, heavy steel), touch 10, flat-footed 19
+Base Attack/Grapple:	+5/+9
+Attack:	Battleaxe +11 1d8+6
+Full Attack:	Battleaxe +11 1d8+6
+Space/Reach:	5 ft./5 ft.
+Special Attacks:	
+Special Qualities:	Blindsight(Ex): 40 ft., Sight-reliant Immunities(Ex): Grimlocks are immune to gaze attacks, visual effects, illusions, and other attack forms that rely on sight., Scent(Ex):, Natural Camouflage(Ex): A grimlock's dull gray skin helps it hide in its native terrain, conferring a +10 racial bonus on Hide checks when in mountains or underground., Rage(Ex): A barbarian can fly into a rage a certain number of times per day.
+Saves:	Fort +6 Ref +6 Will +2
+Abilities:	Str 20, Dex 15, Con 16, Int 12, Wis 6, Cha 6
+Skills:	Climb +6, Craft(Weaponsmithing) +3, Handle Animal +0, Hide +4, Intimidate +0, Jump +6, Listen+0, Ride +4, Spot +0, Survival +0, Swim +6
+Feats:	Track, Weapon Focus(Battleaxe)
+Environment:	
+Organization:	
+Challenge Rating:	4
+Treasure:	Standard
+Alignment:	Neutral Evil
+Advancement:	By character class
+Level Adjustment:	+2

@@ -490,11 +490,26 @@ namespace Dungeoneer.Model
 			TouchArmorClass -= Methods.GetAbilityModifier(Dexterity);
 		}
 
-		public void ModifySaves(int change)
+		public void ModifyFortitudeSave(int change)
 		{
 			FortitudeSave += change;
+		}
+
+		public void ModifyReflexSave(int change)
+		{
 			ReflexSave += change;
+		}
+
+		public void ModifyWillSave(int change)
+		{
 			WillSave += change;
+		}
+
+		public void ModifySaves(int change)
+		{
+			ModifyFortitudeSave(change);
+			ModifyReflexSave(change);
+			ModifyWillSave(change);
 		}
 
 		public void ModifyAbilityScore(Types.Ability ability, int change)

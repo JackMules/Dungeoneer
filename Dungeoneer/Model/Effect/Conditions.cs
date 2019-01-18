@@ -532,6 +532,32 @@ namespace Dungeoneer.Model.Effect.Conditions
 	}
 
 	[Serializable]
+	public class Raging : TimedEffect
+	{
+		public Raging()
+			: base(false)
+		{
+			Name = GetType().Name;
+		}
+
+		public override void ApplyTo(ActorAttributes attributes)
+		{
+			if (attributes is CreatureAttributes)
+			{
+				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, 4);
+				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Constitution, 4);
+				(attributes as CreatureAttributes).ModifyArmorClass(-2);
+				(attributes as CreatureAttributes).ModifyWillSave(2);
+			}
+		}
+
+		public override void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement(GetType().Name);
+		}
+	}
+
+		[Serializable]
 	public class Shaken : TimedEffect
 	{
 		public Shaken()

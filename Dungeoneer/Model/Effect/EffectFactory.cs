@@ -56,6 +56,7 @@ namespace Dungeoneer.Model.Effect
 				case Types.Effect.Petrified:					return new Conditions.Petrified();
 				case Types.Effect.Pinned:							return new Conditions.Pinned();
 				case Types.Effect.Prone:							return new Conditions.Prone();
+				case Types.Effect.Raging:							return new Conditions.Raging();
 				case Types.Effect.Shaken:							return new Conditions.Shaken();
 				case Types.Effect.Sickened:						return new Conditions.Sickened();
 				case Types.Effect.Stable:							return new Conditions.Stable();

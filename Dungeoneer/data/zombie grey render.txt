@@ -1,0 +1,22 @@
+Size/Type:	Large Undead
+Hit Dice:	20d12+43 (173 hp)
+Initiative:	-1
+Speed:	30 ft. (6 squares; can’t run)
+Armor Class:	18 (-1 size, -1 Dex, +8 natural, +2 deflection), touch 10, flat-footed 18
+Base Attack/Grapple:	+10/+21
+Attack:	Bite +16 melee (2d6+7) or slam +16 melee (1d8+10)
+Full Attack:	Bite +16 melee (2d6+7) or slam +16 melee (1d8+10)
+Space/Reach:	10 ft./10 ft.
+Special Attacks:	—
+Special Qualities:	Single actions only, damage reduction 5/slashing, darkvision 60 ft., undead traits
+Saves:	Fort +8, Ref +7, Will +14
+Abilities:	Str 25, Dex 8, Con Ø, Int Ø, Wis 10, Cha 1
+Skills:	—
+Feats:	Toughness
+Environment:	Temperate marshes
+Organization:	Any
+Challenge Rating:	6
+Treasure:	None
+Alignment:	Always neutral evil
+Advancement:	None
+Level Adjustment:	—

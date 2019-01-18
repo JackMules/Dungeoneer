@@ -92,6 +92,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectPetrified = "Petrified";
 		public static readonly string EffectPinned = "Pinned";
 		public static readonly string EffectProne = "Prone";
+		public static readonly string EffectRaging = "Raging";
 		public static readonly string EffectShaken = "Shaken";
 		public static readonly string EffectSickened = "Sickened";
 		public static readonly string EffectStable = "Stable";
@@ -210,6 +211,7 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Petrified),
 			Methods.GetEffectTypeString(Types.Effect.Pinned),
 			Methods.GetEffectTypeString(Types.Effect.Prone),
+			Methods.GetEffectTypeString(Types.Effect.Raging),
 			Methods.GetEffectTypeString(Types.Effect.Shaken),
 			Methods.GetEffectTypeString(Types.Effect.Sickened),
 			Methods.GetEffectTypeString(Types.Effect.Stable),
@@ -336,6 +338,7 @@ namespace Dungeoneer.Utility
 			Petrified,
 			Pinned, 
 			Prone,
+			Raging,
 			Shaken,
 			Sickened,
 			Stable,
@@ -669,6 +672,7 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Petrified:					return Constants.EffectPetrified;
 			case Types.Effect.Pinned:							return Constants.EffectPinned;
 			case Types.Effect.Prone:							return Constants.EffectProne;
+			case Types.Effect.Raging:							return Constants.EffectRaging;
 			case Types.Effect.Shaken:							return Constants.EffectShaken;
 			case Types.Effect.Sickened:						return Constants.EffectSickened;
 			case Types.Effect.Stable:							return Constants.EffectStable;
@@ -785,6 +789,10 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectProne)
 			{
 				return Types.Effect.Prone;
+			}
+			else if (effect == Constants.EffectRaging)
+			{
+				return Types.Effect.Raging;
 			}
 			else if (effect == Constants.EffectShaken)
 			{
