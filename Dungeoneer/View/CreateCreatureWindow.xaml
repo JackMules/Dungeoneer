@@ -47,8 +47,9 @@
 			<ComboBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" 
 								ItemsSource="{Binding Sizes}" SelectedIndex="{Binding SelectedSize}" Height="25" 
 								Margin="0,2" MinWidth="80"/>
-			<TextBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="25" 
-							 Margin="0,2" Text="{Binding Type}"/>
+			<ComboBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+								Height="25" Margin="0,2" ItemsSource="{Binding CreatureTypes}"
+								SelectedIndex="{Binding SelectedCreatureType}"/>
 		</Grid>
 
 		<!-- HD -->

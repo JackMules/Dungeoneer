@@ -21,6 +21,7 @@ namespace Dungeoneer.ViewModel
 			_round = 1;
 			_nextRound = new RelayCommand(ExecuteNextRound, CheckRound);
 			_clear = new Command(ExecuteClear);
+			_start = new Command(ExecuteStart);
 			_save = new Command(ExecuteSave);
 			_load = new Command(ExecuteLoad);
 			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
@@ -31,6 +32,7 @@ namespace Dungeoneer.ViewModel
 		private int _round;
 		private RelayCommand _nextRound;
 		private Command _clear;
+		private Command _start;
 		private Command _save;
 		private Command _load;
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
@@ -229,7 +231,23 @@ namespace Dungeoneer.ViewModel
 
 		public void ExecuteClear()
 		{
+			Round = 1;
 			InitiativeTrack.Clear();
+		}
+
+		public Command Start
+		{
+			get { return _start; }
+		}
+
+		public void ExecuteStart()
+		{
+			Round = 1;
+			
+			foreach (InitiativeCardViewModel cardVM in InitiativeTrack)
+			{
+				cardVM.StartEncounter();
+			}
 		}
 
 		public Command Load

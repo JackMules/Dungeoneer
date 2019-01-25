@@ -70,6 +70,12 @@ namespace Dungeoneer.Model
 			return effectiveAttributes;
 		}
 
+		public virtual void StartEncounter()
+		{
+			Effects.Clear();
+			NotifyPropertyChanged("Effects");
+		}
+
 		public string ActorName
 		{
 			get { return _actorName; }

@@ -230,8 +230,11 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteRemoveEffect()
 		{
-			Effects.RemoveAt(SelectedEffect);
-			ActorUpdated();
+			if (SelectedEffect >= 0 && SelectedEffect < Effects.Count)
+			{
+				Effects.RemoveAt(SelectedEffect);
+				ActorUpdated();
+			}
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

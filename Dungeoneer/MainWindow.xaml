@@ -62,9 +62,10 @@
 					<MenuItem Header="_Save Actor Data" Command="{Binding SaveActorLibrary}"/>
 					<MenuItem Header="_Exit" Command="{Binding Exit}"/>
 				</MenuItem>
-				<Label Content="Unsaved!" FontSize="12" FontWeight="Bold" Background="Yellow">
-					<Label.Style>
-						<Style TargetType="Label">
+				<Button Content="Unsaved!" FontSize="12" FontWeight="Bold" Background="Yellow" 
+							 Command="{Binding SaveActorLibrary}">
+					<Button.Style>
+						<Style TargetType="Button">
 							<Setter Property="Visibility" Value="Collapsed"/>
 							<Style.Triggers>
 								<DataTrigger Binding="{Binding ActorLibrary.Modified, UpdateSourceTrigger=PropertyChanged}"
@@ -73,8 +74,8 @@
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
-					</Label.Style>
-				</Label>
+					</Button.Style>
+				</Button>
 			</Menu>
 			<TabControl>
 				<TabItem Header="Initiative">
@@ -83,6 +84,7 @@
 										BorderThickness="1" CornerRadius="8">
 							<DockPanel>
 								<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+									<Button Content="Start Encounter" Command="{Binding Encounter.Start}" Margin="5,0"/>
 									<Label Content="Round" FontWeight="Bold" Margin="5,0,0,0"/>
 									<Label Content="{Binding Encounter.Round}" Margin="0,0,5,0" Background="White" 
 												 FontWeight="Bold" MinWidth="25"/>

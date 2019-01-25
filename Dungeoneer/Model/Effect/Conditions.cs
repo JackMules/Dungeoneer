@@ -31,6 +31,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Blinded);
+		}
 	}
 
 	[Serializable]
@@ -45,6 +50,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Confused);
 		}
 	}
 
@@ -70,6 +80,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Cowering);
+		}
 	}
 
 	[Serializable]
@@ -84,6 +99,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Dazed);
 		}
 	}
 
@@ -109,6 +129,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Dazzled);
+		}
 	}
 
 	[Serializable]
@@ -132,6 +157,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Dead);
+		}
 	}
 
 	[Serializable]
@@ -151,6 +181,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Deafened);
 		}
 	}
 
@@ -175,6 +210,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Disabled);
+		}
 	}
 
 	[Serializable]
@@ -189,6 +229,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Dying);
 		}
 	}
 
@@ -216,6 +261,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Entangled);
+		}
 	}
 
 	[Serializable]
@@ -241,6 +291,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Exhausted);
+		}
 	}
 
 	[Serializable]
@@ -255,6 +310,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Fascinated);
 		}
 	}
 
@@ -280,6 +340,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Fatigued);
+		}
 	}
 
 	[Serializable]
@@ -302,6 +367,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.FlatFooted);
 		}
 	}
 
@@ -328,6 +398,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Frightened);
+		}
 	}
 
 	[Serializable]
@@ -342,6 +417,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Grappling);
 		}
 	}
 
@@ -366,6 +446,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Helpless);
+		}
 	}
 
 	[Serializable]
@@ -380,6 +465,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Incorporeal);
 		}
 	}
 
@@ -396,6 +486,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Invisible);
+		}
 	}
 
 	[Serializable]
@@ -410,6 +505,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Nauseated);
 		}
 	}
 
@@ -437,6 +537,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.NegativeLevel);
+		}
 	}
 
 	[Serializable]
@@ -459,6 +564,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Panicked);
 		}
 	}
 
@@ -484,6 +594,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Paralysed);
+		}
 	}
 
 	[Serializable]
@@ -498,6 +613,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Petrified);
 		}
 	}
 
@@ -514,6 +634,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Pinned);
+		}
 	}
 
 	[Serializable]
@@ -528,6 +653,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Prone);
 		}
 	}
 
@@ -555,6 +685,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Raging);
+		}
 	}
 
 		[Serializable]
@@ -579,6 +714,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Shaken);
 		}
 	}
 
@@ -605,6 +745,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Sickened);
+		}
 	}
 
 	[Serializable]
@@ -620,6 +765,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Stable);
+		}
 	}
 
 	[Serializable]
@@ -634,6 +784,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Staggered);
 		}
 	}
 
@@ -659,6 +814,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Stunned);
+		}
 	}
 
 	[Serializable]
@@ -674,6 +834,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
 		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Turned);
+		}
 	}
 
 	[Serializable]
@@ -688,6 +853,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement(GetType().Name);
+		}
+
+		public override string ToString()
+		{
+			return Methods.GetEffectTypeString(Types.Effect.Unconscious);
 		}
 	}
 }

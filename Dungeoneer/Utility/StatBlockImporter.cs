@@ -53,7 +53,10 @@ namespace Dungeoneer.Utility
 							if (identifier == "Size/Type")
 							{
 								attributes.Size = Methods.GetSizeFromString(words[0]);
-								attributes.Type = string.Join(" ", words.Skip(1));
+								attributes.Type = Methods.GetCreatureTypeFromString(string.Join(" ", words.Skip(1)));
+
+
+//								attributes.Subtype = Methods.GetCreatureSubTypeFromString();
 							}
 							else if (identifier == "Hit Dice")
 							{
@@ -358,6 +361,17 @@ namespace Dungeoneer.Utility
 								foreach (string feat in entry.Split(','))
 								{
 									attributes.Feats.Add(feat.Trim());
+								}
+
+								if (attributes.WeaponFinesse)
+								{
+									foreach (Model.AttackSet attackSet in attributes.AttackSets)
+									{
+										foreach (Model.Attack attack in attackSet.Attacks)
+										{
+											attack.Ability = Types.Ability.Dexterity;
+										}
+									}
 								}
 							}
 							else if (identifier == "Challenge Rating")

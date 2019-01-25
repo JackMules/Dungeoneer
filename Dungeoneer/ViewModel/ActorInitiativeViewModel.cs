@@ -23,6 +23,12 @@ namespace Dungeoneer.ViewModel
 		protected Model.Actor _actor;
 		private string _displayName;
 
+		public void StartEncounter()
+		{
+			Actor.StartEncounter();
+			ActorUpdated();
+		}
+
 		public Model.Actor Actor
 		{
 			get { return _actor; }

@@ -7,7 +7,7 @@
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
 						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
 						 mc:Ignorable="d" 
-						 d:DesignHeight="76" d:DesignWidth="596">
+						 d:DesignHeight="140" d:DesignWidth="596">
 	<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
 		<DockPanel>
 			<Grid DockPanel.Dock="Bottom" Margin="0,2,0,0">
@@ -97,7 +97,7 @@
 				</Grid>
 				<StackPanel DockPanel.Dock="Left" Orientation="Vertical" VerticalAlignment="Center">
 					<ToggleButton x:Name="InfoPanelToggleButton" Content="Info" Margin="1" FontSize="14" 
-												FontWeight="Bold"/>
+												FontWeight="Bold" IsChecked="True"/>
 				</StackPanel>
 				<view:ValueDisplay DockPanel.Dock="Left" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
 				<view:ValueButton DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
@@ -117,13 +117,27 @@
 				</Grid>
 				<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
 					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding Size}" FontSize="12" FontWeight="Bold"/>
-						<TextBlock Text=" (" FontSize="12"/>
-						<TextBlock Text="{Binding Space}" FontSize="12"/>
-						<TextBlock Text="ft.), reach " FontSize="12"/>
-						<TextBlock Text="{Binding Reach}" FontSize="12"/>
-						<TextBlock Text="ft., " FontSize="12"/>
-						<TextBlock Text="{Binding Speed}" FontSize="12"/>
+						<TextBlock Text="Str " FontWeight="Bold"/>
+						<TextBlock Text="{Binding Actor.Strength}"/>
+						<TextBlock Text=" Dex " FontWeight="Bold"/>
+						<TextBlock Text="{Binding Actor.Dexterity}"/>
+						<TextBlock Text=" Con " FontWeight="Bold"/>
+						<TextBlock Text="{Binding Actor.Constitution}"/>
+						<TextBlock Text=" Int " FontWeight="Bold"/>
+						<TextBlock Text="{Binding Actor.Intelligence}"/>
+						<TextBlock Text=" Wis " FontWeight="Bold"/>
+						<TextBlock Text="{Binding Actor.Wisdom}"/>
+						<TextBlock Text=" Cha " FontWeight="Bold"/>
+						<TextBlock Text="{Binding Actor.Charisma}"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Size}" FontWeight="Bold"/>
+						<TextBlock Text=" ("/>
+						<TextBlock Text="{Binding Space}"/>
+						<TextBlock Text="ft.), reach "/>
+						<TextBlock Text="{Binding Reach}"/>
+						<TextBlock Text="ft., "/>
+						<TextBlock Text="{Binding Speed}"/>
 					</StackPanel>
 					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap" />
 					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>

@@ -42,6 +42,11 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public virtual void StartEncounter()
+		{
+			ActorViewModel.StartEncounter();
+		}
+
 		public virtual void StartTurn()
 		{
 			ActorViewModel.Actor.ApplyPerTurnEffects();

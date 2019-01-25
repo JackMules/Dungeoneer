@@ -31,12 +31,12 @@ namespace Dungeoneer.ViewModel
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
 
+			SelectedCreatureType = CreatureTypes.IndexOf(Methods.GetCreatureTypeString(Types.Creature.Humanoid));
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(Types.Size.Medium));
 		}
 
 		private string _actorName;
 		private string _initiativeMod;
-		private string _type;
 		private string _challengeRating;
 		private FullyObservableCollection<Model.AttackSet> _attackSets;
 		private string _strength;
@@ -71,6 +71,7 @@ namespace Dungeoneer.ViewModel
 		private List<string> _feats;
 
 		private int _selectedSize;
+		private int _selectedCreatureType;
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
 		private ObservableCollection<Model.Weapon> _weapons;
 		private Model.DamageDescriptorSet _immunities;
@@ -113,16 +114,6 @@ namespace Dungeoneer.ViewModel
 			{
 				_initiativeMod = value;
 				NotifyPropertyChanged("InitiativeMod");
-			}
-		}
-
-		public string Type
-		{
-			get { return _type; }
-			set
-			{
-				_type = value;
-				NotifyPropertyChanged("Type");
 			}
 		}
 
@@ -450,6 +441,21 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public int SelectedCreatureType
+		{
+			get { return _selectedCreatureType; }
+			set
+			{
+				_selectedCreatureType = value;
+				NotifyPropertyChanged("SelectedCreatureType");
+			}
+		}
+
+		public List<string> CreatureTypes
+		{
+			get { return Constants.CreatureTypeStrings; }
+		}
+
 		public List<string> DieTypes
 		{
 			get { return Constants.DieTypeStrings; }
@@ -471,7 +477,7 @@ namespace Dungeoneer.ViewModel
 		{
 			ActorName = creature.ActorName;
 			InitiativeMod = Methods.GetSignedNumberString(creature.InitiativeMod);
-			Type = creature.Type;
+			SelectedCreatureType = CreatureTypes.IndexOf(Methods.GetCreatureTypeString(creature.Type));
 			ChallengeRating = creature.ChallengeRating.ToString();
 			AttackSets = creature.AttackSets;
 			Strength = creature.Strength.ToString();
@@ -557,7 +563,7 @@ namespace Dungeoneer.ViewModel
 						Model.CreatureAttributes creatureAttributes = new Model.CreatureAttributes
 						{
 							InitiativeMod = Convert.ToInt32(InitiativeMod),
-							Type = Type,
+							Type = Methods.GetCreatureTypeFromString(CreatureTypes.ElementAt(SelectedCreatureType)),
 							ChallengeRating = Convert.ToSingle(ChallengeRating),
 							AttackSets = AttackSets,
 							Strength = Convert.ToInt32(Strength),

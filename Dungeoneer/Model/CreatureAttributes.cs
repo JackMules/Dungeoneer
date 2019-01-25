@@ -15,7 +15,7 @@ namespace Dungeoneer.Model
 	{
 		public CreatureAttributes()
 		{
-			Type = "No Type";
+			Type = Types.Creature.Humanoid;
 			ChallengeRating = 1;
 			AttackSets = new FullyObservableCollection<AttackSet>();
 			Strength = 10;
@@ -82,7 +82,7 @@ namespace Dungeoneer.Model
 			SpecialQualities = other.SpecialQualities;
 		}
 
-		private string _type;
+		private Types.Creature _type;
 		private float _challengeRating;
 		private FullyObservableCollection<AttackSet> _attackSets;
 
@@ -121,7 +121,7 @@ namespace Dungeoneer.Model
 		private string _specialAttacks;
 		private string _specialQualities;
 
-		public string Type
+		public Types.Creature Type
 		{
 			get { return _type; }
 			set
@@ -343,6 +343,14 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool WeaponFinesse
+		{
+			get
+			{
+				return Feats.Contains("Weapon Finesse", StringComparer.CurrentCultureIgnoreCase);
+			}
+		}
+
 		public int Space
 		{
 			get { return _space; }
@@ -436,31 +444,31 @@ namespace Dungeoneer.Model
 
 		public void ChangeAttackModifier(Types.Ability ability, int change)
 		{
-			for (int set = 0; set < AttackSets.Count; ++set)
+			foreach (AttackSet attackSet in AttackSets)
 			{
-				for (int attack = 0; attack < AttackSets[set].Attacks.Count; ++attack)
+				foreach (Attack attack in attackSet.Attacks)
 				{
-					bool meleeAttack = false;
-					bool rangedAttack = false;
-
-					if ((AttackSets[set].Attacks[attack].Type == Types.Attack.Melee) ||
-						(AttackSets[set].Attacks[attack].Type == Types.Attack.MeleeTouch))
+					if (attack.Ability == ability)
 					{
-						meleeAttack = true;
-					}
-					else
-					{
-						rangedAttack = true;
-					}
-
-					if ((meleeAttack && ability == Types.Ability.Strength) ||
-						(rangedAttack && ability == Types.Ability.Dexterity))
-					{
-						AttackSets[set].Attacks[attack].Modifier += change;
+						attack.Modifier += change;
 					}
 				}
 			}
 			NotifyPropertyChanged("AttackSets");
+		}
+
+		public void ChangeDamageModifier(int change)
+		{
+			foreach (AttackSet attackSet in AttackSets)
+			{
+				foreach (Attack attack in attackSet.Attacks)
+				{
+					if (attack.Damages.Count > 0)
+					{
+						attack.Damages[0].Modifier += change;
+					}
+				}
+			}
 		}
 
 		public void ModifyArmorClass(int change)
@@ -525,15 +533,22 @@ namespace Dungeoneer.Model
 			{
 				ChangeAttackModifier(ability, modifierDifference);
 
-				if (ability == Types.Ability.Dexterity)
+				if (ability == Types.Ability.Strength)
+				{
+					ChangeDamageModifier(modifierDifference);
+				}
+				else if (ability == Types.Ability.Dexterity)
 				{
 					ReflexSave += modifierDifference;
 				}
 			}
 			else if (ability == Types.Ability.Constitution)
 			{
-				HitPoints += HitDice * modifierDifference;
-				FortitudeSave += modifierDifference;
+				if (Type != Types.Creature.Undead)
+				{
+					HitPoints += HitDice * modifierDifference;
+					FortitudeSave += modifierDifference;
+				}
 			}
 			else
 			{
@@ -644,7 +659,7 @@ namespace Dungeoneer.Model
 			base.WritePropertyXML(xmlWriter);
 
 			xmlWriter.WriteStartElement("Type");
-			xmlWriter.WriteString(Type);
+			xmlWriter.WriteString(Methods.GetCreatureTypeString(Type));
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("ChallengeRating");
@@ -785,7 +800,14 @@ namespace Dungeoneer.Model
 				{
 					if (childNode.Name == "Type")
 					{
-						Type = childNode.InnerText;
+						try
+						{
+							Type = Methods.GetCreatureTypeFromString(childNode.InnerText);
+						}
+						catch (FormatException)
+						{
+							Type = Types.Creature.Humanoid;
+						}
 					}
 					else if (childNode.Name == "ChallengeRating")
 					{

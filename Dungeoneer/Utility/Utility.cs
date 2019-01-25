@@ -80,7 +80,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectExhausted = "Exhausted";
 		public static readonly string EffectFascinated = "Fascinated";
 		public static readonly string EffectFatigued = "Fatigued";
-		public static readonly string EffectFlatFooted = "Flat Footed";
+		public static readonly string EffectFlatFooted = "Flat-Footed";
 		public static readonly string EffectFrightened = "Frightened";
 		public static readonly string EffectGrappling = "Grappling";
 		public static readonly string EffectHelpless = "Helpless";
@@ -116,6 +116,22 @@ namespace Dungeoneer.Utility
 		public static readonly string MovementClimb = "Climb";
 		public static readonly string MovementFly = "Fly";
 		public static readonly string MovementSwim = "Swim";
+
+		public static readonly string CreatureAberration = "Aberration";
+		public static readonly string CreatureAnimal = "Animal";
+		public static readonly string CreatureConstruct = "Construct";
+		public static readonly string CreatureDragon = "Dragon";
+		public static readonly string CreatureElemental = "Elemental";
+		public static readonly string CreatureFey = "Fey";
+		public static readonly string CreatureGiant = "Giant";
+		public static readonly string CreatureHumanoid = "Humanoid";
+		public static readonly string CreatureMagicalBeast = "Magical Beast";
+		public static readonly string CreatureMonstrousHumanoid = "Monstrous Humanoid";
+		public static readonly string CreatureOoze = "Ooze";
+		public static readonly string CreatureOutsider = "Outsider";
+		public static readonly string CreaturePlant = "Plant";
+		public static readonly string CreatureUndead = "Undead";
+		public static readonly string CreatureVermin = "Vermin";
 
 		public static readonly List<string> SizeStrings = new List<string>
 		{
@@ -246,6 +262,25 @@ namespace Dungeoneer.Utility
 			 Methods.GetMovementTypeString(Types.Movement.Climb),
 			 Methods.GetMovementTypeString(Types.Movement.Fly),
 			 Methods.GetMovementTypeString(Types.Movement.Swim),
+		};
+
+		public static List<string> CreatureTypeStrings = new List<string>
+		{
+			Methods.GetCreatureTypeString(Types.Creature.Aberration),
+			Methods.GetCreatureTypeString(Types.Creature.Animal),
+			Methods.GetCreatureTypeString(Types.Creature.Construct),
+			Methods.GetCreatureTypeString(Types.Creature.Dragon),
+			Methods.GetCreatureTypeString(Types.Creature.Elemental),
+			Methods.GetCreatureTypeString(Types.Creature.Fey),
+			Methods.GetCreatureTypeString(Types.Creature.Giant),
+			Methods.GetCreatureTypeString(Types.Creature.Humanoid),
+			Methods.GetCreatureTypeString(Types.Creature.MagicalBeast),
+			Methods.GetCreatureTypeString(Types.Creature.MonstrousHumanoid),
+			Methods.GetCreatureTypeString(Types.Creature.Ooze),
+			Methods.GetCreatureTypeString(Types.Creature.Outsider),
+			Methods.GetCreatureTypeString(Types.Creature.Plant),
+			Methods.GetCreatureTypeString(Types.Creature.Undead),
+			Methods.GetCreatureTypeString(Types.Creature.Vermin),
 		};
 	}
 
@@ -387,6 +422,25 @@ namespace Dungeoneer.Utility
 			Poor, 
 			Clumsy,
 			None,
+		}
+
+		public enum Creature
+		{
+			Aberration,
+			Animal,
+			Construct,
+			Dragon,
+			Elemental,
+			Fey,
+			Giant,
+			Humanoid,
+			MagicalBeast,
+			MonstrousHumanoid,
+			Ooze,
+			Outsider,
+			Plant,
+			Undead,
+			Vermin,
 		}
 	}
 
@@ -1110,6 +1164,113 @@ namespace Dungeoneer.Utility
 			else
 			{
 				throw new FormatException("Movement type \'" + str + "\' not recognised.");
+			}
+		}
+
+		public static string GetCreatureTypeString(Types.Creature creatureType)
+		{
+			switch (creatureType)
+			{
+			case Types.Creature.Aberration:
+				return Constants.CreatureAberration;
+			case Types.Creature.Animal:
+				return Constants.CreatureAnimal;
+			case Types.Creature.Construct:
+				return Constants.CreatureConstruct;
+			case Types.Creature.Dragon:
+				return Constants.CreatureDragon;
+			case Types.Creature.Elemental:
+				return Constants.CreatureElemental;
+			case Types.Creature.Fey:
+				return Constants.CreatureFey;
+			case Types.Creature.Giant:
+				return Constants.CreatureGiant;
+			case Types.Creature.Humanoid:
+				return Constants.CreatureHumanoid;
+			case Types.Creature.MagicalBeast:
+				return Constants.CreatureMagicalBeast;
+			case Types.Creature.MonstrousHumanoid:
+				return Constants.CreatureMonstrousHumanoid;
+			case Types.Creature.Ooze:
+				return Constants.CreatureOoze;
+			case Types.Creature.Outsider:
+				return Constants.CreatureOutsider;
+			case Types.Creature.Plant:
+				return Constants.CreaturePlant;
+			case Types.Creature.Undead:
+				return Constants.CreatureUndead;
+			case Types.Creature.Vermin:
+				return Constants.CreatureVermin;
+			default:
+				return "Unrecognised creature type!";
+			}
+		}
+
+		public static Types.Creature GetCreatureTypeFromString(string str)
+		{
+			if (str.Equals(Constants.CreatureAberration, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Aberration;
+			}
+			else if (str.Equals(Constants.CreatureAnimal, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Animal;
+			}
+			else if (str.Equals(Constants.CreatureConstruct, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Construct;
+			}
+			else if (str.Equals(Constants.CreatureDragon, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Dragon;
+			}
+			else if (str.Equals(Constants.CreatureElemental, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Elemental;
+			}
+			else if (str.Equals(Constants.CreatureFey, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Fey;
+			}
+			else if (str.Equals(Constants.CreatureGiant, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Giant;
+			}
+			else if (str.Equals(Constants.CreatureHumanoid, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Humanoid;
+			}
+			else if (str.Equals(Constants.CreatureMagicalBeast, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.MagicalBeast;
+			}
+			else if (str.Equals(Constants.CreatureMonstrousHumanoid, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.MonstrousHumanoid;
+			}
+			else if (str.Equals(Constants.CreatureOoze, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Ooze;
+			}
+			else if (str.Equals(Constants.CreatureOutsider, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Outsider;
+			}
+			else if (str.Equals(Constants.CreaturePlant, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Plant;
+			}
+			else if (str.Equals(Constants.CreatureUndead, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Undead;
+			}
+			else if (str.Equals(Constants.CreatureVermin, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Creature.Vermin;
+			}
+			else
+			{
+				throw new FormatException("Creature type \'" + str + "\' not recognised.");
 			}
 		}
 

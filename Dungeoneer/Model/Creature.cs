@@ -35,6 +35,15 @@ namespace Dungeoneer.Model
 		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
 		private CreatureAttributes _modifiedCreatureAttributes = new CreatureAttributes();
 
+		public override void StartEncounter()
+		{
+			base.StartEncounter();
+
+			Effect.Conditions.FlatFooted flatFooted = new Effect.Conditions.FlatFooted();
+			flatFooted.Duration = 1;
+			Effects.Add(flatFooted);
+		}
+
 		protected new CreatureAttributes BaseAttributes
 		{
 			get { return _baseCreatureAttributes; }
@@ -85,7 +94,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public string Type
+		public Types.Creature Type
 		{
 			get { return GetEffectiveAttributes().Type; }
 			set
