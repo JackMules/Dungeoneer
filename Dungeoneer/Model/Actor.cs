@@ -65,7 +65,10 @@ namespace Dungeoneer.Model
 			ActorAttributes effectiveAttributes = ModifiedAttributes.Clone();
 			foreach (Effect.Effect effect in Effects)
 			{
-				effect.ApplyTo(effectiveAttributes);
+				if (!effect.PerTurn)
+				{
+					effect.ApplyTo(effectiveAttributes, BaseAttributes);
+				}
 			}
 			return effectiveAttributes;
 		}
@@ -116,13 +119,13 @@ namespace Dungeoneer.Model
 			}
 		}
 		
-		public void ApplyPerTurnEffects()
+		public virtual void ApplyPerTurnEffects()
 		{
 			foreach (Effect.Effect effect in Effects)
 			{
 				if (effect.PerTurn)
 				{
-					effect.ApplyTo(ModifiedAttributes);
+					effect.ApplyTo(ModifiedAttributes, BaseAttributes);
 				}
 			}
 		}

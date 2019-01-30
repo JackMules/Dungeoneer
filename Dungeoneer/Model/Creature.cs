@@ -42,6 +42,13 @@ namespace Dungeoneer.Model
 			Effect.Conditions.FlatFooted flatFooted = new Effect.Conditions.FlatFooted();
 			flatFooted.Duration = 1;
 			Effects.Add(flatFooted);
+
+			if (BaseAttributes.FastHealing > 0)
+			{
+				Effect.FastHealing fastHealing = new Effect.FastHealing();
+				fastHealing.HealingAmount = BaseAttributes.FastHealing;
+				Effects.Add(fastHealing);
+			}
 		}
 
 		protected new CreatureAttributes BaseAttributes
@@ -69,9 +76,23 @@ namespace Dungeoneer.Model
 			CreatureAttributes effectiveAttributes = ModifiedAttributes.Clone();
 			foreach (Effect.Effect effect in Effects)
 			{
-				effect.ApplyTo(effectiveAttributes);
+				if (!effect.PerTurn)
+				{
+					effect.ApplyTo(effectiveAttributes, BaseAttributes);
+				}
 			}
 			return effectiveAttributes;
+		}
+
+		public override void ApplyPerTurnEffects()
+		{
+			foreach (Effect.Effect effect in Effects)
+			{
+				if (effect.PerTurn)
+				{
+					effect.ApplyTo(ModifiedAttributes, BaseAttributes);
+				}
+			}
 		}
 
 		public override int InitiativeMod
@@ -384,6 +405,16 @@ namespace Dungeoneer.Model
 			{
 				ModifiedAttributes.SpellResistance = value;
 				NotifyPropertyChanged("SpellResistance");
+			}
+		}
+
+		public uint FastHealing
+		{
+			get { return GetEffectiveAttributes().FastHealing; }
+			set
+			{
+				ModifiedAttributes.FastHealing = value;
+				NotifyPropertyChanged("FastHealing");
 			}
 		}
 

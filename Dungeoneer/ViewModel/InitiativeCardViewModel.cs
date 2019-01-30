@@ -149,12 +149,8 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteOpenInitiativeDialog()
 		{
-			SetInitiativeWindowViewModel setInitiativeWindowViewModel = new SetInitiativeWindowViewModel(ActorViewModel.InitiativeMod);
-			Model.InitiativeValue initiativeValue = setInitiativeWindowViewModel.GetInitiative();
-			if (initiativeValue != null)
-			{
-				InitiativeValueViewModel = new InitiativeValueViewModel { InitiativeValue = initiativeValue };
-			}
+			InitiativeValueViewModel.OpenInitDialog(ActorViewModel.InitiativeMod);
+			NotifyPropertyChanged("InitiativeValueViewModel");
 		}
 
 		public virtual void WriteXMLStartElement(XmlWriter xmlWriter)

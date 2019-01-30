@@ -149,6 +149,7 @@
     <Compile Include="Model\Damage.cs" />
     <Compile Include="Model\DamageReduction.cs" />
     <Compile Include="Model\Effect\EffectFactory.cs" />
+    <Compile Include="Model\Effect\ValueEffect.cs" />
     <Compile Include="Model\Effect\TimedEffect.cs" />
     <Compile Include="Model\Hit.cs" />
     <Compile Include="Model\Speed.cs" />

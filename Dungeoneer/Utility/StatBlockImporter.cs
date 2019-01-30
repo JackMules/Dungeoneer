@@ -53,10 +53,31 @@ namespace Dungeoneer.Utility
 							if (identifier == "Size/Type")
 							{
 								attributes.Size = Methods.GetSizeFromString(words[0]);
-								attributes.Type = Methods.GetCreatureTypeFromString(string.Join(" ", words.Skip(1)));
+								string typeStr = string.Join(" ", words.Skip(1));
 
+								string typePattern = @"\s*(?<Type>\w+)\s*(\((?<SubTypes>\D+)\))?";
+								Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
+								Match typeMatch = typeRegex.Match(typeStr);
 
-//								attributes.Subtype = Methods.GetCreatureSubTypeFromString();
+								if (typeMatch.Success)
+								{
+									attributes.Type = Methods.GetCreatureTypeFromString(typeMatch.Groups["Type"].Value);
+									/*
+									if (typeMatch.Groups.Count > 1)
+									{
+										string subTypes = typeMatch.Groups["SubTypes"].Value;
+
+										string subTypePattern = @"\s*(?<Type>\w+)\s*(\((?<SubTypes>\D+)\))?";
+										Regex subTypeRegex = new Regex(subTypePattern, RegexOptions.IgnoreCase);
+										Match subTypeMatch = subTypeRegex.Match(entry);
+
+										if (subTypeMatch.Success)
+										{
+											attributes.Subtypes = Methods.GetCreatureSubTypeFromString();
+										}
+									}
+									*/
+								}
 							}
 							else if (identifier == "Hit Dice")
 							{
@@ -250,6 +271,24 @@ namespace Dungeoneer.Utility
 								if (spellResistanceMatch.Success)
 								{
 									attributes.SpellResistance = Convert.ToInt32(spellResistanceMatch.Groups["Value"].Value);
+								}
+
+								string regenerationPattern = @"regeneration (?<Value>\d+)(\,|\z)";
+								Regex regenerationRegex = new Regex(regenerationPattern, RegexOptions.IgnoreCase);
+								Match regenerationMatch = regenerationRegex.Match(entry);
+
+								if (regenerationMatch.Success)
+								{
+									attributes.FastHealing = Convert.ToUInt32(regenerationMatch.Groups["Value"].Value);
+								}
+
+								string fastHealingPattern = @"fast healing (?<Value>\d+)(\,|\z)";
+								Regex fastHealingRegex = new Regex(fastHealingPattern, RegexOptions.IgnoreCase);
+								Match fastHealingMatch = fastHealingRegex.Match(entry);
+
+								if (fastHealingMatch.Success)
+								{
+									attributes.FastHealing = Convert.ToUInt32(fastHealingMatch.Groups["Value"].Value);
 								}
 							}
 							else if (identifier == "Saves")

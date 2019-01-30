@@ -59,7 +59,7 @@ namespace Dungeoneer.Model.Effect
 			return false;
 		}
 
-		public virtual void ApplyTo(ActorAttributes attributes)
+		public virtual void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{ }
 
 		public void WriteXML(XmlWriter xmlWriter)

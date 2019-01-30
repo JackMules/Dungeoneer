@@ -161,6 +161,23 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public void OpenInitDialog(int actorInitMod)
+		{
+			SetInitiativeWindowViewModel setInitiativeWindowViewModel = new SetInitiativeWindowViewModel {
+				Score = InitiativeScore,
+				Adjust = InitiativeAdjust,
+				Modifier = actorInitMod.ToString(),
+				Roll = InitiativeRoll,
+			};
+
+			Model.InitiativeValue initiativeValue = setInitiativeWindowViewModel.GetInitiative();
+			if (initiativeValue != null)
+			{
+				InitiativeValue = initiativeValue;
+			}
+		}
+
+
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			InitiativeValue.WriteXML(xmlWriter);

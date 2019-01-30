@@ -17,13 +17,13 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).SetFlatFooted();
-				(attributes as CreatureAttributes).ModifyArmorClass(-2);
-				(attributes as CreatureAttributes).ModifySpeed(1/2);
+				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
+				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
+				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
 			}
 		}
 
@@ -67,12 +67,12 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).SetFlatFooted();
-				(attributes as CreatureAttributes).ModifyArmorClass(-2);
+				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
+				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
 			}
 		}
 
@@ -116,12 +116,12 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
 			}
 		}
 
@@ -145,11 +145,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).HitPoints = (attributes as CreatureAttributes).Constitution * -1;
+				(modifiedAttributes as CreatureAttributes).HitPoints = (modifiedAttributes as CreatureAttributes).Constitution * -1;
 			}
 		}
 
@@ -173,9 +173,9 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			attributes.InitiativeMod -= 4;
+			modifiedAttributes.InitiativeMod -= 4;
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -198,11 +198,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ModifySpeed(1/2);
+				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
 			}
 		}
 
@@ -246,14 +246,14 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
-				(attributes as CreatureAttributes).ModifySpeed(1/2);
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -4);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -4);
 			}
 		}
 
@@ -277,13 +277,13 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ModifySpeed(1/2);
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -6);
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -6);
+				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -6);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -6);
 			}
 		}
 
@@ -327,12 +327,12 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -2);
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -2);
 			}
 		}
 
@@ -356,11 +356,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).SetFlatFooted();
+				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
 			}
 		}
 
@@ -384,13 +384,13 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
-				(attributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}
 
@@ -434,11 +434,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).Dexterity = 0;
+				(modifiedAttributes as CreatureAttributes).Dexterity = 0;
 			}
 		}
 
@@ -522,14 +522,14 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -1);
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -1);
-				(attributes as CreatureAttributes).HitPoints -= 5;
-				(attributes as CreatureAttributes).ModifySaves(-1);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -1);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -1);
+				(modifiedAttributes as CreatureAttributes).HitPoints -= 5;
+				(modifiedAttributes as CreatureAttributes).ModifySaves(-1);
 			}
 		}
 
@@ -553,11 +553,11 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}
 
@@ -581,12 +581,12 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).Strength = 0;
-				(attributes as CreatureAttributes).Dexterity = 0;
+				(modifiedAttributes as CreatureAttributes).Strength = 0;
+				(modifiedAttributes as CreatureAttributes).Dexterity = 0;
 			}
 		}
 
@@ -670,14 +670,14 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, 4);
-				(attributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Constitution, 4);
-				(attributes as CreatureAttributes).ModifyArmorClass(-2);
-				(attributes as CreatureAttributes).ModifyWillSave(2);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, 4);
+				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Constitution, 4);
+				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
+				(modifiedAttributes as CreatureAttributes).ModifyWillSave(2);
 			}
 		}
 
@@ -701,13 +701,13 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
-				(attributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}
 
@@ -731,13 +731,13 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(attributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
-				(attributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}
 
@@ -801,12 +801,12 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void ApplyTo(ActorAttributes attributes)
+		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			if (attributes is CreatureAttributes)
+			if (modifiedAttributes is CreatureAttributes)
 			{
-				(attributes as CreatureAttributes).ModifyArmorClass(-2);
-				(attributes as CreatureAttributes).SetFlatFooted();
+				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
+				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
 			}
 		}
 

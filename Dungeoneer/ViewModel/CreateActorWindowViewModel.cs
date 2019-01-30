@@ -64,6 +64,7 @@ namespace Dungeoneer.ViewModel
 		private string _willSave;
 
 		private string _spellResistance;
+		private string _fastHealing;
 
 		private string _specialAttacks;
 		private string _specialQualities;
@@ -421,6 +422,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string FastHealing
+		{
+			get { return _fastHealing; }
+			set
+			{
+				_fastHealing = value;
+				NotifyPropertyChanged("FastHealing");
+			}
+		}
+
 		public string SpecialAttacks
 		{
 			get { return _specialAttacks; }
@@ -505,6 +516,7 @@ namespace Dungeoneer.ViewModel
 			DamageReductions = creature.DamageReductions;
 			Immunities = creature.Immunities;
 			SpellResistance = creature.SpellResistance.ToString();
+			FastHealing = creature.FastHealing.ToString();
 			SpecialAttacks = creature.SpecialAttacks;
 			SpecialQualities = creature.SpecialQualities;
 		}
@@ -591,6 +603,7 @@ namespace Dungeoneer.ViewModel
 							DamageReductions = DamageReductions,
 							Immunities = Immunities,
 							SpellResistance = Convert.ToInt32(SpellResistance),
+							FastHealing = Convert.ToUInt32(FastHealing),
 							SpecialAttacks = SpecialAttacks,
 							SpecialQualities = SpecialQualities,
 						};

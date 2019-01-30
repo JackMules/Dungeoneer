@@ -44,6 +44,7 @@ namespace Dungeoneer.Model.Effect
 				case Types.Effect.Entangled:					return new Conditions.Entangled();
 				case Types.Effect.Exhausted:					return new Conditions.Exhausted();
 				case Types.Effect.Fascinated:					return new Conditions.Fascinated();
+				case Types.Effect.FastHealing:				return new FastHealing();
 				case Types.Effect.Fatigued:						return new Conditions.Fatigued();
 				case Types.Effect.FlatFooted:					return new Conditions.FlatFooted();
 				case Types.Effect.Frightened:					return new Conditions.Frightened();

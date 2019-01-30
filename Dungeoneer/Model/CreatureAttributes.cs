@@ -43,6 +43,7 @@ namespace Dungeoneer.Model
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
 			SpellResistance = 0;
+			FastHealing = 0;
 			SpecialAttacks = "";
 			SpecialQualities = "";
 		}
@@ -77,7 +78,8 @@ namespace Dungeoneer.Model
 			Size = other.Size;
 			DamageReductions = other.DamageReductions.Clone();
 			Immunities = other.Immunities.Clone();
-			SpellResistance = 0;
+			SpellResistance = other.SpellResistance;
+			FastHealing = FastHealing;
 			SpecialAttacks = other.SpecialAttacks;
 			SpecialQualities = other.SpecialQualities;
 		}
@@ -114,6 +116,7 @@ namespace Dungeoneer.Model
 		private int _space;
 		private int _reach;
 		private int _spellResistance;
+		private uint _fastHealing;
 
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
@@ -351,6 +354,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public uint FastHealing
+		{
+			get { return _fastHealing; }
+			set
+			{
+				_fastHealing = value;
+				NotifyPropertyChanged("FastHealing");
+			}
+		}
+
 		public int Space
 		{
 			get { return _space; }
@@ -379,6 +392,7 @@ namespace Dungeoneer.Model
 				_feats = value;
 				NotifyPropertyChanged("Feats");
 				NotifyPropertyChanged("PowerAttack");
+				NotifyPropertyChanged("WeaponFinesse");
 			}
 		}
 

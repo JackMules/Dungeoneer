@@ -50,12 +50,12 @@
 								<ListBox.Resources>
 									<DataTemplate DataType="{x:Type effect:Effect}">
 										<WrapPanel>
-											<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
+											<TextBlock Text="{Binding}" FontWeight="Bold" Background="Transparent"/>
 										</WrapPanel>
 									</DataTemplate>
 									<DataTemplate DataType="{x:Type effect:TimedEffect}">
 										<WrapPanel>
-											<TextBlock Text="{Binding Name}" FontWeight="Bold" Background="Transparent"/>
+											<TextBlock Text="{Binding}" FontWeight="Bold" Background="Transparent"/>
 											<TextBlock Text=" (" Background="Transparent"/>
 											<TextBlock Text="{Binding RemainingDuration}" Background="Transparent"/>
 											<TextBlock Text=")" Background="Transparent"/>

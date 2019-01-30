@@ -8,6 +8,11 @@ namespace Dungeoneer.ViewModel
 {
 	public class SetInitiativeWindowViewModel : BaseViewModel
 	{
+		public SetInitiativeWindowViewModel()
+		{
+
+		}
+
 		public SetInitiativeWindowViewModel(int initMod)
 		{
 			_modifier = initMod.ToString();
@@ -23,7 +28,14 @@ namespace Dungeoneer.ViewModel
 			get { return _score; }
 			set
 			{
-				_score = value;
+				if (value.Equals("0"))
+				{
+					_score = "";
+				}
+				else
+				{
+					_score = value;
+				}
 				NotifyPropertyChanged("Score");
 			}
 		}
@@ -33,7 +45,14 @@ namespace Dungeoneer.ViewModel
 			get { return _adjust; }
 			set
 			{
-				_adjust = value;
+				if (value.Equals("0"))
+				{
+					_adjust = "";
+				}
+				else
+				{
+					_adjust = value;
+				}
 				NotifyPropertyChanged("Adjust");
 			}
 		}
@@ -43,7 +62,14 @@ namespace Dungeoneer.ViewModel
 			get { return _modifier; }
 			set
 			{
-				_modifier = value;
+				if (value.Equals("0"))
+				{
+					_modifier = "";
+				}
+				else
+				{
+					_modifier = value;
+				}
 				NotifyPropertyChanged("Modifier");
 			}
 		}
@@ -53,44 +79,74 @@ namespace Dungeoneer.ViewModel
 			get { return _roll; }
 			set
 			{
-				_roll = value;
+				if (value.Equals("0"))
+				{
+					_roll = "";
+				}
+				else
+				{
+					_roll = value;
+				}
 				NotifyPropertyChanged("Roll");
 			}
 		}
 
 		public Model.InitiativeValue GetInitiative()
 		{
-			bool askForInput = true;
 			string feedback = null;
 			Model.InitiativeValue initiativeValue = null;
-			while (askForInput)
+			View.SetInitiativeWindow initDialog = new View.SetInitiativeWindow(feedback);
+			initDialog.DataContext = this;
+			if (initDialog.ShowDialog() == true)
 			{
-				View.SetInitiativeWindow initDialog = new View.SetInitiativeWindow(feedback);
-				initDialog.DataContext = this;
-				if (initDialog.ShowDialog() == true)
-				{
-					try
-					{
-						initiativeValue = new Model.InitiativeValue
-						{
-							Score = Convert.ToInt32(Score),
-							Adjust = Convert.ToInt32(Adjust),
-							Modifier = Convert.ToInt32(Modifier),
-							Roll = Convert.ToInt32(Roll),
-						};
+				int score = 0;
+				int adjust = 0;
+				int modifier = 0;
+				int roll = 0;
 
-						askForInput = false;
-					}
-					catch (FormatException)
-					{
-						// Failed to parse input
-						feedback = "Invalid format";
-					}
-				}
-				else
+				try
 				{
-					askForInput = false;
+					score = Convert.ToInt32(Score);
 				}
+				catch (FormatException)
+				{
+					
+				}
+
+				try
+				{
+					adjust = Convert.ToInt32(Adjust);
+				}
+				catch (FormatException)
+				{
+
+				}
+
+				try
+				{
+					modifier = Convert.ToInt32(Modifier);
+				}
+				catch (FormatException)
+				{
+
+				}
+
+				try
+				{
+					roll = Convert.ToInt32(Roll);
+				}
+				catch (FormatException)
+				{
+
+				}
+
+				initiativeValue = new Model.InitiativeValue
+				{
+					Score = score,
+					Adjust = adjust,
+					Modifier = modifier,
+					Roll = roll,
+				};
 			}
 
 			return initiativeValue;
