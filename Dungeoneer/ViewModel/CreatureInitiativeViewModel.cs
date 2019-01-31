@@ -106,6 +106,21 @@ namespace Dungeoneer.ViewModel
 			get { return Actor.SpecialQualities; }
 		}
 
+		public string FortitudeSave
+		{
+			get { return Methods.GetSignedNumberString(Actor.FortitudeSave); }
+		}
+
+		public string ReflexSave
+		{
+			get { return Methods.GetSignedNumberString(Actor.ReflexSave); }
+		}
+
+		public string WillSave
+		{
+			get { return Methods.GetSignedNumberString(Actor.WillSave); }
+		}
+
 		public string Speed
 		{
 			get
@@ -176,6 +191,9 @@ namespace Dungeoneer.ViewModel
 		private void HitPointsUpdated()
 		{
 			NotifyPropertyChanged("HitPoints");
+			NotifyPropertyChanged("FortitudeSave");
+			NotifyPropertyChanged("ReflexSave");
+			NotifyPropertyChanged("WillSave");
 			NotifyPropertyChanged("Dead");
 		}
 

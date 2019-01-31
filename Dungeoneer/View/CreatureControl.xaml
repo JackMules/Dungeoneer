@@ -139,7 +139,15 @@
 						<TextBlock Text="ft., "/>
 						<TextBlock Text="{Binding Speed}"/>
 					</StackPanel>
-					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap" />
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Fort " FontWeight="Bold"/>
+						<TextBlock Text="{Binding FortitudeSave}"/>
+						<TextBlock Text=" Ref " FontWeight="Bold"/>
+						<TextBlock Text="{Binding ReflexSave}"/>
+						<TextBlock Text=" Will " FontWeight="Bold"/>
+						<TextBlock Text="{Binding WillSave}"/>
+					</StackPanel>
+					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap"/>
 					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
 				</StackPanel>
 			</DockPanel>

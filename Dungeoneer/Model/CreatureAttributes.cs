@@ -483,6 +483,7 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
+			NotifyPropertyChanged("AttackSets");
 		}
 
 		public void ModifyArmorClass(int change)
@@ -795,6 +796,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(SpellResistance.ToString());
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("FastHealing");
+			xmlWriter.WriteString(FastHealing.ToString());
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteStartElement("SpecialAttacks");
 			xmlWriter.WriteString(SpecialAttacks);
 			xmlWriter.WriteEndElement();
@@ -951,6 +956,10 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "SpellResistance")
 					{
 						SpellResistance = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "FastHealing")
+					{
+						FastHealing = Convert.ToUInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "SpecialAttacks")
 					{

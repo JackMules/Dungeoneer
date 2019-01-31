@@ -6,7 +6,7 @@
 			 mc:Ignorable="d">
 	<Grid Background="Transparent" Loaded="GridLoaded">
 		<Border Margin="2" BorderBrush="White" Background="Transparent" BorderThickness="1,1,1,1" CornerRadius="4,4,4,4">
-			<StackPanel Orientation="Vertical" Margin="0,4">
+			<StackPanel Orientation="Vertical" Margin="0,4" VerticalAlignment="Center">
 				<Label x:Name="titleLabel" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"
 							 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 				<Label x:Name="valueLabel" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"
