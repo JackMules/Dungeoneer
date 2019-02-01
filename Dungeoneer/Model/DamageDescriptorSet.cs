@@ -38,6 +38,18 @@ namespace Dungeoneer.Model
 			return _descriptors.Contains(damageType);
 		}
 
+		public bool IsEnergyDamage()
+		{
+			foreach (Types.Damage damage in _descriptors)
+			{
+				if (!Methods.IsEnergyDamageType(damage))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 		public List<Types.Damage> ToList()
 		{
 			return new List<Types.Damage>(_descriptors);

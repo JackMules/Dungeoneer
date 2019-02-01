@@ -1309,6 +1309,33 @@ namespace Dungeoneer.Utility
 		{
 			return (abilityScore - 10) / 2;
 		}
+
+		public static bool IsWeaponDamageType(Types.Damage damageType)
+		{
+			switch (damageType)
+			{
+			case Types.Damage.Bludgeoning:	return true;
+			case Types.Damage.Piercing:			return true;
+			case Types.Damage.Slashing:			return true;
+			default:												return false;
+			}
+		}
+
+		public static bool IsEnergyDamageType(Types.Damage damageType)
+		{
+			switch (damageType)
+			{
+			case Types.Damage.Acid:						return true;
+			case Types.Damage.Cold:						return true;
+			case Types.Damage.Electricity:		return true;
+			case Types.Damage.Fire:						return true;
+			case Types.Damage.Force:					return true;
+			case Types.Damage.NegativeEnergy:	return true;
+			case Types.Damage.PositiveEnergy:	return true;
+			case Types.Damage.Sonic:					return true;
+			default:													return false;
+			}
+		}
 	}
 
 	public static class StringExtensions

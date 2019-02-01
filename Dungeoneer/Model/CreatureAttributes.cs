@@ -635,6 +635,11 @@ namespace Dungeoneer.Model
 
 			foreach (DamageSet damageSet in hit.DamageSets)
 			{
+				// Do energy resistance
+			}
+
+			foreach (DamageSet damageSet in hit.DamageSets)
+			{
 				foreach (Types.Damage damageType in damageSet.DamageDescriptorSet.ToList())
 				{
 					if (Immunities.Contains(damageType))
@@ -655,7 +660,7 @@ namespace Dungeoneer.Model
 					damageSet.Amount = 0;
 				}
 			}
-
+			
 			foreach (DamageSet damageSet in hit.DamageSets)
 			{
 				HitPoints -= damageSet.Amount;
