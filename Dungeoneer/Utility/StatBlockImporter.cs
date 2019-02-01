@@ -234,9 +234,9 @@ namespace Dungeoneer.Utility
 
 								string immunityPattern = @"immunity to (?<Types>.+?)(\,|\z)";
 								Regex immunityRegex = new Regex(immunityPattern, RegexOptions.IgnoreCase);
-								Match immunityMatch = immunityRegex.Match(entry);
+								MatchCollection immunityMatches = immunityRegex.Matches(entry);
 
-								if (immunityMatch.Success)
+								foreach (Match immunityMatch in immunityMatches)
 								{
 									Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(immunityMatch.Groups["Types"].Value, "and");
 									foreach (Types.Damage damageType in damageTypes.ToList())
