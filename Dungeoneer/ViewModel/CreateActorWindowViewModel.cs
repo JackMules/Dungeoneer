@@ -26,6 +26,9 @@ namespace Dungeoneer.ViewModel
 			_addDamageReduction = new Command(ExecuteAddDamageReduction);
 			_editDamageReduction = new Command(ExecuteEditDamageReduction);
 			_removeDamageReduction = new Command(ExecuteRemoveDamageReduction);
+			_addEnergyResistance = new Command(ExecuteAddEnergyResistance);
+			_editEnergyResistance = new Command(ExecuteEditEnergyResistance);
+			_removeEnergyResistance = new Command(ExecuteRemoveEnergyResistance);
 			_editImmunities = new Command(ExecuteEditImmunities);
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 			_weapons = new ObservableCollection<Model.Weapon>();
@@ -74,8 +77,9 @@ namespace Dungeoneer.ViewModel
 		private int _selectedSize;
 		private int _selectedCreatureType;
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
-		private ObservableCollection<Model.Weapon> _weapons;
 		private Model.DamageDescriptorSet _immunities;
+		private ObservableCollection<Model.EnergyResistance> _energyResistances;
+		private ObservableCollection<Model.Weapon> _weapons;
 		private Model.SpeedSet _speeds;
 
 		private Command _addSpeed;
@@ -90,6 +94,9 @@ namespace Dungeoneer.ViewModel
 		private Command _addDamageReduction;
 		private Command _editDamageReduction;
 		private Command _removeDamageReduction;
+		private Command _addEnergyResistance;
+		private Command _editEnergyResistance;
+		private Command _removeEnergyResistance;
 		private Command _editImmunities;
 		private Command _openImportWindow;
 
@@ -97,6 +104,7 @@ namespace Dungeoneer.ViewModel
 		public int SelectedAttackSet { get; set; }
 		public int SelectedWeapon { get; set; }
 		public int SelectedDamageReduction { get; set; }
+		public int SelectedEnergyResistance { get; set; }
 
 		public string ActorName
 		{
@@ -402,6 +410,17 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public ObservableCollection<Model.EnergyResistance> EnergyResistances
+		{
+			get { return _energyResistances; }
+			set
+			{
+				_energyResistances = value;
+				NotifyPropertyChanged("EnergyResistances");
+			}
+		}
+
+
 		public ObservableCollection<Model.Weapon> Weapons
 		{
 			get { return _weapons; }
@@ -515,6 +534,7 @@ namespace Dungeoneer.ViewModel
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
 			DamageReductions = creature.DamageReductions;
 			Immunities = creature.Immunities;
+			EnergyResistances = creature.EnergyResistances;
 			SpellResistance = creature.SpellResistance.ToString();
 			FastHealing = creature.FastHealing.ToString();
 			SpecialAttacks = creature.SpecialAttacks;
@@ -602,6 +622,7 @@ namespace Dungeoneer.ViewModel
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
 							Immunities = Immunities,
+							EnergyResistances = EnergyResistances,
 							SpellResistance = Convert.ToInt32(SpellResistance),
 							FastHealing = Convert.ToUInt32(FastHealing),
 							SpecialAttacks = SpecialAttacks,
@@ -825,6 +846,53 @@ namespace Dungeoneer.ViewModel
 				Immunities = immunity;
 			}
 		}
+
+		public Command AddEnergyResistance
+		{
+			get { return _addEnergyResistance; }
+		}
+
+		public Command EditEnergyResistance
+		{
+			get { return _editEnergyResistance; }
+		}
+
+		public Command RemoveEnergyResistance
+		{
+			get { return _removeEnergyResistance; }
+		}
+
+		private void ExecuteAddEnergyResistance()
+		{
+			AddEnergyResistanceWindowViewModel addEnergyResistanceWindowViewModel = new AddEnergyResistanceWindowViewModel();
+			Model.EnergyResistance dr = addEnergyResistanceWindowViewModel.GetEnergyResistance();
+			if (dr != null)
+			{
+				EnergyResistances.Add(dr);
+			}
+		}
+
+		private void ExecuteEditEnergyResistance()
+		{
+			if (SelectedEnergyResistance < EnergyResistances.Count && SelectedEnergyResistance >= 0)
+			{
+				AddEnergyResistanceWindowViewModel addEnergyResistanceWindowViewModel = new AddEnergyResistanceWindowViewModel(EnergyResistances[SelectedEnergyResistance]);
+				Model.EnergyResistance dr = addEnergyResistanceWindowViewModel.GetEnergyResistance();
+				if (dr != null)
+				{
+					EnergyResistances[SelectedEnergyResistance] = dr;
+				}
+			}
+		}
+
+		private void ExecuteRemoveEnergyResistance()
+		{
+			if (SelectedEnergyResistance < EnergyResistances.Count)
+			{
+				EnergyResistances.RemoveAt(SelectedEnergyResistance);
+			}
+		}
+
 
 		public Command Import
 		{

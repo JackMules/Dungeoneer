@@ -257,10 +257,10 @@ namespace Dungeoneer.Utility
 
 									foreach (Match resistanceMatch in resistanceMatches)
 									{
-										Model.DamageReduction res = new Model.DamageReduction();
+										Model.EnergyResistance res = new Model.EnergyResistance();
 										res.Value = Convert.ToInt32(resistanceMatch.Groups["Value"].Value);
-										res.DamageTypes = GetDamageDescriptorSetFromString(resistanceMatch.Groups["Type"].Value);
-										attributes.DamageReductions.Add(res);
+										res.EnergyType = Methods.GetDamageTypeFromString(resistanceMatch.Groups["Type"].Value);
+										attributes.EnergyResistances.Add(res);
 									}
 								}
 

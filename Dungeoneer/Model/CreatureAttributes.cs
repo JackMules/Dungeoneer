@@ -42,6 +42,7 @@ namespace Dungeoneer.Model
 			Size = Types.Size.Medium;
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
+			EnergyResistances = new ObservableCollection<EnergyResistance>();
 			SpellResistance = 0;
 			FastHealing = 0;
 			SpecialAttacks = "";
@@ -78,6 +79,7 @@ namespace Dungeoneer.Model
 			Size = other.Size;
 			DamageReductions = other.DamageReductions.Clone();
 			Immunities = other.Immunities.Clone();
+			EnergyResistances = other.EnergyResistances.Clone();
 			SpellResistance = other.SpellResistance;
 			FastHealing = FastHealing;
 			SpecialAttacks = other.SpecialAttacks;
@@ -121,6 +123,7 @@ namespace Dungeoneer.Model
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
+		private ObservableCollection<EnergyResistance> _energyResistances;
 		private string _specialAttacks;
 		private string _specialQualities;
 
@@ -416,6 +419,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public ObservableCollection<EnergyResistance> EnergyResistances
+		{
+			get { return _energyResistances; }
+			set
+			{
+				_energyResistances = value;
+				NotifyPropertyChanged("EnergyResistances");
+			}
+		}
+
 		public DamageDescriptorSet Immunities
 		{
 			get { return _immunities; }
@@ -633,9 +646,32 @@ namespace Dungeoneer.Model
 			List<DamageReduction> damageReductions = DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 
+			List<EnergyResistance> energyResistances = EnergyResistances.ToList();
+
 			foreach (DamageSet damageSet in hit.DamageSets)
 			{
-				// Do energy resistance
+				foreach (EnergyResistance energyResistance in energyResistances)
+				{
+					if (damageSet.DamageDescriptorSet.IsEnergyDamage() &&
+							damageSet.DamageDescriptorSet.Contains(energyResistance.EnergyType))
+					{
+						int numEnergyTypes = damageSet.DamageDescriptorSet.Count;
+						int thisEnergyDamage = damageSet.Amount / numEnergyTypes;
+						int thisEnergyDamageAfterResistance = thisEnergyDamage - energyResistance.Value;
+						if (thisEnergyDamageAfterResistance < 0)
+						{
+							thisEnergyDamageAfterResistance = 0;
+						}
+
+						int difference = thisEnergyDamage - thisEnergyDamageAfterResistance;
+						damageSet.Amount -= difference;
+
+						if (damageSet.Amount < 0)
+						{
+							damageSet.Amount = 0;
+						}
+					}
+				}
 			}
 
 			foreach (DamageSet damageSet in hit.DamageSets)
@@ -647,6 +683,7 @@ namespace Dungeoneer.Model
 						damageSet.Amount = 0;
 					}
 				}
+
 				foreach (DamageReduction dr in damageReductions)
 				{
 					if (!dr.IsBypassedBy(damageSet.DamageDescriptorSet))
@@ -655,6 +692,7 @@ namespace Dungeoneer.Model
 						break;
 					}
 				}
+
 				if (damageSet.Amount < 0)
 				{
 					damageSet.Amount = 0;
@@ -795,6 +833,13 @@ namespace Dungeoneer.Model
 
 			xmlWriter.WriteStartElement("Immunities");
 			Immunities.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("EnergyResistances");
+			foreach (EnergyResistance er in EnergyResistances)
+			{
+				er.WriteXML(xmlWriter);
+			}
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("SpellResistance");
@@ -957,6 +1002,18 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "Immunities")
 					{
 						Immunities.ReadXML(childNode);
+					}
+					else if (childNode.Name == "EnergyResistances")
+					{
+						foreach (XmlNode erNode in childNode.ChildNodes)
+						{
+							if (erNode.Name == "EnergyResistance")
+							{
+								EnergyResistance er = new EnergyResistance();
+								er.ReadXML(erNode);
+								EnergyResistances.Add(er);
+							}
+						}
 					}
 					else if (childNode.Name == "SpellResistance")
 					{

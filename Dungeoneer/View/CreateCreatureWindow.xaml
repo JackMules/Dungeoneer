@@ -39,6 +39,9 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
@@ -192,6 +195,29 @@
 				<TextBox Grid.Column="5" VerticalAlignment="Center" VerticalContentAlignment="Center" 
 							 Width="40" Height="25" Margin="0,2" Text="{Binding WillSave}"/>
 			</Grid>
+
+			<!-- Immunities -->
+			<Label Grid.Row="10" Grid.Column="0" Content="Immunities" VerticalContentAlignment="Center"/>
+			<Grid Grid.Row="10" Grid.Column="1" VerticalAlignment="Center">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Button Content="Edit" Width="40" VerticalAlignment="Center" Command="{Binding EditImmunities}"/>
+			</Grid>
+
+			<!-- Spell Resistance -->
+			<Label Grid.Row="11" Grid.Column="0" Content="Spell Resistance" VerticalContentAlignment="Center"/>
+			<TextBox Grid.Row="11" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding SpellResistance}"/>
+
+			<!-- Spell Resistance -->
+			<Label Grid.Row="12" Grid.Column="0" Content="Fast Healing" VerticalContentAlignment="Center"/>
+			<TextBox Grid.Row="12" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding FastHealing}"/>
+			
 		</Grid>
 
 		<Grid DockPanel.Dock="Right" Margin="5">
@@ -300,6 +326,27 @@
 				</StackPanel>
 			</Grid>
 
+			<!-- Energy Resistance -->
+			<Label Grid.Row="5" Grid.Column="0" Content="Energy&#10;Resistances" VerticalContentAlignment="Center"/>
+			<Grid Grid.Row="5" Grid.Column="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+					<ListBox ItemsSource="{Binding EnergyResistances}" SelectedIndex="{Binding SelectedEnergyResistance}" Margin="0,2"/>
+				</ScrollViewer>
+				<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="90">
+					<Button Command="{Binding AddEnergyResistance}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+					<Button Command="{Binding EditEnergyResistance}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+					<Button Command="{Binding RemoveEnergyResistance}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+				</StackPanel>
+			</Grid>
+
 			<!-- Effects -->
 			<!--		<Label Content="Effects" Grid.Row="5" Grid.Column="0" Margin="0,0,0,5" Grid.RowSpan="2"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2">
@@ -310,27 +357,7 @@
 			<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
 		</StackPanel>-->
 
-			<!-- Immunities -->
-			<Label Grid.Row="5" Grid.Column="0" Content="Immunities" VerticalContentAlignment="Center"/>
-			<Grid Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-				</Grid.ColumnDefinitions>
-				<Button Content="Edit" Width="40" VerticalAlignment="Center" Command="{Binding EditImmunities}"/>
-			</Grid>
-
-			<!-- Spell Resistance -->
-			<Label Grid.Row="6" Grid.Column="0" Content="Spell Resistance" VerticalContentAlignment="Center"/>
-			<TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding SpellResistance}"/>
-
-			<!-- Spell Resistance -->
-			<Label Grid.Row="7" Grid.Column="0" Content="Fast Healing" VerticalContentAlignment="Center"/>
-			<TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-						 Height="25" Width="30" HorizontalAlignment="Left" Margin="0,2" Text="{Binding FastHealing}"/>
+			
 		</Grid>
 	</DockPanel>
 </Window>

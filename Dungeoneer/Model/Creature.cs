@@ -398,6 +398,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public ObservableCollection<EnergyResistance> EnergyResistances
+		{
+			get { return GetEffectiveAttributes().EnergyResistances; }
+			set
+			{
+				ModifiedAttributes.EnergyResistances = value;
+				NotifyPropertyChanged("EnergyResistances");
+			}
+		}
+
 		public int SpellResistance
 		{
 			get { return GetEffectiveAttributes().SpellResistance; }

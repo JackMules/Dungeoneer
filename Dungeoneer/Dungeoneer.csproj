@@ -161,6 +161,7 @@
     <Compile Include="Utility\ObjectCopier.cs" />
     <Compile Include="Utility\StatBlockImporter.cs" />
     <Compile Include="ViewModel\AddAttackSetWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddEnergyResistanceWindowViewModel.cs" />
     <Compile Include="ViewModel\AddSpeedWindowViewModel.cs" />
     <Compile Include="ViewModel\AddImmunityWindowViewModel.cs" />
     <Compile Include="ViewModel\AddDamageReductionWindowViewModel.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="ViewModel\AddWeaponWindowViewModel.cs" />
     <Compile Include="ViewModel\AttackSetViewModel.cs" />
     <Compile Include="ViewModel\CreatureInitiativeCardViewModel.cs" />
+    <Compile Include="ViewModel\EnergyTypeSelectorViewModel.cs" />
     <Compile Include="ViewModel\DamageTypeSelectorViewModel.cs" />
     <Compile Include="ViewModel\DamageViewModel.cs" />
     <Compile Include="ViewModel\CreateActorWindowViewModel.cs" />
@@ -192,6 +194,9 @@
     <Compile Include="ViewModel\SetInitiativeWindowViewModel.cs" />
     <Compile Include="View\AddAttackSetWindow.xaml.cs">
       <DependentUpon>AddAttackSetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddEnergyResistanceWindow.xaml.cs">
+      <DependentUpon>AddEnergyResistanceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddSpeedWindow.xaml.cs">
       <DependentUpon>AddSpeedWindow.xaml</DependentUpon>
@@ -219,6 +224,9 @@
     </Compile>
     <Compile Include="View\CreatureControl.xaml.cs">
       <DependentUpon>CreatureControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EnergyTypeSelector.xaml.cs">
+      <DependentUpon>EnergyTypeSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DamageTypeSelector.xaml.cs">
       <DependentUpon>DamageTypeSelector.xaml</DependentUpon>
@@ -263,6 +271,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddEnergyResistanceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AddSpeedWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -298,6 +310,10 @@
     <Page Include="View\CreatureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EnergyTypeSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\DamageTypeSelector.xaml">
       <SubType>Designer</SubType>

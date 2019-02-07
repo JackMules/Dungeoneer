@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Dungeoneer.View.EnergyTypeSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+	<Grid>
+		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
+		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
+			<WrapPanel Orientation="Vertical" x:Name="EnergyPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<RadioButton Content="Acid" IsChecked="{Binding Acid}" Margin="5"/>
+				<RadioButton Content="Cold" IsChecked="{Binding Cold}" Margin="5"/>
+				<RadioButton Content="Electricity" IsChecked="{Binding Electricity}" Margin="5"/>
+				<RadioButton Content="Fire" IsChecked="{Binding Fire}" Margin="5"/>
+				<RadioButton Content="Force" IsChecked="{Binding Force}" Margin="5"/>
+				<RadioButton Content="Negative Energy" IsChecked="{Binding NegativeEnergy}" Margin="5"/>
+				<RadioButton Content="Positive Energy" IsChecked="{Binding PositiveEnergy}" Margin="5"/>
+				<RadioButton Content="Sonic" IsChecked="{Binding Sonic}" Margin="5"/>
+			</WrapPanel>
+		</Border>
+	</Grid>
+</UserControl>
