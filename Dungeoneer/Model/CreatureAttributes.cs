@@ -676,26 +676,29 @@ namespace Dungeoneer.Model
 
 			foreach (DamageSet damageSet in hit.DamageSets)
 			{
-				foreach (Types.Damage damageType in damageSet.DamageDescriptorSet.ToList())
+				if (damageSet.DamageDescriptorSet.IsTyped())
 				{
-					if (Immunities.Contains(damageType))
+					foreach (Types.Damage damageType in damageSet.DamageDescriptorSet.ToList())
+					{
+						if (Immunities.Contains(damageType))
+						{
+							damageSet.Amount = 0;
+						}
+					}
+
+					foreach (DamageReduction dr in damageReductions)
+					{
+						if (!dr.IsBypassedBy(damageSet.DamageDescriptorSet))
+						{
+							damageSet.Amount -= dr.Value;
+							break;
+						}
+					}
+
+					if (damageSet.Amount < 0)
 					{
 						damageSet.Amount = 0;
 					}
-				}
-
-				foreach (DamageReduction dr in damageReductions)
-				{
-					if (!dr.IsBypassedBy(damageSet.DamageDescriptorSet))
-					{
-						damageSet.Amount -= dr.Value;
-						break;
-					}
-				}
-
-				if (damageSet.Amount < 0)
-				{
-					damageSet.Amount = 0;
 				}
 			}
 			

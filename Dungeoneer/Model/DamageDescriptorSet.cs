@@ -50,6 +50,18 @@ namespace Dungeoneer.Model
 			return true;
 		}
 
+		public bool IsTyped()
+		{
+			if (Count > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		public List<Types.Damage> ToList()
 		{
 			return new List<Types.Damage>(_descriptors);
