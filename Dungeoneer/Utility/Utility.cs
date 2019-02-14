@@ -66,6 +66,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectDamagePerTurn = "Damage Per Turn";
 		public static readonly string EffectTimedDamagePerTurn = "Timed Damage Per Turn";
 		public static readonly string EffectEnergyResistance = "";
+		public static readonly string EffectAbilityModifier = "Ability Modifier";
 		public static readonly string EffectBlinded = "Blinded";
 		public static readonly string EffectConfused = "Confused";
 		public static readonly string EffectCowering = "Cowering";
@@ -202,6 +203,7 @@ namespace Dungeoneer.Utility
 
 		public static readonly List<string> EffectStrings = new List<string>
 		{
+			Methods.GetEffectTypeString(Types.Effect.AbilityModifier),
 			Methods.GetEffectTypeString(Types.Effect.Blinded),
 			Methods.GetEffectTypeString(Types.Effect.Confused),
 			Methods.GetEffectTypeString(Types.Effect.Cowering),
@@ -215,6 +217,7 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Entangled),
 			Methods.GetEffectTypeString(Types.Effect.Exhausted),
 			Methods.GetEffectTypeString(Types.Effect.Fascinated),
+			Methods.GetEffectTypeString(Types.Effect.FastHealing),
 			Methods.GetEffectTypeString(Types.Effect.Fatigued),
 			Methods.GetEffectTypeString(Types.Effect.FlatFooted),
 			Methods.GetEffectTypeString(Types.Effect.Frightened),
@@ -348,6 +351,7 @@ namespace Dungeoneer.Utility
 
 		public enum Effect
 		{
+			AbilityModifier,
 			Blinded,
 			Confused,
 			Cowering,
@@ -702,6 +706,7 @@ namespace Dungeoneer.Utility
 		{
 			switch (effect)
 			{
+			case Types.Effect.AbilityModifier:		return Constants.EffectAbilityModifier;
 			case Types.Effect.Blinded:						return Constants.EffectBlinded;
 			case Types.Effect.Confused:						return Constants.EffectConfused;
 			case Types.Effect.Cowering:						return Constants.EffectCowering;
@@ -743,7 +748,11 @@ namespace Dungeoneer.Utility
 
 		public static Types.Effect GetEffectTypeFromString(string effect)
 		{
-			if (effect == Constants.EffectBlinded)
+			if (effect == Constants.EffectAbilityModifier)
+			{
+				return Types.Effect.AbilityModifier;
+			}
+			else if (effect == Constants.EffectBlinded)
 			{
 				return Types.Effect.Blinded;
 			}

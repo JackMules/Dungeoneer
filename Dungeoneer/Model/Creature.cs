@@ -46,7 +46,7 @@ namespace Dungeoneer.Model
 			if (BaseAttributes.FastHealing > 0)
 			{
 				Effect.FastHealing fastHealing = new Effect.FastHealing();
-				fastHealing.HealingAmount = BaseAttributes.FastHealing;
+				fastHealing.Value = BaseAttributes.FastHealing;
 				Effects.Add(fastHealing);
 			}
 		}
@@ -418,7 +418,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public uint FastHealing
+		public int FastHealing
 		{
 			get { return GetEffectiveAttributes().FastHealing; }
 			set

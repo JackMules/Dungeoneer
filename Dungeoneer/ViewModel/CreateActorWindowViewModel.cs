@@ -624,7 +624,7 @@ namespace Dungeoneer.ViewModel
 							Immunities = Immunities,
 							EnergyResistances = EnergyResistances,
 							SpellResistance = Convert.ToInt32(SpellResistance),
-							FastHealing = Convert.ToUInt32(FastHealing),
+							FastHealing = Convert.ToInt32(FastHealing),
 							SpecialAttacks = SpecialAttacks,
 							SpecialQualities = SpecialQualities,
 						};

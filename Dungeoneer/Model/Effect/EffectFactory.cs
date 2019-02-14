@@ -31,6 +31,7 @@ namespace Dungeoneer.Model.Effect
 		{
 			switch (effectType)
 			{
+				case Types.Effect.AbilityModifier:		return new AbilityModifier();
 				case Types.Effect.Blinded:						return new Conditions.Blinded();
 				case Types.Effect.Confused:						return new Conditions.Confused();
 				case Types.Effect.Cowering:						return new Conditions.Cowering();

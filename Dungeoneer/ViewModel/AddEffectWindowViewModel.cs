@@ -14,30 +14,60 @@ namespace Dungeoneer.ViewModel
 
 		}
 
-		private int _selectedIndex;
+		private int _selectedEffectIndex;
 		private string _value;
 		private string _duration;
+		private string _ability;
+		private int _selectedAbilityIndex;
 
 		public List<string> EffectNames
 		{
 			get { return Constants.EffectStrings; }
 		}
 
-		public int SelectedIndex
+		public List<string> Abilities
 		{
-			get { return _selectedIndex; }
+			get { return Constants.AbilityStrings; }
+		}
+
+		public int SelectedEffectIndex
+		{
+			get { return _selectedEffectIndex; }
 			set
 			{
-				_selectedIndex = value;
-				NotifyPropertyChanged("SelectedIndex");
+				_selectedEffectIndex = value;
+				NotifyPropertyChanged("SelectedEffectIndex");
 				NotifyPropertyChanged("SelectedEffectType");
 				NotifyPropertyChanged("TimedEffect");
+				NotifyPropertyChanged("ValueEffect");
+				NotifyPropertyChanged("AbilityEffect");
 			}
 		}
 
 		public bool TimedEffect
 		{
 			get { return GetSelectedEffect() is Model.Effect.TimedEffect; }
+		}
+
+		public bool ValueEffect
+		{
+			get { return GetSelectedEffect() is Model.Effect.ValueEffect; }
+		}
+
+		public bool AbilityEffect
+		{
+			get { return GetSelectedEffect() is Model.Effect.AbilityEffect; }
+		}
+
+		public int SelectedAbilityIndex
+		{
+			get { return _selectedAbilityIndex; }
+			set
+			{
+				_selectedAbilityIndex = value;
+				NotifyPropertyChanged("SelectedAbilityIndex");
+				NotifyPropertyChanged("SelectedAbility");
+			}
 		}
 
 		private Model.Effect.Effect GetSelectedEffect()
@@ -47,7 +77,12 @@ namespace Dungeoneer.ViewModel
 
 		private Types.Effect SelectedEffectType
 		{
-			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedIndex]); }
+			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedEffectIndex]); }
+		}
+
+		private Types.Ability SelectedAbility
+		{
+			get { return Methods.GetAbilityFromString(Abilities[_selectedAbilityIndex]); }
 		}
 
 		public string Value
@@ -88,6 +123,14 @@ namespace Dungeoneer.ViewModel
 						if (effect is Model.Effect.TimedEffect)
 						{
 							(effect as Model.Effect.TimedEffect).Duration = Convert.ToInt32(Duration);
+						}
+						if (effect is Model.Effect.ValueEffect)
+						{
+							(effect as Model.Effect.ValueEffect).Value = Convert.ToInt32(Value);
+						}
+						if (effect is Model.Effect.AbilityEffect)
+						{
+							(effect as Model.Effect.AbilityEffect).Ability = SelectedAbility;
 						}
 						askForInput = false;
 					}

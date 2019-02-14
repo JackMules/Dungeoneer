@@ -279,7 +279,7 @@ namespace Dungeoneer.Utility
 
 								if (regenerationMatch.Success)
 								{
-									attributes.FastHealing = Convert.ToUInt32(regenerationMatch.Groups["Value"].Value);
+									attributes.FastHealing = Convert.ToInt32(regenerationMatch.Groups["Value"].Value);
 								}
 
 								string fastHealingPattern = @"fast healing (?<Value>\d+)(\,|\z)";
@@ -288,7 +288,7 @@ namespace Dungeoneer.Utility
 
 								if (fastHealingMatch.Success)
 								{
-									attributes.FastHealing = Convert.ToUInt32(fastHealingMatch.Groups["Value"].Value);
+									attributes.FastHealing = Convert.ToInt32(fastHealingMatch.Groups["Value"].Value);
 								}
 							}
 							else if (identifier == "Saves")

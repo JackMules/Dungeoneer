@@ -118,7 +118,7 @@ namespace Dungeoneer.Model
 		private int _space;
 		private int _reach;
 		private int _spellResistance;
-		private uint _fastHealing;
+		private int _fastHealing;
 
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
@@ -357,7 +357,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public uint FastHealing
+		public int FastHealing
 		{
 			get { return _fastHealing; }
 			set
@@ -1024,7 +1024,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "FastHealing")
 					{
-						FastHealing = Convert.ToUInt32(childNode.InnerText);
+						FastHealing = Convert.ToInt32(childNode.InnerText);
 					}
 					else if (childNode.Name == "SpecialAttacks")
 					{

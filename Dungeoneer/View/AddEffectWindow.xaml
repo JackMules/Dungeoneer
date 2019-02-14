@@ -9,7 +9,7 @@
         Title="Add Effect" SizeToContent="WidthAndHeight"
 				WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize">
 	<DockPanel Margin="5">
-		<ComboBox DockPanel.Dock="Top" ItemsSource="{Binding EffectNames}" SelectedIndex="{Binding SelectedIndex}"/>
+		<ComboBox DockPanel.Dock="Top" ItemsSource="{Binding EffectNames}" SelectedIndex="{Binding SelectedEffectIndex}"/>
 		<StackPanel DockPanel.Dock="Bottom">
 			<Label x:Name="lblFeedback" Margin="0,0,5,0">
 				<Label.Style>
@@ -28,27 +28,59 @@
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>
 		</StackPanel>
-		<Grid>
-			<Grid.Style>
-				<Style TargetType="{x:Type Grid}">
-					<Setter Property="Visibility" Value="Collapsed"/>
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding TimedEffect, UpdateSourceTrigger=PropertyChanged}" Value="True">
-							<Setter Property="Visibility" Value="Visible"/>
-						</DataTrigger>
-					</Style.Triggers>
-				</Style>
-			</Grid.Style>
+		<Grid Margin="5">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
+				<RowDefinition>
+					<RowDefinition.Style>
+						<Style TargetType="{x:Type RowDefinition}">
+							<Setter Property="Height" Value="Auto"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TimedEffect, UpdateSourceTrigger=PropertyChanged}" Value="False">
+									<Setter Property="Height" Value="0"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RowDefinition.Style>
+				</RowDefinition>
+				<RowDefinition>
+					<RowDefinition.Style>
+						<Style TargetType="{x:Type RowDefinition}">
+							<Setter Property="Height" Value="Auto"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ValueEffect, UpdateSourceTrigger=PropertyChanged}" Value="False">
+									<Setter Property="Height" Value="0"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RowDefinition.Style>
+				</RowDefinition>
+				<RowDefinition>
+					<RowDefinition.Style>
+						<Style TargetType="{x:Type RowDefinition}">
+							<Setter Property="Height" Value="Auto"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding AbilityEffect, UpdateSourceTrigger=PropertyChanged}" Value="False">
+									<Setter Property="Height" Value="0"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RowDefinition.Style>
+				</RowDefinition>
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			<Label x:Name="lblDuration" Grid.Row="0" Grid.Column="0" Content="Duration"/>
-			<TextBox x:Name="txtDuration" Grid.Row="0" Grid.Column="1" Text="{Binding Duration}"/>
+			
+			<Label Grid.Row="0" Grid.Column="0" Content="Duration"/>
+			<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Duration}" MinWidth="100"/>
+
+			<Label Grid.Row="1" Grid.Column="0" Content="Value"/>
+			<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Value}" MinWidth="100"/>
+			
+			<Label Grid.Row="2" Grid.Column="0" Content="Ability"/>
+			<ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Abilities}" SelectedIndex="{Binding SelectedAbilityIndex}" MinWidth="100"/>
+
 		</Grid>
 	</DockPanel>
 </Window>
