@@ -17,7 +17,6 @@ namespace Dungeoneer.ViewModel
 		private int _selectedEffectIndex;
 		private string _value;
 		private string _duration;
-		private string _ability;
 		private int _selectedAbilityIndex;
 
 		public List<string> EffectNames

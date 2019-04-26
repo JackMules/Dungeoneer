@@ -8,7 +8,7 @@
 						 xmlns:util="clr-namespace:Dungeoneer.Utility"
 						 xmlns:convert="clr-namespace:Dungeoneer.Utility.Converter"
 						 mc:Ignorable="d"
-						 d:DesignHeight="88" d:DesignWidth="600">
+						 d:DesignHeight="100" d:DesignWidth="600">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<DataTemplate DataType="{x:Type viewmodel:PlayerActorInitiativeViewModel}">
@@ -121,10 +121,25 @@
 						</ToggleButton.Style>
 					</ToggleButton>
 				</StackPanel>
-				<view:ValueButton DockPanel.Dock="Right" Title="Init"
+				<Border DockPanel.Dock="Right" x:Name="border" Margin="2" BorderBrush="White" Background="Transparent" BorderThickness="1,1,1,1" 
+						CornerRadius="4,4,4,4">
+					<StackPanel Orientation="Vertical">
+						<view:ValueButton Title="Init"
 													ValueBinding="{Binding InitiativeValueViewModel.InitiativeScore}"
 													CommandBinding="{Binding OpenInitiativeDialog}"
 													PanelOrientation="Vertical"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<Button Width="16" Height="16" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+											Command="{Binding IncrementInitiativeAdjust}">
+								<TextBlock Text="+" FontSize="16" Margin="-4,-12"/>
+							</Button>
+							<Button Width="16" Height="16" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+											Command="{Binding DecrementInitiativeAdjust}">
+								<TextBlock Text="-" FontSize="16" Margin="-4,-12"/>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</Border>
 				<ContentControl Content="{Binding ActorViewModel}"/>
 			</DockPanel>
 		</Border>

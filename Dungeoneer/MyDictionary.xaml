@@ -13,19 +13,21 @@
 		<view:InitiativeCard/>
 	</DataTemplate>
 	<ControlTemplate x:Key="XButtonTemplate" TargetType="Button">
-		<Path Data="M0,0 L8,8 M8,0 L0,8" Margin="4" StrokeThickness="2">
-			<Path.Style>
-				<Style TargetType="{x:Type Path}">
-					<Style.Triggers>
-						<Trigger Property="IsMouseOver" Value="False">
-							<Setter Property="Stroke" Value="Black" />
-						</Trigger>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="Stroke" Value="Red" />
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</Path.Style>
-		</Path>
+		<Border BorderBrush="Black" Background="LightGray" BorderThickness="1" CornerRadius="2">
+			<Path Data="M1,1 L8,8 M8,1 L1,8" Margin="1" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Path.Style>
+					<Style TargetType="{x:Type Path}">
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="False">
+								<Setter Property="Stroke" Value="Black" />
+							</Trigger>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Stroke" Value="Red" />
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Path.Style>
+			</Path>
+		</Border>
 	</ControlTemplate>
 </ResourceDictionary>

@@ -21,12 +21,16 @@ namespace Dungeoneer.ViewModel
 		private ActorInitiativeViewModel _actorViewModel;
 		private Command _openInitiativeDialog;
 		private Command _advanceTurnState;
+		private Command _incrementInitiativeAdjust;
+		private Command _decrementInitiativeAdjust;
 
 		protected virtual void InitCommands()
 		{
 			_openInitiativeDialog = new Command(ExecuteOpenInitiativeDialog);
 			_advanceTurnState = new Command(ExecuteAdvanceTurnState);
-		}
+			_incrementInitiativeAdjust = new Command(ExecuteIncrementInitiativeAdjust);
+			_decrementInitiativeAdjust = new Command(ExecuteDecrementInitiativeAdjust);
+	}
 
 		public Command AdvanceTurnState
 		{
@@ -40,6 +44,26 @@ namespace Dungeoneer.ViewModel
 			case Types.TurnState.NotStarted:	StartTurn();	break;
 			case Types.TurnState.Started:			EndTurn();		break;
 			}
+		}
+
+		public Command IncrementInitiativeAdjust
+		{
+			get { return _incrementInitiativeAdjust; }
+		}
+
+		public Command DecrementInitiativeAdjust
+		{
+			get { return _decrementInitiativeAdjust; }
+		}
+
+		public void ExecuteIncrementInitiativeAdjust()
+		{
+			++InitiativeValueViewModel.InitiativeValue.Adjust;
+		}
+
+		public void ExecuteDecrementInitiativeAdjust()
+		{
+			--InitiativeValueViewModel.InitiativeValue.Adjust;
 		}
 
 		public virtual void StartEncounter()
