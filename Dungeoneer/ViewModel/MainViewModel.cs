@@ -65,7 +65,7 @@ namespace Dungeoneer.ViewModel
 			get { return _enemyFilter; }
 			set
 			{
-				_enemyFilter = value;
+				SetField(ref _enemyFilter, value);
 				OnEnemyFilterChanged();
 			}
 		}
@@ -96,7 +96,7 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteExit()
 		{
-			App.Current.Shutdown();
+			System.Windows.Application.Current.Shutdown();
 		}
 		
 		public EncounterViewModel Encounter
@@ -104,8 +104,7 @@ namespace Dungeoneer.ViewModel
 			get { return _encounter; }
 			set
 			{
-				_encounter = value;
-				NotifyPropertyChanged("EncounterViewModel");
+				SetField(ref _encounter, value);
 			}
 		}
 
@@ -114,8 +113,7 @@ namespace Dungeoneer.ViewModel
 			get { return _actorLibrary; }
 			set
 			{
-				_actorLibrary = value;
-				NotifyPropertyChanged("ActorLibrary");
+				SetField(ref _actorLibrary, value);
 			}
 		}
 

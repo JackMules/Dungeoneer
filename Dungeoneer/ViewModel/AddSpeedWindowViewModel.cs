@@ -60,30 +60,19 @@ namespace Dungeoneer.ViewModel
 
 		public List<string> ManouverabilityTypes
 		{
-			get
-			{
-				return Constants.ManouverabilityStrings;
-			}
+			get { return Constants.ManouverabilityStrings; }
 		}
 
 		public string Distance
 		{
 			get { return _distance; }
-			set
-			{
-				_distance = value;
-				NotifyPropertyChanged("Distance");
-			}
+			set { SetField(ref _distance, value); }
 		}
 
 		public bool EnableManouverability
 		{
 			get { return _enableManouverability; }
-			set
-			{
-				_enableManouverability = value;
-				NotifyPropertyChanged("EnableManouverability");
-			}
+			set { SetField(ref _enableManouverability, value); }
 		}
 
 		public int SelectedMovementType
@@ -91,20 +80,17 @@ namespace Dungeoneer.ViewModel
 			get { return _selectedMovementType; }
 			set
 			{
-				_selectedMovementType = value;
-				NotifyPropertyChanged("SelectedMovementType");
-				EnableManouverability = (_selectedMovementType == GetMovementTypeIndex(Types.Movement.Fly));
+				if (SetField(ref _selectedMovementType, value))
+				{
+					EnableManouverability = _selectedMovementType == GetMovementTypeIndex(Types.Movement.Fly);
+				}
 			}
 		}
 
 		public int SelectedManouverability
 		{
 			get { return _selectedManouverability; }
-			set
-			{
-				_selectedManouverability = value;
-				NotifyPropertyChanged("SelectedManouverability");
-			}
+			set { SetField(ref _selectedManouverability, value); }
 		}
 
 		public Model.Speed GetSpeed()

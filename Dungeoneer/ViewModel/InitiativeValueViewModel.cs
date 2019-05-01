@@ -29,9 +29,10 @@ namespace Dungeoneer.ViewModel
 			get { return _initiativeValue; }
 			set
 			{
-				_initiativeValue = value;
-				NotifyPropertyChanged("InitiativeValue");
-				InitiativeSet = _initiativeValue.Score.HasValue;
+				if (SetField(ref _initiativeValue, value))
+				{
+					InitiativeSet = _initiativeValue.Score.HasValue;
+				}
 			}
 		}
 
@@ -126,8 +127,7 @@ namespace Dungeoneer.ViewModel
 			get { return _initiativeSet; }
 			set
 			{
-				_initiativeSet = value;
-				NotifyPropertyChanged("InitiativeSet");
+				SetField(ref _initiativeSet, value);
 			}
 		}
 

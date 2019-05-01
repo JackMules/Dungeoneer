@@ -20,11 +20,7 @@ namespace Dungeoneer.ViewModel
 		public Model.Damage Damage
 		{
 			get { return _damage; }
-			set
-			{
-				_damage = value;
-				NotifyPropertyChanged("Damage");
-			}
+			set { SetField(ref _damage, value); }
 		}
 
 		public string NumDice

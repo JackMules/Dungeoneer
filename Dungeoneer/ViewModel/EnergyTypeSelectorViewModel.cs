@@ -74,9 +74,10 @@ namespace Dungeoneer.ViewModel
 			get { return _acid; }
 			set
 			{
-				ResetAll();
-				_acid = value;
-				NotifyPropertyChanged("Acid");
+				if (SetField(ref _acid, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 		
@@ -85,9 +86,10 @@ namespace Dungeoneer.ViewModel
 			get { return _cold; }
 			set
 			{
-				ResetAll();
-				_cold = value;
-				NotifyPropertyChanged("Cold");
+				if (SetField(ref _cold, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 
@@ -96,9 +98,10 @@ namespace Dungeoneer.ViewModel
 			get { return _electricity; }
 			set
 			{
-				ResetAll();
-				_electricity = value;
-				NotifyPropertyChanged("Electricity");
+				if (SetField(ref _electricity, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 
@@ -107,9 +110,10 @@ namespace Dungeoneer.ViewModel
 			get { return _fire; }
 			set
 			{
-				ResetAll();
-				_fire = value;
-				NotifyPropertyChanged("Fire");
+				if (SetField(ref _fire, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 
@@ -118,9 +122,10 @@ namespace Dungeoneer.ViewModel
 			get { return _force; }
 			set
 			{
-				ResetAll();
-				_force = value;
-				NotifyPropertyChanged("Force");
+				if (SetField(ref _force, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 		
@@ -129,9 +134,10 @@ namespace Dungeoneer.ViewModel
 			get { return _negativeEnergy; }
 			set
 			{
-				ResetAll();
-				_negativeEnergy = value;
-				NotifyPropertyChanged("NegativeEnergy");
+				if (SetField(ref _negativeEnergy, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 
@@ -140,9 +146,10 @@ namespace Dungeoneer.ViewModel
 			get { return _positiveEnergy; }
 			set
 			{
-				ResetAll();
-				_positiveEnergy = value;
-				NotifyPropertyChanged("PositiveEnergy");
+				if (SetField(ref _positiveEnergy, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 		
@@ -151,9 +158,10 @@ namespace Dungeoneer.ViewModel
 			get { return _sonic; }
 			set
 			{
-				ResetAll();
-				_sonic = value;
-				NotifyPropertyChanged("Sonic");
+				if (SetField(ref _sonic, value))
+				{
+					ResetAll();
+				}
 			}
 		}
 	}

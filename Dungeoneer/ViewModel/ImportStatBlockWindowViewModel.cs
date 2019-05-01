@@ -19,11 +19,7 @@ namespace Dungeoneer.ViewModel
 		public string StatBlockText
 		{
 			get { return _statBlockText; }
-			set
-			{
-				_statBlockText = value;
-				NotifyPropertyChanged("StatBlockText");
-			}
+			set { SetField(ref _statBlockText, value); }
 		}
 
 		public Model.Creature GetCreature()

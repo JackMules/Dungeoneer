@@ -30,8 +30,7 @@ namespace Dungeoneer.ViewModel
 			get { return _value; }
 			set
 			{
-				_value = value;
-				NotifyPropertyChanged("Value");
+				SetField(ref _value, value);
 			}
 		}
 
@@ -40,8 +39,7 @@ namespace Dungeoneer.ViewModel
 			get { return _energyTypeSelectorViewModel; }
 			set
 			{
-				_energyTypeSelectorViewModel = value;
-				NotifyPropertyChanged("EnergyTypeSelectorViewModel");
+				SetField(ref _energyTypeSelectorViewModel, value);
 			}
 		}
 

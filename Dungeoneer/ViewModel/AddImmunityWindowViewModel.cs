@@ -25,11 +25,7 @@ namespace Dungeoneer.ViewModel
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
 		{
 			get { return _damageTypeSelectorViewModel; }
-			set
-			{
-				_damageTypeSelectorViewModel = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel");
-			}
+			set { SetField(ref _damageTypeSelectorViewModel, value); }
 		}
 
 		public Model.DamageDescriptorSet GetImmunity()

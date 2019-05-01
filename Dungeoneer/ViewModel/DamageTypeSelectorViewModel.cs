@@ -117,220 +117,132 @@ namespace Dungeoneer.ViewModel
 		public bool Acid
 		{
 			get { return _acid; }
-			set
-			{
-				_acid = value;
-				NotifyPropertyChanged("Acid");
-			}
+			set { SetField(ref _acid, value); }
 		}
 
 		public bool Adamantine
 		{
 			get { return _adamantine; }
-			set
-			{
-				_adamantine = value;
-				NotifyPropertyChanged("Adamantine");
-			}
+			set { SetField(ref _adamantine, value); }
 		}
 
 		public bool Bludgeoning
 		{
 			get { return _bludgeoning; }
-			set
-			{
-				_bludgeoning = value;
-				NotifyPropertyChanged("Bludgeoning");
-			}
+			set { SetField(ref _bludgeoning, value); }
 		}
 
 		public bool Chaos
 		{
 			get { return _chaos; }
-			set
-			{
-				_chaos = value;
-				NotifyPropertyChanged("Chaos");
-			}
+			set { SetField(ref _chaos, value); }
 		}
 
 		public bool Cold
 		{
 			get { return _cold; }
-			set
-			{
-				_cold = value;
-				NotifyPropertyChanged("Cold");
-			}
+			set { SetField(ref _cold, value); }
 		}
 
 		public bool ColdIron
 		{
 			get { return _coldIron; }
-			set
-			{
-				_coldIron = value;
-				NotifyPropertyChanged("ColdIron");
-			}
+			set { SetField(ref _coldIron, value); }
 		}
 
 		public bool Divine
 		{
 			get { return _divine; }
-			set
-			{
-				_divine = value;
-				NotifyPropertyChanged("Divine");
-			}
+			set { SetField(ref _divine, value); }
 		}
 
 		public bool Electricity
 		{
 			get { return _electricity; }
-			set
-			{
-				_electricity = value;
-				NotifyPropertyChanged("Electricity");
-			}
+			set { SetField(ref _electricity, value); }
 		}
 		public bool Epic
 		{
 			get { return _epic; }
-			set
-			{
-				_epic = value;
-				NotifyPropertyChanged("Epic");
-			}
+			set { SetField(ref _epic, value); }
 		}
 
 		public bool Evil
 		{
 			get { return _evil; }
-			set
-			{
-				_evil = value;
-				NotifyPropertyChanged("Evil");
-			}
+			set { SetField(ref _evil, value); }
 		}
 
 		public bool Fire
 		{
 			get { return _fire; }
-			set
-			{
-				_fire = value;
-				NotifyPropertyChanged("Fire");
-			}
+			set { SetField(ref _fire, value); }
 		}
 
 		public bool Force
 		{
 			get { return _force; }
-			set
-			{
-				_force = value;
-				NotifyPropertyChanged("Force");
-			}
+			set { SetField(ref _force, value); }
 		}
 
 		public bool Good
 		{
 			get { return _good; }
-			set
-			{
-				_good = value;
-				NotifyPropertyChanged("Good");
-			}
+			set { SetField(ref _good, value); }
 		}
 
 		public bool Law
 		{
 			get { return _law; }
-			set
-			{
-				_law = value;
-				NotifyPropertyChanged("Law");
-			}
+			set { SetField(ref _law, value); }
 		}
 
 		public bool Magic
 		{
 			get { return _magic; }
-			set
-			{
-				_magic = value;
-				NotifyPropertyChanged("Magic");
-			}
+			set { SetField(ref _magic, value); }
 		}
 
 		public bool NegativeEnergy
 		{
 			get { return _negativeEnergy; }
-			set
-			{
-				_negativeEnergy = value;
-				NotifyPropertyChanged("NegativeEnergy");
-			}
+			set { SetField(ref _negativeEnergy, value); }
 		}
 
 		public bool Piercing
 		{
 			get { return _piercing; }
-			set
-			{
-				_piercing = value;
-				NotifyPropertyChanged("Piercing");
-			}
+			set { SetField(ref _piercing, value); }
 		}
 
 		public bool PositiveEnergy
 		{
 			get { return _positiveEnergy; }
-			set
-			{
-				_positiveEnergy = value;
-				NotifyPropertyChanged("PositiveEnergy");
-			}
+			set { SetField(ref _positiveEnergy, value); }
 		}
 
 		public bool Silver
 		{
 			get { return _silver; }
-			set
-			{
-				_silver = value;
-				NotifyPropertyChanged("Silver");
-			}
+			set { SetField(ref _silver, value); }
 		}
 
 		public bool Slashing
 		{
 			get { return _slashing; }
-			set
-			{
-				_slashing = value;
-				NotifyPropertyChanged("Slashing");
-			}
+			set { SetField(ref _slashing, value); }
 		}
 
 		public bool Sonic
 		{
 			get { return _sonic; }
-			set
-			{
-				_sonic = value;
-				NotifyPropertyChanged("Sonic");
-			}
+			set { SetField(ref _sonic, value); }
 		}
 
 		public bool Subdual
 		{
 			get { return _subdual; }
-			set
-			{
-				_subdual = value;
-				NotifyPropertyChanged("Subdual");
-			}
+			set { SetField(ref _subdual, value); }
 		}
 	}
 }

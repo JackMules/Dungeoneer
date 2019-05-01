@@ -27,11 +27,7 @@ namespace Dungeoneer.ViewModel
 		public Model.Attack Attack
 		{
 			get { return _attack; }
-			set
-			{
-				_attack = value;
-				NotifyPropertyChanged("Attack");
-			}
+			set { SetField(ref _attack, value); }
 		}
 
 		public string Name

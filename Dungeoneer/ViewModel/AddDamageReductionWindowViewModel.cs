@@ -27,21 +27,13 @@ namespace Dungeoneer.ViewModel
 		public string Value
 		{
 			get { return _value; }
-			set
-			{
-				_value = value;
-				NotifyPropertyChanged("Value");
-			}
+			set { SetField(ref _value, value); }
 		}
 
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel
 		{
 			get { return _damageTypeSelectorViewModel; }
-			set
-			{
-				_damageTypeSelectorViewModel = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel");
-			}
+			set { SetField(ref _damageTypeSelectorViewModel, value); }
 		}
 
 		public Model.DamageReduction GetDamageReduction()

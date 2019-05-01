@@ -28,15 +28,16 @@ namespace Dungeoneer.ViewModel
 			get { return _score; }
 			set
 			{
+				string score;
 				if (value.Equals("0"))
 				{
-					_score = "";
+					score = "";
 				}
 				else
 				{
-					_score = value;
+					score = value;
 				}
-				NotifyPropertyChanged("Score");
+				SetField(ref _score, score);
 			}
 		}
 
@@ -45,15 +46,16 @@ namespace Dungeoneer.ViewModel
 			get { return _adjust; }
 			set
 			{
+				string adjust;
 				if (value.Equals("0"))
 				{
-					_adjust = "";
+					adjust = "";
 				}
 				else
 				{
-					_adjust = value;
+					adjust = value;
 				}
-				NotifyPropertyChanged("Adjust");
+				SetField(ref _adjust, adjust);
 			}
 		}
 
@@ -62,15 +64,16 @@ namespace Dungeoneer.ViewModel
 			get { return _modifier; }
 			set
 			{
+				string modifier;
 				if (value.Equals("0"))
 				{
-					_modifier = "";
+					modifier = "";
 				}
 				else
 				{
-					_modifier = value;
+					modifier = value;
 				}
-				NotifyPropertyChanged("Modifier");
+				SetField(ref _modifier, modifier);
 			}
 		}
 
@@ -79,15 +82,16 @@ namespace Dungeoneer.ViewModel
 			get { return _roll; }
 			set
 			{
+				string roll;
 				if (value.Equals("0"))
 				{
-					_roll = "";
+					roll = "";
 				}
 				else
 				{
-					_roll = value;
+					roll = value;
 				}
-				NotifyPropertyChanged("Roll");
+				SetField(ref _roll, roll);
 			}
 		}
 

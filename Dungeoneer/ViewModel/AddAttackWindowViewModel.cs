@@ -110,89 +110,43 @@ namespace Dungeoneer.ViewModel
 		public string Name
 		{
 			get { return _name; }
-			set
-			{
-				_name = value;
-				NotifyPropertyChanged("Name");
-			}
+			set { SetField(ref _name, value); }
 		}
 
 		public string Modifier
 		{
-			get
-			{
-				return _modifier;
-			}
-			set
-			{
-				_modifier = value;
-				NotifyPropertyChanged("Modifier");
-			}
+			get { return _modifier; }
+			set { SetField(ref _modifier, value); }
 		}
 
 		public int Type
 		{
-			get
-			{
-				return _type;
-			}
-			set
-			{
-				_type = value;
-				NotifyPropertyChanged("Type");
-			}
+			get { return _type; }
+			set { SetField(ref _type, value); }
 		}
 
 		public int Ability
 		{
-			get
-			{
-				return _ability;
-			}
-			set
-			{
-				_ability = value;
-				NotifyPropertyChanged("Ability");
-			}
+			get { return _ability; }
+			set { SetField(ref _ability, value); }
 		}
 
 		public int SelectedThreatRange
 		{
-			get
-			{
-				return _selectedThreatRangeMinimum;
-			}
-			set
-			{
-				_selectedThreatRangeMinimum = value;
-				NotifyPropertyChanged("ThreatRange");
-			}
+			get { return _selectedThreatRangeMinimum; }
+			set { SetField(ref _selectedThreatRangeMinimum, value); }
 		}
 
 		public int SelectedCritMultiplier
 		{
-			get
-			{
-				return _selectedCritMultiplier;
-			}
-			set
-			{
-				_selectedCritMultiplier = value;
-				NotifyPropertyChanged("CritMultiplier");
-			}
+			get { return _selectedCritMultiplier; }
+			set { SetField(ref _selectedCritMultiplier, value); }
 		}
 
 		public FullyObservableCollection<DamageViewModel> Damages
 		{
-			get
-			{
-				return _damages;
-			}
-			set
-			{
-				_damages = value;
-				NotifyPropertyChanged("Damages");
-			}
+			get { return _damages; }
+			set { SetField(ref _damages, value); }
 		}
 
 		public List<string> AttackTypes

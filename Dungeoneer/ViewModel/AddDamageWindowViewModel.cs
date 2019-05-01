@@ -43,37 +43,19 @@ namespace Dungeoneer.ViewModel
 		public string NumDice
 		{
 			get { return _numDice; }
-			set
-			{
-				_numDice = value;
-				NotifyPropertyChanged("NumDice");
-			}
+			set { SetField(ref _numDice, value); }
 		}
 
 		public int Die
 		{
-			get
-			{
-				return _die;
-			}
-			set
-			{
-				_die = value;
-				NotifyPropertyChanged("Die");
-			}
+			get { return _die; }
+			set { SetField(ref _die, value); }
 		}
 
 		public string Modifier
 		{
-			get
-			{
-				return _modifier;
-			}
-			set
-			{
-				_modifier = value;
-				NotifyPropertyChanged("Modifier");
-			}
+			get { return _modifier; }
+			set { SetField(ref _modifier, value); }
 		}
 
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel

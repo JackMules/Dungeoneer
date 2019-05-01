@@ -87,21 +87,13 @@ namespace Dungeoneer.ViewModel
 		public string Value
 		{
 			get { return _value; }
-			set
-			{
-				_value = value;
-				NotifyPropertyChanged("Value");
-			}
+			set { SetField(ref _value, value); }
 		}
 
 		public string Duration
 		{
 			get { return _duration; }
-			set
-			{
-				_duration = value;
-				NotifyPropertyChanged("Duration");
-			}
+			set { SetField(ref _duration, value); }
 		}
 
 		public Model.Effect.Effect GetEffect()

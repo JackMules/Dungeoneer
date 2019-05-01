@@ -109,230 +109,138 @@ namespace Dungeoneer.ViewModel
 		public string ActorName
 		{
 			get { return _actorName; }
-			set
-			{
-				_actorName = value;
-				NotifyPropertyChanged("ActorName");
-			}
+			set { SetField(ref _actorName, value); }
 		}
 
 		public string InitiativeMod
 		{
 			get { return _initiativeMod; }
-			set
-			{
-				_initiativeMod = value;
-				NotifyPropertyChanged("InitiativeMod");
-			}
+			set { SetField(ref _initiativeMod, value); }
 		}
 
 		public string ChallengeRating
 		{
 			get { return _challengeRating; }
-			set
-			{
-				_challengeRating = value;
-				NotifyPropertyChanged("ChallengeRating");
-			}
+			set { SetField(ref _challengeRating, value); }
 		}
 
 		public string Strength
 		{
 			get { return _strength; }
-			set
-			{
-				_strength = value;
-				NotifyPropertyChanged("Strength");
-			}
+			set { SetField(ref _strength, value); }
 		}
 
 		public string Dexterity
 		{
 			get { return _dexterity; }
-			set
-			{
-				_dexterity = value;
-				NotifyPropertyChanged("Dexterity");
-			}
+			set { SetField(ref _dexterity, value); }
 		}
 
 		public string Constitution
 		{
 			get { return _constitution; }
-			set
-			{
-				_constitution = value;
-				NotifyPropertyChanged("Constitution");
-			}
+			set { SetField(ref _constitution, value); }
 		}
 
 		public string Intelligence
 		{
 			get { return _intelligence; }
-			set
-			{
-				_intelligence = value;
-				NotifyPropertyChanged("Intelligence");
-			}
+			set { SetField(ref _intelligence, value); }
 		}
 
 		public string Wisdom
 		{
 			get { return _wisdom; }
-			set
-			{
-				_wisdom = value;
-				NotifyPropertyChanged("Wisdom");
-			}
+			set { SetField(ref _wisdom, value); }
 		}
 
 		public string Charisma
 		{
 			get { return _charisma; }
-			set
-			{
-				_charisma = value;
-				NotifyPropertyChanged("Charisma");
-			}
+			set { SetField(ref _charisma, value); }
 		}
 
 		public string BaseAttackBonus
 		{
 			get { return _baseAttackBonus; }
-			set
-			{
-				_baseAttackBonus = value;
-				NotifyPropertyChanged("BaseAttackBonus");
-			}
+			set { SetField(ref _baseAttackBonus, value); }
 		}
 		public string GrappleModifier
 		{
 			get { return _grappleModifier; }
-			set
-			{
-				_grappleModifier = value;
-				NotifyPropertyChanged("GrappleModifier");
-			}
+			set { SetField(ref _grappleModifier, value); }
 		}
 
 		public string HitPoints
 		{
 			get { return _hitPoints; }
-			set
-			{
-				_hitPoints = value;
-				NotifyPropertyChanged("HitPoints");
-			}
+			set { SetField(ref _hitPoints, value); }
 		}
 
 		public string HitDice
 		{
 			get { return _hitDice; }
-			set
-			{
-				_hitDice = value;
-				NotifyPropertyChanged("HitDice");
-			}
+			set { SetField(ref _hitDice, value); }
 		}
 
 		public int SelectedHitDie
 		{
 			get { return _selectedHitDie; }
-			set
-			{
-				_selectedHitDie = value;
-				NotifyPropertyChanged("SelectedHitDie");
-			}
+			set { SetField(ref _selectedHitDie, value); }
 		}
 
 		public string ArmorClass
 		{
 			get { return _armorClass; }
-			set
-			{
-				_armorClass = value;
-				NotifyPropertyChanged("ArmorClass");
-			}
+			set { SetField(ref _armorClass, value); }
 		}
 
 		public string TouchArmorClass
 		{
 			get { return _touchArmorClass; }
-			set
-			{
-				_touchArmorClass = value;
-				NotifyPropertyChanged("TouchArmorClass");
-			}
+			set { SetField(ref _touchArmorClass, value); }
 		}
 
 		public string FlatFootedArmorClass
 		{
 			get { return _flatFootedArmorClass; }
-			set
-			{
-				_flatFootedArmorClass = value;
-				NotifyPropertyChanged("FlatFootedArmorClass");
-			}
+			set { SetField(ref _flatFootedArmorClass, value); }
 		}
 
 		public Model.SpeedSet Speeds
 		{
 			get { return _speeds; }
-			set
-			{
-				_speeds = value;
-				NotifyPropertyChanged("Speeds");
-			}
+			set { SetField(ref _speeds, value); }
 		}
 
 		public string Space
 		{
 			get { return _space; }
-			set
-			{
-				_space = value;
-				NotifyPropertyChanged("Space");
-			}
+			set { SetField(ref _space, value); }
 		}
 
 		public string Reach
 		{
 			get { return _reach; }
-			set
-			{
-				_reach = value;
-				NotifyPropertyChanged("Reach");
-			}
+			set { SetField(ref _reach, value); }
 		}
 
 		public string FortitudeSave
 		{
 			get { return _fortitudeSave; }
-			set
-			{
-				_fortitudeSave = value;
-				NotifyPropertyChanged("FortitudeSave");
-			}
+			set { SetField(ref _fortitudeSave, value); }
 		}
 
 		public string ReflexSave
 		{
 			get { return _reflexSave; }
-			set
-			{
-				_reflexSave = value;
-				NotifyPropertyChanged("ReflexSave");
-			}
+			set { SetField(ref _reflexSave, value); }
 		}
 
 		public string WillSave
 		{
 			get { return _willSave; }
-			set
-			{
-				_willSave = value;
-				NotifyPropertyChanged("WillSave");
-			}
+			set { SetField(ref _willSave, value); }
 		}
 
 		public List<string> Feats
@@ -340,8 +248,7 @@ namespace Dungeoneer.ViewModel
 			get { return _feats; }
 			set
 			{
-				_feats = value;
-				NotifyPropertyChanged("Feats");
+				SetField(ref _feats, value);
 				NotifyPropertyChanged("FeatsText");
 			}
 		}
@@ -373,112 +280,68 @@ namespace Dungeoneer.ViewModel
 		public FullyObservableCollection<Model.AttackSet> AttackSets
 		{
 			get { return _attackSets; }
-			set
-			{
-				_attackSets = value;
-				NotifyPropertyChanged("AttackSets");
-			}
+			set { SetField(ref _attackSets, value); }
 		}
 
 		public int SelectedSize
 		{
 			get { return _selectedSize; }
-			set
-			{
-				_selectedSize = value;
-				NotifyPropertyChanged("SelectedSize");
-			}
+			set { SetField(ref _selectedSize, value); }
 		}
 
 		public ObservableCollection<Model.DamageReduction> DamageReductions
 		{
 			get { return _damageReductions; }
-			set
-			{
-				_damageReductions = value;
-				NotifyPropertyChanged("DamageReductions");
-			}
+			set { SetField(ref _damageReductions, value); }
 		}
 
 		public Model.DamageDescriptorSet Immunities
 		{
 			get { return _immunities; }
-			set
-			{
-				_immunities = value;
-				NotifyPropertyChanged("Immunities");
-			}
+			set { SetField(ref _immunities, value); }
 		}
 
 		public ObservableCollection<Model.EnergyResistance> EnergyResistances
 		{
 			get { return _energyResistances; }
-			set
-			{
-				_energyResistances = value;
-				NotifyPropertyChanged("EnergyResistances");
-			}
+			set { SetField(ref _energyResistances, value); }
 		}
 
 
 		public ObservableCollection<Model.Weapon> Weapons
 		{
 			get { return _weapons; }
-			set
-			{
-				_weapons = value;
-				NotifyPropertyChanged("Weapons");
-			}
+			set { SetField(ref _weapons, value); }
 		}
 
 		public string SpellResistance
 		{
 			get { return _spellResistance; }
-			set
-			{
-				_spellResistance = value;
-				NotifyPropertyChanged("SpellResistance");
-			}
+			set { SetField(ref _spellResistance, value); }
 		}
 
 		public string FastHealing
 		{
 			get { return _fastHealing; }
-			set
-			{
-				_fastHealing = value;
-				NotifyPropertyChanged("FastHealing");
-			}
+			set { SetField(ref _fastHealing, value); }
 		}
 
 		public string SpecialAttacks
 		{
 			get { return _specialAttacks; }
-			set
-			{
-				_specialAttacks = value;
-				NotifyPropertyChanged("SpecialAttacks");
-			}
+			set { SetField(ref _specialAttacks, value); }
 		}
 
 		public string SpecialQualities
 		{
 			get { return _specialQualities; }
-			set
-			{
-				_specialQualities = value;
-				NotifyPropertyChanged("SpecialQualities");
-			}
+			set { SetField(ref _specialQualities, value); }
 		}
 
 		public int SelectedCreatureType
 		{
 			get { return _selectedCreatureType; }
-			set
-			{
-				_selectedCreatureType = value;
-				NotifyPropertyChanged("SelectedCreatureType");
-			}
+			set { SetField(ref _selectedCreatureType, value); }
 		}
 
 		public List<string> CreatureTypes

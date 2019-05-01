@@ -26,8 +26,7 @@ namespace Dungeoneer.ViewModel
 			get { return _actor as Model.PlayerActor; }
 			set
 			{
-				_actor = value;
-				NotifyPropertyChanged("Actor");
+				SetField(ref _actor, value);
 			}
 		}
 

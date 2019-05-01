@@ -34,8 +34,10 @@ namespace Dungeoneer.ViewModel
 			get { return _actor; }
 			set
 			{
-				_actor = value;
-				ActorUpdated();
+				if (SetField(ref _actor, value))
+				{
+					ActorUpdated();
+				}
 			}
 		}
 
@@ -43,23 +45,18 @@ namespace Dungeoneer.ViewModel
 		{
 			InitiativeMod = Actor.InitiativeMod;
 			ActorName = Actor.ActorName;
-			NotifyPropertyChanged("Actor");
 		}
 
 		public string DisplayName
 		{
 			get { return _displayName; }
-			set
-			{
-				_displayName = value;
-				NotifyPropertyChanged("DisplayName");
-			}
+			set { SetField(ref _displayName, value); }
 		}
 
 		public string ActorName
 		{
 			get { return Actor.ActorName; }
-			set
+			set 
 			{
 				Actor.ActorName = value;
 				NotifyPropertyChanged("ActorName");

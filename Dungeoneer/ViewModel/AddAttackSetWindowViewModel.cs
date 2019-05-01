@@ -41,21 +41,13 @@ namespace Dungeoneer.ViewModel
 		public string Name
 		{
 			get { return _name; }
-			set
-			{
-				_name = value;
-				NotifyPropertyChanged("Name");
-			}
+			set { SetField(ref _name, value); }
 		}
 
 		public FullyObservableCollection<AttackViewModel> AttackViewModels
 		{
 			get { return _attackViewModels; }
-			set
-			{
-				_attackViewModels = value;
-				NotifyPropertyChanged("AttackViewModels");
-			}
+			set { SetField(ref _attackViewModels, value); }
 		}
 
 		public Model.AttackSet GetAttackSet()

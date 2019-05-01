@@ -45,11 +45,7 @@ namespace Dungeoneer.ViewModel
 		public int Round
 		{
 			get { return _round; }
-			set
-			{
-				_round = value;
-				NotifyPropertyChanged("Round");
-			}
+			set { SetField(ref _round, value); }
 		}
 
 		public RelayCommand NextRound
@@ -91,11 +87,7 @@ namespace Dungeoneer.ViewModel
 		public FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{
 			get { return _initiativeTrack; }
-			set
-			{
-				_initiativeTrack = value;
-				NotifyPropertyChanged("InitiativeTrack");
-			}
+			set { SetField(ref _initiativeTrack, value); }
 		}
 
 		public delegate void WeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList);
@@ -105,11 +97,7 @@ namespace Dungeoneer.ViewModel
 		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{
 			get { return _weaponList; }
-			set
-			{
-				_weaponList = value;
-				NotifyPropertyChanged("WeaponList");
-			}
+			set { SetField(ref _weaponList, value); }
 		}
 
 		public void AddWeaponSet(Model.WeaponSet weaponSet)

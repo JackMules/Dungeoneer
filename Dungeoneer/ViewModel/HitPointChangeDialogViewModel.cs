@@ -69,51 +69,31 @@ namespace Dungeoneer.ViewModel
 		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{
 			get { return _weaponList; }
-			set
-			{
-				_weaponList = value;
-				NotifyPropertyChanged("WeaponList");
-			}
+			set { SetField(ref _weaponList, value); }
 		}
 
 		public string Damage1
 		{
 			get { return _damage1; }
-			set
-			{
-				_damage1 = value;
-				NotifyPropertyChanged("Damage1");
-			}
+			set { SetField(ref _damage1, value); }
 		}
 
 		public string Damage2
 		{
 			get { return _damage2; }
-			set
-			{
-				_damage2 = value;
-				NotifyPropertyChanged("Damage2");
-			}
+			set { SetField(ref _damage2, value); }
 		}
 
 		public string Damage3
 		{
 			get { return _damage3; }
-			set
-			{
-				_damage3 = value;
-				NotifyPropertyChanged("Damage3");
-			}
+			set { SetField(ref _damage3, value); }
 		}
 
 		public string Healing
 		{
 			get { return _healing; }
-			set
-			{
-				_healing = value;
-				NotifyPropertyChanged("Healing");
-			}
+			set { SetField(ref _healing, value); }
 		}
 
 		public int SelectedWeapon
@@ -121,8 +101,7 @@ namespace Dungeoneer.ViewModel
 			get { return _selectedWeapon; }
 			set
 			{
-				_selectedWeapon = value;
-				NotifyPropertyChanged("SelectedWeapon");
+				SetField(ref _selectedWeapon, value);
 				if (SelectedWeapon != 0)
 				{
 					Model.Weapon weapon = GetFlatWeaponList().ElementAt(SelectedWeapon - 1).Item2;
@@ -162,31 +141,19 @@ namespace Dungeoneer.ViewModel
 		public string SelectedAbility
 		{
 			get { return _selectedAbility; }
-			set
-			{
-				_selectedAbility = value;
-				NotifyPropertyChanged("SelectedAbility");
-			}
+			set { SetField(ref _selectedAbility, value); }
 		}
 
 		public bool AbilityDamage
 		{
 			get { return _abilityDamage; }
-			set
-			{
-				_abilityDamage = value;
-				NotifyPropertyChanged("AbilityDamage");
-			}
+			set { SetField(ref _abilityDamage, value); }
 		}
 
 		public string AbilityDamageValue
 		{
 			get { return _abilityDamageValue; }
-			set
-			{
-				_abilityDamageValue = value;
-				NotifyPropertyChanged("AbilityDamageValue");
-			}
+			set { SetField(ref _abilityDamageValue, value); }
 		}
 
 		public Types.Ability Ability

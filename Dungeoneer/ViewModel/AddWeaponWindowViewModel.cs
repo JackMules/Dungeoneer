@@ -65,41 +65,25 @@ namespace Dungeoneer.ViewModel
 		public string Name
 		{
 			get { return _name; }
-			set
-			{
-				_name = value;
-				NotifyPropertyChanged("Name");
-			}
+			set { SetField(ref _name, value); }
 		}
 
 		public bool AbilityDamage
 		{
 			get { return _abilityDamage; }
-			set
-			{
-				_abilityDamage = value;
-				NotifyPropertyChanged("AbilityDamage");
-			}
+			set { SetField(ref _abilityDamage, value); }
 		}
 
 		public string AbilityDamageValue
 		{
 			get { return _abilityDamageValue; }
-			set
-			{
-				_abilityDamageValue = value;
-				NotifyPropertyChanged("AbilityDamageValue");
-			}
+			set { SetField(ref _abilityDamageValue, value); }
 		}
 
 		public int SelectedAbility
 		{
 			get { return _selectedAbility; }
-			set
-			{
-				_selectedAbility = value;
-				NotifyPropertyChanged("SelectedAbility");
-			}
+			set { SetField(ref _selectedAbility, value); }
 		}
 
 		public Types.Ability Ability
@@ -115,31 +99,19 @@ namespace Dungeoneer.ViewModel
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel1
 		{
 			get { return _damageTypeSelectorViewModel1; }
-			set
-			{
-				_damageTypeSelectorViewModel1 = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel1");
-			}
+			set { SetField(ref _damageTypeSelectorViewModel1, value); }
 		}
 
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel2
 		{
 			get { return _damageTypeSelectorViewModel2; }
-			set
-			{
-				_damageTypeSelectorViewModel2 = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel2");
-			}
+			set { SetField(ref _damageTypeSelectorViewModel2, value); }
 		}
 
 		public DamageTypeSelectorViewModel DamageTypeSelectorViewModel3
 		{
 			get { return _damageTypeSelectorViewModel3; }
-			set
-			{
-				_damageTypeSelectorViewModel3 = value;
-				NotifyPropertyChanged("DamageTypeSelectorViewModel3");
-			}
+			set { SetField(ref _damageTypeSelectorViewModel3, value); }
 		}
 
 		public Model.Weapon GetWeapon()

@@ -93,21 +93,13 @@ namespace Dungeoneer.ViewModel
 		public InitiativeValueViewModel InitiativeValueViewModel
 		{
 			get { return _initiativeValueViewModel; }
-			set
-			{
-				_initiativeValueViewModel = value;
-				NotifyPropertyChanged("InitiativeValueViewModel");
-			}
+			set { SetField(ref _initiativeValueViewModel, value); }
 		}
 
 		public ActorInitiativeViewModel ActorViewModel
 		{
 			get { return _actorViewModel; }
-			set
-			{
-				_actorViewModel = value;
-				NotifyPropertyChanged("ActorInitiativeViewModel");
-			}
+			set { SetField(ref _actorViewModel, value); }
 		}
 
 		public Types.TurnState TurnState

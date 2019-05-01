@@ -147,11 +147,7 @@ namespace Dungeoneer.ViewModel
 		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{
 			get { return _weaponList; }
-			set
-			{
-				_weaponList = value;
-				NotifyPropertyChanged("WeaponList");
-			}
+			set { SetField(ref _weaponList, value); }
 		}
 
 		public new Model.Creature Actor
@@ -159,8 +155,10 @@ namespace Dungeoneer.ViewModel
 			get { return _actor as Model.Creature; }
 			set
 			{
-				_actor = value;
-				ActorUpdated();
+				if (SetField(ref _actor, value))
+				{
+					ActorUpdated();
+				}
 			}
 		}
 
