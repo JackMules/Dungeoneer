@@ -1,0 +1,22 @@
+Size/Type:	Medium humanoid (elf)
+Hit Dice:	7d6+7 (35hp)
+Initiative:	+7
+Speed:	30 ft.
+Armor Class:	AC 18 (+3 Dex, +4 armor, +1 deflection), touch 14, flat-footed 15
+Base Attack/Grapple:	+4/+5
+Attack:	+1 spiked chain +9 melee (2d4+2) or mwk hand crossbow +8 ranged (1d4/19–20 plus poison)
+Full Attack:	+1 spiked chain +9 melee (2d4+2) or mwk hand crossbow +8 ranged (1d4/19–20 plus poison)
+Space/Reach:	5ft./10ft.
+Special Attacks:	poison (drow poison, DC 13, unconscious 1 minute/unconscious 2d4 hours)
+Special Qualities:	Spell resistance 18
+Saves:	Fort +5, Ref +4, Will +4
+Abilities:	Str 13, Dex 16, Con 12, Int 17, Wis 10, Cha 10
+Skills:	Climb +6, Concentration +10, Intimidate +4, Jump +6, Listen +6, Search +5, Spellcraft +11, Spot +7
+Feats:	Dodge, Empower Spell, Exotic Weapon Proficiency (spiked chain), Improved Initiative, Scribe Scroll, Weapon Finesse, Weapon Focus (spiked chain)
+Environment:	
+Organization:	
+Challenge Rating:	8
+Treasure:	
+Alignment:	NE 
+Advancement:	
+Level Adjustment:	

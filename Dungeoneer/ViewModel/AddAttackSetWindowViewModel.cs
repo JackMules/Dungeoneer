@@ -69,6 +69,10 @@ namespace Dungeoneer.ViewModel
 							Name = Name,
 						};
 						
+						foreach (AttackViewModel attackVM in AttackViewModels)
+						{
+							attackSet.Attacks.Add(attackVM.Attack);
+						}
 
 						askForInput = false;
 					}

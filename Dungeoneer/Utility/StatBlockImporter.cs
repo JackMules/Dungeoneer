@@ -419,9 +419,13 @@ namespace Dungeoneer.Utility
 								{
 									attributes.ChallengeRating = numbers[0] / numbers[1];
 								}
-								else
+								else if (numbers.Count == 1)
 								{
 									attributes.ChallengeRating = numbers[0];
+								}
+								else
+								{
+									attributes.ChallengeRating = 1;
 								}
 							}
 						}

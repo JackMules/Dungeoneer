@@ -1,0 +1,22 @@
+Size/Type:	Medium humanoid (elf)
+Hit Dice:	6d6+6 (36hp)
+Initiative:	+6
+Speed:	40 ft.
+Armor Class:	AC 19 (+5 Dex, +4 armor), touch 15, flat-footed 19
+Base Attack/Grapple:	+4/+5
+Attack:	mwk rapier +6 melee (1d6+1/18–20 plus poison) or +1 composite longbow +10 ranged (1d8+2/×3)
+Full Attack:	mwk rapier +6 melee (1d6+1/18–20 plus poison) or +1 composite longbow +10 ranged (1d8+2/×3)
+Space/Reach:	5ft./5ft.
+Special Attacks:	Poison
+Special Qualities:	able to notice secret or concealed doors, battle fortitude +1, fast movement, poison use, trackless step, trapfinding, spell resistance 17
+Saves:	Fort +4, Ref +10, Will +3
+Abilities:	Str 13, Dex 20, Con 12, Int 12, Wis 12, Cha 10
+Skills:	Balance +16, Climb +10, Diplomacy +2, Hide +19, Jump +12, Listen +12, Move Silently +14, Search +12, Sense Motive +6, Spot +12, Tumble +15
+Feats:	Dodge, Mobility, Point Blank Shot, Shot on the Run
+Environment:	
+Organization:	
+Challenge Rating:	
+Treasure:	
+Alignment:	CE 
+Advancement:	
+Level Adjustment:	
