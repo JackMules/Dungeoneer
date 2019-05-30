@@ -14,6 +14,8 @@ namespace Dungeoneer.ViewModel
 		{
 			_feats = new List<string>();
 			_attackSets = new FullyObservableCollection<Model.AttackSet>();
+			_speeds = new Model.SpeedSet();
+			_immunities = new Model.DamageDescriptorSet();
 			_addSpeed = new Command(ExecuteAddSpeed);
 			_editSpeed = new Command(ExecuteEditSpeed);
 			_removeSpeed = new Command(ExecuteRemoveSpeed);
@@ -33,6 +35,7 @@ namespace Dungeoneer.ViewModel
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
+			_energyResistances = new ObservableCollection<Model.EnergyResistance>();
 
 			SelectedCreatureType = CreatureTypes.IndexOf(Methods.GetCreatureTypeString(Types.Creature.Humanoid));
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(Types.Size.Medium));
