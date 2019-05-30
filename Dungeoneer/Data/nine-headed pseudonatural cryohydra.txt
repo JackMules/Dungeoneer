@@ -1,0 +1,22 @@
+Size/Type:	Huge Outsider
+Hit Dice:	9d10+48 (97 hp)
+Initiative:	1
+Speed:	20 ft. (4 squares), swim 20 ft.
+Armor Class:	19 (-2 size, +1 Dex, +10 natural), touch 9, flat-footed 18
+Base Attack/Grapple:	&9/22
+Attack:	9 bites +13 melee (1d10+5)
+Full Attack:	9 bites +13 melee (1d10+5)
+Space/Reach:	15 ft./10 ft.
+Special Attacks:	True Strike (Su): Once per day, a pseudonatural creature can gain a +20 insight bonus on a single attack roll. In addition, the creature suffers no miss chance against a target that has concealment or total concealment when making this attack.
+Special Qualities:	Darkvision 60 ft., fast healing 19, low-light vision, scent, resistance to acid and electricity 10, DR 5/magic, Alternate Form (Su), spell resistance 19
+Saves:	Fort +11, Ref +7, Will +5
+Abilities:	Str 21, Dex 12, Con 20, Int 3, Wis 10, Cha 9
+Skills:	Listen +8, Spot +8, Swim +13
+Feats:	Blind-Fight, Combat ReflexesB, Iron Will, Toughness, Weapon Focus (bite)
+Environment:	Temperate marshes (Pyro: Warm marshes) (Cryo: Cold marshes)
+Organization:	Solitary
+Challenge Rating:	11
+Treasure:	1/10 coins; 50% goods; 50% items
+Alignment:	Usually neutral
+Advancement:	—
+Level Adjustment:	—
