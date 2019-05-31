@@ -1,0 +1,22 @@
+Size/Type: Medium Aberration
+Hit Dice: 5d8+10 plus 4d4+8 (50 hp)
+Initiative: +5
+Speed: 5 ft., fly 30 ft. (perfect)
+Armor Class: 15 (+1 Dex, +4 natural), touch 11, fl at-footed 14
+Base Attack/Grapple: +5/+17
+Attack: Tentacle +7 melee (1d4+2 plus paralyzation) or lightning lance +6 ranged touch (3d6 electricity)
+Full Attack: 10 tentacles +7 melee (1d4+2 plus paralyzation) and bite +2 melee (1d6+1) or lightning lance +6 ranged touch (3d6 electricity)
+Space/Reach: 5 ft./5 ft. (10 ft. with tentacle)
+Special Attacks: Constrict 1d6+2, expert grappler, improved grab, paralysis, spells
+Special Qualities: Blindsight 60 ft., flight, immunity to electricity, immunity to paralyzation, sightless
+Saves: Fort +4, Ref +3, Will +9
+Abilities: Str 14, Dex 12, Con 14, Int 16, Wis 13, Cha 12
+Skills: Concentration +11 (+15 casting defensively), Hide +11, Knowledge (arcana) +6, Knowledge (dungeoneering) +6, Knowledge (nature) +6, Listen +9, Move Silently +11, Spot +9
+Feats: Combat Casting, Flyby Attack, Grell Alchemy, Improved Initiative, Scribe Scroll
+Environment: Underground
+Organization: Patrol (3–6 grell plus 1 philosopher) or colony (20–40 grell plus 3–5 philosophers plus patriarch)
+Challenge Rating: 5
+Treasure: Standard (plus lightning lance)
+Alignment: Usually neutral evil
+Advancement: By class
+Level Adjustment: +6

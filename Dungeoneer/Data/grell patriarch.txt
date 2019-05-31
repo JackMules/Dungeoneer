@@ -1,0 +1,22 @@
+Size/Type: Large Aberration
+Hit Dice: 12d8+48 plus 7d4+28 (147 hp)
+Initiative: +6
+Speed: 5 ft., fly 30 ft. (perfect)
+Armor Class: 24 (+1 Dex, +4 natural), touch 13, flat-footed 22
+Base Attack/Grapple: +12/+30
+Attack: Tentacle +16 melee (1d6+4 plus paralyzation) or lightning lance +13 ranged touch (5d6 electricity)
+Full Attack: 10 tentacles +16 melee (1d6+4 plus paralyzation) and bite +10 melee (1d8+2) or lightning lance +13 ranged touch (5d6 electricity)
+Space/Reach: 10 ft./10 ft. (15 ft. with tentacle)
+Special Attacks: Constrict 1d8+4, expert grappler, improved grab, paralysis, spells
+Special Qualities: Blindsight 60 ft., flight, immunity to electricity, immunity to paralyzation, sightless
+Saves: Fort +4, Ref +3, Will +9
+Abilities: Str 14, Dex 12, Con 14, Int 16, Wis 13, Cha 12
+Skills: Concentration +16 (+20 casting defensively), Hide +15, Knowledge (arcana) +10, Knowledge (dungeoneering) +10, Knowledge (nature) +10, Listen +16, Move Silently +19, Search +6, Sense Motive +4, Spellcraft +15, Spot +11, Survival +1 (+3 underground)
+Feats: Brew Potion, Combat Casting, Combat Reflexes, Flyby Attack, Grell Alchemy, Improved Initiative, Improved Natural Armor, Scribe Scroll, Weapon Focus (tentacle).
+Environment: Underground
+Organization: Patrol (3–6 grell plus 1 philosopher) or colony (20–40 grell plus 3–5 philosophers plus patriarch)
+Challenge Rating: 5
+Treasure: Standard (plus lightning lance)
+Alignment: Usually neutral evil
+Advancement: By class
+Level Adjustment: +6
