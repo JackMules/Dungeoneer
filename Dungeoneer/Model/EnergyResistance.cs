@@ -53,7 +53,7 @@ namespace Dungeoneer.Model
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("DamageReduction");
+			xmlWriter.WriteStartElement("EnergyResistance");
 
 			xmlWriter.WriteStartElement("Value");
 			xmlWriter.WriteString(Value.ToString());

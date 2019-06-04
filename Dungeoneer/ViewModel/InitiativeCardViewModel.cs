@@ -69,6 +69,7 @@ namespace Dungeoneer.ViewModel
 		public virtual void StartEncounter()
 		{
 			ActorViewModel.StartEncounter();
+			TurnState = Types.TurnState.NotStarted;
 		}
 
 		public virtual void StartTurn()
