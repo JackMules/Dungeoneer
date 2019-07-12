@@ -34,6 +34,7 @@ namespace Dungeoneer.Model
 
 		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
 		private CreatureAttributes _modifiedCreatureAttributes = new CreatureAttributes();
+		private FullyObservableCollection<Hit> _hits = new FullyObservableCollection<Hit>();
 
 		public override void StartEncounter()
 		{
@@ -71,6 +72,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public FullyObservableCollection<Hit> Hits
+		{
+			get { return _hits; }
+			set
+			{
+				_hits = value;
+				NotifyPropertyChanged("Hits");
+			}
+		}
+
 		public new CreatureAttributes GetEffectiveAttributes()
 		{
 			CreatureAttributes effectiveAttributes = ModifiedAttributes.Clone();
@@ -82,6 +93,18 @@ namespace Dungeoneer.Model
 				}
 			}
 			return effectiveAttributes;
+		}
+
+		public int GetCurrentHitPoints()
+		{
+			int hp = GetEffectiveAttributes().HitPoints;
+
+			foreach (Hit hit in Hits)
+			{
+				hp -= DoHitPointDamage(hit);
+			}
+
+			return hp;
 		}
 
 		public override void ApplyPerTurnEffects()
@@ -230,7 +253,7 @@ namespace Dungeoneer.Model
 
 		public int HitPoints
 		{
-			get { return GetEffectiveAttributes().HitPoints; }
+			get { return GetCurrentHitPoints(); }
 			set
 			{
 				ModifiedAttributes.HitPoints = value;
@@ -446,7 +469,7 @@ namespace Dungeoneer.Model
 
 		public int DoHitPointDamage(Hit hit)
 		{
-			return ModifiedAttributes.DoHitPointDamage(hit);
+			return ModifiedAttributes.CalculateHitPointChange(hit);
 		}
 
 		public void Heal(int healing)

@@ -14,6 +14,7 @@
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<Border Grid.Column="0" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
 					<TreeView Background="Transparent" ItemsSource="{Binding AttackSets}" BorderThickness="0">
@@ -65,9 +66,45 @@
 							</ListBox>
 						</ScrollViewer>
 						<StackPanel Grid.Column="1">
-							<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="Add" Margin="5" Height="20" 
+							<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="Add" Margin="2" Height="20" 
 									Width="55" FontWeight="Bold"/>
-							<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="Remove" Margin="5" 
+							<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="Remove" Margin="2" 
+									Height="20" Width="55" FontWeight="Bold"/>
+						</StackPanel>
+					</Grid>
+				</Border>
+				<Border Grid.Column="2" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+							<ListBox ItemsSource="{Binding Hits}" SelectedIndex="{Binding SelectedHit}" 
+										 Background="Transparent" BorderThickness="0" MinWidth="60">
+								<!--<ListBox.Resources>
+									<DataTemplate DataType="{x:Type effect:Effect}">
+										<WrapPanel>
+											<TextBlock Text="{Binding}" FontWeight="Bold" Background="Transparent"/>
+										</WrapPanel>
+									</DataTemplate>
+									<DataTemplate DataType="{x:Type effect:TimedEffect}">
+										<WrapPanel>
+											<TextBlock Text="{Binding}" FontWeight="Bold" Background="Transparent"/>
+											<TextBlock Text=" (" Background="Transparent"/>
+											<TextBlock Text="{Binding RemainingDuration}" Background="Transparent"/>
+											<TextBlock Text=")" Background="Transparent"/>
+										</WrapPanel>
+									</DataTemplate>
+								</ListBox.Resources>-->
+							</ListBox>
+						</ScrollViewer>
+						<StackPanel Grid.Column="1">
+							<Button Command="{Binding AddHit}" ToolTip="Add Hit" Content="Add" Margin="2" Height="20" 
+									Width="55" FontWeight="Bold"/>
+							<Button Command="{Binding EditHit}" ToolTip="Edit Hit" Content="Edit" Margin="2" Height="20" 
+									Width="55" FontWeight="Bold"/>
+							<Button Command="{Binding RemoveHit}" ToolTip="Remove Hit" Content="Remove" Margin="2" 
 									Height="20" Width="55" FontWeight="Bold"/>
 						</StackPanel>
 					</Grid>

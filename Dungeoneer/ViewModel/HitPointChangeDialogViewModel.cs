@@ -214,66 +214,52 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public void ChangeHitPoints(Model.Actor actor)
+		public void GetHit(Model.Creature creature)
 		{
-			if (actor is Model.Creature)
+			bool askForInput = true;
+			string feedback = null;
+			while (askForInput)
 			{
-				bool askForInput = true;
-				string feedback = null;
-				while (askForInput)
+				View.HitPointChangeDialog damageDialog = new View.HitPointChangeDialog(feedback);
+				damageDialog.DataContext = this;
+				if (damageDialog.ShowDialog() == true)
 				{
-					View.HitPointChangeDialog damageDialog = new View.HitPointChangeDialog(feedback);
-					damageDialog.DataContext = this;
-					if (damageDialog.ShowDialog() == true)
+					List<int> damage = new List<int> { 0, 0, 0 };
+					try
 					{
-						List<int> damage = new List<int> { 0, 0, 0 };
-						try
+						if (Damage1 != "")
 						{
-							if (Damage1 != "")
-							{
-								damage[0] = Convert.ToInt32(Damage1);
-							}
-							if (Damage2 != "")
-							{
-								damage[1] = Convert.ToInt32(Damage2);
-							}
-							if (Damage3 != "")
-							{
-								damage[2] = Convert.ToInt32(Damage3);
-							}
-							if (Healing != "")
-							{
-								int healing = Convert.ToInt32(Healing);
-								(actor as Model.Creature).Heal(healing);
-							}
-
-							Model.Weapon weapon = GetWeapon();
-
-							Model.Hit hit = new Model.Hit(damage, weapon);
-
-							int damageDone = (actor as Model.Creature).DoHitPointDamage(hit);
-
-							if (damageDone > 0)
-							{
-								// Damage dealt, apply other effects
-								if (weapon.AbilityDamage)
-								{
-									(actor as Model.Creature).ModifyAbilityScore(weapon.Ability, -weapon.AbilityDamageValue);
-								}
-							}
-
-							askForInput = false;
+							damage[0] = Convert.ToInt32(Damage1);
 						}
-						catch (FormatException)
+						if (Damage2 != "")
 						{
-							// Failed to parse input
-							feedback = "Invalid format";
+							damage[1] = Convert.ToInt32(Damage2);
 						}
-					}
-					else
-					{
+						if (Damage3 != "")
+						{
+							damage[2] = Convert.ToInt32(Damage3);
+						}
+						if (Healing != "")
+						{
+							int healing = Convert.ToInt32(Healing);
+							creature.Heal(healing);
+						}
+
+						Model.Weapon weapon = GetWeapon();
+
+						Model.Hit hit = new Model.Hit(damage, weapon);
+
 						askForInput = false;
 					}
+					catch (FormatException)
+					{
+						// Failed to parse input
+						feedback = "Invalid format";
+					}
+				}
+				else
+				{
+					askForInput = false;
 				}
 			}
 		}

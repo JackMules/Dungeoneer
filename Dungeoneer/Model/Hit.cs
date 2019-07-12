@@ -12,6 +12,7 @@ namespace Dungeoneer.Model
 		public Hit(List<int> damages, Weapon weapon)
 		{
 			_damageSets = new List<DamageSet>();
+			_weapon = weapon;
 
 			for (int d = 0; d < damages.Count; ++d)
 			{
@@ -29,6 +30,8 @@ namespace Dungeoneer.Model
 		}
 
 		private List<DamageSet> _damageSets;
+		private Weapon _weapon;
+		private Creature _creature;
 
 		public List<DamageSet> DamageSets
 		{
@@ -38,6 +41,25 @@ namespace Dungeoneer.Model
 				_damageSets = value;
 				NotifyPropertyChanged("DamageSets");
 			}
+		}
+
+		public int GetDamage()
+		{
+
+		}
+
+		public int GetAbilityDamage()
+		{
+			if (damageDone > 0)
+			{
+				// Damage dealt, apply other effects
+				if (weapon.AbilityDamage)
+				{
+					creature.ModifyAbilityScore(weapon.Ability, -weapon.AbilityDamageValue);
+				}
+			}
+
+
 		}
 	}
 }

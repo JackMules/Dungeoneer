@@ -639,9 +639,9 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int DoHitPointDamage(Hit hit)
+		public int CalculateHitPointChange(Hit hit)
 		{
-			int hp = HitPoints;
+			int hpChange = 0;
 
 			List<DamageReduction> damageReductions = DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
@@ -704,10 +704,10 @@ namespace Dungeoneer.Model
 			
 			foreach (DamageSet damageSet in hit.DamageSets)
 			{
-				HitPoints -= damageSet.Amount;
+				hpChange -= damageSet.Amount;
 			}
 
-			return hp - HitPoints;
+			return hpChange;
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

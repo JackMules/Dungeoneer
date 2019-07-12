@@ -81,6 +81,16 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public FullyObservableCollection<Model.Hit> Hits
+		{
+			get { return Actor.Hits; }
+			set
+			{
+				Actor.Hits = value;
+				NotifyPropertyChanged("Hits");
+			}
+		}
+
 		public string Size
 		{
 			get { return Methods.GetSizeString(Actor.Size); }
@@ -252,6 +262,37 @@ namespace Dungeoneer.ViewModel
 				ActorUpdated();
 			}
 		}
+
+		public Command AddHit
+		{
+			get { return _addHit; }
+		}
+
+		public Command RemoveHit
+		{
+			get { return _removeHit; }
+		}
+
+		private void ExecuteAddHit()
+		{
+			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel();
+			Model.Hit hit = hitPointChangeDialogViewModel.GetHit();
+			if (hit != null)
+			{
+				Hits.Add(hit);
+				ActorUpdated();
+			}
+		}
+
+		private void ExecuteRemoveHit()
+		{
+			if (SelectedHit >= 0 && SelectedHit < Hits.Count)
+			{
+				Hits.RemoveAt(SelectedHit);
+				ActorUpdated();
+			}
+		}
+
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
