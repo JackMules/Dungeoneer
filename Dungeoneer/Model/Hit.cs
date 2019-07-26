@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace Dungeoneer.Model
 {
 	[Serializable]
-	public class Hit : BaseModel
+	public class Hit : HitPointChange
 	{
-		public Hit(Creature creature)
+		public Hit(CreatureAttributes creatureAttributes)
 		{
 			_damageSets = new List<DamageSet>();
 			_weapon = new Weapon();
-			_creature = creature;
+			_creatureAttributes = creatureAttributes;
 		}
 
-		public Hit(List<int> damages, Weapon weapon, Creature creature)
+		public Hit(List<int> damages, Weapon weapon, CreatureAttributes creatureAttributes)
 		{
 			_damageSets = new List<DamageSet>();
 			_weapon = weapon;
-			_creature = creature;
+			_creatureAttributes = creatureAttributes;
 
 			for (int d = 0; d < damages.Count; ++d)
 			{
@@ -39,7 +39,7 @@ namespace Dungeoneer.Model
 
 		private List<DamageSet> _damageSets;
 		private Weapon _weapon;
-		private Creature _creature;
+		private CreatureAttributes _creatureAttributes;
 		
 		public Weapon Weapon
 		{
@@ -51,13 +51,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public Creature Creature
+		public CreatureAttributes CreatureAttributes
 		{
-			get { return _creature; }
+			get { return _creatureAttributes; }
 			set
 			{
-				_creature = value;
-				NotifyPropertyChanged("Creature");
+				_creatureAttributes = value;
+				NotifyPropertyChanged("CreatureAttributes");
 			}
 		}
 
@@ -71,9 +71,25 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int GetHitPointChange()
+		public override int GetHitPointChange()
 		{
-			return Creature.GetEffectiveAttributes().CalculateHitPointChange(DamageSets);
+			return CreatureAttributes.CalculateHitPointChange(DamageSets);
+		}
+
+		public override string ToString()
+		{
+			List<string> damageStrs = new List<string>();
+			foreach (DamageSet damageSet in DamageSets)
+			{
+				if (damageSet.Amount != 0)
+				{
+					damageStrs.Add(damageSet.ToString());
+				}
+			}
+
+			string outStr = String.Join(" + ", damageStrs);
+
+			return outStr;
 		}
 	}
 }

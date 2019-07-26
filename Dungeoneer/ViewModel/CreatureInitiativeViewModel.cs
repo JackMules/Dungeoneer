@@ -36,16 +36,18 @@ namespace Dungeoneer.ViewModel
 			base.InitCommands();
 			_addEffect = new Command(ExecuteAddEffect);
 			_removeEffect = new Command(ExecuteRemoveEffect);
+			_addHitPointChange = new Command(ExecuteAddHitPointChange);
+			_removeHitPointChange = new Command(ExecuteRemoveHitPointChange);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
 		private Command _addEffect;
 		private Command _removeEffect;
-		private Command _addHit;
-		private Command _removeHit;
+		private Command _addHitPointChange;
+		private Command _removeHitPointChange;
 
 		public int SelectedEffect { get; set; }
-		public int SelectedHit { get; set; }
+		public int SelectedHitPointChange { get; set; }
 
 		public float ChallengeRating
 		{
@@ -82,13 +84,13 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.Hit> Hits
+		public FullyObservableCollection<Model.HitPointChange> HitPointChanges
 		{
-			get { return Actor.Hits; }
+			get { return Actor.HitPointChanges; }
 			set
 			{
-				Actor.Hits = value;
-				NotifyPropertyChanged("Hits");
+				Actor.HitPointChanges = value;
+				NotifyPropertyChanged("HitPointChanges");
 			}
 		}
 
@@ -252,32 +254,32 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Command AddHit
+		public Command AddHitPointChange
 		{
-			get { return _addHit; }
+			get { return _addHitPointChange; }
 		}
 
-		public Command RemoveHit
+		public Command RemoveHitPointChange
 		{
-			get { return _removeHit; }
+			get { return _removeHitPointChange; }
 		}
 
-		private void ExecuteAddHit()
+		private void ExecuteAddHitPointChange()
 		{
 			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
-			Model.Hit hit = hitPointChangeDialogViewModel.GetHit(Actor);
-			if (hit != null)
+			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
+			if (hitPointChange != null)
 			{
-				Hits.Add(hit);
+				HitPointChanges.Add(hitPointChange);
 				ActorUpdated();
 			}
 		}
 
-		private void ExecuteRemoveHit()
+		private void ExecuteRemoveHitPointChange()
 		{
-			if (SelectedHit >= 0 && SelectedHit < Hits.Count)
+			if (SelectedHitPointChange >= 0 && SelectedHitPointChange < HitPointChanges.Count)
 			{
-				Hits.RemoveAt(SelectedHit);
+				HitPointChanges.RemoveAt(SelectedHitPointChange);
 				ActorUpdated();
 			}
 		}

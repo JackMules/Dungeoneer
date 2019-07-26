@@ -43,5 +43,10 @@ namespace Dungeoneer.Model
 				NotifyPropertyChanged("DamageSet");
 			}
 		}
+
+		public override string ToString()
+		{
+			return Amount.ToString() + " " + DamageDescriptorSet.ToString();
+		}
 	}
 }

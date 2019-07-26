@@ -47,16 +47,20 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
-		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
+		public override void ApplyTo(ref Actor actor)
 		{
-			if (modifiedAttributes is CreatureAttributes)
+			if (actor is Creature)
 			{
-				(modifiedAttributes as CreatureAttributes).HitPoints += Value;
 
-				if ((modifiedAttributes as CreatureAttributes).HitPoints > 
-						(baseAttributes as CreatureAttributes).HitPoints)
+				if (modifiedAttributes is CreatureAttributes)
 				{
-					(modifiedAttributes as CreatureAttributes).HitPoints = (baseAttributes as CreatureAttributes).HitPoints;
+					(modifiedAttributes as CreatureAttributes).HitPoints += Value;
+
+					if ((modifiedAttributes as CreatureAttributes).HitPoints >
+							(baseAttributes as CreatureAttributes).HitPoints)
+					{
+						(modifiedAttributes as CreatureAttributes).HitPoints = (baseAttributes as CreatureAttributes).HitPoints;
+					}
 				}
 			}
 		}

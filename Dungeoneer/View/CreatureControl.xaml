@@ -80,7 +80,7 @@
 							<ColumnDefinition Width="Auto"/>
 						</Grid.ColumnDefinitions>
 						<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
-							<ListBox ItemsSource="{Binding Hits}" SelectedIndex="{Binding SelectedHit}" 
+							<ListBox ItemsSource="{Binding HitPointChanges}" SelectedIndex="{Binding SelectedHitPointChange}" 
 										 Background="Transparent" BorderThickness="0" MinWidth="60">
 								<!--<ListBox.Resources>
 									<DataTemplate DataType="{x:Type effect:Effect}">
@@ -100,11 +100,11 @@
 							</ListBox>
 						</ScrollViewer>
 						<StackPanel Grid.Column="1">
-							<Button Command="{Binding AddHit}" ToolTip="Add Hit" Content="Add" Margin="2" Height="20" 
+							<Button Command="{Binding AddHitPointChange}" ToolTip="Add Hit" Content="Add" Margin="2" Height="20" 
 									Width="55" FontWeight="Bold"/>
-							<Button Command="{Binding EditHit}" ToolTip="Edit Hit" Content="Edit" Margin="2" Height="20" 
-									Width="55" FontWeight="Bold"/>
-							<Button Command="{Binding RemoveHit}" ToolTip="Remove Hit" Content="Remove" Margin="2" 
+<!--							<Button Command="{Binding EditHitPointChange}" ToolTip="Edit Hit" Content="Edit" Margin="2" Height="20" 
+									Width="55" FontWeight="Bold"/>-->
+							<Button Command="{Binding RemoveHitPointChange}" ToolTip="Remove Hit" Content="Remove" Margin="2" 
 									Height="20" Width="55" FontWeight="Bold"/>
 						</StackPanel>
 					</Grid>

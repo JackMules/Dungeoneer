@@ -34,7 +34,7 @@ namespace Dungeoneer.Model
 
 		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
 		private CreatureAttributes _modifiedCreatureAttributes = new CreatureAttributes();
-		private FullyObservableCollection<Hit> _hits = new FullyObservableCollection<Hit>();
+		private FullyObservableCollection<HitPointChange> _hitPointChanges = new FullyObservableCollection<HitPointChange>();
 
 		public override void StartEncounter()
 		{
@@ -72,13 +72,13 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public FullyObservableCollection<Hit> Hits
+		public FullyObservableCollection<HitPointChange> HitPointChanges
 		{
-			get { return _hits; }
+			get { return _hitPointChanges; }
 			set
 			{
-				_hits = value;
-				NotifyPropertyChanged("Hits");
+				_hitPointChanges = value;
+				NotifyPropertyChanged("HitPointChanges");
 			}
 		}
 
@@ -97,11 +97,17 @@ namespace Dungeoneer.Model
 
 		public int GetCurrentHitPoints()
 		{
-			int hp = GetEffectiveAttributes().HitPoints;
+			int totalHP = GetEffectiveAttributes().HitPoints;
+			int hp = totalHP;
 
-			foreach (Hit hit in Hits)
+			foreach (HitPointChange hitPointChange in HitPointChanges)
 			{
-				hp -= DoHitPointDamage(hit);
+				hp += hitPointChange.GetHitPointChange();
+			}
+
+			if (hp > totalHP)
+			{
+				hp = totalHP;
 			}
 
 			return hp;
@@ -465,11 +471,6 @@ namespace Dungeoneer.Model
 		{
 			ModifiedAttributes.ModifyAbilityScore(ability, change);
 			NotifyPropertyChanged(Methods.GetAbilityString(ability));
-		}
-
-		public int DoHitPointDamage(Hit hit)
-		{
-			return ModifiedAttributes.CalculateHitPointChange(hit);
 		}
 
 		public void Heal(int healing)

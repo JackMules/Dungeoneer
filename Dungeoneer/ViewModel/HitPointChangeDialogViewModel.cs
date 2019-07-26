@@ -214,9 +214,9 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public Model.Hit GetHit(Model.Creature creature)
+		public Model.HitPointChange GetHit(Model.CreatureAttributes creatureAttributes)
 		{
-			Model.Hit hit = new Model.Hit(creature);
+			Model.HitPointChange hitPointChange = new Model.HitPointChange();
 			bool askForInput = true;
 			string feedback = null;
 			while (askForInput)
@@ -228,27 +228,30 @@ namespace Dungeoneer.ViewModel
 					List<int> damage = new List<int> { 0, 0, 0 };
 					try
 					{
-						if (Damage1 != "")
-						{
-							damage[0] = Convert.ToInt32(Damage1);
-						}
-						if (Damage2 != "")
-						{
-							damage[1] = Convert.ToInt32(Damage2);
-						}
-						if (Damage3 != "")
-						{
-							damage[2] = Convert.ToInt32(Damage3);
-						}
 						if (Healing != "")
 						{
 							int healing = Convert.ToInt32(Healing);
-							creature.Heal(healing);
+							hitPointChange = new Model.Heal(healing);
 						}
+						else
+						{
+							if (Damage1 != "")
+							{
+								damage[0] = Convert.ToInt32(Damage1);
+							}
+							if (Damage2 != "")
+							{
+								damage[1] = Convert.ToInt32(Damage2);
+							}
+							if (Damage3 != "")
+							{
+								damage[2] = Convert.ToInt32(Damage3);
+							}
 
-						Model.Weapon weapon = GetWeapon();
+							Model.Weapon weapon = GetWeapon();
 
-						hit = new Model.Hit(damage, weapon, creature);
+							hitPointChange = new Model.Hit(damage, weapon, creatureAttributes);
+						}
 
 						askForInput = false;
 					}
@@ -264,7 +267,7 @@ namespace Dungeoneer.ViewModel
 				}
 			}
 
-			return hit;
+			return hitPointChange;
 		}
 	}
 }
