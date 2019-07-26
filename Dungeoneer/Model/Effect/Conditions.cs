@@ -120,8 +120,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
 			}
 		}
 
@@ -133,34 +133,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Dazzled);
-		}
-	}
-
-	[Serializable]
-	public class Dead : Effect
-	{
-		public Dead()
-			: base(false)
-		{
-			Name = GetType().Name;
-		}
-
-		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
-		{
-			if (modifiedAttributes is CreatureAttributes)
-			{
-				(modifiedAttributes as CreatureAttributes).HitPoints = (modifiedAttributes as CreatureAttributes).Constitution * -1;
-			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
-		public override string ToString()
-		{
-			return Methods.GetEffectTypeString(Types.Effect.Dead);
 		}
 	}
 
@@ -250,8 +222,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
 				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
 				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -4);
 			}
@@ -388,8 +360,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
 				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}
@@ -526,8 +498,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -1);
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -1);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -1);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -1);
 				(modifiedAttributes as CreatureAttributes).HitPoints -= 5;
 				(modifiedAttributes as CreatureAttributes).ModifySaves(-1);
 			}
@@ -705,8 +677,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
 				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}
@@ -735,8 +707,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ChangeAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
+				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
 				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
 			}
 		}

@@ -72,7 +72,6 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectCowering = "Cowering";
 		public static readonly string EffectDazed = "Dazed";
 		public static readonly string EffectDazzled = "Dazzled";
-		public static readonly string EffectDead = "Dead";
 		public static readonly string EffectDeafened = "Deafened";
 		public static readonly string EffectDisabled = "Disabled";
 		public static readonly string EffectDying = "Dying";
@@ -209,7 +208,6 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Cowering),
 			Methods.GetEffectTypeString(Types.Effect.Dazed),
 			Methods.GetEffectTypeString(Types.Effect.Dazzled),
-			Methods.GetEffectTypeString(Types.Effect.Dead),
 			Methods.GetEffectTypeString(Types.Effect.Deafened),
 			Methods.GetEffectTypeString(Types.Effect.Disabled),
 			Methods.GetEffectTypeString(Types.Effect.Dying),
@@ -357,7 +355,6 @@ namespace Dungeoneer.Utility
 			Cowering,
 			Dazed,
 			Dazzled,
-			Dead,
 			Deafened,
 			Disabled,
 			Dying,
@@ -712,7 +709,6 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Cowering:						return Constants.EffectCowering;
 			case Types.Effect.Dazed:							return Constants.EffectDazed;
 			case Types.Effect.Dazzled:						return Constants.EffectDazzled;
-			case Types.Effect.Dead:								return Constants.EffectDead;
 			case Types.Effect.Deafened:						return Constants.EffectDeafened;
 			case Types.Effect.Disabled:						return Constants.EffectDisabled;
 			case Types.Effect.Dying:							return Constants.EffectDying;
@@ -771,10 +767,6 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectDazzled)
 			{
 				return Types.Effect.Dazzled;
-			}
-			else if (effect == Constants.EffectDead)
-			{
-				return Types.Effect.Dead;
 			}
 			else if (effect == Constants.EffectDeafened)
 			{

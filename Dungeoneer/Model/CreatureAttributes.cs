@@ -469,7 +469,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public void ChangeAttackModifier(Types.Ability ability, int change)
+		public void ModifyAttackModifier(Types.Ability ability, int change)
 		{
 			foreach (AttackSet attackSet in AttackSets)
 			{
@@ -484,7 +484,7 @@ namespace Dungeoneer.Model
 			NotifyPropertyChanged("AttackSets");
 		}
 
-		public void ChangeDamageModifier(int change)
+		public void ModifyDamageModifier(int change)
 		{
 			foreach (AttackSet attackSet in AttackSets)
 			{
@@ -512,7 +512,7 @@ namespace Dungeoneer.Model
 			distance *= factor;
 			Speed.LandSpeed = (int)distance;
 
-			foreach (Model.Speed speed in Speed.Speeds)
+			foreach (Speed speed in Speed.Speeds)
 			{
 				distance = speed.Distance;
 				distance *= factor;
@@ -559,11 +559,11 @@ namespace Dungeoneer.Model
 			if (ability == Types.Ability.Strength ||
 				ability == Types.Ability.Dexterity)
 			{
-				ChangeAttackModifier(ability, modifierDifference);
+				ModifyAttackModifier(ability, modifierDifference);
 
 				if (ability == Types.Ability.Strength)
 				{
-					ChangeDamageModifier(modifierDifference);
+					ModifyDamageModifier(modifierDifference);
 				}
 				else if (ability == Types.Ability.Dexterity)
 				{

@@ -47,27 +47,9 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
-		public override void ApplyTo(ref Actor actor)
-		{
-			if (actor is Creature)
-			{
-
-				if (modifiedAttributes is CreatureAttributes)
-				{
-					(modifiedAttributes as CreatureAttributes).HitPoints += Value;
-
-					if ((modifiedAttributes as CreatureAttributes).HitPoints >
-							(baseAttributes as CreatureAttributes).HitPoints)
-					{
-						(modifiedAttributes as CreatureAttributes).HitPoints = (baseAttributes as CreatureAttributes).HitPoints;
-					}
-				}
-			}
-		}
-
 		public override string ToString()
 		{
-			return Methods.GetEffectTypeString(Types.Effect.FastHealing);
+			return Methods.GetEffectTypeString(Types.Effect.FastHealing) + " " + Value.ToString();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

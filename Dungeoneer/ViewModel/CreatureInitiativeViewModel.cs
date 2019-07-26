@@ -270,7 +270,7 @@ namespace Dungeoneer.ViewModel
 			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
 			if (hitPointChange != null)
 			{
-				HitPointChanges.Add(hitPointChange);
+				Actor.AddHitPointChange(hitPointChange);
 				ActorUpdated();
 			}
 		}

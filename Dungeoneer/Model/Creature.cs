@@ -95,19 +95,24 @@ namespace Dungeoneer.Model
 			return effectiveAttributes;
 		}
 
+		public void AddHitPointChange(HitPointChange hitPointChange)
+		{
+			HitPointChanges.Add(hitPointChange);
+		}
+
 		public int GetCurrentHitPoints()
 		{
-			int totalHP = GetEffectiveAttributes().HitPoints;
-			int hp = totalHP;
+			int maxHP = GetEffectiveAttributes().HitPoints;
+			int hp = maxHP;
 
 			foreach (HitPointChange hitPointChange in HitPointChanges)
 			{
 				hp += hitPointChange.GetHitPointChange();
 			}
 
-			if (hp > totalHP)
+			if (hp > maxHP)
 			{
-				hp = totalHP;
+				hp = maxHP;
 			}
 
 			return hp;
@@ -120,6 +125,25 @@ namespace Dungeoneer.Model
 				if (effect.PerTurn)
 				{
 					effect.ApplyTo(ModifiedAttributes, BaseAttributes);
+				}
+				if (effect is Effect.FastHealing)
+				{
+					int currentHP = GetCurrentHitPoints();
+					int maxHP = GetEffectiveAttributes().HitPoints;
+
+					if (currentHP < maxHP)
+					{
+						int damage = maxHP - currentHP;
+						Effect.FastHealing fastHealing = effect as Effect.FastHealing;
+						if (damage < fastHealing.Value)
+						{
+							AddHitPointChange(new Heal(damage));
+						}
+						else
+						{
+							AddHitPointChange(new Heal(fastHealing.Value));
+						}
+					}
 				}
 			}
 		}
