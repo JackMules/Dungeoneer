@@ -98,6 +98,18 @@ namespace Dungeoneer.Model
 		public void AddHitPointChange(HitPointChange hitPointChange)
 		{
 			HitPointChanges.Add(hitPointChange);
+
+			if (hitPointChange is Hit)
+			{
+				if (hitPointChange.GetHitPointChange() != 0)
+				{
+					Hit hit = hitPointChange as Hit;
+					if (hit.Weapon.AbilityDamage)
+					{
+						Effects.Add(new Effect.AbilityModifier(hit.Weapon.Ability, -hit.Weapon.AbilityDamageValue));
+					}
+				}
+			}
 		}
 
 		public int GetCurrentHitPoints()

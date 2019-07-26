@@ -87,12 +87,20 @@ namespace Dungeoneer.Model.Effect
 		}
 	}
 
-	public class AbilityModifier : TimedEffect, ValueEffect, AbilityEffect
+	public class AbilityModifier : Effect, ValueEffect, AbilityEffect
 	{
 		public AbilityModifier()
 			: base(false)
 		{
 			Name = GetType().Name;
+		}
+
+		public AbilityModifier(Types.Ability ability, int value)
+			: base(false)
+		{
+			Name = GetType().Name;
+			_ability = ability;
+			_value = value;
 		}
 
 		private int _value;

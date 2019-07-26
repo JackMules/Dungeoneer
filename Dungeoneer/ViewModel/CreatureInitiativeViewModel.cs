@@ -94,6 +94,36 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+		public string Strength
+		{
+			get { return Actor.Strength.ToString(); }
+		}
+
+		public string Dexterity
+		{
+			get { return Actor.Dexterity.ToString(); }
+		}
+
+		public string Constitution
+		{
+			get { return Actor.Constitution.ToString(); }
+		}
+
+		public string Intelligence
+		{
+			get { return Actor.Intelligence.ToString(); }
+		}
+
+		public string Wisdom
+		{
+			get { return Actor.Wisdom.ToString(); }
+		}
+
+		public string Charisma
+		{
+			get { return Actor.Charisma.ToString(); }
+		}
+
 		public string Size
 		{
 			get { return Methods.GetSizeString(Actor.Size); }
@@ -192,6 +222,17 @@ namespace Dungeoneer.ViewModel
 			HitPointsUpdated();
 			AttackSetsUpdated();
 			SpellResistanceUpdated();
+			AbilitiesUpdated();
+		}
+
+		public void AbilitiesUpdated()
+		{
+			NotifyPropertyChanged("Strength");
+			NotifyPropertyChanged("Dexterity");
+			NotifyPropertyChanged("Constitution");
+			NotifyPropertyChanged("Intelligence");
+			NotifyPropertyChanged("Wisdom");
+			NotifyPropertyChanged("Charisma");
 		}
 
 		private void ArmorClassUpdated()
