@@ -639,7 +639,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int CalculateHitPointChange(Hit hit)
+		public int CalculateHitPointChange(List<DamageSet> damageSets)
 		{
 			int hpChange = 0;
 
@@ -648,7 +648,7 @@ namespace Dungeoneer.Model
 
 			List<EnergyResistance> energyResistances = EnergyResistances.ToList();
 
-			foreach (DamageSet damageSet in hit.DamageSets)
+			foreach (DamageSet damageSet in damageSets)
 			{
 				foreach (EnergyResistance energyResistance in energyResistances)
 				{
@@ -674,7 +674,7 @@ namespace Dungeoneer.Model
 				}
 			}
 
-			foreach (DamageSet damageSet in hit.DamageSets)
+			foreach (DamageSet damageSet in damageSets)
 			{
 				if (damageSet.DamageDescriptorSet.IsTyped())
 				{
@@ -702,7 +702,7 @@ namespace Dungeoneer.Model
 				}
 			}
 			
-			foreach (DamageSet damageSet in hit.DamageSets)
+			foreach (DamageSet damageSet in damageSets)
 			{
 				hpChange -= damageSet.Amount;
 			}

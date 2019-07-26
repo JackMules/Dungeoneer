@@ -34,17 +34,18 @@ namespace Dungeoneer.ViewModel
 		protected override void InitCommands()
 		{
 			base.InitCommands();
-			_changeHitPoints = new Command(ExecuteChangeHitPoints);
 			_addEffect = new Command(ExecuteAddEffect);
 			_removeEffect = new Command(ExecuteRemoveEffect);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		private Command _changeHitPoints;
 		private Command _addEffect;
 		private Command _removeEffect;
+		private Command _addHit;
+		private Command _removeHit;
 
 		public int SelectedEffect { get; set; }
+		public int SelectedHit { get; set; }
 
 		public float ChallengeRating
 		{
@@ -221,18 +222,6 @@ namespace Dungeoneer.ViewModel
 			get { return Actor.HitPoints <= 0; }
 		}
 
-		public Command ChangeHitPoints
-		{
-			get { return _changeHitPoints; }
-		}
-
-		private void ExecuteChangeHitPoints()
-		{
-			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
-			hitPointChangeDialogViewModel.ChangeHitPoints(Actor);
-			HitPointsUpdated();
-		}
-
 		public Command AddEffect
 		{
 			get { return _addEffect; }
@@ -275,8 +264,8 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteAddHit()
 		{
-			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel();
-			Model.Hit hit = hitPointChangeDialogViewModel.GetHit();
+			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
+			Model.Hit hit = hitPointChangeDialogViewModel.GetHit(Actor);
 			if (hit != null)
 			{
 				Hits.Add(hit);
@@ -292,7 +281,6 @@ namespace Dungeoneer.ViewModel
 				ActorUpdated();
 			}
 		}
-
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{

@@ -214,8 +214,9 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public void GetHit(Model.Creature creature)
+		public Model.Hit GetHit(Model.Creature creature)
 		{
+			Model.Hit hit = new Model.Hit(creature);
 			bool askForInput = true;
 			string feedback = null;
 			while (askForInput)
@@ -247,7 +248,7 @@ namespace Dungeoneer.ViewModel
 
 						Model.Weapon weapon = GetWeapon();
 
-						Model.Hit hit = new Model.Hit(damage, weapon);
+						hit = new Model.Hit(damage, weapon, creature);
 
 						askForInput = false;
 					}
@@ -262,6 +263,8 @@ namespace Dungeoneer.ViewModel
 					askForInput = false;
 				}
 			}
+
+			return hit;
 		}
 	}
 }

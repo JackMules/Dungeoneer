@@ -9,10 +9,18 @@ namespace Dungeoneer.Model
 	[Serializable]
 	public class Hit : BaseModel
 	{
-		public Hit(List<int> damages, Weapon weapon)
+		public Hit(Creature creature)
+		{
+			_damageSets = new List<DamageSet>();
+			_weapon = new Weapon();
+			_creature = creature;
+		}
+
+		public Hit(List<int> damages, Weapon weapon, Creature creature)
 		{
 			_damageSets = new List<DamageSet>();
 			_weapon = weapon;
+			_creature = creature;
 
 			for (int d = 0; d < damages.Count; ++d)
 			{
@@ -32,6 +40,26 @@ namespace Dungeoneer.Model
 		private List<DamageSet> _damageSets;
 		private Weapon _weapon;
 		private Creature _creature;
+		
+		public Weapon Weapon
+		{
+			get { return _weapon; }
+			set
+			{
+				_weapon = value;
+				NotifyPropertyChanged("Weapon");
+			}
+		}
+
+		public Creature Creature
+		{
+			get { return _creature; }
+			set
+			{
+				_creature = value;
+				NotifyPropertyChanged("Creature");
+			}
+		}
 
 		public List<DamageSet> DamageSets
 		{
@@ -43,23 +71,9 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int GetDamage()
+		public int GetHitPointChange()
 		{
-
-		}
-
-		public int GetAbilityDamage()
-		{
-			if (damageDone > 0)
-			{
-				// Damage dealt, apply other effects
-				if (weapon.AbilityDamage)
-				{
-					creature.ModifyAbilityScore(weapon.Ability, -weapon.AbilityDamageValue);
-				}
-			}
-
-
+			return Creature.GetEffectiveAttributes().CalculateHitPointChange(DamageSets);
 		}
 	}
 }

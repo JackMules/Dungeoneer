@@ -137,8 +137,7 @@
 												FontWeight="Bold" IsChecked="True"/>
 				</StackPanel>
 				<view:ValueDisplay DockPanel.Dock="Left" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
-				<view:ValueButton DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
-														CommandBinding="{Binding ChangeHitPoints}" PanelOrientation="Vertical"/>
+				<view:ValueDisplay DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"/>
 				<Grid DockPanel.Dock="Left">
 					<Grid.Style>
 						<Style TargetType="{x:Type Grid}">
