@@ -87,9 +87,11 @@ namespace Dungeoneer.Model
 				}
 			}
 
-			string outStr = String.Join(" + ", damageStrs);
+			string outStr = GetHitPointChange().ToString() + " damage (";
+			
+			outStr += String.Join(" + ", damageStrs);
 
-			return outStr;
+			return outStr + ")";
 		}
 	}
 }

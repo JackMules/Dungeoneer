@@ -225,7 +225,7 @@ namespace Dungeoneer.ViewModel
 				damageDialog.DataContext = this;
 				if (damageDialog.ShowDialog() == true)
 				{
-					List<int> damage = new List<int> { 0, 0, 0 };
+					List<int> damage = new List<int>();
 					try
 					{
 						if (Healing != "")
@@ -237,15 +237,15 @@ namespace Dungeoneer.ViewModel
 						{
 							if (Damage1 != "")
 							{
-								damage[0] = Convert.ToInt32(Damage1);
+								damage.Add(Convert.ToInt32(Damage1));
 							}
 							if (Damage2 != "")
 							{
-								damage[1] = Convert.ToInt32(Damage2);
+								damage.Add(Convert.ToInt32(Damage2));
 							}
 							if (Damage3 != "")
 							{
-								damage[2] = Convert.ToInt32(Damage3);
+								damage.Add(Convert.ToInt32(Damage3));
 							}
 
 							Model.Weapon weapon = GetWeapon();

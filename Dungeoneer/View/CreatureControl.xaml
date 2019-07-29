@@ -203,6 +203,10 @@
 						<TextBlock Text=" Will " FontWeight="Bold"/>
 						<TextBlock Text="{Binding WillSave}"/>
 					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Attacks of Opportunity "/>
+						
+					</StackPanel>
 					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap"/>
 					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
 				</StackPanel>
