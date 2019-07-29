@@ -643,12 +643,19 @@ namespace Dungeoneer.Model
 		{
 			int hpChange = 0;
 
+			List<DamageSet> damageDone = new List<DamageSet>();
+
+			foreach (DamageSet damageSet in damageSets)
+			{
+				damageDone.Add(new DamageSet(damageSet));
+			}
+
 			List<DamageReduction> damageReductions = DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 
 			List<EnergyResistance> energyResistances = EnergyResistances.ToList();
 
-			foreach (DamageSet damageSet in damageSets)
+			foreach (DamageSet damageSet in damageDone)
 			{
 				foreach (EnergyResistance energyResistance in energyResistances)
 				{
@@ -674,7 +681,7 @@ namespace Dungeoneer.Model
 				}
 			}
 
-			foreach (DamageSet damageSet in damageSets)
+			foreach (DamageSet damageSet in damageDone)
 			{
 				if (damageSet.DamageDescriptorSet.IsTyped())
 				{
@@ -702,7 +709,7 @@ namespace Dungeoneer.Model
 				}
 			}
 			
-			foreach (DamageSet damageSet in damageSets)
+			foreach (DamageSet damageSet in damageDone)
 			{
 				hpChange -= damageSet.Amount;
 			}
