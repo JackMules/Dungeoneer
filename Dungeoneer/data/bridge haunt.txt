@@ -1,0 +1,22 @@
+Size/Type:	Medium undead
+Hit Dice:	12d12 (90 hp)
+Initiative:	+7
+Speed:	30 ft., fly 30ft. (perfect)
+Armor Class:	17, touch 17, flat-footed 14
+Base Attack/Grapple:	+6/+0
+Attack:	Touch +10 melee (3d6 plus push)
+Full Attack:	2 Touches +10 melee (3d6 plus push)
+Space/Reach:	5 ft./5 ft.
+Special Attacks:	3/day Mass Suggestion (Sp) (DC20), 1/day Mirage Arcana (Sp) (DC19)
+Special Qualities:	Incorpreal immunities, undead immunities, darkvision 60 ft.
+Saves:	Fort +4, Ref +9, Will +9
+Abilities:	Str -, Dex 16, Con -, Int 10, Wis 13, Cha 19
+Skills:	Bluff +14, Diplomacy +13, Disguise +4, Hide +13, Intimidate +16, Listen+13, Sense Motive +11, Spot +8
+Feats:	Alertness, Improved Initiative, Improved Toughness, Lightning Reflexes, Weapon Focus (incorporeal touch)
+Environment:	
+Organization:	
+Challenge Rating:	7
+Treasure:	None
+Alignment:	Usually NE
+Advancement:	13-18 HD (Medium); 19-24 (Large)
+Level Adjustment:	—

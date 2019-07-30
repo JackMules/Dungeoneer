@@ -1,0 +1,22 @@
+Size/Type:	Small Outsider (Extraplanar, Earth)
+Hit Dice:	3d8+9 (22 hp)
+Initiative:	0
+Speed:	20 ft. (4 squares), burrow 20 ft.
+Armor Class:	23 (+1 size, +12 natural), touch 11, flat-footed 23
+Base Attack/Grapple:	+3/+1
+Attack:	Bite +6 melee (2d8+2)
+Full Attack:	Bite +6 melee (2d8+2) and 3 claws +4 melee (1d3+1)
+Space/Reach:	5 ft./5 ft.
+Special Attacks:	—
+Special Qualities:	All-around vision, earth glide, damage reduction 5/bludgeoning, darkvision 60 ft., immunity to cold and fire, resistance to electricity 10, tremorsense 60 ft.
+Saves:	Fort +5, Ref +3, Will +3
+Abilities:	Str 15, Dex 10, Con 15, Int 10, Wis 11, Cha 10
+Skills:	Hide +10, Intimidate +3, Knowledge (dungeoneering) +6, Listen+6, Move Silently +3, Search +6, Spot +8, Survival +6 (+8 following tracks or underground)
+Feats:	Multiattack, Toughness
+Environment:	Elemental Plane of Earth
+Organization:	Solitary, pair, or cluster (3-5)
+Challenge Rating:	3
+Treasure:	None
+Alignment:	Usually neutral
+Advancement:	4-6 HD (Small)
+Level Adjustment:	—

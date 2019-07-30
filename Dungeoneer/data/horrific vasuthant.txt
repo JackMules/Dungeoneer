@@ -1,0 +1,22 @@
+Size/Type:	Huge Undead
+Hit Dice:	25d12+150 (312 hp)
+Initiative:	+10
+Speed:	30ft., Fly 30 ft. (perfect) (6 squares)
+Armor Class:	24 (–2 size, +6 Dex, +10 natural), touch 14, flat-footed 16
+Base Attack/Grapple:	+12/+39
+Attack:	Slam +21 melee (2d8+11/19–20)
+Full Attack:	2 slams +21 melee (2d8+11/19–20) and up to 4 enervating crushes (4d6+11 plus 1d8 Str)
+Space/Reach:	15 ft./15 ft.
+Special Attacks:	Enervating crush, improved grab, reality distortion, spell-like abilities
+Special Qualities:	+2 turn resistance, alter past, blindsight, damage resistance 15/magic, darkvision 60 ft., immunity to acid and cold, immunity to light, resistance to fire 25 and electricity 25, trap light, undead traits, unholy toughness
+Saves:	Fort +8, Ref +14, Will +17
+Abilities:	Str 32, Dex 23, Con —, Int 10, Wis 16, Cha 23
+Skills:	Concentration +28, Hide +22*, Listen +29, Move Silently +28, Spot +29
+Feats:	Alertness, Awesome Blow, Flyby Attack, Improved Bull Rush, Improved Critical (slam), Improved GrappleB, Improved Initiative, Improved Overrun, Improved Sunder, Power Attack
+Environment:	Any
+Organization:	Solitary
+Challenge Rating:	17
+Treasure:	None
+Alignment:	Always chaotic evil
+Advancement:	26–34 HD (Huge); 35–48 HD (Gargantuan)
+Level Adjustment:	—

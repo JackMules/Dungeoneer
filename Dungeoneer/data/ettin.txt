@@ -1,0 +1,22 @@
+Size/Type:	Large Giant
+Hit Dice:	10d8+20 (65 hp)
+Initiative:	+3
+Speed:	30 ft. in hide armor (6 squares); base speed 40 ft.
+Armor Class:	18 (-1 size, -1 Dex, +7 natural, +3 hide), touch 8, flat-footed 18
+Base Attack/Grapple:	+7/+17
+Attack:	Morningstar +12 melee (2d6+6) or javelin +5 ranged (1d8+6)
+Full Attack:	2 morningstars +12/+7 melee (2d6+6) or 2 javelins +5 ranged (1d8+6)
+Space/Reach:	10 ft./10 ft.
+Special Attacks:	—
+Special Qualities:	Low-light vision, superior two-weapon fighting
+Saves:	Fort +9, Ref +2, Will +5
+Abilities:	Str 23, Dex 8, Con 15, Int 6, Wis 10, Cha 11
+Skills:	Listen +10, Search +1, Spot +10
+Feats:	Alertness, Improved Initiative, Iron Will, Power Attack
+Environment:	Cold hills
+Organization:	Solitary, gang (2-4), troupe (1-2 plus 1-2 brown bears), band (3-5 plus 1-2 brown bears), or colony (3-5 plus 1-2 brown bears and 7-12 orcs or 9-16 goblins)
+Challenge Rating:	6
+Treasure:	Standard
+Alignment:	Usually chaotic evil
+Advancement:	By character class
+Level Adjustment:	+5
