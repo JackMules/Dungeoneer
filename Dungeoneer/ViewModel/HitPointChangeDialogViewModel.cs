@@ -214,68 +214,60 @@ namespace Dungeoneer.ViewModel
 			return weapon;
 		}
 
-		public void ChangeHitPoints(Model.Actor actor)
+		public Model.HitPointChange GetHit(Model.CreatureAttributes creatureAttributes)
 		{
-			if (actor is Model.Creature)
+			Model.HitPointChange hitPointChange = new Model.HitPointChange();
+			bool askForInput = true;
+			string feedback = null;
+			while (askForInput)
 			{
-				bool askForInput = true;
-				string feedback = null;
-				while (askForInput)
+				View.HitPointChangeDialog damageDialog = new View.HitPointChangeDialog(feedback);
+				damageDialog.DataContext = this;
+				if (damageDialog.ShowDialog() == true)
 				{
-					View.HitPointChangeDialog damageDialog = new View.HitPointChangeDialog(feedback);
-					damageDialog.DataContext = this;
-					if (damageDialog.ShowDialog() == true)
+					List<int> damage = new List<int>();
+					try
 					{
-						List<int> damage = new List<int> { 0, 0, 0 };
-						try
+						if (Healing != "")
+						{
+							int healing = Convert.ToInt32(Healing);
+							hitPointChange = new Model.Heal(healing);
+						}
+						else
 						{
 							if (Damage1 != "")
 							{
-								damage[0] = Convert.ToInt32(Damage1);
+								damage.Add(Convert.ToInt32(Damage1));
 							}
 							if (Damage2 != "")
 							{
-								damage[1] = Convert.ToInt32(Damage2);
+								damage.Add(Convert.ToInt32(Damage2));
 							}
 							if (Damage3 != "")
 							{
-								damage[2] = Convert.ToInt32(Damage3);
-							}
-							if (Healing != "")
-							{
-								int healing = Convert.ToInt32(Healing);
-								(actor as Model.Creature).Heal(healing);
+								damage.Add(Convert.ToInt32(Damage3));
 							}
 
 							Model.Weapon weapon = GetWeapon();
 
-							Model.Hit hit = new Model.Hit(damage, weapon);
-
-							int damageDone = (actor as Model.Creature).DoHitPointDamage(hit);
-
-							if (damageDone > 0)
-							{
-								// Damage dealt, apply other effects
-								if (weapon.AbilityDamage)
-								{
-									(actor as Model.Creature).ModifyAbilityScore(weapon.Ability, -weapon.AbilityDamageValue);
-								}
-							}
-
-							askForInput = false;
+							hitPointChange = new Model.Hit(damage, weapon, creatureAttributes);
 						}
-						catch (FormatException)
-						{
-							// Failed to parse input
-							feedback = "Invalid format";
-						}
-					}
-					else
-					{
+
 						askForInput = false;
 					}
+					catch (FormatException)
+					{
+						// Failed to parse input
+						feedback = "Invalid format";
+					}
+				}
+				else
+				{
+					askForInput = false;
 				}
 			}
+
+			return hitPointChange;
 		}
 	}
 }

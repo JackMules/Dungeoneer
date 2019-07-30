@@ -7,44 +7,59 @@
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
 						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
 						 mc:Ignorable="d" 
-						 d:DesignHeight="140" d:DesignWidth="596">
+						 d:DesignWidth="700">
 	<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
 		<DockPanel>
 			<Grid DockPanel.Dock="Bottom" Margin="0,2,0,0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<Border Grid.Column="0" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
-					<TreeView Background="Transparent" ItemsSource="{Binding AttackSets}" BorderThickness="0">
-						<TreeView.Resources>
-							<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
-								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="{Binding Name}"/>
-									<TextBlock Text=" ["/>
-									<TextBlock Text="{Binding Attacks.Count}"/>
-									<TextBlock Text="]"/>
-									<!-- How about a button to roll an attack and display the results? -->
-								</StackPanel>
-							</HierarchicalDataTemplate>
-							<HierarchicalDataTemplate DataType="{x:Type model:Attack}">
-								<TextBlock Text="{Binding AsString}"/>
-							</HierarchicalDataTemplate>
-						</TreeView.Resources>
-						<TreeView.ItemContainerStyle>
-							<Style>
-								<Setter Property="TreeViewItem.IsExpanded" Value="True"/>
-							</Style>
-						</TreeView.ItemContainerStyle>
-					</TreeView>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Label Grid.Row="0" Content="Attacks" HorizontalContentAlignment="Center"
+									 FontWeight="Bold"/>
+						<TreeView Grid.Row="1" Background="Transparent" ItemsSource="{Binding AttackSets}" BorderThickness="0">
+							<TreeView.Resources>
+								<HierarchicalDataTemplate DataType="{x:Type model:AttackSet}" ItemsSource="{Binding Attacks}">
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="{Binding Name}"/>
+										<TextBlock Text=" ["/>
+										<TextBlock Text="{Binding Attacks.Count}"/>
+										<TextBlock Text="]"/>
+										<!-- How about a button to roll an attack and display the results? -->
+									</StackPanel>
+								</HierarchicalDataTemplate>
+								<HierarchicalDataTemplate DataType="{x:Type model:Attack}">
+									<TextBlock Text="{Binding AsString}"/>
+								</HierarchicalDataTemplate>
+							</TreeView.Resources>
+							<TreeView.ItemContainerStyle>
+								<Style>
+									<Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+								</Style>
+							</TreeView.ItemContainerStyle>
+						</TreeView>
+					</Grid>
 				</Border>
 				<Border Grid.Column="1" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
 					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="Auto"/>
 						</Grid.ColumnDefinitions>
-						<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+						<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Effects" HorizontalContentAlignment="Center"
+									 FontWeight="Bold"/>
+						<ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
 							<ListBox ItemsSource="{Binding Effects}" SelectedIndex="{Binding SelectedEffect}" 
 										 Background="Transparent" BorderThickness="0" MinWidth="60">
 								<ListBox.Resources>
@@ -64,10 +79,52 @@
 								</ListBox.Resources>
 							</ListBox>
 						</ScrollViewer>
-						<StackPanel Grid.Column="1">
-							<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="Add" Margin="5" Height="20" 
+						<StackPanel Grid.Row="1" Grid.Column="1">
+							<Button Command="{Binding AddEffect}" ToolTip="Add Effect" Content="Add" Margin="2" Height="20" 
 									Width="55" FontWeight="Bold"/>
-							<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="Remove" Margin="5" 
+							<Button Command="{Binding RemoveEffect}" ToolTip="Remove Effect" Content="Remove" Margin="2" 
+									Height="20" Width="55" FontWeight="Bold"/>
+						</StackPanel>
+					</Grid>
+				</Border>
+				<Border Grid.Column="2" Margin="1" BorderBrush="White" BorderThickness="1" CornerRadius="3">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Hit Points" HorizontalContentAlignment="Center"
+									 FontWeight="Bold"/>
+						<ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+							<ListBox ItemsSource="{Binding HitPointChanges}" SelectedIndex="{Binding SelectedHitPointChange}" 
+										 Background="Transparent" BorderThickness="0" MinWidth="60">
+								<!--<ListBox.Resources>
+									<DataTemplate DataType="{x:Type effect:Effect}">
+										<WrapPanel>
+											<TextBlock Text="{Binding}" FontWeight="Bold" Background="Transparent"/>
+										</WrapPanel>
+									</DataTemplate>
+									<DataTemplate DataType="{x:Type effect:TimedEffect}">
+										<WrapPanel>
+											<TextBlock Text="{Binding}" FontWeight="Bold" Background="Transparent"/>
+											<TextBlock Text=" (" Background="Transparent"/>
+											<TextBlock Text="{Binding RemainingDuration}" Background="Transparent"/>
+											<TextBlock Text=")" Background="Transparent"/>
+										</WrapPanel>
+									</DataTemplate>
+								</ListBox.Resources>-->
+							</ListBox>
+						</ScrollViewer>
+						<StackPanel Grid.Row="1" Grid.Column="1">
+							<Button Command="{Binding AddHitPointChange}" ToolTip="Add Hit" Content="Add" Margin="2" Height="20" 
+									Width="55" FontWeight="Bold"/>
+<!--							<Button Command="{Binding EditHitPointChange}" ToolTip="Edit Hit" Content="Edit" Margin="2" Height="20" 
+									Width="55" FontWeight="Bold"/>-->
+							<Button Command="{Binding RemoveHitPointChange}" ToolTip="Remove Hit" Content="Remove" Margin="2" 
 									Height="20" Width="55" FontWeight="Bold"/>
 						</StackPanel>
 					</Grid>
@@ -100,8 +157,7 @@
 												FontWeight="Bold" IsChecked="True"/>
 				</StackPanel>
 				<view:ValueDisplay DockPanel.Dock="Left" Title="AC" ValueBinding="{Binding ArmorClass}" Margin="1,0"/>
-				<view:ValueButton DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"
-														CommandBinding="{Binding ChangeHitPoints}" PanelOrientation="Vertical"/>
+				<view:ValueDisplay DockPanel.Dock="Left" Title="HP" ValueBinding="{Binding HitPoints}" Margin="1,0"/>
 				<Grid DockPanel.Dock="Left">
 					<Grid.Style>
 						<Style TargetType="{x:Type Grid}">
@@ -118,17 +174,17 @@
 				<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Str " FontWeight="Bold"/>
-						<TextBlock Text="{Binding Actor.Strength}"/>
+						<TextBlock Text="{Binding Strength}"/>
 						<TextBlock Text=" Dex " FontWeight="Bold"/>
-						<TextBlock Text="{Binding Actor.Dexterity}"/>
+						<TextBlock Text="{Binding Dexterity}"/>
 						<TextBlock Text=" Con " FontWeight="Bold"/>
-						<TextBlock Text="{Binding Actor.Constitution}"/>
+						<TextBlock Text="{Binding Constitution}"/>
 						<TextBlock Text=" Int " FontWeight="Bold"/>
-						<TextBlock Text="{Binding Actor.Intelligence}"/>
+						<TextBlock Text="{Binding Intelligence}"/>
 						<TextBlock Text=" Wis " FontWeight="Bold"/>
-						<TextBlock Text="{Binding Actor.Wisdom}"/>
+						<TextBlock Text="{Binding Wisdom}"/>
 						<TextBlock Text=" Cha " FontWeight="Bold"/>
-						<TextBlock Text="{Binding Actor.Charisma}"/>
+						<TextBlock Text="{Binding Charisma}"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="{Binding Size}" FontWeight="Bold"/>
@@ -140,12 +196,26 @@
 						<TextBlock Text="{Binding Speed}"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Touch " FontWeight="Bold"/>
+						<TextBlock Text="{Binding TouchArmorClass}"/>
+						<TextBlock Text=" Flat-Footed " FontWeight="Bold"/>
+						<TextBlock Text="{Binding FlatFootedArmorClass}"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Fort " FontWeight="Bold"/>
 						<TextBlock Text="{Binding FortitudeSave}"/>
 						<TextBlock Text=" Ref " FontWeight="Bold"/>
 						<TextBlock Text="{Binding ReflexSave}"/>
 						<TextBlock Text=" Will " FontWeight="Bold"/>
 						<TextBlock Text="{Binding WillSave}"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Attacks of Opportunity " VerticalAlignment="Center"/>
+						<TextBlock Text="{Binding AttacksOfOpportunity}" VerticalAlignment="Center" Margin="2"/>
+						<Button Content="+" Command="{Binding IncrementAttacksOfOpportunity}" Margin="2" Width="20" 
+										FontWeight="Bold"/>
+						<Button Content="-" Command="{Binding DecrementAttacksOfOpportunity}" Margin="2" Width="20"
+										FontWeight="Bold"/>
 					</StackPanel>
 					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap"/>
 					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>

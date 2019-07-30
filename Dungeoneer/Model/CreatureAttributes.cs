@@ -469,7 +469,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public void ChangeAttackModifier(Types.Ability ability, int change)
+		public void ModifyAttackModifier(Types.Ability ability, int change)
 		{
 			foreach (AttackSet attackSet in AttackSets)
 			{
@@ -484,7 +484,7 @@ namespace Dungeoneer.Model
 			NotifyPropertyChanged("AttackSets");
 		}
 
-		public void ChangeDamageModifier(int change)
+		public void ModifyDamageModifier(int change)
 		{
 			foreach (AttackSet attackSet in AttackSets)
 			{
@@ -512,7 +512,7 @@ namespace Dungeoneer.Model
 			distance *= factor;
 			Speed.LandSpeed = (int)distance;
 
-			foreach (Model.Speed speed in Speed.Speeds)
+			foreach (Speed speed in Speed.Speeds)
 			{
 				distance = speed.Distance;
 				distance *= factor;
@@ -559,11 +559,11 @@ namespace Dungeoneer.Model
 			if (ability == Types.Ability.Strength ||
 				ability == Types.Ability.Dexterity)
 			{
-				ChangeAttackModifier(ability, modifierDifference);
+				ModifyAttackModifier(ability, modifierDifference);
 
 				if (ability == Types.Ability.Strength)
 				{
-					ChangeDamageModifier(modifierDifference);
+					ModifyDamageModifier(modifierDifference);
 				}
 				else if (ability == Types.Ability.Dexterity)
 				{
@@ -639,16 +639,23 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public int DoHitPointDamage(Hit hit)
+		public int CalculateHitPointChange(List<DamageSet> damageSets)
 		{
-			int hp = HitPoints;
+			int hpChange = 0;
+
+			List<DamageSet> damageDone = new List<DamageSet>();
+
+			foreach (DamageSet damageSet in damageSets)
+			{
+				damageDone.Add(new DamageSet(damageSet));
+			}
 
 			List<DamageReduction> damageReductions = DamageReductions.ToList();
 			damageReductions.Sort((dr1, dr2) => dr2.Value.CompareTo(dr1.Value));
 
 			List<EnergyResistance> energyResistances = EnergyResistances.ToList();
 
-			foreach (DamageSet damageSet in hit.DamageSets)
+			foreach (DamageSet damageSet in damageDone)
 			{
 				foreach (EnergyResistance energyResistance in energyResistances)
 				{
@@ -674,7 +681,7 @@ namespace Dungeoneer.Model
 				}
 			}
 
-			foreach (DamageSet damageSet in hit.DamageSets)
+			foreach (DamageSet damageSet in damageDone)
 			{
 				if (damageSet.DamageDescriptorSet.IsTyped())
 				{
@@ -702,12 +709,12 @@ namespace Dungeoneer.Model
 				}
 			}
 			
-			foreach (DamageSet damageSet in hit.DamageSets)
+			foreach (DamageSet damageSet in damageDone)
 			{
-				HitPoints -= damageSet.Amount;
+				hpChange -= damageSet.Amount;
 			}
 
-			return hp - HitPoints;
+			return hpChange;
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

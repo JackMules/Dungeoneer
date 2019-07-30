@@ -37,7 +37,6 @@ namespace Dungeoneer.Model.Effect
 				case Types.Effect.Cowering:						return new Conditions.Cowering();
 				case Types.Effect.Dazed:							return new Conditions.Dazed();
 				case Types.Effect.Dazzled:						return new Conditions.Dazzled();
-				case Types.Effect.Dead:								return new Conditions.Dead();
 				case Types.Effect.Deafened:						return new Conditions.Deafened();
 				case Types.Effect.Disabled:						return new Conditions.Disabled();
 				case Types.Effect.Dying:							return new Conditions.Dying();

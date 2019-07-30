@@ -47,23 +47,9 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
-		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
-		{
-			if (modifiedAttributes is CreatureAttributes)
-			{
-				(modifiedAttributes as CreatureAttributes).HitPoints += Value;
-
-				if ((modifiedAttributes as CreatureAttributes).HitPoints > 
-						(baseAttributes as CreatureAttributes).HitPoints)
-				{
-					(modifiedAttributes as CreatureAttributes).HitPoints = (baseAttributes as CreatureAttributes).HitPoints;
-				}
-			}
-		}
-
 		public override string ToString()
 		{
-			return Methods.GetEffectTypeString(Types.Effect.FastHealing);
+			return Methods.GetEffectTypeString(Types.Effect.FastHealing) + " " + Value.ToString();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
@@ -101,12 +87,20 @@ namespace Dungeoneer.Model.Effect
 		}
 	}
 
-	public class AbilityModifier : TimedEffect, ValueEffect, AbilityEffect
+	public class AbilityModifier : Effect, ValueEffect, AbilityEffect
 	{
 		public AbilityModifier()
 			: base(false)
 		{
 			Name = GetType().Name;
+		}
+
+		public AbilityModifier(Types.Ability ability, int value)
+			: base(false)
+		{
+			Name = GetType().Name;
+			_ability = ability;
+			_value = value;
 		}
 
 		private int _value;

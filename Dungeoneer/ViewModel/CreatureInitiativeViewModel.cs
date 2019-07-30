@@ -34,17 +34,24 @@ namespace Dungeoneer.ViewModel
 		protected override void InitCommands()
 		{
 			base.InitCommands();
-			_changeHitPoints = new Command(ExecuteChangeHitPoints);
 			_addEffect = new Command(ExecuteAddEffect);
 			_removeEffect = new Command(ExecuteRemoveEffect);
+			_addHitPointChange = new Command(ExecuteAddHitPointChange);
+			_removeHitPointChange = new Command(ExecuteRemoveHitPointChange);
+			_incrementAttacksOfOpportunity = new Command(ExecuteIncrementAttacksOfOpportunity);
+			_decrementAttacksOfOpportunity = new Command(ExecuteDecrementAttacksOfOpportunity, Threatening);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
-		private Command _changeHitPoints;
 		private Command _addEffect;
 		private Command _removeEffect;
+		private Command _addHitPointChange;
+		private Command _removeHitPointChange;
+		private Command _incrementAttacksOfOpportunity;
+		private Command _decrementAttacksOfOpportunity;
 
 		public int SelectedEffect { get; set; }
+		public int SelectedHitPointChange { get; set; }
 
 		public float ChallengeRating
 		{
@@ -79,6 +86,46 @@ namespace Dungeoneer.ViewModel
 				Actor.Effects = value;
 				NotifyPropertyChanged("Effects");
 			}
+		}
+
+		public FullyObservableCollection<Model.HitPointChange> HitPointChanges
+		{
+			get { return Actor.HitPointChanges; }
+			set
+			{
+				Actor.HitPointChanges = value;
+				NotifyPropertyChanged("HitPointChanges");
+			}
+		}
+
+		public string Strength
+		{
+			get { return Actor.Strength.ToString(); }
+		}
+
+		public string Dexterity
+		{
+			get { return Actor.Dexterity.ToString(); }
+		}
+
+		public string Constitution
+		{
+			get { return Actor.Constitution.ToString(); }
+		}
+
+		public string Intelligence
+		{
+			get { return Actor.Intelligence.ToString(); }
+		}
+
+		public string Wisdom
+		{
+			get { return Actor.Wisdom.ToString(); }
+		}
+
+		public string Charisma
+		{
+			get { return Actor.Charisma.ToString(); }
 		}
 
 		public string Size
@@ -162,9 +209,30 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+
+		public string AttacksOfOpportunity
+		{
+			get { return Actor.AttacksOfOpportunity.ToString(); }
+		}
+
+		public bool Threatening
+		{
+			get { return Actor.Threatening; }
+		}
+
 		public string ArmorClass
 		{
 			get { return Actor.ArmorClass.ToString(); }
+		}
+
+		public string TouchArmorClass
+		{
+			get { return Actor.TouchArmorClass.ToString(); }
+		}
+
+		public string FlatFootedArmorClass
+		{
+			get { return Actor.FlatFootedArmorClass.ToString(); }
 		}
 
 		public string HitPoints
@@ -179,11 +247,26 @@ namespace Dungeoneer.ViewModel
 			HitPointsUpdated();
 			AttackSetsUpdated();
 			SpellResistanceUpdated();
+			AbilitiesUpdated();
+			NotifyPropertyChanged("AttacksOfOpportunity");
+		}
+
+		public void AbilitiesUpdated()
+		{
+			NotifyPropertyChanged("Strength");
+			NotifyPropertyChanged("Dexterity");
+			NotifyPropertyChanged("Constitution");
+			NotifyPropertyChanged("Intelligence");
+			NotifyPropertyChanged("Wisdom");
+			NotifyPropertyChanged("Charisma");
 		}
 
 		private void ArmorClassUpdated()
 		{
 			NotifyPropertyChanged("ArmorClass");
+			NotifyPropertyChanged("TouchArmorClass");
+			NotifyPropertyChanged("FlatFootedArmorClass");
+			NotifyPropertyChanged("Threatening");
 		}
 
 		private void HitPointsUpdated()
@@ -209,18 +292,6 @@ namespace Dungeoneer.ViewModel
 		public bool Dead
 		{
 			get { return Actor.HitPoints <= 0; }
-		}
-
-		public Command ChangeHitPoints
-		{
-			get { return _changeHitPoints; }
-		}
-
-		private void ExecuteChangeHitPoints()
-		{
-			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
-			hitPointChangeDialogViewModel.ChangeHitPoints(Actor);
-			HitPointsUpdated();
 		}
 
 		public Command AddEffect
@@ -251,6 +322,58 @@ namespace Dungeoneer.ViewModel
 				Effects.RemoveAt(SelectedEffect);
 				ActorUpdated();
 			}
+		}
+
+		public Command AddHitPointChange
+		{
+			get { return _addHitPointChange; }
+		}
+
+		public Command RemoveHitPointChange
+		{
+			get { return _removeHitPointChange; }
+		}
+
+		private void ExecuteAddHitPointChange()
+		{
+			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
+			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
+			if (hitPointChange != null)
+			{
+				Actor.AddHitPointChange(hitPointChange);
+				ActorUpdated();
+			}
+		}
+
+		private void ExecuteRemoveHitPointChange()
+		{
+			if (SelectedHitPointChange >= 0 && SelectedHitPointChange < HitPointChanges.Count)
+			{
+				HitPointChanges.RemoveAt(SelectedHitPointChange);
+				ActorUpdated();
+			}
+		}
+
+		public Command IncrementAttacksOfOpportunity
+		{
+			get { return _incrementAttacksOfOpportunity; }
+		}
+
+		public Command DecrementAttacksOfOpportunity
+		{
+			get { return _decrementAttacksOfOpportunity; }
+		}
+
+		private void ExecuteIncrementAttacksOfOpportunity()
+		{
+			Actor.IncrementAttacksOfOpportunity();
+			ActorUpdated();
+		}
+
+		private void ExecuteDecrementAttacksOfOpportunity()
+		{
+			Actor.DecrementAttacksOfOpportunity();
+			ActorUpdated();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
