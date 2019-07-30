@@ -38,6 +38,8 @@ namespace Dungeoneer.ViewModel
 			_removeEffect = new Command(ExecuteRemoveEffect);
 			_addHitPointChange = new Command(ExecuteAddHitPointChange);
 			_removeHitPointChange = new Command(ExecuteRemoveHitPointChange);
+			_incrementAttacksOfOpportunity = new Command(ExecuteIncrementAttacksOfOpportunity);
+			_decrementAttacksOfOpportunity = new Command(ExecuteDecrementAttacksOfOpportunity, Threatening);
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
@@ -45,6 +47,8 @@ namespace Dungeoneer.ViewModel
 		private Command _removeEffect;
 		private Command _addHitPointChange;
 		private Command _removeHitPointChange;
+		private Command _incrementAttacksOfOpportunity;
+		private Command _decrementAttacksOfOpportunity;
 
 		public int SelectedEffect { get; set; }
 		public int SelectedHitPointChange { get; set; }
@@ -205,9 +209,30 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
+
+		public string AttacksOfOpportunity
+		{
+			get { return Actor.AttacksOfOpportunity.ToString(); }
+		}
+
+		public bool Threatening
+		{
+			get { return Actor.Threatening; }
+		}
+
 		public string ArmorClass
 		{
 			get { return Actor.ArmorClass.ToString(); }
+		}
+
+		public string TouchArmorClass
+		{
+			get { return Actor.TouchArmorClass.ToString(); }
+		}
+
+		public string FlatFootedArmorClass
+		{
+			get { return Actor.FlatFootedArmorClass.ToString(); }
 		}
 
 		public string HitPoints
@@ -223,6 +248,7 @@ namespace Dungeoneer.ViewModel
 			AttackSetsUpdated();
 			SpellResistanceUpdated();
 			AbilitiesUpdated();
+			NotifyPropertyChanged("AttacksOfOpportunity");
 		}
 
 		public void AbilitiesUpdated()
@@ -238,6 +264,9 @@ namespace Dungeoneer.ViewModel
 		private void ArmorClassUpdated()
 		{
 			NotifyPropertyChanged("ArmorClass");
+			NotifyPropertyChanged("TouchArmorClass");
+			NotifyPropertyChanged("FlatFootedArmorClass");
+			NotifyPropertyChanged("Threatening");
 		}
 
 		private void HitPointsUpdated()
@@ -323,6 +352,28 @@ namespace Dungeoneer.ViewModel
 				HitPointChanges.RemoveAt(SelectedHitPointChange);
 				ActorUpdated();
 			}
+		}
+
+		public Command IncrementAttacksOfOpportunity
+		{
+			get { return _incrementAttacksOfOpportunity; }
+		}
+
+		public Command DecrementAttacksOfOpportunity
+		{
+			get { return _decrementAttacksOfOpportunity; }
+		}
+
+		private void ExecuteIncrementAttacksOfOpportunity()
+		{
+			Actor.IncrementAttacksOfOpportunity();
+			ActorUpdated();
+		}
+
+		private void ExecuteDecrementAttacksOfOpportunity()
+		{
+			Actor.DecrementAttacksOfOpportunity();
+			ActorUpdated();
 		}
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)

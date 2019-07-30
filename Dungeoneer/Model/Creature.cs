@@ -18,13 +18,15 @@ namespace Dungeoneer.Model
 		{
 			BaseAttributes = other.BaseAttributes.Clone();
 			ModifiedAttributes = BaseAttributes.Clone();
+			_usedAttacksOfOpportunity = 0;
 		}
 
 		public Creature(CreatureAttributes attributes)
 			: base(attributes)
 		{
 			BaseAttributes = attributes.Clone();
-			_modifiedCreatureAttributes = attributes.Clone();
+			ModifiedAttributes = attributes.Clone();
+			_usedAttacksOfOpportunity = 0;
 		}
 
 		public Creature(XmlNode xmlNode)
@@ -33,8 +35,9 @@ namespace Dungeoneer.Model
 		}
 
 		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
-		private CreatureAttributes _modifiedCreatureAttributes = new CreatureAttributes();
+		private CreatureAttributes _modifiedAttributes = new CreatureAttributes();
 		private FullyObservableCollection<HitPointChange> _hitPointChanges = new FullyObservableCollection<HitPointChange>();
+		private int _usedAttacksOfOpportunity;
 
 		public override void StartEncounter()
 		{
@@ -64,10 +67,10 @@ namespace Dungeoneer.Model
 
 		protected new CreatureAttributes ModifiedAttributes
 		{
-			get { return _modifiedCreatureAttributes; }
+			get { return _modifiedAttributes; }
 			set
 			{
-				_modifiedCreatureAttributes = value;
+				_modifiedAttributes = value;
 				NotifyPropertyChanged("ModifiedAttributes");
 			}
 		}
@@ -402,6 +405,14 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool CombatReflexes
+		{
+			get
+			{
+				return Feats.Contains("Combat Reflexes", StringComparer.CurrentCultureIgnoreCase);
+			}
+		}
+
 		public int Space
 		{
 			get { return GetEffectiveAttributes().Space; }
@@ -430,6 +441,7 @@ namespace Dungeoneer.Model
 				ModifiedAttributes.Feats = value;
 				NotifyPropertyChanged("Feats");
 				NotifyPropertyChanged("PowerAttack");
+				NotifyPropertyChanged("CombatReflexes");
 			}
 		}
 
@@ -501,6 +513,89 @@ namespace Dungeoneer.Model
 		public string SpecialQualities
 		{
 			get { return BaseAttributes.SpecialQualities; }
+		}
+
+		public bool Threatening
+		{
+			get
+			{
+				if (CombatReflexes)
+				{
+					return true;
+				}
+				else
+				{
+					if (FlatFooted)
+					{
+						return false;
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+		}
+
+		public void IncrementAttacksOfOpportunity()
+		{
+			if (_usedAttacksOfOpportunity > 0)
+			{
+				--_usedAttacksOfOpportunity;
+				NotifyPropertyChanged("AttacksOfOpportunity");
+			}
+		}
+
+		public void DecrementAttacksOfOpportunity()
+		{
+			if (_usedAttacksOfOpportunity < CalculateAttacksOfOpportunity())
+			{
+				++_usedAttacksOfOpportunity;
+				NotifyPropertyChanged("AttacksOfOpportunity");
+			}
+		}
+
+		public bool FlatFooted
+		{
+			get { return Effects.OfType<Effect.Conditions.FlatFooted>().Any(); }
+		}
+
+		private int CalculateAttacksOfOpportunity()
+		{
+			int aoo = 0;
+			if (CombatReflexes)
+			{
+				int dexMod = Methods.GetAbilityModifier(GetEffectiveAttributes().Dexterity);
+				aoo = dexMod;
+			}
+			else
+			{
+				if (FlatFooted)
+				{
+					aoo = 0;
+				}
+				else
+				{
+					aoo = 1;
+				}
+			}
+
+			return aoo;
+		}
+
+		public int AttacksOfOpportunity
+		{
+			get
+			{
+				int aoo = CalculateAttacksOfOpportunity() - _usedAttacksOfOpportunity;
+
+				if (aoo < 0)
+				{
+					aoo = 0;
+				}
+
+				return aoo;
+			}
 		}
 
 		public void ModifyAbilityScore(Types.Ability ability, int change)

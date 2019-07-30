@@ -7,7 +7,7 @@
 						 xmlns:model="clr-namespace:Dungeoneer.Model"
 						 xmlns:effect="clr-namespace:Dungeoneer.Model.Effect"
 						 mc:Ignorable="d" 
-						 d:DesignHeight="140" d:DesignWidth="596">
+						 d:DesignWidth="700">
 	<Border Margin="2" BorderBrush="White" BorderThickness="2" CornerRadius="4">
 		<DockPanel>
 			<Grid DockPanel.Dock="Bottom" Margin="0,2,0,0">
@@ -196,6 +196,12 @@
 						<TextBlock Text="{Binding Speed}"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Touch " FontWeight="Bold"/>
+						<TextBlock Text="{Binding TouchArmorClass}"/>
+						<TextBlock Text=" Flat-Footed " FontWeight="Bold"/>
+						<TextBlock Text="{Binding FlatFootedArmorClass}"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Fort " FontWeight="Bold"/>
 						<TextBlock Text="{Binding FortitudeSave}"/>
 						<TextBlock Text=" Ref " FontWeight="Bold"/>
@@ -204,8 +210,12 @@
 						<TextBlock Text="{Binding WillSave}"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="Attacks of Opportunity "/>
-						
+						<TextBlock Text="Attacks of Opportunity " VerticalAlignment="Center"/>
+						<TextBlock Text="{Binding AttacksOfOpportunity}" VerticalAlignment="Center" Margin="2"/>
+						<Button Content="+" Command="{Binding IncrementAttacksOfOpportunity}" Margin="2" Width="20" 
+										FontWeight="Bold"/>
+						<Button Content="-" Command="{Binding DecrementAttacksOfOpportunity}" Margin="2" Width="20"
+										FontWeight="Bold"/>
 					</StackPanel>
 					<TextBlock Text="{Binding SpecialAttacks}" TextWrapping="Wrap"/>
 					<TextBlock Text="{Binding SpecialQualities}" TextWrapping="Wrap"/>
