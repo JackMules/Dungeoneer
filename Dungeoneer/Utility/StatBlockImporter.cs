@@ -241,7 +241,10 @@ namespace Dungeoneer.Utility
 									Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(immunityMatch.Groups["Types"].Value, "and");
 									foreach (Types.Damage damageType in damageTypes.ToList())
 									{
-										attributes.Immunities.Add(damageType);
+										if (damageType != Types.Damage.Magic) // Immunity to magic does not mean immunity to magic weapons
+										{
+											attributes.Immunities.Add(damageType);
+										}
 									}
 								}
 
