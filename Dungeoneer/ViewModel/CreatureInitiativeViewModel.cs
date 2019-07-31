@@ -150,7 +150,7 @@ namespace Dungeoneer.ViewModel
 
 		public string SpecialQualities
 		{
-			get { return Actor.SpecialQualities; }
+			get { return String.Join(", ", Actor.SpecialQualities); }
 		}
 
 		public string FortitudeSave

@@ -218,7 +218,10 @@ namespace Dungeoneer.Utility
 							}
 							else if (identifier == "Special Qualities")
 							{
-								attributes.SpecialQualities = entry.Trim();
+								foreach (string specialQuality in entry.Split(','))
+								{
+									attributes.SpecialQualities.Add(specialQuality.Trim());
+								}
 
 								string drPattern = @"damage reduction (?<Value>\d+)\/(?<Types>.+?)(\,|\z)";
 								Regex drRegex = new Regex(drPattern, RegexOptions.IgnoreCase);

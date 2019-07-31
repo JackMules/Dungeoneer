@@ -43,6 +43,7 @@ namespace Dungeoneer.Model
 		{
 			base.StartEncounter();
 
+
 			Effect.Conditions.FlatFooted flatFooted = new Effect.Conditions.FlatFooted();
 			flatFooted.Duration = 1;
 			Effects.Add(flatFooted);
@@ -510,7 +511,7 @@ namespace Dungeoneer.Model
 			get { return BaseAttributes.SpecialAttacks; }
 		}
 
-		public string SpecialQualities
+		public List<string> SpecialQualities
 		{
 			get { return BaseAttributes.SpecialQualities; }
 		}
@@ -558,6 +559,16 @@ namespace Dungeoneer.Model
 		public bool FlatFooted
 		{
 			get { return Effects.OfType<Effect.Conditions.FlatFooted>().Any(); }
+		}
+
+		public bool UncannyDodge
+		{
+			get { return GetEffectiveAttributes().UncannyDodge; }
+		}
+
+		public bool ImprovedUncannyDodge
+		{
+			get { return GetEffectiveAttributes().ImprovedUncannyDodge; }
 		}
 
 		private int CalculateAttacksOfOpportunity()

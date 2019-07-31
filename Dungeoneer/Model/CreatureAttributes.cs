@@ -46,7 +46,7 @@ namespace Dungeoneer.Model
 			SpellResistance = 0;
 			FastHealing = 0;
 			SpecialAttacks = "";
-			SpecialQualities = "";
+			SpecialQualities = new List<string>();
 		}
 
 		public CreatureAttributes(CreatureAttributes other)
@@ -125,7 +125,7 @@ namespace Dungeoneer.Model
 		private DamageDescriptorSet _immunities;
 		private ObservableCollection<EnergyResistance> _energyResistances;
 		private string _specialAttacks;
-		private string _specialQualities;
+		private List<string> _specialQualities;
 
 		public Types.Creature Type
 		{
@@ -459,7 +459,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public string SpecialQualities
+		public List<string> SpecialQualities
 		{
 			get { return _specialQualities; }
 			set
@@ -520,10 +520,23 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool UncannyDodge
+		{
+			get { return SpecialQualities.Contains("Uncanny Dodge", StringComparer.CurrentCultureIgnoreCase); }
+		}
+
+		public bool ImprovedUncannyDodge
+		{
+			get { return SpecialQualities.Contains("Improved Uncanny Dodge", StringComparer.CurrentCultureIgnoreCase); }
+		}
+
 		public void SetFlatFooted()
 		{
-			ArmorClass = FlatFootedArmorClass;
-			TouchArmorClass -= Methods.GetAbilityModifier(Dexterity);
+			if (!UncannyDodge)
+			{
+				ArmorClass = FlatFootedArmorClass;
+				TouchArmorClass -= Methods.GetAbilityModifier(Dexterity);
+			}
 		}
 
 		public void ModifyFortitudeSave(int change)
@@ -865,7 +878,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("SpecialQualities");
-			xmlWriter.WriteString(SpecialQualities);
+			xmlWriter.WriteString(String.Join(", ", SpecialQualities));
 			xmlWriter.WriteEndElement();
 		}
 
@@ -1039,7 +1052,10 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "SpecialQualities")
 					{
-						SpecialQualities = childNode.InnerText;
+						foreach (string specialQuality in childNode.InnerText.Split(','))
+						{
+							SpecialQualities.Add(specialQuality.Trim());
+						}
 					}
 				}
 			}
