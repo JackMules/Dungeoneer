@@ -18,5 +18,5 @@ Organization:	Solitary or gang (2-4)
 Challenge Rating:	11
 Treasure:	None
 Alignment:	Always neutral
-Advancement:	15-21 HD (Large); 22-42 (Huge)
+Advancement:	15-21 HD (Large)
 Level Adjustment:	—
