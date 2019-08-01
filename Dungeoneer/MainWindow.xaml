@@ -20,25 +20,6 @@
 				<ResourceDictionary Source="MyDictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-			<CollectionViewSource x:Key="initiativeTrackCVS" Source="{Binding Encounter.InitiativeTrack, UpdateSourceTrigger=PropertyChanged}"
-														IsLiveSortingRequested="True">
-				<CollectionViewSource.LiveSortingProperties>
-					<clr:String>ActorViewModel.Active</clr:String>
-					<clr:String>TurnEnded</clr:String>
-					<clr:String>InitiativeValueViewModel.InitiativeValue.Score</clr:String>
-					<clr:String>InitiativeValueViewModel.InitiativeValue.Adjust</clr:String>
-					<clr:String>InitiativeValueViewModel.InitiativeValue.Modifier</clr:String>
-					<clr:String>InitiativeValueViewModel.InitiativeValue.Roll</clr:String>
-				</CollectionViewSource.LiveSortingProperties>
-				<CollectionViewSource.SortDescriptions>
-					<scm:SortDescription PropertyName="ActorViewModel.Active" Direction="Descending"/>
-					<scm:SortDescription PropertyName="TurnEnded" Direction="Ascending"/>
-					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.Score" Direction="Descending"/>
-					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.Adjust" Direction="Descending"/>
-					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.Modifier" Direction="Descending"/>
-					<scm:SortDescription PropertyName="InitiativeValueViewModel.InitiativeValue.Roll" Direction="Descending"/>
-				</CollectionViewSource.SortDescriptions>
-			</CollectionViewSource>
 			<CollectionViewSource x:Key="characterCVS" Source="{Binding ActorLibrary.Characters, UpdateSourceTrigger=PropertyChanged}"
 														IsLiveSortingRequested="True">
 				<CollectionViewSource.LiveSortingProperties>
@@ -96,10 +77,9 @@
 						<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1" 
 										CornerRadius="8">
 							<ScrollViewer VerticalScrollBarVisibility="Auto">
-								<ItemsControl ItemsSource="{Binding Source={StaticResource initiativeTrackCVS}, UpdateSourceTrigger=PropertyChanged}"
+								<ItemsControl ItemsSource="{Binding Encounter.InitiativeTrackView, UpdateSourceTrigger=PropertyChanged}"
 															ItemTemplate="{StaticResource InitiativeCardTemplate}"
-															Background="Transparent">
-								</ItemsControl>
+															Background="Transparent"/>
 							</ScrollViewer>
 						</Border>
 					</DockPanel>
