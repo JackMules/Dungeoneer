@@ -356,7 +356,9 @@ namespace Dungeoneer.ViewModel
 		{
 			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName);
 			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
-			if (hitPointChange != null)
+			if (hitPointChange != null &&
+				(hitPointChange is Model.Heal ||
+				hitPointChange is Model.Hit))
 			{
 				Actor.AddHitPointChange(hitPointChange);
 				ActorUpdated();
