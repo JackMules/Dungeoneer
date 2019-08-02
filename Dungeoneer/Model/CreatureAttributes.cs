@@ -469,6 +469,115 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public void SetBlinded()
+		{
+			SetFlatFooted();
+			ModifyArmorClass(-2);
+			ModifySpeed(1 / 2);
+		}
+
+		public void SetCowering()
+		{
+			SetFlatFooted();
+			ModifyArmorClass(-2);
+		}
+
+		public void SetDazzled()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+		}
+
+		public void SetDeafened()
+		{
+			InitiativeMod -= 4;
+		}
+
+		public void SetDisabled()
+		{
+			ModifySpeed(1 / 2);
+		}
+
+		public void SetEntangled()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySpeed(1 / 2);
+			ModifyAbilityScore(Types.Ability.Dexterity, -4);
+		}
+
+		public void SetExhausted()
+		{
+			ModifySpeed(1 / 2);
+			ModifyAbilityScore(Types.Ability.Strength, -6);
+			ModifyAbilityScore(Types.Ability.Dexterity, -6);
+		}
+
+		public void SetFatigued()
+		{
+			ModifyAbilityScore(Types.Ability.Strength, -2);
+			ModifyAbilityScore(Types.Ability.Dexterity, -2);
+		}
+
+		public void SetFrightened()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySaves(-2);
+		}
+
+		public void SetHelpless()
+		{
+			Dexterity = 0;
+		}
+
+		public void ApplyNegativeLevel()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -1);
+			ModifyAttackModifier(Types.Ability.Dexterity, -1);
+			HitPoints -= 5;
+			ModifySaves(-1);
+		}
+
+		public void SetPanicked()
+		{
+			ModifySaves(-2);
+		}
+
+		public void SetParalysed()
+		{
+			Strength = 0;
+			Dexterity = 0;
+		}
+
+		public void SetRaging()
+		{
+			ModifyAbilityScore(Types.Ability.Strength, 4);
+			ModifyAbilityScore(Types.Ability.Constitution, 4);
+			ModifyArmorClass(-2);
+			ModifyWillSave(2);
+		}
+
+		public void SetShaken()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySaves(-2);
+		}
+
+		public void SetSickened()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySaves(-2);
+		}
+
+		public void SetStunned()
+		{
+			ModifyArmorClass(-2);
+			SetFlatFooted();
+		}
+
 		public void ModifyAttackModifier(Types.Ability ability, int change)
 		{
 			foreach (AttackSet attackSet in AttackSets)
@@ -563,41 +672,45 @@ namespace Dungeoneer.Model
 
 		public void ModifyAbilityScore(Types.Ability ability, int change)
 		{
-			int oldModifier = GetAbilityModifier(ability);
-			SetAbilityScore(ability, GetAbilityScore(ability) + change);
-			int newModifier = GetAbilityModifier(ability);
-
-			int modifierDifference = newModifier - oldModifier;
-
-			if (ability == Types.Ability.Strength ||
-				ability == Types.Ability.Dexterity)
+			if (Type != Types.Creature.Construct)
 			{
-				ModifyAttackModifier(ability, modifierDifference);
+				int oldModifier = GetAbilityModifier(ability);
+				SetAbilityScore(ability, GetAbilityScore(ability) + change);
+				int newModifier = GetAbilityModifier(ability);
 
-				if (ability == Types.Ability.Strength)
-				{
-					ModifyDamageModifier(modifierDifference);
-				}
-				else if (ability == Types.Ability.Dexterity)
-				{
-					ReflexSave += modifierDifference;
-				}
-			}
-			else if (ability == Types.Ability.Constitution)
-			{
-				if (Type != Types.Creature.Undead)
-				{
-					HitPoints += HitDice * modifierDifference;
-					FortitudeSave += modifierDifference;
-				}
-			}
-			else
-			{
-				// Modify spell DCs
+				int modifierDifference = newModifier - oldModifier;
 
-				if (ability == Types.Ability.Wisdom)
+				if (ability == Types.Ability.Strength ||
+					ability == Types.Ability.Dexterity)
 				{
-					WillSave += modifierDifference;
+					ModifyAttackModifier(ability, modifierDifference);
+
+					if (ability == Types.Ability.Strength)
+					{
+						ModifyDamageModifier(modifierDifference);
+					}
+					else if (ability == Types.Ability.Dexterity)
+					{
+						ReflexSave += modifierDifference;
+					}
+				}
+				else if (ability == Types.Ability.Constitution)
+				{
+					if (Type != Types.Creature.Undead &&
+						Type != Types.Creature.Construct)
+					{
+						HitPoints += HitDice * modifierDifference;
+						FortitudeSave += modifierDifference;
+					}
+				}
+				else
+				{
+					// Modify spell DCs
+
+					if (ability == Types.Ability.Wisdom)
+					{
+						WillSave += modifierDifference;
+					}
 				}
 			}
 		}

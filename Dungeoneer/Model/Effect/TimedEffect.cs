@@ -65,7 +65,7 @@ namespace Dungeoneer.Model.Effect
 
 		public override void WriteXMLStartElement(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("TimedEffect");
+			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override void WritePropertyXML(XmlWriter xmlWriter)

@@ -21,15 +21,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
-				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
-				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
+				(modifiedAttributes as CreatureAttributes).SetBlinded();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -45,11 +38,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -71,14 +59,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
-				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
+				(modifiedAttributes as CreatureAttributes).SetCowering();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -94,11 +76,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -120,14 +97,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).SetDazzled();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -147,12 +118,10 @@ namespace Dungeoneer.Model.Effect.Conditions
 
 		public override void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
 		{
-			modifiedAttributes.InitiativeMod -= 4;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
+			if (modifiedAttributes is CreatureAttributes)
+			{
+				(modifiedAttributes as CreatureAttributes).SetDeafened();
+			}
 		}
 
 		public override string ToString()
@@ -174,13 +143,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
+				(modifiedAttributes as CreatureAttributes).SetDisabled();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -196,11 +160,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -222,16 +181,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
-				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -4);
+				(modifiedAttributes as CreatureAttributes).SetEntangled();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -253,15 +204,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifySpeed(1/2);
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -6);
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -6);
+				(modifiedAttributes as CreatureAttributes).SetExhausted();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -277,11 +221,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -303,14 +242,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Dexterity, -2);
+				(modifiedAttributes as CreatureAttributes).SetFatigued();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -336,11 +269,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			}
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.FlatFooted);
@@ -360,15 +288,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
-				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).SetFrightened();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -384,11 +305,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -410,13 +326,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).Dexterity = 0;
+				(modifiedAttributes as CreatureAttributes).SetHelpless();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -434,11 +345,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Incorporeal);
@@ -454,11 +360,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Invisible);
@@ -472,11 +373,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -498,16 +394,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -1);
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -1);
-				(modifiedAttributes as CreatureAttributes).HitPoints -= 5;
-				(modifiedAttributes as CreatureAttributes).ModifySaves(-1);
+				(modifiedAttributes as CreatureAttributes).ApplyNegativeLevel();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -529,13 +417,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).SetPanicked();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -557,14 +440,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).Strength = 0;
-				(modifiedAttributes as CreatureAttributes).Dexterity = 0;
+				(modifiedAttributes as CreatureAttributes).SetParalysed();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -582,11 +459,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Petrified);
@@ -602,11 +474,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Pinned);
@@ -620,11 +487,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -646,16 +508,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Strength, 4);
-				(modifiedAttributes as CreatureAttributes).ModifyAbilityScore(Types.Ability.Constitution, 4);
-				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
-				(modifiedAttributes as CreatureAttributes).ModifyWillSave(2);
+				(modifiedAttributes as CreatureAttributes).SetRaging();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -677,15 +531,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
-				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).SetShaken();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -707,15 +554,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Strength, -2);
-				(modifiedAttributes as CreatureAttributes).ModifyAttackModifier(Types.Ability.Dexterity, -2);
-				(modifiedAttributes as CreatureAttributes).ModifySaves(-2);
+				(modifiedAttributes as CreatureAttributes).SetSickened();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -733,11 +573,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Stable);
@@ -751,11 +586,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -777,14 +607,8 @@ namespace Dungeoneer.Model.Effect.Conditions
 		{
 			if (modifiedAttributes is CreatureAttributes)
 			{
-				(modifiedAttributes as CreatureAttributes).ModifyArmorClass(-2);
-				(modifiedAttributes as CreatureAttributes).SetFlatFooted();
+				(modifiedAttributes as CreatureAttributes).SetStunned();
 			}
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
@@ -802,11 +626,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			Name = GetType().Name;
 		}
 
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
-		}
-
 		public override string ToString()
 		{
 			return Methods.GetEffectTypeString(Types.Effect.Turned);
@@ -820,11 +639,6 @@ namespace Dungeoneer.Model.Effect.Conditions
 			: base(false)
 		{
 			Name = GetType().Name;
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override string ToString()
