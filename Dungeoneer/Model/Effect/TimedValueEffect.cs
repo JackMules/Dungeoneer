@@ -9,15 +9,15 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model.Effect
 {
-	public class ValueEffect : Effect, IValueEffect
+	public class TimedValueEffect : TimedEffect, IValueEffect
 	{
-		public ValueEffect(Types.Effect effectType, int value)
-			: base(effectType)
+		public TimedValueEffect(Types.Effect effectType, bool perTurn, int value)
+			: base(effectType, perTurn)
 		{
 			_value = value;
 		}
 
-		public ValueEffect(XmlNode xmlNode)
+		public TimedValueEffect(XmlNode xmlNode)
 			: base(xmlNode)
 		{
 			ReadXML(xmlNode);
@@ -33,9 +33,10 @@ namespace Dungeoneer.Model.Effect
 
 		public override string ToString()
 		{
-			return base.ToString() + " " + Value.ToString();
+			return Methods.GetEffectTypeString(EffectType) + " " + Methods.GetSignedNumberString(Value) +
+				" (" + RemainingDuration.ToString() + ")";
 		}
-	
+
 		public override void WritePropertyXML(XmlWriter xmlWriter)
 		{
 			base.WritePropertyXML(xmlWriter);

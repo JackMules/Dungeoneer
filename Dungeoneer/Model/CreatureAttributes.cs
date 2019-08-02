@@ -469,6 +469,108 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public void ApplyEffect(Effect.Effect effect)
+		{
+			switch (effect.EffectType)
+			{
+				case Types.Effect.AbilityModifier:
+					if (effect is Effect.AbilityValueEffect)
+					{
+						Effect.AbilityValueEffect abilityValueEffect = (effect as Effect.AbilityValueEffect);
+						ModifyAbilityScore(abilityValueEffect.Ability, abilityValueEffect.Value);
+					}
+					break;
+				case Types.Effect.Blinded:
+					SetBlinded();
+					break;
+				case Types.Effect.Confused:
+					break;
+				case Types.Effect.Cowering:
+					SetCowering();
+					break;
+				case Types.Effect.Dazed:
+					break;
+				case Types.Effect.Dazzled:
+					SetDazzled();
+					break;
+				case Types.Effect.Deafened:
+					SetDeafened();
+					break;
+				case Types.Effect.Disabled:
+					SetDisabled();
+					break;
+				case Types.Effect.Dying:
+					break;
+				case Types.Effect.NegativeLevel:
+					ApplyNegativeLevel();
+					break;
+				case Types.Effect.Entangled:
+					SetEntangled();
+					break;
+				case Types.Effect.Exhausted:
+					SetExhausted();
+					break;
+				case Types.Effect.Fascinated:
+					break;
+				case Types.Effect.FastHealing:
+					break;
+				case Types.Effect.Fatigued:
+					SetFatigued();
+					break;
+				case Types.Effect.FlatFooted:
+					SetFlatFooted();
+					break;
+				case Types.Effect.Frightened:
+					SetFrightened();
+					break;
+				case Types.Effect.Grappling:
+					break;
+				case Types.Effect.Helpless:
+					SetHelpless();
+					break;
+				case Types.Effect.Incorporeal:
+					break;
+				case Types.Effect.Invisible:
+					break;
+				case Types.Effect.Nauseated:
+					break;
+				case Types.Effect.Panicked:
+					SetPanicked();
+					break;
+				case Types.Effect.Paralysed:
+					SetParalysed();
+					break;
+				case Types.Effect.Petrified:
+					break;
+				case Types.Effect.Pinned:
+					break;
+				case Types.Effect.Prone:
+					break;
+				case Types.Effect.Raging:
+					SetRaging();
+					break;
+				case Types.Effect.Shaken:
+					SetShaken();
+					break;
+				case Types.Effect.Sickened:
+					SetSickened();
+					break;
+				case Types.Effect.Stable:
+					break;
+				case Types.Effect.Staggered:
+					break;
+				case Types.Effect.Stunned:
+					SetStunned();
+					break;
+				case Types.Effect.Turned:
+					break;
+				case Types.Effect.Unconscious:
+					break;
+				default:
+					break;
+			}
+		}
+
 		public void SetBlinded()
 		{
 			SetFlatFooted();

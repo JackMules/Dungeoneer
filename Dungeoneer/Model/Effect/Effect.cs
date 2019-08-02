@@ -6,19 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Windows.Forms;
+using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model.Effect
 {
 	[Serializable]
-	public abstract class Effect : BaseModel
+	public class Effect : BaseModel
 	{
-		protected Effect()
+		public Effect(Types.Effect effectType)
 		{
+			EffectType = effectType;
 			PerTurn = false;
 		}
 
-		public Effect(bool perTurn)
+		public Effect(Types.Effect effectType, bool perTurn)
 		{
+			EffectType = effectType;
 			PerTurn = perTurn;
 		}
 
@@ -27,28 +30,24 @@ namespace Dungeoneer.Model.Effect
 			ReadXML(xmlNode);
 		}
 
+		private Types.Effect _effectType;
 		private bool _perTurn;
-		private string _name;
+
+		public Types.Effect EffectType
+		{
+			get { return _effectType; }
+			set { SetField(ref _effectType, value); }
+		}
 
 		public bool PerTurn
 		{
 			get { return _perTurn; }
-			private set { _perTurn = value; }
-		}
-
-		public string Name
-		{
-			get { return _name; }
-			set
-			{
-				_name = value;
-				NotifyPropertyChanged("Name");
-			}
+			set { SetField(ref _perTurn, value); }
 		}
 
 		public override string ToString()
 		{
-			return Name;
+			return Methods.GetEffectTypeString(EffectType);
 		}
 
 		public virtual void AdvanceTurn()
@@ -59,8 +58,13 @@ namespace Dungeoneer.Model.Effect
 			return false;
 		}
 
-		public virtual void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
-		{ }
+		public void ApplyTo(ActorAttributes modifiedAttributes, ActorAttributes baseAttributes)
+		{
+			if (modifiedAttributes is CreatureAttributes)
+			{
+				(modifiedAttributes as CreatureAttributes).ApplyEffect(this);
+			}
+		}
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
@@ -69,16 +73,19 @@ namespace Dungeoneer.Model.Effect
 			xmlWriter.WriteEndElement();
 		}
 
-		public abstract void WriteXMLStartElement(XmlWriter xmlWriter);
+		public void WriteXMLStartElement(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement(GetType().Name);
+		}
 
 		public virtual void WritePropertyXML(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("PerTurn");
-			xmlWriter.WriteString(PerTurn.ToString());
+			xmlWriter.WriteStartElement("EffectType");
+			xmlWriter.WriteString(Methods.GetEffectTypeString(EffectType));
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("Name");
-			xmlWriter.WriteString(Name);
+			xmlWriter.WriteStartElement("PerTurn");
+			xmlWriter.WriteString(PerTurn.ToString());
 			xmlWriter.WriteEndElement();
 		}
 
@@ -88,13 +95,13 @@ namespace Dungeoneer.Model.Effect
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "PerTurn")
+					if (childNode.Name == "EffectType")
+					{
+						EffectType = Methods.GetEffectTypeFromString(childNode.InnerText);
+					}
+					else if (childNode.Name == "PerTurn")
 					{
 						PerTurn = Convert.ToBoolean(childNode.InnerText);
-					}
-					else if (childNode.Name == "Name")
-					{
-						Name = childNode.InnerText;
 					}
 				}
 			}

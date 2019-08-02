@@ -190,7 +190,19 @@ namespace Dungeoneer.Model
 						{
 							if (effectNode.Name == "Effect")
 							{
-								Effects.Add(Effect.EffectFactory.GetEffect(effectNode));
+								Effects.Add(new Effect.Effect(effectNode));
+							}
+							else if (effectNode.Name == "TimedEffect")
+							{
+								Effects.Add(new Effect.TimedEffect(effectNode));
+							}
+							else if (effectNode.Name == "ValueEffect")
+							{
+								Effects.Add(new Effect.ValueEffect(effectNode));
+							}
+							else if (effectNode.Name == "AbilityValueEffect")
+							{
+								Effects.Add(new Effect.AbilityValueEffect(effectNode));
 							}
 						}
 					}

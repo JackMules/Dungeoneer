@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Dungeoneer.Model
 {
@@ -16,6 +17,22 @@ namespace Dungeoneer.Model
 		public virtual void NotifyPropertyChanged(string propertyName)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		protected bool SetField<T>(ref T currentValue, T newValue, [CallerMemberName]string propertyName = null)
+		{
+			bool fieldChanged = false;
+
+			if (!EqualityComparer<T>.Default.Equals(currentValue, newValue))
+			{
+				currentValue = newValue;
+
+				NotifyPropertyChanged(propertyName);
+
+				fieldChanged = true;
+			}
+
+			return fieldChanged;
 		}
 	}
 }

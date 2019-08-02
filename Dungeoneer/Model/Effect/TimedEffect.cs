@@ -10,19 +10,26 @@ using System.Windows.Forms;
 namespace Dungeoneer.Model.Effect
 {
 	[Serializable]
-	public abstract class TimedEffect : Effect
+	public class TimedEffect : Effect
 	{
-		public TimedEffect(bool perTurn)
-			: base(perTurn)
+		public TimedEffect(Types.Effect effectType)
+			: base(effectType, false)
+		{
+
+		}
+
+		public TimedEffect(Types.Effect effectType, bool perTurn)
+			: base(effectType, perTurn)
 		{
 
 		}
 
 		public TimedEffect(XmlNode xmlNode)
+			: base(xmlNode)
 		{
 			ReadXML(xmlNode);
 		}
-		
+
 		private int _duration;
 		private int _elapsedDuration;
 
@@ -48,6 +55,11 @@ namespace Dungeoneer.Model.Effect
 			}
 		}
 
+		public override string ToString()
+		{
+			return base.ToString() + " (" + RemainingDuration.ToString() + ")";
+		}
+
 		public int RemainingDuration
 		{
 			get { return Duration - ElapsedDuration; }
@@ -61,11 +73,6 @@ namespace Dungeoneer.Model.Effect
 		public override bool Expired()
 		{
 			return (ElapsedDuration >= Duration);
-		}
-
-		public override void WriteXMLStartElement(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement(GetType().Name);
 		}
 
 		public override void WritePropertyXML(XmlWriter xmlWriter)

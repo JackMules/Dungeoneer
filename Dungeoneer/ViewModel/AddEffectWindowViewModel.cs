@@ -50,12 +50,12 @@ namespace Dungeoneer.ViewModel
 
 		public bool ValueEffect
 		{
-			get { return GetSelectedEffect() is Model.Effect.ValueEffect; }
+			get { return GetSelectedEffect() is Model.Effect.IValueEffect; }
 		}
 
 		public bool AbilityEffect
 		{
-			get { return GetSelectedEffect() is Model.Effect.AbilityEffect; }
+			get { return GetSelectedEffect() is Model.Effect.IAbilityEffect; }
 		}
 
 		public int SelectedAbilityIndex
@@ -76,12 +76,12 @@ namespace Dungeoneer.ViewModel
 
 		private Types.Effect SelectedEffectType
 		{
-			get { return Methods.GetEffectTypeFromString(EffectNames[_selectedEffectIndex]); }
+			get { return Methods.GetEffectTypeFromString(EffectNames[SelectedEffectIndex]); }
 		}
 
 		private Types.Ability SelectedAbility
 		{
-			get { return Methods.GetAbilityFromString(Abilities[_selectedAbilityIndex]); }
+			get { return Methods.GetAbilityFromString(Abilities[SelectedAbilityIndex]); }
 		}
 
 		public string Value
@@ -119,9 +119,9 @@ namespace Dungeoneer.ViewModel
 						{
 							(effect as Model.Effect.ValueEffect).Value = Convert.ToInt32(Value);
 						}
-						if (effect is Model.Effect.AbilityEffect)
+						if (effect is Model.Effect.AbilityValueEffect)
 						{
-							(effect as Model.Effect.AbilityEffect).Ability = SelectedAbility;
+							(effect as Model.Effect.AbilityValueEffect).Ability = SelectedAbility;
 						}
 						askForInput = false;
 					}
