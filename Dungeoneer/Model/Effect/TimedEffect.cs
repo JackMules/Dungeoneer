@@ -12,16 +12,16 @@ namespace Dungeoneer.Model.Effect
 	[Serializable]
 	public class TimedEffect : Effect
 	{
-		public TimedEffect(Types.Effect effectType)
+		public TimedEffect(Types.Effect effectType, int duration)
 			: base(effectType, false)
 		{
-
+			Duration = duration;
 		}
 
-		public TimedEffect(Types.Effect effectType, bool perTurn)
+		public TimedEffect(Types.Effect effectType, int duration, bool perTurn)
 			: base(effectType, perTurn)
 		{
-
+			Duration = duration;
 		}
 
 		public TimedEffect(XmlNode xmlNode)
@@ -53,11 +53,6 @@ namespace Dungeoneer.Model.Effect
 				NotifyPropertyChanged("ElapsedDuration");
 				NotifyPropertyChanged("RemainingDuration");
 			}
-		}
-
-		public override string ToString()
-		{
-			return base.ToString() + " (" + RemainingDuration.ToString() + ")";
 		}
 
 		public int RemainingDuration

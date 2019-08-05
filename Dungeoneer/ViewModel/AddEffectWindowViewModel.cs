@@ -18,6 +18,7 @@ namespace Dungeoneer.ViewModel
 		private string _value;
 		private string _duration;
 		private int _selectedAbilityIndex;
+		private string _customText;
 
 		public List<string> EffectNames
 		{
@@ -40,22 +41,28 @@ namespace Dungeoneer.ViewModel
 				NotifyPropertyChanged("TimedEffect");
 				NotifyPropertyChanged("ValueEffect");
 				NotifyPropertyChanged("AbilityEffect");
+				NotifyPropertyChanged("TextEffect");
 			}
 		}
 
 		public bool TimedEffect
 		{
-			get { return GetSelectedEffect() is Model.Effect.TimedEffect; }
+			get { return true; }
 		}
 
 		public bool ValueEffect
 		{
-			get { return GetSelectedEffect() is Model.Effect.IValueEffect; }
+			get { return Methods.IsValueEffect(SelectedEffectType); }
 		}
 
 		public bool AbilityEffect
 		{
-			get { return GetSelectedEffect() is Model.Effect.IAbilityEffect; }
+			get { return Methods.IsAbilityEffect(SelectedEffectType); }
+		}
+
+		public bool TextEffect
+		{
+			get { return Methods.IsTextEffect(SelectedEffectType); }
 		}
 
 		public int SelectedAbilityIndex
@@ -67,11 +74,6 @@ namespace Dungeoneer.ViewModel
 				NotifyPropertyChanged("SelectedAbilityIndex");
 				NotifyPropertyChanged("SelectedAbility");
 			}
-		}
-
-		private Model.Effect.Effect GetSelectedEffect()
-		{
-			return Model.Effect.EffectFactory.GetEffect(SelectedEffectType);
 		}
 
 		private Types.Effect SelectedEffectType
@@ -96,6 +98,58 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _duration, value); }
 		}
 
+		public string CustomText
+		{
+			get { return _customText; }
+			set { SetField(ref _customText, value); }
+		}
+
+		private Model.Effect.Effect CreateEffect()
+		{
+			Model.Effect.Effect effect;
+			int duration = Convert.ToInt32(Duration);
+			if (duration == 0)
+			{
+				if (AbilityEffect && ValueEffect)
+				{
+					effect = new Model.Effect.AbilityValueEffect(SelectedEffectType, SelectedAbility, Convert.ToInt32(Value));
+				}
+				else if (ValueEffect)
+				{
+					effect = new Model.Effect.ValueEffect(SelectedEffectType, Convert.ToInt32(Value));
+				}
+				else if (TextEffect)
+				{
+					effect = new Model.Effect.TextEffect(SelectedEffectType, CustomText);
+				}
+				else
+				{
+					effect = new Model.Effect.Effect(SelectedEffectType);
+				}
+			}
+			else
+			{
+				if (AbilityEffect && ValueEffect)
+				{
+					effect = new Model.Effect.AbilityValueEffect(SelectedEffectType, SelectedAbility, Convert.ToInt32(Value));
+				}
+				else if (ValueEffect)
+				{
+					effect = new Model.Effect.TimedValueEffect(SelectedEffectType, Convert.ToInt32(Value), duration);
+				}
+				else if (TextEffect)
+				{
+					effect = new Model.Effect.TimedTextEffect(SelectedEffectType, CustomText, duration);
+				}
+				else
+				{
+					effect = new Model.Effect.TimedEffect(SelectedEffectType, duration);
+				}
+			}
+
+			return effect;
+		}
+
 		public Model.Effect.Effect GetEffect()
 		{
 			bool askForInput = true;
@@ -110,19 +164,7 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						effect = GetSelectedEffect();
-						if (effect is Model.Effect.TimedEffect)
-						{
-							(effect as Model.Effect.TimedEffect).Duration = Convert.ToInt32(Duration);
-						}
-						if (effect is Model.Effect.ValueEffect)
-						{
-							(effect as Model.Effect.ValueEffect).Value = Convert.ToInt32(Value);
-						}
-						if (effect is Model.Effect.AbilityValueEffect)
-						{
-							(effect as Model.Effect.AbilityValueEffect).Ability = SelectedAbility;
-						}
+						effect = CreateEffect();
 						askForInput = false;
 					}
 					catch (FormatException)

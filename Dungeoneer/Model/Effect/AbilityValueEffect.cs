@@ -9,6 +9,7 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.Model.Effect
 {
+	[Serializable]
 	public class AbilityValueEffect : Effect, IValueEffect, IAbilityEffect
 	{
 		public AbilityValueEffect(Types.Effect effectType, Types.Ability ability, int value)

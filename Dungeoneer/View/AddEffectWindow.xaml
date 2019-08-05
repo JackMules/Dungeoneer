@@ -66,20 +66,40 @@
 						</Style>
 					</RowDefinition.Style>
 				</RowDefinition>
+				<RowDefinition>
+					<RowDefinition.Style>
+						<Style TargetType="{x:Type RowDefinition}">
+							<Setter Property="Height" Value="Auto"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TextEffect, UpdateSourceTrigger=PropertyChanged}" Value="False">
+									<Setter Property="Height" Value="0"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RowDefinition.Style>
+				</RowDefinition>
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-			
-			<Label Grid.Row="0" Grid.Column="0" Content="Duration"/>
-			<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Duration}" MinWidth="100"/>
 
-			<Label Grid.Row="1" Grid.Column="0" Content="Value"/>
-			<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Value}" MinWidth="100"/>
-			
-			<Label Grid.Row="2" Grid.Column="0" Content="Ability"/>
-			<ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Abilities}" SelectedIndex="{Binding SelectedAbilityIndex}" MinWidth="100"/>
+			<Label Grid.Row="0" Grid.Column="0" Content="Duration" VerticalContentAlignment="Center"/>
+			<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Duration}" MinWidth="100"
+							 VerticalContentAlignment="Center"/>
+
+			<Label Grid.Row="1" Grid.Column="0" Content="Value" VerticalContentAlignment="Center"/>
+			<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Value}" MinWidth="100"
+							 VerticalContentAlignment="Center"/>
+
+			<Label Grid.Row="2" Grid.Column="0" Content="Ability" VerticalContentAlignment="Center"/>
+			<ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Abilities}" 
+								SelectedIndex="{Binding SelectedAbilityIndex}" MinWidth="100"
+								VerticalContentAlignment="Center"/>
+
+			<Label Grid.Row="3" Grid.Column="0" Content="Text" VerticalContentAlignment="Center"/>
+			<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CustomText}" MinWidth="100" 
+							 VerticalContentAlignment="Center"/>
 
 		</Grid>
 	</DockPanel>

@@ -10,39 +10,39 @@ using Dungeoneer.Utility;
 namespace Dungeoneer.Model.Effect
 {
 	[Serializable]
-	public class ValueEffect : Effect, IValueEffect
+	public class TextEffect : Effect, ITextEffect
 	{
-		public ValueEffect(Types.Effect effectType, int value)
+		public TextEffect(Types.Effect effectType, string text)
 			: base(effectType)
 		{
-			_value = value;
+			_text = text;
 		}
 
-		public ValueEffect(XmlNode xmlNode)
+		public TextEffect(XmlNode xmlNode)
 			: base(xmlNode)
 		{
 			ReadXML(xmlNode);
 		}
 
-		private int _value;
+		private string _text;
 
-		public int Value
+		public string Text
 		{
-			get { return _value; }
-			set { SetField(ref _value, value); }
+			get { return _text; }
+			set { SetField(ref _text, value); }
 		}
 
 		public override string ToString()
 		{
-			return base.ToString() + " " + Value.ToString();
+			return Text;
 		}
-	
+
 		public override void WritePropertyXML(XmlWriter xmlWriter)
 		{
 			base.WritePropertyXML(xmlWriter);
 
-			xmlWriter.WriteStartElement("Value");
-			xmlWriter.WriteString(Value.ToString());
+			xmlWriter.WriteStartElement("Text");
+			xmlWriter.WriteString(Text);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -54,9 +54,9 @@ namespace Dungeoneer.Model.Effect
 			{
 				foreach (XmlNode childNode in xmlNode.ChildNodes)
 				{
-					if (childNode.Name == "Value")
+					if (childNode.Name == "Text")
 					{
-						Value = Convert.ToInt32(childNode.InnerText);
+						Text = childNode.InnerText;
 					}
 				}
 			}
