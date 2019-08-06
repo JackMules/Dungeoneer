@@ -15,6 +15,11 @@ namespace Dungeoneer.Model.Effect
 		public ValueEffect(Types.Effect effectType, int value)
 			: base(effectType)
 		{
+			if (effectType == Types.Effect.PowerAttack &&
+				value < 0)
+			{
+				throw new ArgumentException("Power Attack cannot have a negative value");
+			}
 			_value = value;
 		}
 

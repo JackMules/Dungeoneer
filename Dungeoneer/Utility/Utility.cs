@@ -93,6 +93,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectParalysed = "Paralysed";
 		public static readonly string EffectPetrified = "Petrified";
 		public static readonly string EffectPinned = "Pinned";
+		public static readonly string EffectPowerAttack = "Power Attack";
 		public static readonly string EffectProne = "Prone";
 		public static readonly string EffectRaging = "Raging";
 		public static readonly string EffectShaken = "Shaken";
@@ -230,6 +231,7 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Paralysed),
 			Methods.GetEffectTypeString(Types.Effect.Petrified),
 			Methods.GetEffectTypeString(Types.Effect.Pinned),
+			Methods.GetEffectTypeString(Types.Effect.PowerAttack),
 			Methods.GetEffectTypeString(Types.Effect.Prone),
 			Methods.GetEffectTypeString(Types.Effect.Raging),
 			Methods.GetEffectTypeString(Types.Effect.Shaken),
@@ -377,7 +379,8 @@ namespace Dungeoneer.Utility
 			Panicked, 
 			Paralysed,
 			Petrified,
-			Pinned, 
+			Pinned,
+			PowerAttack,
 			Prone,
 			Raging,
 			Shaken,
@@ -733,6 +736,7 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Paralysed:					return Constants.EffectParalysed;
 			case Types.Effect.Petrified:					return Constants.EffectPetrified;
 			case Types.Effect.Pinned:							return Constants.EffectPinned;
+			case Types.Effect.PowerAttack:				return Constants.EffectPowerAttack;
 			case Types.Effect.Prone:							return Constants.EffectProne;
 			case Types.Effect.Raging:							return Constants.EffectRaging;
 			case Types.Effect.Shaken:							return Constants.EffectShaken;
@@ -855,6 +859,10 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectPinned)
 			{
 				return Types.Effect.Pinned;
+			}
+			else if (effect == Constants.EffectPowerAttack)
+			{
+				return Types.Effect.PowerAttack;
 			}
 			else if (effect == Constants.EffectProne)
 			{
@@ -1352,6 +1360,7 @@ namespace Dungeoneer.Utility
 			{
 				case Types.Effect.AbilityModifier:
 				case Types.Effect.FastHealing:
+				case Types.Effect.PowerAttack:
 					return true;
 				default:
 					return false;

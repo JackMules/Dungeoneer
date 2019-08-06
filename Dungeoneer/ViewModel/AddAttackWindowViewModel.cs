@@ -25,6 +25,7 @@ namespace Dungeoneer.ViewModel
 				_ability = GetAbilityIndex(attack.Ability);
 				_selectedThreatRangeMinimum = GetThreatRangeIndex(attack.ThreatRangeMin);
 				_selectedCritMultiplier = GetCritMultiplierIndex(attack.CritMultiplier);
+				_twoHanded = attack.TwoHanded;
 
 				foreach (Model.Damage damage in attack.Damages)
 				{
@@ -43,6 +44,7 @@ namespace Dungeoneer.ViewModel
 				_ability = 0;
 				_selectedThreatRangeMinimum = 0;
 				_selectedCritMultiplier = 0;
+				_twoHanded = false;
 			}
 		}
 
@@ -52,6 +54,7 @@ namespace Dungeoneer.ViewModel
 		private int _ability;
 		private int _selectedThreatRangeMinimum;
 		private int _selectedCritMultiplier;
+		private bool _twoHanded;
 		private FullyObservableCollection<DamageViewModel> _damages;
 		private Command _addDamage;
 		private Command _editDamage;
@@ -143,6 +146,12 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _selectedCritMultiplier, value); }
 		}
 
+		public bool TwoHanded
+		{
+			get { return _twoHanded; }
+			set { SetField(ref _twoHanded, value); }
+		}
+
 		public FullyObservableCollection<DamageViewModel> Damages
 		{
 			get { return _damages; }
@@ -191,6 +200,7 @@ namespace Dungeoneer.ViewModel
 							Ability = Methods.GetAbilityFromString(Abilities.ElementAt(Ability)),
 							ThreatRangeMin = Methods.GetThreatRangeMinFromString(ThreatRanges.ElementAt(SelectedThreatRange)),
 							CritMultiplier = Methods.GetCritMultiplierFromString(CritMultipliers.ElementAt(SelectedCritMultiplier)),
+							TwoHanded = TwoHanded,
 						};
 
 						foreach (DamageViewModel damageViewModel in Damages)

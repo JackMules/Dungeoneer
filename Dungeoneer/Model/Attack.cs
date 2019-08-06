@@ -21,17 +21,7 @@ namespace Dungeoneer.Model
 			_ability = Types.Ability.Strength;
 			_threatRangeMin = 20;
 			_critMultiplier = 2;
-		}
-
-		public Attack(Attack other)
-		{
-			Name = other.Name;
-			Modifier = other.Modifier;
-			Type = other.Type;
-			Ability = other.Ability;
-			Damages = new FullyObservableCollection<Damage>(other.Damages);
-			ThreatRangeMin = other.ThreatRangeMin;
-			CritMultiplier = other.CritMultiplier;
+			_twoHanded = false;
 		}
 
 		public Attack(XmlNode xmlNode)
@@ -46,75 +36,54 @@ namespace Dungeoneer.Model
 		private FullyObservableCollection<Damage> _damages = new FullyObservableCollection<Damage>();
 		private int _threatRangeMin;
 		private int _critMultiplier;
+		private bool _twoHanded;
 
 		public string Name
 		{
 			get { return _name; }
-			set
-			{
-				_name = value;
-				NotifyPropertyChanged("Name");
-			}
+			set { SetField(ref _name, value); }
 		}
 
 		public int Modifier
 		{
 			get { return _modifier; }
-			set
-			{
-				_modifier = value;
-				NotifyPropertyChanged("Modifier");
-			}
+			set { SetField(ref _modifier, value); }
 		}
 
 		public Types.Attack Type
 		{
 			get { return _type; }
-			set
-			{
-				_type = value;
-				NotifyPropertyChanged("Type");
-			}
+			set { SetField(ref _type, value); }
 		}
 
 		public Types.Ability Ability
 		{
 			get { return _ability; }
-			set
-			{
-				_ability = value;
-				NotifyPropertyChanged("Ability");
-			}
+			set { SetField(ref _ability, value); }
 		}
 
 		public FullyObservableCollection<Damage> Damages
 		{
 			get { return _damages; }
-			set
-			{
-				_damages = value;
-				NotifyPropertyChanged("Damages");
-			}
+			set { SetField(ref _damages, value); }
 		}
 
 		public int ThreatRangeMin
 		{
 			get { return _threatRangeMin; }
-			set
-			{
-				_threatRangeMin = value;
-				NotifyPropertyChanged("ThreatRangeMin");
-			}
+			set { SetField(ref _threatRangeMin, value); }
 		}
 
 		public int CritMultiplier
 		{
 			get { return _critMultiplier; }
-			set
-			{
-				_critMultiplier = value;
-				NotifyPropertyChanged("CritMultiplier");
-			}
+			set { SetField(ref _critMultiplier, value); }
+		}
+
+		public bool TwoHanded
+		{
+			get { return _twoHanded; }
+			set { SetField(ref _twoHanded, value); }
 		}
 
 		public string AsString
@@ -162,6 +131,10 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(CritMultiplier.ToString());
 			xmlWriter.WriteEndElement();
 
+			xmlWriter.WriteStartElement("TwoHanded");
+			xmlWriter.WriteString(TwoHanded.ToString());
+			xmlWriter.WriteEndElement();
+
 			xmlWriter.WriteEndElement();
 		}
 
@@ -204,6 +177,10 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "CritMultiplier")
 					{
 						CritMultiplier = Convert.ToInt32(childNode.InnerText);
+					}
+					else if (childNode.Name == "TwoHanded")
+					{
+						TwoHanded = Convert.ToBoolean(childNode.InnerText);
 					}
 				}
 			}

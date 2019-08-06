@@ -131,7 +131,8 @@ namespace Dungeoneer.ViewModel
 			{
 				if (AbilityEffect && ValueEffect)
 				{
-					effect = new Model.Effect.AbilityValueEffect(SelectedEffectType, SelectedAbility, Convert.ToInt32(Value));
+					effect = new Model.Effect.TimedAbilityValueEffect(SelectedEffectType, SelectedAbility, 
+						Convert.ToInt32(Value), duration);
 				}
 				else if (ValueEffect)
 				{
@@ -166,6 +167,10 @@ namespace Dungeoneer.ViewModel
 					{
 						effect = CreateEffect();
 						askForInput = false;
+					}
+					catch (ArgumentException e)
+					{
+						feedback = e.Message;
 					}
 					catch (FormatException)
 					{

@@ -544,6 +544,13 @@ namespace Dungeoneer.Model
 					break;
 				case Types.Effect.Pinned:
 					break;
+				case Types.Effect.PowerAttack:
+					if (effect is Effect.IValueEffect)
+					{
+						Effect.IValueEffect valueEffect = (effect as Effect.IValueEffect);
+						SetPowerAttack(valueEffect.Value);
+					}
+					break;
 				case Types.Effect.Prone:
 					break;
 				case Types.Effect.Raging:
@@ -650,6 +657,29 @@ namespace Dungeoneer.Model
 		{
 			Strength = 0;
 			Dexterity = 0;
+		}
+
+		public void SetPowerAttack(int amount)
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -amount);
+
+			foreach (AttackSet attackSet in AttackSets)
+			{
+				foreach (Attack attack in attackSet.Attacks)
+				{
+					int change = amount;
+					if (attack.Type == Types.Attack.Melee &&
+						attack.TwoHanded)
+					{
+						change *= 2;
+					}
+					if (attack.Damages.Count > 0)
+					{
+						attack.Damages[0].Modifier += change;
+					}
+				}
+			}
+			NotifyPropertyChanged("AttackSets");
 		}
 
 		public void SetRaging()

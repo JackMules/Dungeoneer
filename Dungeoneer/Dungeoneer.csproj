@@ -152,6 +152,7 @@
     <Compile Include="Model\Effect\ITextEffect.cs" />
     <Compile Include="Model\Effect\IValueEffect.cs" />
     <Compile Include="Model\Effect\TextEffect.cs" />
+    <Compile Include="Model\Effect\TimedAbilityValueEffect.cs" />
     <Compile Include="Model\Effect\TimedTextEffect.cs" />
     <Compile Include="Model\Effect\TimedValueEffect.cs" />
     <Compile Include="Model\Effect\ValueEffect.cs" />

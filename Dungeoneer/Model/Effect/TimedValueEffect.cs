@@ -15,12 +15,22 @@ namespace Dungeoneer.Model.Effect
 		public TimedValueEffect(Types.Effect effectType, int value, int duration)
 			: base(effectType, duration, false)
 		{
-			_value = value;
+			Init(value);
 		}
 
 		public TimedValueEffect(Types.Effect effectType, int value, int duration, bool perTurn)
 			: base(effectType, duration, perTurn)
 		{
+			Init(value);
+		}
+
+		private void Init(int value)
+		{
+			if (EffectType == Types.Effect.PowerAttack &&
+				value < 0)
+			{
+				throw new ArgumentException("Power Attack cannot have a negative value");
+			}
 			_value = value;
 		}
 
@@ -40,7 +50,7 @@ namespace Dungeoneer.Model.Effect
 
 		public override string ToString()
 		{
-			return Methods.GetEffectTypeString(EffectType) + " " + Methods.GetSignedNumberString(Value);
+			return base.ToString() + " " + Value.ToString();
 		}
 
 		public override void WritePropertyXML(XmlWriter xmlWriter)
