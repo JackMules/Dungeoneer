@@ -29,7 +29,7 @@ namespace Dungeoneer.Utility
 			return numbers;
 		}
 
-		public static Model.Creature ParseText(string text)
+		public static Model.Creature ParseMM3Text(string text)
 		{
 			Model.CreatureAttributes attributes = new Model.CreatureAttributes();
 
@@ -41,9 +41,40 @@ namespace Dungeoneer.Utility
 				{
 					foreach (string line in lines)
 					{
-						if (line != "")
+						currentLine = line;
+						if (currentLine != "")
 						{
-							currentLine = line;
+							
+						}
+					}
+				}
+				catch (FormatException e)
+				{
+					MessageBox.Show("Cannot parse:\n" + currentLine);
+					throw e;
+				}
+			}
+
+			Model.Creature creature = new Model.Creature(attributes);
+
+			return creature;
+		}
+
+		public static Model.Creature ParseSRDText(string text)
+		{
+			Model.CreatureAttributes attributes = new Model.CreatureAttributes();
+
+			if (text != null && text != "")
+			{
+				string[] lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+				string currentLine = "";
+				try
+				{
+					foreach (string line in lines)
+					{
+						currentLine = line;
+						if (currentLine != "")
+						{
 							string[] splitLine = line.Split(':');
 							string identifier = splitLine[0];
 							string entry = splitLine[1];

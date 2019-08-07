@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dungeoneer.View"
+				xmlns:util="clr-namespace:Dungeoneer.Utility"
+				xmlns:convert="clr-namespace:Dungeoneer.Utility.Converter"
         mc:Ignorable="d"
         Title="ImportStatBlockWindow" Height="450" Width="520">
+	<Window.Resources>
+		<convert:RadioButtonCheckedConverter x:Key="radioConverter"/>
+	</Window.Resources>
 	<DockPanel Margin="5" FocusManager.FocusedElement="{Binding ElementName=txtInput}">
 		<StackPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
@@ -21,6 +26,12 @@
 				</Label.Style>
 			</Label>
 			<WrapPanel HorizontalAlignment="Right">
+				<RadioButton Content="SRD Format" GroupName="Format" IsChecked="{Binding ImportFormat, 
+					Converter={StaticResource ResourceKey=radioConverter}, 
+					ConverterParameter={x:Static util:ImportFormat.SRD}}" Margin="5"/>
+				<RadioButton Content="MM3 Format" GroupName="Format" IsChecked="{Binding ImportFormat, 
+					Converter={StaticResource ResourceKey=radioConverter}, 
+					ConverterParameter={x:Static util:ImportFormat.MM3}}" Margin="5"/>
 				<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Import</Button>
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>

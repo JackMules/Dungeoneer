@@ -453,6 +453,12 @@ namespace Dungeoneer.Utility
 		}
 	}
 
+	public enum ImportFormat
+	{
+		SRD,
+		MM3,
+	}
+
 	public static class Methods
 	{
 		public static string GetDamageString(FullyObservableCollection<Model.Damage> damages)
