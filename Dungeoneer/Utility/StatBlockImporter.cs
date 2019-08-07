@@ -33,19 +33,28 @@ namespace Dungeoneer.Utility
 		{
 			Model.CreatureAttributes attributes = new Model.CreatureAttributes();
 
-			if (text != null && text != "")
+			if (text != "")
 			{
 				string[] lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 				string currentLine = "";
 				try
 				{
-					foreach (string line in lines)
+					for (int l = 0; l < lines.Count(); ++l)
 					{
-						currentLine = line;
-						if (currentLine != "")
-						{
-							
-						}
+						currentLine = lines[l];
+
+						// Parse one-line data types
+						ParseChallengeRating(attributes, currentLine);
+						ParseSaves(attributes, currentLine);
+						ParseBaseAttackAndGrapple(attributes, currentLine);
+						ParseSpaceAndReach(attributes, currentLine);
+						ParseAbilities(attributes, currentLine);
+						//ParseResistances(attributes, currentLine);
+						//ParseImmunities(attributes, currentLine);
+						//ParseSpeed(attributes, currentLine);
+						//ParseArmorClass(attributes, currentLine);
+						//ParseCreatureType(attributes, currentLine);
+						//ParseInitiative(attributes, currentLine);
 					}
 				}
 				catch (FormatException e)
@@ -58,6 +67,182 @@ namespace Dungeoneer.Utility
 			Model.Creature creature = new Model.Creature(attributes);
 
 			return creature;
+		}
+
+		private static void ParseChallengeRating(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"CR\s?(?<CR>\w+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.ChallengeRating = Convert.ToInt32(match.Groups["CR"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.ChallengeRating = 0;
+				}
+			}
+		}
+
+		private static void ParseSaves(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Fort\s(?<Fort>[\+\-]\d+),?\s+Ref\s(?<Ref>[\+\-]\d+),?\s+Will?\s(?<Will>[\+\-]\d+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.FortitudeSave = Convert.ToInt32(match.Groups["Fort"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.FortitudeSave = 0;
+				}
+
+				try
+				{
+					attributes.ReflexSave = Convert.ToInt32(match.Groups["Ref"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.ReflexSave = 0;
+				}
+
+				try
+				{
+					attributes.WillSave = Convert.ToInt32(match.Groups["Will"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.WillSave = 0;
+				}
+			}
+		}
+
+		private static void ParseBaseAttackAndGrapple(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Base Atk\s(?<BAB>[\+\-]\d+)\s?,?;?\s+Grp\s(?<Grapple>[\+\-]\d+)\s?";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.BaseAttackBonus = Convert.ToInt32(match.Groups["BAB"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.BaseAttackBonus = 0;
+				}
+
+				try
+				{
+					attributes.GrappleModifier = Convert.ToInt32(match.Groups["Grapple"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.GrappleModifier = 0;
+				}
+			}
+		}
+
+		private static void ParseSpaceAndReach(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Space\s(?<Space>\w+)\s?ft\.,?;?\s+Reach\s(?<Reach>\w+)\s?ft\.";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.Space = Convert.ToInt32(match.Groups["Space"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Space = 5;
+				}
+
+				try
+				{
+					attributes.Reach = Convert.ToInt32(match.Groups["Reach"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Reach = 5;
+				}
+			}
+		}
+
+		private static void ParseAbilities(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Str\s(?<Str>\w+),?\s+Dex\s(?<Dex>\w+),?\s+Con\s(?<Con>\w+),?\s+Int\s(?<Int>\w+),?\s+Wis\s(?<Wis>\w+),?\s+Cha\s(?<Cha>\w+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.Strength = Convert.ToInt32(match.Groups["Str"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Strength = 0;
+				}
+
+				try
+				{
+					attributes.Dexterity = Convert.ToInt32(match.Groups["Dex"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Dexterity = 0;
+				}
+
+				try
+				{
+					attributes.Constitution = Convert.ToInt32(match.Groups["Con"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Constitution = 0;
+				}
+
+				try
+				{
+					attributes.Intelligence = Convert.ToInt32(match.Groups["Int"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Intelligence = 0;
+				}
+
+				try
+				{
+					attributes.Wisdom = Convert.ToInt32(match.Groups["Wis"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Wisdom = 0;
+				}
+
+				try
+				{
+					attributes.Charisma = Convert.ToInt32(match.Groups["Cha"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.Charisma = 0;
+				}
+			}
 		}
 
 		public static Model.Creature ParseSRDText(string text)
