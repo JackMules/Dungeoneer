@@ -1,0 +1,64 @@
+Ruin Chanter
+Usually CN Medium fey (air, earth)
+Init +11; Senses low-light vision; Listen +26, Spot +26
+Languages Auran, Common, Giant, Sylvan, Terran
+AC 31, touch 17, flat-footed 24; Dodge, Mobility
+(+7 Dex, +14 natural)
+hp 190 (20 HD); DR 15/cold iron and magic
+Immune disease, poison
+SR 23
+Fort +12, Ref +19, Will +15
+Speed 40 ft. (8 squares), fly 40 ft. (perfect)
+Melee +2 adamantine light mace +20/+15 (1d6+7)
+Space 5 ft.; Reach 5 ft.
+Base Atk +10; Grp +15
+Special Actions bardic music (countersong, fascinate
+4 creatures, inspire courage +2, inspire confidence,
+suggstion, inspire greatness 2 creatures, song of
+freedom), call ruin elemental, infirmity of body, infirmity
+of mind
+Spell-Like Abilities (CL 20th):
+3/day—crushing despair (DC 21), rusting grasp (+15 melee
+touch, DC 21), spike stones (DC 21)
+Abilities Str 20, Dex 25, Con 23, Int 18, Wis 17, Cha 25
+SA bardic music, call ruin elemental, infirmity of mind,
+infirmity of body, spell-like abilities
+Feats Combat Expertise, Dodge, Endurance, Improved
+Initiative, Mobility, Weapon Finesse, Weapon Focus (light
+mace)
+Skills Concentration +15, Hide +30, Knowledge (architecture
+and engineering) +27, Knowledge (history) +27,
+Listen +26, Move Silently +30, Perform (singing) +30,
+Search +20, Spot +26, Survival +26, Tumble +30
+Advancement 21–40 HD (Medium)
+Bardic Music (Su) A ruin chanter has the bardic music ability
+of a 12th-level bard (PH 29).
+Call Ruin Elemental (Su) Once per week, when a ruin chanter
+is aware of interlopers within the ruins it calls home, the
+ruin chanter can conjure a ruin elemental (page 134)
+after an hour-long ritual. During the ritual, a storm (DMG
+94) appropriate for the climate strikes the ruin chanter’s
+home. When the ritual is complete, the storm disappears
+suddenly and a ruin elemental appears, ready to do the
+ruin chanter’s bidding. Since the ruin elemental serves
+the ruin chanter until the elemental is destroyed, it’s
+possible for a ruin chanter to have more than one ruin
+elemental serving it.
+Infirmity of Body (Su) By pointing its finger, a ruin chanter
+can prematurely age an enemy’s body. Doing so imposes
+a –6 penalty to Strength, Dexterity, and Constitution, and
+causes the victim’s hair to turn white, skin to wrinkle, and
+posture to stoop (Fortitude DC 27 negates). The penalty
+lasts for 1 hour or until the victim receives a remove curse
+spell. A ruin chanter cannot place both infirmity of body
+and infirmity of mind on the same creature. The save
+DC is Charisma-based.
+Infirmity of Mind (Su) With a wave of its hand, a ruin chanter
+can render a creature senile and unable to reliably tell
+friend from foe. This ability functions as a confusion spell
+(Will DC 27 negates) and makes victims appear elderly
+just as infirmity of body does. Infirmity of mind lasts for
+1 hour or until the victim receives a remove curse spell.
+A ruin chanter cannot place both infirmity of body and
+infirmity of mind on the same creature. The save DC is
+Charisma-based.

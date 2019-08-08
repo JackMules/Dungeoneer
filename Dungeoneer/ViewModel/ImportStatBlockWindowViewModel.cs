@@ -49,9 +49,9 @@ namespace Dungeoneer.ViewModel
 							creature = StatBlockImporter.ParseSRDText(StatBlockText);
 							askForInput = false;
 						}
-						else if (ImportFormat == ImportFormat.MM3)
+						else if (ImportFormat == ImportFormat.MM4)
 						{
-							creature = StatBlockImporter.ParseMM3Text(StatBlockText);
+							creature = StatBlockImporter.ParseMM4Text(StatBlockText);
 							askForInput = false;
 						}
 					}

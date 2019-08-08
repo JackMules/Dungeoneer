@@ -29,9 +29,9 @@
 				<RadioButton Content="SRD Format" GroupName="Format" IsChecked="{Binding ImportFormat, 
 					Converter={StaticResource ResourceKey=radioConverter}, 
 					ConverterParameter={x:Static util:ImportFormat.SRD}}" Margin="5"/>
-				<RadioButton Content="MM3 Format" GroupName="Format" IsChecked="{Binding ImportFormat, 
+				<RadioButton Content="MM4 Format" GroupName="Format" IsChecked="{Binding ImportFormat, 
 					Converter={StaticResource ResourceKey=radioConverter}, 
-					ConverterParameter={x:Static util:ImportFormat.MM3}}" Margin="5"/>
+					ConverterParameter={x:Static util:ImportFormat.MM4}}" Margin="5"/>
 				<Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Import</Button>
 				<Button IsCancel="True" MinWidth="60">_Cancel</Button>
 			</WrapPanel>

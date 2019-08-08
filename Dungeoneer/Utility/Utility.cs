@@ -456,7 +456,7 @@ namespace Dungeoneer.Utility
 	public enum ImportFormat
 	{
 		SRD,
-		MM3,
+		MM4,
 	}
 
 	public static class Methods

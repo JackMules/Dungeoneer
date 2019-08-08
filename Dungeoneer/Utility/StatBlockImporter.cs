@@ -29,7 +29,7 @@ namespace Dungeoneer.Utility
 			return numbers;
 		}
 
-		public static Model.Creature ParseMM3Text(string text)
+		public static Model.Creature ParseMM4Text(string text)
 		{
 			Model.CreatureAttributes attributes = new Model.CreatureAttributes();
 
@@ -49,12 +49,14 @@ namespace Dungeoneer.Utility
 						ParseBaseAttackAndGrapple(attributes, currentLine);
 						ParseSpaceAndReach(attributes, currentLine);
 						ParseAbilities(attributes, currentLine);
-						//ParseResistances(attributes, currentLine);
-						//ParseImmunities(attributes, currentLine);
-						//ParseSpeed(attributes, currentLine);
-						//ParseArmorClass(attributes, currentLine);
-						//ParseCreatureType(attributes, currentLine);
-						//ParseInitiative(attributes, currentLine);
+						ParseResistances(attributes, currentLine);
+						ParseSpellResistance(attributes, currentLine);
+						ParseImmunities(attributes, currentLine);
+						ParseSpeed(attributes, currentLine);
+						ParseArmorClass(attributes, currentLine);
+						ParseAlignmentSizeAndType(attributes, currentLine);
+						ParseInitiative(attributes, currentLine);
+						ParseHitPoints(attributes, currentLine);
 					}
 				}
 				catch (FormatException e)
@@ -69,9 +71,202 @@ namespace Dungeoneer.Utility
 			return creature;
 		}
 
+		private static void ParseHitPoints(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"hp\s(?<HP>\d+)\s\((?<HD>\d+)\sHD\)(;\s(?<DR>.*))?"; // also fast healing, see dragon stat block
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				attributes.HitPoints = Convert.ToInt32(match.Groups["HP"].Value);
+				attributes.HitDice = Convert.ToInt32(match.Groups["HD"].Value);
+
+				if (match.Groups["DR"].Success)
+				{
+					string drStr = match.Groups["DR"].Value;
+					string drPattern = @"(?<Value>\d+)\/(?<Types>.+?)(\,|\z)";
+					Regex drRegex = new Regex(drPattern, RegexOptions.IgnoreCase);
+					MatchCollection drMatches = drRegex.Matches(drStr);
+
+					foreach (Match drMatch in drMatches)
+					{
+						Model.DamageReduction dr = new Model.DamageReduction();
+						dr.Value = Convert.ToInt32(drMatch.Groups["Value"].Value);
+						dr.DamageTypes = GetDamageDescriptorSetFromString(drMatch.Groups["Types"].Value, "and");
+						attributes.DamageReductions.Add(dr);
+					}
+				}
+			}
+		}
+
+		private static void ParseInitiative(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Init\s(?<Init>[\+\-]\d+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.InitiativeMod = Convert.ToInt32(match.Groups["Init"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.InitiativeMod = 0;
+				}
+			}
+		}
+
+		private static void ParseAlignmentSizeAndType(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"(?<Alignment>LG|NG|CG|LN|N|CN|LE|NE|CE)\s(?<Size>Fine|Diminuative|Tiny|Small|Medium|Large|Huge|Gargantuan|Colossal)\s(?<Type>[A-Za-z]+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				attributes.Size = Methods.GetSizeFromString(match.Groups["Size"].Value);
+				attributes.Type = Methods.GetCreatureTypeFromString(match.Groups["Type"].Value);
+			}
+		}
+
+		private static void ParseArmorClass(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"(?<AC>\d+),\s*touch\s*(?<TouchAC>\d+),\s*flat\-footed\s*(?<FFAC>\d+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				attributes.ArmorClass = Convert.ToInt32(match.Groups["AC"].Value);
+				attributes.TouchArmorClass = Convert.ToInt32(match.Groups["TouchAC"].Value);
+				attributes.FlatFootedArmorClass = Convert.ToInt32(match.Groups["FFAC"].Value);
+			}
+		}
+
+		private static void ParseSpeed(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Speed\s?(?<Speeds>.+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				string speedPattern = @"\s?(?<Type>\D*)\s(?<Speed>\d+)\s*ft.\s*(\(\d+\ssquares\),\s)?(\((?<Manouverability>\w+)\))?";
+				Regex speedRegex = new Regex(speedPattern, RegexOptions.IgnoreCase);
+				MatchCollection speedMatches = speedRegex.Matches(match.Groups["Speeds"].Value);
+
+				foreach (Match speedMatch in speedMatches)
+				{
+					Types.Manouverability manouverability = Types.Manouverability.None;
+					if (speedMatch.Groups["Manouverability"].Success)
+					{
+						manouverability = Methods.GetManouverabilityFromString(speedMatch.Groups["Manouverability"].Value);
+					}
+					int distance = Convert.ToInt32(speedMatch.Groups["Speed"].Value);
+					string movementString = speedMatch.Groups["Type"].Value.Trim();
+					if (movementString.Equals(""))
+					{
+						attributes.Speed.LandSpeed = distance;
+					}
+					else
+					{
+						Types.Movement movementType = Methods.GetMovementTypeFromString(movementString);
+						attributes.Speed.Speeds.Add(new Model.Speed(distance, movementType, manouverability));
+					}
+				}
+			}
+		}
+
+		private static void ParseImmunities(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Immune\s?(?<Immunities>.+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				string immunityPattern = @"(?<Type>[a-z]+)(\,|\z)";
+				Regex immunityRegex = new Regex(immunityPattern, RegexOptions.IgnoreCase);
+				MatchCollection immunityMatches = immunityRegex.Matches(match.Groups["Immunities"].Value);
+
+				foreach (Match immunityMatch in immunityMatches)
+				{
+					Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(immunityMatch.Groups["Type"].Value, "and");
+					foreach (Types.Damage damageType in damageTypes.ToList())
+					{
+						if (damageType != Types.Damage.Magic) // Immunity to magic does not mean immunity to magic weapons
+						{
+							attributes.Immunities.Add(damageType);
+						}
+					}
+				}
+			}
+		}
+
+		private static void ParseResistances(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Resist\s?(?<Resistances>[^;]+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				string resistancePattern = @"(?<Type>[a-z]+)\s(?<Value>\d+)";
+				Regex resistanceRegex = new Regex(resistancePattern, RegexOptions.IgnoreCase);
+				MatchCollection resistanceMatches = resistanceRegex.Matches(match.Groups["Resistances"].Value);
+
+				foreach (Match resistanceMatch in resistanceMatches)
+				{
+					Model.EnergyResistance res = new Model.EnergyResistance();
+					try
+					{
+						res.Value = Convert.ToInt32(resistanceMatch.Groups["Value"].Value);
+					}
+					catch (FormatException)
+					{
+						res.Value = 0;
+					}
+
+					try
+					{
+						res.EnergyType = Methods.GetDamageTypeFromString(resistanceMatch.Groups["Type"].Value);
+					}
+					catch (FormatException)
+					{
+						res.EnergyType = Types.Damage.Subdual;
+					}
+					attributes.EnergyResistances.Add(res);
+				}
+
+				
+			}
+		}
+
+		private static void ParseSpellResistance(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"SR\s(?<SR>\w+)";
+			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				try
+				{
+					attributes.SpellResistance = Convert.ToInt32(match.Groups["SR"].Value);
+				}
+				catch (FormatException)
+				{
+					attributes.SpellResistance = 0;
+				}
+			}
+		}
+
 		private static void ParseChallengeRating(Model.CreatureAttributes attributes, string str)
 		{
-			string pattern = @"CR\s?(?<CR>\w+)";
+			string pattern = @"CR\s(?<CR>\w+)";
 			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
 			Match match = regex.Match(str);
 

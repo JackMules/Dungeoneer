@@ -1,0 +1,62 @@
+Bridge Haunt
+CR 7
+Usually NE Medium undead (incorporeal)
+Init +7; Senses darkvision 60 ft.; Listen +13, Spot +8
+Aura unnatural (30 ft.)
+Languages Common
+AC 17, touch 17, flat-footed 14
+(+3 Dex, +4 deflection)
+Miss Chance 50% (incorporeal)
+hp 90 (12 HD); rejuvenation
+Immune incorporeal immunities, undead immunities
+Fort +4, Ref +9, Will +9
+Speed 30 ft. (6 squares), fly 30 ft. (perfect)
+Melee 2 incorporeal touches +10 each (3d6 plus push)
+Space 5 ft.; Reach 5 ft.
+Base Atk +6; Grp —
+Spell-Like Abilities (CL 12th):
+3/day—mass suggestion (DC 20)
+1/day—mirage arcana (DC 19)
+Abilities Str —, Dex 16, Con —, Int 10, Wis 13, Cha 19
+SA push, spell-like abilities, unnatural aura
+SQ bridge dependent, incorporeal traits, living visage,
+undead traits
+Feats Alertness, Improved Initiative, Improved Toughness,
+Lightning Reflexes, Weapon Focus (incorporeal touch)
+Skills Bluff +14, Diplomacy +13, Disguise +4 (+6 acting),
+Hide +13, Intimidate +16, Listen +13, Sense Motive +11,
+Spot +8
+Advancement 13–18 HD (Medium); 19–24 HD (Large)
+Unnatural Aura (Su) Animals, whether wild or domesticated,
+can sense the unnatural presence of a bridge haunt at
+a distance of 30 feet. They will not willingly approach
+nearer than that and panic if forced to do so; they remain
+panicked as long as they are within range.
+Rejuvenation (Su) A bridge haunt cannot be permanently
+destroyed through combat. The “destroyed” spirit
+restores itself and returns to the bridge it haunts in
+1d4 days. Taking a haunt more than 1,000 feet from its
+bridge can destroy it, as can destroying a haunt’s bridge.
+A bridge haunt is laid to rest by taking a piece of the
+corporeal remains of its former body, or a possession
+important to it in life, and delivering that item to the
+place where the creature that became the haunt was
+headed before its demise.
+Push (Su) A creature damaged by a bridge haunt’s
+incorporeal touch attack must succeed on a DC 20
+Will save or be telekinetically pushed 10 feet away from
+the creature. If a bridge haunt makes a full attack, it
+can attack a single creature with both touch attacks,
+resolving the push after it is determined if both attacks
+deal damage. If both attacks deal damage, the creature
+must succeed on a DC 22 Will save or be pushed 20 feet
+away. Movement from a push does not provoke attacks of
+opportunity.
+Bridge Dependent (Ex) Each bridge haunt is mystically
+bound to a single bridge and cannot stray more than
+1,000 feet from it. If somehow forced to do so, a bridge
+haunt is instantly destroyed.
+Living Visage (Ex) A bridge haunt seems to be corporeal and
+alive until it flies or attacks, when it becomes partially
+transparent and appears as the rotting corpse of the
+person it was in life.
