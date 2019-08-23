@@ -13,31 +13,18 @@ power
 Immune divination (see text)
 Fort +28, Ref +26, Will +27
 Speed 60 ft. (12 squares), fly 150 ft. (clumsy)
-Melee bite +37 (4d8+11 plus Con drain plus dragon toxin)
-and
-2 claws +38 each (4d6+5/19–20 plus dragon toxin plus
-trip) and
-2 wings +37 each (2d8+5) and
-tail slap +37 (4d6+16 plus trip)
+Melee bite +37 (4d8+11 plus Con drain plus dragon toxin) and 2 claws +38 each (4d6+5/19–20 plus dragon toxin plus trip) and 2 wings +37 each (2d8+5) and tail slap +37 (4d6+16 plus trip)
 Space 20 ft.; Reach 15 ft. (20 ft. with bite)
 Base Atk +30; Grp +53
-Atk Options Cleave, Great Cleave, Devastating Critical (claw),
-Overwhelming Critical, Power Attack, frightful presence,
-magic strike
-Special Actions crush, tail sweep, twist of fate
-Spell-Like Abilities (CL 11th):
-At will—charm monster (DC 17, his exarchs only, CL 18th),
-detect magic, read magic
+Atk Options Cleave, Great Cleave, Devastating Critical (claw), Overwhelming Critical, Power Attack, frightful presence, magic strike Special Actions crush, tail sweep, twist of fate
+Spell-Like Abilities (CL 11th): 
+At will—charm monster (DC 17, his exarchs only, CL 18th), detect magic, read magic
 3/day—scrying (DC 17, on his exarchs only, CL 18th)
 2/day—shield, telekinesis (DC 18)
 1/day—dispel magic, spell turning, globe of invulnerability
 Abilities Str 33, Dex 10, Con 23, Int 19, Wis 21, Cha 16
 SQ create exarchs, sound imitation
-Feats Cleave, Devastating Critical (claw)*, Draconic
-Knowledge*, Epic Reflexes*, Great Cleave, Improved
-Critical (claw), Improved Multiattack*, Multiattack,
-Overwhelming Critical*, Power Attack, Weapon Focus
-(claw)
+Feats Cleave, Devastating Critical (claw)*, Draconic Knowledge*, Epic Reflexes*, Great Cleave, Improved Critical (claw), Improved Multiattack*, Multiattack, Overwhelming Critical*, Power Attack, Weapon Focus (claw)
 * These feats appear in Draconomicon.
 Skills Bluff +12, Concentration +21, Diplomacy +40,
 Intimidate +38, Knowledge (arcana) +37, Knowledge
