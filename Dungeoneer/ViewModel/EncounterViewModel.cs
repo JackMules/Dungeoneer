@@ -26,9 +26,33 @@ namespace Dungeoneer.ViewModel
 			_load = new Command(ExecuteLoad);
 			_weaponList = new FullyObservableCollection<Model.WeaponSet>();
 			_weaponList.CollectionChanged += _weaponList_CollectionChanged;
+
+			_initiativeTrackCVS = new CollectionViewSource();
+			_initiativeTrackCVS.Source = _initiativeTrack;
+			_initiativeTrackCVS.SortDescriptions.Add(new SortDescription("ActorViewModel.Active", ListSortDirection.Descending));
+			_initiativeTrackCVS.SortDescriptions.Add(new SortDescription("TurnEnded", ListSortDirection.Ascending));
+			_initiativeTrackCVS.SortDescriptions.Add(new SortDescription("InitiativeValueViewModel.InitiativeValue.Score", ListSortDirection.Descending));
+			_initiativeTrackCVS.SortDescriptions.Add(new SortDescription("InitiativeValueViewModel.InitiativeValue.Adjust", ListSortDirection.Descending));
+			_initiativeTrackCVS.SortDescriptions.Add(new SortDescription("InitiativeValueViewModel.InitiativeValue.Modifier", ListSortDirection.Descending));
+			_initiativeTrackCVS.SortDescriptions.Add(new SortDescription("InitiativeValueViewModel.InitiativeValue.Roll", ListSortDirection.Descending));
+			_initiativeTrackCVS.IsLiveSortingRequested = true;
+
+			InitiativeTrackView.CollectionChanged += InitiativeTrackView_CollectionChanged;
+		}
+
+		internal CollectionViewSource InitiativeTrackCVS
+		{
+			get { return _initiativeTrackCVS; }
+			set { SetField(ref _initiativeTrackCVS, value); }
+		}
+
+		public ICollectionView InitiativeTrackView
+		{
+			get { return InitiativeTrackCVS.View; }
 		}
 
 		private FullyObservableCollection<InitiativeCardViewModel> _initiativeTrack;
+		private CollectionViewSource _initiativeTrackCVS;
 		private int _round;
 		private RelayCommand _nextRound;
 		private Command _clear;
@@ -40,6 +64,19 @@ namespace Dungeoneer.ViewModel
 		private void _weaponList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnWeaponListChange?.Invoke(_weaponList);
+		}
+
+		private void InitiativeTrackView_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			if (_initiativeTrack.Count > 0)
+			{
+				InitiativeTrackView.MoveCurrentToFirst();
+				if (InitiativeTrackView.CurrentItem is InitiativeCardViewModel)
+				{
+					InitiativeCardViewModel initiativeCardViewModel = InitiativeTrackView.CurrentItem as InitiativeCardViewModel;
+					OnInitiativeTrackChange?.Invoke(initiativeCardViewModel.ActorViewModel.ActorName);
+				}
+			}
 		}
 
 		public int Round
@@ -93,6 +130,10 @@ namespace Dungeoneer.ViewModel
 		public delegate void WeaponListChange(FullyObservableCollection<Model.WeaponSet> weaponList);
 
 		public WeaponListChange OnWeaponListChange { get; set; }
+
+		public delegate void InitiativeTrackChange(string actorName);
+
+		public InitiativeTrackChange OnInitiativeTrackChange { get; set; }
 
 		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{

@@ -1,0 +1,109 @@
+Chorranathau the Inscrutable
+CR 18
+Male ancient fang dragon
+CN Gargantuan dragon
+Init +0; Senses blindsense 60 ft., darkvision 120 ft., keen
+senses; Listen +38, Spot +38
+Languages Common, Draconic, Elven, Dwarven, Infernal,
+Giant; telepathy (see text)
+AC 35, touch 6, flat-footed 35
+(–4 size, +29 natural)
+hp 375 (30 HD); fast healing 2; DR 15/magic; berserker
+power
+Immune divination (see text)
+Fort +28, Ref +26, Will +27
+Speed 60 ft. (12 squares), fly 150 ft. (clumsy)
+Melee bite +37 (4d8+11 plus Con drain plus dragon toxin) and 2 claws +38 each (4d6+5/19–20 plus dragon toxin plus trip) and 2 wings +37 each (2d8+5) and tail slap +37 (4d6+16 plus trip)
+Space 20 ft.; Reach 15 ft. (20 ft. with bite)
+Base Atk +30; Grp +53
+Atk Options Cleave, Great Cleave, Devastating Critical (claw), Overwhelming Critical, Power Attack, frightful presence, magic strike Special Actions crush, tail sweep, twist of fate
+Spell-Like Abilities (CL 11th): 
+At will—charm monster (DC 17, his exarchs only, CL 18th), detect magic, read magic
+3/day—scrying (DC 17, on his exarchs only, CL 18th)
+2/day—shield, telekinesis (DC 18)
+1/day—dispel magic, spell turning, globe of invulnerability
+Abilities Str 33, Dex 10, Con 23, Int 19, Wis 21, Cha 16
+SQ create exarchs, sound imitation
+Feats Cleave, Devastating Critical (claw)*, Draconic Knowledge*, Epic Reflexes*, Great Cleave, Improved Critical (claw), Improved Multiattack*, Multiattack, Overwhelming Critical*, Power Attack, Weapon Focus (claw)
+* These feats appear in Draconomicon.
+Skills Bluff +12, Concentration +21, Diplomacy +40,
+Intimidate +38, Knowledge (arcana) +37, Knowledge
+(geography) +37, Knowledge (history) +37, Listen +38,
+Search +37, Sense Motive +38, Spot +38
+Keen Senses (Ex) See four times as well as a human in
+shadowy illumination; see twice as well in normal light.
+Telepathy (Su) Chorranathau can communicate telepathically
+with any of his exarchs (10-mile range) and with other
+willing xorvintaal dragons (100-mile range).
+Berserker Power (Su) When Chorranathau is reduced to 186
+hit points or fewer, he gains a +5 bonus on attack rolls
+and damage rolls.
+Divination Immunity (Ex) Nobody can learn about
+Chorranathau’s future xorvintaal moves through
+divination spells and similar effects. Such effects can still
+reveal other information about him.
+Constitution Drain (Su) Chorranathau’s bite deals 2d4 points
+of Constitution drain (Fortitude DC 28 negates).
+40
+Dragon Toxin (Su) When Chorranathau hits a creature,
+that creature is exposed to dragon toxin and takes 25
+points of damage at the start of each of Chorranathau’s
+turns. Multiple wounds don’t stack. Magical healing
+ends this effect but doesn’t protect against subsequent
+exposure. The dragon toxin dissipates 1 round after
+Chorranathau dies.
+Frightful Presence (Ex) 300-foot radius, 29 HD or fewer, Will
+DC 28 negates.
+Trip (Ex) If Chorranathau hits with a claw or tail attack, he
+can attempt to trip (+33 check modifier) that opponent
+as a free action. If the attempt fails, the opponent cannot
+react to trip Chorranathau.
+Crush (Ex) As a standard action, Chorranathau can land
+on Large or smaller creatures within in an area equal
+to his space. Those creatures take 4d8+16 points of
+bludgeoning damage and must succeed on a DC 28
+Reflex save or be pinned. Pinned creatures take
+4d8+16 points of bludgeoning damage each round
+they remain pinned.
+Tail Sweep (Ex) As a standard action, Chorranathau can
+sweep his tail through a half-circle that has a 30-foot
+radius. The sweep deals 2d6+16 points of bludgeoning
+damage (Reflex DC 28 half).
+Twist of Fate (Su) Chorranathau can spend an immediate
+action to produce one of the following effects.
+When targeted by a spell that affects one or more
+targets (as opposed to an area spell), he can gain
+a +10 bonus on the saving throw against that spell. He
+subsequently loses his +5 insight bonus on saves for
+1d4 rounds.
+He can move 30 feet to avoid an area effect, but only
+if that movement would take him out of the effect’s area.
+If he does so, he cannot move on his next turn.
+When Chorranathau could make an attack of
+opportunity, he can instead flap his wings and blast
+wind at the foe that provoked the attack. The wing flap
+functions like a bull rush attempt (+11 bonus on the
+opposed check), except that Chorranathau doesn’t move
+along with the foe being pushed (though the victim
+can still be pushed as far as the maximum distance
+Chorranathau could normally bull rush it). If the target is
+airborne, it is treated as one size smaller for the purpose
+of resolving the opposed check. This immediate action
+doesn’t use up Chorranathau’s attack of opportunity.
+Devastating Critical (Ex) If Chorranathau confirms a critical
+threat with a claw attack, the opponent struck must
+succeed on a DC 36 Fortitude saving throw or die
+instantly (Draconomicon 68).
+Draconic Knowledge (Ex) Chorranathau can make the
+equivalent of a bardic knowledge check (PH 28, +14)
+to reveal information about an item, event, or locale
+(Draconomicon 69).
+Overwhelming Critical (Ex) If Chorranathau confirms a
+critical threat with a claw attack, he deals an extra 1d6
+points of damage with that attack (Draconomicon 72).
+Create Exarchs (Sp) Chorranathau can perform an hour-long
+ritual to designate a creature as his exarch in the ongoing
+great game. Doing so gives the xorvintaal exarch template
+(see page 47) to the designated creature.
+Sound Imitation (Ex) Chorranathau can mimic any sound he
+has heard (Will DC 28 detects the ruse).

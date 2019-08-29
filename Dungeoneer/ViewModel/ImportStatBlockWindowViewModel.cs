@@ -11,15 +11,23 @@ namespace Dungeoneer.ViewModel
 	{
 		public ImportStatBlockWindowViewModel()
 		{
-
+			_statBlockText = "";
+			_importFormat = ImportFormat.SRD;
 		}
 
 		private string _statBlockText;
+		private ImportFormat _importFormat;
 
 		public string StatBlockText
 		{
 			get { return _statBlockText; }
 			set { SetField(ref _statBlockText, value); }
+		}
+
+		public ImportFormat ImportFormat
+		{
+			get { return _importFormat; }
+			set { SetField(ref _importFormat, value); }
 		}
 
 		public Model.Creature GetCreature()
@@ -36,8 +44,16 @@ namespace Dungeoneer.ViewModel
 				{
 					try
 					{
-						creature = StatBlockImporter.ParseText(StatBlockText);
-						askForInput = false;
+						if (ImportFormat == ImportFormat.SRD)
+						{
+							creature = StatBlockImporter.ParseSRDText(StatBlockText);
+							askForInput = false;
+						}
+						else if (ImportFormat == ImportFormat.MM4)
+						{
+							creature = StatBlockImporter.ParseMM4Text(StatBlockText);
+							askForInput = false;
+						}
 					}
 					catch (FormatException)
 					{

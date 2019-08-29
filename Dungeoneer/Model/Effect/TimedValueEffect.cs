@@ -10,12 +10,23 @@ using Dungeoneer.Utility;
 namespace Dungeoneer.Model.Effect
 {
 	[Serializable]
-	public class ValueEffect : Effect, IValueEffect
+	public class TimedValueEffect : TimedEffect, IValueEffect
 	{
-		public ValueEffect(Types.Effect effectType, int value)
-			: base(effectType)
+		public TimedValueEffect(Types.Effect effectType, int value, int duration)
+			: base(effectType, duration, false)
 		{
-			if (effectType == Types.Effect.PowerAttack &&
+			Init(value);
+		}
+
+		public TimedValueEffect(Types.Effect effectType, int value, int duration, bool perTurn)
+			: base(effectType, duration, perTurn)
+		{
+			Init(value);
+		}
+
+		private void Init(int value)
+		{
+			if (EffectType == Types.Effect.PowerAttack &&
 				value < 0)
 			{
 				throw new ArgumentException("Power Attack cannot have a negative value");
@@ -23,7 +34,7 @@ namespace Dungeoneer.Model.Effect
 			_value = value;
 		}
 
-		public ValueEffect(XmlNode xmlNode)
+		public TimedValueEffect(XmlNode xmlNode)
 			: base(xmlNode)
 		{
 			ReadXML(xmlNode);
@@ -41,7 +52,7 @@ namespace Dungeoneer.Model.Effect
 		{
 			return base.ToString() + " " + Value.ToString();
 		}
-	
+
 		public override void WritePropertyXML(XmlWriter xmlWriter)
 		{
 			base.WritePropertyXML(xmlWriter);

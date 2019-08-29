@@ -1,0 +1,54 @@
+Stitched Devil
+CR 9
+Always LE Large outsider (evil, extraplanar, lawful)
+Init +2; Senses darkvision 60 ft., see in darkness; Listen +14,
+Spot +14
+Aura pain (30 ft.)
+Languages Abyssal, Celestial, Common, Infernal; telepathy
+100 ft.
+AC 27, touch 11, flat-footed 25
+(–1 size, +2 Dex, +16 natural)
+hp 84 (8 HD); DR 10/good
+Immune fire, poison
+Resist acid 10, cold 10; SR 19
+Fort +12, Ref +10, Will +9
+Speed 30 ft. (6 squares), climb 20 ft.
+Melee bite +14 (1d8+7) and
+4 claws +12 each (1d6+3)
+Space 10 ft.; Reach 10 ft.
+Base Atk +8; Grp +19
+Atk Options aligned strike (evil, lawful)
+Spell-Like Abilities (CL 8th):
+At will—greater teleport (self plus 50 pounds of objects
+only)
+1/day—phantasmal killer (DC 17), dispel magic, unholy
+blight (DC 17)
+Abilities Str 24, Dex 15, Con 22, Int 7, Wis 17, Cha 17
+SA aligned strike, pain aura, spell-like abilities
+Feats Ability Focus (pain aura), Lightning Reflexes,
+Multiattack, TrackB
+Skills Climb +15, Diplomacy +5, Intimidate +14, Listen +14,
+Search +9, Sense Motive +14, Spot +14, Survival +14 (+16
+following tracks)
+Advancement 9–16 HD (Large); 17–24 HD (Huge)
+Pain Aura (Su) Living creatures must attempt a DC 21
+Fortitude save when they come within 30 feet of a
+stitched devil. Those that fail take an extra 1d6 points
+of damage whenever they take damage from any other
+source while within the pain aura’s area. The save DC is
+Charisma-based and includes a +2 racial bonus.
+When a creature that is affected by multiple pain
+auras would take extra damage from the auras, it takes
+an extra 1d6 points of damage from one of the auras
+affecting it. All other pain auras affecting that creature
+cause it to take only 1 extra point of damage apiece. For
+example, a creature affected by three pain auras takes
+an extra 1d6+2 points of damage each time that creature
+takes damage from any other source.
+A creature that successfully saves cannot be affected
+again by that same stitched devil’s pain aura for 24 hours.
+Night hags and lawful evil outsiders are immune to this
+aura.
+Skills Stitched devils have a +8 racial bonus on Climb checks.
+A stitched devil can choose to take 10 on Climb checks,
+even if rushed or threatened.

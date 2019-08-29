@@ -1,0 +1,57 @@
+Drow Priestess
+CR 9
+Female drow cleric 8
+NE Medium humanoid (elf)
+Init +3; Senses darkvision 120 ft.; Listen +6, Spot +6
+Languages Common, Drow Sign Language, Elven,
+Undercommon
+AC 22, touch 14, flat-footed 19
+(+3 Dex, +6 armor, +2 shield, +1 deflection)
+hp 48 (8 HD)
+Immune sleep
+SR 19
+Fort +7, Ref +5, Will +10 (+12 against spells and spell-like
+abilities)
+Weakness light blindness
+Speed 20 ft. (4 squares) in breastplate; base speed 30 ft.
+Melee mwk dagger +8/+3 (1d4+1/19–20 plus poison) or
+Melee light mace +7/+2 (1d6+1)
+Base Atk +6; Grp +7
+Atk Options poison (drow poison, DC 13, unconscious 1
+minute/unconscious 2d4 hours), smite 1/day (+4 attack,
++8 damage)
+Special Actions rebuke undead 3/day (+0, 2d6+8, 8th),
+spontaneous casting (inflict spells)
+Combat Gear 2 doses of drow poison, wand of cure moderate
+wounds (34 charges)
+Cleric Spells Prepared (CL 8th, 1d20+10 to overcome SR):
+4th—air walk, freedom of movement, summon monster IV,
+unholy blightD
+(DC 18, CL 9th)
+3rd—bestow curse (+8 melee touch, DC 17), dispel magic,
+invisibility purge, magic circle against goodD
+(CL 9th),
+summon monster III
+2nd—cure moderate wounds, death knell (DC 16, CL 9th),
+shatterD
+(DC 16), sound burst (DC 16), summon
+monster II
+1st—bane, cure light wounds, doom (DC 15), entropic
+shield, inflict light woundsD
+monster I
+0—cure minor wounds (2), detect magic, detect poison,
+guidance, resistance
+D: Domain spell. Deity: Lolth. Domains: Destruction, Evil.
+Spell-Like Abilities (CL 8th):
+1/day—dancing lights, darkness, faerie fire
+Abilities Str 13, Dex 16, Con 12, Int 12, Wis 19, Cha 10
+SQ able to notice secret or concealed doors
+Feats Augment Summoning, Combat Casting, Spell
+Penetration
+Skills Concentration +12, Diplomacy +5, Knowledge
+(religion) +4, Knowledge (the planes) +4, Listen +6,
+Search +3, Spellcraft +12, Spot +6
+Possessions combat gear plus +1 breastplate, +1 light steel
+shield, masterwork dagger, light mace, gloves of Dexterity
++2, periapt of Wisdom +2, ring of protection +1
+Light Blindness (Ex) As Lolth’s Sting.

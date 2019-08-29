@@ -13,9 +13,14 @@ namespace Dungeoneer.ViewModel
 		public CreateActorWindowViewModel()
 		{
 			_feats = new List<string>();
+			_specialQualities = new List<string>();
 			_attackSets = new FullyObservableCollection<Model.AttackSet>();
 			_speeds = new Model.SpeedSet();
 			_immunities = new Model.DamageDescriptorSet();
+			_weapons = new ObservableCollection<Model.Weapon>();
+			_damageReductions = new ObservableCollection<Model.DamageReduction>();
+			_energyResistances = new ObservableCollection<Model.EnergyResistance>();
+
 			_addSpeed = new Command(ExecuteAddSpeed);
 			_editSpeed = new Command(ExecuteEditSpeed);
 			_removeSpeed = new Command(ExecuteRemoveSpeed);
@@ -33,9 +38,6 @@ namespace Dungeoneer.ViewModel
 			_removeEnergyResistance = new Command(ExecuteRemoveEnergyResistance);
 			_editImmunities = new Command(ExecuteEditImmunities);
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
-			_weapons = new ObservableCollection<Model.Weapon>();
-			_damageReductions = new ObservableCollection<Model.DamageReduction>();
-			_energyResistances = new ObservableCollection<Model.EnergyResistance>();
 
 			SelectedCreatureType = CreatureTypes.IndexOf(Methods.GetCreatureTypeString(Types.Creature.Humanoid));
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(Types.Size.Medium));
@@ -73,7 +75,7 @@ namespace Dungeoneer.ViewModel
 		private string _fastHealing;
 
 		private string _specialAttacks;
-		private string _specialQualities;
+		private List<string> _specialQualities;
 
 		private List<string> _feats;
 
@@ -335,7 +337,7 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _specialAttacks, value); }
 		}
 
-		public string SpecialQualities
+		public List<string> SpecialQualities
 		{
 			get { return _specialQualities; }
 			set { SetField(ref _specialQualities, value); }

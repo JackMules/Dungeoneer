@@ -70,6 +70,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectBlinded = "Blinded";
 		public static readonly string EffectConfused = "Confused";
 		public static readonly string EffectCowering = "Cowering";
+		public static readonly string EffectCustom = "Custom";
 		public static readonly string EffectDazed = "Dazed";
 		public static readonly string EffectDazzled = "Dazzled";
 		public static readonly string EffectDeafened = "Deafened";
@@ -92,6 +93,7 @@ namespace Dungeoneer.Utility
 		public static readonly string EffectParalysed = "Paralysed";
 		public static readonly string EffectPetrified = "Petrified";
 		public static readonly string EffectPinned = "Pinned";
+		public static readonly string EffectPowerAttack = "Power Attack";
 		public static readonly string EffectProne = "Prone";
 		public static readonly string EffectRaging = "Raging";
 		public static readonly string EffectShaken = "Shaken";
@@ -206,6 +208,7 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Blinded),
 			Methods.GetEffectTypeString(Types.Effect.Confused),
 			Methods.GetEffectTypeString(Types.Effect.Cowering),
+			Methods.GetEffectTypeString(Types.Effect.Custom),
 			Methods.GetEffectTypeString(Types.Effect.Dazed),
 			Methods.GetEffectTypeString(Types.Effect.Dazzled),
 			Methods.GetEffectTypeString(Types.Effect.Deafened),
@@ -228,6 +231,7 @@ namespace Dungeoneer.Utility
 			Methods.GetEffectTypeString(Types.Effect.Paralysed),
 			Methods.GetEffectTypeString(Types.Effect.Petrified),
 			Methods.GetEffectTypeString(Types.Effect.Pinned),
+			Methods.GetEffectTypeString(Types.Effect.PowerAttack),
 			Methods.GetEffectTypeString(Types.Effect.Prone),
 			Methods.GetEffectTypeString(Types.Effect.Raging),
 			Methods.GetEffectTypeString(Types.Effect.Shaken),
@@ -353,6 +357,7 @@ namespace Dungeoneer.Utility
 			Blinded,
 			Confused,
 			Cowering,
+			Custom,
 			Dazed,
 			Dazzled,
 			Deafened,
@@ -374,7 +379,8 @@ namespace Dungeoneer.Utility
 			Panicked, 
 			Paralysed,
 			Petrified,
-			Pinned, 
+			Pinned,
+			PowerAttack,
 			Prone,
 			Raging,
 			Shaken,
@@ -445,6 +451,12 @@ namespace Dungeoneer.Utility
 			Undead,
 			Vermin,
 		}
+	}
+
+	public enum ImportFormat
+	{
+		SRD,
+		MM4,
 	}
 
 	public static class Methods
@@ -707,6 +719,7 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Blinded:						return Constants.EffectBlinded;
 			case Types.Effect.Confused:						return Constants.EffectConfused;
 			case Types.Effect.Cowering:						return Constants.EffectCowering;
+			case Types.Effect.Custom:							return Constants.EffectCustom;
 			case Types.Effect.Dazed:							return Constants.EffectDazed;
 			case Types.Effect.Dazzled:						return Constants.EffectDazzled;
 			case Types.Effect.Deafened:						return Constants.EffectDeafened;
@@ -729,6 +742,7 @@ namespace Dungeoneer.Utility
 			case Types.Effect.Paralysed:					return Constants.EffectParalysed;
 			case Types.Effect.Petrified:					return Constants.EffectPetrified;
 			case Types.Effect.Pinned:							return Constants.EffectPinned;
+			case Types.Effect.PowerAttack:				return Constants.EffectPowerAttack;
 			case Types.Effect.Prone:							return Constants.EffectProne;
 			case Types.Effect.Raging:							return Constants.EffectRaging;
 			case Types.Effect.Shaken:							return Constants.EffectShaken;
@@ -759,6 +773,10 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectCowering)
 			{
 				return Types.Effect.Cowering;
+			}
+			else if (effect == Constants.EffectCustom)
+			{
+				return Types.Effect.Custom;
 			}
 			else if (effect == Constants.EffectDazed)
 			{
@@ -847,6 +865,10 @@ namespace Dungeoneer.Utility
 			else if (effect == Constants.EffectPinned)
 			{
 				return Types.Effect.Pinned;
+			}
+			else if (effect == Constants.EffectPowerAttack)
+			{
+				return Types.Effect.PowerAttack;
 			}
 			else if (effect == Constants.EffectProne)
 			{
@@ -1335,6 +1357,41 @@ namespace Dungeoneer.Utility
 			case Types.Damage.PositiveEnergy:	return true;
 			case Types.Damage.Sonic:					return true;
 			default:													return false;
+			}
+		}
+
+		public static bool IsValueEffect(Types.Effect effectType)
+		{
+			switch (effectType)
+			{
+				case Types.Effect.AbilityModifier:
+				case Types.Effect.FastHealing:
+				case Types.Effect.PowerAttack:
+					return true;
+				default:
+					return false;
+			}
+		}
+
+		public static bool IsAbilityEffect(Types.Effect effectType)
+		{
+			switch (effectType)
+			{
+				case Types.Effect.AbilityModifier:
+					return true;
+				default:
+					return false;
+			}
+		}
+
+		public static bool IsTextEffect(Types.Effect effectType)
+		{
+			switch (effectType)
+			{
+				case Types.Effect.Custom:
+					return true;
+				default:
+					return false;
 			}
 		}
 	}

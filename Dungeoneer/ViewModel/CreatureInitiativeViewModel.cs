@@ -29,6 +29,12 @@ namespace Dungeoneer.ViewModel
 		{
 			encounterViewModel.OnWeaponListChange += OnWeaponListChange;
 			_weaponList = encounterViewModel.WeaponList;
+
+			encounterViewModel.OnInitiativeTrackChange += OnInitiativeTrackChange;
+			if (encounterViewModel.InitiativeTrack.Count > 0)
+			{
+				_currentActorName = encounterViewModel.InitiativeTrack.First().ActorViewModel.ActorName;
+			}
 		}
 
 		protected override void InitCommands()
@@ -43,6 +49,7 @@ namespace Dungeoneer.ViewModel
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
+		private string _currentActorName;
 		private Command _addEffect;
 		private Command _removeEffect;
 		private Command _addHitPointChange;
@@ -150,7 +157,7 @@ namespace Dungeoneer.ViewModel
 
 		public string SpecialQualities
 		{
-			get { return Actor.SpecialQualities; }
+			get { return String.Join(", ", Actor.SpecialQualities); }
 		}
 
 		public string FortitudeSave
@@ -191,10 +198,21 @@ namespace Dungeoneer.ViewModel
 			WeaponList = weaponList;
 		}
 
+		public void OnInitiativeTrackChange(string actorName)
+		{
+			CurrentActorName = actorName;
+		}
+
 		public FullyObservableCollection<Model.WeaponSet> WeaponList
 		{
 			get { return _weaponList; }
 			set { SetField(ref _weaponList, value); }
+		}
+
+		public string CurrentActorName
+		{
+			get { return _currentActorName; }
+			set { SetField(ref _currentActorName, value); }
 		}
 
 		public new Model.Creature Actor
@@ -336,9 +354,11 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteAddHitPointChange()
 		{
-			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList);
+			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName);
 			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
-			if (hitPointChange != null)
+			if (hitPointChange != null &&
+				(hitPointChange is Model.Heal ||
+				hitPointChange is Model.Hit))
 			{
 				Actor.AddHitPointChange(hitPointChange);
 				ActorUpdated();

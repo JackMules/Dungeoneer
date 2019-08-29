@@ -11,6 +11,7 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto"/>
@@ -21,26 +22,40 @@
 			<ColumnDefinition Width="Auto" MinWidth="40"/>
 		</Grid.ColumnDefinitions>
 		<Label Content="Name" Grid.Row="0" Grid.Column="0"/>
-		<TextBox Name="AttackNameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Name}"/>
+		<TextBox Name="AttackNameTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+						 VerticalAlignment="Center" Text="{Binding Name}"/>
 		<Label Content="Type" Grid.Row="1" Grid.Column="0"/>
-		<ComboBox Name="AttackTypeComboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" ItemsSource="{Binding AttackTypes}" SelectedIndex="{Binding Type}"/>
+		<ComboBox Name="AttackTypeComboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+							VerticalAlignment="Center" ItemsSource="{Binding AttackTypes}" SelectedIndex="{Binding Type}"/>
 		<Label Content="Ability" Grid.Row="2" Grid.Column="0"/>
-		<ComboBox Name="AbilityComboBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" ItemsSource="{Binding Abilities}" SelectedIndex="{Binding Ability}"/>
+		<ComboBox Name="AbilityComboBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+							VerticalAlignment="Center" ItemsSource="{Binding Abilities}" SelectedIndex="{Binding Ability}"/>
 		<Label Content="To Hit" Grid.Row="3" Grid.Column="0"/>
-		<TextBox Name="AttackRollModifierTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Modifier}"/>
+		<TextBox Name="AttackRollModifierTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
+						 VerticalAlignment="Center" Text="{Binding Modifier}"/>
 		<Label Content="Crit" Grid.Row="4" Grid.Column="0"/>
-		<ComboBox Name="ThreatRangeComboBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Center" ItemsSource="{Binding ThreatRanges}" SelectedIndex="{Binding SelectedThreatRange}"/>
-		<ComboBox Name="CritMultiplierComboBox" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" ItemsSource="{Binding CritMultipliers}" SelectedIndex="{Binding SelectedCritMultiplier}"/>
-		<Label Content="Damage" Grid.Row="5" Grid.Column="0" Grid.RowSpan="2"/>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2">
-			<ListBox ItemsSource="{Binding Damages}" SelectedIndex="{Binding SelectedDamage}" Grid.Row="4" Grid.Column="1"/>
+		<ComboBox Name="ThreatRangeComboBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" 
+							VerticalAlignment="Center" ItemsSource="{Binding ThreatRanges}" 
+							SelectedIndex="{Binding SelectedThreatRange}"/>
+		<ComboBox Name="CritMultiplierComboBox" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" 
+							ItemsSource="{Binding CritMultipliers}" SelectedIndex="{Binding SelectedCritMultiplier}"/>
+		<Label Content="Two-Handed" Grid.Row="5" Grid.Column="0"/>
+		<CheckBox IsChecked="{Binding TwoHanded}" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
+							HorizontalAlignment="Left" Margin="5,0"/>
+		<Label Content="Damage" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2"/>
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="6" Grid.Column="1" Grid.RowSpan="2">
+			<ListBox ItemsSource="{Binding Damages}" SelectedIndex="{Binding SelectedDamage}" Grid.Row="4" 
+							 Grid.Column="1"/>
 		</ScrollViewer>
-		<StackPanel Grid.Row="5" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center">
-			<Button Command="{Binding AddDamage}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding EditDamage}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
-			<Button Command="{Binding RemoveDamage}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" FontWeight="Bold"/>
+		<StackPanel Grid.Row="6" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center">
+			<Button Command="{Binding AddDamage}" ToolTip="Add" Content="+" Margin="5" Height="20" Width="20" 
+							FontWeight="Bold"/>
+			<Button Command="{Binding EditDamage}" ToolTip="Edit" Content="*" Margin="5" Height="20" Width="20" 
+							FontWeight="Bold"/>
+			<Button Command="{Binding RemoveDamage}" ToolTip="Remove" Content="-" Margin="5" Height="20" Width="20" 
+							FontWeight="Bold"/>
 		</StackPanel>
-		<StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,5,0,0">
+		<StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,5,0,0">
 			<Label x:Name="lblFeedback">
 				<Label.Style>
 					<Style TargetType="{x:Type Label}">

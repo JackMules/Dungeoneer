@@ -46,7 +46,7 @@ namespace Dungeoneer.Model
 			SpellResistance = 0;
 			FastHealing = 0;
 			SpecialAttacks = "";
-			SpecialQualities = "";
+			SpecialQualities = new List<string>();
 		}
 
 		public CreatureAttributes(CreatureAttributes other)
@@ -125,7 +125,7 @@ namespace Dungeoneer.Model
 		private DamageDescriptorSet _immunities;
 		private ObservableCollection<EnergyResistance> _energyResistances;
 		private string _specialAttacks;
-		private string _specialQualities;
+		private List<string> _specialQualities;
 
 		public Types.Creature Type
 		{
@@ -459,7 +459,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public string SpecialQualities
+		public List<string> SpecialQualities
 		{
 			get { return _specialQualities; }
 			set
@@ -467,6 +467,247 @@ namespace Dungeoneer.Model
 				_specialQualities = value;
 				NotifyPropertyChanged("SpecialQualities");
 			}
+		}
+
+		public void ApplyEffect(Effect.Effect effect)
+		{
+			switch (effect.EffectType)
+			{
+				case Types.Effect.AbilityModifier:
+					if (effect is Effect.AbilityValueEffect)
+					{
+						Effect.AbilityValueEffect abilityValueEffect = (effect as Effect.AbilityValueEffect);
+						ModifyAbilityScore(abilityValueEffect.Ability, abilityValueEffect.Value);
+					}
+					break;
+				case Types.Effect.Blinded:
+					SetBlinded();
+					break;
+				case Types.Effect.Confused:
+					break;
+				case Types.Effect.Cowering:
+					SetCowering();
+					break;
+				case Types.Effect.Dazed:
+					break;
+				case Types.Effect.Dazzled:
+					SetDazzled();
+					break;
+				case Types.Effect.Deafened:
+					SetDeafened();
+					break;
+				case Types.Effect.Disabled:
+					SetDisabled();
+					break;
+				case Types.Effect.Dying:
+					break;
+				case Types.Effect.NegativeLevel:
+					ApplyNegativeLevel();
+					break;
+				case Types.Effect.Entangled:
+					SetEntangled();
+					break;
+				case Types.Effect.Exhausted:
+					SetExhausted();
+					break;
+				case Types.Effect.Fascinated:
+					break;
+				case Types.Effect.FastHealing:
+					break;
+				case Types.Effect.Fatigued:
+					SetFatigued();
+					break;
+				case Types.Effect.FlatFooted:
+					SetFlatFooted();
+					break;
+				case Types.Effect.Frightened:
+					SetFrightened();
+					break;
+				case Types.Effect.Grappling:
+					break;
+				case Types.Effect.Helpless:
+					SetHelpless();
+					break;
+				case Types.Effect.Incorporeal:
+					break;
+				case Types.Effect.Invisible:
+					break;
+				case Types.Effect.Nauseated:
+					break;
+				case Types.Effect.Panicked:
+					SetPanicked();
+					break;
+				case Types.Effect.Paralysed:
+					SetParalysed();
+					break;
+				case Types.Effect.Petrified:
+					break;
+				case Types.Effect.Pinned:
+					break;
+				case Types.Effect.PowerAttack:
+					if (effect is Effect.IValueEffect)
+					{
+						Effect.IValueEffect valueEffect = (effect as Effect.IValueEffect);
+						SetPowerAttack(valueEffect.Value);
+					}
+					break;
+				case Types.Effect.Prone:
+					break;
+				case Types.Effect.Raging:
+					SetRaging();
+					break;
+				case Types.Effect.Shaken:
+					SetShaken();
+					break;
+				case Types.Effect.Sickened:
+					SetSickened();
+					break;
+				case Types.Effect.Stable:
+					break;
+				case Types.Effect.Staggered:
+					break;
+				case Types.Effect.Stunned:
+					SetStunned();
+					break;
+				case Types.Effect.Turned:
+					break;
+				case Types.Effect.Unconscious:
+					break;
+				default:
+					break;
+			}
+		}
+
+		public void SetBlinded()
+		{
+			SetFlatFooted();
+			ModifyArmorClass(-2);
+			ModifySpeed(1 / 2);
+		}
+
+		public void SetCowering()
+		{
+			SetFlatFooted();
+			ModifyArmorClass(-2);
+		}
+
+		public void SetDazzled()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+		}
+
+		public void SetDeafened()
+		{
+			InitiativeMod -= 4;
+		}
+
+		public void SetDisabled()
+		{
+			ModifySpeed(1 / 2);
+		}
+
+		public void SetEntangled()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySpeed(1 / 2);
+			ModifyAbilityScore(Types.Ability.Dexterity, -4);
+		}
+
+		public void SetExhausted()
+		{
+			ModifySpeed(1 / 2);
+			ModifyAbilityScore(Types.Ability.Strength, -6);
+			ModifyAbilityScore(Types.Ability.Dexterity, -6);
+		}
+
+		public void SetFatigued()
+		{
+			ModifyAbilityScore(Types.Ability.Strength, -2);
+			ModifyAbilityScore(Types.Ability.Dexterity, -2);
+		}
+
+		public void SetFrightened()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySaves(-2);
+		}
+
+		public void SetHelpless()
+		{
+			Dexterity = 0;
+		}
+
+		public void ApplyNegativeLevel()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -1);
+			ModifyAttackModifier(Types.Ability.Dexterity, -1);
+			HitPoints -= 5;
+			ModifySaves(-1);
+		}
+
+		public void SetPanicked()
+		{
+			ModifySaves(-2);
+		}
+
+		public void SetParalysed()
+		{
+			Strength = 0;
+			Dexterity = 0;
+		}
+
+		public void SetPowerAttack(int amount)
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -amount);
+
+			foreach (AttackSet attackSet in AttackSets)
+			{
+				foreach (Attack attack in attackSet.Attacks)
+				{
+					int change = amount;
+					if (attack.Type == Types.Attack.Melee &&
+						attack.TwoHanded)
+					{
+						change *= 2;
+					}
+					if (attack.Damages.Count > 0)
+					{
+						attack.Damages[0].Modifier += change;
+					}
+				}
+			}
+			NotifyPropertyChanged("AttackSets");
+		}
+
+		public void SetRaging()
+		{
+			ModifyAbilityScore(Types.Ability.Strength, 4);
+			ModifyAbilityScore(Types.Ability.Constitution, 4);
+			ModifyArmorClass(-2);
+			ModifyWillSave(2);
+		}
+
+		public void SetShaken()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySaves(-2);
+		}
+
+		public void SetSickened()
+		{
+			ModifyAttackModifier(Types.Ability.Strength, -2);
+			ModifyAttackModifier(Types.Ability.Dexterity, -2);
+			ModifySaves(-2);
+		}
+
+		public void SetStunned()
+		{
+			ModifyArmorClass(-2);
+			SetFlatFooted();
 		}
 
 		public void ModifyAttackModifier(Types.Ability ability, int change)
@@ -520,10 +761,23 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public bool UncannyDodge
+		{
+			get { return SpecialQualities.Contains("Uncanny Dodge", StringComparer.CurrentCultureIgnoreCase); }
+		}
+
+		public bool ImprovedUncannyDodge
+		{
+			get { return SpecialQualities.Contains("Improved Uncanny Dodge", StringComparer.CurrentCultureIgnoreCase); }
+		}
+
 		public void SetFlatFooted()
 		{
-			ArmorClass = FlatFootedArmorClass;
-			TouchArmorClass -= Methods.GetAbilityModifier(Dexterity);
+			if (!UncannyDodge)
+			{
+				ArmorClass = FlatFootedArmorClass;
+				TouchArmorClass -= Methods.GetAbilityModifier(Dexterity);
+			}
 		}
 
 		public void ModifyFortitudeSave(int change)
@@ -550,41 +804,45 @@ namespace Dungeoneer.Model
 
 		public void ModifyAbilityScore(Types.Ability ability, int change)
 		{
-			int oldModifier = GetAbilityModifier(ability);
-			SetAbilityScore(ability, GetAbilityScore(ability) + change);
-			int newModifier = GetAbilityModifier(ability);
-
-			int modifierDifference = newModifier - oldModifier;
-
-			if (ability == Types.Ability.Strength ||
-				ability == Types.Ability.Dexterity)
+			if (Type != Types.Creature.Construct)
 			{
-				ModifyAttackModifier(ability, modifierDifference);
+				int oldModifier = GetAbilityModifier(ability);
+				SetAbilityScore(ability, GetAbilityScore(ability) + change);
+				int newModifier = GetAbilityModifier(ability);
 
-				if (ability == Types.Ability.Strength)
-				{
-					ModifyDamageModifier(modifierDifference);
-				}
-				else if (ability == Types.Ability.Dexterity)
-				{
-					ReflexSave += modifierDifference;
-				}
-			}
-			else if (ability == Types.Ability.Constitution)
-			{
-				if (Type != Types.Creature.Undead)
-				{
-					HitPoints += HitDice * modifierDifference;
-					FortitudeSave += modifierDifference;
-				}
-			}
-			else
-			{
-				// Modify spell DCs
+				int modifierDifference = newModifier - oldModifier;
 
-				if (ability == Types.Ability.Wisdom)
+				if (ability == Types.Ability.Strength ||
+					ability == Types.Ability.Dexterity)
 				{
-					WillSave += modifierDifference;
+					ModifyAttackModifier(ability, modifierDifference);
+
+					if (ability == Types.Ability.Strength)
+					{
+						ModifyDamageModifier(modifierDifference);
+					}
+					else if (ability == Types.Ability.Dexterity)
+					{
+						ReflexSave += modifierDifference;
+					}
+				}
+				else if (ability == Types.Ability.Constitution)
+				{
+					if (Type != Types.Creature.Undead &&
+						Type != Types.Creature.Construct)
+					{
+						HitPoints += HitDice * modifierDifference;
+						FortitudeSave += modifierDifference;
+					}
+				}
+				else
+				{
+					// Modify spell DCs
+
+					if (ability == Types.Ability.Wisdom)
+					{
+						WillSave += modifierDifference;
+					}
 				}
 			}
 		}
@@ -865,7 +1123,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("SpecialQualities");
-			xmlWriter.WriteString(SpecialQualities);
+			xmlWriter.WriteString(String.Join(", ", SpecialQualities));
 			xmlWriter.WriteEndElement();
 		}
 
@@ -1039,7 +1297,10 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "SpecialQualities")
 					{
-						SpecialQualities = childNode.InnerText;
+						foreach (string specialQuality in childNode.InnerText.Split(','))
+						{
+							SpecialQualities.Add(specialQuality.Trim());
+						}
 					}
 				}
 			}

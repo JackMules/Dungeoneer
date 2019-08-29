@@ -43,14 +43,14 @@ namespace Dungeoneer.Model
 		{
 			base.StartEncounter();
 
-			Effect.Conditions.FlatFooted flatFooted = new Effect.Conditions.FlatFooted();
-			flatFooted.Duration = 1;
+
+			Effect.TimedEffect flatFooted = new Effect.TimedEffect(Types.Effect.FlatFooted, 1);
 			Effects.Add(flatFooted);
 
 			if (BaseAttributes.FastHealing > 0)
 			{
-				Effect.FastHealing fastHealing = new Effect.FastHealing();
-				fastHealing.Value = BaseAttributes.FastHealing;
+				Effect.ValueEffect fastHealing = new Effect.ValueEffect(Types.Effect.FastHealing,
+					BaseAttributes.FastHealing);
 				Effects.Add(fastHealing);
 			}
 		}
@@ -109,7 +109,8 @@ namespace Dungeoneer.Model
 					Hit hit = hitPointChange as Hit;
 					if (hit.Weapon.AbilityDamage)
 					{
-						Effects.Add(new Effect.AbilityModifier(hit.Weapon.Ability, -hit.Weapon.AbilityDamageValue));
+						Effects.Add(new Effect.AbilityValueEffect(Types.Effect.AbilityModifier, 
+							hit.Weapon.Ability, -hit.Weapon.AbilityDamageValue));
 					}
 				}
 			}
@@ -141,22 +142,25 @@ namespace Dungeoneer.Model
 				{
 					effect.ApplyTo(ModifiedAttributes, BaseAttributes);
 				}
-				if (effect is Effect.FastHealing)
+				if (effect is Effect.ValueEffect)
 				{
-					int currentHP = GetCurrentHitPoints();
-					int maxHP = GetEffectiveAttributes().HitPoints;
-
-					if (currentHP < maxHP)
+					Effect.ValueEffect valueEffect = (effect as Effect.ValueEffect);
+					if (valueEffect.EffectType == Types.Effect.FastHealing)
 					{
-						int damage = maxHP - currentHP;
-						Effect.FastHealing fastHealing = effect as Effect.FastHealing;
-						if (damage < fastHealing.Value)
+						int currentHP = GetCurrentHitPoints();
+						int maxHP = GetEffectiveAttributes().HitPoints;
+
+						if (currentHP < maxHP)
 						{
-							AddHitPointChange(new Heal(damage));
-						}
-						else
-						{
-							AddHitPointChange(new Heal(fastHealing.Value));
+							int damage = maxHP - currentHP;
+							if (damage < valueEffect.Value)
+							{
+								AddHitPointChange(new Heal(damage));
+							}
+							else
+							{
+								AddHitPointChange(new Heal(valueEffect.Value));
+							}
 						}
 					}
 				}
@@ -510,7 +514,7 @@ namespace Dungeoneer.Model
 			get { return BaseAttributes.SpecialAttacks; }
 		}
 
-		public string SpecialQualities
+		public List<string> SpecialQualities
 		{
 			get { return BaseAttributes.SpecialQualities; }
 		}
@@ -557,7 +561,28 @@ namespace Dungeoneer.Model
 
 		public bool FlatFooted
 		{
-			get { return Effects.OfType<Effect.Conditions.FlatFooted>().Any(); }
+			get
+			{
+				foreach (Effect.Effect effect in Effects)
+				{
+					if (effect.EffectType == Types.Effect.FlatFooted)
+					{
+						return true;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		public bool UncannyDodge
+		{
+			get { return GetEffectiveAttributes().UncannyDodge; }
+		}
+
+		public bool ImprovedUncannyDodge
+		{
+			get { return GetEffectiveAttributes().ImprovedUncannyDodge; }
 		}
 
 		private int CalculateAttacksOfOpportunity()

@@ -33,7 +33,7 @@ namespace Dungeoneer.Model
 
 		public override string ToString()
 		{
-			return "Heal +" + Amount.ToString();
+			return "+" + Amount.ToString() + "hp (healing)";
 		}
 	}
 }
