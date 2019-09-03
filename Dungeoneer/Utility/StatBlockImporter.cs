@@ -73,6 +73,65 @@ namespace Dungeoneer.Utility
 			return creature;
 		}
 
+		private static void ParseAttack(Model.CreatureAttributes attributes, string str, Types.Attack attackType)
+		{
+			Model.AttackSet attackSet = new Model.AttackSet
+			{
+				Name = "Full Attack",
+			};
+
+			string attacksPattern = @"(?<NumAttacks>\d+)?\s?(?<Name>\D+)\s(?<HitMod>[+-]\d+)\s(each\s)?\((?<Damage>[^\(]*)\)";
+			Regex attacksRegex = new Regex(attacksPattern, RegexOptions.IgnoreCase);
+			MatchCollection attackMatches = attacksRegex.Matches(str);
+			foreach (Match attackMatch in attackMatches)
+			{
+				int numAttacks = 1;
+				string name = attackMatch.Groups["Name"].Value;
+				if (attackMatch.Groups["NumAttacks"].Value != "")
+				{
+					numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
+					PluralizationService ps = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
+					name = ps.Singularize(name);
+				}
+
+				name = char.ToUpper(name[0]) + name.Substring(1);
+
+				for (int i = 0; i < numAttacks; ++i)
+				{
+					Model.Attack attack = new Model.Attack();
+
+					attack.Name = name;
+					attack.Modifier = Convert.ToInt32(attackMatch.Groups["HitMod"].Value);
+					attack.Type = attackType;
+
+					string damageStr = attackMatch.Groups["Damage"].Value;
+					string damagePattern = @"(?<NumDice>\d+)(?<Die>d\d+)(?<DamageMod>[\+\-]?\d*)\s?(?<DamageType>(?!plus\b)\b\w+)?";
+					Regex damageRegex = new Regex(damagePattern, RegexOptions.IgnoreCase);
+					MatchCollection damageMatches = damageRegex.Matches(damageStr);
+
+					foreach (Match damageMatch in damageMatches)
+					{
+						Model.Damage damage = new Model.Damage();
+						damage.NumDice = Convert.ToInt32(damageMatch.Groups["NumDice"].Value);
+						damage.Die = Methods.GetDieTypeFromString(damageMatch.Groups["Die"].Value);
+						if (damageMatch.Groups["DamageMod"].Value != "")
+						{
+							damage.Modifier = Convert.ToInt32(damageMatch.Groups["DamageMod"].Value);
+						}
+						if (damageMatch.Groups["DamageType"].Value != "")
+						{
+							damage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(damageMatch.Groups["DamageType"].Value));
+						}
+						attack.Damages.Add(damage);
+					}
+
+					attackSet.Attacks.Add(attack);
+				}
+			}
+
+			attributes.AttackSets.Add(attackSet);
+		}
+
 		private static void ParseAttacks(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Melee\s(?<Attacks>.*)";
@@ -81,61 +140,16 @@ namespace Dungeoneer.Utility
 
 			if (match.Success)
 			{
-				Model.AttackSet attackSet = new Model.AttackSet
-				{
-					Name = "Full Attack",
-				};
+				ParseAttack(attributes, match.Groups["Attacks"].Value, Types.Attack.Melee);
+			}
 
-				string attacksPattern = @"(?<NumAttacks>\d+)?\s?(?<Name>\w+)\s(?<HitMod>[+-]\d+)\s(each\s)?\((?<Damage>[^\(]*)\)";
-				Regex attacksRegex = new Regex(attacksPattern, RegexOptions.IgnoreCase);
-				MatchCollection attackMatches = attacksRegex.Matches(match.Groups["Attacks"].Value);
-				foreach (Match attackMatch in attackMatches)
-				{
-					int numAttacks = 1;
-					string name = attackMatch.Groups["Name"].Value;
-					if (attackMatch.Groups["NumAttacks"].Value != "")
-					{
-						numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
-						PluralizationService ps = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
-						name = ps.Singularize(name);
-					}
+			pattern = @"Ranged\s(?<Attacks>.*)";
+			regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			match = regex.Match(str);
 
-					name = char.ToUpper(name[0]) + name.Substring(1);
-
-					for (int i = 0; i < numAttacks; ++i)
-					{
-						Model.Attack attack = new Model.Attack();
-
-						attack.Name = name;
-						attack.Modifier = Convert.ToInt32(attackMatch.Groups["AttackMod"].Value);
-						attack.Type = Methods.GetAttackTypeFromString(attackMatch.Groups["Type"].Value);
-
-						string damageStr = attackMatch.Groups["Damage"].Value;
-						string damagePattern = @"(?<NumDice>\d+)(?<Die>d\d+)(?<DamageMod>[\+\-]?\d*)\s?(?<DamageType>(?!plus\b)\b\w+)?";
-						Regex damageRegex = new Regex(damagePattern, RegexOptions.IgnoreCase);
-						MatchCollection damageMatches = damageRegex.Matches(damageStr);
-
-						foreach (Match damageMatch in damageMatches)
-						{
-							Model.Damage damage = new Model.Damage();
-							damage.NumDice = Convert.ToInt32(damageMatch.Groups["NumDice"].Value);
-							damage.Die = Methods.GetDieTypeFromString(damageMatch.Groups["Die"].Value);
-							if (damageMatch.Groups["DamageMod"].Value != "")
-							{
-								damage.Modifier = Convert.ToInt32(damageMatch.Groups["DamageMod"].Value);
-							}
-							if (damageMatch.Groups["DamageType"].Value != "")
-							{
-								damage.DamageDescriptorSet.Add(Methods.GetDamageTypeFromString(damageMatch.Groups["DamageType"].Value));
-							}
-							attack.Damages.Add(damage);
-						}
-
-						attackSet.Attacks.Add(attack);
-					}
-				}
-
-				attributes.AttackSets.Add(attackSet);
+			if (match.Success)
+			{
+				ParseAttack(attributes, match.Groups["Attacks"].Value, Types.Attack.Ranged);
 			}
 		}
 
@@ -255,15 +269,17 @@ namespace Dungeoneer.Utility
 
 		private static void ParseSpeed(Model.CreatureAttributes attributes, string str)
 		{
-			string pattern = @"Speed\s?(?<Speeds>.+)";
+			string pattern = @"Speed\s+(?<LandSpeed>\d+)\s+ft.\s*\(\d+\ssquares\)(,\s?(?<OtherSpeeds>.+))?";
 			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
 			Match match = regex.Match(str);
 
 			if (match.Success)
 			{
-				string speedPattern = @"\s?(?<Type>\D*)\s(?<Speed>\d+)\s*ft.\s*(\(\d+\ssquares\),\s)?(\((?<Manouverability>\w+)\))?";
+				attributes.Speed.LandSpeed = Convert.ToInt32(match.Groups["LandSpeed"].Value);
+
+				string speedPattern = @"\s?(?<Type>\w+)\s(?<Speed>\d+)\s*ft.\s?(\((?<Manouverability>\w+)\))?";
 				Regex speedRegex = new Regex(speedPattern, RegexOptions.IgnoreCase);
-				MatchCollection speedMatches = speedRegex.Matches(match.Groups["Speeds"].Value);
+				MatchCollection speedMatches = speedRegex.Matches(match.Groups["OtherSpeeds"].Value);
 
 				foreach (Match speedMatch in speedMatches)
 				{
@@ -274,15 +290,9 @@ namespace Dungeoneer.Utility
 					}
 					int distance = Convert.ToInt32(speedMatch.Groups["Speed"].Value);
 					string movementString = speedMatch.Groups["Type"].Value.Trim();
-					if (movementString.Equals(""))
-					{
-						attributes.Speed.LandSpeed = distance;
-					}
-					else
-					{
-						Types.Movement movementType = Methods.GetMovementTypeFromString(movementString);
-						attributes.Speed.Speeds.Add(new Model.Speed(distance, movementType, manouverability));
-					}
+
+					Types.Movement movementType = Methods.GetMovementTypeFromString(movementString);
+					attributes.Speed.Speeds.Add(new Model.Speed(distance, movementType, manouverability));
 				}
 			}
 		}
@@ -429,7 +439,7 @@ namespace Dungeoneer.Utility
 
 		private static void ParseBaseAttackAndGrapple(Model.CreatureAttributes attributes, string str)
 		{
-			string pattern = @"Base Atk\s(?<BAB>[\+\-]\d+)\s?,?;?\s+Grp\s(?<Grapple>[\+\-]\d+)\s?";
+			string pattern = @"Base Atk\s(?<BAB>\S+);\s+Grp\s(?<Grapple>\S+)";
 			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
 			Match match = regex.Match(str);
 
@@ -485,7 +495,7 @@ namespace Dungeoneer.Utility
 
 		private static void ParseAbilities(Model.CreatureAttributes attributes, string str)
 		{
-			string pattern = @"Str\s(?<Str>\w+),?\s+Dex\s(?<Dex>\w+),?\s+Con\s(?<Con>\w+),?\s+Int\s(?<Int>\w+),?\s+Wis\s(?<Wis>\w+),?\s+Cha\s(?<Cha>\w+)";
+			string pattern = @"Str\s(?<Str>\S+),\s+Dex\s(?<Dex>\S+),\s+Con\s(?<Con>\S+),\s+Int\s(?<Int>\S+),\s+Wis\s(?<Wis>\S+),\s+Cha\s(?<Cha>\S+)";
 			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
 			Match match = regex.Match(str);
 

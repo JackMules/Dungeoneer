@@ -1,0 +1,45 @@
+Shunned CR 7
+Always CE Medium aberration
+Init +2; Senses darkvision 60 ft.; Listen +7, Spot +7
+Languages Undercommon
+AC 18, touch 12, flat-footed 16
+(+2 Dex, +6 natural)
+hp 82 (11 HD); DR 10/magic
+SR 17
+Fort +6 (+10 against poison), Ref +5, Will +9
+Weakness light sensitivity
+Speed 40 ft. (8 squares), climb 20 ft.
+Melee bite +12 (1d8+6 plus poison)
+Space 5 ft.; Reach 5 ft.
+Base Atk +8; Grp +12
+Atk Options magic strike, poison (Fort DC 20, 1d6 Con/unconscious 1d10 rounds)
+Special Actions disgorge spiders, wail
+Spell-Like Abilities (CL 11th):
+1/day—dancing lights, darkness, dispel magic, faerie fire,
+suggestion (DC 14)
+Abilities Str 19, Dex 14, Con 17, Int 6, Wis 15, Cha 12
+Feats Ability Focus (poison), Alertness, Combat Casting, Improved Natural Attack (bite)
+Skills Climb +12, Concentration +5, Hide +6, Jump +8, Listen +7, Move Silently +6, Search +2, Spot +7
+Advancement 12–18 HD (Medium); 19–25 HD (Large)
+Light Sensitivity (Ex) A shunned is dazzled in bright sunlight
+or within the radius of a daylight spell.
+Magic Strike A shunned’s natural weapons are treated as
+magic weapons for the purpose of overcoming damage
+reduction.
+Disgorge Spiders (Su) As a full-round action that provokes
+attacks of opportunity, a shunned can spew a spider
+swarm (MM 239) into an adjacent square. Once it has
+disgorged spiders, the shunned must wait 1d4 rounds
+before using this ability. The shunned controls all such
+swarms completely and can instruct each swarm to
+attack a particular target. It can redirect a swarm as a
+move action.
+Wail (Su) Once per round as a standard action, a shunned
+can loose a horrid wail. All creatures within 30 feet must
+succeed on DC 16 Will saves or become sickened for
+1 round. The save DC is Charisma-based.
+Skills A shunned has a +2 racial bonus on Listen, Search, and
+Spot checks.
+It also has a +8 racial bonus on Climb checks and can
+always choose to take 10 on a Climb check, even if rushed
+or threatened.

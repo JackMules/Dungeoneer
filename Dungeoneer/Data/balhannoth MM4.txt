@@ -1,0 +1,55 @@
+Balhannoth CR 10
+Usually CN Large aberration
+Init +7; Senses blind, dweomersight 120 ft.; Listen +6
+Languages —
+Aura dimensional lock
+AC 21, touch 12, flat-footed 18
+(–1 size, +3 Dex, +9 natural)
+hp 147 (14 HD); DR 15/magic
+Immune gaze attacks, illusions, visual effects
+SR 18
+Fort +10, Ref +9, Will +12
+Speed 50 ft. (10 squares), climb 50 ft.
+Melee 2 slams +18 each (2d6+9/19–20) and bite +13 (1d8+4)
+Space 10 ft.; Reach 10 ft. (15 ft. with tentacles)
+Base Atk +10; Grp +23
+Atk Options Power Attack, constrict +1d8, improved grab, magic strike
+Special Actions antimagic grapple
+Abilities Str 28, Dex 17, Con 23, Int 3, Wis 12, Cha 8
+SQ camouflage
+Feats Improved Critical (slam), Improved Initiative, Iron Will, Lightning Reflexes, Power Attack
+Skills Climb +17, Hide +16, Jump +17, Listen +6, Move Silently +13
+Advancement 15–20 HD (Large); 21–30 HD (Huge)
+Dweomersight (Su) A balhannoth can sense the presence
+and position of magic auras within 120 feet of itself,
+and knows the strength and school of each one. It can
+pinpoint the location of any creature with ongoing spells
+cast on it, carrying magic items, or otherwise using
+magic, and it can notice anything within the area of a
+magic effect (including its own dimensional lock aura).
+This otherwise functions like blindsense.
+Dimensional Lock (Su) As the dimensional lock spell,
+20-foot radius centered on the balhannoth, CL 10th.
+This effect moves with the creature.
+Constrict (Ex) A balhannoth deals 1d8 points of damage
+with a successful grapple check, in addition to damage
+from its slam attack.
+Improved Grab (Ex) To use this ability, a balhannoth must
+hit an opponent of up to Large size with a slam attack.
+It can then attempt to start a grapple as a free action
+without provoking attacks of opportunity. If it wins the
+grapple check, it establishes a hold and can constrict.
+Antimagic Grapple (Su) When a balhannoth grapples an
+opponent, all the magical properties of that opponent’s
+magic items are suppressed. In addition, a creature
+grappled by a balhannoth cannot cast spells or use
+spell-like or supernatural abilities. A balhannoth
+automatically suppresses magic items by holding or
+wearing them.
+Camouflage (Ex) A balhannoth’s skin changes color to
+match its surroundings. As a result, a balhannoth can
+use the Hide skill in any sort of natural terrain.
+Skills A balhannoth has a +15 racial bonus on Hide checks
+due to its camouflage ability. It has a +8 racial bonus
+on Climb checks and can always choose to take 10 on
+Climb checks, even if rushed or threatened.
