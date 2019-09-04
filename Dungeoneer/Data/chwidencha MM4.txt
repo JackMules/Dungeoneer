@@ -1,0 +1,43 @@
+Chwidencha CR 9
+Always N Large aberration
+Init +7; Senses darkvision 60 ft., tremorsense 60 ft.;
+Listen +6, Spot +6
+Aura frightful presence (30 ft., DC 16)
+Languages understands Undercommon
+AC 24, touch 12, flat-footed 21
+(–1 size, +3 Dex, +12 natural)
+hp 114 (12 HD); DR 10/magic
+Fort +11, Ref +9, Will +11
+Weakness vulnerability to sonic
+Speed 30 ft. (6 squares), burrow 30 ft., climb 30 ft.; scuttling charge
+Melee 4 claws +15 each (1d6+6/19–20)
+Space 10 ft.; Reach 5 ft.
+Base Atk +9; Grp +19
+Atk Options impale 1d6+9, improved grab, pounce, magic strike
+Abilities Str 22, Dex 17, Con 20, Int 3, Wis 16, Cha 3
+Feats Great Fortitude, Improved Critical (claws), Improved Initiative, Lightning Reflexes, Weapon Focus (claw)
+Skills Climb +16, Hide +3, Listen +6, Move Silently +6, Spot +6
+Advancement 13–18 HD (Large); 19–36 HD (Huge); see text
+Frightful Presence (Su) A chwidencha can inspire terror by
+charging or attacking. Affected creatures must succeed
+on a DC 16 Will save or become shaken, remaining in that
+condition as long as they remain within 30 feet of the
+chwidencha. A creature that successfully saves cannot be
+affected by the same chwidencha’s frightful presence for
+24 hours. The save DC is Charisma-based and includes
+a +4 racial bonus.
+Scuttling Charge (Ex) When making a charge, a chwidencha
+need not move in a straight line.
+Impale (Ex) A chwidencha deals 1d6+9 points of piercing
+damage with a successful grapple check.
+Improved Grab (Ex) To use this ability, a chwidencha must
+hit an opponent of any size with a claw attack. It can then
+attempt to start a grapple as a free action without
+provoking attacks of opportunity. If it wins the grapple
+check, it establishes a hold and can impale the opponent
+on its claws.
+Pounce (Ex) If a chwidencha charges a foe, it can make a full
+attack.
+Magic Strike A chwidencha’s natural weapons are treated as
+magic weapons for the purpose of overcoming damage
+reduction.
