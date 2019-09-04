@@ -80,7 +80,7 @@ namespace Dungeoneer.Utility
 				Name = "Full Attack",
 			};
 
-			string attacksPattern = @"(?<NumAttacks>\d+)?\s?(?<Name>\D+)\s(?<HitMod>[+-]\d+)\s(each\s)?\((?<Damage>[^\(]*)\)";
+			string attacksPattern = @"(?<NumAttacks>\d+)?\s?(?<Name>\D+)\s(?<HitMod>[+-]\d+)(\seach)?\s(\((?<Damage>[^\(]*)\))?";
 			Regex attacksRegex = new Regex(attacksPattern, RegexOptions.IgnoreCase);
 			MatchCollection attackMatches = attacksRegex.Matches(str);
 			foreach (Match attackMatch in attackMatches)
@@ -135,7 +135,7 @@ namespace Dungeoneer.Utility
 		private static void ParseAttacks(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Melee\s(?<Attacks>.*)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -144,7 +144,7 @@ namespace Dungeoneer.Utility
 			}
 
 			pattern = @"Ranged\s(?<Attacks>.*)";
-			regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			regex = new Regex(pattern);
 			match = regex.Match(str);
 
 			if (match.Success)
@@ -156,7 +156,7 @@ namespace Dungeoneer.Utility
 		private static void ParseFeats(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Feats\s(?<Feats>.+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -224,7 +224,7 @@ namespace Dungeoneer.Utility
 		private static void ParseInitiative(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Init\s(?<Init>[\+\-]\d+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -270,7 +270,7 @@ namespace Dungeoneer.Utility
 		private static void ParseSpeed(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Speed\s+(?<LandSpeed>\d+)\s+ft.\s*\(\d+\ssquares\)(,\s?(?<OtherSpeeds>.+))?";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -300,7 +300,7 @@ namespace Dungeoneer.Utility
 		private static void ParseImmunities(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Immune\s?(?<Immunities>.+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -326,7 +326,7 @@ namespace Dungeoneer.Utility
 		private static void ParseResistances(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Resist\s?(?<Resistances>[^;]+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -365,7 +365,7 @@ namespace Dungeoneer.Utility
 		private static void ParseSpellResistance(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"SR\s(?<SR>\w+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -384,7 +384,7 @@ namespace Dungeoneer.Utility
 		private static void ParseChallengeRating(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"CR\s(?<CR>\w+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -402,8 +402,8 @@ namespace Dungeoneer.Utility
 
 		private static void ParseSaves(Model.CreatureAttributes attributes, string str)
 		{
-			string pattern = @"Fort\s(?<Fort>[\+\-]\d+),?\s+Ref\s(?<Ref>[\+\-]\d+),?\s+Will?\s(?<Will>[\+\-]\d+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			string pattern = @"Fort\s(?<Fort>[\+\-]\d+)\s?(\(.+\))?,?\s+Ref\s(?<Ref>[\+\-]\d+)\s?(\(.+\))?,?\s+Will?\s(?<Will>[\+\-]\d+)\s?(\(.+\))?";
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -440,7 +440,7 @@ namespace Dungeoneer.Utility
 		private static void ParseBaseAttackAndGrapple(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Base Atk\s(?<BAB>\S+);\s+Grp\s(?<Grapple>\S+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -468,7 +468,7 @@ namespace Dungeoneer.Utility
 		private static void ParseSpaceAndReach(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Space\s(?<Space>\w+)\s?ft\.,?;?\s+Reach\s(?<Reach>\w+)\s?ft\.";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
@@ -496,7 +496,7 @@ namespace Dungeoneer.Utility
 		private static void ParseAbilities(Model.CreatureAttributes attributes, string str)
 		{
 			string pattern = @"Str\s(?<Str>\S+),\s+Dex\s(?<Dex>\S+),\s+Con\s(?<Con>\S+),\s+Int\s(?<Int>\S+),\s+Wis\s(?<Wis>\S+),\s+Cha\s(?<Cha>\S+)";
-			Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+			Regex regex = new Regex(pattern);
 			Match match = regex.Match(str);
 
 			if (match.Success)
