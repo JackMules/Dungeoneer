@@ -8,7 +8,7 @@ Attack:	Slam +18 melee (2d10+9)
 Full Attack:	2 slams +18 melee (2d10+9)
 Space/Reach:	10 ft./10 ft.
 Special Attacks:	Slow
-Special Qualities:	Construct traits, damage reduction 10/adamantine, darkvision 60 ft., immunity to magic, low-light vision
+Special Qualities:	Construct traits, damage reduction 10/adamantine, darkvision 60 ft., immunity to magic, low-light vision 
 Saves:	Fort +4, Ref +3, Will +4
 Abilities:	Str 29, Dex 9, Con Ø, Int Ø, Wis 11, Cha 1
 Skills:	—
