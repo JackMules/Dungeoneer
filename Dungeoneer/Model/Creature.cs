@@ -124,11 +124,11 @@ namespace Dungeoneer.Model
 			foreach (HitPointChange hitPointChange in HitPointChanges)
 			{
 				hp += hitPointChange.GetHitPointChange();
-			}
 
-			if (hp > maxHP)
-			{
-				hp = maxHP;
+				if (hp > maxHP)
+				{
+					hp = maxHP;
+				}
 			}
 
 			return hp;
