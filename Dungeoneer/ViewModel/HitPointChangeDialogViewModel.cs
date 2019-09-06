@@ -14,15 +14,73 @@ namespace Dungeoneer.ViewModel
 		{
 			_weaponList = weaponList;
 			_currentActorName = currentActorName;
+			_damageTypeSelectorViewModel1 = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel2 = new DamageTypeSelectorViewModel();
+			_damageTypeSelectorViewModel3 = new DamageTypeSelectorViewModel();
 			_damage1 = "";
 			_damage2 = "";
 			_damage3 = "";
 			_healing = "";
 			_selectedWeapon = 0;
+			_abilityDamage = false;
+			_weaponName = "";
+		}
+
+		public HitPointChangeDialogViewModel(FullyObservableCollection<Model.WeaponSet> weaponList,
+			string currentActorName, Model.HitPointChange hitPointChange)
+		{
+			_weaponList = weaponList;
+			_currentActorName = currentActorName;
+
 			_damageTypeSelectorViewModel1 = new DamageTypeSelectorViewModel();
 			_damageTypeSelectorViewModel2 = new DamageTypeSelectorViewModel();
 			_damageTypeSelectorViewModel3 = new DamageTypeSelectorViewModel();
-			_abilityDamage = false;
+
+			if (hitPointChange is Model.Hit)
+			{
+				Model.Hit hit = hitPointChange as Model.Hit;
+
+				_healing = "";
+				_damage1 = "";
+				_damage2 = "";
+				_damage3 = "";
+
+				_damage1 = hit.DamageSets[0].Amount.ToString();
+				if (hit.DamageSets.Count > 1)
+				{
+					_damage2 = hit.DamageSets[1].Amount.ToString();
+					if (hit.DamageSets.Count > 2)
+					{
+						_damage3 = hit.DamageSets[2].Amount.ToString();
+					}
+				}
+
+				int weaponIndex = GetWeaponIndexInList(hit.Weapon);
+				if (weaponIndex >= 0)
+				{
+					SelectedWeapon = weaponIndex;
+				}
+			}
+			else if (hitPointChange is Model.Heal)
+			{
+				Model.Heal heal = hitPointChange as Model.Heal;
+				_healing = heal.Amount.ToString();
+
+				_damage1 = "";
+				_damage2 = "";
+				_damage3 = "";
+				_selectedWeapon = 0;
+				_abilityDamage = false;
+			}
+			else
+			{
+				_damage1 = "";
+				_damage2 = "";
+				_damage3 = "";
+				_healing = "";
+				_selectedWeapon = 0;
+				_abilityDamage = false;
+			}
 		}
 
 		private FullyObservableCollection<Model.WeaponSet> _weaponList;
@@ -31,6 +89,7 @@ namespace Dungeoneer.ViewModel
 		private string _damage2;
 		private string _damage3;
 		private string _healing;
+		private string _weaponName;
 		private int _selectedWeapon;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel1;
 		private DamageTypeSelectorViewModel _damageTypeSelectorViewModel2;
@@ -128,6 +187,7 @@ namespace Dungeoneer.ViewModel
 						DamageTypeSelectorViewModel3.SetFromDamageDescriptorSet(weapon.DamageDescriptorSets[2]);
 					}
 
+					WeaponName = weapon.Name;
 					AbilityDamage = weapon.AbilityDamage;
 					SelectedAbility = Methods.GetAbilityString(weapon.Ability);
 					AbilityDamageValue = weapon.AbilityDamageValue.ToString();
@@ -151,6 +211,12 @@ namespace Dungeoneer.ViewModel
 		{
 			get { return _selectedAbility; }
 			set { SetField(ref _selectedAbility, value); }
+		}
+
+		public string WeaponName
+		{
+			get { return _weaponName; }
+			set { SetField(ref _weaponName, value); }
 		}
 
 		public bool AbilityDamage
@@ -198,6 +264,20 @@ namespace Dungeoneer.ViewModel
 			return weapons;
 		}
 
+		private int GetWeaponIndexInList(Model.Weapon weapon)
+		{
+			List<Tuple<string, Model.Weapon>> weaponList = GetFlatWeaponList();
+			for (int index = 0; index < weaponList.Count; ++index)
+			{
+				if (weapon.Name.Equals(weaponList[index].Item2.Name))
+				{
+					return index;
+				}
+			}
+
+			return -1;
+		}
+
 		public List<string> Weapons
 		{
 			get
@@ -211,6 +291,7 @@ namespace Dungeoneer.ViewModel
 		public Model.Weapon GetWeapon()
 		{
 			Model.Weapon weapon = new Model.Weapon();
+			weapon.Name = WeaponName;
 			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel1.GetDamageDescriptorSet());
 			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel2.GetDamageDescriptorSet());
 			weapon.DamageDescriptorSets.Add(DamageTypeSelectorViewModel3.GetDamageDescriptorSet());

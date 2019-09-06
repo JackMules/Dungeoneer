@@ -31,7 +31,9 @@
 				<DockPanel Margin="5" FocusManager.FocusedElement="{Binding ElementName=txtDamage}">
 					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 						<Label Content="Weapon" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
-						<ComboBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="170" ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}"/>
+						<ComboBox Margin="5,0,0,0" VerticalContentAlignment="Center" Width="200" ItemsSource="{Binding Weapons}" SelectedIndex="{Binding SelectedWeapon}"/>
+						<Label Content="Weapon Name" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
+						<TextBox Text="{Binding WeaponName}" Margin="5,0,0,0" VerticalContentAlignment="Center" Width="200" HorizontalContentAlignment="Left"/>
 					</StackPanel>
 					<DockPanel Margin="5" DockPanel.Dock="Bottom">
 						<CheckBox DockPanel.Dock="Left" Content="Ability Damage" IsChecked="{Binding AbilityDamage}" VerticalContentAlignment="Center"/>

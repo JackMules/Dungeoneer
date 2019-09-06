@@ -43,6 +43,7 @@ namespace Dungeoneer.ViewModel
 			_addEffect = new Command(ExecuteAddEffect);
 			_removeEffect = new Command(ExecuteRemoveEffect);
 			_addHitPointChange = new Command(ExecuteAddHitPointChange);
+			_editHitPointChange = new Command(ExecuteEditHitPointChange);
 			_removeHitPointChange = new Command(ExecuteRemoveHitPointChange);
 			_incrementAttacksOfOpportunity = new Command(ExecuteIncrementAttacksOfOpportunity);
 			_decrementAttacksOfOpportunity = new Command(ExecuteDecrementAttacksOfOpportunity, Threatening);
@@ -53,6 +54,7 @@ namespace Dungeoneer.ViewModel
 		private Command _addEffect;
 		private Command _removeEffect;
 		private Command _addHitPointChange;
+		private Command _editHitPointChange;
 		private Command _removeHitPointChange;
 		private Command _incrementAttacksOfOpportunity;
 		private Command _decrementAttacksOfOpportunity;
@@ -347,6 +349,11 @@ namespace Dungeoneer.ViewModel
 			get { return _addHitPointChange; }
 		}
 
+		public Command EditHitPointChange
+		{
+			get { return _editHitPointChange; }
+		}
+
 		public Command RemoveHitPointChange
 		{
 			get { return _removeHitPointChange; }
@@ -361,6 +368,20 @@ namespace Dungeoneer.ViewModel
 				hitPointChange is Model.Hit))
 			{
 				Actor.AddHitPointChange(hitPointChange);
+				ActorUpdated();
+			}
+		}
+
+		private void ExecuteEditHitPointChange()
+		{
+			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName,
+				Actor.HitPointChanges[SelectedHitPointChange]);
+			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
+			if (hitPointChange != null &&
+				(hitPointChange is Model.Heal ||
+				hitPointChange is Model.Hit))
+			{
+				Actor.HitPointChanges[SelectedHitPointChange] = hitPointChange;
 				ActorUpdated();
 			}
 		}

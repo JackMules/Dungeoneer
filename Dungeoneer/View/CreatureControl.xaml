@@ -122,8 +122,8 @@
 						<StackPanel Grid.Row="1" Grid.Column="1">
 							<Button Command="{Binding AddHitPointChange}" ToolTip="Add Hit" Content="Add" Margin="2" Height="20" 
 									Width="55" FontWeight="Bold"/>
-<!--							<Button Command="{Binding EditHitPointChange}" ToolTip="Edit Hit" Content="Edit" Margin="2" Height="20" 
-									Width="55" FontWeight="Bold"/>-->
+							<Button Command="{Binding EditHitPointChange}" ToolTip="Edit Hit" Content="Edit" Margin="2" Height="20" 
+									Width="55" FontWeight="Bold"/>
 							<Button Command="{Binding RemoveHitPointChange}" ToolTip="Remove Hit" Content="Remove" Margin="2" 
 									Height="20" Width="55" FontWeight="Bold"/>
 						</StackPanel>
