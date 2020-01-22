@@ -1,0 +1,22 @@
+Size/Type: Large Construct
+Hit Dice: 11d10+30 (90 hp)
+Initiative: +3
+Speed: 30 ft. (6 squares)
+Armor Class: 20 (–1 size , +3 Dex, +8 natural), touch 12, flat-footed 17
+Base Attack/Grapple: +8/+17
+Attack: Slam +12 melee (2d10+7)
+Full Attack: 2 slams +12 melee (2d10+7) and bite +7 melee (1d6+2 plus poison)
+Space/Reach: 10 ft./15 ft.
+Special Attacks: Poison, web
+Special Qualities: Adhesive, construct traits, damage reduction 10/adamantine, darkvision 60 ft., fast healing 5, immunity to magic, low-light vision, spider climb, vulnerability to fire
+Saves: Fort +3, Ref +6, Will +3
+Abilities: Str 20, Dex 17, Con —, Int —, Wis 11, Cha 1
+Skills: Hide –1*
+Feats: —
+Environment: Any
+Organization: Solitary (often with a Huge monstrous spider) or gang (2–4 plus 2d4 Huge monstrous spiders)
+Challenge Rating: 7
+Treasure: None
+Alignment: Always neutral
+Advancement: 12–16 HD (Large); 17–22 HD (Huge)
+Level Adjustment: —
