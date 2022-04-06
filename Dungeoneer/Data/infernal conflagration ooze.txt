@@ -1,0 +1,22 @@
+Size/Type: Huge Ooze (Evil, Extraplanar, Fire)
+Hit Dice: 15d10+90 (172 hp)
+Initiative: +3
+Speed: 30 ft. (6 squares), climb 10 ft.
+Armor Class: 21 (–2 size, +14 natural), touch 8, flat-footed 21
+Base Attack/Grapple: +11/+29
+Attack: Slam +20 melee (3d6+10 plus 1d6 fire)
+Full Attack: 2 slams +20 melee (3d6+10 plus 1d6 fire)
+Space/Reach: 15 ft./10 ft.
+Special Attacks: Fire in the blood, improved grab, smite good, spell-like abilities
+Special Qualities: Blindsight 60 ft., damage reduction 5/bludgeoning and 10/magic, immunity to fire, ooze traits, resistance to cold 10, spell resistance 20, vulnerability to cold
+Saves: Fort +11, Ref +6, Will +8
+Abilities: Str 31, Dex 8, Con 22, Int 9, Wis 12, Cha 15
+Skills: Climb +10, Hide +12, Listen +6, Move Silently +12
+Feats: Ability Focus (fire in the blood), Improved Initiative, Iron Will, Lightning Reflexes, Power Attack, Stealthy, Weapon Focus (slam)
+Environment: Nine Hells of Baator
+Organization: Solitary
+Challenge Rating: 13
+Treasure: Standard
+Alignment: Usually lawful evil
+Advancement: 16–21 HD (Huge)
+Level Adjustment: —

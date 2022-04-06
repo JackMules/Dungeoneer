@@ -1,8 +1,8 @@
-﻿<Window x:Class="Dungeoneer.View.AddImmunityWindow"
+﻿<Window x:Class="Dungeoneer.View.DamageTypeSelectorWindow"
 				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				xmlns:view="clr-namespace:Dungeoneer.View"
-				Title="Add Immunity"
+				Title="Select Damage Type(s)"
 				WindowStartupLocation="CenterOwner"
 				WindowStyle="ToolWindow" ResizeMode="NoResize" Height="340" Width="370">
 	<DockPanel Margin="5">

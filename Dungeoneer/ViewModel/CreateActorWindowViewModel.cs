@@ -17,6 +17,7 @@ namespace Dungeoneer.ViewModel
 			_attackSets = new FullyObservableCollection<Model.AttackSet>();
 			_speeds = new Model.SpeedSet();
 			_immunities = new Model.DamageDescriptorSet();
+			_vulnerabilities = new Model.DamageDescriptorSet();
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
 			_energyResistances = new ObservableCollection<Model.EnergyResistance>();
@@ -37,6 +38,7 @@ namespace Dungeoneer.ViewModel
 			_editEnergyResistance = new Command(ExecuteEditEnergyResistance);
 			_removeEnergyResistance = new Command(ExecuteRemoveEnergyResistance);
 			_editImmunities = new Command(ExecuteEditImmunities);
+			_editVulnerabilities = new Command(ExecuteEditVulnerabilities);
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 
 			SelectedCreatureType = CreatureTypes.IndexOf(Methods.GetCreatureTypeString(Types.Creature.Humanoid));
@@ -83,6 +85,7 @@ namespace Dungeoneer.ViewModel
 		private int _selectedCreatureType;
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
 		private Model.DamageDescriptorSet _immunities;
+		private Model.DamageDescriptorSet _vulnerabilities;
 		private ObservableCollection<Model.EnergyResistance> _energyResistances;
 		private ObservableCollection<Model.Weapon> _weapons;
 		private Model.SpeedSet _speeds;
@@ -103,6 +106,7 @@ namespace Dungeoneer.ViewModel
 		private Command _editEnergyResistance;
 		private Command _removeEnergyResistance;
 		private Command _editImmunities;
+		private Command _editVulnerabilities;
 		private Command _openImportWindow;
 
 		public int SelectedSpeed { get; set; }
@@ -306,12 +310,17 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _immunities, value); }
 		}
 
+		public Model.DamageDescriptorSet Vulnerabilities
+		{
+			get { return _vulnerabilities; }
+			set { SetField(ref _vulnerabilities, value); }
+		}
+
 		public ObservableCollection<Model.EnergyResistance> EnergyResistances
 		{
 			get { return _energyResistances; }
 			set { SetField(ref _energyResistances, value); }
 		}
-
 
 		public ObservableCollection<Model.Weapon> Weapons
 		{
@@ -402,6 +411,7 @@ namespace Dungeoneer.ViewModel
 			SelectedSize = Sizes.IndexOf(Methods.GetSizeString(creature.Size));
 			DamageReductions = creature.DamageReductions;
 			Immunities = creature.Immunities;
+			Vulnerabilities = creature.Vulnerabilities;
 			EnergyResistances = creature.EnergyResistances;
 			SpellResistance = creature.SpellResistance.ToString();
 			FastHealing = creature.FastHealing.ToString();
@@ -490,6 +500,7 @@ namespace Dungeoneer.ViewModel
 							Size = Methods.GetSizeFromString(Sizes.ElementAt(SelectedSize)),
 							DamageReductions = DamageReductions,
 							Immunities = Immunities,
+							Vulnerabilities = Vulnerabilities,
 							EnergyResistances = EnergyResistances,
 							SpellResistance = Convert.ToInt32(SpellResistance),
 							FastHealing = Convert.ToInt32(FastHealing),
@@ -707,11 +718,26 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditImmunities()
 		{
-			AddImmunityWindowViewModel addImmunityWindowViewModel = new AddImmunityWindowViewModel(Immunities);
-			Model.DamageDescriptorSet immunity = addImmunityWindowViewModel.GetImmunity();
-			if (immunity != null)
+			DamageTypeSelectorWindowViewModel damageTypeSelectorWindowViewModel = new DamageTypeSelectorWindowViewModel(Immunities);
+			Model.DamageDescriptorSet immunities = damageTypeSelectorWindowViewModel.GetDamageTypes();
+			if (immunities != null)
 			{
-				Immunities = immunity;
+				Immunities = immunities;
+			}
+		}
+
+		public Command EditVulnerabilities
+		{
+			get { return _editVulnerabilities; }
+		}
+
+		private void ExecuteEditVulnerabilities()
+		{
+			DamageTypeSelectorWindowViewModel damageTypeSelectorWindowViewModel = new DamageTypeSelectorWindowViewModel(Vulnerabilities);
+			Model.DamageDescriptorSet vulnerabilities = damageTypeSelectorWindowViewModel.GetDamageTypes();
+			if (vulnerabilities != null)
+			{
+				Vulnerabilities = vulnerabilities;
 			}
 		}
 

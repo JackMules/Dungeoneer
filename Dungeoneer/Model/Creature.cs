@@ -479,6 +479,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public DamageDescriptorSet Vulnerabilities
+		{
+			get { return GetEffectiveAttributes().Vulnerabilities; }
+			set
+			{
+				ModifiedAttributes.Vulnerabilities = value;
+				NotifyPropertyChanged("Vulnerabilities");
+			}
+		}
+
 		public ObservableCollection<EnergyResistance> EnergyResistances
 		{
 			get { return GetEffectiveAttributes().EnergyResistances; }

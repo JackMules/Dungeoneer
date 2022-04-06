@@ -1,0 +1,22 @@
+Size/Type: 	Large Outsider (Extraplanar, Fire)
+Hit Dice: 	15d8+45 (112 hp)
+Initiative: +1
+Speed: 	20 ft. (4 squares)
+Armor Class:18 (-1 size, +1 Dex, +8 natural), touch 10, flat-footed 17
+Base Attack/Grapple: +15/+25
+Attack: 	+3 longspear +23 melee (1d8+9/×3 plus 1d8 fire)
+Full Attack: +3 longspear +23/+18/+13 melee (1d8+9/×3 plus 1d8 fire) and tail slap +21 melee (2d8+3 plus 1d8 fire)
+Space/Reach: 10 ft./10 ft. (20 ft. with tail or longspear)
+Special Attacks: Constrict 2d8+3 plus 1d8 fire, heat, improved grab, spell-like abilities
+Special Qualities: Damage reduction 15/magic, darkvision 60 ft., immunity to fire, vulnerability to cold
+Saves: 	Fort +12, Ref +10, Will +11
+Abilities: 	Str 22, Dex 13, Con 16, Int 16, Wis 15, Cha 15
+Skills: 	Bluff +19, Craft (blacksmithing) +25, Diplomacy +4, Hide +15, Intimidate +4, Listen +13, Move Silently +17, Spot +13
+Feats: 	Alertness, Cleave, Great Cleave, Multiattack, Power Attack, Skill Focus (Craft [blacksmithing])
+Environment: Elemental Plane of Fire
+Organization: Solitary, pair, or noble party (9-14)
+Challenge Rating: 	10
+Treasure: 	Double standard (nonflammables only) and +3 longspear
+Alignment: 	Usually evil (any)
+Advancement:16-21 HD (Large); 22-45 HD (Huge)
+Level Adjustment: 

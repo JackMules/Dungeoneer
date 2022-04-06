@@ -8,9 +8,9 @@ using Dungeoneer.Utility;
 
 namespace Dungeoneer.ViewModel
 {
-	public class AddImmunityWindowViewModel : BaseViewModel
+	public class DamageTypeSelectorWindowViewModel : BaseViewModel
 	{
-		public AddImmunityWindowViewModel(Model.DamageDescriptorSet immunity = null)
+		public DamageTypeSelectorWindowViewModel(Model.DamageDescriptorSet immunity = null)
 		{
 			_damageTypeSelectorViewModel = new DamageTypeSelectorViewModel();
 
@@ -28,19 +28,19 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _damageTypeSelectorViewModel, value); }
 		}
 
-		public Model.DamageDescriptorSet GetImmunity()
+		public Model.DamageDescriptorSet GetDamageTypes()
 		{
 			bool askForInput = true;
 			string feedback = null;
-			Model.DamageDescriptorSet immunity = null;
+			Model.DamageDescriptorSet damageTypes = null;
 			while (askForInput)
 			{
-				View.AddImmunityWindow addImmunityWindow = new View.AddImmunityWindow(feedback);
-				addImmunityWindow.DataContext = this;
+				View.DamageTypeSelectorWindow damageTypesWindow = new View.DamageTypeSelectorWindow(feedback);
+				damageTypesWindow.DataContext = this;
 
-				if (addImmunityWindow.ShowDialog() == true)
+				if (damageTypesWindow.ShowDialog() == true)
 				{
-					immunity = DamageTypeSelectorViewModel.GetDamageDescriptorSet();
+					damageTypes = DamageTypeSelectorViewModel.GetDamageDescriptorSet();
 					askForInput = false;
 				}
 				else
@@ -49,7 +49,7 @@ namespace Dungeoneer.ViewModel
 				}
 			}
 
-			return immunity;
+			return damageTypes;
 		}
 	}
 }

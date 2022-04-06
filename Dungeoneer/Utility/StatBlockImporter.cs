@@ -52,6 +52,7 @@ namespace Dungeoneer.Utility
 						ParseResistances(attributes, currentLine);
 						ParseSpellResistance(attributes, currentLine);
 						ParseImmunities(attributes, currentLine);
+						ParseVulnerabilities(attributes, currentLine);
 						ParseSpeed(attributes, currentLine);
 						ParseArmorClass(attributes, currentLine);
 						ParseAlignmentSizeAndType(attributes, currentLine);
@@ -318,6 +319,29 @@ namespace Dungeoneer.Utility
 						{
 							attributes.Immunities.Add(damageType);
 						}
+					}
+				}
+			}
+		}
+
+		private static void ParseVulnerabilities(Model.CreatureAttributes attributes, string str)
+		{
+			string pattern = @"Vulnerability\sto\s?(?<Immunities>.+)";
+			Regex regex = new Regex(pattern);
+			Match match = regex.Match(str);
+
+			if (match.Success)
+			{
+				string vulnerabilityPattern = @"(?<Type>[a-z]+)(\,|\z)";
+				Regex vulnerabilityRegex = new Regex(vulnerabilityPattern, RegexOptions.IgnoreCase);
+				MatchCollection vulnerabilityMatches = vulnerabilityRegex.Matches(match.Groups["Vulnerabilities"].Value);
+
+				foreach (Match vulnerabilityMatch in vulnerabilityMatches)
+				{
+					Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(vulnerabilityMatch.Groups["Type"].Value, "and");
+					foreach (Types.Damage damageType in damageTypes.ToList())
+					{
+						attributes.Vulnerabilities.Add(damageType);
 					}
 				}
 			}
@@ -681,24 +705,58 @@ namespace Dungeoneer.Utility
 								}
 								else if (identifier == "Attack" || identifier == "Full Attack")
 								{
-									string[] orStr = { "or" };
-									foreach (string attackSetStr in entry.Split(orStr, StringSplitOptions.RemoveEmptyEntries))
+									string[] splitStrs = { "or" };
+									foreach (string attackSetStr in entry.Split(splitStrs, StringSplitOptions.RemoveEmptyEntries))
 									{
 										Model.AttackSet attackSet = new Model.AttackSet
 										{
 											Name = identifier,
 										};
 
-										string attackPattern = @"(?<NumAttacks>\d+)?\s?(?<Name>(?!and\b)\b\D+)\s(?<AttackMod>[\+\-]\d+)\s(?<Type>\D+\s?\D*)\s\((?<Damage>[^\(]*)\)";
+										string attackPattern = @"(?<WeaponMod>\+\d)?(?<NumAttacks>\d+)?\s?(?<Name>(?!and\b)\b\D+)\s(?<AttackMod>[\+\-]\d+)\/?(?<AttackMod2>[\+\-]\d+)?\/?(?<AttackMod3>[\+\-]\d+)?\/?(?<AttackMod4>[\+\-]\d+)?\/?(?<AttackMod5>[\+\-]\d+)?\s(?<Type>\D+\s?\D*)\s\((?<Damage>[^\(]*)\)";
 										Regex attackRegex = new Regex(attackPattern, RegexOptions.IgnoreCase);
 										MatchCollection attackMatches = attackRegex.Matches(attackSetStr);
 										foreach (Match attackMatch in attackMatches)
 										{
 											int numAttacks = 1;
-											string name = attackMatch.Groups["Name"].Value;
-											if (attackMatch.Groups["NumAttacks"].Value != "")
+											List<int> attackMods = new List<int> { Convert.ToInt32(attackMatch.Groups["AttackMod"].Value) };
+											string name = "";
+											if (attackMatch.Groups["AttackMod2"].Value != "")
+											{
+												++numAttacks;
+												attackMods.Add(Convert.ToInt32(attackMatch.Groups["AttackMod2"].Value));
+												if (attackMatch.Groups["AttackMod3"].Value != "")
+												{
+													++numAttacks;
+													attackMods.Add(Convert.ToInt32(attackMatch.Groups["AttackMod3"].Value));
+													if (attackMatch.Groups["AttackMod4"].Value != "")
+													{
+														++numAttacks;
+														attackMods.Add(Convert.ToInt32(attackMatch.Groups["AttackMod4"].Value));
+														if (attackMatch.Groups["AttackMod5"].Value != "")
+														{
+															++numAttacks;
+															attackMods.Add(Convert.ToInt32(attackMatch.Groups["AttackMod5"].Value));
+														}
+													}
+												}
+											}
+											else if (attackMatch.Groups["NumAttacks"].Value != "")
 											{
 												numAttacks = Convert.ToInt32(attackMatch.Groups["NumAttacks"].Value);
+											}
+
+											if (attackMatch.Groups["NumAttacks"].Value != "")
+											{
+												name = attackMatch.Groups["WeaponMod"].Value + " " + attackMatch.Groups["Name"].Value;
+											}
+											else
+											{
+												name = attackMatch.Groups["Name"].Value;
+											}
+
+											if (numAttacks > 1)
+											{
 												PluralizationService ps = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-us"));
 												name = ps.Singularize(name);
 											}
@@ -710,7 +768,14 @@ namespace Dungeoneer.Utility
 												Model.Attack attack = new Model.Attack();
 
 												attack.Name = name;
-												attack.Modifier = Convert.ToInt32(attackMatch.Groups["AttackMod"].Value);
+												if (attackMods.Count > 1)
+												{
+													attack.Modifier = attackMods[i];
+												}
+												else
+												{
+													attack.Modifier = attackMods[0];
+												}
 												attack.Type = Methods.GetAttackTypeFromString(attackMatch.Groups["Type"].Value);
 
 												string damageStr = attackMatch.Groups["Damage"].Value;
@@ -782,6 +847,19 @@ namespace Dungeoneer.Utility
 											{
 												attributes.Immunities.Add(damageType);
 											}
+										}
+									}
+
+									string vulnerabilityPattern = @"vulnerability to (?<Types>.+?)(\,|\z)";
+									Regex vulnerabilityRegex = new Regex(vulnerabilityPattern, RegexOptions.IgnoreCase);
+									MatchCollection vulnerabilityMatches = vulnerabilityRegex.Matches(entry);
+
+									foreach (Match vulnerabilityMatch in vulnerabilityMatches)
+									{
+										Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(vulnerabilityMatch.Groups["Types"].Value, "and");
+										foreach (Types.Damage damageType in damageTypes.ToList())
+										{
+											attributes.Vulnerabilities.Add(damageType);
 										}
 									}
 
@@ -974,7 +1052,7 @@ namespace Dungeoneer.Utility
 				}
 				catch (FormatException e)
 				{
-					MessageBox.Show("Cannot parse:\n" + currentLine);
+					MessageBox.Show("Cannot parse:" + e.Message + "\n" + currentLine);
 					throw e;
 				}
 			}

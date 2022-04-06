@@ -272,11 +272,16 @@ namespace Dungeoneer.ViewModel
 
 		public void ExecuteStart()
 		{
-			Round = 1;
-			
-			foreach (InitiativeCardViewModel cardVM in InitiativeTrack)
+			var result = MessageBox.Show("Roll for initiative!");
+
+			if (result == DialogResult.OK)
 			{
-				cardVM.StartEncounter();
+				Round = 1;
+
+				foreach (InitiativeCardViewModel cardVM in InitiativeTrack)
+				{
+					cardVM.StartEncounter();
+				}
 			}
 		}
 

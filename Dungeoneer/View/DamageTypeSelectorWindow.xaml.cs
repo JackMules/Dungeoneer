@@ -17,9 +17,9 @@ namespace Dungeoneer.View
 	/// <summary>
 	/// Interaction logic for AddImmunityWindow.xaml
 	/// </summary>
-	public partial class AddImmunityWindow : Window
+	public partial class DamageTypeSelectorWindow : Window
 	{
-		public AddImmunityWindow(string feedback = null)
+		public DamageTypeSelectorWindow(string feedback = null)
 		{
 			InitializeComponent();
 			lblFeedback.Content = feedback;

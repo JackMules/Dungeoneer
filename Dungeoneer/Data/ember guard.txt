@@ -1,0 +1,40 @@
+Ember Guard CR 13
+Always LE Huge outsider (evil, extraplanar, fire, lawful)
+Init +6; Senses darkvision 60 ft.; Listen +20, Spot +20
+Aura fire (30 ft.); see text
+Languages Infernal, Ignan
+AC 33, touch 10, flat-footed 31; 25% fortification (–2 size, +2 Dex, +23 natural)
+hp 162 (13 HD); fast healing 5; DR 15/good; death throes
+Immune fire, poison
+Resist acid 10, cold 10; SR 23
+Fort +18, Ref +12, Will +12
+Weakness vulnerability to cold
+Speed 30 ft. (6 squares)
+Melee 2 slams +22 each (1d8+10 plus 1d6 fire)
+Space 15 ft.; Reach 15 ft.
+Base Atk +13; Grp +31
+Atk Options aligned strike (evil, lawful)
+Special Actions fire breath
+Abilities Str 30, Dex 15, Con 26, Int 3, Wis 18, Cha 9
+SA aligned strike, death throes, fire aura, fire breath
+Feats Ability Focus (fire breath), Great Fortitude, Improved 
+Initiative, Lightning Reflexes, Weapon Focus (slam)
+Skills Balance +18, Climb +26, Listen +20, Spot +20
+Advancement 14–26 HD (Huge)
+Fire Aura (Su) If an ember guard is reduced to half of its full 
+normal hit points or fewer, it emits a fire aura as flames 
+start leaking from its body. Creatures take 1d6 points of 
+fire damage at the end of each of the ember guard’s turns 
+if they are within 30 feet of it. Creatures within range can 
+attempt DC 24 Fortitude saves for half damage. The save 
+DC is Constitution-based.
+Fortification (Ex) 25% chance to ignore the extra damage 
+dealt by a critical hit or sneak attack.
+Death Throes (Su) When killed, an ember guard explodes 
+in a 60-foot-radius burst that deals 3d6 points of 
+bludgeoning damage and 3d6 points of fire damage to 
+everything in the area (Reflex DC 24 half). The save DC is 
+Constitution-based.
+Fire Breath (Su) 30-foot cone, once every 4 rounds, damage 
+6d6 fire plus slow, as the spell, for 4 rounds, Reflex DC 24 
+half. The save DC is Constitution-based

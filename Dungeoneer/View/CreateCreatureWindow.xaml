@@ -78,7 +78,7 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<TextBox Grid.Column="0" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-							 Text="{Binding HitDice}" Height="25" Margin="2,2" MinWidth="40"/>
+							 Text="{Binding HitDice}" Height="25" Margin="0,2" MinWidth="40"/>
 				<ComboBox Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" 
 								ItemsSource="{Binding DieTypes}" SelectedIndex="{Binding SelectedHitDie}" 
 								Height="22" Margin="2,2" MinWidth="40"/>
@@ -196,7 +196,7 @@
 							 Width="40" Height="25" Margin="0,2" Text="{Binding WillSave}"/>
 			</Grid>
 
-			<!-- Immunities -->
+			<!-- Immunities and Vulnerabilities -->
 			<Label Grid.Row="10" Grid.Column="0" Content="Immunities" VerticalContentAlignment="Center"/>
 			<Grid Grid.Row="10" Grid.Column="1" VerticalAlignment="Center">
 				<Grid.RowDefinitions>
@@ -204,8 +204,12 @@
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
-				<Button Content="Edit" Width="40" VerticalAlignment="Center" Command="{Binding EditImmunities}"/>
+				<Button Grid.Column="0" Content="Edit" Width="40" VerticalAlignment="Center" Command="{Binding EditImmunities}"/>
+				<Label Grid.Column="1" Content="Vulnerabilities" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+				<Button Grid.Column="2" Content="Edit" Width="40" VerticalAlignment="Center" Command="{Binding EditVulnerabilities}"/>
 			</Grid>
 
 			<!-- Spell Resistance -->

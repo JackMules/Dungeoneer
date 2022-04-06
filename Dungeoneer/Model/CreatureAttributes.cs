@@ -42,6 +42,7 @@ namespace Dungeoneer.Model
 			Size = Types.Size.Medium;
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
+			Vulnerabilities = new DamageDescriptorSet();
 			EnergyResistances = new ObservableCollection<EnergyResistance>();
 			SpellResistance = 0;
 			FastHealing = 0;
@@ -79,6 +80,7 @@ namespace Dungeoneer.Model
 			Size = other.Size;
 			DamageReductions = other.DamageReductions.Clone();
 			Immunities = other.Immunities.Clone();
+			Vulnerabilities = other.Vulnerabilities.Clone();
 			EnergyResistances = other.EnergyResistances.Clone();
 			SpellResistance = other.SpellResistance;
 			FastHealing = FastHealing;
@@ -123,6 +125,7 @@ namespace Dungeoneer.Model
 		private Types.Size _size;
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
+		private DamageDescriptorSet _vulnerabilities;
 		private ObservableCollection<EnergyResistance> _energyResistances;
 		private string _specialAttacks;
 		private List<string> _specialQualities;
@@ -439,6 +442,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public DamageDescriptorSet Vulnerabilities
+		{
+			get { return _vulnerabilities; }
+			set
+			{
+				_vulnerabilities = value;
+				NotifyPropertyChanged("Vulnerabilities");
+			}
+		}
+
 		public int SpellResistance
 		{
 			get { return _spellResistance; }
@@ -474,10 +487,11 @@ namespace Dungeoneer.Model
 			switch (effect.EffectType)
 			{
 				case Types.Effect.AbilityModifier:
-					if (effect is Effect.AbilityValueEffect)
+					if (effect is Effect.IAbilityEffect && effect is Effect.IValueEffect)
 					{
-						Effect.AbilityValueEffect abilityValueEffect = (effect as Effect.AbilityValueEffect);
-						ModifyAbilityScore(abilityValueEffect.Ability, abilityValueEffect.Value);
+						var ability = (effect as Effect.IAbilityEffect).Ability;
+						var value = (effect as Effect.IValueEffect).Value;
+						ModifyAbilityScore(ability, value);
 					}
 					break;
 				case Types.Effect.Blinded:
@@ -824,6 +838,8 @@ namespace Dungeoneer.Model
 					else if (ability == Types.Ability.Dexterity)
 					{
 						ReflexSave += modifierDifference;
+						ArmorClass += modifierDifference;
+						TouchArmorClass += modifierDifference;
 					}
 				}
 				else if (ability == Types.Ability.Constitution)
@@ -957,6 +973,14 @@ namespace Dungeoneer.Model
 						{
 							damageSet.Amount -= dr.Value;
 							break;
+						}
+					}
+
+					foreach (Types.Damage damageType in damageSet.DamageDescriptorSet.ToList())
+					{
+						if (Vulnerabilities.Contains(damageType))
+						{
+							damageSet.Amount = (int)(damageSet.Amount * 1.5);
 						}
 					}
 
@@ -1101,6 +1125,10 @@ namespace Dungeoneer.Model
 
 			xmlWriter.WriteStartElement("Immunities");
 			Immunities.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("Vulnerabilities");
+			Vulnerabilities.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("EnergyResistances");
@@ -1270,6 +1298,10 @@ namespace Dungeoneer.Model
 					else if (childNode.Name == "Immunities")
 					{
 						Immunities.ReadXML(childNode);
+					}
+					else if (childNode.Name == "Vulnerbilities")
+					{
+						Vulnerabilities.ReadXML(childNode);
 					}
 					else if (childNode.Name == "EnergyResistances")
 					{
