@@ -204,6 +204,18 @@ namespace Dungeoneer.Model
 							{
 								Effects.Add(new Effect.AbilityValueEffect(effectNode));
 							}
+							else if (effectNode.Name == "TimedAbilityValueEffect")
+							{
+								Effects.Add(new Effect.TimedAbilityValueEffect(effectNode));
+							}
+							else if (effectNode.Name == "TextEffect")
+							{
+								Effects.Add(new Effect.TextEffect(effectNode));
+							}
+							else if (effectNode.Name == "TimedTextEffect")
+							{
+								Effects.Add(new Effect.TimedTextEffect(effectNode));
+							}
 						}
 					}
 				}

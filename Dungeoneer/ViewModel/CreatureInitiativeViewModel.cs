@@ -331,6 +331,7 @@ namespace Dungeoneer.ViewModel
 			if (effect != null)
 			{
 				Effects.Add(effect);
+				NotifyPropertyChanged("Effects");
 				ActorUpdated();
 			}
 		}
@@ -340,6 +341,7 @@ namespace Dungeoneer.ViewModel
 			if (SelectedEffect >= 0 && SelectedEffect < Effects.Count)
 			{
 				Effects.RemoveAt(SelectedEffect);
+				NotifyPropertyChanged("Effects");
 				ActorUpdated();
 			}
 		}

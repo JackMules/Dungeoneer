@@ -43,7 +43,6 @@ namespace Dungeoneer.Model
 		{
 			base.StartEncounter();
 
-
 			Effect.TimedEffect flatFooted = new Effect.TimedEffect(Types.Effect.FlatFooted, 1);
 			Effects.Add(flatFooted);
 

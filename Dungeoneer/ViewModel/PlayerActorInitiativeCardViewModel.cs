@@ -74,7 +74,6 @@ namespace Dungeoneer.ViewModel
 					{
 						ActorViewModel = new PlayerActorInitiativeViewModel(childNode);
 					}
-					
 				}
 			}
 			catch (XmlException e)

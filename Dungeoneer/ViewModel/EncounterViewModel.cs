@@ -203,7 +203,6 @@ namespace Dungeoneer.ViewModel
 			}
 			else
 			{
-				initCardViewModel.StartEncounter();
 				InitiativeTrack.Add(initCardViewModel);
 			}
 		}

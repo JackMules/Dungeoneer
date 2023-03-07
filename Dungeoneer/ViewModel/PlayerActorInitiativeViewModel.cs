@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Forms;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -18,7 +19,20 @@ namespace Dungeoneer.ViewModel
 
 		public PlayerActorInitiativeViewModel(XmlNode playerXml)
 		{
-			_actor = new Model.PlayerActor(playerXml);
+			try
+			{
+				foreach (XmlNode childNode in playerXml.ChildNodes)
+				{
+					if (childNode.Name == "PlayerActor")
+					{
+						Actor = new Model.PlayerActor(childNode);
+					}
+				}
+			}
+			catch (XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 
 		public new Model.PlayerActor Actor
@@ -27,6 +41,7 @@ namespace Dungeoneer.ViewModel
 			set
 			{
 				SetField(ref _actor, value);
+				DisplayName = Actor.ActorName;
 			}
 		}
 

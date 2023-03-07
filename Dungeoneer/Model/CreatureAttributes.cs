@@ -596,7 +596,7 @@ namespace Dungeoneer.Model
 		{
 			SetFlatFooted();
 			ModifyArmorClass(-2);
-			ModifySpeed(1 / 2);
+			ModifySpeed(0.5);
 		}
 
 		public void SetCowering()
@@ -618,20 +618,20 @@ namespace Dungeoneer.Model
 
 		public void SetDisabled()
 		{
-			ModifySpeed(1 / 2);
+			ModifySpeed(0.5);
 		}
 
 		public void SetEntangled()
 		{
 			ModifyAttackModifier(Types.Ability.Strength, -2);
 			ModifyAttackModifier(Types.Ability.Dexterity, -2);
-			ModifySpeed(1 / 2);
+			ModifySpeed(0.5);
 			ModifyAbilityScore(Types.Ability.Dexterity, -4);
 		}
 
 		public void SetExhausted()
 		{
-			ModifySpeed(1 / 2);
+			ModifySpeed(0.5);
 			ModifyAbilityScore(Types.Ability.Strength, -6);
 			ModifyAbilityScore(Types.Ability.Dexterity, -6);
 		}
