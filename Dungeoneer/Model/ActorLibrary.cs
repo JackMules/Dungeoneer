@@ -97,7 +97,8 @@ namespace Dungeoneer.Model
 
 		public void WriteXML()
 		{
-			XmlWriter xmlWriter = XmlWriter.Create("ActorLibrary.xml");
+			XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
+			XmlWriter xmlWriter = XmlWriter.Create("ActorLibrary.xml", settings);
 
 			xmlWriter.WriteStartDocument();
 			xmlWriter.WriteStartElement("ActorLibrary");
