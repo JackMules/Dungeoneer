@@ -705,7 +705,7 @@ namespace Dungeoneer.Utility
 								}
 								else if (identifier == "Attack" || identifier == "Full Attack")
 								{
-									string[] splitStrs = { "or" };
+									string[] splitStrs = { " or " };
 									foreach (string attackSetStr in entry.Split(splitStrs, StringSplitOptions.RemoveEmptyEntries))
 									{
 										Model.AttackSet attackSet = new Model.AttackSet
