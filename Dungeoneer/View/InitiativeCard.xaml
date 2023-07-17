@@ -46,11 +46,11 @@
 						</DataTrigger>
 						<DataTrigger Binding="{Binding Readied, UpdateSourceTrigger=PropertyChanged}" 
 															 Value="True">
-							<Setter Property="Background" Value="#ffd8d8"/>
+							<Setter Property="Background" Value="LightSeaGreen"/>
 						</DataTrigger>
 						<DataTrigger Binding="{Binding Delayed, UpdateSourceTrigger=PropertyChanged}" 
 															 Value="True">
-							<Setter Property="Background" Value="#ffead8"/>
+							<Setter Property="Background" Value="LightSkyBlue"/>
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>
@@ -64,13 +64,11 @@
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Width="70" HorizontalAlignment="Right" 
 										VerticalAlignment="Center" Margin="4,4">
-					<Button Width="70" 
-									Command="{Binding AdvanceTurnState}">
+					<Button Width="70" Command="{Binding AdvanceTurnState}">
 						<Button.IsEnabled>
 							<MultiBinding Converter="{StaticResource booleanAndConverter}">
-								<Binding Path="InitiativeValueViewModel.InitiativeSet"/>
-								<Binding Path="TurnNotEnded"/>
-							</MultiBinding>
+                                <Binding Path="InitiativeValueViewModel.InitiativeSet"/>
+                            </MultiBinding>
 						</Button.IsEnabled>
 						<Button.Style>
 							<Style TargetType="{x:Type Button}">

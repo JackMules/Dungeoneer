@@ -33,7 +33,13 @@ namespace Dungeoneer.ViewModel
 			encounterViewModel.OnInitiativeTrackChange += OnInitiativeTrackChange;
 			if (encounterViewModel.InitiativeTrack.Count > 0)
 			{
-				_currentActorName = encounterViewModel.InitiativeTrack.First().ActorViewModel.ActorName;
+				foreach (var item in encounterViewModel.InitiativeTrack)
+                {
+					if (!item.Delayed)
+                    {
+						_currentActorName = item.ActorViewModel.ActorName;
+                    }
+                }
 			}
 		}
 

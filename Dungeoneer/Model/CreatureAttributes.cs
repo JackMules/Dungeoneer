@@ -538,6 +538,7 @@ namespace Dungeoneer.Model
 					SetFrightened();
 					break;
 				case Types.Effect.Grappling:
+					SetGrappling();
 					break;
 				case Types.Effect.Helpless:
 					SetHelpless();
@@ -647,6 +648,12 @@ namespace Dungeoneer.Model
 			ModifyAttackModifier(Types.Ability.Strength, -2);
 			ModifyAttackModifier(Types.Ability.Dexterity, -2);
 			ModifySaves(-2);
+		}
+
+		public void SetGrappling()
+        {
+			ArmorClass = FlatFootedArmorClass;
+			TouchArmorClass -= Methods.GetAbilityModifier(Dexterity);
 		}
 
 		public void SetHelpless()

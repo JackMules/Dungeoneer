@@ -107,7 +107,7 @@ namespace Dungeoneer.ViewModel
 				bool roundComplete = true;
 				foreach (InitiativeCardViewModel initCard in InitiativeTrack)
 				{
-					if (!initCard.TurnEnded)
+					if (!initCard.TurnEnded && !initCard.Delayed && !initCard.Readied)
 					{
 						roundComplete = false;
 					}
@@ -120,6 +120,24 @@ namespace Dungeoneer.ViewModel
 				return false;
 			}
 		}
+
+		public int XPEarned
+        {
+            get
+            {
+				int xpTotal = 0;
+				foreach (var initiativeCard in InitiativeTrack)
+                {
+					var initCard = initiativeCard as CreatureInitiativeCardViewModel;
+					if (initCard != null &&
+						initCard.ActorViewModel.Dead)
+                    {
+						xpTotal += Methods.CalculateXP(initCard.ActorViewModel.ChallengeRating);
+                    }
+                }
+				return xpTotal;
+            }
+        }
 
 		public FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{

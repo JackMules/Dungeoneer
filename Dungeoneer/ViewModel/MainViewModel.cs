@@ -25,6 +25,7 @@ namespace Dungeoneer.ViewModel
 			_editActor = new Command(ExecuteEditActor);
 			_loadActorLibrary = new Command(ExecuteLoadActorLibrary);
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
+			_clearActorLibrary = new Command(ExecuteClearActorLibrary);
 			_exit = new Command(ExecuteExit);
 			_deleteCard = new Command(ExecuteDeleteCard);
 			_createPlayerActor = new Command(ExecuteCreatePlayerActor);
@@ -48,6 +49,7 @@ namespace Dungeoneer.ViewModel
 		private Command _editActor;
 		private Command _loadActorLibrary;
 		private Command _saveActorLibrary;
+		private Command _clearActorLibrary;
 		private Command _exit;
 		private Command _createPlayerActor;
 		private Command _createCreature;
@@ -204,6 +206,16 @@ namespace Dungeoneer.ViewModel
 		{
 			ActorLibrary.WriteXML();
 		}
+
+		public Command ClearActorLibrary
+		{
+			get { return _clearActorLibrary; }
+		}
+
+		private void ExecuteClearActorLibrary()
+        {
+			ActorLibrary.Clear();
+        }
 
 		public Command CreatePlayerActor
 		{

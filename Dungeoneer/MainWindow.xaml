@@ -41,7 +41,8 @@
 					<Separator/>
 					<MenuItem Header="_Load Actor Data" Command="{Binding LoadActorLibrary}"/>
 					<MenuItem Header="_Save Actor Data" Command="{Binding SaveActorLibrary}"/>
-					<MenuItem Header="_Exit" Command="{Binding Exit}"/>
+                    <MenuItem Header="_Clear Actor Data" Command="{Binding ClearActorLibrary}"/>
+                    <MenuItem Header="_Exit" Command="{Binding Exit}"/>
 				</MenuItem>
 				<Button Content="Unsaved!" FontSize="12" FontWeight="Bold" Background="Yellow" 
 							 Command="{Binding SaveActorLibrary}">
@@ -70,7 +71,10 @@
 									<Label Content="{Binding Encounter.Round}" Margin="0,0,5,0" Background="White" 
 												 FontWeight="Bold" MinWidth="25"/>
 									<Button Content="Next Round" Command="{Binding Encounter.NextRound}" Margin="5,0"/>
-								</StackPanel>
+                                    <Label Content="XP Earned" FontWeight="Bold" Margin="5,0,0,0"/>
+                                    <Label Content="{Binding Encounter.XPEarned}" Margin="0,0,5,0" Background="White"
+                                           FontWeight="Bold" MinWidth="70"/>
+                                </StackPanel>
 								<Label/>
 							</DockPanel>
 						</Border>

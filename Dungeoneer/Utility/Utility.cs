@@ -1330,7 +1330,7 @@ namespace Dungeoneer.Utility
 
 		public static int GetAbilityModifier(int abilityScore)
 		{
-			return (abilityScore - 10) / 2;
+			return (int)Math.Floor((abilityScore - 10.0) / 2.0);
 		}
 
 		public static bool IsWeaponDamageType(Types.Damage damageType)

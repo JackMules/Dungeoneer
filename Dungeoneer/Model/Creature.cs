@@ -532,21 +532,7 @@ namespace Dungeoneer.Model
 		{
 			get
 			{
-				if (CombatReflexes)
-				{
-					return true;
-				}
-				else
-				{
-					if (FlatFooted)
-					{
-						return false;
-					}
-					else
-					{
-						return true;
-					}
-				}
+				return !Grappling && !FlatFooted;
 			}
 		}
 
@@ -567,6 +553,22 @@ namespace Dungeoneer.Model
 				NotifyPropertyChanged("AttacksOfOpportunity");
 			}
 		}
+
+		public bool Grappling
+		{
+			get
+			{
+				foreach (Effect.Effect effect in Effects)
+				{
+					if (effect.EffectType == Types.Effect.Grappling)
+					{
+						return true;
+					}
+				}
+
+				return false;
+			}
+        }
 
 		public bool FlatFooted
 		{
@@ -597,6 +599,10 @@ namespace Dungeoneer.Model
 		private int CalculateAttacksOfOpportunity()
 		{
 			int aoo = 0;
+			if (!Threatening)
+            {
+				return aoo;
+            }
 			if (CombatReflexes)
 			{
 				int dexMod = Methods.GetAbilityModifier(GetEffectiveAttributes().Dexterity);
@@ -604,14 +610,7 @@ namespace Dungeoneer.Model
 			}
 			else
 			{
-				if (FlatFooted)
-				{
-					aoo = 0;
-				}
-				else
-				{
-					aoo = 1;
-				}
+				aoo = 1;
 			}
 
 			return aoo;

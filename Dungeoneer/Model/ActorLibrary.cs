@@ -55,6 +55,13 @@ namespace Dungeoneer.Model
 			ReadXML();
 		}
 
+		public void Clear()
+        {
+			Characters.Clear();
+			Enemies.Clear();
+			Modified = true;
+        }
+
 		public void AddActor(Actor actor)
 		{
 			if (actor is PlayerActor)

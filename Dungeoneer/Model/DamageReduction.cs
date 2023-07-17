@@ -54,15 +54,22 @@ namespace Dungeoneer.Model
 
 			if (!damage.IsEnergyDamage())
 			{
-				foreach (Types.Damage drDamageType in DamageTypes.ToList())
+				if (DamageTypes.Count == 0)
 				{
-					bool matched = damage.Contains(drDamageType);
-
-					// If none of the weapon's damage qualities match this part of the damage type, then 
-					if (!matched)
+					bypassed = false;
+				}
+				else
+				{
+					foreach (Types.Damage drDamageType in DamageTypes.ToList())
 					{
-						bypassed = false;
-						break;
+						bool matched = damage.Contains(drDamageType);
+
+						// If none of the weapon's damage qualities match this part of the damage type, then 
+						if (!matched)
+						{
+							bypassed = false;
+							break;
+						}
 					}
 				}
 			}

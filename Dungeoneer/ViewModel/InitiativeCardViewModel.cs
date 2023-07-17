@@ -42,7 +42,8 @@ namespace Dungeoneer.ViewModel
 			switch (TurnState)
 			{
 			case Types.TurnState.NotStarted:	StartTurn();	break;
-			case Types.TurnState.Started:			EndTurn();		break;
+			case Types.TurnState.Started:		EndTurn();		break;
+			case Types.TurnState.Ended:			TurnState = Types.TurnState.Started; break;
 			}
 		}
 

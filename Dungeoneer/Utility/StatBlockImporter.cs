@@ -613,7 +613,7 @@ namespace Dungeoneer.Utility
 									attributes.Size = Methods.GetSizeFromString(words[0]);
 									string typeStr = string.Join(" ", words.Skip(1));
 
-									string typePattern = @"\s*(?<Type>\w+)\s*(\((?<SubTypes>\D+)\))?";
+									string typePattern = @"\s*(?<Type>\w+\s?\w*)\s*(\((?<SubTypes>\D+)\))?";
 									Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
 									Match typeMatch = typeRegex.Match(typeStr);
 
