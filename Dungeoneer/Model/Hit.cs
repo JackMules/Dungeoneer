@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
 	[Serializable]
-	public class Hit : HitPointChange
+	public class Hit : BaseModel, IHitPointChange
 	{
 		public Hit(CreatureAttributes creatureAttributes)
 		{
@@ -35,6 +36,11 @@ namespace Dungeoneer.Model
 		public Hit(Hit other)
 		{
 			DamageSets = new List<DamageSet>(other.DamageSets);
+		}
+
+		public Hit(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
 		}
 
 		private List<DamageSet> _damageSets;
@@ -71,7 +77,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public override int GetHitPointChange()
+		public int GetHitPointChange()
 		{
 			return CreatureAttributes.CalculateHitPointChange(DamageSets);
 		}
@@ -92,6 +98,51 @@ namespace Dungeoneer.Model
 			outStr += String.Join(" + ", damageStrs);
 
 			return outStr + " damage)";
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("Hit");
+
+			Weapon.WriteXML(xmlWriter);
+
+			xmlWriter.WriteStartElement("DamageSets");
+			foreach (DamageSet damageSet in DamageSets)
+			{
+				damageSet.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
+
+			CreatureAttributes.WriteXML(xmlWriter);
+
+			xmlWriter.WriteEndElement();
+		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			foreach (XmlNode node in xmlNode.ChildNodes)
+			{
+				if (node.Name == "Weapon")
+				{
+					Weapon = new Weapon(node);
+				}
+				else if (node.Name == "DamageSets")
+				{
+					DamageSets = new List<DamageSet>();
+					foreach (XmlNode childNode in node.ChildNodes)
+					{
+						if (childNode.Name == "DamageSet")
+						{
+							var damageSet = new DamageSet(childNode);
+							DamageSets.Add(damageSet);
+						}
+					}
+				}
+				else if (node.Name == "CreatureAttributes")
+				{
+					CreatureAttributes = new CreatureAttributes(node);
+				}
+			}
 		}
 	}
 }

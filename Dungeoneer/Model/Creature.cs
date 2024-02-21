@@ -36,7 +36,7 @@ namespace Dungeoneer.Model
 
 		private CreatureAttributes _baseCreatureAttributes = new CreatureAttributes();
 		private CreatureAttributes _modifiedAttributes = new CreatureAttributes();
-		private FullyObservableCollection<HitPointChange> _hitPointChanges = new FullyObservableCollection<HitPointChange>();
+		private FullyObservableCollection<IHitPointChange> _hitPointChanges = new FullyObservableCollection<IHitPointChange>();
 		private int _usedAttacksOfOpportunity;
 
 		public override void StartEncounter()
@@ -74,7 +74,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public FullyObservableCollection<HitPointChange> HitPointChanges
+		public FullyObservableCollection<IHitPointChange> HitPointChanges
 		{
 			get { return _hitPointChanges; }
 			set
@@ -97,7 +97,7 @@ namespace Dungeoneer.Model
 			return effectiveAttributes;
 		}
 
-		public void AddHitPointChange(HitPointChange hitPointChange)
+		public void AddHitPointChange(IHitPointChange hitPointChange)
 		{
 			HitPointChanges.Add(hitPointChange);
 
@@ -120,7 +120,7 @@ namespace Dungeoneer.Model
 			int maxHP = GetEffectiveAttributes().HitPoints;
 			int hp = maxHP;
 
-			foreach (HitPointChange hitPointChange in HitPointChanges)
+			foreach (IHitPointChange hitPointChange in HitPointChanges)
 			{
 				hp += hitPointChange.GetHitPointChange();
 
@@ -651,6 +651,18 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("Creature");
 		}
 
+		public override void WritePropertyXML(XmlWriter xmlWriter)
+		{
+			base.WritePropertyXML(xmlWriter);
+
+			xmlWriter.WriteStartElement("HitPointChanges");
+			foreach (IHitPointChange hpChange in HitPointChanges)
+			{
+				hpChange.WriteXML(xmlWriter);
+			}
+			xmlWriter.WriteEndElement();
+		}
+
 		public override void WriteAttributesXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("BaseAttributes");
@@ -660,6 +672,33 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteStartElement("ModifiedAttributes");
 			ModifiedAttributes.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
+		}
+
+		public override void ReadPropertyXML(XmlNode xmlNode)
+		{
+			base.ReadPropertyXML(xmlNode);
+
+			try
+			{
+				foreach (XmlNode childNode in xmlNode.ChildNodes)
+				{
+					if (childNode.Name == "HitPointChanges")
+					{
+						foreach (XmlNode childChildNode in childNode.ChildNodes)
+						{
+							if (childChildNode.Name == "Hit")
+							{
+								var hit = new Hit(childChildNode);
+								HitPointChanges.Add(hit);
+							}
+						}
+					}
+				}
+			}
+			catch (XmlException e)
+			{
+				MessageBox.Show(e.ToString());
+			}
 		}
 
 		public override void ReadAttributesXML(XmlNode xmlNode)

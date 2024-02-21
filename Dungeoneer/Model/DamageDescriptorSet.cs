@@ -317,12 +317,12 @@ namespace Dungeoneer.Model
 
 		public void WriteXML(XmlWriter xmlWriter)
 		{
+			xmlWriter.WriteStartElement(typeof(DamageDescriptorSet).Name);
 			foreach (Types.Damage damageType in _descriptors)
 			{
-				xmlWriter.WriteStartElement("DamageType");
-				xmlWriter.WriteString(Methods.GetDamageTypeString(damageType));
-				xmlWriter.WriteEndElement();
+				damageType.WriteXML(xmlWriter);
 			}
+			xmlWriter.WriteEndElement();
 		}
 
 		public void ReadXML(XmlNode xmlNode)
@@ -331,10 +331,7 @@ namespace Dungeoneer.Model
 
 			foreach (XmlNode childNode in xmlNode.ChildNodes)
 			{
-				if (childNode.Name == "DamageType")
-				{
-					_descriptors.Add(Methods.GetDamageTypeFromString(childNode.InnerText));
-				}
+				_descriptors.Add(Methods.GetDamageTypeFromString(childNode.InnerText));
 			}
 		}
 	}

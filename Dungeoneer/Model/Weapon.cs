@@ -91,10 +91,13 @@ namespace Dungeoneer.Model
 		public void WriteXML(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("Weapon");
-			
-			xmlWriter.WriteStartElement("Name");
-			xmlWriter.WriteString(Name);
-			xmlWriter.WriteEndElement();
+
+			if (Name != null)
+			{
+				xmlWriter.WriteStartElement("Name");
+				xmlWriter.WriteString(Name);
+				xmlWriter.WriteEndElement();
+			}
 
 			if (AbilityDamage)
 			{

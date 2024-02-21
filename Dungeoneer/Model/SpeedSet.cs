@@ -24,6 +24,11 @@ namespace Dungeoneer.Model
 			Init();
 		}
 
+		public SpeedSet(XmlNode node)
+		{
+			ReadXML(node);
+		}
+
 		private void Init()
 		{
 			_speeds = new FullyObservableCollection<Speed>();
@@ -88,6 +93,8 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Speed")
 					{
+						if (Speeds == null)
+							Speeds = new FullyObservableCollection<Speed>();
 						Speeds.Add(new Speed(childNode));
 					}
 				}

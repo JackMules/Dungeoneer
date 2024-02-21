@@ -27,7 +27,7 @@ namespace Dungeoneer.ViewModel
 		}
 
 		public HitPointChangeDialogViewModel(FullyObservableCollection<Model.WeaponSet> weaponList,
-			string currentActorName, Model.HitPointChange hitPointChange)
+			string currentActorName, Model.IHitPointChange hitPointChange)
 		{
 			_weaponList = weaponList;
 			_currentActorName = currentActorName;
@@ -201,6 +201,7 @@ namespace Dungeoneer.ViewModel
 
 		private void Reset()
 		{
+			WeaponName = "";
 			DamageTypeSelectorViewModel1.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
 			DamageTypeSelectorViewModel2.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
 			DamageTypeSelectorViewModel3.SetFromDamageDescriptorSet(new Model.DamageDescriptorSet());
@@ -319,9 +320,9 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public Model.HitPointChange GetHit(Model.CreatureAttributes creatureAttributes)
+		public Model.IHitPointChange GetHit(Model.CreatureAttributes creatureAttributes)
 		{
-			Model.HitPointChange hitPointChange = new Model.HitPointChange();
+			Model.IHitPointChange hitPointChange = null;
 			bool askForInput = true;
 			string feedback = null;
 			while (askForInput)

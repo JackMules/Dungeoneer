@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Utility
 {
@@ -55,6 +56,7 @@ namespace Dungeoneer.Utility
 		public static readonly string DamageTypeSlashing = "Slashing";
 		public static readonly string DamageTypeSonic = "Sonic";
 		public static readonly string DamageTypeSubdual = "Subdual";
+		public static readonly string DamageTypeUntyped = "Untyped";
 
 		public static readonly string AbilityStrength = "Strength";
 		public static readonly string AbilityDexterity = "Dexterity";
@@ -349,6 +351,7 @@ namespace Dungeoneer.Utility
 			Slashing,
 			Sonic,
 			Subdual,
+			Untyped,
 		}
 
 		public enum Effect
@@ -450,6 +453,21 @@ namespace Dungeoneer.Utility
 			Plant,
 			Undead,
 			Vermin,
+		}
+	}
+
+	public static class DamageExtensions
+	{
+		public static void WriteXML(this Types.Damage damageValue, XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("Damage");
+			xmlWriter.WriteString(damageValue.ToString());
+			xmlWriter.WriteEndElement();
+		}
+
+		public static Types.Damage ReadXML(this Types.Damage damageValue, XmlNode xmlNode)
+		{
+			return Methods.GetDamageTypeFromString(xmlNode.InnerText);
 		}
 	}
 
@@ -1073,9 +1091,13 @@ namespace Dungeoneer.Utility
 			{
 				return Types.Damage.Subdual;
 			}
+			else if(String.Equals(str, Constants.DamageTypeUntyped, StringComparison.OrdinalIgnoreCase))
+			{
+				return Types.Damage.Untyped;
+			}
 			else
 			{
-				throw new FormatException("Damage type \'" + str + "\' not recognised.");
+				return Types.Damage.Untyped;
 			}
 		}
 		

@@ -103,7 +103,7 @@ namespace Dungeoneer.ViewModel
 			}
 		}
 
-		public FullyObservableCollection<Model.HitPointChange> HitPointChanges
+		public FullyObservableCollection<Model.IHitPointChange> HitPointChanges
 		{
 			get { return Actor.HitPointChanges; }
 			set
@@ -370,7 +370,7 @@ namespace Dungeoneer.ViewModel
 		private void ExecuteAddHitPointChange()
 		{
 			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName);
-			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
+			Model.IHitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
 			if (hitPointChange != null &&
 				(hitPointChange is Model.Heal ||
 				hitPointChange is Model.Hit))
@@ -384,7 +384,7 @@ namespace Dungeoneer.ViewModel
 		{
 			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName,
 				Actor.HitPointChanges[SelectedHitPointChange]);
-			Model.HitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
+			Model.IHitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
 			if (hitPointChange != null &&
 				(hitPointChange is Model.Heal ||
 				hitPointChange is Model.Hit))

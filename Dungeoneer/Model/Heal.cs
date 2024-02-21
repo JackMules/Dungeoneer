@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
 	[Serializable]
-	public class Heal : HitPointChange
+	public class Heal : BaseModel, IHitPointChange
 	{
 		public Heal(int amount)
 		{
@@ -26,7 +27,7 @@ namespace Dungeoneer.Model
 			}
 		}
 
-		public override int GetHitPointChange()
+		public int GetHitPointChange()
 		{
 			return Amount;
 		}
@@ -34,6 +35,13 @@ namespace Dungeoneer.Model
 		public override string ToString()
 		{
 			return "+" + Amount.ToString() + "hp (healing)";
+		}
+
+		public void WriteXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("Heal");
+			xmlWriter.WriteString(Amount.ToString());
+			xmlWriter.WriteEndElement();
 		}
 	}
 }

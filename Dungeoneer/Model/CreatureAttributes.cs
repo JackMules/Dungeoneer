@@ -88,6 +88,11 @@ namespace Dungeoneer.Model
 			SpecialQualities = other.SpecialQualities;
 		}
 
+		public CreatureAttributes(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
+		}
+
 		private Types.Creature _type;
 		private float _challengeRating;
 		private FullyObservableCollection<AttackSet> _attackSets;
@@ -1187,7 +1192,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "AttackSets")
 					{
-						AttackSets.Clear();
+						AttackSets = new FullyObservableCollection<AttackSet>();
 						foreach (XmlNode attackSetNode in childNode.ChildNodes)
 						{
 							if (attackSetNode.Name == "AttackSet")
@@ -1254,7 +1259,7 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Speed")
 					{
-						Speed.ReadXML(childNode);
+						Speed = new SpeedSet(childNode);
 					}
 					else if (childNode.Name == "FortitudeSave")
 					{
@@ -1270,6 +1275,9 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Feats")
 					{
+						if (Feats == null)
+							Feats = new List<string>();
+
 						foreach (XmlNode featNode in childNode.ChildNodes)
 						{
 							if (featNode.Name == "Feat")
@@ -1292,6 +1300,9 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "DamageReductions")
 					{
+						if (DamageReductions == null)
+							DamageReductions = new ObservableCollection<DamageReduction>();
+
 						foreach (XmlNode drNode in childNode.ChildNodes)
 						{
 							if (drNode.Name == "DamageReduction")
@@ -1304,14 +1315,17 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Immunities")
 					{
-						Immunities.ReadXML(childNode);
+						Immunities = new DamageDescriptorSet(childNode);
 					}
 					else if (childNode.Name == "Vulnerbilities")
 					{
-						Vulnerabilities.ReadXML(childNode);
+						Vulnerabilities = new DamageDescriptorSet(childNode);
 					}
 					else if (childNode.Name == "EnergyResistances")
 					{
+						if (EnergyResistances == null)
+							EnergyResistances = new ObservableCollection<EnergyResistance>();
+
 						foreach (XmlNode erNode in childNode.ChildNodes)
 						{
 							if (erNode.Name == "EnergyResistance")
@@ -1336,6 +1350,9 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "SpecialQualities")
 					{
+						if (SpecialQualities == null)
+							SpecialQualities = new List<string>();
+
 						foreach (string specialQuality in childNode.InnerText.Split(','))
 						{
 							SpecialQualities.Add(specialQuality.Trim());

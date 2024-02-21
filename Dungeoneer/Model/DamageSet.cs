@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Dungeoneer.Model
 {
@@ -19,6 +20,11 @@ namespace Dungeoneer.Model
 		{
 			Amount = other.Amount;
 			DamageDescriptorSet = new DamageDescriptorSet(other.DamageDescriptorSet);
+		}
+
+		public DamageSet(XmlNode xmlNode)
+		{
+			ReadXML(xmlNode);
 		}
 
 		private int _amount;
@@ -47,6 +53,34 @@ namespace Dungeoneer.Model
 		public override string ToString()
 		{
 			return Amount.ToString() + " " + DamageDescriptorSet.ToString();
+		}
+
+		public virtual void WriteXML(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("DamageSet");
+			
+			xmlWriter.WriteStartElement("Amount");
+			xmlWriter.WriteString(Amount.ToString());
+			xmlWriter.WriteEndElement();
+
+			DamageDescriptorSet.WriteXML(xmlWriter);
+
+			xmlWriter.WriteEndElement();
+		}
+
+		public void ReadXML(XmlNode xmlNode)
+		{
+			foreach (XmlNode childNode in xmlNode.ChildNodes)
+			{
+				if (childNode.Name == "Amount")
+				{
+					Amount = Convert.ToInt32(childNode.InnerText);
+				}
+				else if (childNode.Name == "DamageDescriptorSet")
+				{
+					DamageDescriptorSet = new DamageDescriptorSet(childNode);
+				}
+			}
 		}
 	}
 }
