@@ -1064,11 +1064,28 @@ namespace Dungeoneer.Utility
 
 		private static Model.DamageDescriptorSet GetDamageDescriptorSetFromString(string str, string separator = null)
 		{
+			if (separator == null)
+				separator = " ";
+			string[] sep = new string[] {separator};
+			var res = str.Split(sep, StringSplitOptions.None);
+			Model.DamageDescriptorSet damageDescriptorSet = new Model.DamageDescriptorSet();
+
+			foreach (string s in res)
+			{
+				try
+				{
+					damageDescriptorSet.Add(Methods.GetDamageTypeFromString(s.Trim()));
+				}
+				catch (FormatException)
+				{
+					// Format not recognised, never mind
+				}
+			}
+			/*
 			string separatorStr = separator != null ? @"(?!" + separator + @"\b)\b" : separator;
 			string typePattern = separatorStr + @"[a-z]+";	
 			Regex typeRegex = new Regex(typePattern, RegexOptions.IgnoreCase);
 			MatchCollection typeMatches = typeRegex.Matches(str);
-			Model.DamageDescriptorSet damageDescriptorSet = new Model.DamageDescriptorSet();
 
 			foreach (Match typeMatch in typeMatches)
 			{
@@ -1081,7 +1098,7 @@ namespace Dungeoneer.Utility
 					// Format not recognised, never mind
 				}
 			}
-
+			*/
 			return damageDescriptorSet;
 		}
 

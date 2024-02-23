@@ -312,7 +312,7 @@ namespace Dungeoneer.Model
 				damageStrings.Add(Methods.GetDamageTypeString(damageType));
 			}
 
-			return string.Join(" ", damageStrings);
+			return string.Join(" and ", damageStrings);
 		}
 
 		public void WriteXML(XmlWriter xmlWriter)

@@ -422,5 +422,8 @@
   <ItemGroup>
     <Resource Include="Icons8-Ios7-Military-Sword.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ActorLibrary.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
