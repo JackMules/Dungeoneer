@@ -1,0 +1,19 @@
+Medium Undead (Augmented Humanoid)
+Alignment: Neutral evil
+Initiative: +10 (+6 Dex, +4 Improved Initiative); Senses: Listen +13 and Spot +13
+Languages: telepathy 100 ft.
+AC: 30 (+6 Dex, +12 natural, +2 bracers of armor), touch 16, flat-footed 24
+Hit Dice: 10d12 (75 hp); DR: 10/magic or silver
+Fort +5, Ref +13, Will +14 Speed: 20 ft.
+Space: 5 ft./5 ft.
+Base Attack +10; Grapple +16
+Attack: Slam +11 melee, or quarterstaff +11 melee, or masterwork light crossbow with masterwork bolts +13 ranged
+Full Attack: Slam +11 melee, or quarterstaff +11 melee, or masterwork light crossbow with masterwork bolts +13 ranged
+Damage: Slam 1d6+9 plus energy drain, quarterstaff 1d6+9, masterwork light crossbow with masterwork bolts 1d8/19-20
+Special Attacks/Actions: Blood drain, domination, energy drain Abilities: Str 22, Dex 22, Con -, Int 21, Wis 16, Cha 14
+Special Qualities: Alternate form, children of the night, cold resistance 20, control weather, create spawn, electricity resistance 20, fast healing 5, gaseous form, spider climb, telekinesis, turn resistance +8, undead traits, (10-level female human wizard vampire)
+Feats: Alertness; Brew Potion; Combat Reflexes; Dodge; Improved Initiative; Iron Will; Leadership; Lightning Reflexes; Quicken Spell; Scribe Scroll
+Skills: Bluff +10, Concentration +15, Diplomacy +10, Hide +14, Intimidate +10, Knowledge (arcana) +18, Knowledge (the planes) +18, Listen +13, Move Silently +14, Search +13, Sense Motive +15, Skills: Craft (alchemy) +12, Spellcraft +18, and Spot +13
+Advancement: By character class Climate/Terrain: Any land and underground
+Organization: Solitary
+Treasure/Possessions: Quadruple standard 

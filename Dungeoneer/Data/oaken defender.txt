@@ -1,0 +1,26 @@
+Oaken Defender CR 12
+Usually NG Huge plant
+Init +0; Senses darkvision 60 ft., low-light vision, tremorsense 60 ft.; Listen +1, Spot +1
+Languages understands Sylvan, empathic link 900 ft.
+AC 23, touch 8, flat-footed 23 (–2 size, +15 natural)
+hp 207 (18 HD); DR 10/magic
+Immune plant immunities
+SR 24
+Fort +18, Ref +6, Will +7
+Speed 20 ft. (4 squares), burrow 10 ft. (loose soil)
+Melee gore +23 (2d6+12) and
+2 slams +21 each (1d8+6)
+Space 15 ft.; Reach 10 ft.
+Base Atk +13; Grp +33
+Atk Options Cleave, Great Cleave, Power Attack, Whirlwind Attack, magic strike
+Abilities Str 35, Dex 10, Con 24, Int 8, Wis 13, Cha 13
+SQ find oaken defender, plant traits
+Feats Cleave, Diehard, Endurance, Great Cleave, Multiattack,
+Power Attack, Track, Whirlwind AttackB
+Skills Hide –8*, Listen +1, Intimidate +22, Spot +1
+*An oaken defender gains a +15 bonus on Hide checks
+when settled in its grove.
+Advancement 19–30 HD (Huge); 31–54 HD (Gargantuan)
+Empathic Link (Su) An oaken defender has an empathic link with the dryads of its grove, through which it can sense their needs and feelings.  
+This link extends up to 900 feet.
+Find Oaken Defender (Su) As the discern location spell; always active; caster level 18th. An oaken defender can use this ability only to find another oaken defender on the same plane as itself. All oaken defenders are considered to have seen one another for the purpose of this ability.

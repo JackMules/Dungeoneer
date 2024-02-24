@@ -1,0 +1,22 @@
+Size/Type: Large Plant
+Hit Dice: 15d8+135 (202 hp)
+Initiative: –2
+Speed: 10 ft. (2 squares)
+Armor Class: 27 (–1 size, –2 Dex, +15 natural, +5 deflection), touch 12, flat-footed 27
+Base Attack/Grapple: +11/+29
+Attack: Slam +24 melee (2d8+14)
+Full Attack: 3 slams +24 melee (2d8+14)
+Space/Reach: 10 ft./20 ft.
+Special Attacks: Death curse, despair song, spell-like abilities, wind blast
+Special Qualities: Damage reduction 10/slashing, lowlight vision, plant traits, unholy grace, vulnerability to fire
+Saves: Fort +23, Ref +8, Will +14
+Abilities: Str 39, Dex 6, Con 29, Int 12, Wis 14, Cha 21
+Skills: Hide +7*, Knowledge (nature) +10, Listen +17, Listen +9, Move Silently +8, Spot +12, Survival +17 Survival +9 (+11 aboveground)
+Feats: Blind-Fight, Diehard, Endurance, Improved Sunder, Iron Will, Power Attack
+Environment: Temperate marshes
+Organization: Solitary
+Challenge Rating: 12
+Treasure: Standard coins, no goods, standard items
+Alignment: Always neutral evil
+Advancement: 16–24 HD (Large); 25–48 HD (Huge)
+Level Adjustment: —

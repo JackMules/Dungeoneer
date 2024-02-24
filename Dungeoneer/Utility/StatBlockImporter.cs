@@ -701,7 +701,8 @@ namespace Dungeoneer.Utility
 								else if (identifier == "Base Attack/Grapple")
 								{
 									attributes.BaseAttackBonus = numbers[0];
-									attributes.GrappleModifier = numbers[1];
+									if (numbers.Count > 1)
+										attributes.GrappleModifier = numbers[1];
 								}
 								else if (identifier == "Attack" || identifier == "Full Attack")
 								{
@@ -907,6 +908,19 @@ namespace Dungeoneer.Utility
 									if (fastHealingMatch.Success)
 									{
 										attributes.FastHealing = Convert.ToInt32(fastHealingMatch.Groups["Value"].Value);
+									}
+
+									string halfDamagePattern = @"half damage from (?<Types>.+?)(\,|\z)";
+									Regex halfDamageRegex = new Regex(halfDamagePattern, RegexOptions.IgnoreCase);
+									MatchCollection halfDamageMatches = halfDamageRegex.Matches(entry);
+
+									foreach (Match halfDamageMatch in halfDamageMatches)
+									{
+										Model.DamageDescriptorSet damageTypes = GetDamageDescriptorSetFromString(halfDamageMatch.Groups["Types"].Value, "and");
+										foreach (Types.Damage damageType in damageTypes.ToList())
+										{
+											attributes.HalfDamage.Add(damageType);
+										}
 									}
 								}
 								else if (identifier == "Saves")

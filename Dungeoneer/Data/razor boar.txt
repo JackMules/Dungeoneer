@@ -1,0 +1,22 @@
+Size/Type: 	Large Magical Beast
+Hit Dice: 	15d10+45 (127 hp)
+Initiative: 	+1
+Speed: 	50 ft. (10 squares)
+Armor Class: 	27 (-1 size, +1 Dex, +17 natural), touch 10, flat-footed 26
+Base Attack/Grapple: 	+15/+27
+Attack: 	Tusk slash +22 melee (1d8+8) or 1 bite +22 melee (1d8+8)
+Full Attack: 	Tusk slash +22 melee (1d8+8) and 2 hooves +17 melee (1d4+4) or 1 bite +22 melee (1d8+8)
+Space/Reach: 	10 ft./5 ft.
+Special Attacks: 	Trample 2d6+12, vorpal tusks
+Special Qualities: 	Damage reduction 5/-, darkvision 60 ft., fast healing 10, low-light vision, scent, spell resistance 21
+Saves: 	Fort +12, Ref +10, Will +7
+Abilities: 	Str 27, Dex 13, Con 17, Int 2, Wis 14, Cha 9
+Skills: 	Listen +8, Spot +8, Survival +8
+Feats: 	Alertness, Awesome Blow, Diehard, Endurance, Improved Bull Rush, Power Attack
+Environment: 	Temperate or warm forest or mountains
+Organization: 	Solitary
+Challenge Rating: 	10
+Treasure: 	None
+Alignment: 	Always neutral
+Advancement: 	16-30 HD (Large); 31-45 HD (Huge)
+Level Adjustment: 	—

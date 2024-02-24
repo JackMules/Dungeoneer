@@ -1,0 +1,22 @@
+Size/Type: Large Vermin
+Hit Dice: 12d8+72 (126 hp)
+Initiative: +0
+Speed: 50 ft. (10 squares), burrow 10 ft.
+Armor Class: 24 (–1 size, +15 natural), touch 9, fl at-footed 24
+Base Attack/Grapple: +9/+21
+Attack: Claw +17 melee (2d8+8)
+Full Attack: 2 claws +17 melee (2d8+8) and bite +14 melee (1d8+4)
+Space/Reach: 10 ft./10 ft.
+Special Attacks: Rend 4d8+12, shake the earth, sonic chime, trample 4d6+12
+Special Qualities: Darkvision 60 ft., immunity to sonic, scent, sonic healing, vermin traits
+Saves: Fort +14, Ref +6, Will +4
+Abilities: Str 26, Dex 10, Con 23, Int —, Wis 11, Cha 11
+Skills: Balance +8, Jump +16, Listen +10, Spot +10
+Feats: Alertness, Improved Natural Attack (claw), Lightning Reflexes, Multiattack, Weapon Focus (claw)
+Environment: Underground
+Organization: Solitary or colony (3–12)
+Challenge Rating: 10
+Treasure: None
+Alignment: Always neutral
+Advancement: —
+Level Adjustment: —

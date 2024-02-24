@@ -488,6 +488,16 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public DamageDescriptorSet HalfDamage
+		{
+			get { return GetEffectiveAttributes().HalfDamage; }
+			set
+			{
+				ModifiedAttributes.HalfDamage = value;
+				NotifyPropertyChanged("HalfDamage");
+			}
+		}
+
 		public ObservableCollection<EnergyResistance> EnergyResistances
 		{
 			get { return GetEffectiveAttributes().EnergyResistances; }

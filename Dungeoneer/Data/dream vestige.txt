@@ -1,0 +1,22 @@
+Size/Type: Huge Undead (Incorporeal)
+Hit Dice: 17d12 (110 hp)
+Initiative: +9
+Speed: Fly 40 ft. (perfect)
+Armor Class: 31 (–2 size, +5 Dex, +18 deflection), touch 31, flat-footed 26
+Base Attack/Grapple: +8/+16
+Attack: Tendril +15 melee touch (3d6 plus form consumption)
+Full Attack: 4 tendrils +15 melee touch (3d6 plus form consumption)
+Space/Reach: 15 ft./20 ft.
+Special Attacks: Desecrating aura, form consumption, frightful presence
+Special Qualities: Blindsight 120 ft., damage reduction 10/—, darkvision 60 ft., deflective aura, dream travel, incorporeal traits, inescapable craving, self spawn, spell resistance 28, undead traits
+Saves: Fort +9, Ref +14, Will +19
+Abilities: Str —, Dex 20, Con —, Int 18, Wis 20, Cha 20
+Skills: Concentration +24, Diplomacy +6, Hide +16, Listen +25, Move Silently +24, Search +24, Sense Motive +25, Spellcraft +24, Spot +25, Survival +5 (+7 following tracks)
+Feats: Combat Reflexes, Great Fortitude, Iron Will, Improved Initiative, Lightning Reflexes, Weapon Finesse
+Environment: Any
+Organization: Solitary
+Challenge Rating: 16
+Treasure: Standard
+Alignment: Always chaotic evil
+Advancement: 18–25 HD (Huge); 26–51 HD (Gargantuan)
+Level Adjustment: —

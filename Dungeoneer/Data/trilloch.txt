@@ -1,0 +1,23 @@
+Small Outsider (Chaotic, Extraplanar, Incorporeal)
+Hit Dice: 8d8+24 (60 hp)
+Initiative: +8
+Speed: Fly 40 ft. (perfect) (8 squares)
+Armor Class: 19 (+1 size, +4 Dex, +4 deflection), touch 19, flat-footed 15
+Base Attack/Grapple: +8/+4
+Attack: —
+Full Attack: —
+Space/Reach: 5 ft./5 ft.
+Special Attacks: Control rage, death knell
+Special Qualities: Blindsight 60 ft., damage reduction 15/lawful, darkvision 60 ft., immunity to magic, incorporeal traits, natural invisibility, outsider traits
+Saves: Fort +9, Ref +10, Will +10
+Abilities: Str —, Dex 19, Con 17, Int 11, Wis 18, Cha 18
+Skills: Concentration +14, Hide +19, Intimidate +15, Listen +15, Move Silently +15, Search +11, Spot +15, Survival +15 (+17 following tracks)
+Feats: Ability Focus (control rage), Improved Initiative,
+Quicken Spell-Like Ability (death knell)
+Environment: Negative Energy Plane
+Organization: Solitary
+Challenge Rating: 8
+Treasure: None
+Alignment: Always chaotic neutral
+Advancement: 9–24 HD (Small)
+Level Adjustment: —

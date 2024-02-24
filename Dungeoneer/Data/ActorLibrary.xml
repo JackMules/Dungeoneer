@@ -17651,5 +17651,1234 @@
         </CreatureAttributes>
       </ModifiedAttributes>
     </Creature>
+    <Creature>
+      <ActorName>Night Hag</ActorName>
+      <Effects />
+      <HitPointChanges />
+      <BaseAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>1</InitiativeMod>
+          <Active>True</Active>
+          <Type>Outsider</Type>
+          <ChallengeRating>9</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>12</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>6</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>12</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>6</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>19</Strength>
+          <Dexterity>12</Dexterity>
+          <Constitution>18</Constitution>
+          <Intelligence>11</Intelligence>
+          <Wisdom>15</Wisdom>
+          <Charisma>12</Charisma>
+          <BaseAttackBonus>8</BaseAttackBonus>
+          <GrappleModifier>12</GrappleModifier>
+          <HitPoints>68</HitPoints>
+          <HitDice>8</HitDice>
+          <HitDieType>d8</HitDieType>
+          <ArmorClass>22</ArmorClass>
+          <TouchArmorClass>11</TouchArmorClass>
+          <FlatFootedArmorClass>21</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>20</LandSpeed>
+          </Speed>
+          <FortitudeSave>12</FortitudeSave>
+          <ReflexSave>9</ReflexSave>
+          <WillSave>10</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Combat Casting</Feat>
+            <Feat>Mounted Combat</Feat>
+          </Feats>
+          <Space>5</Space>
+          <Reach>5</Reach>
+          <Size>Medium</Size>
+          <DamageReductions>
+            <DamageReduction>
+              <Value>10</Value>
+              <DamageDescriptorSet>
+                <DamageType>Untyped</DamageType>
+                <DamageType>Magic</DamageType>
+              </DamageDescriptorSet>
+            </DamageReduction>
+          </DamageReductions>
+          <Immunities>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>25</SpellResistance>
+          <FastHealing>0</FastHealing>
+          <SpecialAttacks>Spell-like abilities, dream haunting</SpecialAttacks>
+          <SpecialQualities>Change shape, damage reduction 10/cold iron and magic, immunity to fire, cold, charm, sleep, and fear, spell resistance 25</SpecialQualities>
+        </CreatureAttributes>
+      </BaseAttributes>
+      <ModifiedAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>1</InitiativeMod>
+          <Active>True</Active>
+          <Type>Outsider</Type>
+          <ChallengeRating>9</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>12</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>6</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>12</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>6</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>19</Strength>
+          <Dexterity>12</Dexterity>
+          <Constitution>18</Constitution>
+          <Intelligence>11</Intelligence>
+          <Wisdom>15</Wisdom>
+          <Charisma>12</Charisma>
+          <BaseAttackBonus>8</BaseAttackBonus>
+          <GrappleModifier>12</GrappleModifier>
+          <HitPoints>68</HitPoints>
+          <HitDice>8</HitDice>
+          <HitDieType>d8</HitDieType>
+          <ArmorClass>22</ArmorClass>
+          <TouchArmorClass>11</TouchArmorClass>
+          <FlatFootedArmorClass>21</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>20</LandSpeed>
+          </Speed>
+          <FortitudeSave>12</FortitudeSave>
+          <ReflexSave>9</ReflexSave>
+          <WillSave>10</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Combat Casting</Feat>
+            <Feat>Mounted Combat</Feat>
+          </Feats>
+          <Space>5</Space>
+          <Reach>5</Reach>
+          <Size>Medium</Size>
+          <DamageReductions>
+            <DamageReduction>
+              <Value>10</Value>
+              <DamageDescriptorSet>
+                <DamageType>Untyped</DamageType>
+                <DamageType>Magic</DamageType>
+              </DamageDescriptorSet>
+            </DamageReduction>
+          </DamageReductions>
+          <Immunities>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>25</SpellResistance>
+          <FastHealing>0</FastHealing>
+          <SpecialAttacks>Spell-like abilities, dream haunting</SpecialAttacks>
+          <SpecialQualities>Change shape, damage reduction 10/cold iron and magic, immunity to fire, cold, charm, sleep, and fear, spell resistance 25</SpecialQualities>
+        </CreatureAttributes>
+      </ModifiedAttributes>
+    </Creature>
+    <Creature>
+      <ActorName>Cauchemar Nightmare</ActorName>
+      <Effects />
+      <HitPointChanges />
+      <BaseAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>6</InitiativeMod>
+          <Active>True</Active>
+          <Type>Outsider</Type>
+          <ChallengeRating>11</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Hoof</Name>
+                <Modifier>23</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>10</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>23</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>10</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>23</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>10</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>18</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>5</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>31</Strength>
+          <Dexterity>14</Dexterity>
+          <Constitution>24</Constitution>
+          <Intelligence>16</Intelligence>
+          <Wisdom>12</Wisdom>
+          <Charisma>12</Charisma>
+          <BaseAttackBonus>15</BaseAttackBonus>
+          <GrappleModifier>33</GrappleModifier>
+          <HitPoints>172</HitPoints>
+          <HitDice>15</HitDice>
+          <HitDieType>d8</HitDieType>
+          <ArmorClass>26</ArmorClass>
+          <TouchArmorClass>10</TouchArmorClass>
+          <FlatFootedArmorClass>24</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>40</LandSpeed>
+            <Speed>
+              <Distance>90</Distance>
+              <MovementType>Fly</MovementType>
+              <Manouverability>Good</Manouverability>
+            </Speed>
+          </Speed>
+          <FortitudeSave>16</FortitudeSave>
+          <ReflexSave>11</ReflexSave>
+          <WillSave>10</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Cleave</Feat>
+            <Feat>Improved Initiative</Feat>
+            <Feat>Power Attack</Feat>
+            <Feat>Run</Feat>
+            <Feat>Track</Feat>
+          </Feats>
+          <Space>15</Space>
+          <Reach>10</Reach>
+          <Size>Huge</Size>
+          <DamageReductions />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>0</SpellResistance>
+          <FastHealing>0</FastHealing>
+          <SpecialAttacks>Flaming hooves, smoke</SpecialAttacks>
+          <SpecialQualities>Astral projection, darkvision 60 ft., etherealness</SpecialQualities>
+        </CreatureAttributes>
+      </BaseAttributes>
+      <ModifiedAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>6</InitiativeMod>
+          <Active>True</Active>
+          <Type>Outsider</Type>
+          <ChallengeRating>11</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Hoof</Name>
+                <Modifier>23</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>10</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>23</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>10</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>23</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>10</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>18</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>5</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>31</Strength>
+          <Dexterity>14</Dexterity>
+          <Constitution>24</Constitution>
+          <Intelligence>16</Intelligence>
+          <Wisdom>12</Wisdom>
+          <Charisma>12</Charisma>
+          <BaseAttackBonus>15</BaseAttackBonus>
+          <GrappleModifier>33</GrappleModifier>
+          <HitPoints>172</HitPoints>
+          <HitDice>15</HitDice>
+          <HitDieType>d8</HitDieType>
+          <ArmorClass>26</ArmorClass>
+          <TouchArmorClass>10</TouchArmorClass>
+          <FlatFootedArmorClass>24</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>40</LandSpeed>
+            <Speed>
+              <Distance>90</Distance>
+              <MovementType>Fly</MovementType>
+              <Manouverability>Good</Manouverability>
+            </Speed>
+          </Speed>
+          <FortitudeSave>16</FortitudeSave>
+          <ReflexSave>11</ReflexSave>
+          <WillSave>10</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Cleave</Feat>
+            <Feat>Improved Initiative</Feat>
+            <Feat>Power Attack</Feat>
+            <Feat>Run</Feat>
+            <Feat>Track</Feat>
+          </Feats>
+          <Space>15</Space>
+          <Reach>10</Reach>
+          <Size>Huge</Size>
+          <DamageReductions />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>0</SpellResistance>
+          <FastHealing>0</FastHealing>
+          <SpecialAttacks>Flaming hooves, smoke</SpecialAttacks>
+          <SpecialQualities>Astral projection, darkvision 60 ft., etherealness</SpecialQualities>
+        </CreatureAttributes>
+      </ModifiedAttributes>
+    </Creature>
+    <Creature>
+      <ActorName>Nightmare</ActorName>
+      <Effects />
+      <HitPointChanges />
+      <BaseAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>6</InitiativeMod>
+          <Active>True</Active>
+          <Type>Outsider</Type>
+          <ChallengeRating>5</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Hoof</Name>
+                <Modifier>9</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>4</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>9</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>4</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>9</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>4</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>4</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>2</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>18</Strength>
+          <Dexterity>15</Dexterity>
+          <Constitution>16</Constitution>
+          <Intelligence>13</Intelligence>
+          <Wisdom>13</Wisdom>
+          <Charisma>12</Charisma>
+          <BaseAttackBonus>6</BaseAttackBonus>
+          <GrappleModifier>14</GrappleModifier>
+          <HitPoints>45</HitPoints>
+          <HitDice>6</HitDice>
+          <HitDieType>d8</HitDieType>
+          <ArmorClass>24</ArmorClass>
+          <TouchArmorClass>11</TouchArmorClass>
+          <FlatFootedArmorClass>22</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>40</LandSpeed>
+            <Speed>
+              <Distance>90</Distance>
+              <MovementType>Fly</MovementType>
+              <Manouverability>Good</Manouverability>
+            </Speed>
+          </Speed>
+          <FortitudeSave>8</FortitudeSave>
+          <ReflexSave>7</ReflexSave>
+          <WillSave>6</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Improved Initiative</Feat>
+            <Feat>Run</Feat>
+          </Feats>
+          <Space>10</Space>
+          <Reach>5</Reach>
+          <Size>Large</Size>
+          <DamageReductions />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>0</SpellResistance>
+          <FastHealing>0</FastHealing>
+          <SpecialAttacks>Flaming hooves, smoke</SpecialAttacks>
+          <SpecialQualities>Astral projection, darkvision 60 ft., etherealness</SpecialQualities>
+        </CreatureAttributes>
+      </BaseAttributes>
+      <ModifiedAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>6</InitiativeMod>
+          <Active>True</Active>
+          <Type>Outsider</Type>
+          <ChallengeRating>5</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Hoof</Name>
+                <Modifier>9</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>4</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>9</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>4</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name> hooves</Name>
+                <Modifier>9</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>4</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d4</Die>
+                    <Modifier>0</Modifier>
+                    <DamageDescriptorSet>
+                      <DamageType>Fire</DamageType>
+                    </DamageDescriptorSet>
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>4</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>2</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>18</Strength>
+          <Dexterity>15</Dexterity>
+          <Constitution>16</Constitution>
+          <Intelligence>13</Intelligence>
+          <Wisdom>13</Wisdom>
+          <Charisma>12</Charisma>
+          <BaseAttackBonus>6</BaseAttackBonus>
+          <GrappleModifier>14</GrappleModifier>
+          <HitPoints>45</HitPoints>
+          <HitDice>6</HitDice>
+          <HitDieType>d8</HitDieType>
+          <ArmorClass>24</ArmorClass>
+          <TouchArmorClass>11</TouchArmorClass>
+          <FlatFootedArmorClass>22</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>40</LandSpeed>
+            <Speed>
+              <Distance>90</Distance>
+              <MovementType>Fly</MovementType>
+              <Manouverability>Good</Manouverability>
+            </Speed>
+          </Speed>
+          <FortitudeSave>8</FortitudeSave>
+          <ReflexSave>7</ReflexSave>
+          <WillSave>6</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Improved Initiative</Feat>
+            <Feat>Run</Feat>
+          </Feats>
+          <Space>10</Space>
+          <Reach>5</Reach>
+          <Size>Large</Size>
+          <DamageReductions />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>0</SpellResistance>
+          <FastHealing>0</FastHealing>
+          <SpecialAttacks>Flaming hooves, smoke</SpecialAttacks>
+          <SpecialQualities>Astral projection, darkvision 60 ft., etherealness</SpecialQualities>
+        </CreatureAttributes>
+      </ModifiedAttributes>
+    </Creature>
+    <Creature>
+      <ActorName>Brood Keeper</ActorName>
+      <Effects />
+      <HitPointChanges />
+      <BaseAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>3</InitiativeMod>
+          <Active>True</Active>
+          <Type>Magical Beast</Type>
+          <ChallengeRating>16</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Claw</Name>
+                <Modifier>27</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>7</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name> claws</Name>
+                <Modifier>27</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>7</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name> claws</Name>
+                <Modifier>27</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>7</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>25</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>3</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>25</Strength>
+          <Dexterity>17</Dexterity>
+          <Constitution>25</Constitution>
+          <Intelligence>6</Intelligence>
+          <Wisdom>16</Wisdom>
+          <Charisma>8</Charisma>
+          <BaseAttackBonus>22</BaseAttackBonus>
+          <GrappleModifier>37</GrappleModifier>
+          <HitPoints>275</HitPoints>
+          <HitDice>22</HitDice>
+          <HitDieType>d10</HitDieType>
+          <ArmorClass>25</ArmorClass>
+          <TouchArmorClass>11</TouchArmorClass>
+          <FlatFootedArmorClass>22</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>60</LandSpeed>
+          </Speed>
+          <FortitudeSave>22</FortitudeSave>
+          <ReflexSave>18</ReflexSave>
+          <WillSave>12</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Dodge</Feat>
+            <Feat>Great Fortitude</Feat>
+            <Feat>Iron Will</Feat>
+            <Feat>Lightning Reflexes</Feat>
+            <Feat>Mobility</Feat>
+            <Feat>Multiattack</Feat>
+            <Feat>Run</Feat>
+          </Feats>
+          <Space>15</Space>
+          <Reach>10</Reach>
+          <Size>Huge</Size>
+          <DamageReductions>
+            <DamageReduction>
+              <Value>5</Value>
+              <DamageDescriptorSet />
+            </DamageReduction>
+          </DamageReductions>
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>0</SpellResistance>
+          <FastHealing>5</FastHealing>
+          <SpecialAttacks>Fear, improved grab, larva swarm, pounce, rake, rend 2d8+10</SpecialAttacks>
+          <SpecialQualities>Damage reduction 5/–, darkvision 60 ft., evasion, fast healing 5, low-light vision, spell resistance 26</SpecialQualities>
+        </CreatureAttributes>
+      </BaseAttributes>
+      <ModifiedAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>3</InitiativeMod>
+          <Active>True</Active>
+          <Type>Magical Beast</Type>
+          <ChallengeRating>16</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack">
+              <Attack>
+                <Name>Claw</Name>
+                <Modifier>27</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>7</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+            <AttackSet Name="Full Attack">
+              <Attack>
+                <Name> claws</Name>
+                <Modifier>27</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>7</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name> claws</Name>
+                <Modifier>27</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>1</NumDice>
+                    <Die>d8</Die>
+                    <Modifier>7</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+              <Attack>
+                <Name>Bite</Name>
+                <Modifier>25</Modifier>
+                <Type>melee</Type>
+                <Ability>Strength</Ability>
+                <Damages>
+                  <Damage>
+                    <NumDice>2</NumDice>
+                    <Die>d6</Die>
+                    <Modifier>3</Modifier>
+                    <DamageDescriptorSet />
+                  </Damage>
+                </Damages>
+                <ThreatRangeMin>20</ThreatRangeMin>
+                <CritMultiplier>2</CritMultiplier>
+                <TwoHanded>False</TwoHanded>
+              </Attack>
+            </AttackSet>
+          </AttackSets>
+          <Strength>25</Strength>
+          <Dexterity>17</Dexterity>
+          <Constitution>25</Constitution>
+          <Intelligence>6</Intelligence>
+          <Wisdom>16</Wisdom>
+          <Charisma>8</Charisma>
+          <BaseAttackBonus>22</BaseAttackBonus>
+          <GrappleModifier>37</GrappleModifier>
+          <HitPoints>275</HitPoints>
+          <HitDice>22</HitDice>
+          <HitDieType>d10</HitDieType>
+          <ArmorClass>25</ArmorClass>
+          <TouchArmorClass>11</TouchArmorClass>
+          <FlatFootedArmorClass>22</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>60</LandSpeed>
+          </Speed>
+          <FortitudeSave>22</FortitudeSave>
+          <ReflexSave>18</ReflexSave>
+          <WillSave>12</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Dodge</Feat>
+            <Feat>Great Fortitude</Feat>
+            <Feat>Iron Will</Feat>
+            <Feat>Lightning Reflexes</Feat>
+            <Feat>Mobility</Feat>
+            <Feat>Multiattack</Feat>
+            <Feat>Run</Feat>
+          </Feats>
+          <Space>15</Space>
+          <Reach>10</Reach>
+          <Size>Huge</Size>
+          <DamageReductions>
+            <DamageReduction>
+              <Value>5</Value>
+              <DamageDescriptorSet />
+            </DamageReduction>
+          </DamageReductions>
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>0</SpellResistance>
+          <FastHealing>5</FastHealing>
+          <SpecialAttacks>Fear, improved grab, larva swarm, pounce, rake, rend 2d8+10</SpecialAttacks>
+          <SpecialQualities>Damage reduction 5/–, darkvision 60 ft., evasion, fast healing 5, low-light vision, spell resistance 26</SpecialQualities>
+        </CreatureAttributes>
+      </ModifiedAttributes>
+    </Creature>
+    <Creature>
+      <ActorName>Brood Keeper Larva Swarm</ActorName>
+      <Effects />
+      <HitPointChanges />
+      <BaseAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>7</InitiativeMod>
+          <Active>True</Active>
+          <Type>Magical Beast</Type>
+          <ChallengeRating>12</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack" />
+            <AttackSet Name="Full Attack" />
+          </AttackSets>
+          <Strength>1</Strength>
+          <Dexterity>25</Dexterity>
+          <Constitution>14</Constitution>
+          <Intelligence>3</Intelligence>
+          <Wisdom>16</Wisdom>
+          <Charisma>8</Charisma>
+          <BaseAttackBonus>22</BaseAttackBonus>
+          <GrappleModifier>0</GrappleModifier>
+          <HitPoints>171</HitPoints>
+          <HitDice>22</HitDice>
+          <HitDieType>d10</HitDieType>
+          <ArmorClass>21</ArmorClass>
+          <TouchArmorClass>19</TouchArmorClass>
+          <FlatFootedArmorClass>14</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>20</LandSpeed>
+            <Speed>
+              <Distance>30</Distance>
+              <MovementType>Fly</MovementType>
+              <Manouverability>Good</Manouverability>
+            </Speed>
+          </Speed>
+          <FortitudeSave>17</FortitudeSave>
+          <ReflexSave>22</ReflexSave>
+          <WillSave>12</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Dodge</Feat>
+            <Feat>Great Fortitude</Feat>
+            <Feat>Iron Will</Feat>
+            <Feat>Lightning Reflexes</Feat>
+            <Feat>Run</Feat>
+            <Feat>Toughness (2)</Feat>
+          </Feats>
+          <Space>10</Space>
+          <Reach>0</Reach>
+          <Size>Tiny</Size>
+          <DamageReductions>
+            <DamageReduction>
+              <Value>1</Value>
+              <DamageDescriptorSet />
+            </DamageReduction>
+          </DamageReductions>
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>22</SpellResistance>
+          <FastHealing>1</FastHealing>
+          <SpecialAttacks>Distraction</SpecialAttacks>
+          <SpecialQualities>Damage reduction 1/–, darkvision 60ft., evasion, fast healing 1, half damage from slashing and piercing, low-light vision, spell resistance 22, swarm traits</SpecialQualities>
+        </CreatureAttributes>
+      </BaseAttributes>
+      <ModifiedAttributes>
+        <CreatureAttributes>
+          <InitiativeMod>7</InitiativeMod>
+          <Active>True</Active>
+          <Type>Magical Beast</Type>
+          <ChallengeRating>12</ChallengeRating>
+          <AttackSets>
+            <AttackSet Name="Attack" />
+            <AttackSet Name="Full Attack" />
+          </AttackSets>
+          <Strength>1</Strength>
+          <Dexterity>25</Dexterity>
+          <Constitution>14</Constitution>
+          <Intelligence>3</Intelligence>
+          <Wisdom>16</Wisdom>
+          <Charisma>8</Charisma>
+          <BaseAttackBonus>22</BaseAttackBonus>
+          <GrappleModifier>0</GrappleModifier>
+          <HitPoints>171</HitPoints>
+          <HitDice>22</HitDice>
+          <HitDieType>d10</HitDieType>
+          <ArmorClass>21</ArmorClass>
+          <TouchArmorClass>19</TouchArmorClass>
+          <FlatFootedArmorClass>14</FlatFootedArmorClass>
+          <Speed>
+            <LandSpeed>20</LandSpeed>
+            <Speed>
+              <Distance>30</Distance>
+              <MovementType>Fly</MovementType>
+              <Manouverability>Good</Manouverability>
+            </Speed>
+          </Speed>
+          <FortitudeSave>17</FortitudeSave>
+          <ReflexSave>22</ReflexSave>
+          <WillSave>12</WillSave>
+          <Feats>
+            <Feat>Alertness</Feat>
+            <Feat>Dodge</Feat>
+            <Feat>Great Fortitude</Feat>
+            <Feat>Iron Will</Feat>
+            <Feat>Lightning Reflexes</Feat>
+            <Feat>Run</Feat>
+            <Feat>Toughness (2)</Feat>
+          </Feats>
+          <Space>10</Space>
+          <Reach>0</Reach>
+          <Size>Tiny</Size>
+          <DamageReductions>
+            <DamageReduction>
+              <Value>1</Value>
+              <DamageDescriptorSet />
+            </DamageReduction>
+          </DamageReductions>
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
+          <EnergyResistances />
+          <SpellResistance>22</SpellResistance>
+          <FastHealing>1</FastHealing>
+          <SpecialAttacks>Distraction</SpecialAttacks>
+          <SpecialQualities>Damage reduction 1/–, darkvision 60ft., evasion, fast healing 1, half damage from slashing and piercing, low-light vision, spell resistance 22, swarm traits</SpecialQualities>
+        </CreatureAttributes>
+      </ModifiedAttributes>
+    </Creature>
   </Enemies>
 </ActorLibrary>

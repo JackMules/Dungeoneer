@@ -56,7 +56,7 @@ namespace Dungeoneer.Utility
 		public static readonly string DamageTypeSlashing = "Slashing";
 		public static readonly string DamageTypeSonic = "Sonic";
 		public static readonly string DamageTypeSubdual = "Subdual";
-		public static readonly string DamageTypeUntyped = "Untyped";
+		public static readonly string DamageTypeUntyped = "-";
 
 		public static readonly string AbilityStrength = "Strength";
 		public static readonly string AbilityDexterity = "Dexterity";
@@ -992,7 +992,8 @@ namespace Dungeoneer.Utility
 			case Types.Damage.Slashing:				return Constants.DamageTypeSlashing;
 			case Types.Damage.Sonic:					return Constants.DamageTypeSonic;
 			case Types.Damage.Subdual:				return Constants.DamageTypeSubdual;
-			default:													return "Unrecognised damage type";
+			case Types.Damage.Untyped:				return Constants.DamageTypeUntyped;
+			default:													return "-";
 			}
 		}
 

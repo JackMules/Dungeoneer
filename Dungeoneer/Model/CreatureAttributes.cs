@@ -43,6 +43,7 @@ namespace Dungeoneer.Model
 			DamageReductions = new ObservableCollection<DamageReduction>();
 			Immunities = new DamageDescriptorSet();
 			Vulnerabilities = new DamageDescriptorSet();
+			HalfDamage = new DamageDescriptorSet();
 			EnergyResistances = new ObservableCollection<EnergyResistance>();
 			SpellResistance = 0;
 			FastHealing = 0;
@@ -81,6 +82,7 @@ namespace Dungeoneer.Model
 			DamageReductions = other.DamageReductions.Clone();
 			Immunities = other.Immunities.Clone();
 			Vulnerabilities = other.Vulnerabilities.Clone();
+			HalfDamage = other.HalfDamage.Clone();
 			EnergyResistances = other.EnergyResistances.Clone();
 			SpellResistance = other.SpellResistance;
 			FastHealing = FastHealing;
@@ -131,6 +133,7 @@ namespace Dungeoneer.Model
 		private ObservableCollection<DamageReduction> _damageReductions;
 		private DamageDescriptorSet _immunities;
 		private DamageDescriptorSet _vulnerabilities;
+		private DamageDescriptorSet _halfDamage;
 		private ObservableCollection<EnergyResistance> _energyResistances;
 		private string _specialAttacks;
 		private List<string> _specialQualities;
@@ -456,6 +459,17 @@ namespace Dungeoneer.Model
 				NotifyPropertyChanged("Vulnerabilities");
 			}
 		}
+
+		public DamageDescriptorSet HalfDamage
+		{
+			get { return _halfDamage; }
+			set
+			{
+				_halfDamage = value;
+				NotifyPropertyChanged("HalfDamage");
+			}
+		}
+
 
 		public int SpellResistance
 		{
@@ -979,6 +993,14 @@ namespace Dungeoneer.Model
 						}
 					}
 
+					foreach (Types.Damage damageType in damageSet.DamageDescriptorSet.ToList())
+					{
+						if (HalfDamage.Contains(damageType))
+						{
+							damageSet.Amount /= 2;
+						}
+					}
+
 					foreach (DamageReduction dr in damageReductions)
 					{
 						if (!dr.IsBypassedBy(damageSet.DamageDescriptorSet))
@@ -1141,6 +1163,10 @@ namespace Dungeoneer.Model
 
 			xmlWriter.WriteStartElement("Vulnerabilities");
 			Vulnerabilities.WriteXML(xmlWriter);
+			xmlWriter.WriteEndElement();
+
+			xmlWriter.WriteStartElement("HalfDamage");
+			HalfDamage.WriteXML(xmlWriter);
 			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteStartElement("EnergyResistances");
@@ -1327,6 +1353,14 @@ namespace Dungeoneer.Model
 							childNode.FirstChild.Name == "DamageDescriptorSet")
 						{
 							Vulnerabilities = new DamageDescriptorSet(childNode.FirstChild);
+						}
+					}
+					else if (childNode.Name == "HalfDamage")
+					{
+						if (childNode.FirstChild != null &&
+							childNode.FirstChild.Name == "DamageDescriptorSet")
+						{
+							HalfDamage = new DamageDescriptorSet(childNode.FirstChild);
 						}
 					}
 					else if (childNode.Name == "EnergyResistances")

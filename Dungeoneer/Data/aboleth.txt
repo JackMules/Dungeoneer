@@ -1,0 +1,22 @@
+Size/Type:  Huge Aberration (Aquatic)
+Hit Dice:  8d8+40 (76 hp)
+Initiative:  +1
+Speed:  10 ft. (2 squares), swim 60 ft. 
+Armor Class:  16 (-2 size, +1 Dex, +7 natural), touch 9, flat-footed 15 
+Base Attack/Grapple:  +6/+22
+Attack:  Tentacle +12 melee (1d6+8 plus slime)
+Full Attack:  4 tentacles +12 melee (1d6+8 plus slime)
+Space/Reach:  15 ft./10 ft.
+Special Attacks:  Enslave, psionics, slime
+Special Qualities:  Aquatic subtype, darkvision 60 ft., mucus cloud
+Saves:  Fort +7, Ref +3, Will +11
+Abilities:  Str 26, Dex 12, Con 20, Int 15, Wis 17, Cha 17
+Skills:  Concentration +16, Knowledge (any one) +13, Listen +16, Spot +16, Swim +8
+Feats:  Alertness, Combat Casting, Iron Will
+Environment:  Underground
+Organization:  Solitary, brood (2-4), or slaver brood (1d3+1 plus 7-12 skum)
+Challenge Rating:  7
+Treasure:  Double standard
+Alignment:  Usually lawful evil
+Advancement:  9-16 HD (Huge); 17-24 HD (Gargantuan)
+Level Adjustment:  —

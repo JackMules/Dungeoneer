@@ -1,0 +1,22 @@
+Size/Type: 	Gargantuan Animal
+Hit Dice: 	18d8+126 (207 hp)
+Initiative: 	+2
+Speed: 	20 ft. (4 squares), fly 80 ft. (average)
+Armor Class: 	17 (-4 size, +2 Dex, +9 natural), touch 8, flat-footed 15
+Base Attack/Grapple: 	+13/+37
+Attack: 	Talon +21 melee (2d6+12)
+Full Attack: 	2 talons +21 melee (2d6+12) and bite +19 melee (2d8+6)
+Space/Reach: 	20 ft./15 ft.
+Special Attacks: 	—
+Special Qualities: 	Low-light vision
+Saves: 	Fort +18, Ref +13, Will +9
+Abilities: 	Str 34, Dex 15, Con 24, Int 2, Wis 13, Cha 11
+Skills: 	Hide -3, Listen +10, Spot +14
+Feats: 	Alertness, Flyby Attack, Iron Will, Multiattack, Power Attack, Snatch, Wingover
+Environment: 	Warm mountains
+Organization: 	Solitary or pair
+Challenge Rating: 	9
+Treasure: 	None
+Alignment: 	Always neutral
+Advancement: 	19-32 HD (Gargantuan); 33-54 (Colossal)
+Level Adjustment: 	—

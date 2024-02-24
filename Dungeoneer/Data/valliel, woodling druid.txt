@@ -1,0 +1,23 @@
+Valliel, 9th-Level Woodling Human Druid
+Size/Type: Medium Humanoid (Human)
+Hit Dice: 9d8+9 (49 hp)
+Initiative: +3
+Speed: 30 ft. (6 squares)
+Armor Class: 28 (+3 Dex, +4 +2 leather armor, +4 +2 heavy wooden shield, +7 natural), touch 13, flat-footed 25
+Base Attack/Grapple: +6/+7
+Attack: +1 scimitar +9/+4 melee (1d6+2/18–20) or slam +7 melee (1d6+1)
+Full Attack: +1 scimitar +9/+4 melee (1d6+2/18–20) and slam +2 melee (1d6+1)
+Space/Reach: 5 ft./5 ft.
+Special Attacks: Spell-like abilities, spells
+Special Qualities: Animal companion, damage reduction 5/slashing, low-light vision, nature sense, plant traits, resist nature’s lure, trackless step, venom immunity, vulnerability to fire, wild empathy, wild shape 3/day, woodland stride
+Saves: Fort +7, Ref +6, Will +12
+Abilities: Str 12, Dex 16, Con 13, Int 10, Wis 19, Cha 8
+Skills: Handle Animal +11 (+15 with companion), Hide +3*, Knowledge (nature) +13, Listen +15, Move Silently +3*, Ride +5, Spot +15, Survival +15 (+17 in above ground natural environments)
+Feats: Alertness, Iron Will, Natural Spell, Track, Weapon Focus (scimitar)
+Environment: Warm forests
+Organization: Solitary
+Challenge Rating: 11
+Treasure: Standard
+Alignment: Neutral good
+Advancement: By character class
+Level Adjustment: +3

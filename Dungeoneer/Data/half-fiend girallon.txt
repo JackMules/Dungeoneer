@@ -1,0 +1,24 @@
+Neutral Large Magical beast (Outsider)
+Init +5; Senses Darkvision 60, Low-light Vision, Scent, Darkvision 60; Spot +11
+AC 19, touch 14, flat-footed 14 (+5 Dex, +5 Natural, -1 size)
+hp 62 (7d10+21+3);
+Fort +8, Ref +10, Will +5
+Damage reduction 1- 10 HD 5/magic, Immunity to poison, Resistance to Acid 10, Cold 10, Electricity 10, Fire 10, Spell Resistance HD + 10
+Speed 40ft., fly 80ft., climb 40ft.
+Melee 3 Claw +14 (1d6+8), 2 Bite +9 (1d8+4)
+Space 10 ft.; Reach 10 ft.
+Special Attacks
+Rake 2d4 +9 if hit with 2 claws,
+Smite good 1/day extra damage = to HD
+Spell-Like Abilities
+1-2 HD 1/day Darkness DC(11) , 3-4 HD 1/day Desecrate DC(11) , 5-6 HD 1/day Unholy Blight DC(13) , 7-8 HD 1/day Poison DC(13)
+STATISTICS
+Str 26, Dex 21, Con 16, Int 6, Wis 12, Cha 9
+Base Atk +7; Grapple 19
+Feats Iron Will, Toughness;
+Skills Climb 26, Move Silently 15, Spot 11
+Languages
+SQ Darkvision 60, Low-light Vision, Scent, Damage reduction 1- 10 HD 5/magic, Darkvision 60, Immunity to poison, Other Natural weapons treated as magical, Resistance to Acid 10, Cold 10, Electricity 10, Fire 10, Spell Resistance HD + 10
+Environment Warm forests
+Organization Solitary, Company 5-8
+Treasure None

@@ -133,7 +133,7 @@ namespace Dungeoneer.Model
 
 		public bool ReadXML()
 		{
-			try
+			//try
 			{
 				XmlDocument xmlDoc = new XmlDocument();
 				xmlDoc.Load("ActorLibrary.xml");
@@ -162,14 +162,14 @@ namespace Dungeoneer.Model
 					}
 				}
 			}
-			catch (System.IO.FileNotFoundException)
+			//catch (System.IO.FileNotFoundException)
 			{
-				return false;
+			//	return false;
 			}
-			catch (XmlException e)
+			//catch (XmlException e)
 			{
-				MessageBox.Show(e.ToString());
-				return false;
+			//	MessageBox.Show(e.ToString());
+			//	return false;
 			}
 
 			return true;

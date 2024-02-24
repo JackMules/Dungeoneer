@@ -1,0 +1,22 @@
+Size/Type: Huge Plant
+Hit Dice: 25d8+200 (312 hp)
+Initiative: –2
+Speed: 30 ft. (6 squares)
+Armor Class: 30 (–2 size, –2 Dex, +24 natural), touch 6, flat-footed 30
+Base Attack/Grapple: +18/+37
+Attack: Slam +28 melee (2d6+11/19–20)
+Full Attack: 4 slams +28 melee (2d6+11/19–20)
+Space/Reach: 15 ft./10 ft.
+Special Attacks: Impale, improved grab, thorn volley, trample 2d6+16
+Special Qualities: Darkvision 60 ft., low-light vision, plant traits, resistance to electricity 20 and fire 20, thorn field
+Saves: Fort +22, Ref +6, Will +10
+Abilities: Str 32, Dex 6, Con 27, Int 5, Wis 10, Cha 7
+Skills: Hide +18*
+Feats: Awesome Blow, Cleave, Great Cleave, Improved Bull Rush, Improved Critical (slam), Improved Natural Attack (slam), Iron Will, Power Attack, Weapon Focus (slam)
+Environment: Temperate forests
+Organization: Solitary
+Challenge Rating: 15
+Treasure: None
+Alignment: Usually neutral
+Advancement: 26–50 HD (Huge)
+Level Adjustment: —
