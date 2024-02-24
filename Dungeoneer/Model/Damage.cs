@@ -93,9 +93,7 @@ namespace Dungeoneer.Model
 			xmlWriter.WriteString(Modifier.ToString());
 			xmlWriter.WriteEndElement();
 
-			xmlWriter.WriteStartElement("DamageDescriptorSet");
 			DamageDescriptorSet.WriteXML(xmlWriter);
-			xmlWriter.WriteEndElement();
 
 			xmlWriter.WriteEndElement();
 		}

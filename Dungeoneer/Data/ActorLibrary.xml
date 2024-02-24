@@ -247,6 +247,7 @@
     <Creature>
       <ActorName>Orc</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -279,8 +280,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -320,8 +325,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -333,6 +342,7 @@
     <Creature>
       <ActorName>Goblin</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -365,8 +375,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -406,8 +420,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -419,6 +437,7 @@
     <Creature>
       <ActorName>Troll</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -451,8 +470,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -492,8 +515,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -505,6 +532,7 @@
     <Creature>
       <ActorName>Skeletal Young Adult Bronze Dragon</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>5</InitiativeMod>
@@ -700,9 +728,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -905,9 +937,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -919,6 +955,7 @@
     <Creature>
       <ActorName>Wheep</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -1037,8 +1074,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1164,8 +1205,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1177,6 +1222,7 @@
     <Creature>
       <ActorName>Elf Lich Cleric of Grond 11</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -1228,10 +1274,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1290,10 +1340,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1305,6 +1359,7 @@
     <Creature>
       <ActorName>Mind Flayer</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>6</InitiativeMod>
@@ -1431,8 +1486,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>25</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1566,8 +1625,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>25</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1579,6 +1642,7 @@
     <Creature>
       <ActorName>Zombie Gray Render</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -1697,8 +1761,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1824,8 +1892,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -1837,6 +1909,7 @@
     <Creature>
       <ActorName>Huge Advanced Skeletal Megaraptor</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -1969,9 +2042,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2111,9 +2188,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2125,6 +2206,7 @@
     <Creature>
       <ActorName>Grimlock Barbarian 3</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -2199,8 +2281,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2282,8 +2368,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2295,6 +2385,7 @@
     <Creature>
       <ActorName>Drow Ninja 4</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -2407,8 +2498,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>15</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2528,8 +2623,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>15</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2541,6 +2640,7 @@
     <Creature>
       <ActorName>Drow Scout 6</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>6</InitiativeMod>
@@ -2655,8 +2755,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>17</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2778,8 +2882,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>17</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -2791,6 +2899,7 @@
     <Creature>
       <ActorName>Bladerager Troll</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -2908,8 +3017,12 @@
           <Reach>10</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>5</FastHealing>
@@ -3034,8 +3147,12 @@
           <Reach>10</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>5</FastHealing>
@@ -3047,6 +3164,7 @@
     <Creature>
       <ActorName>Drow Fighter 2/Wizard 5</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -3164,8 +3282,12 @@
           <Reach>10</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>18</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -3290,8 +3412,12 @@
           <Reach>10</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>18</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -3303,6 +3429,7 @@
     <Creature>
       <ActorName>Hellcat</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>9</InitiativeMod>
@@ -3419,8 +3546,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -3544,8 +3675,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -3557,6 +3692,7 @@
     <Creature>
       <ActorName>Gibbering Mouther</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -3719,8 +3855,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -3890,8 +4030,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -3903,6 +4047,7 @@
     <Creature>
       <ActorName>Nine-Headed Pseudonatural Cryohydra</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -4264,8 +4409,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>19</FastHealing>
@@ -4634,8 +4783,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>19</FastHealing>
@@ -4647,6 +4800,7 @@
     <Creature>
       <ActorName>Grell Patriarch</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>6</InitiativeMod>
@@ -4946,9 +5100,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -5255,9 +5413,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -5269,6 +5431,7 @@
     <Creature>
       <ActorName>Grell</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -5561,9 +5724,13 @@
           <Size>Medium</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -5863,9 +6030,13 @@
           <Size>Medium</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -5877,6 +6048,7 @@
     <Creature>
       <ActorName>Grell Philosopher</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>5</InitiativeMod>
@@ -6172,9 +6344,13 @@
           <Size>Medium</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -6477,9 +6653,13 @@
           <Size>Medium</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -6491,6 +6671,7 @@
     <Creature>
       <ActorName>Ettin</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -6606,8 +6787,12 @@
           <Reach>10</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -6730,8 +6915,12 @@
           <Reach>10</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -6743,6 +6932,7 @@
     <Creature>
       <ActorName>Horrific Vasuthant</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>10</InitiativeMod>
@@ -6848,10 +7038,14 @@
           <Size>Huge</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Acid</DamageType>
-            <DamageType>Cold</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Acid</DamageType>
+              <DamageType>Cold</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>25</Value>
@@ -6973,10 +7167,14 @@
           <Size>Huge</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Acid</DamageType>
-            <DamageType>Cold</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Acid</DamageType>
+              <DamageType>Cold</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>25</Value>
@@ -6997,6 +7195,7 @@
     <Creature>
       <ActorName>Stone Golem</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -7094,8 +7293,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7200,8 +7403,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7213,6 +7420,7 @@
     <Creature>
       <ActorName>Bridge Haunt</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -7312,8 +7520,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7420,8 +7632,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7433,6 +7649,7 @@
     <Creature>
       <ActorName>Balhannoth</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -7545,8 +7762,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>18</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7666,8 +7887,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>18</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7679,6 +7904,7 @@
     <Creature>
       <ActorName>Shunned</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -7764,8 +7990,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>17</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7858,8 +8088,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>17</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -7871,6 +8105,7 @@
     <Creature>
       <ActorName>Drider</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -8042,8 +8277,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>17</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -8222,8 +8461,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>17</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -8235,6 +8478,7 @@
     <Creature>
       <ActorName>Chwidencha</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -8380,8 +8624,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -8534,8 +8782,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -8547,6 +8799,7 @@
     <Creature>
       <ActorName>Spitting Spider</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -8654,8 +8907,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -8770,8 +9027,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -8783,6 +9044,7 @@
     <Creature>
       <ActorName>Xorn, Average</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -8923,10 +9185,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -9079,10 +9345,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -9099,6 +9369,7 @@
     <Creature>
       <ActorName>Xorn, Elder</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -9242,10 +9513,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -9401,10 +9676,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -9421,6 +9700,7 @@
     <Creature>
       <ActorName>Xorn, Minor</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -9559,10 +9839,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -9713,10 +9997,14 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Cold</DamageType>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Cold</DamageType>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -9733,6 +10021,7 @@
     <Creature>
       <ActorName>Large Monstrous Spider</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -9811,8 +10100,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -9898,8 +10191,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -9911,6 +10208,7 @@
     <Creature>
       <ActorName>Drow Cleric 8</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>4</InitiativeMod>
@@ -10013,8 +10311,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10124,8 +10426,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10137,6 +10443,7 @@
     <Creature>
       <ActorName>Drow Fighter 7</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>5</InitiativeMod>
@@ -10245,8 +10552,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>18</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10362,8 +10673,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>18</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10375,6 +10690,7 @@
     <Creature>
       <ActorName>Drow Warmage 8</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -10450,8 +10766,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10534,8 +10854,12 @@
           <Reach>5</Reach>
           <Size>Medium</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>19</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10547,6 +10871,7 @@
     <Creature>
       <ActorName>Efreeti</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -10671,9 +10996,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10805,9 +11134,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -10819,6 +11152,7 @@
     <Creature>
       <ActorName>Ember Guard</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>6</InitiativeMod>
@@ -10916,9 +11250,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -11032,9 +11370,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -11055,6 +11397,7 @@
     <Creature>
       <ActorName>Fire Giant</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -11227,9 +11570,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -11409,9 +11756,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -11423,6 +11774,7 @@
     <Creature>
       <ActorName>Infernal Conflagration Ooze</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -11562,9 +11914,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -11716,9 +12072,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -11735,6 +12095,7 @@
     <Creature>
       <ActorName>Noble Salamander</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -11912,9 +12273,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -12099,9 +12464,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -12113,6 +12482,7 @@
     <Creature>
       <ActorName>Dream Vestige</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>9</InitiativeMod>
@@ -12252,8 +12622,12 @@
               <DamageDescriptorSet />
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>28</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -12400,8 +12774,12 @@
               <DamageDescriptorSet />
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>28</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -12413,6 +12791,7 @@
     <Creature>
       <ActorName>Kraken</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>4</InitiativeMod>
@@ -12633,8 +13012,12 @@
           <Reach>15</Reach>
           <Size>Gargantuan</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -12862,8 +13245,12 @@
           <Reach>15</Reach>
           <Size>Gargantuan</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -12875,6 +13262,7 @@
     <Creature>
       <ActorName>Hezrou</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -12993,9 +13381,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -13126,9 +13518,13 @@
             </DamageReduction>
           </DamageReductions>
           <Immunities>
-            <DamageType>Electricity</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -13145,6 +13541,7 @@
     <Creature>
       <ActorName>Aboleth</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -13276,8 +13673,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -13416,8 +13817,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -13429,6 +13834,7 @@
     <Creature>
       <ActorName>Advanced Girallon</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -13576,8 +13982,12 @@
           <Reach>10</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -13732,8 +14142,12 @@
           <Reach>10</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -13745,6 +14159,7 @@
     <Creature>
       <ActorName>Night Twist</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -13864,8 +14279,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -13992,8 +14411,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14005,6 +14428,7 @@
     <Creature>
       <ActorName>Oaken Defender</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -14076,8 +14500,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>24</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14156,8 +14584,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>24</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14169,6 +14601,7 @@
     <Creature>
       <ActorName>Dryad</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>4</InitiativeMod>
@@ -14288,8 +14721,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14416,8 +14853,12 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14429,6 +14870,7 @@
     <Creature>
       <ActorName>Trilloch</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>8</InitiativeMod>
@@ -14478,8 +14920,12 @@
               <DamageDescriptorSet />
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14536,8 +14982,12 @@
               <DamageDescriptorSet />
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14549,6 +14999,7 @@
     <Creature>
       <ActorName>Knell Beetle</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>0</InitiativeMod>
@@ -14666,9 +15117,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Sonic</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Sonic</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14793,9 +15248,13 @@
           <Size>Large</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Sonic</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Sonic</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -14807,6 +15266,7 @@
     <Creature>
       <ActorName>Advanced Huge Girallon</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -14955,8 +15415,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -15112,8 +15576,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -15125,6 +15593,7 @@
     <Creature>
       <ActorName>Human Woodling Druid 9</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -15279,9 +15748,13 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
           <Vulnerabilities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
@@ -15444,9 +15917,13 @@
               </DamageDescriptorSet>
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
           <Vulnerabilities>
-            <DamageType>Fire</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Fire</DamageType>
+            </DamageDescriptorSet>
           </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
@@ -15459,6 +15936,7 @@
     <Creature>
       <ActorName>Battlebriar</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -15591,8 +16069,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>20</Value>
@@ -15741,8 +16223,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>20</Value>
@@ -15763,6 +16249,7 @@
     <Creature>
       <ActorName>Roc</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>2</InitiativeMod>
@@ -15881,8 +16368,12 @@
           <Reach>15</Reach>
           <Size>Gargantuan</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -16008,8 +16499,12 @@
           <Reach>15</Reach>
           <Size>Gargantuan</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -16021,6 +16516,7 @@
     <Creature>
       <ActorName>Coatl</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>7</InitiativeMod>
@@ -16103,8 +16599,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -16194,8 +16694,12 @@
           <Reach>5</Reach>
           <Size>Large</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>0</FastHealing>
@@ -16207,6 +16711,7 @@
     <Creature>
       <ActorName>Thunderbird</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -16325,10 +16830,14 @@
           <Size>Huge</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
-            <DamageType>Sonic</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+              <DamageType>Sonic</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -16463,10 +16972,14 @@
           <Size>Huge</Size>
           <DamageReductions />
           <Immunities>
-            <DamageType>Electricity</DamageType>
-            <DamageType>Sonic</DamageType>
+            <DamageDescriptorSet>
+              <DamageType>Electricity</DamageType>
+              <DamageType>Sonic</DamageType>
+            </DamageDescriptorSet>
           </Immunities>
-          <Vulnerabilities />
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances>
             <EnergyResistance>
               <Value>10</Value>
@@ -16487,6 +17000,7 @@
     <Creature>
       <ActorName>Retriever</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>3</InitiativeMod>
@@ -16628,8 +17142,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>5</FastHealing>
@@ -16778,8 +17296,12 @@
           <Reach>10</Reach>
           <Size>Huge</Size>
           <DamageReductions />
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>0</SpellResistance>
           <FastHealing>5</FastHealing>
@@ -16791,6 +17313,7 @@
     <Creature>
       <ActorName>Razor Boar</ActorName>
       <Effects />
+      <HitPointChanges />
       <BaseAttributes>
         <CreatureAttributes>
           <InitiativeMod>1</InitiativeMod>
@@ -16946,8 +17469,12 @@
               <DamageDescriptorSet />
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>21</SpellResistance>
           <FastHealing>10</FastHealing>
@@ -17110,8 +17637,12 @@
               <DamageDescriptorSet />
             </DamageReduction>
           </DamageReductions>
-          <Immunities />
-          <Vulnerabilities />
+          <Immunities>
+            <DamageDescriptorSet />
+          </Immunities>
+          <Vulnerabilities>
+            <DamageDescriptorSet />
+          </Vulnerabilities>
           <EnergyResistances />
           <SpellResistance>21</SpellResistance>
           <FastHealing>10</FastHealing>

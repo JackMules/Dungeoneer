@@ -460,14 +460,9 @@ namespace Dungeoneer.Utility
 	{
 		public static void WriteXML(this Types.Damage damageValue, XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("Damage");
+			xmlWriter.WriteStartElement("DamageType");
 			xmlWriter.WriteString(damageValue.ToString());
 			xmlWriter.WriteEndElement();
-		}
-
-		public static Types.Damage ReadXML(this Types.Damage damageValue, XmlNode xmlNode)
-		{
-			return Methods.GetDamageTypeFromString(xmlNode.InnerText);
 		}
 	}
 

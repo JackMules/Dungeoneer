@@ -1315,11 +1315,19 @@ namespace Dungeoneer.Model
 					}
 					else if (childNode.Name == "Immunities")
 					{
-						Immunities = new DamageDescriptorSet(childNode);
+						if (childNode.FirstChild != null &&
+							childNode.FirstChild.Name == "DamageDescriptorSet")
+						{
+							Immunities = new DamageDescriptorSet(childNode.FirstChild);
+						}
 					}
-					else if (childNode.Name == "Vulnerbilities")
+					else if (childNode.Name == "Vulnerabilities")
 					{
-						Vulnerabilities = new DamageDescriptorSet(childNode);
+						if (childNode.FirstChild != null &&
+							childNode.FirstChild.Name == "DamageDescriptorSet")
+						{
+							Vulnerabilities = new DamageDescriptorSet(childNode.FirstChild);
+						}
 					}
 					else if (childNode.Name == "EnergyResistances")
 					{
