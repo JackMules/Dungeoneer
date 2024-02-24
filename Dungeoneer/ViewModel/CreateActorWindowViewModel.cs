@@ -18,6 +18,7 @@ namespace Dungeoneer.ViewModel
 			_speeds = new Model.SpeedSet();
 			_immunities = new Model.DamageDescriptorSet();
 			_vulnerabilities = new Model.DamageDescriptorSet();
+			_halfDamage = new Model.DamageDescriptorSet();
 			_weapons = new ObservableCollection<Model.Weapon>();
 			_damageReductions = new ObservableCollection<Model.DamageReduction>();
 			_energyResistances = new ObservableCollection<Model.EnergyResistance>();
@@ -39,6 +40,7 @@ namespace Dungeoneer.ViewModel
 			_removeEnergyResistance = new Command(ExecuteRemoveEnergyResistance);
 			_editImmunities = new Command(ExecuteEditImmunities);
 			_editVulnerabilities = new Command(ExecuteEditVulnerabilities);
+			_editHalfDamage = new Command(ExecuteEditHalfDamage);
 			_openImportWindow = new Command(ExecuteOpenImportWindow);
 
 			SelectedCreatureType = CreatureTypes.IndexOf(Methods.GetCreatureTypeString(Types.Creature.Humanoid));
@@ -86,6 +88,7 @@ namespace Dungeoneer.ViewModel
 		private ObservableCollection<Model.DamageReduction> _damageReductions;
 		private Model.DamageDescriptorSet _immunities;
 		private Model.DamageDescriptorSet _vulnerabilities;
+		private Model.DamageDescriptorSet _halfDamage;
 		private ObservableCollection<Model.EnergyResistance> _energyResistances;
 		private ObservableCollection<Model.Weapon> _weapons;
 		private Model.SpeedSet _speeds;
@@ -107,6 +110,7 @@ namespace Dungeoneer.ViewModel
 		private Command _removeEnergyResistance;
 		private Command _editImmunities;
 		private Command _editVulnerabilities;
+		private Command _editHalfDamage;
 		private Command _openImportWindow;
 
 		public int SelectedSpeed { get; set; }
@@ -316,6 +320,12 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _vulnerabilities, value); }
 		}
 
+		public Model.DamageDescriptorSet HalfDamage
+		{
+			get { return _halfDamage; }
+			set { SetField(ref _halfDamage, value); }
+		}
+
 		public ObservableCollection<Model.EnergyResistance> EnergyResistances
 		{
 			get { return _energyResistances; }
@@ -412,6 +422,7 @@ namespace Dungeoneer.ViewModel
 			DamageReductions = creature.DamageReductions;
 			Immunities = creature.Immunities;
 			Vulnerabilities = creature.Vulnerabilities;
+			HalfDamage = creature.HalfDamage;
 			EnergyResistances = creature.EnergyResistances;
 			SpellResistance = creature.SpellResistance.ToString();
 			FastHealing = creature.FastHealing.ToString();
@@ -501,6 +512,7 @@ namespace Dungeoneer.ViewModel
 							DamageReductions = DamageReductions,
 							Immunities = Immunities,
 							Vulnerabilities = Vulnerabilities,
+							HalfDamage = HalfDamage,
 							EnergyResistances = EnergyResistances,
 							SpellResistance = Convert.ToInt32(SpellResistance),
 							FastHealing = Convert.ToInt32(FastHealing),
@@ -738,6 +750,21 @@ namespace Dungeoneer.ViewModel
 			if (vulnerabilities != null)
 			{
 				Vulnerabilities = vulnerabilities;
+			}
+		}
+
+		public Command EditHalfDamage
+		{
+			get { return _editHalfDamage; }
+		}
+
+		private void ExecuteEditHalfDamage()
+		{
+			DamageTypeSelectorWindowViewModel damageTypeSelectorWindowViewModel = new DamageTypeSelectorWindowViewModel(HalfDamage);
+			Model.DamageDescriptorSet halfDamage = damageTypeSelectorWindowViewModel.GetDamageTypes();
+			if (halfDamage != null)
+			{
+				HalfDamage = halfDamage;
 			}
 		}
 
