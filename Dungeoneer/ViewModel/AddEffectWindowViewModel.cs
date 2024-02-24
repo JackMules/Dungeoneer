@@ -17,6 +17,7 @@ namespace Dungeoneer.ViewModel
 		private int _selectedEffectIndex;
 		private string _value;
 		private string _duration;
+		private bool _timedEffect;
 		private int _selectedAbilityIndex;
 		private string _customText;
 
@@ -47,7 +48,8 @@ namespace Dungeoneer.ViewModel
 
 		public bool TimedEffect
 		{
-			get { return true; }
+			get { return _timedEffect; }
+			set { SetField(ref _timedEffect, value); }
 		}
 
 		public bool ValueEffect
@@ -95,7 +97,11 @@ namespace Dungeoneer.ViewModel
 		public string Duration
 		{
 			get { return _duration; }
-			set { SetField(ref _duration, value); }
+			set 
+			{
+				SetField(ref _duration, value);
+				TimedEffect = IntDuration > 0;
+			}
 		}
 
 		public string CustomText
@@ -104,11 +110,25 @@ namespace Dungeoneer.ViewModel
 			set { SetField(ref _customText, value); }
 		}
 
+		private int IntDuration
+        {
+			get
+            {
+				int duration = 0;
+				try
+				{
+					duration = Convert.ToInt32(Duration);
+				}
+				catch (FormatException) { }
+				return duration;
+            }
+        }
+
 		private Model.Effect.Effect CreateEffect()
 		{
 			Model.Effect.Effect effect;
-			int duration = Convert.ToInt32(Duration);
-			if (duration == 0)
+			int duration = IntDuration;
+			if (!TimedEffect || duration == 0)
 			{
 				if (AbilityEffect && ValueEffect)
 				{

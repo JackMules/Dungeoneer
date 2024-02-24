@@ -31,7 +31,7 @@
 		<Grid Margin="5">
 			<Grid.RowDefinitions>
 				<RowDefinition>
-					<RowDefinition.Style>
+					<!--<RowDefinition.Style>
 						<Style TargetType="{x:Type RowDefinition}">
 							<Setter Property="Height" Value="Auto"/>
 							<Style.Triggers>
@@ -40,7 +40,7 @@
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
-					</RowDefinition.Style>
+					</RowDefinition.Style>-->
 				</RowDefinition>
 				<RowDefinition>
 					<RowDefinition.Style>
@@ -85,8 +85,11 @@
 			</Grid.ColumnDefinitions>
 
 			<Label Grid.Row="0" Grid.Column="0" Content="Duration" VerticalContentAlignment="Center"/>
-			<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Duration}" MinWidth="100"
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+				<TextBox Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"
 							 VerticalContentAlignment="Center"/>
+                <CheckBox IsChecked="{Binding TimedEffect}" VerticalAlignment="Center" IsEnabled="False"/>
+            </StackPanel>
 
 			<Label Grid.Row="1" Grid.Column="0" Content="Value" VerticalContentAlignment="Center"/>
 			<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Value}" MinWidth="100"
