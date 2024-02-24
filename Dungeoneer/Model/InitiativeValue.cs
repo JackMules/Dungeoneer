@@ -22,10 +22,10 @@ namespace Dungeoneer.Model
 
 		public InitiativeValue()
 		{
-			_score = null;
-			_adjust = null;
-			_modifier = null;
-			_roll = null;
+			_score = 0;
+			_adjust = 0;
+			_modifier = 0;
+			_roll = 0;
 			_delayed = false;
 			_turnState = Types.TurnState.NotStarted;
 			_readied = false;
@@ -177,7 +177,7 @@ namespace Dungeoneer.Model
 						}
 						catch (FormatException)
 						{
-							Score = null;
+							Modifier = null;
 						}
 					}
 					else if (childNode.Name == "Roll")
@@ -188,7 +188,7 @@ namespace Dungeoneer.Model
 						}
 						catch (FormatException)
 						{
-							Score = null;
+							Roll = null;
 						}
 					}
 					else if (childNode.Name == "Delayed")

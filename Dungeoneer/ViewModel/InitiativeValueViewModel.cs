@@ -156,17 +156,22 @@ namespace Dungeoneer.ViewModel
 			get { return InitiativeValue.Readied; }
 			set
 			{
+				if (InitiativeValue.Readied && !value)
+				{
+					OpenInitDialog(InitiativeValue.Modifier);
+					NotifyPropertyChanged("InitiativeValue");
+				}
 				InitiativeValue.Readied = value;
 				NotifyPropertyChanged("Readied");
 			}
 		}
 
-		public void OpenInitDialog(int actorInitMod)
+		public void OpenInitDialog(int? actorInitMod)
 		{
 			SetInitiativeWindowViewModel setInitiativeWindowViewModel = new SetInitiativeWindowViewModel {
 				Score = InitiativeScore,
 				Adjust = InitiativeAdjust,
-				Modifier = actorInitMod.ToString(),
+				Modifier = actorInitMod.HasValue ? actorInitMod.ToString() : "",
 				Roll = InitiativeRoll,
 			};
 
