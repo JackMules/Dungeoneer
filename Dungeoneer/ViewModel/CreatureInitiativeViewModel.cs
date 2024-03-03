@@ -382,15 +382,18 @@ namespace Dungeoneer.ViewModel
 
 		private void ExecuteEditHitPointChange()
 		{
-			HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName,
-				Actor.HitPointChanges[SelectedHitPointChange]);
-			Model.IHitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
-			if (hitPointChange != null &&
-				(hitPointChange is Model.Heal ||
-				hitPointChange is Model.Hit))
+			if (SelectedHitPointChange > 0 && SelectedHitPointChange < Actor.HitPointChanges.Count)
 			{
-				Actor.HitPointChanges[SelectedHitPointChange] = hitPointChange;
-				ActorUpdated();
+				HitPointChangeDialogViewModel hitPointChangeDialogViewModel = new HitPointChangeDialogViewModel(WeaponList, CurrentActorName,
+					Actor.HitPointChanges[SelectedHitPointChange]);
+				Model.IHitPointChange hitPointChange = hitPointChangeDialogViewModel.GetHit(Actor.GetEffectiveAttributes());
+				if (hitPointChange != null &&
+					(hitPointChange is Model.Heal ||
+					hitPointChange is Model.Hit))
+				{
+					Actor.HitPointChanges[SelectedHitPointChange] = hitPointChange;
+					ActorUpdated();
+				}
 			}
 		}
 

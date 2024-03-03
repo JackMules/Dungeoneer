@@ -102,6 +102,30 @@ namespace Dungeoneer.Model
 			}
 		}
 
+		public void DeleteActor(Actor actor)
+		{
+			if (actor is PlayerActor)
+			{
+				var foundCharacter = Characters.Where(character => character == actor).FirstOrDefault();
+
+				if (foundCharacter != null)
+				{
+					Characters.Remove(actor as PlayerActor);
+					Modified = true;
+				}
+			}
+			else if (actor is Creature)
+			{
+				var foundEnemy = Enemies.Where(enemy => enemy == actor).FirstOrDefault();
+
+				if (foundEnemy != null)
+				{
+					Enemies.Remove(actor as Creature);
+					Modified = true;
+				}
+			}
+		}
+
 		public void WriteXML()
 		{
 			XmlWriterSettings settings = new XmlWriterSettings { Indent = true };

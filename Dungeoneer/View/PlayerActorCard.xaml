@@ -6,6 +6,13 @@
 						 xmlns:main="clr-namespace:Dungeoneer"
 						 xmlns:view="clr-namespace:Dungeoneer.View"
 						 mc:Ignorable="d" d:DesignHeight="80" d:DesignWidth="600">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="../MyDictionary.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
 	<Grid>
 		<Rectangle Margin="10,10,0,0" Fill="DimGray" RadiusX="8" RadiusY="8"/>
 		<Border Margin="4" BorderBrush="White" Background="LightGray" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8">
@@ -13,6 +20,12 @@
 				<StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
 					<Label Margin="10" Content="{Binding ActorName}" FontSize="24" FontWeight="Bold"/>
 					<view:ValueDisplay Title="Init" ValueBinding="{Binding InitiativeMod}"/>
+				</StackPanel>
+				<StackPanel DockPanel.Dock="Right">
+					<Button Template="{StaticResource ResourceKey=XButtonTemplate}"
+								Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+								AncestorType={x:Type ItemsControl}}, 
+								Path=DataContext.DeleteActor}" CommandParameter="{Binding}"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Right" Orientation="Vertical">
 					<Button Content="Add" FontSize="16" Margin="5"

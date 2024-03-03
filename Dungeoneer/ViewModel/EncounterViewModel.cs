@@ -122,22 +122,22 @@ namespace Dungeoneer.ViewModel
 		}
 
 		public int XPEarned
-        {
-            get
-            {
+		{
+			get
+			{
 				int xpTotal = 0;
 				foreach (var initiativeCard in InitiativeTrack)
-                {
+				{
 					var initCard = initiativeCard as CreatureInitiativeCardViewModel;
 					if (initCard != null &&
 						initCard.ActorViewModel.Dead)
-                    {
+					{
 						xpTotal += Methods.CalculateXP(initCard.ActorViewModel.ChallengeRating);
-                    }
-                }
+					}
+				}
 				return xpTotal;
-            }
-        }
+			}
+		}
 
 		public FullyObservableCollection<InitiativeCardViewModel> InitiativeTrack
 		{
@@ -251,7 +251,7 @@ namespace Dungeoneer.ViewModel
 				DefaultExt = ".xml",
 				Filter = "XML documents (.xml)|*.xml"
 			};
-			
+
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
 				XmlWriter xmlWriter = XmlWriter.Create(dlg.FileName);

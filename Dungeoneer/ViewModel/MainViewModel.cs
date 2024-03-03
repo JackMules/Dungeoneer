@@ -23,6 +23,7 @@ namespace Dungeoneer.ViewModel
 
 			_addActor = new Command(ExecuteAddActorToEncounter);
 			_editActor = new Command(ExecuteEditActor);
+			_deleteActor = new Command(ExecuteDeleteActor);
 			_loadActorLibrary = new Command(ExecuteLoadActorLibrary);
 			_saveActorLibrary = new Command(ExecuteSaveActorLibrary);
 			_clearActorLibrary = new Command(ExecuteClearActorLibrary);
@@ -47,6 +48,7 @@ namespace Dungeoneer.ViewModel
 		private EncounterViewModel _encounter;
 		private Command _addActor;
 		private Command _editActor;
+		private Command _deleteActor;
 		private Command _loadActorLibrary;
 		private Command _saveActorLibrary;
 		private Command _clearActorLibrary;
@@ -184,6 +186,19 @@ namespace Dungeoneer.ViewModel
 						ActorLibrary.EditActor(actorObj as Model.Creature, creature);
 					}
 				}
+			}
+		}
+
+		public Command DeleteActor
+		{
+			get => _deleteActor;
+		}
+
+		private void ExecuteDeleteActor(object actorObj)
+		{
+			if (actorObj is Model.Actor actor)
+			{
+				ActorLibrary.DeleteActor(actor);
 			}
 		}
 
